@@ -1,0 +1,48 @@
+<template>
+	<div class="noticeItem">
+		<image mode="aspectFit" :src="icon.notice" class="image"></image>
+		<div class="content">
+			<div><span style="margin-right:5px">发布人:</span>{{item.author}}</div>
+			<div><span style="margin-right:5px">发布标题:</span>{{item.title}}</div>
+			<div><span style="margin-right:5px">发布时间:</span>{{item.create_time}}</div>
+		</div>
+		<image mode="aspectFit" :src="icon.arrowRight" class="image"></image>
+	</div>
+</template>
+
+<script>
+	import {globalConfig} from '@/config.js'
+	export default {
+		name:'noticeItem',
+		props:{
+			item:Object
+		},
+		data(){
+			return {
+				icon:null
+			}
+		},
+		created() {
+			this.icon = globalConfig.icon
+			// console.log("item",this.item)
+		}
+	}
+</script>
+
+<style lang="less">
+	.noticeItem{
+		min-height: 100px;
+		display: flex;
+		align-items: center;
+		.image{
+			width: 20px;
+			height: 20px;
+			padding: 0 20px;
+		}
+		.content{
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+		}
+	}
+</style>
