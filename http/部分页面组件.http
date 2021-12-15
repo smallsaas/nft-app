@@ -1,0 +1,83 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+###
+GET {{endpoint}}/form?id=55
+###
+POST {{endpoint}}/form/55
+Content-Type: application/json
+
+{  
+    "version": "1",
+    "name": "somePageComponent",
+    "title": "部分页面组件",
+    "pageStyle": {},
+    "loadApi": "",
+    "response": {
+      "data":"data"
+    },
+    "request": {
+    },
+    "moduleContainer":{
+    },
+    "modules": [
+      {
+        "type":"banner",
+        "name":"banner",
+        "key":"89084045-v4d5-7122-3300-1623511112885"
+      },
+      {
+        "type":"steps",
+        "name":"steps",
+        "key":"15466512-1502-4123-3100-1541654512510"
+      },
+        {
+            "type": "boxList",
+            "name": "boxList",
+            "key": "851344s-ad44-55ea-ca11-4225534d52b7",
+            "container":{
+            }
+        }
+    ],
+    "moduleData": {
+        "89084045-v4d5-7122-3300-1623511112885": {
+            "banners": [
+                {
+                    "img": "https://img0.baidu.com/it/u=1016860127,2747783794&fm=26&fmt=auto",
+                    "itemNavigation": "/?id=1"
+                }
+            ]
+        },
+        "15466512-1502-4123-3100-1541654512510":{
+            "steps":{
+                "step":[
+                    {
+                        "text": "步骤1"
+                    },
+                    {
+                        "text": "步骤2"
+                    },
+                    {
+                        "text": "步骤3"
+                    }
+                ],
+                "active":1
+            }
+        },
+        "851344s-ad44-55ea-ca11-4225534d52b7":{
+            "navList": [
+                {
+                    "number":500,
+                    "title":"数量1"
+                },
+                {
+                    "number":10522,
+                    "title":"数量2"
+                },
+                {
+                    "number":600,
+                    "title":"数量3"
+                }
+            ]
+        }
+    }
+}

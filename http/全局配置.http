@@ -1,0 +1,14 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+### 获取全局配置信息
+GET {{endpoint}}/data?id=9999998
+
+### 提交全局配置信息
+POST {{endpoint}}/data/9999998
+Content-Type: application/json
+
+{
+    "formHost":"https://api.mock.smallsaas.cn/form",
+    "dataHost":"https://api.mock.smallsaas.cn/data",
+    "endpoint":"https://api.mock.smallsaas.cn"
+}

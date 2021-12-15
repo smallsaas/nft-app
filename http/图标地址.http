@@ -1,0 +1,15 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+### 获取图标配置信息
+GET {{endpoint}}/data?id=9999999
+
+### 提交图标配置信息
+POST {{endpoint}}/data/9999999
+Content-Type: application/json
+
+{
+    "autoForm":"https://img1.baidu.com/it/u=2363594029,2446377516&fm=26&fmt=auto",
+    "autoList":"https://img2.baidu.com/it/u=1773021408,420073988&fm=253&fmt=auto&app=120&f=JPEG?w=393&h=499",
+    "autoPage":"https://img0.baidu.com/it/u=2406823350,3411035947&fm=26&fmt=auto"
+    
+}

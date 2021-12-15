@@ -71,3 +71,7 @@ card:带有标题的容器
 
 ### 注意
 自动表单加组件需要在"@/components/dynamic-form/BaseVants.vue"中加
+
+## 页面数据
+
+页面数据放置在http文件夹中 请使用Vscode中的rest-client插件进行操作

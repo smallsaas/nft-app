@@ -1,0 +1,68 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+### 获取列表页面信息
+GET {{endpoint}}/form?id=10
+
+### 提交列表页面信息
+POST {{endpoint}}/form/10
+Content-Type: application/json
+
+{  
+    "version": "1",
+    "name": "SampleList",
+    "title": "示例列表",
+    "pageStyle": {},
+    "loadApi": "",
+    "response": {
+      "data":"data"
+    },
+    "request": {
+    },
+    "moduleContainer":{
+    },
+    "modules": [
+      {
+        "type": "autolist",
+        "name":"",
+        "key":"e59992z8-bb88-a788-9922-1623488775885",
+        "container":{
+            "height":""
+        }
+      }
+    ],
+    "moduleData": {
+         "e59992z8-bb88-a788-9922-1623488775885": {
+            "loadApi":"https://api.mock.smallsaas.cn/data?id=100",
+            "itemNavigation": "/index/index?id",
+            "response":{
+                "list":"list"
+            },
+            "request":{
+                "default":{
+                },
+                "ps":"pageSize",
+                "pn":"pageNo"
+            },
+            "itemModule":{
+                "name":"SelfInspectionRecordItem"
+            }
+        }
+    }
+}
+
+
+### 获取测试用的列表数据
+GET {{endpoint}}/data?id=100
+
+### 提交测试用的列表数据
+POST {{endpoint}}/data/100
+Content-Type: application/json
+
+{
+    "list":[
+        {"name":"待审核","code":"列表~列表","createTime":"2021年","status":"START"},
+        {"name":"审核中","code":"列表~列表","createTime":"2021年","status":"VERIFYING"},
+        {"name":"被拒绝","code":"列表~列表","createTime":"2021年","status":"CLOSE_REJECTED"},
+        {"name":"已审核","code":"列表~列表","createTime":"2021年","status":"CLOSE_APPROVED"}
+    ]
+}

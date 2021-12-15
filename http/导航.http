@@ -1,0 +1,66 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+###
+GET {{endpoint}}/form?id=1
+
+###
+POST {{endpoint}}/form/1
+Content-Type: application/json
+
+{  
+    "version": "1",
+    "name": "navPage",
+    "title": "导航页",
+    "pageStyle": {},
+    "loadApi": "",
+    "response": {
+      "data":"data"
+    },
+    "request": {
+    },
+    "moduleContainer":{
+    },
+    "modules": [
+      {
+        "type":"navlist",
+        "name":"导航列表",
+        "key":"d4a555sd-hf22-qqds-8412-16234da445885",
+        "container":{
+                "grid-template-columns":"repeat(2, 50%)"
+            }
+      }
+    ],
+    "moduleData": {
+        "d4a555sd-hf22-qqds-8412-16234da445885": {
+            "itemModule":{
+              "name":"subTitleCardItem"
+           },
+            "navList": [
+                {
+                    "svg":"autoForm",
+                    "title":"自动表单",
+                    "subTitle":"可用表单组件示例",
+                    "nav":"/pages/autoForm/index",
+                    "container":{
+                    }
+                },
+                {
+                    "svg":"autoList",
+                    "title":"自动列表",
+                    "subTitle":"自动列表示例",
+                    "nav":"/pages/autoList/autoList",
+                    "container":{
+                    }
+                },
+                {
+                    "svg":"autoPage",
+                    "title":"页面组件",
+                    "subTitle":"页面组件示例",
+                    "nav":"/pages/defaultPage/page?id=55",
+                    "container":{
+                    }
+                }
+            ]
+        }
+    }
+}
