@@ -67,5 +67,21 @@
     },
     "uniStatistics": {  
         "enable": false
-    }
+    },
+		"h5" : {
+				"devServer" : {
+						"disableHostCheck" : true, 
+						"port" : 8000, 
+						"proxy" : {
+								"/form" : {
+										"target" : "https://api.mock.smallsaas.cn",
+										"changeOrigin" : true
+								},
+								"/data":{
+									"target" : "https://api.mock.smallsaas.cn",
+									"changeOrigin" : true
+								}
+						}
+				}
+		}
 }
