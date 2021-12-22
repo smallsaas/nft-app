@@ -159,16 +159,20 @@
             },
             // 获取表单数据
             fetchFormData () {
+				let that = this
                 uni.request({
-                    url: _.get(this.formConfig, 'loadApi', '') || LOAD_API,
+                    url: _.get(that.formConfig, 'loadApi', '') || LOAD_API,
                     method: 'GET',
+					header:{
+					Authorization:`Bearer ${that.$cache.get(globalConfig.tokenStoragekey)}`
+					},
                     complete: (res) => {
                        if (_.get(res, 'data.code') === 200) {
                            let resData = _.cloneDeep(_.get(res, 'data.data', {}))
-                           if (_.isFunction(_.get(this.$parent, 'formatLoadData'))) {
-                               resData = this.$parent.formatLoadData(resData)
+                           if (_.isFunction(_.get(that.$parent, 'formatLoadData'))) {
+                               resData = that.$parent.formatLoadData(resData)
                            }
-                           this.form = { ...this.form, ...resData }
+                           that.form = { ...that.form, ...resData }
                        }
                     }
                 })

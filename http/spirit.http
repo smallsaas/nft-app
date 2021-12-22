@@ -1,0 +1,69 @@
+# @endpoint = https://api.mock.smallsaas.cn
+@endpoint = https://api.mock.smallsaas.cn
+
+
+### 获取列表页面信息
+GET {{endpoint}}/form?id=77777
+
+### 提交列表页面信息
+POST {{endpoint}}/form/77777
+Content-Type: application/json
+
+{  
+    "version": "1",
+    "name": "测试个人信息",
+    "title": "测试个人信息",
+    "pageStyle": {
+        "background":"red"
+    },
+    "loadApi": "",
+    "response": {
+      "data":"data"
+    },
+    "request": {
+    },
+    "moduleContainer":{
+    },
+    "modules": [
+      {
+        "type": "autolist",
+        "name":"",
+        "key":"e59992z8-bb88-a788-9922-1623488775885",
+        "container":{
+            "height":""
+        }
+      }
+    ],
+    "moduleData": {
+         "e59992z8-bb88-a788-9922-1623488775885": {
+            "loadApi":"http://localhost:8080/api/crud/oms/player/players",
+            "itemNavigation": "/index/index?id",
+            "response":{
+                "list":"records"
+            },
+            "request":{
+                "default":{
+                },
+                "ps":"pageSize",
+                "pn":"pageNo"
+            },
+            "itemModule":{
+                "name":"spirit"
+            }
+        }
+    }
+}
+
+
+### 获取测试用的列表数据
+GET {{endpoint}}/data?id=77777
+
+### 提交测试用的列表数据
+POST {{endpoint}}/data/77777
+Content-Type: application/json
+
+{
+    "list":[
+        {}
+    ]
+}

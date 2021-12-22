@@ -32,6 +32,13 @@
 					:key="index"
 					@click="handleJumpRoute(item)"
 				  >
+				  <spirit
+				  	v-if="getListItemKey() === 'spirit'"
+				  	:item="{
+				  							...item,
+				  							...getComponentBindData(item)
+				  						}"
+				  />
 				  
 					<spirit-market
 						v-if="getListItemKey() === 'spiritMarket'"
@@ -118,6 +125,9 @@
 	
 	//引入精灵市场
 	import spiritMarket from './listItem/spiritMarket.vue'
+	
+	//引入精灵市场
+	import spirit from './listItem/spirit.vue'
     
 	export default {
 		components: {
@@ -130,7 +140,8 @@
 			CompanyStateToEnforcement,
 			noticeItem,
 			aqyItem,
-			spiritMarket
+			spiritMarket,
+			spirit
 		},
 		props: {
 			config: {

@@ -67,6 +67,22 @@ Content-Type: application/json
                     "nav":"/pages/defaultPage/page?id=55555",
                     "container":{
                     }
+                },
+                 {
+                    "svg":"",
+                    "title":"个人资料",
+                    "subTitle":"个人资料",
+                    "nav":"/pages/defaultPage/page?id=66666",
+                    "container":{
+                    }
+                },
+                {
+                    "svg":"",
+                    "title":"个人资料",
+                    "subTitle":"个人资料",
+                    "nav":"/pages/defaultPage/page?id=77777",
+                    "container":{
+                    }
                 }
             ]
         }
