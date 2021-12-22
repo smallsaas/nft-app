@@ -32,6 +32,15 @@
 					:key="index"
 					@click="handleJumpRoute(item)"
 				  >
+				  
+					<spirit-market
+						v-if="getListItemKey() === 'spiritMarket'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>
+				  
 					 <self-inspection-record-item
 					 	v-if="getListItemKey() === 'SelfInspectionRecordItem'"
 					 	:item="{
@@ -106,6 +115,9 @@
 	import aqyItem from './listItem/aqyItem.vue'
 	import CompanyStateToEnforcement from './listItem/AvatarStateList/companyStateToEnforcement/companyStateToEnforcement.vue'
     import { globalConfig } from '@/config.js'
+	
+	//引入精灵市场
+	import spiritMarket from './listItem/spiritMarket.vue'
     
 	export default {
 		components: {
@@ -117,7 +129,8 @@
 			ToDoListItem,
 			CompanyStateToEnforcement,
 			noticeItem,
-			aqyItem
+			aqyItem,
+			spiritMarket
 		},
 		props: {
 			config: {

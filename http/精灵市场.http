@@ -1,17 +1,21 @@
+# @endpoint = https://api.mock.smallsaas.cn
 @endpoint = https://api.mock.smallsaas.cn
 
+
 ### 获取列表页面信息
-GET {{endpoint}}/form?id=10
+GET {{endpoint}}/form?id=55555
 
 ### 提交列表页面信息
-POST {{endpoint}}/form/10
+POST {{endpoint}}/form/55555
 Content-Type: application/json
 
 {  
     "version": "1",
-    "name": "SampleList",
-    "title": "示例列表",
-    "pageStyle": {},
+    "name": "精灵市场",
+    "title": "精灵市场",
+    "pageStyle": {
+        "background":"red"
+    },
     "loadApi": "",
     "response": {
       "data":"data"
@@ -32,10 +36,10 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"https://api.mock.smallsaas.cn/data?id=100",
+            "loadApi":"http://localhost:8080/api/crud/oms/player/players",
             "itemNavigation": "/index/index?id",
             "response":{
-                "list":"list"
+                "list":"records"
             },
             "request":{
                 "default":{
@@ -44,7 +48,7 @@ Content-Type: application/json
                 "pn":"pageNo"
             },
             "itemModule":{
-                "name":"SelfInspectionRecordItem"
+                "name":"spiritMarket"
             }
         }
     }
@@ -52,17 +56,14 @@ Content-Type: application/json
 
 
 ### 获取测试用的列表数据
-GET {{endpoint}}/data?id=100
+GET {{endpoint}}/data?id=55555
 
 ### 提交测试用的列表数据
-POST {{endpoint}}/data/100
+POST {{endpoint}}/data/55555
 Content-Type: application/json
 
 {
     "list":[
-        {"name":"待审核111","code":"列表~列表","createTime":"2021年","status":"START"},
-        {"name":"审核中","code":"列表~列表","createTime":"2021年","status":"VERIFYING"},
-        {"name":"被拒绝","code":"列表~列表","createTime":"2021年","status":"CLOSE_REJECTED"},
-        {"name":"已审核","code":"列表~列表","createTime":"2021年","status":"CLOSE_APPROVED"}
+        {}
     ]
 }

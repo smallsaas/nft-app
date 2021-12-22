@@ -59,6 +59,14 @@ Content-Type: application/json
                     "nav":"/pages/defaultPage/page?id=55",
                     "container":{
                     }
+                },
+                {
+                    "svg":"",
+                    "title":"精灵市场",
+                    "subTitle":"精灵市场",
+                    "nav":"/pages/defaultPage/page?id=55555",
+                    "container":{
+                    }
                 }
             ]
         }

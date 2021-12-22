@@ -8,7 +8,7 @@
     /* 5+App特有相关 */
     "app-plus" : {
         "usingComponents" : true,
-		"nvueStyleCompiler" : "uni-app",
+        "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
@@ -65,23 +65,27 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics": {  
-        "enable": false
+    "uniStatistics" : {
+        "enable" : false
     },
-		"h5" : {
-				"devServer" : {
-						"disableHostCheck" : true, 
-						"port" : 8000, 
-						"proxy" : {
-								"/form" : {
-										"target" : "https://api.mock.smallsaas.cn",
-										"changeOrigin" : true
-								},
-								"/data":{
-									"target" : "https://api.mock.smallsaas.cn",
-									"changeOrigin" : true
-								}
-						}
+    "h5" : {
+        "devServer" : {
+            "disableHostCheck" : true,
+            "port" : 8080,
+            "proxy" : {
+                "/form" : {
+                    "target" : "https://api.mock.smallsaas.cn",
+                    "changeOrigin" : true
+                },
+                "/data" : {
+                    "target" : "https://api.mock.smallsaas.cn",
+                    "changeOrigin" : true
+                },
+				"/api" : {
+				    "target" : "http://repo.dev.smallsaas.cn:8084",
+				    "changeOrigin" : true
 				}
-		}
+            }
+        }
+    }
 }

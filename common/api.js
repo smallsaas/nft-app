@@ -12,4 +12,8 @@ export const api = {
 	const url = `${globalConfig.dataHost}?id=9999999`
 	return request('GET',url,params)
 	},
+	getspiritMarket(params){
+	const url = `${globalConfig.endPoint}/api/crud/oms/wisp/wisps/market`
+	return request('GET',url,params)
+	},
 }
