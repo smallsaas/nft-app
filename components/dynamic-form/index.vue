@@ -135,7 +135,7 @@
               },  
         },
 		mounted() {
-            
+            console.log("srv",this.srvFormData)
             // 有具体配置信息时
             if (Object.keys(this.config).length > 0) {
                 this.formConfig = _.cloneDeep(this.config)
@@ -149,6 +149,7 @@
 			// 外部传入的数据源
 			if (Object.keys(this.srvFormData).length > 0) {
                 this.form = { ...this.srvFormData }
+								this.$forceUpdate()
 				return
 			}
             this.fetchFormData()
@@ -163,9 +164,9 @@
                 uni.request({
                     url: _.get(that.formConfig, 'loadApi', '') || LOAD_API,
                     method: 'GET',
-					header:{
-					Authorization:`Bearer ${that.$cache.get(globalConfig.tokenStoragekey)}`
-					},
+										header:{
+											Authorization:`Bearer ${that.$cache.get(globalConfig.tokenStorageKey)}`
+										},
                     complete: (res) => {
                        if (_.get(res, 'data.code') === 200) {
                            let resData = _.cloneDeep(_.get(res, 'data.data', {}))

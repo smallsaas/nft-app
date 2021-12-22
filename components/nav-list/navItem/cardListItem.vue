@@ -1,22 +1,22 @@
 <template>
-	<div class="cardList"
+	<view class="cardList"
 	>
-		<div class="cardListBody">
-			<div class="cardList-card">
-				<div class="cardList-carditem" :style="{'background':item.container.background}">
+		<view class="cardListBody">
+			<view class="cardList-card">
+				<view class="cardList-carditem" :style="{'background':item.container.background}">
 					<navigator :url="item.nav" class="cardList-allitem">
-						<div :class="'cardlist cardlist-'+item.svg" v-if="item.svg!==undefined&&item.img===undefined">
-						</div>
+						<view :class="'cardlist cardlist-'+item.svg" v-if="item.svg!==undefined&&item.img===undefined">
+						</view>
 						<image class="cardlist" :src="item.img" mode="widthFix" v-if="item.svg===undefined&&item.img!==undefined"></image>
-						<div class="cardList-title">
+						<view class="cardList-title">
 							{{item.title}}
 							<!-- <button @click="test()">测试</button> -->
-						</div>
+						</view>
 					</navigator>
-				</div>
-			</div>
-		</div>
-	</div>
+				</view>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script>

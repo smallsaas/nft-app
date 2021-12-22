@@ -1,7 +1,7 @@
 <template>
-	<div class="mask_container">
+	<view class="mask_container">
 		<slot></slot>
-	</div>
+	</view>
 </template>
 
 <style lang="less">

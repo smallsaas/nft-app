@@ -1,16 +1,16 @@
 <template>
-	<div class="stateSearchlist">
-		<div class="titleBox">
+	<view class="stateSearchlist">
+		<view class="titleBox">
 			<span class="title">{{item.name}}</span>
 			<span class="state-high" v-if="isHigh(item.type)">高危</span>
 			<span class="state state-example" v-if="item.state.example.status">检查 {{item.state.example.number}}</span>
 			<span class="state state-self" v-if="item.state.self.status">自查 {{item.state.self.number}}</span>
-		</div>
-		<div class="subTitleBox">
+		</view>
+		<view class="subTitleBox">
 			{{item.address}}
-		</div>
+		</view>
 
-	</div>
+	</view>
 </template>
 
 <script>

@@ -1,28 +1,28 @@
 <template>
-	<div class="load-refresh">
+	<view class="load-refresh">
 		<!-- 刷新动画，可自定义，占高100rpx -->
-		<div class="animation" :style="{'--color': color}">
-			<div v-if="!playState" class="remind">
+		<view class="animation" :style="{'--color': color}">
+			<view v-if="!playState" class="remind">
 				{{moving ? '↑ 松开释放' : '↓ 下拉刷新'}}
-			</div>
-			<div v-if="playState && refreshType === 'hollowDots'" class="refresh hollow-dots-spinner">
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-			</div>
-			<div v-if="playState && refreshType === 'halfCircle'" class="refresh half-circle-spinner">
-				<div class="circle circle-1"></div>
-				<div class="circle circle-2"></div>
-			</div>
-			<div v-if="playState && refreshType === 'swappingSquares'" class="refresh swapping-squares-spinner">
-				<div class="square"></div>
-				<div class="square"></div>
-				<div class="square"></div>
-				<div class="square"></div>
-			</div>
-		</div>
+			</view>
+			<view v-if="playState && refreshType === 'hollowDots'" class="refresh hollow-dots-spinner">
+				<view class="dot"></view>
+				<view class="dot"></view>
+				<view class="dot"></view>
+			</view>
+			<view v-if="playState && refreshType === 'halfCircle'" class="refresh half-circle-spinner">
+				<view class="circle circle-1"></view>
+				<view class="circle circle-2"></view>
+			</view>
+			<view v-if="playState && refreshType === 'swappingSquares'" class="refresh swapping-squares-spinner">
+				<view class="square"></view>
+				<view class="square"></view>
+				<view class="square"></view>
+				<view class="square"></view>
+			</view>
+		</view>
 		<!-- 数据列表块 -->
-		<div
+		<view
 			class="cover-container"
 			:style="[{
 				background: backgroundCover,
@@ -36,10 +36,10 @@
 				<!-- 数据集插槽 -->
 				<slot name="content-list"></slot>
 				<!-- 上拉加载 -->
-				<div class="load-more">{{loadText}}</div>
+				<view class="load-more">{{loadText}}</view>
 			</scroll-view>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>
@@ -220,7 +220,7 @@
 			align-items: center;
 			justify-content: center;
 			box-sizing: border-box;
-			div {
+			view {
 				// animation-play-state: $playState!important;
 			}
 		}

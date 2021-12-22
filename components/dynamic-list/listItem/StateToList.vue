@@ -1,32 +1,32 @@
 <template>
-	<div class="self-item">
-		<div class="flex">
-			<div style="margin-right: 15px;">
+	<view class="self-item">
+		<view class="flex">
+			<view style="margin-right: 15px;">
 				<image class="icon" :src="getIcon(item.formCode)||icon.street"></image>
-			</div>
-			<div class="left flex1">
-				<!-- <div class="title text-line-1">{{ _get(custom,"fileno","") }}</div> -->
-				<div class="title text-line-1">
+			</view>
+			<view class="left flex1">
+				<!-- <view class="title text-line-1">{{ _get(custom,"fileno","") }}</view> -->
+				<view class="title text-line-1">
 					{{ item[options.formName]||item.workName }}
-				</div>
-				<div class="submit-time">提交时间: {{ item.actApplyTime }}</div>
-			</div>
-			<div class="right">
-<!-- 				<div v-if="item.finishState === '3'" class="status">
+				</view>
+				<view class="submit-time">提交时间: {{ item.actApplyTime }}</view>
+			</view>
+			<view class="right">
+<!-- 				<view v-if="item.finishState === '3'" class="status">
 					待审核
-				</div>
-				<div v-else-if="item.finishState === '2'" class="status" style="background-color: #F5A623;">
+				</view>
+				<view v-else-if="item.finishState === '2'" class="status" style="background-color: #F5A623;">
 					审核中
-				</div> -->
-				<div v-if="item.finishState === '1'" class="status" style="background-color: #2dffab;">
+				</view> -->
+				<view v-if="item.finishState === '1'" class="status" style="background-color: #2dffab;">
 					{{options.finishText||"已完成"}}
-				</div>
-				<div v-else-if="item.finishState === '0'" class="status" style="background-color: #F5A623;">
+				</view>
+				<view v-else-if="item.finishState === '0'" class="status" style="background-color: #F5A623;">
 					{{options.waitText||"进行中"}}
-				</div>
-			</div>
-		</div>
-	</div>
+				</view>
+			</view>
+		</view>
+	</view>
 </template>
 <script>
 	import _ from 'lodash'

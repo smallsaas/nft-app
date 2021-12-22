@@ -1,15 +1,15 @@
 <template>
-    <div class="tabbar" :style="{'padding-bottom': paddingBottomHeight + 'rpx'}">
-        <div class="tabbar-item"
+    <view class="tabbar" :style="{'padding-bottom': paddingBottomHeight + 'rpx'}">
+        <view class="tabbar-item"
             v-for="(item, index) in list" 
             :key="index" 
             @click="tabbarChange(item.path)"
         >
             <cover-image class="item-img" :src="item.icon_a" v-if="current == index"></cover-image>
             <cover-image class="item-img" :src="item.icon" v-else></cover-image>
-            <div class="item-name" :class="{'tabbarActive': current == index}" v-if="item.text">{{item.text}}</div>
-        </div>
-    </div>
+            <view class="item-name" :class="{'tabbarActive': current == index}" v-if="item.text">{{item.text}}</view>
+        </view>
+    </view>
 </template>
 
 <script>

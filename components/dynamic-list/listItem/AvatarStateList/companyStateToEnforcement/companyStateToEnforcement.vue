@@ -22,42 +22,42 @@ wait: 待完成文本
  -->
 <template>
 	<!-- <navigator :url="navigationUrl" hover-class="navigator-hover"> -->
-		<div class="state_allcontent">
-			<div class="AvatarStateList">
-				<div class="formNumber" >
+		<view class="state_allcontent">
+			<view class="AvatarStateList">
+				<view class="formNumber" >
 					{{options.workText||"工作名称"}}:
 					<span>{{item[options.workField]||item.workName}}</span>
 					<!-- <span class="enforcementState enforcement" v-if="item.finishState==='enforcement'">执法中</span> -->
 
-				</div>
-				<div class="body">
-					<div class="avatar" v-if="item.pdKey">
+				</view>
+				<view class="body">
+					<view class="avatar" v-if="item.pdKey">
 						<image :src="getVal(item.pdKey)" mode="widthFix" class="avatar-img" />
-					</div>
-					<div class="content">
-						<div class="titleBox">
-							<div class="time" v-if="item.actApplyTime&&!options.hideTime"><span class="content-title">{{options.timeText||"开始时间"}}:</span>{{_get(item,options.timeField)||item.actApplyTime}}</div>
-							<div class="object" v-if="item.actApplyUserName&&!options.hideUser"><span class="content-title">{{options.userText||"执法人员"}}:</span>{{_get(item,options.userField)||item.actApplyUserName}}</div>
-							<div class="company" v-if="item.actCurrDualUserName&&!options.hideNext"><span class="content-title">{{options.nextText||"下一步办理人"}}:</span>{{_get(item,options.nextField)||item.actCurrDualUserName}}</div>
-							<!-- <div class="department" v-if="item.department"><span class="content-title">执法科室:</span>{{item.department}}</div> -->
-							<!-- <div class="remarks" v-if="item.formName&&!hideForm"><span class="content-title">{{optons.formText||"表单名"}}:</span>{{item[options.formField]||item.formName}}</div> -->
-						</div>
-					</div>
-					<div style="position: relative;width: 90px;" v-if="options.showDelete">
-						<div v-if="item.finishState==='0'" style="color: #FFFFFF;position: absolute;z-index:88888;bottom: 0px;right: 5px;background-color: #EB3941;padding: 5px 10px;" @click="handleDelete">删除</div>
-					</div>
-					<div style="position: relative;width: 90px;" v-if="!options.hideState">
+					</view>
+					<view class="content">
+						<view class="titleBox">
+							<view class="time" v-if="item.actApplyTime&&!options.hideTime"><span class="content-title">{{options.timeText||"开始时间"}}:</span>{{_get(item,options.timeField)||item.actApplyTime}}</view>
+							<view class="object" v-if="item.actApplyUserName&&!options.hideUser"><span class="content-title">{{options.userText||"执法人员"}}:</span>{{_get(item,options.userField)||item.actApplyUserName}}</view>
+							<view class="company" v-if="item.actCurrDualUserName&&!options.hideNext"><span class="content-title">{{options.nextText||"下一步办理人"}}:</span>{{_get(item,options.nextField)||item.actCurrDualUserName}}</view>
+							<!-- <view class="department" v-if="item.department"><span class="content-title">执法科室:</span>{{item.department}}</view> -->
+							<!-- <view class="remarks" v-if="item.formName&&!hideForm"><span class="content-title">{{optons.formText||"表单名"}}:</span>{{item[options.formField]||item.formName}}</view> -->
+						</view>
+					</view>
+					<view style="position: relative;width: 90px;" v-if="options.showDelete">
+						<view v-if="item.finishState==='0'" style="color: #FFFFFF;position: absolute;z-index:88888;bottom: 0px;right: 5px;background-color: #EB3941;padding: 5px 10px;" @click="handleDelete">删除</view>
+					</view>
+					<view style="position: relative;width: 90px;" v-if="!options.hideState">
 						<span class="enforcementState rectification" v-if="item.finishState==='0'">{{options.noSuccess||"未完成"}}</span>
 						<span class="enforcementState closeCase" v-if="item.finishState==='1'">{{options.success||"已完成"}}</span>
 						<span class="enforcementState closeCase" v-if="item.finishState==='2'">{{options.wait||"待完成"}}</span>
-					</div>
-<!-- 					<div class="state" v-if="item.state">
-							<div v-if="item.state.modify" class="modify">修改</div>
-							<div v-if="item.state.approval" class="approval">审批</div>
-					</div> -->
-				</div>
-			</div>
-		</div>
+					</view>
+<!-- 					<view class="state" v-if="item.state">
+							<view v-if="item.state.modify" class="modify">修改</view>
+							<view v-if="item.state.approval" class="approval">审批</view>
+					</view> -->
+				</view>
+			</view>
+		</view>
 	<!-- </navigator> -->
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<view>
 		<dynamic-page :API="api" :Details="true" ></dynamic-page>
-	</div>
+	</view>
 </template>
 
 <script>

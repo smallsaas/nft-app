@@ -1,49 +1,49 @@
 <template>
-	<div class="spiritMarket">
-		<div class="spiritMarketBox">
-			<div class="spiritMarketBoxItem" >
-				<div class="spiritMarketBoxItemTop">
-					<div class="spiritBox">
+	<view class="spiritMarket">
+		<view class="spiritMarketBox">
+			<view class="spiritMarketBoxItem" >
+				<view class="spiritMarketBoxItemTop">
+					<view class="spiritBox">
 						<image class="spiritImg" :src="item.previewPhotoUrl" lazy-load mode="aspectFit"></image>
-					</div>
-					<div class="spiritInfoBox">
-						<div class="spiritTitle"><text>NFT精灵-{{item.name}}</text></div>
-						<div class="spiritTwoSideBox">
-							<div class="sideLeft">匹配时间：<text>{{item.waitingMatchMinute}}</text></div>
-							<div class="sideRight">级别：<text>V{{item.level}}</text></div>
-						</div>
-						<div class="spiritTwoSideBox">
-							<div class="sideLeft">增长能力：<text>8%</text></div>
-							<div class="sideRight">能力值：<text>200~300</text></div>
-						</div>
-						<div class="spiritTwoSideBox">
-							<div class="sideLeft">培养时间：<text>{{item.growthDays}}</text></div>
-							<div class="sideRight">匹配消耗精灵令：<text>{{item.costWispCoin}}</text></div>
-						</div>
-						<div class="spiritTwoSideBox">
-							<div class="sideLeft">消耗陪伴精灵：<text>{{item.costAccompanyWisp}}个</text></div>
-							<div class="sideRight">匹配需要土地</div>
-						</div>
-					</div>
-				</div>
-				<div class="spiritMarketBoxItemBottom">
-					<div class="spiritStatus">
+					</view>
+					<view class="spiritInfoBox">
+						<view class="spiritTitle"><text>NFT精灵-{{item.name}}</text></view>
+						<view class="spiritTwoSideBox">
+							<view class="sideLeft">匹配时间：<text>{{item.waitingMatchMinute}}</text></view>
+							<view class="sideRight">级别：<text>V{{item.level}}</text></view>
+						</view>
+						<view class="spiritTwoSideBox">
+							<view class="sideLeft">增长能力：<text>8%</text></view>
+							<view class="sideRight">能力值：<text>200~300</text></view>
+						</view>
+						<view class="spiritTwoSideBox">
+							<view class="sideLeft">培养时间：<text>{{item.growthDays}}</text></view>
+							<view class="sideRight">匹配消耗精灵令：<text>{{item.costWispCoin}}</text></view>
+						</view>
+						<view class="spiritTwoSideBox">
+							<view class="sideLeft">消耗陪伴精灵：<text>{{item.costAccompanyWisp}}个</text></view>
+							<view class="sideRight">匹配需要土地</view>
+						</view>
+					</view>
+				</view>
+				<view class="spiritMarketBoxItemBottom">
+					<view class="spiritStatus">
 						<text>{{item.stage}}</text>
-					</div>
-					<div class="spiritBuyBtn">
+					</view>
+					<view class="spiritBuyBtn">
 						购买陪伴精灵
-					</div>
-					<div class="spiritLandSelect">
+					</view>
+					<view class="spiritLandSelect">
 						<select class="selectLand">
 							<options value="1" selected="selected" >租用土地</options>
 							<options value="2">自用土地</options>
 						</select>
-					</div>
-				</div>
-			</div>										
+					</view>
+				</view>
+			</view>										
 			
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>

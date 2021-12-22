@@ -1,13 +1,13 @@
 <template>
-	<div :style="{'background':_get(config,'outStyle.background','')}">
-<!-- 		<div class="nav_list_header" v-if="_get(config,'title')!==''">
-			<div class="nav_list_title">{{_get(config,'title',"")}}</div>
-		</div> -->
-		 <div 
+	<view :style="{'background':_get(config,'outStyle.background','')}">
+<!-- 		<view class="nav_list_header" v-if="_get(config,'title')!==''">
+			<view class="nav_list_title">{{_get(config,'title',"")}}</view>
+		</view> -->
+		 <view 
 				class="nav_list_container" 
 				:style="[_get(config, 'outStyle', {})]"
 			>
-		<!-- 	<div
+		<!-- 	<view
 				class="nav_list_container" 
 			> -->
 		      <block class="block" v-for="(item, index) in _get(config, 'list', [])" :key="index">
@@ -31,8 +31,8 @@
 					>
 					</sub-title-card-item>
 			  </block>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>

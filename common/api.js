@@ -13,7 +13,11 @@ export const api = {
 	return request('GET',url,params)
 	},
 	getspiritMarket(params){
-	const url = `${globalConfig.endPoint}/api/crud/oms/wisp/wisps/market`
+	const url = `${globalConfig.endpoint}/api/crud/oms/wisp/wisps/market`
 	return request('GET',url,params)
 	},
+	getInformation(params,id){
+		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
+		return request("GET",url,params)
+	}
 }

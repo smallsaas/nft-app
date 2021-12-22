@@ -1,5 +1,5 @@
 <template>
-	<div v-if="list.step&&list.active">
+	<view v-if="list.step&&list.active">
 		<van-steps
 			:active="list.active-1"
 			active-icon="success"
@@ -9,7 +9,7 @@
 				{{item.text}}
 			</van-step>
 		</van-steps>
-	</div>
+	</view>
 </template>
 
 <script>

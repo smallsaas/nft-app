@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<view>
 
 		<van-steps 
 			:steps="item.recordSteps" 
@@ -9,7 +9,7 @@
 			@click-step="onItemClick"
 		/>
 
-	</div>
+	</view>
 </template>
 <script>
 	import qs from 'qs'

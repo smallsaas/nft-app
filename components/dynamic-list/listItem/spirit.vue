@@ -1,6 +1,6 @@
 <template>
-	<div class="spirit">
-		<div class="item">
+	<view class="spirit">
+		<view class="item">
 			<text>姓名:{{item.name}}</text>
 			<text>主手机号码:{{item.mobilePhone}}</text>
 			<text>副手机号码:{{item.secondMobilePhone}}</text>
@@ -10,8 +10,8 @@
 			<text>银行卡号:{{item.bankAccountNumber}}</text>
 			<text>户名:{{item.bankAccountName}}</text>
 			<text>支付密码:{{item.paymentPassword}}</text>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>

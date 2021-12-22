@@ -1,15 +1,15 @@
 <template>
-  <div class="magic-nav">
-    <div
+  <view class="magic-nav">
+    <view
       class="cate-item"
       v-for="(item, index) in navList"
       :key="index"
       @click="jumpPage(item)"
     >
       <img alt :src="item.img" class="cate-img" />
-      <div class="cate-title">{{ item.title }}</div>
-    </div>
-  </div>
+      <view class="cate-title">{{ item.title }}</view>
+    </view>
+  </view>
 </template>
 <script>
 export default {

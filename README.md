@@ -63,7 +63,7 @@ card:带有标题的容器
 
 进入 "@/components/dynamic-page/index.vue"，在
 ```vue
-	<div v-for="(item, index) in config.modules" :key="index">
+	<view v-for="(item, index) in config.modules" :key="index">
 ```
 下面增加组件，然后 import 引入组件，在components中引入即可
 

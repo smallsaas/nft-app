@@ -1,5 +1,5 @@
 <template>
-    <div :style="[outStyle || {}]">
+    <view :style="[outStyle || {}]">
         <swiper
             class="swiper" 
             :indicator-dots="indicatorDots"
@@ -24,7 +24,7 @@
                 </navigator>
             </swiper-item>
         </swiper>
-   </div>
+   </view>
 </template>
 
 <script>

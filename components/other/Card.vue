@@ -1,7 +1,7 @@
 
 <template>
-  <div class="Card-Layout">
-    <div class="Card-Layout-Content" @click="con()" :style="{'background':otherStyle===undefined?'':otherStyle.fill,
+  <view class="Card-Layout">
+    <view class="Card-Layout-Content" @click="con()" :style="{'background':otherStyle===undefined?'':otherStyle.fill,
 			'padding':otherStyle===undefined?'':otherStyle.padding,
 			'margin':otherStyle===undefined?'':otherStyle.margin,
 			'border':otherStyle===undefined?'':otherStyle.stroke===undefined?'':otherStyle.stroke.lineWidth+' '+otherStyle.stroke.color+' solid',
@@ -10,7 +10,7 @@
 			'color':otherStyle===undefined?'':otherStyle.color,
 			'font':otherStyle===undefined?'':otherStyle.font,
 			'textAlign':otherStyle===undefined?'':otherStyle.justify}">
-			<div class="Card-Layout-Title" :style="{
+			<view class="Card-Layout-Title" :style="{
 				'width':otherStyle===undefined?'':otherStyle.title.width,
 			'color':otherStyle===undefined?'':otherStyle.title.color,
 			'background':otherStyle===undefined?'':otherStyle.title.fill,
@@ -23,12 +23,12 @@
 			}"
 			>{{title}}
 			<span v-if="jump" @click="jumpUrl()" style="position: absolute;right: 5px;color: #1A5EB5;font-size: 14px;">{{jumpText}}</span>
-			</div>
-      <div class="Card-Layout-Child">
+			</view>
+      <view class="Card-Layout-Child">
 				<slot></slot>
-			</div>
-    </div>
-  </div>
+			</view>
+    </view>
+  </view>
 </template>
 
 <script>

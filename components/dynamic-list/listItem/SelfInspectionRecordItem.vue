@@ -1,29 +1,29 @@
 <template>
-	<div class="self-item">
-		<div class="flex">
-			<div class="left flex1">
-				<div class="title text-line-1">{{ item.name }}</div>
-				<div class="times text-line-1">
+	<view class="self-item">
+		<view class="flex">
+			<view class="left flex1">
+				<view class="title text-line-1">{{ item.name }}</view>
+				<view class="times text-line-1">
 					期间: {{ item.code }}
-				</div>
-				<div class="submit-time">提交时间: {{ item.createTime }}</div>
-			</div>
-			<div class="right">
-				<div v-if="item.status === 'START'" class="status">
+				</view>
+				<view class="submit-time">提交时间: {{ item.createTime }}</view>
+			</view>
+			<view class="right">
+				<view v-if="item.status === 'START'" class="status">
 					待审核
-				</div>
-				<div v-else-if="item.status === 'VERIFYING'" class="status" style="background-color: #F5A623;">
+				</view>
+				<view v-else-if="item.status === 'VERIFYING'" class="status" style="background-color: #F5A623;">
 					审核中
-				</div>
-				<div v-else-if="item.status === 'CLOSE_REJECTED'" class="status" style="background-color: #D43030;">
+				</view>
+				<view v-else-if="item.status === 'CLOSE_REJECTED'" class="status" style="background-color: #D43030;">
 					被拒绝
-				</div>
-				<div v-else-if="item.status === 'CLOSE_APPROVED'" class="status" style="background-color: #979797;">
+				</view>
+				<view v-else-if="item.status === 'CLOSE_APPROVED'" class="status" style="background-color: #979797;">
 					已审核
-				</div>
-			</div>
-		</div>
-	</div>
+				</view>
+			</view>
+		</view>
+	</view>
 </template>
 <script>
 	export default {

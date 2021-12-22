@@ -1,13 +1,13 @@
 <template>
-	<div class="noticeItem">
+	<view class="noticeItem">
 		<image mode="aspectFit" :src="icon.notice" class="image"></image>
-		<div class="content">
-			<div><span style="margin-right:5px">发布人:</span>{{item.author}}</div>
-			<div><span style="margin-right:5px">发布标题:</span>{{item.title}}</div>
-			<div><span style="margin-right:5px">发布时间:</span>{{item.create_time}}</div>
-		</div>
+		<view class="content">
+			<view><span style="margin-right:5px">发布人:</span>{{item.author}}</view>
+			<view><span style="margin-right:5px">发布标题:</span>{{item.title}}</view>
+			<view><span style="margin-right:5px">发布时间:</span>{{item.create_time}}</view>
+		</view>
 		<image mode="aspectFit" :src="icon.arrowRight" class="image"></image>
-	</div>
+	</view>
 </template>
 
 <script>

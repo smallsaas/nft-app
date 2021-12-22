@@ -1,13 +1,13 @@
 <template>
-	<div class="aqyItem_content">
-		<div class="aqyItem_image">
+	<view class="aqyItem_content">
+		<view class="aqyItem_image">
 			<image :src="getIcon()"></image>
-		</div>
-		<div class="aqyItem_text">
-			<div class="aqyItem_startTime"><span class="aqyItem_label">{{options.TimeText||"发起时间"}}:</span>{{item.create_time}}</div>
-			<div class="aqyItem_company"><span class="aqyItem_label">{{options.CompanyText||"发起公司"}}:</span>{{item.companyName}}</div>
-		</div>
-	</div>
+		</view>
+		<view class="aqyItem_text">
+			<view class="aqyItem_startTime"><span class="aqyItem_label">{{options.TimeText||"发起时间"}}:</span>{{item.create_time}}</view>
+			<view class="aqyItem_company"><span class="aqyItem_label">{{options.CompanyText||"发起公司"}}:</span>{{item.companyName}}</view>
+		</view>
+	</view>
 </template>
 
 <script>

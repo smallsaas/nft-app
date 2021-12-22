@@ -1,33 +1,33 @@
 <template>
-	<div class="tabBlock" v-if="list.length > 0">
-		<scroll-div 
+	<view class="tabBlock" v-if="list.length > 0">
+		<scroll-view 
 			scroll-x="true" 
 			scroll-with-animation 
 			:scroll-left="tabsScrollLeft" 
 			@scroll="scroll"
-			class="my_scroll_div"
+			class="my_scroll_view"
 		>
-			<div class="tab" id="tab_list">
-				<div v-for="(item, index) in list"
+			<view class="tab" id="tab_list">
+				<view v-for="(item, index) in list"
 					  :key="index"
 					  :class="['tab__item', {'tab__item--active': currentIndex === index}]"
 					  :style="{color: (currentIndex === index ? `${itemColor}`: '')}"
 					  id="tab_item"
 					  @click="select(item, index)"
 				>
-					<div class="tab__item-title">
+					<view class="tab__item-title">
 						<slot name="title" :title="item[field || 'title']"></slot>
-					</div>
-					<div v-if="!showTitleSlot" class="tab__item-title">
+					</view>
+					<view v-if="!showTitleSlot" class="tab__item-title">
 						{{item[field || 'title']}}
-					</div>
-				</div>
-			</div>
-			<div class="tab__line" 
+					</view>
+				</view>
+			</view>
+			<view class="tab__line" 
 				  :style="{background: lineColor, width: lineStyle.width, transform: lineStyle.transform,transitionDuration: lineStyle.transitionDuration}">
-			</div>
-		</scroll-div>
-	</div>
+			</view>
+		</scroll-view>
+	</view>
 </template>
 
 <script>
@@ -87,12 +87,12 @@
 				// this.$nextTick(()=>{
 				// 	if(this.list.length > 0) {
 				// 		this.setLine()
-				// 		this.scrollIntodiv()
+				// 		this.scrollIntoview()
 				// 	}
 				// })
 				if(this.list.length > 0) {
 					this.setLine()
-					this.scrollIntodiv()
+					this.scrollIntoview()
 				}
 			},
 			setLine() {
@@ -116,7 +116,7 @@
 					};
 				})
 			},
-			scrollIntodiv() {  // item滚动
+			scrollIntoview() {  // item滚动
 				let lineLeft = 0;
 				this.getElementData('#tab_list', (data)=> {
 					let list = data[0]
@@ -145,7 +145,7 @@
 	.tabBlock {
 		position: relative;
 		background: #fff;
-		.my_scroll_div {
+		.my_scroll_view {
 			::-webkit-scrollbar {
 				/* 隐藏滚动条，但依旧具备可以滚动的功能 */
 				display: none;

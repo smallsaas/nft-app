@@ -1,8 +1,8 @@
 <template>
-	<div :style="[_get(config, 'pageStyle', {}), _get(config, 'moduleContainer', {})]">
+	<view :style="[_get(config, 'pageStyle', {}), _get(config, 'moduleContainer', {})]">
         <van-skeleton row="10" :loading="skeletonLoading">
           <block v-if="_get(config, 'modules', []).length > 0">
-            <div v-for="(item, index) in config.modules" :key="index">
+            <view v-for="(item, index) in config.modules" :key="index">
 									<dynamic-form
 										:Details="Details||item.Details"
 										 v-if="_get(item, 'type') === 'autoform'"
@@ -12,7 +12,7 @@
 										 }"
 										:srvFormData="getComponentsData(item) || (srvFormData||{})"
 									/>
-										<div
+										<view
 										v-if="_get(item, 'type') === 'autolist'"
 										>
 											<card
@@ -49,9 +49,9 @@
 												v-if="!_get(item,'name')&&!listName"
 												:otherSearch="otherSearch"
 											></dynamic-list>
-										</div>
+										</view>
 										
-									<div v-if="_get(item, 'type') === 'banner'">
+									<view v-if="_get(item, 'type') === 'banner'">
 										<card
 											:otherStyle="{
 												'padding':'10px 0 0 0',
@@ -73,9 +73,9 @@
 										 :list="getComponentsData(item) ||  _get(config.moduleData, `${item.key}.banners`, [])"
 										 :outStyle="getComponentStyle(item)"
 									/>
-								</div>
+								</view>
 								
-					<div v-if="_get(item, 'type') === 'navlist'">
+					<view v-if="_get(item, 'type') === 'navlist'">
 						<card
 							:otherStyle="{
 								'padding':'10px 0 0 0',
@@ -107,7 +107,7 @@
 
 									}"
 							 />
-						</div>
+						</view>
 				 <box-list
 						v-if="_get(item,'type') === 'boxList'"
 						:list="_get(config.moduleData,`${item.key}.navList`,[])"
@@ -134,10 +134,15 @@
 						 	v-if="_get(item, 'type') === 'button'"
 						 	:config = "_get(config.moduleData,item.key,{})"
 						 ></c-button>
-            </div>
+						 <avatar
+							v-if="_get(item,'type') === 'avatar'"
+							:item="getComponentsData(item)"
+							:avatarData="_get(config.moduleData,item.key,{})"
+						 ></avatar>
+            </view>
           </block>
         </van-skeleton>
-	</div>
+	</view>
 </template>
 
 <script>
@@ -156,6 +161,7 @@
 	import cell from '../other/Cell.vue'
 	import steps from '../Steps/Steps.vue'
 	import cButton from '../other/C-Button.vue'
+	import Avatar from '../Avatar.vue'
     import { globalConfig } from '@/config.js'
 		import {LoadComplete} from '@/common/api.js'
 	export default {
@@ -170,6 +176,7 @@
 			cell,
 			steps,
 			cButton,
+			Avatar
 		},
 		props: {
 			API: String,  // 页面数据请求接口

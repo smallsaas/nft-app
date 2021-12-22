@@ -1,16 +1,16 @@
 <template>
-	<div>
-		<div class="box-list">
-			<div class="box-list-item" v-for="(item,i) in list" :key="i" :style="{'width':100/list.length+'%'}">
-				<div class="box-list-body">
-					<div class="box-list-children">
-						<div class="box-list-number">{{item.number}}</div>
-						<div class="box-list-title">{{item.title}}</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<view>
+		<view class="box-list">
+			<view class="box-list-item" v-for="(item,i) in list" :key="i" :style="{'width':100/list.length+'%'}">
+				<view class="box-list-body">
+					<view class="box-list-children">
+						<view class="box-list-number">{{item.number}}</view>
+						<view class="box-list-title">{{item.title}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script>

@@ -1,18 +1,18 @@
 <!-- 搜索功能已完成，差样式及子项 -->
 <!-- 默认可直接调用，使用stateSearchItem列表子项，调用的api对应的字段通过field来定义 -->
 <template>
-	<div>
-		<div :class="'search-box '+searchType">
-			<div class="searchIcon search_Icons">&#xe600;</div>
-			<div class="search-input">
+	<view>
+		<view :class="'search-box '+searchType">
+			<view class="searchIcon search_Icons">&#xe600;</view>
+			<view class="search-input">
 				<input type="text" class="SearchinputBox" v-model="inputValue" @input="getList()" @change="getList()" adjust-position="false" placeholder="请输入....."/>
-			</div>
-			<!-- <div class="talkIcon search_Icons">&#xe6ff;</div> -->
+			</view>
+			<!-- <view class="talkIcon search_Icons">&#xe6ff;</view> -->
 			<!-- 语音输入按钮 -->
-			<div class="talkIcon search_Icons" style="color: #2C405A;" v-if="config.addIcon" @click="additems()">&#xe7fe;</div>
-		</div>
-		<div :class="'search-list '+searchType" @touchstart="touchStart" @touchend="loadMore">
-			<div v-for="(item,i) in listData" v-if="inputValue===''" style="position: relative;">
+			<view class="talkIcon search_Icons" style="color: #2C405A;" v-if="config.addIcon" @click="additems()">&#xe7fe;</view>
+		</view>
+		<view :class="'search-list '+searchType" @touchstart="touchStart" @touchend="loadMore">
+			<view v-for="(item,i) in listData" v-if="inputValue===''" style="position: relative;">
 				<navigator :url="url[i]">
 					<state-search-item v-if="config.itemModule.name==='stateSearchItem'"
 						:item="item"
@@ -24,11 +24,11 @@
 					></radio-select> -->
 					<!-- 有bug -->
 				</navigator>
-				<div class="EditButton" v-if="config.hasEdit" @click="jump(item.id)" >
+				<view class="EditButton" v-if="config.hasEdit" @click="jump(item.id)" >
 					<image mode="widthFix" style="width: 24px;" :src="icon.setting"></image>
-				</div>
-			</div>
-			<div v-for="(item,i) in searchlist" v-if="inputValue!==''" style="position: relative;">
+				</view>
+			</view>
+			<view v-for="(item,i) in searchlist" v-if="inputValue!==''" style="position: relative;">
 				<navigator :url="url[i]">
 					<!-- 子项添加处 -->
 				<state-search-item v-if="config.itemModule.name==='stateSearchItem'"
@@ -40,13 +40,13 @@
 					@getName="getName"
 				></radio-select> -->
 				</navigator>
-				<div class="EditButton" v-if="config.hasEdit" @click="jump(item.id)">
+				<view class="EditButton" v-if="config.hasEdit" @click="jump(item.id)">
 					<image mode="widthFix" style="width: 24px;" :src="icon.setting"></image>
-				</div>
-			</div>
-		</div>
-		<div style="width: auto;color: #ccc;font-size: 12px; font-weight: bolder;margin: 10px;text-align: center;">{{text}}</div>
-	</div>
+				</view>
+			</view>
+		</view>
+		<view style="width: auto;color: #ccc;font-size: 12px; font-weight: bolder;margin: 10px;text-align: center;">{{text}}</view>
+	</view>
 </template>
 
 <script>

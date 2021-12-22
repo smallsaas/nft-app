@@ -1,12 +1,11 @@
 <template>
 	<view>
-		<view class="test">我是测试</view>
+		登录
 	</view>
 </template>
 
 <script>
 	export default {
-		name:"tabbar",
 		data() {
 			return {
 				
@@ -18,10 +17,6 @@
 	}
 </script>
 
-<style lang="less">
-.test{
-	width: 100rpx;
-	height: 100rpx;
-	border: 10rpx solid red;
-}
+<style>
+
 </style>

@@ -1,13 +1,13 @@
 <template>
-	<div class="spiritMarket">
-		<div class="head" @click="g">
-			<div class="tab">精灵商店</div>
-			<div class="tab">预约签到</div>
-		</div>
-		<div class="bodyList">
+	<view class="spiritMarket">
+		<view class="head" @click="g">
+			<view class="tab">精灵商店</view>
+			<view class="tab">预约签到</view>
+		</view>
+		<view class="bodyList">
 			<list></list>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>
@@ -16,6 +16,7 @@
 	} from '@/config.js'
 	import list from '../dynamic-list/listItem/spiritMarket.vue'
 	export default {
+		name:"spiritMarket",
 		components: {
 			list
 		},

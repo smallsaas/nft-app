@@ -1,17 +1,17 @@
 <template>
-	<div 
+	<view 
 	   class="venue_dynamic_list_container"
 	   :style="[_get(config, 'outStyle', {})]"
 	>
-        <div>
-            <div class="tab_list" v-if="typeList.length > 0">
+        <view>
+            <view class="tab_list" v-if="typeList.length > 0">
                 <ms-tabs
                     :list="typeList"
                     field="name"
                     v-model="tabActive"
                     @selected="handleSelectTab"
                 />
-            </div>
+            </view>
             <load-refresh
                 ref="loadRefresh"
                 :pagination="_get(config, 'pagination', true)"
@@ -26,8 +26,8 @@
                 @loadMore="loadMore" 
                 @refresh="refresh"
              >
-              <div slot="content-list" class="list_content">
-                  <div 
+              <view slot="content-list" class="list_content">
+                  <view 
 					v-for="(item, index) in list" 
 					:key="index"
 					@click="handleJumpRoute(item)"
@@ -102,11 +102,11 @@
 						}"
 						:options="_get(config,'options',{})"
 					></aqy-item>
-                  </div>
-              </div>
+                  </view>
+              </view>
             </load-refresh>
-        </div>
-	</div>
+        </view>
+	</view>
 </template>
 
 <script>
