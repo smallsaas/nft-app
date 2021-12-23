@@ -109,6 +109,13 @@
 			}"
             @change="(e) => handleSetValue(e, fields[index])"
 		   />
+			 <!-- 仅作为查看的图像 -->
+			 <base-image
+				v-if="_get(item,'__config__.tag') === 'el-image'"
+				:params="{
+					...getBaseParam(item)
+				}"
+			 ></base-image>
        </block>
     </view>
 </template>
@@ -125,6 +132,7 @@
 	import BaseDatePicker from './BaseDatePicker.vue'
 	import BaseRate from './BaseRate.vue'
 	import BaseUpload from './BaseUpload.vue'
+	import BaseImage from './BaseImage.vue'
     export default {
         components: {
            BaseField,
@@ -136,7 +144,8 @@
            BaseSlider,
 		   BaseDatePicker,
 		   BaseRate,
-		   BaseUpload
+		   BaseUpload,
+			 BaseImage
         },
         props: {
           fields: {

@@ -4,6 +4,12 @@
 	</view>
 </template>
 
+<script>
+	export default {
+		name:"mask"
+	}
+</script>
+
 <style lang="less">
 	.mask_container {
 		position: fixed;
