@@ -28,25 +28,27 @@
 				</view>
 				<view class="spiritMarketBoxItemBottom">
 					<view class="spiritStatus">
-						<text>{{item.stage}}</text>
+						<text @click="book(item)">{{item.stage==null?'可预约':item.stage}}</text>
 					</view>
-					<view class="spiritBuyBtn">
+					<view class="spiritBuyBtn" @click="buy(item)">
 						购买陪伴精灵
 					</view>
 					<view class="spiritLandSelect">
-						<select class="selectLand">
+						<!-- <select class="selectLand">
 							<options value="1" selected="selected" >租用土地</options>
 							<options value="2">自用土地</options>
-						</select>
+						</select> -->
+						<text @click="buyLand(item)">购买土地</text>
 					</view>
 				</view>
 			</view>										
-			
 		</view>
+		<Window v-if="isCanBook"></Window>
 	</view>
 </template>
 
 <script>
+	import Window from '../../Window.vue'
 	import {globalConfig} from '@/config.js'
 	import {api} from '@/common/api.js'
 	export default {
@@ -54,6 +56,13 @@
 		props: {
 			item: Object,
 			ext: Object
+		},
+		components:{Window},
+		data() {
+			return {
+				isCanBook:false,
+				playerId:''
+			}
 		},
 		created() {
 			// console.log(api)
@@ -75,7 +84,79 @@
 			// })
 		},
 		methods:{
+			 book(item){
+				console.log(uni.getStorage({key:"userId"}))
+				const user = uni.getStorage({key:"userId"})
+				user.then(async userId=>{
+					console.log(userId[1].data)
+				    this.playerId = userId[1].data
+					this.isCanBook = false
+					console.log(item)
+					if(item.stage == "可预约"){
+						this.isCanBook = !this.isCanBook
+					}
+					console.log(item.id)
+					console.log(this.$api)
+					const data = {
+						wispId:item.id,
+						player_id:this.playerId
+					}
+					const res = await this.$api.bookSpirit(data)
+					console.log(res)
+					this.isCanBook = !this.isCanBook
+					uni.showModal({
+						content:'预约成功'
+					})
+				})
+			},
 			
+			buy(item){
+				console.log(uni.getStorage({key:"userId"}))
+				const user = uni.getStorage({key:"userId"})
+				user.then(async userId=>{
+					console.log(userId[1].data)
+				    this.playerId = userId[1].data
+					console.log(item)
+					console.log(item.id)
+					console.log(this.$api)
+					const data = {
+						companionWispId: 0,
+						number: 0,
+						paymentPassword: "string"
+					}
+					const res = await this.$api.buyCompanySpirit(data)
+					console.log(res)
+					uni.showModal({
+						content:'购买成功'
+					})
+				})
+			},
+			
+			buyLand(item){
+				console.log(item)
+				console.log(uni.getStorage({key:"userId"}))
+				const user = uni.getStorage({key:"userId"})
+				user.then(async userId=>{
+					console.log(userId[1].data)
+				    this.playerId = userId[1].data
+					console.log(item)
+					console.log(item.id)
+					console.log(this.$api)
+					const data = {
+						  contractDays: 2,
+						  landId: 1,
+						  playerId: this.playerId,
+						  totalPrice: 100,
+						  start_time:'11',
+						  expiration_time:'22'
+					}
+					const res = await this.$api.buyLand(data)
+					console.log(res)
+					uni.showModal({
+						content:'购买成功'
+					})
+				})
+			}
 		}
 	}
 </script>

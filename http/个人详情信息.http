@@ -1,0 +1,265 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+GET {{endpoint}}/form?id=222333
+
+####
+POST {{endpoint}}/form/222333
+Content-Type: application/json
+
+{
+    "version": "1", 
+    "name": "userDetail", 
+    "title": "个人详情页", 
+    "pageStyle": { }, 
+    "request": { }, 
+    "response": {
+        "data": "data"
+    }, 
+    "container": {
+
+    }, 
+    "modules": [
+        {
+          "type": "autoform", 
+          "key": "96afd71a-c8d5-11eb-aca5-0800271e55b7", 
+          "name": "移动账号", 
+          "container": {
+              "background":"#ffffff"
+          }
+        }
+    ],
+    "moduleData": {
+        "96afd71a-c8d5-11eb-aca5-0800271e55b7":{
+            "fields": [
+             {
+                "__config__": {
+                    "label": "账号",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "name"
+                },
+                {
+                "__config__": {
+                    "label": "账号状态",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "status"
+                },
+                {
+                "__config__": {
+                    "label": "移动账号",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "wechatAccount"
+                },
+                 {
+                "__config__": {
+                    "label": "移动账号二维码",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "wechatQrCodePhotoUrl"
+                },
+                     {
+                "__config__": {
+                    "label": "银行卡号",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "bankAccountNumber"
+                },
+                {
+                "__config__": {
+                    "label": "户名",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "bankAccountName"
+                },
+                {
+                "__config__": {
+                    "label": "支付密码",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "defaultValue": "admin",
+                    "required": true,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 101,
+                    "renderKey": 1621415022993
+                },
+                "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                },
+                "placeholder": "请输入账号",
+                "style": {
+                    "width": "100%"
+                },
+                "clearable": true,
+                "prefix-icon": "",
+                "suffix-icon": "",
+                "maxlength": null,
+                "show-word-limit": false,
+                "readonly": false,
+                "disabled": false,
+                "__vModel__": "paymentPassword"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi":""
+        }
+    }
+}

@@ -139,6 +139,16 @@
 							:item="getComponentsData(item)"
 							:avatarData="_get(config.moduleData,item.key,{})"
 						 ></avatar>
+						 <pay
+						 							v-if="_get(item,'type') === 'no-pay'"
+						 							:item="getComponentsData(item)"
+						 							:noPayData="_get(config.moduleData,item.key,{})"
+						 ></pay>
+						 <user
+						 							v-if="_get(item,'type') === 'user'"
+						 							:item="getComponentsData(item)"
+						 							:pathData="_get(config.moduleData,item.key,{})"
+						 ></user>
             </view>
           </block>
         </van-skeleton>
@@ -162,8 +172,10 @@
 	import steps from '../Steps/Steps.vue'
 	import cButton from '../other/C-Button.vue'
 	import Avatar from '../Avatar.vue'
+	import Pay from '../Pay.vue'
+	import User from '../User.vue'
     import { globalConfig } from '@/config.js'
-		import {LoadComplete} from '@/common/api.js'
+    import {LoadComplete} from '@/common/api.js'
 	export default {
 		components: { 
 			dynamicList, 
@@ -176,7 +188,9 @@
 			cell,
 			steps,
 			cButton,
-			Avatar
+			Avatar,
+			Pay,
+			User
 		},
 		props: {
 			API: String,  // 页面数据请求接口
