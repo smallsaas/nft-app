@@ -9,6 +9,7 @@ import card from './components/other/Card.vue'
 import {globalConfig} from '@/config.js'
 import {api} from './common/api.js'
 import {timeCache,cache,reload} from '@/utils/tools.js'
+import mask from './components/mask/index.vue'
 
 Vue.config.productionTip = false
 Vue.use(Vant)
@@ -25,6 +26,7 @@ Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)
 Vue.component("dynamic-list",DynamicList)
 Vue.component("card",card)
+Vue.component("mask",mask)
 
 App.mpType = 'app'
 

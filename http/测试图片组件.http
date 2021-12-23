@@ -1,0 +1,69 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+### 图片组件测试
+GET {{endpoint}}/form?id=7512
+
+### 图片组件测试
+POST {{endpoint}}/form/7512
+Content-Type: application/json
+
+{
+    "version": "1",
+    "name": "testImageComponent",
+    "title": "测试图片组件",
+    "pageStyle": {},
+    "request": {},
+    "response": {
+        "data": "data"
+    },
+    "container": {},
+    "modules": [
+        {
+            "type": "autoform",
+            "key": "96afd71a-c8d5-11eb-aca5-0800271e55b7",
+            "name": ""
+        }
+    ],
+    "moduleData": {
+        "96afd71a-c8d5-11eb-aca5-0800271e55b7": {
+            "fields": [
+                {
+                    "__config__": {
+                        "label": "图片",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-image",
+                        "defaultValue": "",
+                        "required": true,
+                        "layout": "colFormItem"
+                    },
+                    "readonly": false,
+                    "disabled": false,
+                    "__vModel__": "image"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi": "https://api.mock.smallsaas.cn/data?id=7512"
+        }
+    }
+}
+
+### 测试数据
+GET {{endpoint}}/data?id=7512
+
+### 测试数据
+POST {{endpoint}}/data/7512
+Content-Type: application/json
+
+{
+    "image":"https://pic1.zhimg.com/v2-d58ce10bf4e01f5086c604a9cfed29f3_r.jpg?source=1940ef5c"
+}

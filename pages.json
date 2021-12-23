@@ -78,6 +78,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/formImageTest/formImageTest",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
