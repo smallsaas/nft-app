@@ -79,7 +79,6 @@
             
         }
         ,{
-<<<<<<< HEAD
             "path" : "pages/market/market",
             "style" :                                                                                    
             {
@@ -125,17 +124,21 @@
             
         }
         ,{
-            "path" : "pages/updateinfomation/updateinfomation",
-=======
             "path" : "pages/formImageTest/formImageTest",
->>>>>>> 401749989ebfaebe820a57e44b4eb28e9564893c
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             
-        }
+        },{
+			"path" : "pages/updateinfomation/updateinfomation",
+			"style":
+			{
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh":false
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

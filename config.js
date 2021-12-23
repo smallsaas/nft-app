@@ -11,7 +11,7 @@ const isDev = true
 export const globalConfig = isDev?{
 	formHost: "http://localhost:8080/form",
 	dataHost: "http://localhost:8080/data",
-	endpoint: "http://localhost:8080/",
+	endpoint: "http://localhost:8080",
 	tokenStorageKey:"token",
 	iconList:iconList
 }:{

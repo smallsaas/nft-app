@@ -129,7 +129,7 @@ Content-Type: application/json
                     "label": "移动账号二维码",
                     "labelWidth": null,
                     "showLabel": true,
-                    "tag": "el-input",
+                    "tag": "el-image",
                     "tagIcon": "input",
                     "defaultValue": "admin",
                     "required": true,
