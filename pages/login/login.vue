@@ -15,7 +15,7 @@
 		data() {
 			return {
 				data : {
-					account:'acc38328522',
+					account:'13692842253',
 					password:'123456'
 				}
 			}
@@ -26,6 +26,9 @@
 				let res=await that.$api.login(this.data)
 				console.log(res)
 				that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
+				uni.showModal({
+					content:'登录成功'
+				})
 				// that.$cache.set('userId',res.data.userId)
 				// that.$cache.set('userAvatar',res.data.avatar)
 				// that.$cache.set('userName',res.data.name)

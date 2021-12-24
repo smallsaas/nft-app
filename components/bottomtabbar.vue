@@ -33,6 +33,8 @@
 	width: 100%;
 	height: 100rpx;
 	border: 1px solid red;
+	position: fixed;
+	bottom: 0rpx;
 	.box{
 		width: 100%;
 		height: 100rpx;

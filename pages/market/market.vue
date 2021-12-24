@@ -1,5 +1,9 @@
 <template>
-	<view>
+	<view class="navBox">
+		<view class="nav">
+			<view>精灵市场</view>
+			<view @click="goTo">签到抽盒</view>
+		</view>
 		<dynamic-page :API="api"></dynamic-page>
 		<bottomtabbar></bottomtabbar>
 	</view>
@@ -20,10 +24,25 @@
 			}
 		},
 		methods: {
+			goTo(){
+				uni.navigateTo({
+					url:'/pages/defaultPage/page?id=550311'
+				})
+			}
 		},
 	}
 </script>
 
-<style>
-
+<style lang="less">
+.navBox{
+	.nav{
+		width: 100%;
+		height: 80rpx;
+		border: 1px solid red;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+}
 </style>

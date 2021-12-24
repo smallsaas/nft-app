@@ -1,7 +1,7 @@
 <template>
 	<view class="Box" @click="navigateTo()">
 		<image class="avatar" src="../static/logo.png"></image>
-		<text>{{userName}}</text>
+		<text>小王</text>
 		<text>账号状态:</text>
 		<text>查看详情</text>
 	</view>
@@ -47,13 +47,17 @@
 				console.log(res,123)
 			},
 			navigateTo(){
-			   let userI = uni.getStorage({key:"userId"})
-			   userI.then(res=>{
-			     console.log(res[1].data)
-				 uni.navigateTo({
-				 	url:'/pages/infomation/infomation?id=' +  res[1].data
-				 })
-			   })
+				uni.navigateTo({
+					// url:'/pages/infomation/infomation?id=' +  1
+					url:'/pages/infomation/infomation?id=' + '1'
+				})
+			  //  let userI = uni.getStorage({key:"userId"})
+			  //  userI.then(res=>{
+			  //    console.log(res[1].data)
+				 // uni.navigateTo({
+				 // 	url:'/pages/infomation/infomation?id=' +  1
+				 // })
+			  //  })
 				// console.log(this.pathData)
 				// console.log(this.item)
 				// uni.navigateTo({

@@ -21,12 +21,12 @@
 					</view>
 				</view>
 				<view class="right">
-					<view>按实际开发和</view>
-					<view>级别:</view>
-					<view>增长能力</view>
-					<view>能力值</view>
-					<view>培养天数</view>
-					<button>付款</button>
+					<view>小天使精灵</view>
+					<view>级别:lv2</view>
+					<view>增长能力:300</view>
+					<view>能力值:200-300</view>
+					<view>培养天数:10天</view>
+					<button @click="fukuan">付款</button>
 				</view>
 			</view>
 		</view>
@@ -40,6 +40,13 @@
 			return {
 				
 			};
+		},
+		methods:{
+			fukuan(){
+				uni.showModal({
+					content:'付款成功'
+				})
+			}
 		}
 	}
 </script>
