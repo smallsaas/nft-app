@@ -3,16 +3,16 @@
 
 
 ### 获取列表页面信息
-GET {{endpoint}}/form?id=55555
+GET {{endpoint}}/form?id=123456
 
 ### 提交列表页面信息
-POST {{endpoint}}/form/55555
+POST {{endpoint}}/form/123456
 Content-Type: application/json
 
 {  
     "version": "1",
-    "name": "spiritMarket",
-    "title": "精灵市场",
+    "name": "Market",
+    "title": "市场",
     "pageStyle": {
         "background":"red"
     },
@@ -37,7 +37,7 @@ Content-Type: application/json
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
             "loadApi":"http://localhost:8080/api/u/wisp/market",
-            "itemNavigation": "/index/index?id",
+            "itemNavigation": "",
             "response":{
                 "list":"records"
             },
@@ -48,22 +48,8 @@ Content-Type: application/json
                 "pn":"pageNo"
             },
             "itemModule":{
-                "name":"spiritMarket"
+                "name":"market"
             }
         }
     }
-}
-
-
-### 获取测试用的列表数据
-GET {{endpoint}}/data?id=55555
-
-### 提交测试用的列表数据
-POST {{endpoint}}/data/55555
-Content-Type: application/json
-
-{
-    "list":[
-        {}
-    ]
 }

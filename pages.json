@@ -79,7 +79,7 @@
             
         }
         ,{
-            "path" : "pages/formImageTest/formImageTest",
+            "path" : "pages/market/market",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -88,12 +88,63 @@
             
         }
         ,{
-            "path" : "pages/cs/cs",
+            "path" : "pages/bookSpirit/bookSpirit",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false,
-								"app-plus": { "titleNView": false }
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/service/service",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/servicenew/servicenew",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/infomation/infomation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/formImageTest/formImageTest",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+			"path" : "pages/updateinfomation/updateinfomation",
+			"style":
+			{
+				"navigationBarTitleText":"",
+				"enablePullDownRefresh":false
+			}
+		}
+        ,{
+            "path" : "pages/regist/regist",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
             }
             
         }

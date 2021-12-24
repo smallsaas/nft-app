@@ -102,6 +102,23 @@
 						}"
 						:options="_get(config,'options',{})"
 					></aqy-item>
+					
+					<market
+						v-if="getListItemKey() === 'market'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>
+					
+					<bookspirit
+						v-if="getListItemKey() === 'bookspirit'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>
+					
                   </view>
               </view>
             </load-refresh>
@@ -128,6 +145,10 @@
 	
 	//引入精灵市场
 	import spirit from './listItem/spirit.vue'
+	
+	
+	import market from './listItem/market.vue'
+	import bookspirit from './listItem/bookspirit.vue'
     
 	export default {
 		components: {
@@ -141,7 +162,9 @@
 			noticeItem,
 			aqyItem,
 			spiritMarket,
-			spirit
+			spirit,
+			market,
+			bookspirit
 		},
 		props: {
 			config: {
