@@ -12,14 +12,14 @@
 				<view class="Base-Image-Container">
 					<view v-for="(item,i) in imageList" :key="i">
 						<view class="Base-Image-ImageBox">
-							<image :src="item" class="Base-Image-thumb" mode="aspectFit" @click="handleClick">
+							<image :src="item" class="Base-Image-thumb" mode="aspectFit" @click="handleClick(i)">
 							</image>
 							<image src="../../static/BaseImage/close@3x.png" class="Base-Image-delete" @click="handleDelete(i)"></image>
 						</view>
 
-						<view class="Base-Image-mov" v-if="isShowLarge">
+						<view class="Base-Image-mov" v-if="isShowLarge === i">
 							<movable-area scale-area class="Base-Image-mov-area">
-								<image :src="iconList.exit" class="Base-Image-exit-icon" mode="aspectFit" @click="handleClick"></image>
+								<image src="../../static/BaseImage/bigImage/close@3x.png" class="Base-Image-exit-icon" mode="aspectFit" @click="handleClick(-1)"></image>
 								<movable-view
 									class="Base-Image-mov-view"
 									direction="all"
@@ -95,8 +95,8 @@
 		},
 		methods:{
 			// 点击时显示大图
-			handleClick(){
-				this.showLarge = !this.showLarge
+			handleClick(i){
+				this.showLarge = i
 				this.$forceUpdate()
 			},
 			// 缩放放大操作时响应的事件
@@ -166,10 +166,11 @@
 	}
 	.Base-Image-exit-icon{
 		position: fixed;
-		top: 10rpx;
-		right: 10rpx;
-		width: 50rpx;
-		height: 50rpx;
+		bottom: 200rpx;
+		left: 50%;
+		transform: translate(-50%);
+		width: 80rpx;
+		height: 80rpx;
 		z-index: 9999999;
 		cursor: pointer;
 	}

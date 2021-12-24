@@ -37,7 +37,7 @@ Content-Type: application/json
                         "required": true,
                         "layout": "colFormItem"
                     },
-                    "max-count":"1",
+                    "max-count":"3",
                     "readonly": false,
                     "disabled": false,
                     "__vModel__": "image"
@@ -66,5 +66,5 @@ POST {{endpoint}}/data/7512
 Content-Type: application/json
 
 {
-    "image":"[\"https://pic1.zhimg.com/v2-d58ce10bf4e01f5086c604a9cfed29f3_r.jpg?source=1940ef5c\",\"https://pic1.zhimg.com/v2-d58ce10bf4e01f5086c604a9cfed29f3_r.jpg?source=1940ef5c\",\"https://pic1.zhimg.com/v2-d58ce10bf4e01f5086c604a9cfed29f3_r.jpg?source=1940ef5c\",\"https://pic1.zhimg.com/v2-d58ce10bf4e01f5086c604a9cfed29f3_r.jpg?source=1940ef5c\"]"
+    "image":"[\"https://pic1.zhimg.com/v2-d58ce10bf4e01f5086c604a9cfed29f3_r.jpg?source=1940ef5c\",\"https://th.bing.com/th/id/OIP.1eFBRKkNrO_OfRQ2KpSTVwHaE7?w=281&h=188&c=7&r=0&o=5&pid=1.7\"]"
 }
