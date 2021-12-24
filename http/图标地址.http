@@ -12,5 +12,6 @@ Content-Type: application/json
     "autoList":"https://img2.baidu.com/it/u=1773021408,420073988&fm=253&fmt=auto&app=120&f=JPEG?w=393&h=499",
     "autoPage":"https://img0.baidu.com/it/u=2406823350,3411035947&fm=26&fmt=auto",
     "defaultUser":"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201912%2F25%2F20191225224833_zloky.thumb.400_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642763571&t=c5e12ca1f367a29af84bbde1c5ad7d23",
-    "exit":"https://ai.hdqmjs.com/attachments/public/modal-exit.png"
+    "exit":"https://ai.hdqmjs.com/attachments/public/modal-exit.png",
+    "jingling":"https://ai.hdqmjs.com/attachments/some/精灵币.png"
 }

@@ -1,0 +1,85 @@
+@endpoint = https://api.mock.smallsaas.cn
+@devEndpoint = http://localhost:8080
+GET {{endpoint}}/form?id=550311
+###
+POST {{endpoint}}/form/550311
+Content-Type: application/json
+
+{
+    "version": "1", 
+    "name": "SignBox", 
+    "title": "签到盒子", 
+    "pageStyle": { "background-color": "#050E17" }, 
+    "request": { }, 
+    "response": {
+        "data": "data"
+    }, 
+    "container": {
+    }, 
+    "modules": [
+        {
+            "type":"sign-box",
+            "key": "95afd71a-c8d5-11eb-aca5-0800271e55b7", 
+            "name":"",
+            "container":{},
+            "binding":{
+                "isSign":"isSign",
+                "day":"day",
+                "list":"list"
+            }
+ 
+        }
+    ],
+    "dataSource":{
+        "api":"{{devEndpoint}}/data?id=550311"
+    },
+    "moduleData": {
+        "95afd71a-c8d5-11eb-aca5-0800271e55b7":{
+        }
+    }
+}
+###
+GET {{endpoint}}/data?id=550311
+
+###
+POST {{endpoint}}/data/550311
+Content-Type: application/json
+
+{
+    "isSign":false,
+    "day":"8",
+    "list":[
+        {"isSign":true,"status":"ended","day":1,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":2,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":3,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":4,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":5,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":6,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":7,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"ended","day":8,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"ended","day":9,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":true,"status":"today","day":10,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":11,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":12,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":13,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":14,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":15,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":16,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":17,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":18,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":19,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":20,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":21,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":22,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":23,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":24,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":25,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":26,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":27,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":28,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":29,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":30,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"},
+        {"isSign":false,"status":"normal","day":31,"image":"https://uploadfile.huiyi8.com/up/a1/6e/26/a16e262887ceca224a6bd5638c7f34ee.png","text":"文件x1"}
+    ]
+
+}

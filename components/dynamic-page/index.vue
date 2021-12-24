@@ -139,6 +139,10 @@
 							:item="getComponentsData(item)"
 							:avatarData="_get(config.moduleData,item.key,{})"
 						 ></avatar>
+						 <sign-smoke-box
+							v-if="_get(item,'type')==='sign-box'"
+							:signData="getComponentsData(item)"
+						 ></sign-smoke-box>
             </view>
           </block>
         </van-skeleton>
@@ -162,6 +166,7 @@
 	import steps from '../Steps/Steps.vue'
 	import cButton from '../other/C-Button.vue'
 	import Avatar from '../Avatar.vue'
+	import signSmokeBox from '../signIn/signSmokeBox.vue'
     import { globalConfig } from '@/config.js'
 		import {LoadComplete} from '@/common/api.js'
 	export default {
@@ -176,7 +181,8 @@
 			cell,
 			steps,
 			cButton,
-			Avatar
+			Avatar,
+			signSmokeBox
 		},
 		props: {
 			API: String,  // 页面数据请求接口
@@ -384,6 +390,7 @@
 				if (!_.has(item, 'binding') || JSON.stringify(item.binding) === '{}') {
 					return false
 				}
+				console.log(this.pageData)
 				const comonentScouce = {}
 				for (const i in item.binding) {
 					comonentScouce[item.binding[i]] = _.get(this.pageData, i, '')
