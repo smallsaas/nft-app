@@ -10,13 +10,13 @@
 		</view>
 		<view :class="'signSmoke-pack '+ispack" @click="handlePack()">
 			<view>{{packText}}</view>
-			<view>{{packIcon}}</view>
+			<image :src="isIcon" class="signSmoke-pack-icon"></image>
 		</view>
 		<view :class="'signSmoke-sign '+isSign" @click="handleSign">
 			<view class="signSmoke-signIn">
 				<view class="signSmoke-signIn-Box">
 					<view class="signSmoke-signIn-Button">
-						<image :src="signImage" class="signSmoke-signIn-Button-image"></image>
+						<image :src="signImage" fade-show class="signSmoke-signIn-Button-image"></image>
 						<view class="signSmoke-signIn-Button-text">{{signText}}</view>
 					</view>
 				</view>
@@ -44,23 +44,32 @@
 			isSign(){
 				if(this.sign){
 					this.signText="已签到"
-					this.signImage="../../static/right.png"
+					this.signImage="../../static/signSmoke/已签到.png"
 					this.$forceUpdate()
 					return "sign"
 				}else{
 					this.signText="签到抽盒"
-					this.signImage="../../static/gift.png"
+					this.signImage="../../static/signSmoke/gift.png"
 					this.$forceUpdate()
 					return ""
+				}
+			},
+			isIcon(){
+				if(this.packText == "收起"){
+					this.packIcon = "../../static/signSmoke/more.png"
+					return this.packIcon
+				}else{
+					this.packIcon = "../../static/signSmoke/pushup.png"
+					return this.packIcon
 				}
 			}
 		},
 		data() {
 			return {
 				packText:"查看全部奖励",
-				packIcon:"︾",
+				packIcon:"../../static/signSmoke/more.png",
 				signText:"签到抽盒",
-				signImage:"../../static/gift.png",
+				signImage:"../../static/signSmoke/gift.png",
 				sign:false,
 				month:0,
 				signDay:0,
@@ -116,13 +125,11 @@
 			handlePack(){
 				if(this.packText === "收起"){
 					this.packText = "查看全部奖励"
-					this.packIcon = "︾"
 					let that = this
 					this.getNowGroup()
 					this.dayGroup = this.nowGroup
 				}else{
 					this.packText = "收起"
-					this.packIcon = "︽"
 					this.dayGroup = this.listGroup
 				}
 			},
@@ -205,6 +212,10 @@
 		text-align: center;
 		margin: 20rpx 0;
 		animation: packUp .2s linear;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
 	}
 	.signSmoke-sign{
 		height: 250rpx;
@@ -230,6 +241,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+	.signSmoke-pack-icon{
+		width: 50rpx;
+		height: 50rpx;
 	}
 	.signSmoke-signIn-Button{
 		background: linear-gradient(left,#9533FB,#0A84E3);
