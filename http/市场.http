@@ -12,7 +12,7 @@ Content-Type: application/json
 {  
     "version": "1",
     "name": "Market",
-    "title": "市场",
+    "title": "精灵广场",
     "pageStyle": {
         "background":"red"
     },
