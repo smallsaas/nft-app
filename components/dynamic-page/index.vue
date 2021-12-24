@@ -1,5 +1,5 @@
 <template>
-	<view :style="[_get(config, 'pageStyle', {}), _get(config, 'moduleContainer', {})]">
+	<view :style="[_get(config, 'pageStyle', {}), _get(config, 'moduleContainer', {})]" class="dynamic-page-container">
         <van-skeleton row="10" :loading="skeletonLoading">
           <block v-if="_get(config, 'modules', []).length > 0">
             <view v-for="(item, index) in config.modules" :key="index">
@@ -18,9 +18,9 @@
 											<card
 													:otherStyle="{
 														'padding':'10px 0 0 0',
-														'fill':'#EFEFEF',
+														'fill':'#CACCCD',
 														'title':{
-															'fill':'#FFFFFF'
+															'fill':'#CACCCD'
 														}
 													}"
 													:title="_get(item,'name','')||listName"
@@ -55,9 +55,9 @@
 										<card
 											:otherStyle="{
 												'padding':'10px 0 0 0',
-												'fill':'#EFEFEF',
+												'fill':'#CACCCD',
 												'title':{
-													'fill':'#FFFFFF'
+													'fill':'#CACCCD'
 												}
 											}"
 											:title="_get(item,'name','')"

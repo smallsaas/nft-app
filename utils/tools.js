@@ -162,7 +162,7 @@ export const timeCache=(key,value,seconds = 3600 *24)=>{
 // 设置永久缓存 获取永久缓存 清除永久缓存 清除所偶有缓存
 export const cache={
 	get(key){
-		uni.getStorageSync(key)
+		return uni.getStorageSync(key)
 	},
 	set(key,value){
 		uni.setStorageSync(key,value)
@@ -175,10 +175,38 @@ export const cache={
 	}
 }
 // 重新加载当前页面 (带onload参数)
-export function reload(){
+export default function reload(){
 	let pages = getCurrentPages()
 	let nowPage = pages[pages.length-1];
 	uni.redirectTo({
 		url:nowPage.$page.fullPath
 	})
+}
+// 公共上传
+export const upload = async(url,file) =>{
+	let res = await new Promise(resolve=>{
+		let token = cache.get(globalConfig.tokenStorageKey)
+		console.log(token)
+		uni.uploadFile({
+			url:globalConfig.endpoint+url,
+			header:{
+				Authorization:`Bearer ${token}`
+			},
+			file:file,
+			name:"file",
+			complete(webPath){
+				let webData = webPath.data
+				if(typeof webData === "string"){
+					webData = JSON.parse(webPath.data)
+				}
+				if(webPath.code === 200){
+						let fileWebPath = webData.data.url
+						resolve(fileWebPath)
+				}else{
+					resolve("/static/BaseImage/上传失败.png")
+				}
+			}
+		})
+	})
+	return res
 }

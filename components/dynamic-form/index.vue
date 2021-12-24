@@ -2,64 +2,73 @@
 <template>
 	<view class="base_vants_container" :style="[_get(config, 'outStyle', {})]">
         <van-skeleton row="20" :loading="skeletonLoading">
-            <block v-for="(item, index) in fields" :key="index">
-                <base-vants 
-                    v-if="_get(item, '__config__.layout') === 'colFormItem'"
-                    :fields="[{...item}]"
-                    :form="form"
-            				:Details="Details"
-                    @change="handleChange"
-                    @clear="handleClear"
-                />
-                <view v-if="_get(item, '__config__.layout') === 'rowFormItem'"
-            		style="padding: 10px;border-radius: 5px;"
-            		>
-            			<card :title="_get(item, '__config__.componentName')" 
-            				:Style="{
-            					title:{
-            						'font':'30px',
-            						'textAlign':'center',
-            						'padding':'10px 0',
-            					}
-            				}"
-            			:jump="_get(item,'__config__.jump',false)"
-            			:url="config.NextNavigation||config.submittedNavigation"
-            			>
-            			<!-- 以上card为标题容器 -->
-            				<!-- <view class="line"></view> -->
-            				<!-- <view>{{_get(item, '__config__.componentName')}}</view> -->
-                    <block v-for="(k, i) in _get(item, '__config__.children', [])" :key="i">
-                        <base-vants
-                            v-if="_get(k, '__config__.layout') === 'colFormItem'"
-                            :fields="[{...k}]"
-                            :form="form"
-            								:Details="Details"
-                            @change="handleChange"
-                            @clear="handleClear"
-                        />
-                        <view v-else>
-                            <view class="form_row_title">
-            		{{_get(k, '__config__.componentName')}}
-            	</view>
-                            <base-vants
-                                :fields="_get(k, '__config__.children', [])"
-                                :form="form"
-            										:Details="Details"
-                                @change="handleChange"
-                                @clear="handleClear"
-                            />
-                        </view>
-                    </block>
-            			</card>
-                </view>
-            </block>
-            
-            <van-button 
-              v-if="!Details&&(_get(config, 'formBtns', true) && fields.length > 0)"
-              round type="info" 
-              style="width: 90%;margin: 40rpx auto 20rpx auto;display: flex;justify-content: center;align-items: center;"
-              @click='handleSubmit'
-              >提交</van-button>
+					<view class="fields-block">
+						<block v-for="(item, index) in fields" :key="index">
+						    <base-vants 
+						        v-if="_get(item, '__config__.layout') === 'colFormItem'"
+						        :fields="[{...item}]"
+						        :form="form"
+										:Details="Details"
+						        @change="handleChange"
+						        @clear="handleClear"
+						    />
+						    <view v-if="_get(item, '__config__.layout') === 'rowFormItem'"
+								style="padding: 10px;border-radius: 5px;"
+								>
+									<card :title="_get(item, '__config__.componentName')" 
+										:Style="{
+											title:{
+												'font':'30px',
+												'textAlign':'center',
+												'padding':'10px 0',
+											}
+										}"
+									:jump="_get(item,'__config__.jump',false)"
+									:url="config.NextNavigation||config.submittedNavigation"
+									>
+									<!-- 以上card为标题容器 -->
+										<!-- <view class="line"></view> -->
+										<!-- <view>{{_get(item, '__config__.componentName')}}</view> -->
+						        <block v-for="(k, i) in _get(item, '__config__.children', [])" :key="i">
+						            <base-vants
+						                v-if="_get(k, '__config__.layout') === 'colFormItem'"
+						                :fields="[{...k}]"
+						                :form="form"
+														:Details="Details"
+						                @change="handleChange"
+						                @clear="handleClear"
+						            />
+						            <view v-else>
+						                <view class="form_row_title">
+								{{_get(k, '__config__.componentName')}}
+							</view>
+						                <base-vants
+						                    :fields="_get(k, '__config__.children', [])"
+						                    :form="form"
+																:Details="Details"
+						                    @change="handleChange"
+						                    @clear="handleClear"
+						                />
+						            </view>
+						        </block>
+									</card>
+						    </view>
+						</block>
+					</view>
+					<view class="dynamic-form-button-group" v-if="!Details&&(_get(config, 'formBtns', true) && fields.length > 0)">
+						<button
+							class="dynamic-form-submitButton"
+							@click='handleSubmit'
+						>
+							保存
+						</button>
+						<button
+							class="dynamic-form-backButton"
+							@click="handleReturn"
+						>
+							取消
+						</button>
+					</view>
         </van-skeleton>
 	</view>
     
@@ -238,6 +247,12 @@
               }
               this.fields = [...checkRequired(this.fields)]
             },
+						// 返回事件
+						handleReturn(){
+							uni.navigateBack({
+								delta:1
+							})
+						},
             // 清空时
             handleClear (e, item) {
                 this.form[item.__vModel__] = ''
@@ -342,6 +357,12 @@
 </script>
 
 <style lang="less">
+	.fields-block{
+		margin: 10rpx;
+		padding: 10rpx;
+		background-color: #11181E;
+		border-radius: 20rpx;
+	}
     .base_vants_container {
         .form_row_title {
             color: rgba(80, 80, 80, 1);
@@ -363,4 +384,23 @@
         	width: 80%;
         }
     }
+		.dynamic-form-button-group{
+			display: flex;
+			padding: 25rpx;
+		}
+		.dynamic-form-backButton,.dynamic-form-submitButton{
+			width: 290rpx;
+			height: 90rpx;
+			line-height: 90rpx;
+			font-size: 32rpx;
+		}
+		.dynamic-form-submitButton{
+			background: linear-gradient(left,#8C30EB,#0C98FF);
+			color: #E8EBFE;
+		}
+		.dynamic-form-backButton{
+			background-color: transparent;
+			border: 1px solid #5F646A;
+			color: #5F646A;
+		}
 </style>

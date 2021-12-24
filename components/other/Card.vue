@@ -19,7 +19,7 @@
 			'textAlign':otherStyle===undefined?'':otherStyle.title.align,
 			'font':otherStyle===undefined?'':otherStyle.title.font,
 			'text-align':otherStyle===undefined?'':otherStyle.title.textAlign,
-			'border-bottom': otherStyle===undefined?'2px solid #EEEEEE':otherStyle.title.line
+			'border-bottom': otherStyle===undefined?'':otherStyle.title.line
 			}"
 			>{{title}}
 			<span v-if="jump" @click="jumpUrl()" style="position: absolute;right: 5px;color: #1A5EB5;font-size: 14px;">{{jumpText}}</span>
@@ -145,8 +145,10 @@ export default {
 		margin: 0 auto;
     padding:10px;
     font-size: 14px;
+		background-color: #11181E;
+		color:#CACCCD;
     font-weight: bolder;
-		border-bottom: 2px solid #EEEEEE;
+		// border-bottom: 2px solid #EEEEEE;
 }
 .Card-Layout-Child{
 	font-size: 12px;

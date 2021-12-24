@@ -113,8 +113,12 @@
 			 <base-image
 				v-if="_get(item,'__config__.tag') === 'el-image'"
 				:params="{
-					...getBaseParam(item)
+					...getBaseParam(item),
+					..._get(item, 'error', false) ? { error: item.error } : {},
+					..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {},
+					...item['max-count'] ? { 'max-count': item['max-count'] } : {},
 				}"
+				@change="(e)=>handleSetValue(e,fields[index])"
 			 ></base-image>
        </block>
     </view>

@@ -8,8 +8,9 @@ import DynamicList from './components/dynamic-list/index.vue'
 import card from './components/other/Card.vue'
 import {globalConfig} from '@/config.js'
 import {api} from './common/api.js'
-import {timeCache,cache,reload} from '@/utils/tools.js'
+import {timeCache,cache,reload,upload} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
+import './other.less'
 
 Vue.config.productionTip = false
 Vue.use(Vant)
@@ -21,6 +22,7 @@ Vue.prototype.$cache = cache
 // 临时缓存
 Vue.prototype.$timeCache = timeCache
 Vue.prototype.$reload = reload
+Vue.prototype.$upload = upload
 
 Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)
