@@ -14,7 +14,7 @@
 						</view>
 						<view class="spiritTwoSideBox">
 							<view class="sideLeft">增长能力：<text>{{item.growthPercent}}%</text></view>
-							<view class="sideRight">能力值：<text>200~300</text></view>
+							<view class="sideRight">能力值：<text>{{item.capabilityValue}}</text></view>
 						</view>
 						<view class="spiritTwoSideBox">
 							<view class="sideLeft">培养时间：<text>{{item.growthDays}}</text></view>

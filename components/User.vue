@@ -38,8 +38,14 @@
 				console.log(res)
 				this.userName = res[1].data
 			})
+			
+			this.getUserInfo()
 		},
 		methods:{ 
+			async getUserInfo(){
+				const res = await this.$api.getUserInfo()
+				console.log(res,123)
+			},
 			navigateTo(){
 			   let userI = uni.getStorage({key:"userId"})
 			   userI.then(res=>{

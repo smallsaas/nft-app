@@ -36,7 +36,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"/api/crud/oms/wispBookingRecord/wispBookingRecords?id=1",
+            "loadApi":"/api/crud/oms/wispBookingRecord/wispBookingRecords",
             "itemNavigation": "",
             "response":{
                 "list":"records"

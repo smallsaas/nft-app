@@ -139,6 +139,15 @@
 				"enablePullDownRefresh":false
 			}
 		}
+        ,{
+            "path" : "pages/regist/regist",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

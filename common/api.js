@@ -12,10 +12,20 @@ export const api = {
 	const url = `${globalConfig.dataHost}?id=9999999`
 	return request('GET',url,params)
 	},
+	//注册
+	regist(params){
+	const url = `${globalConfig.endpoint}/api/app/oauth/account/register`
+	return request('POST',url,params)
+	},
 	//登录
 	login(params){
-	const url = `${globalConfig.endpoint}/api/sys/oauth/login`
+	const url = `${globalConfig.endpoint}/api/app/oauth/account/login`
 	return request('POST',url,params)
+	},
+	//获取用户个人信息
+	getUserInfo(params){
+	const url = `${globalConfig.endpoint}/api/u/player`
+	return request('GET',url,params)
 	},
 	//预约精灵
 	bookSpirit(params){
