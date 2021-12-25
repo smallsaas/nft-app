@@ -4,12 +4,12 @@
 			<view class="backImg"><image class="back" src="../../static/login/back.png" mode="widthFix"></image></view>
 			<view class="loginText"><text class="text">欢迎登录NFT平台</text></view>
 			<view class="label"><text class="labelTxt">账号</text></view>
-			<view class="inputBox"><input class="account" type="text" placeholder="请输入账号" v-model="data.account"></view>
+			<view class="inputBox"><input :class="{focus:isShowFocusA}" class="account" type="text" placeholder="请输入账号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
 			<view class="info" v-if="false"><text class="infoText">账号有误，请输入正确的手机号码</text></view>
 			<view class="label"><text class="labelTxt">密码</text></view>
-			<view class="inputBox"><input class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="请输入密码"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
+			<view class="inputBox"><input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="请输入密码" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
 			<view class="label"><text class="labelTxt">验证码</text></view>
-			<view class="viewBox"><input type="text" placeholder="请输入验证码" class="yzm"><view class="yzmBox"></view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view>
+			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="请输入验证码" class="yzm" @focus="focus(3)" @blur="blur(3)"><view class="yzmBox"></view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view>
 			<view class="loginBox"><button class="loginBtn" @click="login">登录</button></view>
 			<view class="opeation"><text class="forget" @click="goFindP">忘记密码?</text><text class="regist" @click="goToRegist()">注册账号</text></view>
 		</view>
@@ -20,16 +20,45 @@
 	export default {
 		data() {
 			return {
+				isShowFocusA:false,
+				isShowFocusP:false,
+				isShowFocusY:false,
 				isShowPassword:true,
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'acc21915756',
+					account:'acc58601437',
 					password:'123456'
 				}
 			}
 		},
 		methods: {
+			focus(id){
+				console.log(id)
+				if(id==1){
+					this.isShowFocusA = true;
+					return
+				}else if(id == 2){
+					this.isShowFocusP = true
+					return
+				}else if(id == 3){
+					this.isShowFocusY = true
+					return
+				}
+			},
+			blur(id){
+				console.log(id)
+				if(id==1){
+					this.isShowFocusA = false;
+					return
+				}else if(id == 2){
+					this.isShowFocusP = false
+					return
+				}else if(id == 3){
+					this.isShowFocusY = false
+					return
+				}
+			},
 			changeLook(){
 				this.isShowPassword = !this.isShowPassword
 				this.isShowPassword==true?this.openIndex=0:this.openIndex=1
@@ -55,6 +84,7 @@
 </script>
 
 <style lang="less">
+	@borderColor:linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253)) 10;
 	.loginBox {
 		width: 100%;
 		height: 100vh;
@@ -62,6 +92,11 @@
 		.box {
 			width: 100%;
 			height: 100%;
+			
+			.focus{
+				border: 1px solid;
+			    border-image: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253)) 10;
+			}
 
 			.backImg {
 				width: 60rpx;
@@ -108,9 +143,10 @@
 				.account{
 					width: 90%;
 					height: 80rpx;
-					border-radius: 20rpx;
+					border-radius: 10rpx;
 					background: rgb(36,42,51);
 					padding-left: 10rpx;
+					outline-style: none;
 				}
 				.eye{
 					width: 60rpx;
