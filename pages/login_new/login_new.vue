@@ -27,7 +27,7 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'acc58601437',
+					account:'acc17581270',
 					password:'123456'
 				}
 			}
