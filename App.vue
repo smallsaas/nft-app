@@ -20,4 +20,8 @@
 
 <style>
 	/*每个页面公共css */
+	page{
+		background-color: #050E17;
+		color: #9A9D9F;
+	}
 </style>

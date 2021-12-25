@@ -156,6 +156,7 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
+								
             }
             
         },{
@@ -177,9 +178,9 @@
         }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "#FCFCFC",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#050E17",
 		"backgroundColor": "#050E17"
-	}
+		}
 }
