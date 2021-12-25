@@ -1,0 +1,29 @@
+@endpoint = https://api.mock.smallsaas.cn
+# 开发环境使用
+@devEndpoint = http://localhost:8080
+
+###
+GET {{endpoint}}/data?id=1000000
+
+### 主页配置项
+### 动态渲染 动态页面
+### 说明：
+### navs配置底部导航栏样式
+### defaultClick 配置默认点击项 0开始
+### 配置动态页面渲染的api
+POST {{endpoint}}/data/1000000
+Content-Type: application/json
+
+{
+    "navs":[
+        {"title":"精灵广场","image":"/static/public/精灵广场.png"},
+        {"title":"我的精灵","image":"/static/public/我的精灵.png"},
+        {"title":"服务中心","image":"/static/public/服务中心.png"}
+    ],
+    "defaultClick":2,
+    "api":[
+        "?id=990327",
+        "?id=550311",
+        "?id=7512"
+    ]
+}

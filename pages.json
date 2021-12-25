@@ -149,6 +149,36 @@
             }
             
         }
+        ,{
+            "path" : "pages/defaultPage/tabsPage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+								"app-plus":{
+									"titleNView":false
+								}
+            }
+            
+        }
+        ,{
+            "path" : "pages/componentTest/navBar",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/homePage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

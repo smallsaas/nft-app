@@ -1,0 +1,40 @@
+@endpoint = https://api.mock.smallsaas.cn
+# 开发环境使用
+@devEndpoint = http://localhost:8080
+
+### pageTabbar
+GET {{endpoint}}/form?id=990328
+
+###
+POST {{endpoint}}/form/990328
+Content-Type: application/json
+
+{
+    "version": "1", 
+    "name": "pageTabbar", 
+    "title": "pageTabbar", 
+    "pageStyle": {}, 
+    "request": { }, 
+    "response": {
+        "data": "data"
+    }, 
+    "container": {
+    }, 
+    "modules": [
+        {
+            "type":"navBar",
+            "key": "95afd71a-c8d5-11eb-aca5-0800271e55b7", 
+            "name":"",
+            "container":{}
+        }
+    ],
+    "moduleData": {
+        "95afd71a-c8d5-11eb-aca5-0800271e55b7":{
+            "navs":[
+                {"title":"精灵广场","image":"/static/public/精灵广场.png","url":"/pages/defaultPage/tabsPage?id=990327"},
+                {"title":"我的精灵","image":"/static/public/我的精灵.png","url":"/pages/defaultPage/tabsPage?id=550311"},
+                {"title":"服务中心","image":"/static/public/服务中心.png","url":"/pages/defaultPage/tabsPage?id=7512"}
+            ]
+        }
+    }
+}

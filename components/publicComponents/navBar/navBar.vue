@@ -1,0 +1,104 @@
+<!-- 由于web-view中不支持嵌套多层web-view 所以这边使用slot方式来决定不同页面的渲染 -->
+<template>
+	<view class="navBar">
+		<view class="navBar-content">
+			<slot name="content-container">
+				
+			</slot>
+		</view>
+		<view class="navBar-container">
+			<view v-for="(nav,n) in navs" class="navBar-nav" @click="handleClick(n)">
+				<view :class="'navBar-party'+isClick(n)">
+					<image :src="nav.image" class="navBar-party-image">
+					</image>
+					<view class="navBar-party-title">
+						{{nav.title}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name:"navBar",
+		props:{
+			navs:{
+				type:Array,
+				default:[]
+			},
+			defaultClick:{
+				type:Number,
+				default:0
+			}
+		},
+		data(){
+			return {
+				url:"",
+				clicked:0
+			}
+		},
+		created() {
+			this.clicked = this.defaultClick
+		},
+		methods:{
+			// 点击时事件
+			handleClick(click){
+				this.clicked = click
+				this.$emit("change",click)
+			},
+			isClick(click){
+				if(this.clicked === click){
+					return " navBar-clicked"
+				}else{
+					return ""
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="less">
+	.navBar-content{
+		width: 100%;
+		height: calc(100vh - 220rpx);
+		overflow: auto;
+		position: relative;
+	}
+	.navBar-container{
+		width: 100%;
+		height: 140rpx;
+		z-index: 999999;
+		position: fixed;
+		bottom: 0;
+		display: flex;
+		background-color: #050E17;
+	}
+	.navBar-nav{
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.navBar-party{
+		min-width: 100rpx;
+		height: 100rpx;
+		padding: 5rpx 10rpx;
+		border-radius: 10rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.navBar-party-image{
+		width: 50rpx;
+		height: 50rpx;
+	}
+	.navBar-party-title{
+		font-size: 20rpx;
+	}
+	.navBar-clicked{
+		background-color: #333644;
+	}
+</style>

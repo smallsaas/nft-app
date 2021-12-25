@@ -153,6 +153,11 @@
 						 							:item="getComponentsData(item)"
 						 							:pathData="_get(config.moduleData,item.key,{})"
 						 ></user>
+						 <!-- tab栏组件 -->
+						 <pageTabbar
+							v-if="_get(item,'type') === 'pageTabbar'"
+							:tabs="_get(config.moduleData,item.key,{tabs:[]}).tabs"
+						 ></pageTabbar>
             </view>
           </block>
         </van-skeleton>
@@ -179,6 +184,7 @@
 	import signSmokeBox from '../signIn/signSmokeBox.vue'
 	import Pay from '../Pay.vue'
 	import User from '../User.vue'
+	import pageTabbar from '../publicComponents/pageTabbar/pageTabbar.vue'
     import { globalConfig } from '@/config.js'
     import {LoadComplete} from '@/common/api.js'
 	export default {
@@ -196,7 +202,8 @@
 			Avatar,
 			signSmokeBox,
 			Pay,
-			User
+			User,
+			pageTabbar
 		},
 		props: {
 			API: String,  // 页面数据请求接口

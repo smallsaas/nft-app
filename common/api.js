@@ -4,6 +4,11 @@ import { globalConfig } from '@/config.js'
 
 // 获取全局配置
 export const api = {
+	// 主页配置
+	homePage(params){
+		const url = `${globalConfig.dataHost}?id=1000000`
+		return request('GET',url,params)
+	},
 	getGlobalConfig(params){
 		const url = `${globalConfig.dataHost}?id=9999998`
 		return request('GET', url, params)
