@@ -63,6 +63,7 @@
 		justify-content: center;
 		flex-direction: row;
 		margin-top: 50rpx;
+		flex-wrap: wrap;
 	}
 	.pageTabbar_Title{
 		font-size: 32rpx;
