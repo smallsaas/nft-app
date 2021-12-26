@@ -134,7 +134,6 @@
 					this.dayGroup = this.listGroup
 					this.packIcon = "/static/signSmoke/pushup.png"
 				}
-				console.log(this.packIcon)
 				this.$forceUpdate()
 			},
 			// 签到事件
