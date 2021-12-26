@@ -10,7 +10,8 @@
 		</view>
 		<view :class="'signSmoke-pack '+ispack" @click="handlePack()">
 			<view>{{packText}}</view>
-			<image :src="isIcon" class="signSmoke-pack-icon"></image>
+			<image src="/static/signSmoke/pushup.png" class="signSmoke-pack-icon" v-show="packIcon==='/static/signSmoke/pushup.png'"></image>
+			<image src="/static/signSmoke/more.png" class="signSmoke-pack-icon" v-show="packIcon==='/static/signSmoke/more.png'"></image>
 		</view>
 		<view :class="'signSmoke-sign '+isSign" @click="handleSign">
 			<view class="signSmoke-signIn">
@@ -44,32 +45,32 @@
 			isSign(){
 				if(this.sign){
 					this.signText="已签到"
-					this.signImage="../../static/signSmoke/已签到.png"
+					this.signImage="/static/signSmoke/已签到.png"
 					this.$forceUpdate()
 					return "sign"
 				}else{
 					this.signText="签到抽盒"
-					this.signImage="../../static/signSmoke/gift.png"
+					this.signImage="/static/signSmoke/gift.png"
 					this.$forceUpdate()
 					return ""
 				}
 			},
-			isIcon(){
-				if(this.packText == "收起"){
-					this.packIcon = "../../static/signSmoke/more.png"
-					return this.packIcon
-				}else{
-					this.packIcon = "../../static/signSmoke/pushup.png"
-					return this.packIcon
-				}
-			}
+			// isIcon(){
+			// 	if(this.packText === "收起"){
+			// 		this.packIcon = "/static/signSmoke/more.png"
+			// 		return this.packIcon
+			// 	}else{
+			// 		this.packIcon = "/static/signSmoke/pushup.png"
+			// 		return this.packIcon
+			// 	}
+			// }
 		},
 		data() {
 			return {
 				packText:"查看全部奖励",
-				packIcon:"../../static/signSmoke/more.png",
+				packIcon:"/static/signSmoke/more.png",
 				signText:"签到抽盒",
-				signImage:"../../static/signSmoke/gift.png",
+				signImage:"/static/signSmoke/gift.png",
 				sign:false,
 				month:0,
 				signDay:0,
@@ -125,13 +126,16 @@
 			handlePack(){
 				if(this.packText === "收起"){
 					this.packText = "查看全部奖励"
-					let that = this
 					this.getNowGroup()
 					this.dayGroup = this.nowGroup
+					this.packIcon = "/static/signSmoke/more.png"
 				}else{
 					this.packText = "收起"
 					this.dayGroup = this.listGroup
+					this.packIcon = "/static/signSmoke/pushup.png"
 				}
+				console.log(this.packIcon)
+				this.$forceUpdate()
 			},
 			// 签到事件
 			handleSign(){
