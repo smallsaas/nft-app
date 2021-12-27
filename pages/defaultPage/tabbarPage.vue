@@ -15,6 +15,7 @@
 <script>
 	import pageTabbar from '@/components/publicComponents/pageTabbar/pageTabbar.vue'
 	export default {
+		name:"tabbarPage",
 		components:{
 			pageTabbar
 		},
@@ -27,6 +28,17 @@
 			return {
 					tabs:null,
 					click:0
+			}
+		},
+		created(){
+			if(this.tabId){
+				this.getTabs(this.tabId)
+			}
+		},
+		props:{
+			tabId:{
+				type:String,
+				default:""
 			}
 		},
 		methods: {

@@ -3,7 +3,8 @@
 		<nav-bar :navs="navs" :defaultClick="defaultClick" v-if="defaultClick" @change="handleChange">
 			<template slot="content-container">
 				<view class="page-content">
-					<dynamic-page :API="apis[0]" v-if="clicked == 0"></dynamic-page>
+					<tab-bar-page :tabId="isTab(apis[0])" v-if="clicked == 0"></tab-bar-page>
+					<!-- <dynamic-page :API="apis[0]" v-if="clicked == 0"></dynamic-page> -->
 				</view>
 				<view class="page-content">
 					<dynamic-page :API="apis[1]" v-if="clicked == 1"></dynamic-page>
@@ -18,9 +19,11 @@
 
 <script>
 	import NavBar from '../../components/publicComponents/navBar/navBar.vue'
+	import tabBarPage from '../defaultPage/tabbarPage.vue'
 	export default {
 		components:{
-			NavBar
+			NavBar,
+			tabBarPage
 		},
 		data() {
 			return {
@@ -53,6 +56,10 @@
 				this.clicked = e
 				console.log(this.apis)
 				this.$forceUpdate()
+			},
+			isTab(api){
+				console.log(api.split("?id=")[1])
+				return api.split("?id=")[1]
 			}
 		}
 	}
