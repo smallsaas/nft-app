@@ -119,6 +119,13 @@
 											}"
 					/>
 					
+					<spirit-market-new 	v-if="getListItemKey() === 'spirit-market-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>
@@ -149,6 +156,8 @@
 	
 	import market from './listItem/market.vue'
 	import bookspirit from './listItem/bookspirit.vue'
+	
+	import spiritMarketNew from './listItem/spiritMarket_new.vue'
     
 	export default {
 		components: {
@@ -164,7 +173,11 @@
 			spiritMarket,
 			spirit,
 			market,
-			bookspirit
+			bookspirit,
+			
+			
+			//新版页面
+			spiritMarketNew
 		},
 		props: {
 			config: {

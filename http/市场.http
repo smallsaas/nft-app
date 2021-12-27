@@ -3,10 +3,10 @@
 
 
 ### 获取列表页面信息
-GET {{endpoint}}/form?id=123456
+GET {{endpoint}}/form?id=8888899
 
 ### 提交列表页面信息
-POST {{endpoint}}/form/123456
+POST {{endpoint}}/form/8888899
 Content-Type: application/json
 
 {  
@@ -14,7 +14,7 @@ Content-Type: application/json
     "name": "Market",
     "title": "精灵广场",
     "pageStyle": {
-        "background":"red"
+        "margin-top":"20px"
     },
     "loadApi": "",
     "response": {
@@ -48,7 +48,7 @@ Content-Type: application/json
                 "pn":"pageNo"
             },
             "itemModule":{
-                "name":"market"
+                "name":"spirit-market-new"
             }
         }
     }

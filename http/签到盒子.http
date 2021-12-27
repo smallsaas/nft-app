@@ -1,8 +1,8 @@
 @endpoint = https://api.mock.smallsaas.cn
 @devEndpoint = http://localhost:8080
-GET {{endpoint}}/form?id=550311
+GET {{endpoint}}/form?id=7777799
 ###
-POST {{endpoint}}/form/550311
+POST {{endpoint}}/form/7777799
 Content-Type: application/json
 
 {

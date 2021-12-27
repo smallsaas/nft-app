@@ -20,13 +20,13 @@
 		},
 		data() {
 			return {
-				api:`${globalConfig.formHost}?id=123456`,
+				api:`${globalConfig.formHost}?id=990327`,
 			}
 		},
 		methods: {
 			goTo(){
 				uni.navigateTo({
-					url:'/pages/defaultPage/page?id=550311'
+					url:'/pages/defaultPage/page?id=990327'
 				})
 			}
 		},

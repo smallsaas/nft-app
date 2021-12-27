@@ -19,12 +19,12 @@ export const api = {
 	},
 	//注册
 	regist(params){
-	const url = `${globalConfig.endpoint}/api/app/oauth/account/register`
+	const url = `${globalConfig.endpoint}/api/app/oauth/player/register`
 	return request('POST',url,params)
 	},
 	//登录
 	login(params){
-	const url = `${globalConfig.endpoint}/api/app/oauth/account/login`
+	const url = `${globalConfig.endpoint}/api/app/oauth/player/login`
 	return request('POST',url,params)
 	},
 	//获取用户个人信息

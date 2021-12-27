@@ -27,7 +27,7 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'acc17581270',
+					account:'18664521094',
 					password:'123456'
 				}
 			}
@@ -76,8 +76,20 @@
 			async login(){
 				console.log(this.data)
 				let that = this;
-				let res=await that.$api.login(this.data)
+				let res=await that.$api.login(that.data)
 				console.log(res)
+				if(res.code == 200){
+					that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
+					uni.showToast({
+						title:'登录成功',
+						duration:1000
+					})
+					setTimeout(()=>{
+						uni.navigateTo({
+							url:'/pages/home/homePage'
+						})
+					},1000)
+				}
 			}
 		}
 	}
