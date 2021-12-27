@@ -21,41 +21,63 @@
 							<view class="infoItem"><text class="infoTitle">培养天数:</text><text class="infoValue">{{item.growthDays}}天</text></view>
 						</view>
 					</view>
-					<view class="ItemCenter"><text class="matchTime">匹配时间:{{item.waitingMatchMinute}}</text></view>
+					<view class="ItemCenter"><text class="matchTime">匹配时间:{{item.startMatchTime.substring(0,5)}}-{{item.endMatchTime.substring(0,5)}}</text></view>
 					<view class="ItemBottom">
 						<view class="ItemLeft">
 							<view class="itemB">
 								<image class="configImg" src="../../../static/spirit/coin.png" mode="widthFix"></image>
-								<text class="configTitle">{{item.costWispCoin}}</text>
+								<text class="configTitle">x{{item.costWispCoin}}</text>
 							</view>
 							<view class="itemB">
 								<image class="configImg" src="../../../static/spirit/company.png" mode="widthFix"></image>
-								<text class="configTitle">{{item.costAccompanyWisp}}</text>
+								<text class="configTitle">x{{item.costAccompanyWisp}}</text>
 							</view>
 							<view class="itemB">
 								<image class="configImg" src="../../../static/spirit/land.png" mode="widthFix"></image>
-								<text class="configTitle">{{item.growthDays}}</text>
+								<text class="configTitle">x{{item.growthDays}}</text>
 							</view>
 						</view>
 						<view class="ItemRight">
-							<button class="BTN">预约</button>
+							<button class="BTN" @click="operation(item)">{{item.stage}}</button>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		
+		<!-- 预约组件 -->
+		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild"></spiritBook>
 	</view>
 </template>
 
 <script>
+	//预约精灵组件
+	import spiritBook from '@/components/spirit/spirit_book.vue'
 	import {globalConfig} from '@/config.js'
 	import {api} from '@/common/api.js'
 	export default {
 		name:'spiritMarketNew',
+		components:{spiritBook},
 		props: {
 			item: Object,
 			ext: Object
 		},
+		data(){
+			return{
+				isShowBookChild:false,
+				itemInfoForChild:''
+			}
+		},
+		methods:{
+			operation(item){
+				console.log('operation',item)
+				this.isShowBookChild = true
+				this.itemInfoForChild = item
+			},
+			getChild(){
+				this.isShowBookChild = false
+			}
+		}
 	}
 </script>
 
