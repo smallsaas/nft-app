@@ -195,9 +195,9 @@
 				width: 100%;
 				.load-more{
 					text-align: center;
-					color: #AAAAAA;
+					color: #9A9D9F;
 					padding: 16rpx;
-                    background-color: #fff;
+					background-color: #050E17;
 				}
 			}
 		}

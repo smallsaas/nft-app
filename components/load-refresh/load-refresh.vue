@@ -266,10 +266,10 @@
 				height: auto;
 				.load-more{
 					text-align: center;
-					color: #AAAAAA;
+					color: #9A9D9F;
 					padding: 16rpx;
-                    background-color: #fff;
-                    font-size: 28rpx;
+					background-color: #050E17;
+					font-size: 28rpx;
 				}
 			}
 		}
