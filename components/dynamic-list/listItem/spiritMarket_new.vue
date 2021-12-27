@@ -46,7 +46,7 @@
 		</view>
 		
 		<!-- 预约组件 -->
-		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild"></spiritBook>
+		<spiritBook class="myC" v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild"></spiritBook>
 	</view>
 </template>
 
@@ -86,6 +86,12 @@
 		width: 100%;
 		height: 100%;
 		background: rgb(5,14,23);
+		.myC{
+			position: fixed;
+			bottom: 50%;
+			left: 10%;
+			// top: 100rpx;
+		}
 		.box{
 			width: 100%;
 			height: 100%;

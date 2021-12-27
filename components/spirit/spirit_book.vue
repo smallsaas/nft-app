@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<!-- <van-overlay :show="true"><text>4456456465</text></van-overlay> -->
 		<view class="spirit_mask">
 			<view class="spirit_book">
 				<view class="LevelBox">
@@ -55,33 +54,11 @@
 </script>
 
 <style lang="less">
-	// .van-overlay{
-	// 	width: 80%;
-	// 	margin-left: 10%;
-	// 	height: 800rpx;
-	// 	position: absolute;
-	// 	// top: 50rpx;
-	// 	background: rgb(27, 40, 74);
-	// 	border: 2rpx solid rgb(47, 69, 128);
-	// 	border-radius: 20rpx;
-	// }
-	.spirit_mask{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: #333;
-		opacity: .8;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
 	.spirit_book {
 		width: 80%;
 		height: 800rpx;
-		position: absolute;
-		top: 50rpx;
+		// position: absolute;
+		// top: 50rpx;
 		background: rgb(27, 40, 74);
 		border: 2rpx solid rgb(47, 69, 128);
 		border-radius: 20rpx;
