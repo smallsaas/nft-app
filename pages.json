@@ -207,6 +207,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/defaultPage/tabbarPage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

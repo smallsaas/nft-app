@@ -25,11 +25,11 @@
 			</view>
 		</view>
 		<!-- 数据列表块 -->
+		<!-- 由于 transform使用之后使用不了fixed 故 transform: coverTransform,删除 -->
 		<view
 			class="cover-container"
 			:style="[{
 				background: backgroundCover,
-				transform: coverTransform,
 				transition: coverTransition,
                 marginTop: isRefresh ? '-100rpx' : 0
 			}]"
@@ -117,7 +117,7 @@
 				updateType: true, // 数据更新类型（true: 下拉刷新: false: 加载更多）
 				moving: false,
 				scrollTop: -1,
-				coverTransform: 'translateY(0px)',
+				coverTransform: '',
 				coverTransition: '0s',
 				playState: false // 动画的状态 暂停 paused/开始 running
 			}

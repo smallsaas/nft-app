@@ -9,6 +9,11 @@ export const api = {
 		const url = `${globalConfig.dataHost}?id=1000000`
 		return request('GET',url,params)
 	},
+	// tabbar 页配置
+	tabbar(id,params){
+		const url = `${globalConfig.dataHost}?id=${id}`
+		return request('GET',url,params)
+	},
 	getGlobalConfig(params){
 		const url = `${globalConfig.dataHost}?id=9999998`
 		return request('GET', url, params)

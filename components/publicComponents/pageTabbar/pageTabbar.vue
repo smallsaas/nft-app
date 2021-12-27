@@ -1,12 +1,16 @@
-<!-- 顶部tab栏 tabs传入title及url属性即可使用 -->
+<!-- 由于web-view很不友好 所以使用slot方式实现 -->
 <template>
 	<view>
 		<view class="pageTabbar_TitleBox">
-			<view :class="'pageTabbar_Title'+isClick(t)" @click="handleClick(tab.url,t)"  v-for="(tab,t) in tabs">
+			<view :class="'pageTabbar_Title'+isClick(t)" @click="handleClick(t)"  v-for="(tab,t) in tabs">
 				{{tab.title}}
 			</view>
 		</view>
-		<web-view :src="url" style="top: 120rpx;margin: 20rpx;"></web-view>
+		<view class="pageTabbar_Content">
+			<slot name="content">
+				
+			</slot>
+		</view>
 	</view>
 </template>
 
@@ -22,28 +26,17 @@
 		},
 		data(){
 			return {
-				clicked:0,
-				url:""
+				clicked:0
 			}
 		},
 		created() {
-			this.url = this.tabs[this.clicked].url
-			// #ifdef H5
-				this.url = "/#"+this.tabs[this.clicked].url
-			// #endif
-			console.log(this.url)
+			this.$emit("change",this.clicked)
 		},
 		methods:{
 			// tab被点击时
-			handleClick(url,click){
-				this.url = this.tabs[this.clicked].url
-				// #ifdef H5
-					this.url = "/#"+this.tabs[click].url
-				// #endif
+			handleClick(click){
 				this.clicked = click
-				console.log(this.url)
-				console.log(click,"click")
-				this.$forceUpdate()
+				this.$emit("change",click)
 			},
 			isClick(i){
 				if(this.clicked === i){
@@ -78,5 +71,10 @@
 		color: #F0F0F0;
 		border-bottom: 5px solid;
 		border-image: -webkit-linear-gradient(left,#772CCA,#0986E5) 5 5;
+	}
+	.pageTabbar_Content{
+		width: 100%;
+		height: calc(100vh - 138rpx);
+		overflow: auto;
 	}
 </style>
