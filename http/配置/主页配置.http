@@ -20,7 +20,7 @@ Content-Type: application/json
         {"title":"我的精灵","image":"/static/public/我的精灵.png"},
         {"title":"服务中心","image":"/static/public/服务中心.png"}
     ],
-    "defaultClick":2,
+    "defaultClick":0,
     "api":[
         "?id=41356",
         "?id=550311",
