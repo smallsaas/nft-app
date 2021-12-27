@@ -15,9 +15,9 @@ export const globalConfig = isDev?{
 	tokenStorageKey:"token",
 	iconList:iconList
 }:{
-	formHost: _.get(globalConfigStorage,"formHost","https://http://localhost:8080/form"),
-  dataHost: _.get(globalConfigStorage, 'dataHost', 'https://http://localhost:8080/data'),
-  endpoint: _.get(globalConfigStorage, 'endpoint', 'https://http://localhost:8080'),
+	formHost: _.get(globalConfigStorage,"formHost","https://api.mock.smallsaas.cn/form"),
+  dataHost: _.get(globalConfigStorage, 'dataHost', 'https://api.mock.smallsaas.cn/data'),
+  endpoint: _.get(globalConfigStorage, 'endpoint', 'http://repo.dev.smallsaas.cn:8084'),
   tokenStorageKey:"token",
 	iconList:iconList
 }
