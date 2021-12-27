@@ -41,6 +41,7 @@
 		},
 		created() {
 			this.clicked = this.defaultClick
+			console.log("加载",this.defaultClick)
 		},
 		methods:{
 			// 点击时事件
@@ -49,7 +50,7 @@
 				this.$emit("change",click)
 			},
 			isClick(click){
-				if(this.clicked === click){
+				if(this.clicked == click){
 					return " navBar-clicked"
 				}else{
 					return ""

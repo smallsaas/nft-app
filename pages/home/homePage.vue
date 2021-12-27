@@ -40,6 +40,7 @@
 		async created(){
 			let res = await this.$api.homePage()
 			let data = res.data
+			console.log("进来了",data)
 			this.navs = data.navs
 			this.apis = []
 			let that = this
@@ -47,7 +48,8 @@
 				that.apis.push(that.endpoint+item)
 			})
 			this.clicked = data.defaultClick
-			this.defaultClick = data.defaultClick
+			this.defaultClick = data.defaultClick.toString()
+			console.log(this.defaultClick,"default")
 			this.$forceUpdate()
 		},
 		methods: {
