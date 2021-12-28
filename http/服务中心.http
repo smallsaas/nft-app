@@ -1,0 +1,43 @@
+@endpoint = https://api.mock.smallsaas.cn
+
+GET {{endpoint}}/form?id=666999
+Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJvcmdJZCI6IjEiLCJ1c2VySWQiOiIxIiwidXNlclR5cGUiOjEwMSwiYlVzZXJUeXBlIjoiU1lTVEVNIiwidGVuYW50T3JnSWQiOjEsImFjY291bnQiOiJhZG1pbiIsImV4dHJhVXNlclR5cGUiOjAsImlhdCI6MTYzOTk5NDE0OSwianRpIjoiMSIsInN1YiI6ImFkbWluIiwiZXhwIjoxNjQwMjUzMzQ5fQ.HY6R-IgAcF8w9jqB9PR8xVQX6QXr0fA--zBlwGKD3vn6lvLJaBYu7dn6wJ7n33rxFVyMJK4EF4TfetioE9kQvg
+
+
+####
+POST {{endpoint}}/form/666999
+Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJvcmdJZCI6IjEiLCJ1c2VySWQiOiIxIiwidXNlclR5cGUiOjEwMSwiYlVzZXJUeXBlIjoiU1lTVEVNIiwidGVuYW50T3JnSWQiOjEsImFjY291bnQiOiJhZG1pbiIsImV4dHJhVXNlclR5cGUiOjAsImlhdCI6MTYzOTk5NDE0OSwianRpIjoiMSIsInN1YiI6ImFkbWluIiwiZXhwIjoxNjQwMjUzMzQ5fQ.HY6R-IgAcF8w9jqB9PR8xVQX6QXr0fA--zBlwGKD3vn6lvLJaBYu7dn6wJ7n33rxFVyMJK4EF4TfetioE9kQvg
+Content-Type: application/json
+
+{
+    "version": "1", 
+    "name": "PersonalInfo", 
+    "title": "服务中心", 
+    "pageStyle": { }, 
+    "request": { }, 
+    "response": {
+        "data": "data"
+    }, 
+    "container": {
+
+    }, 
+    "modules": [
+        {
+            "type":"service",
+            "key": "95afd71a-c8d5-11eb-aca5-0800271e55b7", 
+            "name":"",
+            "container":{},
+            "binding":{
+                "userId":"userId",
+                "name":"name",
+                "status":"status",
+                "invitationCode":"invitationCode"
+            }
+        }
+    ],
+    "dataSource":{
+        "api":"http://localhost:8080/api/u/player"
+    },
+    "moduleData": {
+    }
+}

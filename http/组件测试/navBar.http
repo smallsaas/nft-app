@@ -32,8 +32,8 @@ Content-Type: application/json
         "95afd71a-c8d5-11eb-aca5-0800271e55b7":{
             "navs":[
                 {"title":"精灵广场","image":"/static/public/精灵广场.png","url":"/pages/defaultPage/tabsPage?id=990327"},
-                {"title":"我的精灵","image":"/static/public/我的精灵.png","url":"/pages/defaultPage/tabsPage?id=550311"},
-                {"title":"服务中心","image":"/static/public/服务中心.png","url":"/pages/defaultPage/tabsPage?id=7512"}
+                {"title":"我的精灵","image":"/static/public/我的精灵.png","url":"/pages/defaultPage/tabsPage?id=6666699"},
+                {"title":"服务中心","image":"/static/public/服务中心.png","url":"/pages/defaultPage/tabsPage?id=666999"}
             ]
         }
     }

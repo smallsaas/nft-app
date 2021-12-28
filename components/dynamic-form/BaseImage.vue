@@ -14,7 +14,7 @@
 						<view class="Base-Image-ImageBox">
 							<image :src="item" class="Base-Image-thumb" mode="aspectFit" @click="handleClick(i)">
 							</image>
-							<image src="../../static/BaseImage/close@3x.png" class="Base-Image-delete" @click="handleDelete(i)"></image>
+							<image src="../../static/BaseImage/close@3x.png" class="Base-Image-delete" @click="handleDelete(i)" v-if="!isReadOnly"></image>
 						</view>
 
 						<view class="Base-Image-mov" v-if="isShowLarge === i">
@@ -87,7 +87,11 @@
 			params:{
 				handler(oldVal,val){
 					if(this.params.value){
-						this.imageList = JSON.parse(this.params.value)
+						if(this.params.value.indexOf("[")!==-1){
+							this.imageList = JSON.parse(this.params.value)
+						}else{
+							this.imageList.push(this.params.value)
+						}
 						this.isMax()
 					}
 				}

@@ -12,6 +12,7 @@ import {timeCache,cache,reload,upload} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
 import './other.less'
 
+
 Vue.config.productionTip = false
 Vue.use(Vant)
 

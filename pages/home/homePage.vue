@@ -7,7 +7,8 @@
 					<!-- <dynamic-page :API="apis[0]" v-if="clicked == 0"></dynamic-page> -->
 				</view>
 				<view class="page-content">
-					<dynamic-page :API="apis[1]" v-if="clicked == 1"></dynamic-page>
+					<tab-bar-page :tabId="isTab(apis[1])" v-if="clicked == 1"></tab-bar-page>
+					<!-- <dynamic-page :API="apis[1]" v-if="clicked == 1"></dynamic-page> -->
 				</view>
 				<view class="page-content">
 					<dynamic-page :API="apis[2]" v-if="clicked == 2"></dynamic-page>
@@ -28,7 +29,6 @@
 		data() {
 			return {
 				navs:[
-					
 				],
 				clicked:0,
 				defaultClick:null,

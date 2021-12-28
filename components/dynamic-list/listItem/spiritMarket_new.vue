@@ -28,11 +28,11 @@
 								<image class="configImg" src="../../../static/spirit/coin.png" mode="widthFix"></image>
 								<text class="configTitle">x{{item.costWispCoin}}</text>
 							</view>
-							<view class="itemB">
+							<view class="itemB" @click="showBuyChild">
 								<image class="configImg" src="../../../static/spirit/company.png" mode="widthFix"></image>
 								<text class="configTitle">x{{item.costAccompanyWisp}}</text>
 							</view>
-							<view class="itemB">
+							<view class="itemB" @click="showLandChild">
 								<image class="configImg" src="../../../static/spirit/land.png" mode="widthFix"></image>
 								<text class="configTitle">x{{item.growthDays}}</text>
 							</view>
@@ -47,17 +47,25 @@
 		
 		<!-- 预约组件 -->
 		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild"></spiritBook>
+		<!-- 陪伴精灵组件 -->
+		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy"></spiritComponenyBuy>
+		<!-- 土地组件 -->
+		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose"></spiritLandBuy>
 	</view>
 </template>
 
 <script>
 	//预约精灵组件
 	import spiritBook from '@/components/spirit/spirit_book.vue'
+	//购买陪伴精灵组件
+	import spiritComponenyBuy from '@/components/spirit/spirit_buy.vue'
+	//购买土地组件
+	import spiritLandBuy from '@/components/spirit/land_buy.vue'
 	import {globalConfig} from '@/config.js'
 	import {api} from '@/common/api.js'
 	export default {
 		name:'spiritMarketNew',
-		components:{spiritBook},
+		components:{spiritBook,spiritComponenyBuy,spiritLandBuy},
 		props: {
 			item: Object,
 			ext: Object
@@ -65,7 +73,9 @@
 		data(){
 			return{
 				isShowBookChild:false,
-				itemInfoForChild:''
+				itemInfoForChild:{},
+				isShowBuyComponeny:false,
+				isShowLandBuy:false
 			}
 		},
 		methods:{
@@ -73,9 +83,23 @@
 				console.log('operation',item)
 				this.isShowBookChild = true
 				this.itemInfoForChild = item
+				console.log(this.itemInfoForChild)
 			},
 			getChild(){
 				this.isShowBookChild = false
+			},
+			showBuyChild(){
+				console.log('a')
+				this.isShowBuyComponeny = true
+			},
+			getChildBuy(){
+				this.isShowBuyComponeny = false
+			},
+			showLandChild(){
+				this.isShowLandBuy = true
+			},
+			getLandChildClose(){
+				this.isShowLandBuy = false
 			}
 		}
 	}

@@ -158,6 +158,14 @@
 							v-if="_get(item,'type') === 'pageTabbar'"
 							:tabs="_get(config.moduleData,item.key,{tabs:[]}).tabs"
 						 ></pageTabbar>
+						 <service
+						 							v-if="_get(item,'type') === 'service'"
+						 							:item="getComponentsData(item)"
+						 ></service>
+						 <my-history
+						 							v-if="_get(item,'type') === 'my-history'"
+						 							:item="getComponentsData(item)"
+						 ></my-history>
             </view>
           </block>
         </van-skeleton>
@@ -187,6 +195,11 @@
 	import pageTabbar from '../publicComponents/pageTabbar/pageTabbar.vue'
     import { globalConfig } from '@/config.js'
     import {LoadComplete} from '@/common/api.js'
+	
+	//服务中心
+	import Service from '../my/service.vue'
+	//我的记录
+	import MyHistory from '../history/myhistory.vue'
 	export default {
 		components: { 
 			dynamicList, 
@@ -203,7 +216,9 @@
 			signSmokeBox,
 			Pay,
 			User,
-			pageTabbar
+			pageTabbar,
+			Service,
+			MyHistory
 		},
 		props: {
 			API: String,  // 页面数据请求接口

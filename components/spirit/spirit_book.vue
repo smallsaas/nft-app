@@ -1,32 +1,35 @@
 <template>
 	<view>
-		<!-- <van-overlay :show="true"><text>4456456465</text></van-overlay> -->
 		<view class="spirit_mask">
 			<view class="spirit_book">
 				<view class="bodyBox">
 					<view class="bodyLeft">
-						<image class="level" src="../../static/spirit/levelFive.png" mode="widthFix"></image>
+						<image class="level" src="../../static/spirit/levelOne.png" mode="widthFix" v-if="itemInfo.level == 1"></image>
+						<image class="level" src="../../static/spirit/levelTwo.png" mode="widthFix" v-if="itemInfo.level == 2"></image>
+						<image class="level" src="../../static/spirit/levelThree.png" mode="widthFix" v-if="itemInfo.level == 3"></image>
+						<image class="level" src="../../static/spirit/levelFour.png" mode="widthFix" v-if="itemInfo.level == 4"></image>
+						<image class="level" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 5"></image>
 					</view>
 					<view class="bodyCenter">
-						<image class="spiritImgs" src="../../static/spirit/1.png" mode="widthFix"></image>
+						<image class="spiritImgs" :src="itemInfo.previewPhotoUrl" mode="widthFix"></image>
 					</view>
 					<view class="bodyRight">
 						<view class="bodyItems">
 							<view class="labelBox"><text class="label">消耗精灵令</text></view>
-							<view class="infoBox"><image class="infoImage" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoLabel">x6</text></view>
+							<view class="infoBox"><image class="infoImage" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costWispCoin}}</text></view>
 						</view>
 						<view class="bodyItems">
 							<view class="labelBox"><text class="label">消耗陪伴精灵</text></view>
-							<view class="infoBox"><image class="infoImage" src="../../static/spirit/company.png" mode="widthFix"></image><text class="infoLabel">x6</text></view>
+							<view class="infoBox"><image class="infoImage" src="../../static/spirit/company.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costAccompanyWisp}}</text></view>
 						</view>
 						<view class="bodyItems">
 							<view class="labelBox"><text class="label">需要土地</text></view>
-							<view class="infoBox"><image class="infoImage" src="../../static/spirit/land.png" mode="widthFix"></image><text class="infoLabel">x6</text></view>
+							<view class="infoBox"><image class="infoImage" src="../../static/spirit/land.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.growthDays}}</text></view>
 						</view>
 					</view>
 				</view>
 				<view class="tips">
-					<view class="bigTitle">稀有幽冥灵猫</view>
+					<view class="bigTitle">{{itemInfo.name}}</view>
 					<view class="bookTime">预约剩余时间 52:32  确定预约吗?</view>
 				</view>
 				<view class="btnBox">
@@ -41,9 +44,9 @@
 <script>
 	export default{
 		props:{
-			itemInfoForChild:{
-				type:JSON,
-				default:null
+			itemInfo:{
+				type:Object,
+				default:{}
 			}
 		},
 		data(){
@@ -52,7 +55,8 @@
 			}
 		},
 		created() {
-			console.log(this.itemInfoForChild)
+			console.log(this.itemInfo)
+			console.log(this.itemInfo.startMatchTime - this.itemInfo.endMatchTime)
 		},
 		methods:{
 			cancel(){
@@ -63,16 +67,6 @@
 </script>
 
 <style lang="less" scoped>
-	// .van-overlay{
-	// 	width: 80%;
-	// 	margin-left: 10%;
-	// 	height: 800rpx;
-	// 	position: absolute;
-	// 	// top: 50rpx;
-	// 	background: rgb(27, 40, 74);
-	// 	border: 2rpx solid rgb(47, 69, 128);
-	// 	border-radius: 20rpx;
-	// }
 	.spirit_mask{
 		position: fixed;
 		top: 0;
@@ -93,6 +87,7 @@
 		}
 		.spiritImgs{
 			width: 280rpx;
+			height: 370rpx !important;
 		}
 		.infoImage{
 			width: 40rpx;
