@@ -36,7 +36,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"http://localhost:8080/api/crud/oms/player/players",
+            "loadApi":"/api/crud/oms/player/players",
             "itemNavigation": "/index/index?id",
             "response":{
                 "list":"records"

@@ -53,7 +53,7 @@ Content-Type: application/json
             "disabled": false,
             "formBtns": true,
             "unFocusedComponentBorder": false,
-            "loadApi": "https://api.mock.smallsaas.cn/data?id=7512"
+            "loadApi": "/data?id=7512"
         }
     }
 }

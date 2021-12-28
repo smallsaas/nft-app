@@ -171,7 +171,7 @@
             fetchFormData () {
 				let that = this
                 uni.request({
-                    url: _.get(that.formConfig, 'loadApi', '') || LOAD_API,
+                    url: that.$config.endpoint + _.get(that.formConfig, 'loadApi', '') || LOAD_API,
                     method: 'GET',
 										header:{
 											Authorization:`Bearer ${that.$cache.get(globalConfig.tokenStorageKey)}`
@@ -333,7 +333,7 @@
             
             // 组件内默认提交
             handleSubmitRequest (data) {
-                const url = _.get(this.formConfig, 'saveApi') || SUNMIT_API
+                const url = this.$config.endpoint + _.get(this.formConfig, 'saveApi') || SUNMIT_API
                 uni.showLoading({ title: '', mask: true })
                 uni.request({
                     url: url,

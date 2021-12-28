@@ -32,7 +32,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"https://api.mock.smallsaas.cn/data?id=100",
+            "loadApi":"/data?id=100",
             "itemNavigation": "/index/index?id",
             "response":{
                 "list":"list"

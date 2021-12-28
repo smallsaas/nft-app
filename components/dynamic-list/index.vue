@@ -341,7 +341,7 @@
               //     mask: true
               // })
               uni.request({
-                  url: _.get(this.config, 'loadApi'),
+                  url: this.$config.endpoint + _.get(this.config, 'loadApi'),
                   method: _.get(this.config,'method','GET'),
                   data: this.listSearch,
                   header: {

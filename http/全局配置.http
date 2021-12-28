@@ -1,4 +1,4 @@
-@endpoint = http://repo.dev.smallsaas.cn:8084
+@endpoint = http://repo.dev.smallsaas.cn:8087
 
 ### 获取全局配置信息
 GET {{endpoint}}/data?id=9999998
@@ -8,9 +8,9 @@ POST {{endpoint}}/data/9999998
 Content-Type: application/json
 
 {
-    "formHost":"http://repo.dev.smallsaas.cn:8084/form",
-    "dataHost":"http://repo.dev.smallsaas.cn:8084/data",
-    "endpoint":"http://repo.dev.smallsaas.cn:8084"
+    "formHost":"/form",
+    "dataHost":"/data",
+    "endpoint":""
 }
 
 
