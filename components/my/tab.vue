@@ -6,7 +6,7 @@
 		</view>
 		<view class="item">
 			<view class="tabBox"><image class="tabImg" src="../../static/service/team.png" mode="widthFix"></image></view>
-			<text class="tabTitle">我的团队</text>
+			<text class="tabTitle" @click="goToTeam">我的团队</text>
 		</view>
 	</view>
 </template>
@@ -17,6 +17,11 @@
 			goTo(){
 				uni.navigateTo({
 					url:"/pages/defaultPage/page?id=" + 999666
+				})
+			},
+			goToTeam(){
+				uni.navigateTo({
+					url:"/pages/defaultPage/tabbarPage?id=" + 555888
 				})
 			}
 		}

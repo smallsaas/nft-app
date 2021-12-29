@@ -126,6 +126,13 @@
 											}"
 					/>	
 					
+					<my-history-new 	v-if="getListItemKey() === 'my-histort-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>
@@ -158,6 +165,7 @@
 	import bookspirit from './listItem/bookspirit.vue'
 	
 	import spiritMarketNew from './listItem/spiritMarket_new.vue'
+	import myHistoryNew from './listItem/my_history_new.vue'
     
 	export default {
 		components: {
@@ -177,7 +185,8 @@
 			
 			
 			//新版页面
-			spiritMarketNew
+			spiritMarketNew,
+			myHistoryNew
 		},
 		props: {
 			config: {

@@ -67,6 +67,11 @@
 				if(index==0){
 					this.isShowInvite = true
 				}
+				if(index==1){
+					uni.navigateTo({
+						url:'/pages/representations_new/representations_new'
+					})
+				}
 			},
 			getValueFromChild(){
 				this.isShowInvite = false

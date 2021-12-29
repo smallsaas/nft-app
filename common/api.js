@@ -39,7 +39,7 @@ export const api = {
 	},
 	//预约精灵
 	bookSpirit(params){
-	const url = `${globalConfig.endpoint}/api/crud/oms/wispBookingRecord/wispBookingRecords`
+	const url = `${globalConfig.endpoint}/api/u/wisp/${params.wispId}/book`
 	return request('POST',url,params)
 	},
 	//购买陪伴精灵

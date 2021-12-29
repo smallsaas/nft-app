@@ -28,28 +28,18 @@ Content-Type: application/json
             "name":"",
             "container":{},
             "binding":{
+                "coinsAmount":"coinsAmount",
+                "companionWispAmount":"companionWispAmount",
+                "recommendPoints":"recommendPoints",
+                "tradeUnionPoints":"tradeUnionPoints",
+                "marketPoints":"marketPoints",
+                "depositPoints":"depositPoints"
             }
         }
     ],
     "dataSource":{
-        "api":""
+        "api":"/api/u/player/wallet"
     },
     "moduleData": {
-         "95afd71a-c8d5-11eb-aca5-0800271e55b7": {
-            "loadApi":"",
-            "itemNavigation": "",
-            "response":{
-                "list":"records"
-            },
-            "request":{
-                "default":{
-                },
-                "ps":"pageSize",
-                "pn":"pageNo"
-            },
-            "itemModule":{
-                "name":"my-history"
-            }
-        }
     }
 }

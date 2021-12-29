@@ -14,9 +14,9 @@
 			<view class="center">
 				<view class="CL"><text class="info">购买数量:</text></view>
 				<view class="CR">
-					<button class="btn">-</button>
-					<button class="btn num">0</button>
-					<button class="btn add">+</button>
+					<button class="btn" @click="dec">-</button>
+					<button class="btn num">{{num}}</button>
+					<button class="btn add" @click="add">+</button>
 				</view>
 			</view>
 			<view class="bottom">
@@ -34,14 +34,34 @@
 
 <script>
 	export default{
+		props:{
+			itemInfo:{
+				type:Object,
+				default:{}
+			}
+		},
+		created() {
+			console.log(this.itemInfo)
+			console.log(123)
+		},
 		data(){
 			return{
-				show:true
+				show:true,
+				num:0
 			}
 		},
 		methods:{
 			getClose(){
 				this.$emit('closeBuyChild',false)
+			},
+			dec(){
+				if(this.num==0){
+					return
+				}
+				this.num-=1
+			},
+			add(){
+				this.num+=1
 			}
 		}
 	}

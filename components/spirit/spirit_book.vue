@@ -34,7 +34,7 @@
 				</view>
 				<view class="btnBox">
 					<button class="btnCancel btn cancel" @click="cancel">取消</button>
-					<button class="btnSuccess btn book">预约</button>
+					<button class="btnSuccess btn book" @click="book">预约</button>
 				</view>
 			</view>
 		</view>
@@ -51,7 +51,7 @@
 		},
 		data(){
 			return{
-				show:true
+				show:true,
 			}
 		},
 		created() {
@@ -59,8 +59,36 @@
 			console.log(this.itemInfo.startMatchTime - this.itemInfo.endMatchTime)
 		},
 		methods:{
+			msg(toast){
+				this.$emit('getMsg',toast)
+			},
 			cancel(){
 				this.$emit('cancelChild',false)
+			},
+			async book(){
+				// console.log(this.itemInfo)
+				const data = {
+					wispId:parseInt(this.itemInfo.id),
+					paymentPassword:'123456'
+				}
+			    const res = await this.$api.bookSpirit(data)
+				console.log(res)
+				if(res.code !==200){
+					// if(res.code == 4000){
+					// 	this.cancel()
+					// 	uni.navigateTo({
+					// 		url:''
+					// 	})
+					// }
+					this.cancel()
+					this.msg(res.message)
+					return;
+				}
+				if(res.code == 200){
+					this.cancel()
+					this.msg('预约成功')
+					return;
+				}
 			}
 		}
 	}

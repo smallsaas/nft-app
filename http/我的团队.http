@@ -1,0 +1,88 @@
+# @endpoint = https://api.mock.smallsaas.cn
+# # 开发环境使用
+# @devEndpoint = http://localhost:8080
+
+# ### pageTabbar
+
+# ###
+# POST {{endpoint}}/form/555888
+# Content-Type: application/json
+
+# {
+#     "version": "1", 
+#     "name": "MyTeam", 
+#     "title": "团队", 
+#     "pageStyle": {}, 
+#     "request": { }, 
+#     "response": {
+#         "data": "data"
+#     }, 
+#     "container": {
+#     }, 
+#     "modules": [
+#         {
+#             "type":"pageTabbar",
+#             "key": "95afd71a-c8d5-11eb-aca5-0800271e55b7", 
+#             "name":"",
+#             "container":{}
+#         }
+#     ],
+#     "moduleData": {
+#         "95afd71a-c8d5-11eb-aca5-0800271e55b7":{
+#             "tabs":[
+#                 {"title":"团队","url":"/pages/defaultPage/tabsPage?id=8888899"},
+#                 {"title":"未付款列表","url":"/pages/defaultPage/tabsPage?id=7777799"},
+#                 {"title":"直推查询列表","url":"/pages/defaultPage/tabsPage?id=7777799"}
+#             ]
+#         }
+#     }
+# }
+
+# # {"title":"预约精灵","url":"/pages/defaultPage/tabsPage?id=7512"},
+# #                 {"title":"匹配精灵","url":"/pages/defaultPage/tabsPage?id=550311"},
+# #                 {"title":"领养精灵","url":"/pages/defaultPage/tabsPage?id=7512"},
+# #                 {"title":"出售精灵","url":"/pages/defaultPage/tabsPage?id=7512"}
+
+@endpoint = https://api.mock.smallsaas.cn
+# 开发环境使用
+@devEndpoint = http://localhost:8080
+
+### pageTabbar
+
+###
+POST {{endpoint}}/form/555888
+Content-Type: application/json
+
+{
+    "version": "1", 
+    "name": "spiritMarkets", 
+    "title": "精灵广场s", 
+    "pageStyle": {}, 
+    "request": { }, 
+    "response": {
+        "data": "data"
+    }, 
+    "container": {
+    }, 
+    "modules": [
+        {
+            "type":"pageTabbar",
+            "key": "95afd71a-c8d5-11eb-aca5-0800271e55b6", 
+            "name":"",
+            "container":{}
+        }
+    ],
+    "moduleData": {
+        "95afd71a-c8d5-11eb-aca5-0800271e55b6":{
+            "tabs":[
+                {"title":"精灵商城aaa","url":"/pages/defaultPage/tabsPage?id=8888899"},
+                {"title":"签到盒子aaaaaa","url":"/pages/defaultPage/tabsPage?id=7777799"}
+            ]
+        }
+    }
+}
+
+# {"title":"预约精灵","url":"/pages/defaultPage/tabsPage?id=7512"},
+#                 {"title":"匹配精灵","url":"/pages/defaultPage/tabsPage?id=550311"},
+#                 {"title":"领养精灵","url":"/pages/defaultPage/tabsPage?id=7512"},
+#                 {"title":"出售精灵","url":"/pages/defaultPage/tabsPage?id=7512"}

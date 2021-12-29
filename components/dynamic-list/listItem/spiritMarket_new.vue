@@ -28,7 +28,7 @@
 								<image class="configImg" src="../../../static/spirit/coin.png" mode="widthFix"></image>
 								<text class="configTitle">x{{item.costWispCoin}}</text>
 							</view>
-							<view class="itemB" @click="showBuyChild">
+							<view class="itemB" @click="showBuyChild(item)">
 								<image class="configImg" src="../../../static/spirit/company.png" mode="widthFix"></image>
 								<text class="configTitle">x{{item.costAccompanyWisp}}</text>
 							</view>
@@ -38,7 +38,12 @@
 							</view>
 						</view>
 						<view class="ItemRight">
-							<button class="BTN" @click="operation(item)">{{item.stage}}</button>
+							<button class="BTN" @click="operation(item)" v-if="item.stage=='BOOKABLE'">可预约</button>
+							<button class="BTN BTNthree" v-if="item.stage=='DISALLOW_BOOK'">不可预约</button>
+							<button class="BTN BTNthree" v-if="item.stage=='WAITING_MATCH'">待匹配</button>
+							<button class="BTN BTNthree" v-if="item.stage=='WAITING_FOR_PAYMENT'">待支付</button>
+							<button class="BTN BTNthree" v-if="item.stage=='END_OF_MATCH'">匹配结束</button>
+							<button class="BTN BTNfour" v-if="item.stage=='GROWING'">成长中</button>
 						</view>
 					</view>
 				</view>
@@ -46,11 +51,13 @@
 		</view>
 		
 		<!-- 预约组件 -->
-		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild"></spiritBook>
+		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild" @getMsg="getMsgToast"></spiritBook>
 		<!-- 陪伴精灵组件 -->
-		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy"></spiritComponenyBuy>
+		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy" :itemInfo="itemInfoForComponentChild"></spiritComponenyBuy>
 		<!-- 土地组件 -->
 		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose"></spiritLandBuy>
+		<!-- 提示组件 -->
+		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
 </template>
 
@@ -61,11 +68,13 @@
 	import spiritComponenyBuy from '@/components/spirit/spirit_buy.vue'
 	//购买土地组件
 	import spiritLandBuy from '@/components/spirit/land_buy.vue'
+	//温馨提示
+	import toast from '@/components/spirit/toast.vue'
 	import {globalConfig} from '@/config.js'
 	import {api} from '@/common/api.js'
 	export default {
 		name:'spiritMarketNew',
-		components:{spiritBook,spiritComponenyBuy,spiritLandBuy},
+		components:{spiritBook,spiritComponenyBuy,spiritLandBuy,toast},
 		props: {
 			item: Object,
 			ext: Object
@@ -75,10 +84,19 @@
 				isShowBookChild:false,
 				itemInfoForChild:{},
 				isShowBuyComponeny:false,
-				isShowLandBuy:false
+				isShowLandBuy:false,
+				itemInfoForComponentChild:{},
+				
+				
+				isShowToast:false,
+				toastMsg:''
 			}
 		},
 		methods:{
+			toast(msg){
+				this.toastMsg = msg
+				this.isShowToast = true
+			},
 			operation(item){
 				console.log('operation',item)
 				this.isShowBookChild = true
@@ -88,8 +106,9 @@
 			getChild(){
 				this.isShowBookChild = false
 			},
-			showBuyChild(){
-				console.log('a')
+			showBuyChild(item){
+				console.log(item)
+				this.itemInfoForComponentChild = item
 				this.isShowBuyComponeny = true
 			},
 			getChildBuy(){
@@ -100,6 +119,13 @@
 			},
 			getLandChildClose(){
 				this.isShowLandBuy = false
+			},
+			closeToast(){
+				this.isShowToast = false
+			},
+			getMsgToast(value){
+				console.log(value,12132132132)
+				this.toast(value)
 			}
 		}
 	}
@@ -235,6 +261,26 @@
 								justify-content: center;
 								color: #FFFFFF;
 								background: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253));
+							}
+							.BTNtwo{
+								background: rgb(24,37,65);
+								border: 1px solid rgbhsla(93,103,123);
+							}
+							.BTNthree{
+								background: rgb(24,37,65);
+								border: 1px solid rgb(112,74,227);
+								color: grey;
+							}
+							.BTNfour{
+								background: rgb(24,37,65);
+								border: 1px solid rgb(112,74,227);
+								color: rgb(25,137,253);
+								&::after{
+									content: '';
+									width: 200rpx;
+									height: 160rpx;
+									background: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253));
+								}
 							}
 						}
 					}

@@ -216,6 +216,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/representations_new/representations_new",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "申述",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",
