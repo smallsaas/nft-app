@@ -36,7 +36,7 @@ Content-Type: application/json
         }
     ],
     "dataSource":{
-        "api":"http://localhost:8080/api/u/player"
+        "api":"/api/u/player"
     },
     "moduleData": {
     }

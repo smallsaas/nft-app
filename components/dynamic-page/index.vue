@@ -323,7 +323,7 @@
 			getRequestUrl (resData) {
                 let url
 				if (_.has(resData, 'dataSource.api') && resData.dataSource.api) {
-				   url =  resData.dataSource.api
+				   url =  this.$config.endpoint+resData.dataSource.api
 				}
 				if (url && Object.keys(this.requsetParam).length > 0) {
 					let str = url.split('?')[0]

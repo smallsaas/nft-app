@@ -31,7 +31,7 @@ Content-Type: application/json
         }
     ],
     "dataSource":{
-        "api":"{{devEndpoint}}/data?id=550311"
+        "api":"/data?id=550311"
     },
     "moduleData": {
         "95afd71a-c8d5-11eb-aca5-0800271e55b7":{
