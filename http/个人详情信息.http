@@ -22,14 +22,18 @@ Content-Type: application/json
         {
           "type": "autoform", 
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b7", 
-          "name": "", 
+          "name": "基本信息", 
           "container": {
           }
         },
          {
           "type": "autoform", 
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b6", 
-          "name": "", 
+          "name": "账户信息", 
+          "navigator":{
+              "url":"/formImageTest/formImageTest",
+              "title":"修改账户信息"
+          },
           "container": {
           }
         },
@@ -43,7 +47,11 @@ Content-Type: application/json
          {
           "type": "autoform", 
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b4", 
-          "name": "", 
+          "name": "支付密码", 
+          "navigator":{
+              "url":"/formImageTest/formImageTest",
+              "title":"修改密码"
+          },
           "container": {
           }
         }
@@ -51,15 +59,6 @@ Content-Type: application/json
     "moduleData": {
         "96afd71a-c8d5-11eb-aca5-0800271e55b7":{
             "fields": [
-                     {
-                "__config__": {
-                    "layout": "rowFormItem",
-                    "tagIcon": "row",
-                    "layoutTree": true,
-                    "formId": 112,
-                    "renderKey": 1621415404383,
-                    "componentName": "基本信息",
-                    "children": [
                     {
                         "__config__": {
                         "label": "姓名:",
@@ -124,12 +123,6 @@ Content-Type: application/json
                         "readonly": true,
                         "__vModel__": "status"
                     }
-                    ]
-                },
-                "type": "default",
-                "justify": "start",
-                "align": "top"
-                }
             ],
             "formRef": "elForm",
             "formModel": "formData",
@@ -152,11 +145,11 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "账户信息",
+                    "componentName": "移动支付账号1",
                     "children": [
                     {
                         "__config__": {
-                        "label": "支付宝账号:",
+                        "label": "移动账号:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -168,11 +161,11 @@ Content-Type: application/json
                         "renderKey": 1621415432107
                         },
                         "readonly": true,
-                        "__vModel__": "alipayAccount"
+                        "__vModel__": "status"
                     },
                      {
                         "__config__": {
-                        "label": "支付宝二维码:",
+                        "label": "支付二维码:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-image",
@@ -185,38 +178,6 @@ Content-Type: application/json
                         },
                         "readonly": true,
                         "__vModel__": "alipayQrCodePhotoUrl"
-                    },
-                    {
-                        "__config__": {
-                        "label": "微信账号:",
-                        "labelWidth": null,
-                        "showLabel": true,
-                        "tag": "el-input",
-                        "tagIcon": "input",
-                        "required": false,
-                        "layout": "colFormItem",
-                        "regList": [],
-                        "formId": 113,
-                        "renderKey": 1621415432107
-                        },
-                        "readonly": true,
-                        "__vModel__": "wechatAccount"
-                    },
-                    {
-                        "__config__": {
-                        "label": "微信二维码:",
-                        "labelWidth": null,
-                        "showLabel": true,
-                        "tag": "el-image",
-                        "tagIcon": "input",
-                        "required": false,
-                        "layout": "colFormItem",
-                        "regList": [],
-                        "formId": 113,
-                        "renderKey": 1621415432107
-                        },
-                        "readonly": true,
-                        "__vModel__": "wechatQrCodePhotoUrl"
                     }
                     ]
                 },
@@ -301,22 +262,13 @@ Content-Type: application/json
         },
             "96afd71a-c8d5-11eb-aca5-0800271e55b4":{
             "fields": [
-                     {
-                "__config__": {
-                    "layout": "rowFormItem",
-                    "tagIcon": "row",
-                    "layoutTree": true,
-                    "formId": 112,
-                    "renderKey": 1621415404383,
-                    "componentName": "支付密码",
-                    "children": [
                     {
                         "__config__": {
                         "label": "支付密码:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
-                        "tagIcon": "input",
+                        "tagIcon": "password",
                         "required": false,
                         "layout": "colFormItem",
                         "regList": [],
@@ -330,12 +282,6 @@ Content-Type: application/json
                         "readonly": true,
                         "__vModel__": "paymentPassword"
                     }
-                    ]
-                },
-                "type": "default",
-                "justify": "start",
-                "align": "top"
-                }
             ],
             "formRef": "elForm",
             "formModel": "formData",

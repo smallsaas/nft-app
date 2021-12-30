@@ -11,6 +11,8 @@
 												outStyle: getComponentStyle(item)
 										 }"
 										:srvFormData="getComponentsData(item) || (srvFormData||{})"
+										:outTitle="_get(item,'name')"
+										:navigator="_get(item,'navigator')"
 									/>
 										<view
 										v-if="_get(item, 'type') === 'autolist'"
@@ -360,7 +362,24 @@
 				}
 				return url
 			},
+			// 获取id
+			formatId(api){
+				if(api){
+					console.log(api,"api")
+					if(api.indexOf("?id=")!==-1){
+						api.split('?id=')[1]
+						return api.split('&')[0]
+					}else if(api.indexOf("&id=")!==-1){
+						api.split('&id=')[1]
+						return api.split('&')[0]
+					}
+				}
+			},
 			fetchConfigData () {
+				let that = this
+				if(!this.API){
+					return ;
+				}
 				uni.request({
 					url: this.API,
 					method: 'GET',
@@ -381,7 +400,8 @@
 								} catch {}
 							}
 							const resData = _.cloneDeep(responseData)
-                            
+							console.log(that.formatId(that.api))
+							// that.$timeCache()
                             // 获取页面请求接口
                             let pageUrl
                             const dataPayload = _.get(resData, 'dataPayload')

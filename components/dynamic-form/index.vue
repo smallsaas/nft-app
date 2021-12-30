@@ -2,6 +2,9 @@
 <template>
 	<view class="base_vants_container" :style="[_get(config, 'outStyle', {})]">
         <van-skeleton row="20" :loading="skeletonLoading">
+					<view class="fields_Title">{{outTitle}}
+						<text class="fields_jumpTitle" @click="handleJump(navigator.url)" v-if="navigator">{{navigator.title||""}}</text>
+					</view>
 					<view class="fields-block">
 						<block v-for="(item, index) in fields" :key="index">
 						    <base-vants 
@@ -100,6 +103,13 @@
 			    return {}
 			  }
 			},
+			// 额外标题
+			outTitle:{
+				type:String,
+				default(){
+					return ""
+				}
+			},
             // 默认的提交数据
             formInfo: {
               type: Object,
@@ -111,6 +121,10 @@
 						Details:{
 							type:Boolean,
 							default:false
+						},
+						navigator:{
+							type:Object,
+							default:{}
 						}
 		},
 		data() {
@@ -167,6 +181,15 @@
             _get (item, str, defauleValue = '') {
               return _.get(item, str, defauleValue)
             },
+						// 跳转
+						handleJump(url){
+							uni.navigateTo({
+								url:"/pages"+url,
+								fail(err){
+									console.log(err)
+								}
+							})
+						},
             // 获取表单数据
             fetchFormData () {
 				let that = this
@@ -357,6 +380,19 @@
 </script>
 
 <style lang="less">
+	.fields_Title{
+		font-size: 34rpx;
+		margin-left: 20rpx;
+		margin-top: 30rpx;
+		font-weight: 600;
+	}
+	.fields_jumpTitle{
+		line-height: 34rpx;
+		font-size: 26rpx;
+		color: #08518B;
+		margin-left: 20rpx;
+		font-weight: 500;
+	}
 	.fields-block{
 		margin: 10rpx;
 		padding: 10rpx;

@@ -203,7 +203,9 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
-								"app-plus":{}
+								"app-plus":{
+									"titleNView":false
+								}
             }
             
         }

@@ -54,7 +54,7 @@
 				<!-- 数据集插槽 -->
 				<slot name="content-list"></slot>
 				<!-- 上拉加载 -->
-				<view class="load-more" v-if="pagination !== false&&!unloading">{{loadText}}</view>
+				<!-- <view class="load-more" v-if="pagination !== false&&!unloading">{{loadText}}</view> -->
 			</scroll-view>
 		</view>
 	</view>

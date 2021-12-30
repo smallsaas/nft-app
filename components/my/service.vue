@@ -1,7 +1,9 @@
 <template>
 	<view class="service">
-		<user class="bg"  :data="forChild"></user>
-		<tab class="tab"></tab>
+		<view class="line-bg">
+			<user class="bg" :data="forChild"></user>
+			<tab class="tab"></tab>
+		</view>
 		<!-- <down class="down"></down> -->
 		<view class="bgs"><image src="https://s2.loli.net/2021/12/30/JusqwV13KkaWlrT.png" mode="widthFix"></image></view>
 		<bottomTap class="bottomTapa" :data="forBottomTapChild"></bottomTap>
@@ -39,23 +41,27 @@
 </script>
 
 <style lang="less">
+	.bg{
+		padding: 50rpx 0;
+		// background: linear-gradient(to right top,rgb(16,17,40) 15%,rgb(77,48,163) 55%,rgb(54,79,188));
+	}
+	.tab{
+	}
 	.service{
 		width: 100%;
 		height: 100vh;
 		background: rgb(6,17,30);
-	    .bg{
-			height: 20%;
-			// background: linear-gradient(to right top,rgb(16,17,40) 15%,rgb(77,48,163) 55%,rgb(54,79,188));
+		.line-bg{
+			background: radial-gradient(to bottom left,#415ADC,#060E1A 75%);
 		}
-		.tab{
-			height: 12%;
-		}
+
 		.down{
 			height: 18%;
 		}
 		
 		.bgs{
 			// border: 1px solid red;
+			margin-top: 20rpx;
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;

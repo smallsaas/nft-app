@@ -5,16 +5,10 @@ const globalConfigStorage = cache.get('globalConfigStorage')
 
 const iconList = cache.get("iconList")
 
-// 是否是开发环境
-// 开发环境中的api需要在manifest.json中的源码视图>h5>devServer>proxy中添加路径即可
-const isDev = true
-export const globalConfig = isDev?{
-	formHost: "http://localhost:8080/form",
-	dataHost: "http://localhost:8080/data",
-	endpoint: "http://localhost:8080",
-	tokenStorageKey:"token",
-	iconList:iconList
-}:{
+// 配置统一
+export const globalConfig = {
+	cachePolicy: 1, //页面缓存的时间 默认缓存一天 以天为单位
+	clearPageCache:true,//重启时是否清除页面缓存
 	formHost: "/form",
   dataHost: "/data",
   endpoint: "",

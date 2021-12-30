@@ -23,6 +23,7 @@
 					:password="param.password"
 					:value="param.value"
 					@input="handleInput"
+					:class="param.readonly||param.disabled?'':'baseInput'"
 				/>
 				<textarea 
 					v-else
@@ -81,4 +82,11 @@
 <style lang="less">
     @import "./common.less";
     .base_field_container {}
+		.baseInput{
+			background-color: #242A33;
+			border-radius: 10rpx;
+			padding: 15rpx 25rpx;
+			border: 1px solid #2F3844;
+			width: 100%;
+		}
 </style>
