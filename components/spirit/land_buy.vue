@@ -7,14 +7,16 @@
 				</view>
 				<view class="topR">
 					<view class="Cname"><text class="name">安防科技啥叫看</text></view>
-					<view class="CLname"><text class="name">租用土地</text><text class="name">自用土地</text></view>
-					<view class="CInfo"><text class="info">消耗精灵令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
+					<view class="CLname"><text class="names" :class="{name:index==indexType}" v-for="(item,index) in landType" :key="item.id" @click="chooseType(index)">{{item.type}}</text></view>
+					<view class="CInfo"><text class="info">消耗精灵令:</text>
+						<image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text>
+					</view>
 				</view>
 			</view>
 			<view class="add">
 				<view class="CL"><text class="info">土地等级:</text></view>
 				<view class="CR">
-					<text class="name">毛坯-收益0%</text><text class="name">精装-收益2%</text><text class="name">豪华-收益5%</text>
+					<text class="names" @click="chooseTypeTwo(index)" :class="{name:index==indexTypeTwo}" v-for="(item,index) in landTypeTwo" :key="index">{{item.type}}-收益{{item.get}}%</text>
 				</view>
 			</view>
 			<view class="center">
@@ -28,7 +30,10 @@
 			<view class="bottom">
 				<view class="bL">
 					<view class="info"><text class="infoText">共消耗精灵令</text></view>
-					<view class="num"><image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoText">x12</text></view>
+					<view class="num">
+						<image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text
+							class="infoText">x12</text>
+					</view>
 				</view>
 				<view class="bR">
 					<button class="buyBtn">立即购买</button>
@@ -39,91 +44,156 @@
 </template>
 
 <script>
-	export default{
-		data(){
-			return{
-				show:true
+	export default {
+		data() {
+			return {
+				show: true,
+				landType:[{
+					id:1,
+					type:'租用土地'
+				},{
+					id:2,
+					type:"自用土地"
+				}],
+				indexType:0,
+				landTypeTwo:[{
+					id:1,
+					type:'毛胚',
+					get:0
+				},{
+					id:2,
+					type:"精装",
+					get:2
+				},
+				{
+					id:3,
+					type:"豪华",
+					get:5
+				}],
+				indexTypeTwo:0
 			}
 		},
-		methods:{
-			getClose(){
-				this.$emit('closeLandChild',false)
+		methods: {
+			getClose() {
+				this.$emit('closeLandChild', false)
+			},
+			chooseType(index){
+				console.log(index)
+				this.indexType = index
+			},
+			chooseTypeTwo(index){
+				console.log(index)
+				this.indexTypeTwo = index
 			}
 		}
 	}
 </script>
 
 <style lang="less">
-	.spiritBuy{
+	.spiritBuy {
 		width: 100%;
 		height: 100%;
-		.box{
-			background: rgb(28,41,76);
-			.top{
+
+		.box {
+			background: rgb(28, 41, 76);
+
+			.top {
 				width: 100%;
 				height: 200rpx;
 				margin-top: 50rpx;
 				display: flex;
 				flex-direction: row;
-				.topL{
+
+				.topL {
 					width: 30%;
 					height: 200rpx;
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					.Cimg{
+
+					.Cimg {
 						width: 160rpx;
 						height: 160rpx;
 						border-radius: 10rpx;
-						border: 2rpx solid rgb(112,116,138);
+						border: 2rpx solid rgb(112, 116, 138);
 					}
 				}
-				.topR{
+
+				.topR {
 					width: 70%;
 					height: 100%;
 					display: flex;
 					flex-direction: column;
-					.Cname{
+
+					.Cname {
 						width: 100%;
 						height: 40rpx;
-						.name{
+
+						.name {
 							color: #FFFFFF;
 							letter-spacing: 2rpx;
 						}
 					}
-					.CLname{
+
+					.CLname {
 						width: 100%;
 						height: 80rpx !important;
 						display: flex;
 						align-items: flex-end;
-						.name{
+						
+						.names{
 							display: flex;
 							align-items: center;
 							justify-content: center;
 							width: 150rpx;
 							height: 30rpx;
-							border: 1px solid rgb(16,119,205);
+							// border: 1px solid rgb(16, 119, 205);
 							padding: 10rpx;
-							border-radius:10rpx;
+							border-radius: 10rpx;
 							letter-spacing: 2rpx;
-							color: rgb(16,119,205);
+							// color: rgb(16, 119, 205);
+							border: 1px solid grey;
+							color: grey;
 							margin-right: 15rpx;
+							position: relative;
+						}
+
+						.name {
+							border: 1px solid rgb(16, 119, 205);
+							color: rgb(16, 119, 205);
+							position: relative;
+							&::after {
+								position: absolute;
+								right: 0;
+								bottom: 0;
+								content: '√';
+								color: #FFFFFF;
+								font-size: 12rpx;
+								width: 0rpx;
+								height: 0rpx;
+								border: 10px solid red;
+								border-color: transparent rgb(11,149,255) rgb(11,149,255) transparent;
+							}
 						}
 					}
-					.CInfo{
+
+					.CInfo {
 						width: 100%;
 						height: 70rpx !important;
 						display: flex;
 						align-items: center;
-						.info{
+
+						.info {
 							font-size: 28rpx;
 							margin-right: 10rpx;
 						}
-						.Ccoin{
+
+						.Ccoin {
 							width: 40rpx;
 							height: 40rpx;
 						}
-						.Cpay{
+
+						.Cpay {
 							font-size: 38rpx;
 							color: #FFFFFF;
 							margin-left: 10rpx;
@@ -131,132 +201,180 @@
 					}
 				}
 			}
-			.add{
+
+			.add {
 				width: 100%;
 				height: 150rpx;
 				display: flex;
 				flex-direction: row;
-				.CL{
+
+				.CL {
 					width: 30%;
 					height: 100%;
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					.info{
+
+					.info {
 						color: #f2f2f2;
 					}
 				}
-				.CR{
+
+				.CR {
 					width: 70%;
 					height: 100%;
 					display: flex;
 					flex-direction: row;
 					align-items: center;
 					flex-wrap: wrap;
-					.name{
+					
+					.names{
 						display: flex;
 						align-items: center;
 						justify-content: center;
 						width: 200rpx !important;
 						height: 30rpx;
-						border: 1px solid rgb(16,119,205);
+						border: 1px solid grey;
 						padding: 10rpx;
-						border-radius:10rpx;
+						border-radius: 10rpx;
 						letter-spacing: 2rpx;
-						color: rgb(16,119,205);
+						color: grey;
 						margin-right: 15rpx;
+					}
+					
+					.name {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 200rpx !important;
+						height: 30rpx;
+						border: 1px solid rgb(16, 119, 205);
+						padding: 10rpx;
+						border-radius: 10rpx;
+						letter-spacing: 2rpx;
+						color: rgb(16, 119, 205);
+						margin-right: 15rpx;
+						position: relative;
+						&::after {
+							position: absolute;
+							right: 0;
+							bottom: 0;
+							content: '√';
+							color: #FFFFFF;
+							font-size: 12rpx;
+							width: 0rpx;
+							height: 0rpx;
+							border: 10px solid red;
+							border-color: transparent rgb(11,149,255) rgb(11,149,255) transparent;
+						}
 					}
 				}
 			}
-			.center{
+
+			.center {
 				width: 100%;
 				height: 80rpx;
 				display: flex;
 				flex-direction: row;
-				.CL{
+
+				.CL {
 					width: 30%;
 					height: 100%;
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					.info{
+
+					.info {
 						color: #f2f2f2;
 					}
 				}
-				.CR{
+
+				.CR {
 					width: 70%;
 					height: 100%;
 					display: flex;
 					flex-direction: row;
 					align-items: center;
-					.btn{
+
+					.btn {
 						width: 70rpx;
 						height: 70rpx;
 						display: flex;
 						align-items: center;
 						justify-content: center;
 						color: #f2f2f2;
-						background: rgb(28,41,76);
-						border: 2rpx solid rgb(141,148,166);
+						background: rgb(28, 41, 76);
+						border: 2rpx solid rgb(141, 148, 166);
 					}
-					.num{
+
+					.num {
 						width: 280rpx;
 						margin-left: -10rpx;
 					}
-					.add{
+
+					.add {
 						margin-left: -15rpx;
 					}
 				}
 			}
-			.bottom{
+
+			.bottom {
 				width: 100%;
 				height: 150rpx;
 				display: flex;
 				flex-direction: row;
-				.bL{
+
+				.bL {
 					width: 30%;
 					height: 100%;
-					.info{
+
+					.info {
 						width: 100%;
 						height: 50%;
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						.infoText{
+
+						.infoText {
 							font-size: 28rpx;
 						}
 					}
-					.num{
+
+					.num {
 						width: 100%;
 						height: 50%;
 						display: flex;
 						align-items: center;
 						justify-content: flex-start;
-						.coin{
+
+						.coin {
 							width: 40rpx;
 							height: 40rpx;
 							margin-right: 20rpx;
 							margin-left: 30rpx;
 						}
-						.infoText{
+
+						.infoText {
 							color: #FFFFFF;
 						}
 					}
 				}
-				.bR{
+
+				.bR {
 					width: 70%;
 					height: 100%;
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					.buyBtn{
+
+					.buyBtn {
 						width: 440rpx;
 						height: 100rpx;
 						display: flex;
 						align-items: center;
 						justify-content: center;
 						color: #FFFFFF;
-						background: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253));
+						background: linear-gradient(to right, rgb(135, 57, 245) 0%, rgb(70, 104, 253), rgb(25, 137, 253));
 					}
 				}
 			}

@@ -133,6 +133,27 @@
 											}"
 					/>	
 					
+					<more-representation-new 	v-if="getListItemKey() === 'more-representation-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
+					<team-new 	v-if="getListItemKey() === 'team-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
+					<no-pay-new 	v-if="getListItemKey() === 'no-pay-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>
@@ -166,6 +187,9 @@
 	
 	import spiritMarketNew from './listItem/spiritMarket_new.vue'
 	import myHistoryNew from './listItem/my_history_new.vue'
+	import moreRepresentationNew from './listItem/moreRepresentation_new.vue'
+	import teamNew from './listItem/team_new.vue'
+	import noPayNew from './listItem/noPay_new.vue'
     
 	export default {
 		components: {
@@ -186,7 +210,10 @@
 			
 			//新版页面
 			spiritMarketNew,
-			myHistoryNew
+			myHistoryNew,
+			moreRepresentationNew,
+			teamNew,
+			noPayNew
 		},
 		props: {
 			config: {

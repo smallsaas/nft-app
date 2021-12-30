@@ -3,16 +3,16 @@
 
 
 ### 获取列表页面信息
-GET {{endpoint}}/form?id=222333
+GET {{endpoint}}/form?id=111222333
 
 ### 提交列表页面信息
-POST {{endpoint}}/form/222333
+POST {{endpoint}}/form/111222333
 Content-Type: application/json
 
 {  
     "version": "1",
-    "name": "MyTeam",
-    "title": "我的团队",
+    "name": "representation",
+    "title": "申述记录",
     "pageStyle": {
         "margin-top":"20px"
     },

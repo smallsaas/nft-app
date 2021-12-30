@@ -1,0 +1,16 @@
+@endpoint = https://api.mock.smallsaas.cn
+# 开发环境使用
+@devEndpoint = http://localhost:8080
+###
+GET {{endpoint}}/data?id=666999
+###
+POST {{endpoint}}/data/666999
+Content-Type: application/json
+
+{
+    "tabs":[
+        {"title":"团队","id":"555888"},
+        {"title":"未付款列表","id":"222333"},
+        {"title":"直推查询列表","id":"333444"}
+    ]
+}

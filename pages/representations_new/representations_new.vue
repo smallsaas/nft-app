@@ -1,6 +1,6 @@
 <template>
 	<view class="re_new">
-		<view class="all"><text class="info">查看申述记录(结果)</text></view>
+		<view class="all"><text class="info" @click="checkMore">查看申述记录(结果)</text></view>
 		<view class="title ttt"><text class="info">申述原因</text></view>
 		<view class="select">
 			<input  v-model="value" type="text" disabled="true" placeholder="选择申述原因" class="read" />
@@ -39,6 +39,11 @@
 			onCancel() {
 				this.isShow = false
 			},
+			checkMore(){
+				uni.navigateTo({
+					url:'/pages/defaultPage/page?id=' + 111222333
+				})
+			}
 		}
 	}
 </script>

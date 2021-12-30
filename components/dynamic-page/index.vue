@@ -166,6 +166,10 @@
 						 							v-if="_get(item,'type') === 'my-history'"
 						 							:item="getComponentsData(item)"
 						 ></my-history>
+						 <check-team-list
+						 							v-if="_get(item,'type') === 'check-team-list'"
+						 							:item="getComponentsData(item)"
+						 ></check-team-list>
             </view>
           </block>
         </van-skeleton>
@@ -200,6 +204,8 @@
 	import Service from '../my/service.vue'
 	//我的记录
 	import MyHistory from '../history/myhistory.vue'
+	//直推查询列表
+	import CheckTeamList from '../team/checkTeamList.vue'
 	export default {
 		components: { 
 			dynamicList, 
@@ -218,7 +224,8 @@
 			User,
 			pageTabbar,
 			Service,
-			MyHistory
+			MyHistory,
+			CheckTeamList
 		},
 		props: {
 			API: String,  // 页面数据请求接口

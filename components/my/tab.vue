@@ -21,7 +21,7 @@
 			},
 			goToTeam(){
 				uni.navigateTo({
-					url:"/pages/defaultPage/tabbarPage?id=" + 555888
+					url:"/pages/defaultPage/tabbarPage?id=" + 666999
 				})
 			}
 		}
