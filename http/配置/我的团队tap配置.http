@@ -10,7 +10,7 @@ Content-Type: application/json
 {
     "tabs":[
         {"title":"团队","id":"555888"},
-        {"title":"未付款列表","id":"222333"},
-        {"title":"直推查询列表","id":"333444"}
+        {"title":"未付款列表","id":"333444"},
+        {"title":"直推查询列表","id":"444555"}
     ]
 }

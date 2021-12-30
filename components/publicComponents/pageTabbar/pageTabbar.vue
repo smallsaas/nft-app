@@ -52,11 +52,13 @@
 <style>
 	.pageTabbar_TitleBox{
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		align-items: flex-start;
+		justify-content: flex-start;
 		flex-direction: row;
-		margin-top: 50rpx;
+		/* margin-top: 50rpx; */
 		flex-wrap: wrap;
+		/* border: 1px solid red; */
+		z-index: 999999;
 	}
 	.pageTabbar_Title{
 		font-size: 32rpx;
@@ -76,5 +78,7 @@
 		width: 100%;
 		height: calc(100vh - 138rpx);
 		overflow: auto;
+		/* border: 1px solid red; */
+		margin-top: -25rpx;
 	}
 </style>

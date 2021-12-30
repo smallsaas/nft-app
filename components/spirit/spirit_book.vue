@@ -161,16 +161,22 @@
 		// height: 800rpx;
 		position: relative;
 		background: rgb(27, 40, 74);
-		border: 2rpx solid rgb(47, 69, 128);
+		border-top: 2rpx solid rgb(47, 69, 128);
+		border-left: 2rpx solid rgb(47, 69, 128);
 		border-radius: 20rpx;
 		.btnBox{
 			width: 100%;
 			height: 140rpx;
-			border-top: 1px solid rgb(56,76,114);
+			// border-top: 1px solid rgb(56,76,114);
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
+			background: rgb(29,41,77);
+			border-bottom-right-radius: 20rpx;
+			border-bottom-left-radius: 20rpx;
+			border-top: 1px solid;
+			border-image: linear-gradient(to right,rgb(25,40,67),rgb(60,80,120),rgb(43,61,95),rgb(60,80,120),rgb(25,40,67)) 1 1 1 1;
 			.btn{
 				width: 220rpx;
 				height: 80rpx;

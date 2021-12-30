@@ -10,6 +10,6 @@ Content-Type: application/json
 {
     "tabs":[
         {"title":"精灵商城","id":"8888899"},
-        {"title":"签到盒子","id":"7777799"}
+        {"title":"签到抽盒","id":"7777799"}
     ]
 }

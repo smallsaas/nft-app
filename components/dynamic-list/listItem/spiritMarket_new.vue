@@ -5,7 +5,8 @@
 				<view class="trueItem">
 					<view class="ItemTop">
 						<view class="ItemTopLeft">
-							<image class="spiritImg" :src="item.previewPhotoUrl" mode="widthFix"></image>
+							<!-- <image class="spiritImg" :src="item.previewPhotoUrl" mode="widthFix"></image> -->
+							<image class="spiritImg" src="../../../static/spirit/text.png" mode="widthFix"></image>
 						</view>
 						<view class="ItemTopRight">
 							<view class="spiritName">{{item.name}}</view>
@@ -38,11 +39,11 @@
 							</view>
 						</view>
 						<view class="ItemRight">
-							<button class="BTN" @click="operation(item)" v-if="item.stage=='BOOKABLE'">可预约</button>
-							<button class="BTN BTNthree" v-if="item.stage=='DISALLOW_BOOK'">不可预约</button>
+							<button class="BTN" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
+							<button class="BTN BTNthree BBB" v-if="item.stage=='DISALLOW_BOOK'">不可预约</button>
 							<button class="BTN BTNthree" v-if="item.stage=='WAITING_MATCH'">待匹配</button>
-							<button class="BTN BTNthree" v-if="item.stage=='WAITING_FOR_PAYMENT'">待支付</button>
-							<button class="BTN BTNthree" v-if="item.stage=='END_OF_MATCH'">匹配结束</button>
+							<button class="BTN BTNthree" v-if="item.stage=='WAITING_FOR_PAYMENT'">匹配结束</button>
+							<view class="TTTT" v-if="item.stage=='END_OF_MATCH'"><button class="BTN BTNthree BBB">匹配结束</button></view>
 							<button class="BTN BTNfour" v-if="item.stage=='GROWING'">成长中</button>
 						</view>
 					</view>
@@ -140,14 +141,16 @@
 			width: 100%;
 			height: 100%;
 			// margin-top: 20rpx;
-			padding-top: 20rpx;
+			// padding-top: 5rpx;
 			background: rgb(5,14,23);
+			padding-bottom: 30rpx;
 			.itemBox{
 				width: 95%;
 				height: 560rpx;
 				margin-left: 2.5%;
 				background: rgb(28,40,77);
-				border: 2rpx solid rgb(50,71,137);
+				border-top: 2rpx solid rgb(50,71,137);
+				border-left: 2rpx solid rgb(50,71,137);
 				border-radius: 20rpx;
 				display: flex;
 				align-items: center;
@@ -198,15 +201,17 @@
 								margin-left: 5%;
 								width: 90%;
 								height: 15%;
-								border-bottom: 2rpx solid rgb(65,76,102);
+								border-bottom: 2rpx solid rgb(70,80,107);
 								display: flex;
 								align-items: center;
 								justify-content: space-between;
 								.infoTitle{
-									color: #f2f2f2;
+									color: rgb(209,212,218);
+									font-size: 28rpx;
 								}
 								.infoValue{
-									color: #f2f2f2;
+									color: rgb(255,255,255);
+									font-size: 28rpx;
 								}
 							}
 						}
@@ -219,6 +224,7 @@
 						.matchTime{
 							font-size: 25rpx;
 							margin-left: 10rpx;
+							color: rgb(169,173,187);
 						}
 					}
 					.ItemBottom{
@@ -253,6 +259,21 @@
 							display: flex;
 							align-items: center;
 							justify-content: center;
+							.TTTT{
+								width: 300rpx;
+								height: 80rpx;
+								// border: 1px solid red;
+								box-sizing: border-box; 
+								padding: 2rpx; 
+								border-radius: 15rpx; 
+								background-image: linear-gradient(to right , rgb(135,57,245) 20%,rgb(70,104,253), rgb(25,137,253));
+								.BTNthree{
+									width: 100%;
+									height: 100%;
+									// border: 1px solid red;
+									border-radius: 15rpx;
+								}
+							}
 							.BTN{
 								width: 300rpx;
 								height: 80rpx;
@@ -267,9 +288,14 @@
 								border: 1px solid rgbhsla(93,103,123);
 							}
 							.BTNthree{
-								background: rgb(24,37,65);
-								border: 1px solid rgb(112,74,227);
-								color: grey;
+								// border: 1px solid rgb(112,74,227);
+								color: rgb(252,252,253);
+							    background: rgb(24,37,65);
+								position:  relative;
+							}
+							.BBB{
+								// border: 1px solid rgb(112,74,227);
+								// border-image: linear-gradient(to right bottom,rgb(135,57,245) ,rgb(70,104,253), rgb(25,137,253)) 5 4 3;
 							}
 							.BTNfour{
 								background: rgb(24,37,65);
