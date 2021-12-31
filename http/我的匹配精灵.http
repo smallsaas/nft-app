@@ -3,10 +3,10 @@
 
 
 ### 获取列表页面信息
-GET {{endpoint}}/form?id=6666699
+GET {{endpoint}}/form?id=225599
 
 ### 提交列表页面信息
-POST {{endpoint}}/form/6666699
+POST {{endpoint}}/form/225599
 Content-Type: application/json
 
 {  

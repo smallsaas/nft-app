@@ -44,7 +44,7 @@ export const api = {
 	},
 	//购买陪伴精灵
 	buyCompanySpirit(params){
-	const url = `${globalConfig.endpoint}/api/crud/oms/companionWispOrder/companionWispOrders/generate`
+	const url = `${globalConfig.endpoint}/api/u/companionWisp/${params.companionWispId}/buy`
 	return request('POST',url,params)
 	},
 	//购买土地

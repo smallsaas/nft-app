@@ -2,7 +2,38 @@
 	<view>
 		<view class="spirit_mask">
 			<view class="spirit_book">
-				<view class="bodyBox">
+				<view class="imgBox">
+					<image class="img" src="../../static/spirit/levelOne.png" mode="widthFix" v-if="itemInfo.level == 1"></image>
+					<image class="img" src="../../static/spirit/levelTwo.png" mode="widthFix" v-if="itemInfo.level == 2"></image>
+					<image class="img" src="../../static/spirit/levelThree.png" mode="widthFix" v-if="itemInfo.level == 3"></image>
+					<image class="img" src="../../static/spirit/levelFour.png" mode="widthFix" v-if="itemInfo.level == 4"></image>
+					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 5"></image>
+				</view>
+				<view class="spiritBox">
+					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="imgs"></image>
+				</view>
+				<text class="tt">消耗精灵令</text>
+				<view class="ttt">
+					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<text class="number">x{{itemInfo.costWispCoin}}</text>
+				</view>
+				<text class="tt two">消耗陪伴精灵</text>
+				<view class="ttt twott">
+					<image src="../../static/spirit/company.png" mode="widthFix" class="icon"></image>
+					<text class="number">x{{itemInfo.costAccompanyWisp}}</text>
+				</view>
+				<text class="tt three">需要土地</text>
+				<view class="ttt threett">
+					<image src="../../static/spirit/land.png" mode="widthFix" class="icon"></image>
+					<text class="number">x{{itemInfo.growthDays}}</text>
+				</view>
+				<view class="nameBox"><text class="name">{{itemInfo.name}}</text></view>
+				<view class="nameBox nTwo"><text class="name nametwo">预约剩余时间 {{itemInfo.remainingBookMinutes}}分钟 确定预约吗？</text></view>
+				<view class="btnBox">
+					<button class="btn cancel" @click="cancel">取消</button>
+					<button class="btn"  @click="book">马上预约</button>
+				</view>
+				<!-- <view class="bodyBox">
 					<view class="bodyLeft">
 						<image class="level" src="../../static/spirit/levelOne.png" mode="widthFix" v-if="itemInfo.level == 1"></image>
 						<image class="level" src="../../static/spirit/levelTwo.png" mode="widthFix" v-if="itemInfo.level == 2"></image>
@@ -35,7 +66,7 @@
 				<view class="btnBox">
 					<button class="btnCancel btn cancel" @click="cancel">取消</button>
 					<button class="btnSuccess btn book" @click="book">预约</button>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -55,10 +86,15 @@
 			}
 		},
 		created() {
-			console.log(this.itemInfo)
-			console.log(this.itemInfo.startMatchTime - this.itemInfo.endMatchTime)
+			console.log(this.itemInfo.remainingBookMinutes)
+			
+			
 		},
 		methods:{
+			handleTime(number){
+				
+			},
+			
 			msg(toast){
 				this.$emit('getMsg',toast)
 			},
@@ -157,13 +193,153 @@
 		margin-left: 5rpx;
 	}
 	.spirit_book {
-		width: 650rpx;
-		// height: 800rpx;
+		// width: 650rpx;
+		// // height: 800rpx;
+		// position: relative;
+		// background: rgb(27, 40, 74);
+		// border-top: 2rpx solid rgb(47, 69, 128);
+		// border-left: 2rpx solid rgb(47, 69, 128);
+		// border-radius: 20rpx;
+		width: 320px;
+		height: 393px;
+		border-radius: 8px 8px 8px 8px;
+		border-top: 2rpx solid rgb(50, 71, 137);
+		border-left: 2rpx solid rgb(50, 71, 137);
+		background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 		position: relative;
-		background: rgb(27, 40, 74);
-		border-top: 2rpx solid rgb(47, 69, 128);
-		border-left: 2rpx solid rgb(47, 69, 128);
-		border-radius: 20rpx;
+			.imgBox{
+				position: absolute;
+				left: 24px;
+				top: 32px;
+				width: 67px;
+				height: 18px;
+				.img{
+					width: 67px;
+					height: 18px !important;
+				}
+			}
+			
+			.spiritBox{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 60px;
+				top: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.imgs{
+					width: 110px;
+					height: 200px !important;
+				}
+			}
+			
+			.tt{
+				width: 60px;
+				height: 17px;
+				position: absolute;
+				top: 37px;
+				right: 24px;
+				font-size: 12px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFFFFF;
+			}
+		    
+			.ttt{
+				width: 60px;
+				height: 20px;
+				position: absolute;
+				top: 58px;
+				right: 24px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				.icon{
+					width: 20px;
+					height: 20px !important;
+					margin-right: 4px;
+				}
+				.number{
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+				}
+			}
+			
+			.btnBox{
+				width: 320px;
+				height: 88px;
+				background: #1D294D;
+				box-shadow: 0px -2px 12px 1px rgba(0,0,0,0.25);
+				border-radius: 0px 0px 8px 8px;
+				opacity: 1;
+				position: absolute;
+				bottom: 0px;
+				.btn{
+					width: 132px;
+					height: 40px;
+					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
+					border-radius: 4px 4px 4px 4px;
+					opacity: 1;
+				}
+				.cancel{
+					border: 1px solid #FFFFFF;
+					background: #1D294D;
+				}
+			}
+			
+			.two{
+				width: 75px;
+				top: 94px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+			}
+		
+			.twott{
+				top: 115px;
+			}
+		
+			.three{
+				top: 151px;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+			}
+			
+			.threett{
+				top: 172px;
+			}
+		
+			.nameBox{
+				width: 320px;
+				height: 22px;
+				position: absolute;
+				top: 238px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.name{
+					font-size: 16px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
+				}
+			}
+			
+			.nTwo{
+				top: 264px;
+				.nametwo{
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+				}
+			}
+		
+		
 		.btnBox{
 			width: 100%;
 			height: 140rpx;

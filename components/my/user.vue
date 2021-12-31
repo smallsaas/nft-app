@@ -1,5 +1,8 @@
 <template>
 	<view class="user">
+		<!-- <view class="imgBox">
+			<image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image>
+		</view> -->
 		<view class="left">
 			<view class="LImg"><image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image></view>
 			<view class="Linfo">
@@ -38,6 +41,23 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		width: 332px;
+		height: 72px;
+		// border: 1px solid red;
+		margin: 0 auto;
+		position: relative;
+		.imgBox{
+			width: 72px;
+			height: 72px;
+			border: 1px solid red;
+			position: absolute;
+			.img{
+				width: 72px;
+				height: 72px !important;
+				border-radius: 50%;
+				border: 1px solid rgb(132,133,147);
+			}
+		}
 		.left{
 			width: 80%;
 			height: 100%;

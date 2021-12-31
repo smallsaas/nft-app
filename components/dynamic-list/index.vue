@@ -154,6 +154,13 @@
 											}"
 					/>	
 					
+					<my-book-spirit-new 	v-if="getListItemKey() === 'my-book-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>
@@ -190,6 +197,7 @@
 	import moreRepresentationNew from './listItem/moreRepresentation_new.vue'
 	import teamNew from './listItem/team_new.vue'
 	import noPayNew from './listItem/noPay_new.vue'
+	import myBookSpiritNew from './listItem/myBookSpirit_new.vue'
     
 	export default {
 		components: {
@@ -213,7 +221,8 @@
 			myHistoryNew,
 			moreRepresentationNew,
 			teamNew,
-			noPayNew
+			noPayNew,
+			myBookSpiritNew
 		},
 		props: {
 			config: {

@@ -51,9 +51,13 @@
 		width: 100%;
 		height: 100vh;
 		background: rgb(6,17,30);
+		// background-color: #0B95FF;
+		// filter: blur(200px);
+		// background: linear-gradient(to right,#050E17,#9331F5,#0B95FF);
 		.line-bg{
 			background: radial-gradient(to bottom left,#415ADC,#060E1A 75%);
 		}
+		
 
 		.down{
 			height: 18%;

@@ -1,236 +1,322 @@
 <template>
 	<view class="spiritBuy">
-		<van-popup class="box" v-model="show" round position="bottom" :style="{ height: '50%' }" @close="getClose">
-			<view class="top">
-				<view class="topL">
-					<image class="Cimg" src="../../static/spirit/company.png" mode="widthFix"></image>
+		<van-popup class="box" v-model="show" round position="bottom" @close="getClose">
+			<view class="spirit_mask_box">
+				<view class="imgBox">
+					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image>
 				</view>
-				<view class="topR">
-					<view class="Cname"><text class="name">安防科技啥叫看</text></view>
-					<view class="CLname"><text class="name">撒娇开发哈桑飞机库哈斯</text></view>
-					<view class="CInfo"><text class="info">消耗精灵令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
+				<view class="name">
+					<text class="nameI">{{itemInfo.name}}</text>
 				</view>
-			</view>
-			<view class="center">
-				<view class="CL"><text class="info">购买数量:</text></view>
-				<view class="CR">
-					<button class="btn" @click="dec">-</button>
-					<button class="btn num">{{num}}</button>
-					<button class="btn add" @click="add">+</button>
+				<view class="type">
+					<text class="info">{{itemInfo.description}}</text>
 				</view>
-			</view>
-			<view class="bottom">
-				<view class="bL">
-					<view class="info"><text class="infoText">共消耗精灵令</text></view>
-					<view class="num"><image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoText">x12</text></view>
+				<view class="type cc">
+					<text class="one">消耗精灵令：</text>
+					<image src="../../static/spirit/coin.png" mode="widthFix" class="bg"></image>
+					<text class="two">x{{itemInfo.wispCoin}}</text>
 				</view>
-				<view class="bR">
-					<button class="buyBtn">立即购买</button>
+				<text class="buyBox">
+					购买数量：
+				</text>
+				<image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image>
+				<button class="num">{{number}}</button>
+				<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
+				<view class="bottomBox">
+					<text class="ce">共消耗精灵令</text>
+					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<text class="ce cetwo">x{{number * itemInfo.wispCoin}}</text>
+					<button class="btn" @click="buyComponeySpirit">立即购买</button>
 				</view>
+				<!-- <view class="top">
+					<view class="topL">
+						<image class="Cimg" src="../../static/spirit/company.png" mode="widthFix"></image>
+					</view>
+					<view class="topR">
+						<view class="Cname"><text class="name">安防科技啥叫看</text></view>
+						<view class="CLname"><text class="name">撒娇开发哈桑飞机库哈斯</text></view>
+						<view class="CInfo"><text class="info">消耗精灵令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
+					</view>
+				</view>
+				<view class="center">
+					<view class="CL"><text class="info">购买数量:</text></view>
+					<view class="CR">
+						<button class="btn" @click="dec">-</button>
+						<button class="btn num">{{num}}</button>
+						<button class="btn add" @click="add">+</button>
+					</view>
+				</view>
+				<view class="bottom">
+					<view class="bL">
+						<view class="info"><text class="infoText">共消耗精灵令</text></view>
+						<view class="num"><image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoText">x12</text></view>
+					</view>
+					<view class="bR">
+						<button class="buyBtn">立即购买</button>
+					</view>
+				</view> -->
 			</view>
 		</van-popup>
 	</view>
 </template>
 
 <script>
-	export default{
-		props:{
-			itemInfo:{
-				type:Object,
-				default:{}
+	export default {
+		props: {
+			itemInfo: {
+				type: Object,
+				default: {}
 			}
 		},
 		created() {
 			console.log(this.itemInfo)
 			console.log(123)
 		},
-		data(){
-			return{
-				show:true,
-				num:0
+		data() {
+			return {
+				show: true,
+				number: 0
 			}
 		},
-		methods:{
-			getClose(){
-				this.$emit('closeBuyChild',false)
+		mounted(){
+			this.number = this.itemInfo.costAccompanyWisp
+		},
+		methods: {
+			getClose() {
+				this.$emit('closeBuyChild', false)
 			},
-			dec(){
-				if(this.num==0){
+			dec() {
+				if(this.number== 0){
+					this.number = 0
 					return
-				}
-				this.num-=1
+				} 
+				this.number-=1
+				this.$emit('decNumber',this.number)
 			},
-			add(){
-				this.num+=1
+			add() {
+				this.number+=1
+				this.$emit('addNumber',this.number)
+			},
+			
+			//购买陪伴精灵
+			async buyComponeySpirit(){
+				console.log(this.itemInfo.id,1)
+				const data = {
+					companionWispId:this.itemInfo.id,
+					number:this.number,
+					paymentPassword:'123456'
+				}
+				const res = await this.$api.buyCompanySpirit(data)
+				console.log(res)
+				const response = {
+					code:res.code,
+					message:res.message
+				}
+				if(res.code == 200){
+					this.$emit('buySuccess',response)
+				}else{
+					this.$emit('buySuccess',response)
+				}
 			}
 		}
 	}
 </script>
-
 <style lang="less">
-	.spiritBuy{
+	.spiritBuy {
 		width: 100%;
-		height: 100%;
-		.box{
-			background: rgb(28,41,76);
-			.top{
-				width: 100%;
-				height: 200rpx;
-				margin-top: 50rpx;
+		height: auto;
+
+		.box {
+			background: rgb(28, 41, 76);
+			width: 375px;
+			height: 327px;
+			background: #1C294C;
+			border-radius: 16px 16px 0px 0px;
+			opacity: 1;
+			z-index: 9999999 !important;
+			position: fixed;
+
+			.imgBox {
+				position: absolute;
+				left: 16px;
+				top: 32px;
+				width: 100px;
+				height: 100px;
+				background: #1C294C;
+				border-radius: 8px 8px 8px 8px;
+				opacity: 1;
+				border: 1px solid rgba(196, 196, 196, 0.5);
 				display: flex;
-				flex-direction: row;
-				.topL{
-					width: 30%;
-					height: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					.Cimg{
-						width: 160rpx;
-						height: 160rpx;
-						border-radius: 10rpx;
-						border: 2rpx solid rgb(112,116,138);
-					}
-				}
-				.topR{
-					width: 70%;
-					height: 100%;
-					display: flex;
-					flex-direction: column;
-					.Cname{
-						width: 100%;
-						height: 40rpx;
-						.name{
-							color: #FFFFFF;
-							letter-spacing: 2rpx;
-						}
-					}
-					.CLname{
-						width: 100%;
-						height: 80rpx !important;
-						display: flex;
-						align-items: flex-end;
-						.name{
-							width: auto;
-							height: 40rpx;
-							border: 1px solid rgb(178,67,212);
-							padding: 10rpx;
-							border-radius:10rpx;
-							letter-spacing: 2rpx;
-							color: rgb(178,67,212);
-						}
-					}
-					.CInfo{
-						width: 100%;
-						height: 70rpx !important;
-						display: flex;
-						align-items: center;
-						.info{
-							font-size: 28rpx;
-							margin-right: 10rpx;
-						}
-						.Ccoin{
-							width: 40rpx;
-							height: 40rpx;
-						}
-						.Cpay{
-							font-size: 38rpx;
-							color: #FFFFFF;
-							margin-left: 10rpx;
-						}
-					}
+				align-items: center;
+				justify-content: center;
+
+				.img {
+					width: 88px;
+					height: 88px !important;
 				}
 			}
-			.center{
-				width: 100%;
-				height: 80rpx;
-				display: flex;
-				flex-direction: row;
-				.CL{
-					width: 30%;
-					height: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					.info{
-						color: #f2f2f2;
-					}
-				}
-				.CR{
-					width: 70%;
-					height: 100%;
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					.btn{
-						width: 70rpx;
-						height: 70rpx;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						color: #f2f2f2;
-						background: rgb(28,41,76);
-						border: 2rpx solid rgb(141,148,166);
-					}
-					.num{
-						width: 280rpx;
-						margin-left: -10rpx;
-					}
-					.add{
-						margin-left: -15rpx;
-					}
+
+			.name {
+				position: absolute;
+				left: 128px;
+				top: 32px;
+				width: 240px;
+				height: 25px;
+
+				.nameI {
+					font-size: 18px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
 				}
 			}
-			.bottom{
-				width: 100%;
-				height: 150rpx;
-				display: flex;
-				flex-direction: row;
-				.bL{
-					width: 30%;
-					height: 100%;
-					.info{
-						width: 100%;
-						height: 50%;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						.infoText{
-							font-size: 28rpx;
-						}
-					}
-					.num{
-						width: 100%;
-						height: 50%;
-						display: flex;
-						align-items: center;
-						justify-content: flex-start;
-						.coin{
-							width: 40rpx;
-							height: 40rpx;
-							margin-right: 20rpx;
-							margin-left: 30rpx;
-						}
-						.infoText{
-							color: #FFFFFF;
-						}
-					}
+
+			.type {
+				position: absolute;
+				left: 128px;
+				top: 69px;
+				width: 240px;
+				height: 25px;
+
+				.info {
+					width: 128px;
+					height: 20px;
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #E14CFF;
+					border: 1px solid #E14CFF;
+					padding: 2px 8px 2px 8px;
 				}
-				.bR{
-					width: 70%;
-					height: 100%;
+			}
+
+			.cc {
+				top: 108px;
+				display: flex;
+				align-items: center;
+
+				.one {
+					width: 84px;
+					height: 20px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+				}
+
+				.bg {
+					width: 20px;
+					height: 20px !important;
+					margin-right: 3px;
+				}
+
+				.two {
+					width: 21px;
+					height: 25px;
+					font-size: 18px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
+				}
+			}
+
+			.buyBox {
+				position: absolute;
+				top: 160px;
+				left: 16px;
+				width: 80px;
+				height: 24px;
+				font-size: 16px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFFFFF;
+			}
+
+			.bd {
+				width: 32px;
+				height: 32px !important;
+				position: absolute;
+				top: 156px;
+				left: 104px;
+			}
+
+			.num {
+				width: 80px;
+				height: 32px;
+				border-radius: 4px 4px 4px 4px;
+				opacity: 1;
+				border: 1px solid rgba(255, 255, 255, 0.5);
+				position: absolute;
+				top: 156px;
+				left: 140px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFFFFF;
+				background: #1C294C;
+			}
+
+			.ad {
+				left: 224px;
+			}
+
+			.bottomBox {
+				position: absolute;
+				bottom: 0px;
+				width: 375px;
+				height: 100px;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+				.ce {
+					width: 72px;
+					height: 17px;
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+					position: absolute;
+					left: 16px;
+					top: 24px;
+				}
+
+				.icon {
+					width: 20px;
+					height: 20px !important;
+					position: absolute;
+					left: 16px;
+					top: 48px;
+					margin-right: 3px;
+				}
+				
+				.cetwo{
+					position: absolute;
+					left: 44px;
+					top: 45px;
+					font-size: 18px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
+				}
+				
+				.btn{
+					width: 224px;
+					height: 48px;
+					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
+					border-radius: 8px 8px 8px 8px;
+					opacity: 1;
+					font-size: 16px;
+					font-family: PingFang SC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #FFFFFF;
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					.buyBtn{
-						width: 440rpx;
-						height: 100rpx;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						color: #FFFFFF;
-						background: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253));
-					}
+					position: absolute;
+					top: 24px;
+					left: 135px;;
 				}
 			}
 		}
