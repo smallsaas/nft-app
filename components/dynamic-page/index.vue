@@ -281,10 +281,32 @@
 
 		},
 		created() {
-		  this.fetchConfigData()
+			let id = this.formatId(this.API)
+			if(id){
+				let data = this.$timeCache(`page_${id}`)
+				if(data){
+					console.log("使用缓存page_"+id,data)
+					this.loadPage(data)
+				}else{
+					this.fetchConfigData()
+				}
+			}else{
+				this.fetchConfigData()
+			}
 		},
 		mounted(){
-			this.fetchConfigData()
+			let id = this.formatId(this.API)
+			if(id){
+				let data = this.$timeCache(`page_${id}`)
+				if(data){
+					console.log("使用缓存page_"+id,data)
+					this.loadPage(data)
+				}else{
+					this.fetchConfigData()
+				}
+			}else{
+				this.fetchConfigData()
+			}
 			// console.log("srv",this.srvFormData)
 			let TFormKey = this.FormKey
 			// console.log(this.FormKey)
@@ -365,14 +387,16 @@
 			// 获取id
 			formatId(api){
 				if(api){
-					console.log(api,"api")
+					api = api.toString()
 					if(api.indexOf("?id=")!==-1){
-						api.split('?id=')[1]
+						api = api.split('?id=')[1]
 						return api.split('&')[0]
 					}else if(api.indexOf("&id=")!==-1){
-						api.split('&id=')[1]
+						api = api.split('&id=')[1]
 						return api.split('&')[0]
 					}
+				}else{
+					return undefined
 				}
 			},
 			fetchConfigData () {
@@ -400,32 +424,63 @@
 								} catch {}
 							}
 							const resData = _.cloneDeep(responseData)
-							console.log(that.formatId(that.api))
-							// that.$timeCache()
+							let id = that.formatId(that.API)
+							// console.log(that.formatId(that.API),"id")
+							if(id){
+								that.$timeCache(`page_${id}`,resData,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制缓存策略
+								// page缓存列表
+								let pageCacheList = that.$cache.get("pageCacheList")||[]
+								pageCacheList.push(`page_${id}`)
+								that.$cache.set("pageCacheList",pageCacheList)
+							}
                             // 获取页面请求接口
-                            let pageUrl
-                            const dataPayload = _.get(resData, 'dataPayload')
-                            if (dataPayload && _.get(res.data, dataPayload) && typeof _.get(res.data, dataPayload) === 'object' && JSON.stringify(_.get(res.data, dataPayload)) !== '{}') {
-                                pageUrl = ''
-                                this.pageData = _.cloneDeep(_.get(res.data, dataPayload))
-                            } else {
-                               pageUrl = this.getRequestUrl(resData)
-                            }
-							// 加载页面数据
-							if (pageUrl) {
-								this.fetchPageData(resData, pageUrl)
-							} else {
-								this.config = resData
-								this.skeletonLoading = false                               
-							}
-							if (_.has(resData, 'title')) {
-								uni.setNavigationBarTitle({
-									title: _.get(resData, 'title', '动态页面')
-								})
-							}
+							that.loadPage(resData)
+       //                      let pageUrl
+       //                      const dataPayload = _.get(resData, 'dataPayload')
+       //                      if (dataPayload && _.get(res.data, dataPayload) && typeof _.get(res.data, dataPayload) === 'object' && JSON.stringify(_.get(res.data, dataPayload)) !== '{}') {
+       //                          pageUrl = ''
+       //                          this.pageData = _.cloneDeep(_.get(res.data, dataPayload))
+       //                      } else {
+       //                         pageUrl = this.getRequestUrl(resData)
+       //                      }
+							// 							console.log(pageUrl)
+							// // 加载页面数据
+							// if (pageUrl) {
+							// 	this.fetchPageData(resData, pageUrl)
+							// } else {
+							// 	this.config = resData
+							// 	this.skeletonLoading = false                               
+							// }
+							// if (_.has(resData, 'title')) {
+							// 	uni.setNavigationBarTitle({
+							// 		title: _.get(resData, 'title', '动态页面')
+							// 	})
+							// }
 						}
 					}
 				})
+			},
+			// 加载
+			loadPage(data){
+				let pageUrl
+				const dataPayload = _.get(data,'dataPayload')
+				if(dataPayload && typeof data.dataPayload === 'object' && JSON.stringify(data.dataPayload)!== '{}'){
+					pageUrl = ''
+					this.pageData = _.cloneDeep(_.get(data, dataPayload))
+				}else{
+					pageUrl = this.getRequestUrl(data)
+				}
+				if (pageUrl) {
+					this.fetchPageData(data, pageUrl)
+				} else {
+					this.config = data
+					this.skeletonLoading = false                               
+				}
+				if (_.has(data, 'title')) {
+					uni.setNavigationBarTitle({
+						title: _.get(data, 'title', '动态页面')
+					})
+				}
 			},
 			fetchPageData (configData = {}, pageUrl) {
 				uni.request({
