@@ -13,6 +13,8 @@
 										:srvFormData="getComponentsData(item) || (srvFormData||{})"
 										:outTitle="_get(item,'name')"
 										:navigator="_get(item,'navigator')"
+										:ifManualSubmit="ifManualSubmit"
+										@submit="handleSubmit"
 									/>
 										<view
 										v-if="_get(item, 'type') === 'autolist'"
@@ -261,6 +263,11 @@
 								return ""
 							}
 						},
+						// 用于表单自定义提交
+						ifManualSubmit:{
+							type:Boolean,
+							default:false
+						}
 		},
 		data () {
 			return {
@@ -349,6 +356,11 @@
 		methods: {
 			_get (data, field, value) {
 				return _.get(data, field, value)
+			},
+			// 表单自定义提交
+			handleSubmit(e){
+				console.log(e,"data")
+				this.$emit('submit',e)
 			},
 			// 获取页面请求数据接口 
 			getRequestUrl (resData) {

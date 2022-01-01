@@ -14,7 +14,7 @@
 						<view class="Base-Image-ImageBox">
 							<image :src="item" class="Base-Image-thumb" mode="aspectFit" @click="handleClick(i)">
 							</image>
-							<image src="../../static/BaseImage/close@3x.png" class="Base-Image-delete" @click="handleDelete(i)" v-if="!isReadOnly"></image>
+							<image src="../../static/BaseImage/close@3x.png" class="Base-Image-delete" @click="handleDelete(i)" v-if="!params.readonly&&!params.disabled"></image>
 						</view>
 
 						<view class="Base-Image-mov" v-if="isShowLarge === i">
@@ -135,7 +135,7 @@
 						let files = path.tempFiles
 						for(var i=0;i<files.length;i++){
 							let file = files[i]
-							let webPath = await that.$upload("/api/cloud/aliyun/oss/upload",file)
+							let webPath = await that.$upload("/api/fs/uploadfile",file)
 							// console.log(webPath)
 							let fileList = that.imageList
 							fileList.push(webPath)

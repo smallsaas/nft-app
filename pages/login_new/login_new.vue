@@ -89,6 +89,11 @@
 				// 			url:'/pages/home/homePage'
 				// 		})
 				// 	},1000)
+				// }else{
+				// 	uni.showToast({
+				// 		title:res.message,
+				// 		icon:"error"
+				// 	})
 				// }
 				that.$cache.set(that.$config.tokenStorageKey,'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJvcmdJZCI6IiIsInVzZXJJZCI6MTA5LCJhY2NvdW50IjoiYWNjNjY3MTcyOTUiLCJkb21haW5Vc2VySWQiOjU0LCJpYXQiOjE2NDA5MTcwODMsImp0aSI6IjEwOSIsInN1YiI6ImFjYzY2NzE3Mjk1IiwiZXhwIjoxNjQxMTc2MjgzfQ.NVIrpPYKQ8fFNjWOLLF4_FIPX9j8iLJBAIVJZ3SujiC34yWy_TYcWrEjCT6AP-3kcJyzhk4-CJ2-eh12Bhw1OQ')
 				uni.navigateTo({

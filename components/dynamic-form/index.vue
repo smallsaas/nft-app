@@ -346,7 +346,7 @@
                 if (_.isFunction(_.get(this.$parent, 'formatSubmitData'))) {
                     submitData = this.$parent.formatSubmitData(submitData)
                 }
-                
+                console.log("submit",this.ifManualSubmit)
                 if (this.ifManualSubmit) {
                     this.$emit('submit', submitData)
                 } else {
@@ -360,7 +360,7 @@
                 uni.showLoading({ title: '', mask: true })
                 uni.request({
                     url: url,
-                    method:'POST',
+                    method:_.get(this.formConfig,'saveMethod')||'POST',
                     data: data,
                     complete: (res) => {
                         uni.hideLoading()

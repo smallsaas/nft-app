@@ -9,6 +9,16 @@ export const api = {
 		const url = `${globalConfig.dataHost}?id=1000000`
 		return request('GET',url,params)
 	},
+	// 个人资料获取
+	getAccountData(id,params){
+		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
+		return request('GET',url,params)
+	},
+	// 个人资料编辑
+	editAccountData(id,params){
+		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
+		return request('PUT',url,params)
+	},
 	// tabbar 页配置
 	tabbar(id,params){
 		const url = `${globalConfig.dataHost}?id=${id}`

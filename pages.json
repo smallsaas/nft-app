@@ -227,6 +227,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/editAccount/editAccount",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

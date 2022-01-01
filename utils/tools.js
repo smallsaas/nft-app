@@ -203,6 +203,10 @@ export const upload = async(url,file) =>{
 						let fileWebPath = webData.data.url
 						resolve(fileWebPath)
 				}else{
+					uni.showToast({
+						icon:"error",
+						title:"上传失败"
+					})
 					resolve("/static/BaseImage/上传失败.png")
 				}
 			}
