@@ -2,10 +2,10 @@
 <template>
 	<view class="base_vants_container" :style="[_get(config, 'outStyle', {})]">
         <van-skeleton row="20" :loading="skeletonLoading">
-					<view class="fields_Title">{{outTitle}}
+					<view class="fields_Title" v-if="![undefined,null,''].includes(outTitle)">{{outTitle}}
 						<text class="fields_jumpTitle" @click="handleJump(navigator.url)" v-if="navigator">{{navigator.title||""}}</text>
 					</view>
-					<view class="fields-block">
+					<view :class="_get(fields[0],'__config__.layout') === 'colFormItem'?'fields-block':''">
 						<block v-for="(item, index) in fields" :key="index">
 						    <base-vants 
 						        v-if="_get(item, '__config__.layout') === 'colFormItem'"
@@ -16,14 +16,14 @@
 						        @clear="handleClear"
 						    />
 						    <view v-if="_get(item, '__config__.layout') === 'rowFormItem'"
-								style="padding: 10px;border-radius: 5px;"
+								style="padding: 10rpx;border-radius: 5px;"
 								>
 									<card :title="_get(item, '__config__.componentName')" 
 										:Style="{
 											title:{
 												'font':'30px',
 												'textAlign':'center',
-												'padding':'10px 0',
+												'padding':'10rpx 0',
 											}
 										}"
 									:jump="_get(item,'__config__.jump',false)"
@@ -43,8 +43,8 @@
 						            />
 						            <view v-else>
 						                <view class="form_row_title">
-								{{_get(k, '__config__.componentName')}}
-							</view>
+															{{_get(k, '__config__.componentName')}}
+														</view>
 						                <base-vants
 						                    :fields="_get(k, '__config__.children', [])"
 						                    :form="form"

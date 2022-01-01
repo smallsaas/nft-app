@@ -6,10 +6,12 @@
               :param="{
                   ...getBaseParam(item),
                    type: _get(item, '__config__.tagIcon') === 'input' ? 'text' : _get(item, '__config__.tagIcon'),
+									 options:_get(item,'__slot__.options',[]),
                    ..._get(item, 'error') 
                       ? { 'error-message': item['error-message'] || `请填写${_get(item, '__config__.label')}`} 
                       : {}
                  }"
+								 :status="form[_get(item,'statusField')]"
                  @input="(e) => handleSetValue(e, fields[index])"
                  @clear="(e) => handleClear(e, fields[index])"
             />
@@ -206,6 +208,10 @@
 							    ..._.has(item, 'prefix-icon') ? { 'left-icon': item['prefix-icon'] } : {},
 							    ..._.has(item, 'suffix-icon') ? { 'right-icon': item['suffix-icon'] } : {},
 							    ..._.has(item, 'show-word-limit') ? { 'show-word-limit': item['show-word-limit'] } : {},
+									..._.has(item, 'canChange') ? { 'canChange': item['canChange'] } : {},
+									..._.has(item, 'saveAPI') ? { 'saveAPI': item['saveAPI'] } : {},
+									..._.has(item, 'doNotUseValue') ? { 'doNotUseValue': item['doNotUseValue'] } : {},
+									..._.has(item, 'tips') ? { 'tips': item['tips'] } : {},
 							 }
 						 }
 

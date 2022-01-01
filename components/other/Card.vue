@@ -134,11 +134,9 @@ export default {
 		// margin: 20px auto;
 }
 .Card-Layout-Content{
-    width: 100%;
-    margin: 0px auto;
-    background: white;
-    border-radius: 5px;
-    padding: 0;
+		padding: 10rpx;
+		background-color: #11181E;
+		border-radius: 20rpx;
 }
 .Card-Layout-Title{
     width: auto;

@@ -31,7 +31,7 @@ Content-Type: application/json
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b6", 
           "name": "账户信息", 
           "navigator":{
-              "url":"/formImageTest/formImageTest",
+              "url":"/defaultPage/page?id=71541",
               "title":"修改账户信息"
           },
           "container": {
@@ -104,6 +104,10 @@ Content-Type: application/json
                         "formId": 113,
                         "renderKey": 1621415432107
                         },
+                        "canChange":true,
+                        "saveAPI":"",
+                        "doNotUseValue":"FROZEN",
+                        "statusField":"status",
                         "readonly": true,
                         "__vModel__": "backupMobilePhone"
                     },
@@ -113,12 +117,32 @@ Content-Type: application/json
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
-                        "tagIcon": "input",
+                        "tagIcon": "status",
                         "required": false,
                         "layout": "colFormItem",
                         "regList": [],
                         "formId": 113,
                         "renderKey": 1621415432107
+                        },
+                        "__slot__":{
+                            "options":[
+                                {
+                                    "label":"已冻结",
+                                    "value":"FROZEN",
+                                    "color":"#B04849",
+                                    "display":true,
+                                    "displayLabel":"申请解冻",
+                                    "api":"",
+                                    "successText":"解冻成功",
+                                    "errorText":"解冻失败"
+                                },
+                                {
+                                    "label":"正常",
+                                    "value":"NORMAL",
+                                    "color":"",
+                                    "display":false
+                                }
+                            ]
                         },
                         "readonly": true,
                         "__vModel__": "status"
@@ -273,12 +297,13 @@ Content-Type: application/json
                         "layout": "colFormItem",
                         "regList": [],
                          "__slot__": {
-                        "prepend": "(用于精灵令)",
+                        "prepend": "",
                         "append": ""
                         },
                         "formId": 113,
                         "renderKey": 1621415432107
                         },
+                        "tips":"(用于精灵令)",
                         "readonly": true,
                         "__vModel__": "paymentPassword"
                     }
