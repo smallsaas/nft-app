@@ -161,6 +161,27 @@
 											}"
 					/>	
 					
+					<my-match-spirit-new 	v-if="getListItemKey() === 'my-match-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
+					<my-adopt-spirit-new 	v-if="getListItemKey() === 'my-adopt-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
+					<my-self-spirit-new 	v-if="getListItemKey() === 'my-self-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>
@@ -198,6 +219,9 @@
 	import teamNew from './listItem/team_new.vue'
 	import noPayNew from './listItem/noPay_new.vue'
 	import myBookSpiritNew from './listItem/myBookSpirit_new.vue'
+	import myMatchSpiritNew from './listItem/myMatchSpirit_new.vue'
+	import myAdoptSpiritNew from './listItem/myAdoptSpirit_new.vue'
+	import mySelfSpiritNew from './listItem/mySelfSpirit_new.vue'
     
 	export default {
 		components: {
@@ -222,7 +246,10 @@
 			moreRepresentationNew,
 			teamNew,
 			noPayNew,
-			myBookSpiritNew
+			myBookSpiritNew,
+			myMatchSpiritNew,
+			myAdoptSpiritNew,
+			mySelfSpiritNew
 		},
 		props: {
 			config: {

@@ -2,7 +2,7 @@
 	<view class="spiritBuy">
 		<van-popup class="box" v-model="show" round position="bottom" @close="getClose">
 			<view class="imgBox">
-				<image src="../../static/spirit/land.png" mode="widthFix" class="img"></image>
+				<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image>
 			</view>
 			<text class="name">所需土地</text>
 			<view class="typeOne">
@@ -12,7 +12,7 @@
 			</view>
 			<text class="info">消耗精灵令：</text>
 			<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImg"></image>
-			<text class="numbers">x6</text>
+			<text class="numbers">x{{itemInfo.coinCostPerDay}}</text>
 			<text class="titleInfo">土地等级：</text>
 			<view class="typeTwo">
 				<view class="tItem" v-for="(item,index) in landTypeTwo" :key="index">
@@ -20,14 +20,14 @@
 				</view>
 			</view>
 			<text class="titleInfo dd">租用天数：</text>
-			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds"></image>
-			<button class="btnNum">2</button>
-			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads"></image>
+			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
+			<button class="btnNum">{{number}}</button>
+			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
 			<view class="btnBox">
 				<text class="tt">共消耗精灵令</text>
 				<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImgs"></image>
-				<text class="ttt">x12</text>
-				<button class="btnMore">立即购买</button>
+				<text class="ttt">x{{number*itemInfo.coinCostPerDay}}</text>
+				<button class="btnMore" @click="landBuy">立即购买</button>
 			</view>
 			<!-- <view class="top">
 				<view class="topL">
@@ -73,6 +73,12 @@
 
 <script>
 	export default {
+		props: {
+			itemInfo: {
+				type: Object,
+				default: {}
+			}
+		},
 		data() {
 			return {
 				show: true,
@@ -98,8 +104,13 @@
 					type:"豪华",
 					get:5
 				}],
-				indexTypeTwo:0
+				indexTypeTwo:0,
+				number:0
 			}
+		},
+		mounted(){
+			console.log( this.itemInfo)
+			this.number = this.itemInfo.growthDays
 		},
 		methods: {
 			getClose() {
@@ -112,6 +123,39 @@
 			chooseTypeTwo(index){
 				console.log(index)
 				this.indexTypeTwo = index
+			},
+			dec(){
+				if(this.number== 0){
+					this.number = 0
+					return
+				} 
+				this.number-=1
+				this.$emit('decLandNumber',this.number)
+			},
+			add(){
+				this.number+=1
+				this.$emit('addLandNumber',this.number)
+			},
+			
+			//购买土地
+			async landBuy(){
+				console.log(this.itemInfo.id,11111111111)
+				const data = {
+					landId:this.itemInfo.id,
+					purchaseQuantity:this.number,
+					paymentPassword:'123456'
+				}
+				const res = await this.$api.buyLand(data)
+				console.log(res)
+				const response = {
+					code:res.code,
+					message:res.message
+				}
+				if(res.code == 200){
+					this.$emit('buySuccess',response)
+				}else{
+					this.$emit('buySuccess',response)
+				}
 			}
 		}
 	}

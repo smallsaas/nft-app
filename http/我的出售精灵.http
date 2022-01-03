@@ -3,10 +3,10 @@
 
 
 ### 获取列表页面信息
-GET {{endpoint}}/form?id=6666699
+GET {{endpoint}}/form?id=777444111
 
 ### 提交列表页面信息
-POST {{endpoint}}/form/6666699
+POST {{endpoint}}/form/777444111
 Content-Type: application/json
 
 {  
@@ -48,7 +48,7 @@ Content-Type: application/json
                 "pn":"pageNo"
             },
             "itemModule":{
-                "name":"my-book-spirit-new"
+                "name":"my-self-spirit-new"
             }
         }
     }

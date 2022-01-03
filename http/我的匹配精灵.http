@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {  
     "version": "1",
-    "name": "MyMarket",
+    "name": "MyMatchMarket",
     "title": "我的精灵",
     "pageStyle": {
         "margin-top":"20px"
@@ -28,15 +28,15 @@ Content-Type: application/json
       {
         "type": "autolist",
         "name":"",
-        "key":"e59992z8-bb88-a788-9922-1623488775885",
+        "key":"e59992z8-bb88-a788-9922-1623488775858",
         "container":{
             "height":""
         }
       }
     ],
     "moduleData": {
-         "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"/api/u/wisp/market",
+         "e59992z8-bb88-a788-9922-1623488775858": {
+            "loadApi":"/api/u/player/getWispBookRecords",
             "itemNavigation": "",
             "response":{
                 "list":"records"
@@ -48,7 +48,7 @@ Content-Type: application/json
                 "pn":"pageNo"
             },
             "itemModule":{
-                "name":"my-book-spirit-new"
+                "name":"my-match-spirit-new"
             }
         }
     }

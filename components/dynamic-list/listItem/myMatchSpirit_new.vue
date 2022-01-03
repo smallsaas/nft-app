@@ -2,21 +2,21 @@
 	<view class="spiritMarketNew">
 		<view class="newBox">
 			<view class="imgBox">
-				<image :src="item.previewPhotoUrl" mode="widthFix" class="img"></image>
+				<image :src="item.wisp.previewPhotoUrl" mode="widthFix" class="img"></image>
 			</view>
 			<view class="info">
-				<view class="nameBox"><text class="name">{{item.name}}</text></view>
+				<view class="nameBox"><text class="name">{{item.wispName}}</text></view>
 				<view class="levelBox">
-					<image class="level" src="../../../static/spirit/levelOne.png" mode="widthFix" v-if="item.level==1"></image>
-					<image class="level" src="../../../static/spirit/levelTwo.png" mode="widthFix" v-if="item.level==2"></image>
-					<image class="level" src="../../../static/spirit/levelThree.png" mode="widthFix" v-if="item.level==3"></image>
-					<image class="level" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.level==4"></image>
-					<image class="level" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.level==5"></image>
+					<image class="level" src="../../../static/spirit/levelOne.png" mode="widthFix" v-if="item.wisp.level==1"></image>
+					<image class="level" src="../../../static/spirit/levelTwo.png" mode="widthFix" v-if="item.wisp.level==2"></image>
+					<image class="level" src="../../../static/spirit/levelThree.png" mode="widthFix" v-if="item.wisp.level==3"></image>
+					<image class="level" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.wisp.level==4"></image>
+					<image class="level" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.wisp.level==5"></image>
 				</view>
 				<view class="tBox">
 					<view class="Child">
 						<text class="Co">增长能力</text>
-						<text class="Ct">{{item.growthPercent}}%</text>
+						<text class="Ct">{{item.wisp.growthPercent}}%</text>
 					</view>
 					<view class="Child">
 						<text class="Co">能力值</text>
@@ -24,36 +24,34 @@
 					</view>
 					<view class="Child">
 						<text class="Co">培养天数</text>
-						<text class="Ct">{{item.growthDays}}天</text>
+						<text class="Ct">{{item.wisp.growthDays}}天</text>
 					</view>
 				</view>
 			</view>
-			<view class="timeBox"><text class="time">匹配时间：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
+			<view class="timeBox"><text class="time">预约时间：{{item.appointmentTime}}</text></view>
 			<view class="oBox">
 				<view class="Child">
 					<image src="../../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
-					<text class="number">x{{item.costWispCoin}}</text>
+					<text class="number">x{{item.wisp.costWispCoin}}</text>
 				</view>
 				
 				
-				<view class="Child" @click="showBuyChild(item)">
+				<view class="Child">
 					<image src="../../../static/spirit/company.png" mode="widthFix" class="icon"></image>
-					<text class="number">x{{item.costAccompanyWisp}}</text>
+					<text class="number">x{{item.wisp.costAccompanyWisp}}</text>
 				</view>
 				
 				
 				
-				<view class="Child" @click="showLandChild(item)">
+				<view class="Child">
 					<image src="../../../static/spirit/land.png" mode="widthFix" class="icon"></image>
-					<text class="number">x{{item.growthDays}}</text>
+					<text class="number">x{{item.wisp.growthDays}}</text>
 				</view>
 			</view>
 			<view class="btnBox">
-				<button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
-				<view class="btnStatus" v-if="item.stage=='DISALLOW_BOOK'"><button class="notStatus">不可预约</button></view>
-				<view class="btnStatus" v-if="item.stage=='END_OF_MATCH'"><button class="notStatus">匹配结束</button></view>
-				<view class="btnStatus" v-if="item.stage=='GROWING'"><button class="notStatus">成长中</button></view>
-				<view class="btnStatus" v-if="item.stage=='WAITING_MATCH'"><button class="notStatus">待匹配</button></view>
+				<button class="btn"  v-if="item.bookStatus=='MATCH_SUCCESS'">匹配成功</button>
+				<view class="btnStatus fail" v-if="item.bookStatus=='MATCH_FAIL'"><button class="notStatus">匹配失败</button></view>
+				<view class="btnStatus" v-if="item.bookStatus=='WAITTING_MATCH'"><button class="notStatus">匹配中</button></view>
 			</view>
 		</view>
 		<!-- <view class="box">
@@ -106,28 +104,10 @@
 			</view>
 		</view> -->
 
-		<!-- 预约组件 -->
-		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild" @getMsg="getMsgToast">
-		</spiritBook>
-		<!-- 陪伴精灵组件 -->
-		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy"
-			:itemInfo="itemInfoForComponentChild" @decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
-		<!-- 土地组件 -->
-		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose" :itemInfo="itemInfoForComponentLandChild" @decLandNumber="getLandDec" @addLandNumber="getLandAdd" @buySuccess="childBuyLandSuccess"></spiritLandBuy>
-		<!-- 提示组件 -->
-		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
 </template>
 
 <script>
-	//预约精灵组件
-	import spiritBook from '@/components/spirit/spirit_book.vue'
-	//购买陪伴精灵组件
-	import spiritComponenyBuy from '@/components/spirit/spirit_buy.vue'
-	//购买土地组件
-	import spiritLandBuy from '@/components/spirit/land_buy.vue'
-	//温馨提示
-	import toast from '@/components/spirit/toast.vue'
 	import {
 		globalConfig
 	} from '@/config.js'
@@ -135,107 +115,16 @@
 		api
 	} from '@/common/api.js'
 	export default {
-		name: 'spiritMarketNew',
-		components: {
-			spiritBook,
-			spiritComponenyBuy,
-			spiritLandBuy,
-			toast
-		},
+		name: 'spiritMatchMarketNew',
 		props: {
 			item: Object,
 			ext: Object
 		},
 		data() {
 			return {
-				isShowBookChild: false,
-				itemInfoForChild: {},
-				isShowBuyComponeny: false,
-				isShowLandBuy: false,
-				itemInfoForComponentChild: {},
-				itemInfoForComponentLandChild:{},
-
-				isShowToast: false,
-				toastMsg: ''
 			}
 		},
 		methods: {
-			toast(msg) {
-				this.toastMsg = msg
-				this.isShowToast = true
-			},
-			operation(item) {
-				console.log('operation', item)
-				this.isShowBookChild = true
-				this.itemInfoForChild = item
-				console.log(this.itemInfoForChild)
-			},
-			getChild() {
-				this.isShowBookChild = false
-			},
-			showBuyChild(item) {
-				console.log(item)
-				this.itemInfoForComponentChild = item.companionWisp
-				this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
-				this.isShowBuyComponeny = true
-			},
-			getChildBuy() {
-				this.isShowBuyComponeny = false
-			},
-			showLandChild(item) {
-				this.itemInfoForComponentLandChild = item.land
-				this.itemInfoForComponentLandChild.growthDays = item.growthDays
-				this.isShowLandBuy = true
-			},
-			getLandChildClose() {
-				this.isShowLandBuy = false
-			},
-			closeToast() {
-				this.isShowToast = false
-			},
-			getMsgToast(value) {
-				console.log(value, 12132132132)
-				this.toast(value)
-			},
-			
-			//处理子组件减数量
-			getDec(value){
-				this.itemInfoForComponentChild.costAccompanyWisp = value
-			},
-			getAdd(value){
-				this.itemInfoForComponentChild.costAccompanyWisp = value
-			},
-			
-			//陪伴精灵购买成功
-			childBuySuccess(res){
-				this.isShowBuyComponeny = false
-				console.log(res)
-				if(res.code == 200){
-					this.toast('购买成功!')
-				}else{
-					this.toast(res.message)
-				}
-			},
-			
-			//处理土地子组件加减数量
-			getLandDec(value){
-				console.log(value,1111)
-				this.itemInfoForComponentLandChild.growthDays = value
-			},
-			getLandAdd(value){
-				console.log(value,1111)
-				this.itemInfoForComponentLandChild.growthDays = value
-			},
-			//土地购买成功
-			childBuyLandSuccess(res){
-				this.isShowLandBuy = false
-				console.log(res)
-				if(res.code == 200){
-					this.toast('购买成功!')
-				}else{
-					this.toast(res.message)
-				}
-			},
 		}
 	}
 </script>
@@ -413,6 +302,12 @@
 						color: #FFFFFF;
 						background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 					}
+				}
+				.fail{
+				padding: 0px !important;
+				border: 1px solid #FFFFFF !important;
+				background-image:none !important;
+				background: none !important;
 				}
 			}
 		}

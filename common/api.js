@@ -59,7 +59,7 @@ export const api = {
 	},
 	//购买土地
 	buyLand(params){
-	const url = `${globalConfig.endpoint}/api/crud/oms/landContract/landContracts`
+	const url = `${globalConfig.endpoint}/api/u/land/${params.landId}/buy`
 	return request('POST',url,params)
 	},
 	//获取个人详情信息
