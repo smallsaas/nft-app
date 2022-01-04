@@ -22,9 +22,10 @@
 				</view>
 			</view>
 		</view>
-		<number @forParentClose="getValue" :data="forChild"></number>
+		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild"></number>
 		<transfer v-if="isShowTransfer" @close="getClose"></transfer>
-		<transfercoin v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
+		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
+		<transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
 		<!-- 提示组件 -->
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
@@ -48,7 +49,10 @@
 			return{
 				isShowTransfer:false,
 				isShowTransferCoin:false,
+				isShowTransferCoinTwo:false,
 				forChild:{},
+				forJudge:{},
+				forJudgeTwo:{},
 				
 				isShowToast: false,
 				toastMsg: ''
@@ -59,6 +63,9 @@
 			this.forChild.tradeUnionPoints = this.item.tradeUnionPoints
 			this.forChild.marketPoints = this.item.marketPoints
 			this.forChild.depositPoints = this.item.depositPoints
+			
+			this.forJudge.marketPoints = this.item.marketPoints
+			this.forJudgeTwo.depositPoints = this.item.depositPoints
 		},
 		methods:{
 			transfer(){
@@ -70,8 +77,14 @@
 			getCloseCoin(){
 				this.isShowTransferCoin = false
 			},
+			getCloseCoinTwo(){
+				this.isShowTransferCoinTwo = false
+			},
 			getValue(){
 				this.isShowTransferCoin = true
+			},
+			getValueTwo(){
+				this.isShowTransferCoinTwo = true
 			},
 			goTo(){
 				uni.navigateTo({
@@ -82,6 +95,20 @@
 			
 			getMessageForChild(data){
 				console.log(data)
+				this.isShowTransferCoin = false
+				data.message = data.message + '当前收益市场积分为:' + this.item.marketPoints
+				this.toast(data.message)
+			},
+			
+			getMessageForChildTwo(data){
+				console.log(data)
+				this.isShowTransferCoinTwo = false
+				data.message = data.message + '当前转存积分为:' + this.item.depositPoints
+				this.toast(data.message)
+			},
+			
+			closeToast() {
+				this.isShowToast = false
 			},
 			
 			//打开提示

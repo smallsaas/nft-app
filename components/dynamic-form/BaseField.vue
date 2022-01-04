@@ -52,7 +52,7 @@
 					@input="handleInput"
 					:class="isRead?'readonly':'baseInput'"
 				/>
-				<text v-if="param.tips" style="color: #3D4348;">{{param.tips}}</text>
+				<text v-if="param.tips" style="font-size:24rpx;color: #3D4348;">{{param.tips}}</text>
 				<text v-if="param.canChange" :class="canUse?'canUse':'unUse'" @click="handleChange()">{{saveText}}</text></template>
 		</van-field>
     </view>
@@ -192,10 +192,11 @@
 			width: 100%;
 			margin-right: 15rpx;
 			color: #7D8187;
-			font-size: 10rpx;
+			font-size: 24rpx;
 		}
 		.readonly{
-			width: 7em;
+			width: 7.5em;
+			font-size: 24rpx;
 			color: #B4B6B8;
 		}
 		.canUse,.unUse{

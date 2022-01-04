@@ -182,6 +182,20 @@
 											}"
 					/>	
 					
+					<transfer-spirit-new	v-if="getListItemKey() === 'transfer-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
+					<transfer-spirit-two-new	v-if="getListItemKey() === 'transfer-spirit-two-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>
@@ -222,6 +236,8 @@
 	import myMatchSpiritNew from './listItem/myMatchSpirit_new.vue'
 	import myAdoptSpiritNew from './listItem/myAdoptSpirit_new.vue'
 	import mySelfSpiritNew from './listItem/mySelfSpirit_new.vue'
+	import transferSpiritNew from './listItem/transferSpirit_new.vue'
+	import transferSpiritTwoNew from './listItem/transferSpiritTwo_new.vue'
     
 	export default {
 		components: {
@@ -249,7 +265,9 @@
 			myBookSpiritNew,
 			myMatchSpiritNew,
 			myAdoptSpiritNew,
-			mySelfSpiritNew
+			mySelfSpiritNew,
+			transferSpiritNew,
+			transferSpiritTwoNew
 		},
 		props: {
 			config: {
