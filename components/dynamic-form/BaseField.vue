@@ -32,6 +32,7 @@
 				<textarea 
 					v-else-if="param.type === 'textarea'"
 					auto-height
+					
 					:placeholder="param.placeholder"
 					:placeholder-style="param['placeholder-style'] || 'color: #C8C9CC'"
 					:disabled="isRead"
@@ -191,6 +192,7 @@
 			width: 100%;
 			margin-right: 15rpx;
 			color: #7D8187;
+			font-size: 10rpx;
 		}
 		.readonly{
 			width: 7em;

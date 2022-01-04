@@ -70,7 +70,7 @@
 					duration:1000
 				})
 				setTimeout(()=>{
-					uni.navigateTo({
+					uni.reLaunch({
 						url:'/pages/login_new/login_new'
 					})
 				},1000)

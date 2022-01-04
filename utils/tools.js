@@ -207,7 +207,7 @@ export const upload = async(url,file) =>{
 						icon:"error",
 						title:"上传失败"
 					})
-					resolve("/static/BaseImage/上传失败.png")
+					resolve("/static/BaseImage/fail.png")
 				}
 			}
 		})

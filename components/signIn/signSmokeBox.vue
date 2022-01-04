@@ -45,7 +45,7 @@
 			isSign(){
 				if(this.sign){
 					this.signText="已签到"
-					this.signImage="/static/signSmoke/已签到.png"
+					this.signImage="/static/signSmoke/signedIn.png"
 					this.$forceUpdate()
 					return "sign"
 				}else{

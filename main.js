@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App'
-import Vant from 'vant'
 import 'vant/lib/index.less';
 import DynamicPage from './components/dynamic-page/index.vue'
 import DynamicForm from './components/dynamic-form/index.vue'
@@ -14,8 +13,13 @@ import './other.less'
 
 
 Vue.config.productionTip = false
+// #ifdef H5
+import Vant from 'vant'
 Vue.use(Vant)
+// #endif
+// #ifdef APP-PLUS
 
+// #endif
 Vue.prototype.$config = globalConfig
 Vue.prototype.$api = api
 // 永久缓存
