@@ -45,12 +45,12 @@
 			console.log("加载",this.defaultClick)
 			// #ifdef H5
 				this.contentStyle = {
-					"height":"calc(100vh - 220rpx)"
+					"height": "calc(100vh - 220rpx)"
 				}
 			// #endif
 			// #ifdef APP-PLUS
-				this.contentStyle= {
-					"height":"100vh"
+				this.contentStyle = {
+					"height": "calc(100vh - 140rpx)"
 				}
 			// #endif
 		},

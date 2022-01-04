@@ -6,7 +6,7 @@
 				{{tab.title}}
 			</view>
 		</view>
-		<view class="pageTabbar_Content">
+		<view class="pageTabbar_Content" :style="[contentStyle]">
 			<slot name="content">
 				
 			</slot>
@@ -26,10 +26,21 @@
 		},
 		data(){
 			return {
-				clicked:0
+				clicked:0,
+				contentStyle:{}
 			}
 		},
 		created() {
+			// #ifdef H5
+			this.contentStyle = {
+				"height": "calc(100vh - 138rpx);"
+			}
+			// #endif
+			// #ifdef APP-PLUS
+			this.contentStyle = {
+				"height":"100vh"
+			}
+			// #endif
 			this.$emit("change",this.clicked)
 		},
 		methods:{
@@ -76,7 +87,6 @@
 	}
 	.pageTabbar_Content{
 		width: 100%;
-		height: calc(100vh - 138rpx);
 		overflow: auto;
 		/* border: 1px solid red; */
 		margin-top: -25rpx;
