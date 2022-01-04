@@ -17,12 +17,13 @@
 			console.log(e)
 			console.log(e.id)
 			let id = e.id
-			this.getFormData(id)
+			console.log(id)
+			this.getFormData()
 		},
 		methods: {
-			async getFormData(id){
-				let params = {}
-				let res = await this.$api.getUserInfo(params,id)
+			async getFormData(){
+				console.log('开始了-------------')
+				let res = await this.$api.getInformationNew()
 				console.log(res)
 				this.srvFormData = res.data
 			},

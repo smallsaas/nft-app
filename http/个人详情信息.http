@@ -185,7 +185,7 @@ Content-Type: application/json
                         "renderKey": 1621415432107
                         },
                         "readonly": true,
-                        "__vModel__": "status"
+                        "__vModel__": "wechatAccount"
                     },
                      {
                         "__config__": {
@@ -201,7 +201,7 @@ Content-Type: application/json
                         "renderKey": 1621415432107
                         },
                         "readonly": true,
-                        "__vModel__": "alipayQrCodePhotoUrl"
+                        "__vModel__": "wechatQrCodePhotoUrl"
                     }
                     ]
                 },

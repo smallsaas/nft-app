@@ -6,7 +6,7 @@
 		<view class="names">
 			<text class="name">{{data.name}}</text>
 		</view>
-		<text class="status">账号状态：{{data.status=='NORMAL'?'正常':'冻结'}}</text>
+		<text class="status"><text>账号状态：</text><text :class="{forzen:data.status !=='NORMAL'}">{{data.status=='NORMAL'?'正常':'冻结'}}</text></text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
 			<view class="LImg"><image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image></view>
@@ -81,6 +81,9 @@
 			position: absolute;
 			top: 110rpx;
 			left: 202rpx;
+		}
+		.forzen{
+			color: red !important;
 		}
 		.more{
 			width: 40rpx;

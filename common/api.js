@@ -12,6 +12,7 @@ export const api = {
 	// 个人资料获取
 	getAccountData(id,params){
 		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
+		console.log(id)
 		return request('GET',url,params)
 	},
 	// 个人资料编辑
@@ -42,11 +43,6 @@ export const api = {
 	const url = `${globalConfig.endpoint}/api/app/oauth/player/login`
 	return request('POST',url,params)
 	},
-	//获取用户个人信息
-	getUserInfo(params){
-	const url = `${globalConfig.endpoint}/api/u/player`
-	return request('GET',url,params)
-	},
 	//预约精灵
 	bookSpirit(params){
 	const url = `${globalConfig.endpoint}/api/u/wisp/${params.wispId}/book`
@@ -62,6 +58,13 @@ export const api = {
 	const url = `${globalConfig.endpoint}/api/u/land/${params.landId}/buy`
 	return request('POST',url,params)
 	},
+	
+	//新获取用户个人详情信息
+	getInformationNew(params){
+		const url = `${globalConfig.endpoint}/api/u/player`
+		return request("GET",url,params)
+	},
+	
 	//获取个人详情信息
 	getInformation(params,id){
 		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
