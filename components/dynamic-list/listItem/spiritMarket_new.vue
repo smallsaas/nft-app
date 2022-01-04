@@ -54,6 +54,7 @@
 				<view class="btnStatus" v-if="item.stage=='END_OF_MATCH'"><button class="notStatus">匹配结束</button></view>
 				<view class="btnStatus" v-if="item.stage=='GROWING'"><button class="notStatus">成长中</button></view>
 				<view class="btnStatus" v-if="item.stage=='WAITING_MATCH'"><button class="notStatus">待匹配</button></view>
+				<view class="btnStatus" v-if="item.stage=='WAITING_FOR_PAYMENT '"><button class="notStatus">待支付</button></view>
 			</view>
 		</view>
 		<!-- <view class="box">

@@ -7,8 +7,8 @@
 					<view class="TB"><image src="../../static/spirit/coin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.coinsAmount}}</text></view>
 				</view>
 				<view class="B">
-					<button class="btn" @click="transfer">转让</button>
-					<button class="btn" @click="goTo">历史记录</button>
+					<view class="btnbtn"><button class="btn" @click="transfer">转让</button></view>
+					<view class="btnbtn"><button class="btn btns" @click="goTo">历史记录</button></view>
 				</view>
 			</view>
 			<view class="leftR">
@@ -18,13 +18,15 @@
 				</view>
 				<view class="item">
 					<view class="Info">租用土地</view>
-					<view class="TTT"><image src="../../static/spirit/land.png" mode="widthFix" class="img"></image><text class="infoT">x  2350</text></view>
+					<view class="TTT"><image src="../../static/spirit/land.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.landRemainingDays}}</text></view>
 				</view>
 			</view>
 		</view>
 		<number @forParentClose="getValue" :data="forChild"></number>
 		<transfer v-if="isShowTransfer" @close="getClose"></transfer>
-		<transfercoin v-if="isShowTransferCoin" @closeCoin="getCloseCoin"></transfercoin>
+		<transfercoin v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
+		<!-- 提示组件 -->
+		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
 </template>
 
@@ -32,6 +34,7 @@
 	import number from './number.vue'
 	import transfer from './transfer.vue'
 	import transfercoin from './transfercoin.vue'
+	import toast from '../spirit/toast.vue'
 	export default{
 		props:{
 			// 获取
@@ -40,12 +43,15 @@
 				default:{}
 			},
 		},
-		components:{number,transfer,transfercoin},
+		components:{number,transfer,transfercoin,toast},
 		data(){
 			return{
 				isShowTransfer:false,
 				isShowTransferCoin:false,
-				forChild:{}
+				forChild:{},
+				
+				isShowToast: false,
+				toastMsg: ''
 			}
 		},
 		created() {
@@ -71,7 +77,18 @@
 				uni.navigateTo({
 					url:'/pages/defaultPage/page?id=' + 111222
 				})
-			}
+			},
+			
+			
+			getMessageForChild(data){
+				console.log(data)
+			},
+			
+			//打开提示
+			toast(msg) {
+				this.toastMsg = msg
+				this.isShowToast = true
+			},
 		}
 	}
 </script>
@@ -130,16 +147,25 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-around;
-					.btn{
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						color: #FFFFFF;
-						width: 200rpx;
-						height: 80rpx;
-						font-size: 30rpx;
-						background: rgb(26,39,71);
-						border: 1px solid rgb(102,72,230);
+					.btnbtn{
+						width:160rpx;
+						height: 64rpx;
+						padding: 2rpx;
+						border-radius: 8px;
+						border: 1px solid;
+						background-image: linear-gradient(to right bottom,rgba(147, 49, 245, 1),rgba(11, 149, 255, 1));
+						.btn{
+							width:160rpx;
+							height: 64rpx;
+							font-size: 12px;
+							font-family: PingFang SC-Medium, PingFang SC;
+							font-weight: 500;
+							color: #FFFFFF;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							background: rgb(25,38,68);
+						}
 					}
 				}
 			}

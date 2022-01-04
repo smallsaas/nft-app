@@ -1,6 +1,18 @@
 <template>
-	<view class="bottomTaps">
-		<view class="box">
+	<view class="bottomTapss">
+		<view class="item"  v-for="(item,index) in list" :key="index" @click="opeation(index)">
+			<image :src="item.icon" mode="widthFix" class="icon"></image>
+			<text class="name">{{item.title}}</text>
+			<image class="moreImg" src="../../static/service/more.png" mode="widthFix"></image>
+		</view>
+		<view class="item items" @click="logout">
+			<image src="../../static/service/out.png" mode="widthFix" class="icon"></image>
+			<text class="name">退出登录</text>
+			<image class="moreImg" src="../../static/service/more.png" mode="widthFix"></image>
+		</view>
+		<view class="line"></view>
+		<view class="line lineT"></view>
+		<!-- <view class="box">
 			<view class="item" v-for="(item,index) in list" :key="index" @click="opeation(index)">
 				<view class="itemL">
 					<image class="tapI" :src="item.icon" mode="widthFix"></image>
@@ -81,6 +93,58 @@
 </script>
 
 <style lang="less">
+	.bottomTapss{
+		width: 100%;
+		height: 300rpx !important;
+		margin-top: 34rpx;
+		position: relative;
+		.line{
+			position: absolute;
+			top: 100rpx;
+			left: 50rpx;
+			width: 323px;
+			height: 1rpx;
+			border-bottom: 1px solid rgb(36,43,48) !important;
+		}
+		.lineT{
+			top: 200rpx;
+		}
+		.item{
+			width: 343px;
+			height: 50px;
+			border-radius: 0px 0px 0px 0px;
+			opacity: 1;
+			margin: 0 auto;
+			background-color: #11181E;
+			position: relative;
+			.icon{
+				margin: 36rpx 34rpx;
+				width: 32rpx;
+				height: 32rpx !important;
+				
+			}
+			.name{
+				font-size: 16px;
+				font-family: PingFang SC-Medium, PingFang SC;
+				font-weight: 500;
+				color: #FFFFFF;
+				position: absolute;
+				left: 80rpx;
+				top: 28rpx;
+			}
+			.moreImg{
+				position: absolute;
+				right: 32rpx;
+				top: 26rpx;
+				width: 48rpx;
+				height: 48rpx !important;
+			}
+		}
+		.items{
+			margin-top: 20rpx;
+			background-color: #11181E;
+		}
+	}
 	.bottomTaps{
 		width: 100%;
 		height: 400rpx !important;

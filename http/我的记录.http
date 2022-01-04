@@ -33,7 +33,8 @@ Content-Type: application/json
                 "recommendPoints":"recommendPoints",
                 "tradeUnionPoints":"tradeUnionPoints",
                 "marketPoints":"marketPoints",
-                "depositPoints":"depositPoints"
+                "depositPoints":"depositPoints",
+                "landRemainingDays":"landRemainingDays"
             }
         }
     ],

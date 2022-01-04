@@ -1,6 +1,6 @@
 {
     "name" : "h5-render",
-    "appid" : "__UNI__D05D711",
+    "appid" : "__UNI__672155F",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -81,10 +81,10 @@
                     "target" : "https://api.mock.smallsaas.cn",
                     "changeOrigin" : true
                 },
-				"/api" : {
-				    "target" : "http://repo.dev.smallsaas.cn:8084",
-				    "changeOrigin" : true
-				}
+                "/api" : {
+                    "target" : "http://repo.dev.smallsaas.cn:8084",
+                    "changeOrigin" : true
+                }
             }
         }
     }

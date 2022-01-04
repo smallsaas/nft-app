@@ -5,7 +5,7 @@
 			<tab class="tab"></tab>
 		</view>
 		<!-- <down class="down"></down> -->
-		<view class="bgs"><image src="https://s2.loli.net/2021/12/30/JusqwV13KkaWlrT.png" mode="widthFix"></image></view>
+		<view class="bgs"><image src="https://s2.loli.net/2021/12/30/JusqwV13KkaWlrT.png" mode="widthFix" class="chatu"></image></view>
 		<bottomTap class="bottomTapa" :data="forBottomTapChild"></bottomTap>
 	</view>
 </template>
@@ -31,9 +31,11 @@
 			
 		},
 		created() {
+			console.log(this.item,11111111)
 			this.forChild.userId = this.item.userId
 			this.forChild.name = this.item.name
 			this.forChild.status = this.item.status
+			this.forChild.avatar = this.item.avatar
 			this.forBottomTapChild.invitationCode = this.item.invitationCode
 			console.log(this.forChild)
 		}
@@ -69,6 +71,10 @@
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;
+			.chatu{
+				width: 343px;
+				height: 102px !important;
+			}
 		}
 		
 		.bottomTapa{

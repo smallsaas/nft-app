@@ -28,7 +28,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="timeBox"><text class="time">预约时间：{{item.appointmentTime}}</text></view>
+			<view class="timeBox"><text class="time">预约时间：{{change}}</text></view>
 			<view class="oBox">
 				<view class="Child">
 					<image src="../../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
@@ -49,9 +49,9 @@
 				</view>
 			</view>
 			<view class="btnBox">
-				<button class="btn"  v-if="item.bookStatus=='MATCH_SUCCESS'">匹配成功</button>
+				<button class="btn" v-if="item.bookStatus=='MATCH_SUCCESS'">付款(剩余59:28)</button>
 				<view class="btnStatus fail" v-if="item.bookStatus=='MATCH_FAIL'"><button class="notStatus">匹配失败</button></view>
-				<view class="btnStatus" v-if="item.bookStatus=='WAITTING_MATCH'"><button class="notStatus">匹配中</button></view>
+				<view class="btnStatus" v-if="item.bookStatus=='WAITING_MATCH'"><button class="notStatus">等待匹配</button></view>
 			</view>
 		</view>
 		<!-- <view class="box">
@@ -120,8 +120,16 @@
 			item: Object,
 			ext: Object
 		},
+		mounted() {
+			const s = this.item.appointmentTime.split('T')
+			const t = s[0]
+			const th = s[1]
+			const time = t + ' ' + th
+			this.change = time
+		},
 		data() {
 			return {
+				change:''
 			}
 		},
 		methods: {

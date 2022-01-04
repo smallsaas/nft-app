@@ -31,7 +31,8 @@ Content-Type: application/json
                 "userId":"userId",
                 "name":"name",
                 "status":"status",
-                "invitationCode":"invitationCode"
+                "invitationCode":"invitationCode",
+                "avatar":"avatar"
             }
         }
     ],

@@ -28,7 +28,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="timeBox"><text class="time">预约时间：{{item.appointmentTime}}</text></view>
+			<view class="timeBox"><text class="time">预约时间：{{change}}</text></view>
 			<view class="oBox">
 				<view class="Child">
 					<image src="../../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
@@ -124,8 +124,16 @@
 			item: Object,
 			ext: Object
 		},
+		mounted() {
+			const s = this.item.appointmentTime.split('T')
+			const t = s[0]
+			const th = s[1]
+			const time = t + ' ' + th
+			this.change = time
+		},
 		data() {
 			return {
+				change:''
 			}
 		},
 		methods: {

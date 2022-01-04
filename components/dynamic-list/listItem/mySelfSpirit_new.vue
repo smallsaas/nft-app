@@ -14,14 +14,15 @@
 				<text class="info">能力值：400</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<text class="info">增长能力：10%</text>
+				<text class="info">出售：2021-12-16 12:25:48</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">领养：2021-12-16 12:25:48</text>
+				<text class="info">买家：18545879654</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<text class="time">剩余时间 48:52:47</text>
+				<text class="timeOne">对方付款中...</text>
+				<text class="timeTwo">剩余付款时间 01:58:32</text>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -142,9 +143,29 @@
 				height: 142rpx;
 				position: absolute;
 				bottom: 0rpx;
-				display: flex;
-				align-items: center;
-				justify-content: space-around;
+				position: relative;
+				.timeOne{
+					width: 81px;
+					height: 22px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFAD33;
+					position: absolute;
+					top: 388rpx;
+					left: 32rpx;
+				}
+				.timeTwo{
+					width: 147px;
+					height: 22px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+					position: absolute;
+					top: 388rpx;
+					left: 360rpx;
+				}
 			}
 		}
 	}

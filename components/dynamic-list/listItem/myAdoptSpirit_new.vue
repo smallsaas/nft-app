@@ -191,7 +191,7 @@
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						background: #050E17;
+						background: rgb(25,38,68);
 					}
 				}
 			}
