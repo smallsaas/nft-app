@@ -1,7 +1,7 @@
 <!-- 由于web-view中不支持嵌套多层web-view 所以这边使用slot方式来决定不同页面的渲染 -->
 <template>
 	<view class="navBar">
-		<view class="navBar-content">
+		<view class="navBar-content" :style="[contentStyle]">
 			<slot name="content-container">
 				
 			</slot>
@@ -36,12 +36,23 @@
 		data(){
 			return {
 				url:"",
-				clicked:0
+				clicked:0,
+				contentStyle:{}
 			}
 		},
 		created() {
 			this.clicked = this.defaultClick
 			console.log("加载",this.defaultClick)
+			// #ifdef H5
+				this.contentStyle = {
+					"height":"calc(100vh - 220rpx)"
+				}
+			// #endif
+			// #ifdef APP-PLUS
+				this.contentStyle= {
+					"height":"100vh"
+				}
+			// #endif
 		},
 		methods:{
 			// 点击时事件
@@ -63,7 +74,6 @@
 <style lang="less">
 	.navBar-content{
 		width: 100%;
-		height: calc(100vh - 220rpx);
 		overflow: auto;
 		position: relative;
 	}
