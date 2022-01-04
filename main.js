@@ -18,7 +18,7 @@ import Vant from 'vant'
 Vue.use(Vant)
 // #endif
 // #ifdef APP-PLUS
-
+import './vantComponent.js'
 // #endif
 Vue.prototype.$config = globalConfig
 Vue.prototype.$api = api
@@ -28,7 +28,7 @@ Vue.prototype.$cache = cache
 Vue.prototype.$timeCache = timeCache
 Vue.prototype.$reload = reload
 Vue.prototype.$upload = upload
-
+//组件声明
 Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)
 Vue.component("dynamic-list",DynamicList)
