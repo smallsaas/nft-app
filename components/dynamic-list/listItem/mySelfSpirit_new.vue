@@ -59,6 +59,7 @@
 		width: 100%;
 		height: 100%;
 		background: #050E17;
+		padding-bottom: 20rpx;
 		.item{
 			margin: 0rpx auto;
 			width: 686rpx;
@@ -69,7 +70,7 @@
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
 			position: relative;
-			margin-bottom: 20rpx;
+			// margin-bottom: 20rpx;
 			.imgBox{
 				width: 280rpx;
 				height: 280rpx;
