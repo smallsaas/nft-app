@@ -1,6 +1,60 @@
 <template>
-	<view class="spiritMarketNew">
-		<view class="newBox">
+	<view class="spiritMarketNew newBuGu">
+		<view class="item">
+			<view class="left">
+				<view class="o">
+					<image :src="item.previewPhotoUrl" mode="aspectFit" class="spiritImg"></image>
+				</view>
+				<view class="t"><text class="matchTime">匹配时间：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
+				<view class="th">
+					<view class="thC">
+						<image src="../../../static/spirit/newCoin.png" mode="aspectFit" class="coinImg"></image>
+						<text class="numberText">x{{item.costWispCoin}}</text>
+					</view>
+					<view class="thC">
+						<image src="../../../static/spirit/newC.png" mode="aspectFit" class="coinImg"></image>
+						<text class="numberText">x{{item.costAccompanyWisp}}</text>
+					</view>
+					<view class="thC">
+						<image src="../../../static/spirit/land.png" mode="aspectFit" class="coinImg"></image>
+						<text class="numberText">x{{item.growthDays}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="right">
+				<view class="ro">
+					<text class="spiritName">{{item.name}}</text>
+				</view>
+				<view class="rt">
+					<image class="levelImg" src="../../../static/spirit/levelOne.png" mode="widthFix" v-if="item.level==1"></image>
+					<image class="levelImg" src="../../../static/spirit/levelTwo.png" mode="widthFix" v-if="item.level==2"></image>
+					<image class="levelImg" src="../../../static/spirit/levelThree.png" mode="widthFix" v-if="item.level==3"></image>
+					<image class="levelImg" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.level==4"></image>
+					<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.level==5"></image>
+				</view>
+				<view class="rth">
+					<text class="rthL">增长能力</text>
+					<text class="rthR">{{item.growthPercent}}%</text>
+				</view>
+				<view class="rth rtho">
+					<text class="rthL">能力值</text>
+					<text class="rthR">400-500</text>
+				</view>
+				<view class="rth rtht">
+					<text class="rthL">培养天数</text>
+					<text class="rthR">{{item.growthDays}}</text>
+				</view>
+				<view class="btnBox">
+					<button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
+					<view class="father" v-if="item.stage=='DISALLOW_BOOK'"><button class="noStatus">不可预约</button></view>
+					<view class="father" v-if="item.stage=='END_OF_MATCH'"><button class="noStatus">匹配结束</button></view>
+					<view class="father" v-if="item.stage=='GROWING'"><button class="noStatus">成长中</button></view>
+					<view class="father" v-if="item.stage=='WAITING_MATCH'"><button class="noStatus">待匹配</button></view>
+					<view class="father" v-if="item.stage=='WAITING_FOR_PAYMENT '"><button class="noStatus">待支付</button></view>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="newBox">
 			<view class="imgBox">
 				<image :src="item.previewPhotoUrl" mode="widthFix" class="img"></image>
 			</view>
@@ -56,65 +110,18 @@
 				<view class="btnStatus" v-if="item.stage=='WAITING_MATCH'"><button class="notStatus">待匹配</button></view>
 				<view class="btnStatus" v-if="item.stage=='WAITING_FOR_PAYMENT '"><button class="notStatus">待支付</button></view>
 			</view>
-		</view>
-		<!-- <view class="box">
-			<view class="itemBox">
-				<view class="trueItem">
-					<view class="ItemTop">
-						<view class="ItemTopLeft">
-							<image class="spiritImg" :src="item.previewPhotoUrl" mode="widthFix"></image>
-						</view>
-						<view class="ItemTopRight">
-							<view class="spiritName">{{item.name}}</view>
-							<view class="spiritLevel">
-								<image class="levelImg" src="../../../static/spirit/levelOne.png" mode="widthFix" v-if="item.level==1"></image>
-								<image class="levelImg" src="../../../static/spirit/levelTwo.png" mode="widthFix" v-if="item.level==2"></image>
-								<image class="levelImg" src="../../../static/spirit/levelThree.png" mode="widthFix" v-if="item.level==3"></image>
-								<image class="levelImg" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.level==4"></image>
-								<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.level==5"></image>
-							</view>
-							<view class="infoItem"><text class="infoTitle">增长能力:</text><text class="infoValue">{{item.growthPercent}}%</text></view>
-							<view class="infoItem"><text class="infoTitle">能力值:</text><text class="infoValue">10%</text></view>
-							<view class="infoItem"><text class="infoTitle">培养天数:</text><text class="infoValue">{{item.growthDays}}天</text></view>
-						</view>
-					</view>
-					<view class="ItemCenter"><text class="matchTime">匹配时间:{{item.startMatchTime.substring(0,5)}}-{{item.endMatchTime.substring(0,5)}}</text></view>
-					<view class="ItemBottom">
-						<view class="ItemLeft">
-							<view class="itemB">
-								<image class="configImg" src="../../../static/spirit/coin.png" mode="widthFix"></image>
-								<text class="configTitle">x{{item.costWispCoin}}</text>
-							</view>
-							<view class="itemB" @click="showBuyChild(item)">
-								<image class="configImg" src="../../../static/spirit/company.png" mode="widthFix"></image>
-								<text class="configTitle">x{{item.costAccompanyWisp}}</text>
-							</view>
-							<view class="itemB" @click="showLandChild">
-								<image class="configImg" src="../../../static/spirit/land.png" mode="widthFix"></image>
-								<text class="configTitle">x{{item.growthDays}}</text>
-							</view>
-						</view>
-						<view class="ItemRight">
-							<button class="BTN" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
-							<view class="TTTT" v-if="item.stage=='DISALLOW_BOOK'"><button class="BTN BTNthree BBB">不可预约</button></view>
-							<button class="BTN BTNthree" v-if="item.stage=='WAITING_MATCH'">待匹配</button>
-							<button class="BTN BTNthree" v-if="item.stage=='WAITING_FOR_PAYMENT'">匹配结束</button>
-							<view class="TTTT" v-if="item.stage=='END_OF_MATCH'"><button class="BTN BTNthree BBB">匹配结束</button></view>
-							<button class="BTN BTNfour" v-if="item.stage=='GROWING'">成长中</button>
-						</view>
-					</view>
-				</view>
-			</view>
 		</view> -->
 
 		<!-- 预约组件 -->
 		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild" @getMsg="getMsgToast">
 		</spiritBook>
 		<!-- 陪伴精灵组件 -->
-		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy"
-			:itemInfo="itemInfoForComponentChild" @decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
+		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy" :itemInfo="itemInfoForComponentChild"
+			@decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
 		<!-- 土地组件 -->
-		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose" :itemInfo="itemInfoForComponentLandChild" @decLandNumber="getLandDec" @addLandNumber="getLandAdd" @buySuccess="childBuyLandSuccess"></spiritLandBuy>
+		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose"
+			:itemInfo="itemInfoForComponentLandChild" @decLandNumber="getLandDec" @addLandNumber="getLandAdd"
+			@buySuccess="childBuyLandSuccess"></spiritLandBuy>
 		<!-- 提示组件 -->
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
@@ -154,7 +161,7 @@
 				isShowBuyComponeny: false,
 				isShowLandBuy: false,
 				itemInfoForComponentChild: {},
-				itemInfoForComponentLandChild:{},
+				itemInfoForComponentLandChild: {},
 
 				isShowToast: false,
 				toastMsg: ''
@@ -198,42 +205,42 @@
 				console.log(value, 12132132132)
 				this.toast(value)
 			},
-			
+
 			//处理子组件减数量
-			getDec(value){
+			getDec(value) {
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
-			getAdd(value){
+			getAdd(value) {
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
-			
+
 			//陪伴精灵购买成功
-			childBuySuccess(res){
+			childBuySuccess(res) {
 				this.isShowBuyComponeny = false
 				console.log(res)
-				if(res.code == 200){
+				if (res.code == 200) {
 					this.toast('购买成功!')
-				}else{
+				} else {
 					this.toast(res.message)
 				}
 			},
-			
+
 			//处理土地子组件加减数量
-			getLandDec(value){
-				console.log(value,1111)
+			getLandDec(value) {
+				console.log(value, 1111)
 				this.itemInfoForComponentLandChild.growthDays = value
 			},
-			getLandAdd(value){
-				console.log(value,1111)
+			getLandAdd(value) {
+				console.log(value, 1111)
 				this.itemInfoForComponentLandChild.growthDays = value
 			},
 			//土地购买成功
-			childBuyLandSuccess(res){
+			childBuyLandSuccess(res) {
 				this.isShowLandBuy = false
 				console.log(res)
-				if(res.code == 200){
+				if (res.code == 200) {
 					this.toast('购买成功!')
-				}else{
+				} else {
 					this.toast(res.message)
 				}
 			},
@@ -242,182 +249,178 @@
 </script>
 
 <style lang="less">
-	.spiritMarketNew {
+	.newBuGu {
 		width: 100%;
 		height: 100%;
-		background: rgb(5, 14, 23);
+		display: flex;
+		flex-direction: row;
 		padding-bottom: 20rpx;
-		padding-bottom: 10px;
-		.newBox {
+		background-color: #050e17;
+		.item {
 			width: 95%;
-			height: 230px;
-			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
-			// box-shadow: inset 1px 1px 0px 1px rgba(255,255,255,0.75), 0px 4px 16px 1px rgba(0,0,0,0.25);
-			border-radius: 8px 8px 8px 8px;
-			opacity: 1;
-			margin: 0 auto;
-			// margin-bottom: 10px;
+			height: 460rpx;
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
-			position: relative;
+			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
+			border-radius: 8px 8px 8px 8px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: row;
 
-			.imgBox {
-				width: 140px;
-				height: 140px;
-				border-radius: 0px 0px 0px 0px;
-				opacity: 1;
-				position: absolute;
-				margin-top: 12px;
-				margin-left: 12px;
-
-				.img {
-					width: 100%;
-					height: 100% !important;
-				}
-			}
-
-			.info {
-				width: 179px;
-				height: 140px;
-				position: absolute;
-				top: 12px;
-				left: 164px;
+			.left {
+				margin-top: 24rpx;
+				margin-left: 60rpx;
 				display: flex;
 				flex-direction: column;
-				.nameBox {
-					width: 179px;
-					height: 22px;
-					margin-top: 4px;
 
-					.name {
-						font-size: 16px;
-						font-family: PingFang SC-Bold, PingFang SC;
-						font-weight: bold;
-						color: #FFFFFF;
+				.o {
+					.spiritImg {
+						width: 280rpx;
+						height: 280rpx !important;
 					}
 				}
-				
-				.levelBox{
-					width: 179px;
-					height: 22px;
-					margin-top: 8px;
-					.level{
-						width: 67px;
-						height: 18px !important;
-					}
-				}
-				.tBox{
-					// width: 179px;
-					height: 22px;
-					margin-top: 12px;
-					.Child{
-						// width: 163px;
-						height: 19px;
-						display: flex;
-						justify-content: space-between;
-						padding-bottom: 2px;
-						align-items: flex-end;
-						border-bottom: 1px solid rgba(255,255,255,0.2);
-						.Co{
-							font-size: 12px;
-							font-family: PingFang SC-Regular, PingFang SC;
-							font-weight: 400;
-							color: #FFFFFF;
-						}
-						.Ct{
-							font-size: 12px;
-							font-family: PingFang SC-Regular, PingFang SC;
-							font-weight: 400;
-							color: #FFFFFF;
-						}
-					}
-				}
-			}
-			.timeBox{
-				width: 275px;
-				height: 14px;
-				position: absolute;
-				left: 27px;
-				top: 152px;
-				.time{
-					font-size: 10px;
-					font-family: PingFang SC-Regular, PingFang SC;
-					font-weight: 400;
-					color: #FFFFFF;
-				}
-			}
-			.oBox{
-				width: 120px;
-				height: 42px;
-				position: absolute;
-				left: 27px;
-				top: 174px;
-				display: flex;
-				.Child{
-					flex: 1;
+
+				.t {
 					display: flex;
-					flex-direction: column;
 					align-items: center;
 					justify-content: center;
-					.icon{
-						width: 20px;
-						height: 20px !important;
-					}
-					.number{
-						margin-top: 2px;
-						font-size: 14px;
+
+					.matchTime {
+						font-size: 20rpx;
 						font-family: PingFang SC-Regular, PingFang SC;
 						font-weight: 400;
-						color: #FFFFFF;
+						color: #c7cbd2;
+					}
+				}
+
+				.th {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-around;
+					margin-top: 16rpx;
+
+					.thC {
+						display: flex;
+						flex-direction: column;
+						flex: 1;
+						align-items: center;
+						justify-content: center;
+
+						.coinImg {
+							width: 40rpx;
+							height: 40rpx !important;
+							margin-bottom: 4rpx;
+						}
+
+						.numberText {
+							font-size: 28rpx;
+							font-family: PingFang SC-Regular, PingFang SC;
+							font-weight: 400;
+							color: #fdfdfd;
+						}
 					}
 				}
 			}
-			.btnBox{
-				width: 163px;
-				height: 40px;
-				position: absolute;
-				top: 174px;
-				right: 16px;
-				.btn{
-					width: 163px;
-					height: 40px;
-					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
-					border-radius: 8px 8px 8px 8px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					font-size: 16px;
-					font-family: PingFang SC-Medium, PingFang SC;
-					font-weight: 500;
-					color: #FFFFFF;
+			.right {
+				// width: 288rpx;
+				flex: 1;
+				margin-top: 24rpx;
+				margin-left: 24rpx;
+				display: flex;
+				flex-direction: column;
+				.ro {
+					// width: 363rpx;
+					.spiritName {
+						font-size: 32rpx;
+						font-family: PingFang SC-Bold, PingFang SC;
+						font-weight: bold;
+						color: #ffffff;
+					}
 				}
-				.btnStatus{
-					width: 163px;
-					height: 40px;
-					box-sizing: border-box; 
-					padding: 1px; 
-					border-radius: 8px; 
-					border: 1px solid;
-					background-image: linear-gradient(to right bottom,rgba(147, 49, 245, 1),rgba(11, 149, 255, 1));
+				.rt {
+					margin-top: 16rpx;
+					.levelImg {
+						width: 134rpx;
+						height: 36rpx !important;
+					}
+				}
+				.rth{
+					display: flex;
+					flex-direction: row;
+					align-items: flex-end;
+					justify-content: space-between;
+					padding-bottom: 4rpx;
+					border-bottom: 1rpx solid #444e68;
+					height: 54rpx;
+					margin-right: 15px;
+					// width: 326rpx;
+					// flex:1;
+					.rthL{
+						font-size: 12px;
+						font-family: PingFang SC-Regular, PingFang SC;
+						font-weight: 400;
+						color: #c8ccd3;
+					}
+					.rthR{
+						font-size: 12px;
+						font-family: PingFang SC-Regular, PingFang SC;
+						font-weight: 400;
+						color: #dcdde2;
+					}
+				}
+				.rtho,.rtht{
+					// margin: 0rpx !important;
+				}
+				.btnBox{
+					margin-top: 44rpx;
+					// width: 326rpx;
+					margin-right: 30rpx;
+					height: 80rpx;
 					display: flex;
 					align-items: center;
-					justify-content: center;
-					.notStatus{
-						border-radius: 8px;
+					justify-content: flex-end;
+					.btn{
+						width: 326rpx;
+						height: 80rpx;
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						width: 163px;
-						height: 38px;
-						border-radius: 15rpx;
-						font-size: 16px;
+						font-size: 32rpx;
 						font-family: PingFang SC-Medium, PingFang SC;
 						font-weight: 500;
-						color: #FFFFFF;
-						background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
+						color: #ffffff;
+						background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
+						border-radius: 16rpx 16rpx 16rpx 16rpx;
 					}
+					
+					.father{
+						width: 326rpx;
+						height: 80rpx;
+						opacity: 1;
+						border: 1rpx solid;
+						background-image: linear-gradient(to right,#9331F5,#0B95FF );
+						border-radius: 16rpx 16rpx 16rpx 16rpx;
+						padding: 0.1rpx;
+						color: #ffffff !important;
+						.noStatus{
+							width: 326rpx;
+							height: 80rpx;
+							border-radius: 16rpx 16rpx 16rpx 16rpx;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							background: #172540;
+							font-size: 32rpx;
+							font-family: PingFang SC-Medium, PingFang SC;
+							font-weight: 500;
+							color: #ffffff !important;
+						}
+					}
+					
 				}
 			}
 		}
 	}
+
 </style>
