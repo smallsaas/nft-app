@@ -1,6 +1,8 @@
 <template>
 	<view class="spiritBuy">
-		<van-popup class="box" v-model="show" round position="bottom" @close="getClose">
+		<!-- <van-popup class="box" v-model="show" round position="bottom" @close="getClose"> -->
+
+		<view class="box">
 			<view class="imgBox">
 				<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image>
 			</view>
@@ -29,6 +31,7 @@
 				<text class="ttt">x{{number*itemInfo.coinCostPerDay}}</text>
 				<button class="btnMore" @click="landBuy">立即购买</button>
 			</view>
+			<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 			<!-- <view class="top">
 				<view class="topL">
 					<image class="Cimg" src="../../static/spirit/land.png" mode="widthFix"></image>
@@ -67,7 +70,8 @@
 					<button class="buyBtn">立即购买</button>
 				</view>
 			</view> -->
-		</van-popup>
+			<!-- </van-popup> -->
+		</view>
 	</view>
 </template>
 
@@ -82,79 +86,80 @@
 		data() {
 			return {
 				show: true,
-				landType:[{
-					id:1,
-					type:'租用土地'
-				},{
-					id:2,
-					type:"自用土地"
+				landType: [{
+					id: 1,
+					type: '租用土地'
+				}, {
+					id: 2,
+					type: "自用土地"
 				}],
-				indexType:0,
-				landTypeTwo:[{
-					id:1,
-					type:'毛胚',
-					get:0
-				},{
-					id:2,
-					type:"精装",
-					get:2
-				},
-				{
-					id:3,
-					type:"豪华",
-					get:5
-				}],
-				indexTypeTwo:0,
-				number:0
+				indexType: 0,
+				landTypeTwo: [{
+						id: 1,
+						type: '毛胚',
+						get: 0
+					}, {
+						id: 2,
+						type: "精装",
+						get: 2
+					},
+					{
+						id: 3,
+						type: "豪华",
+						get: 5
+					}
+				],
+				indexTypeTwo: 0,
+				number: 0
 			}
 		},
-		mounted(){
-			console.log( this.itemInfo)
+		mounted() {
+			console.log(this.itemInfo)
 			this.number = this.itemInfo.growthDays
 		},
 		methods: {
 			getClose() {
 				this.$emit('closeLandChild', false)
 			},
-			chooseType(index){
+			chooseType(index) {
 				console.log(index)
 				this.indexType = index
 			},
-			chooseTypeTwo(index){
+			chooseTypeTwo(index) {
 				console.log(index)
 				this.indexTypeTwo = index
 			},
-			dec(){
-				if(this.number== 0){
+			dec() {
+				if (this.number == 0) {
 					this.number = 0
 					return
-				} 
-				this.number-=1
-				this.$emit('decLandNumber',this.number)
+				}
+				this.number -= 1
+				this.$emit('decLandNumber', this.number)
 			},
-			add(){
-				this.number+=1
-				this.$emit('addLandNumber',this.number)
+			add() {
+				this.number += 1
+				this.$emit('addLandNumber', this.number)
 			},
-			
+
 			//购买土地
-			async landBuy(){
-				console.log(this.itemInfo.id,11111111111)
+			async landBuy() {
+				console.log(this.itemInfo.id, 11111111111)
 				const data = {
-					landId:this.itemInfo.id,
-					purchaseQuantity:this.number,
-					paymentPassword:'123456'
+					landId: this.itemInfo.id,
+					purchaseQuantity: this.number,
+					paymentPassword: '123456'
 				}
 				const res = await this.$api.buyLand(data)
 				console.log(res)
 				const response = {
-					code:res.code,
-					message:res.message
+					code: res.code,
+					message: res.message
 				}
-				if(res.code == 200){
-					this.$emit('buySuccess',response)
-				}else{
-					this.$emit('buySuccess',response)
+				if (res.code == 200) {
+					this.$emit('buySuccess', response)
+				} else {
+					this.$emit('buySuccess', response)
 				}
 			}
 		}
@@ -163,8 +168,11 @@
 
 <style lang="less">
 	.spiritBuy {
-		width: 100%;
-		height: 100%;
+		width: 375px;
+		height: 407px;
+		position: fixed;
+		bottom: -10rpx;
+		z-index: 99999999;
 
 		.box {
 			width: 375px;
@@ -175,8 +183,16 @@
 			z-index: 9999999 !important;
 			position: fixed;
 			
-			
-			.imgBox{
+			.closeImg{
+				width:50rpx;
+				height: 50rpx;
+				position: absolute;
+				right: 50rpx;
+				top:20rpx;
+			}
+
+
+			.imgBox {
 				width: 100px;
 				height: 100px;
 				background: #1C294C;
@@ -189,13 +205,14 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				.img{
+
+				.img {
 					width: 88px;
 					height: 88px;
 				}
 			}
-			
-			.name{
+
+			.name {
 				width: 72px;
 				height: 25px;
 				font-size: 18px;
@@ -204,10 +221,10 @@
 				color: #FFFFFF;
 				position: absolute;
 				top: 32px;
-				left:128px;
+				left: 128px;
 			}
-			
-			.typeOne{
+
+			.typeOne {
 				width: 160px;
 				height: 24px;
 				position: absolute;
@@ -215,7 +232,8 @@
 				left: 128px;
 				display: flex;
 				flex-direction: row;
-				.item{
+
+				.item {
 					width: 64px;
 					height: 24px;
 					border-radius: 2px 2px 2px 2px;
@@ -225,19 +243,22 @@
 					align-items: center;
 					justify-content: center;
 					margin-right: 8px;
-					.types{
+
+					.types {
 						font-size: 12px;
 						font-family: PingFang SC-Regular, PingFang SC;
 						font-weight: 400;
 						color: #FFFFFF;
 						position: relative;
 					}
-					.type{
+
+					.type {
 						font-size: 12px;
 						font-family: PingFang SC-Regular, PingFang SC;
 						font-weight: 400;
 						color: #0B95FF;
 						position: relative;
+
 						&::after {
 							position: absolute;
 							right: -10px;
@@ -249,13 +270,13 @@
 							width: 0rpx;
 							height: 0rpx;
 							border: 10px solid red;
-							border-color: transparent rgb(11,149,255) rgb(11,149,255) transparent;
+							border-color: transparent rgb(11, 149, 255) rgb(11, 149, 255) transparent;
 						}
 					}
 				}
 			}
-			
-			.info{
+
+			.info {
 				width: 84px;
 				height: 20px;
 				font-size: 14px;
@@ -266,8 +287,8 @@
 				top: 108px;
 				left: 130px;
 			}
-			
-			.coinImg{
+
+			.coinImg {
 				position: absolute;
 				width: 20px;
 				height: 20px !important;
@@ -275,8 +296,8 @@
 				left: 214px;
 				margin-right: 3px;
 			}
-			
-			.numbers{
+
+			.numbers {
 				position: absolute;
 				top: 105px;
 				left: 242px;
@@ -287,8 +308,8 @@
 				font-weight: bold;
 				color: #FFFFFF;
 			}
-			
-			.titleInfo{
+
+			.titleInfo {
 				position: absolute;
 				top: 156px;
 				left: 16px;
@@ -299,8 +320,8 @@
 				font-weight: 400;
 				color: #FFFFFF;
 			}
-			
-			.typeTwo{
+
+			.typeTwo {
 				position: absolute;
 				width: 200px;
 				height: 60px;
@@ -309,7 +330,8 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: wrap;
-				.tItem{
+
+				.tItem {
 					width: 90px;
 					height: 24px;
 					border-radius: 2px 2px 2px 2px;
@@ -320,18 +342,21 @@
 					justify-content: center;
 					margin-right: 8px;
 					margin-bottom: 8px;
-					.infoTwoItem{
+
+					.infoTwoItem {
 						font-size: 12px;
 						font-family: PingFang SC-Regular, PingFang SC;
 						font-weight: 400;
 						color: #FFFFFF;
 					}
-					.infoItem{
+
+					.infoItem {
 						font-size: 12px;
 						font-family: PingFang SC-Regular, PingFang SC;
 						font-weight: 400;
 						color: #0B95FF;
 						position: relative;
+
 						&::after {
 							position: absolute;
 							right: -10px;
@@ -343,25 +368,25 @@
 							width: 0rpx;
 							height: 0rpx;
 							border: 10px solid red;
-							border-color: transparent rgb(11,149,255) rgb(11,149,255) transparent;
+							border-color: transparent rgb(11, 149, 255) rgb(11, 149, 255) transparent;
 						}
 					}
 				}
 			}
-			
-			.dd{
+
+			.dd {
 				top: 240px;
 			}
-			
-			.bds{
+
+			.bds {
 				position: absolute;
 				top: 236px;
 				left: 104px;
 				width: 32px;
 				height: 32px !important;
 			}
-			
-			.btnNum{
+
+			.btnNum {
 				position: absolute;
 				top: 236px;
 				left: 140px;
@@ -379,18 +404,19 @@
 				color: #FFFFFF;
 				background: #1C294C;
 			}
-			
-			.ads{
+
+			.ads {
 				left: 224px;
 			}
-			
-			.btnBox{
+
+			.btnBox {
 				width: 375px;
 				height: 100px;
 				position: absolute;
 				top: 285px;
-				border-top: 1px solid rgba(255,255,255,0.1);
-				.tt{
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+				.tt {
 					width: 72px;
 					height: 17px;
 					font-size: 12px;
@@ -401,14 +427,16 @@
 					top: 24px;
 					left: 16px;
 				}
-				.coinImgs{
+
+				.coinImgs {
 					width: 20px;
 					height: 20px !important;
 					position: absolute;
 					top: 48px;
 					left: 16px;
 				}
-				.ttt{
+
+				.ttt {
 					position: absolute;
 					top: 45px;
 					left: 44px;
@@ -420,8 +448,8 @@
 					color: #FFFFFF;
 				}
 			}
-			
-			.btnMore{
+
+			.btnMore {
 				width: 224px;
 				height: 48px;
 				background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
@@ -482,8 +510,8 @@
 						height: 80rpx !important;
 						display: flex;
 						align-items: flex-end;
-						
-						.names{
+
+						.names {
 							display: flex;
 							align-items: center;
 							justify-content: center;
@@ -504,6 +532,7 @@
 							border: 1px solid rgb(16, 119, 205);
 							color: rgb(16, 119, 205);
 							position: relative;
+
 							&::after {
 								position: absolute;
 								right: 0;
@@ -514,7 +543,7 @@
 								width: 0rpx;
 								height: 0rpx;
 								border: 10px solid red;
-								border-color: transparent rgb(11,149,255) rgb(11,149,255) transparent;
+								border-color: transparent rgb(11, 149, 255) rgb(11, 149, 255) transparent;
 							}
 						}
 					}
@@ -569,8 +598,8 @@
 					flex-direction: row;
 					align-items: center;
 					flex-wrap: wrap;
-					
-					.names{
+
+					.names {
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -583,7 +612,7 @@
 						color: grey;
 						margin-right: 15rpx;
 					}
-					
+
 					.name {
 						display: flex;
 						align-items: center;
@@ -597,6 +626,7 @@
 						color: rgb(16, 119, 205);
 						margin-right: 15rpx;
 						position: relative;
+
 						&::after {
 							position: absolute;
 							right: 0;
@@ -607,7 +637,7 @@
 							width: 0rpx;
 							height: 0rpx;
 							border: 10px solid red;
-							border-color: transparent rgb(11,149,255) rgb(11,149,255) transparent;
+							border-color: transparent rgb(11, 149, 255) rgb(11, 149, 255) transparent;
 						}
 					}
 				}

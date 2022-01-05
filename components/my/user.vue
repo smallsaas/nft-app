@@ -6,7 +6,9 @@
 		<view class="names">
 			<text class="name">{{data.name}}</text>
 		</view>
-		<text class="status"><text>账号状态：</text><text :class="{forzen:data.status !=='NORMAL'}">{{data.status=='NORMAL'?'正常':'冻结'}}</text></text>
+		<text class="status">
+			<text>账号状态：</text><text class="wid" :class="{forzen:data.status !=='NORMAL'}">{{data.status=='NORMAL'?'正常':'冻结'}}</text>
+		</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
 			<view class="LImg"><image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image></view>
@@ -44,7 +46,6 @@
 		position: relative;
 		width: 100%;
 		height: 120rpx;
-		// border: 1px solid red;
 		.imgBox{
 			width: 72px;
 			height: 72px;
@@ -72,7 +73,7 @@
 			}
 		}
 		.status{
-			width: 98px;
+			width: 228px;
 			height: 20px;
 			font-size: 14px;
 			font-family: PingFang SC-Regular, PingFang SC;

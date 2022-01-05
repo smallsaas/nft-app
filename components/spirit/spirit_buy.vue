@@ -1,7 +1,7 @@
 <template>
 	<view class="spiritBuy">
-		<van-popup class="box" v-model="show" round position="bottom" @close="getClose">
-			<view class="spirit_mask_box">
+		<!-- <van-popup class="box" v-model="show" round position="bottom" @close="getClose"> -->
+			<view class="box">
 				<view class="imgBox">
 					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image>
 				</view>
@@ -28,6 +28,7 @@
 					<text class="ce cetwo">x{{number * itemInfo.wispCoin}}</text>
 					<button class="btn" @click="buyComponeySpirit">立即购买</button>
 				</view>
+				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 				<!-- <view class="top">
 					<view class="topL">
 						<image class="Cimg" src="../../static/spirit/company.png" mode="widthFix"></image>
@@ -56,7 +57,7 @@
 					</view>
 				</view> -->
 			</view>
-		</van-popup>
+		<!-- </van-popup> -->
 	</view>
 </template>
 
@@ -123,8 +124,12 @@
 </script>
 <style lang="less">
 	.spiritBuy {
-		width: 100%;
-		height: auto;
+		width: 375px;
+		height: 327px;
+		// border: 1px solid red;
+		position: fixed;
+		bottom: -10rpx;
+		z-index: 99999999;
 
 		.box {
 			background: rgb(28, 41, 76);
@@ -135,6 +140,14 @@
 			opacity: 1;
 			z-index: 9999999 !important;
 			position: fixed;
+			
+			.closeImg{
+				width:50rpx;
+				height: 50rpx;
+				position: absolute;
+				right: 50rpx;
+				top:20rpx;
+			}
 
 			.imgBox {
 				position: absolute;
