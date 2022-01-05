@@ -31,7 +31,7 @@
 					password:'123456'
 				}
 			}
-		},
+		}, 
 		methods: {
 			focus(id){
 				console.log(id)

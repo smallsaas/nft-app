@@ -168,14 +168,15 @@
 
 <style lang="less">
 	.spiritBuy {
-		width: 375px;
+		width: 100%;
 		height: 407px;
 		position: fixed;
 		bottom: -10rpx;
 		z-index: 99999999;
+		border-radius: 16px 16px 0px 0px;
 
 		.box {
-			width: 375px;
+			width: 100%;
 			height: 407px;
 			background: #1C294C;
 			border-radius: 16px 16px 0px 0px;
@@ -261,7 +262,7 @@
 
 						&::after {
 							position: absolute;
-							right: -10px;
+							right: -8px;
 							bottom: -4px;
 							content: '√';
 							color: #FFFFFF;
@@ -359,7 +360,7 @@
 
 						&::after {
 							position: absolute;
-							right: -10px;
+							right: -11px;
 							bottom: -4px;
 							content: '√';
 							color: #FFFFFF;
