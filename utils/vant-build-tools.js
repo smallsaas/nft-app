@@ -69,9 +69,14 @@ let string = "";
 if(fs.existsSync(__dirname+'/vantComponent.js')){
 	string = fs.readFileSync(__dirname+'/vantComponent.js').toString()
 }
-function format(field,value){
-	return `Vue.component("${field}",require(".${value}"))\n`
+function Replace(value){
+	value = value.split('-')
+	return value.join('')
 }
+function format(field,value){
+	return `import ${Replace(field)} from '.${value}.vue'\nVue.component("${field}",${Replace(field)})\n`
+}
+
 Object.keys(components).map((component,c)=>{
 	string = string + format(component,components[component])
 })
