@@ -246,6 +246,7 @@
 		width: 100%;
 		height: 100%;
 		background: rgb(5, 14, 23);
+		padding-bottom: 20rpx;
 
 		.newBox {
 			width: 343px;
@@ -255,7 +256,7 @@
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
 			margin: 0 auto;
-			margin-bottom: 10px;
+			// margin-bottom: 10px;
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
 			position: relative;
