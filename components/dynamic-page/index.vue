@@ -1,6 +1,11 @@
 <template>
 	<view :style="[_get(config, 'pageStyle', {}), _get(config, 'moduleContainer', {})]" class="dynamic-page-container">
+			<!-- #ifdef H5 -->
         <van-skeleton row="10" :loading="skeletonLoading">
+			<!-- #endif -->
+			<!-- #ifdef APP-PLUS -->
+				<view v-if="skeletonLoading">
+			<!-- #endif -->
           <block v-if="_get(config, 'modules', []).length > 0">
             <view v-for="(item, index) in config.modules" :key="index">
 									<dynamic-form
@@ -176,7 +181,12 @@
 						 ></check-team-list>
             </view>
           </block>
+		<!-- #ifdef H5 -->
         </van-skeleton>
+		<!-- #endif -->
+		<!-- #ifdef APP-PLUS -->
+				</view>
+		<!-- #endif -->
 	</view>
 </template>
 
