@@ -124,16 +124,17 @@
 </script>
 <style lang="less">
 	.spiritBuy {
-		width: 375px;
+		width: 100%;
 		height: 327px;
 		// border: 1px solid red;
+		border-radius: 16px 16px 0px 0px;
 		position: fixed;
 		bottom: -10rpx;
 		z-index: 99999999;
 
 		.box {
 			background: rgb(28, 41, 76);
-			width: 375px;
+			width: 100%;
 			height: 327px;
 			background: #1C294C;
 			border-radius: 16px 16px 0px 0px;

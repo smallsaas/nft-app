@@ -32,7 +32,7 @@ Content-Type: application/json
         }
     ],
     "dataSource":{
-        "api":""
+        "api":"/api/crud/oms/player/players/getChildrenByUserId/67"
     },
     "moduleData": {
     }
