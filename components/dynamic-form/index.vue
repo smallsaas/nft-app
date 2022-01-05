@@ -1,7 +1,12 @@
 <!-- 由于uniapp小程序对jsx很不友好，所以config.fields的children只支持到第一层 -->
 <template>
 	<view class="base_vants_container" :style="[_get(config, 'outStyle', {})]">
+		<!-- #ifdef H5 -->
         <van-skeleton row="20" :loading="skeletonLoading">
+		<!-- #endif -->
+		<!-- #ifdef APP-PLUS -->
+				<view v-if="!skeletonLoading">
+		<!-- #endif -->
 					<view class="fields_Title" v-if="![undefined,null,''].includes(outTitle)">{{outTitle}}
 						<text class="fields_jumpTitle" @click="handleJump(navigator.url)" v-if="navigator">{{navigator.title||""}}</text>
 					</view>
@@ -72,7 +77,12 @@
 							取消
 						</button>
 					</view>
+				<!-- #ifdef H5 -->
         </van-skeleton>
+				<!-- #endif -->
+				<!-- #ifdef APP-PLUS -->
+				</view>
+				<!-- #endif -->
 	</view>
     
 </template>
