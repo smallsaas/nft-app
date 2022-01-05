@@ -31,13 +31,13 @@
 			<view class="timeBox"><text class="time">匹配时间：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
 			<view class="oBox">
 				<view class="Child">
-					<image src="../../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<image src="../../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{item.costWispCoin}}</text>
 				</view>
 				
 				
 				<view class="Child" @click="showBuyChild(item)">
-					<image src="../../../static/spirit/company.png" mode="widthFix" class="icon"></image>
+					<image src="../../../static/spirit/newC.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{item.costAccompanyWisp}}</text>
 				</view>
 				
@@ -249,7 +249,7 @@
 		padding-bottom: 20rpx;
 		padding-bottom: 10px;
 		.newBox {
-			width: 343px;
+			width: 95%;
 			height: 230px;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			// box-shadow: inset 1px 1px 0px 1px rgba(255,255,255,0.75), 0px 4px 16px 1px rgba(0,0,0,0.25);
@@ -282,7 +282,8 @@
 				position: absolute;
 				top: 12px;
 				left: 164px;
-
+				display: flex;
+				flex-direction: column;
 				.nameBox {
 					width: 179px;
 					height: 22px;
@@ -306,11 +307,11 @@
 					}
 				}
 				.tBox{
-					width: 179px;
+					// width: 179px;
 					height: 22px;
 					margin-top: 12px;
 					.Child{
-						width: 163px;
+						// width: 163px;
 						height: 19px;
 						display: flex;
 						justify-content: space-between;

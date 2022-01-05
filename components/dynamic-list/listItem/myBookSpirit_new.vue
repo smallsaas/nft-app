@@ -31,13 +31,13 @@
 			<view class="timeBox"><text class="time">预约时间：{{change}}</text></view>
 			<view class="oBox">
 				<view class="Child">
-					<image src="../../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<image src="../../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{item.wisp.costWispCoin}}</text>
 				</view>
 				
 				
 				<view class="Child">
-					<image src="../../../static/spirit/company.png" mode="widthFix" class="icon"></image>
+					<image src="../../../static/spirit/newC.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{item.wisp.costAccompanyWisp}}</text>
 				</view>
 				

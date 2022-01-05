@@ -31,13 +31,13 @@
 			<view class="timeBox"><text class="time">预约时间：{{change}}</text></view>
 			<view class="oBox">
 				<view class="Child">
-					<image src="../../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<image src="../../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{item.wisp.costWispCoin}}</text>
 				</view>
 				
 				
 				<view class="Child">
-					<image src="../../../static/spirit/company.png" mode="widthFix" class="icon"></image>
+					<image src="../../../static/spirit/newC.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{item.wisp.costAccompanyWisp}}</text>
 				</view>
 				
@@ -49,7 +49,7 @@
 				</view>
 			</view>
 			<view class="btnBox">
-				<button class="btn" v-if="item.bookStatus=='MATCH_SUCCESS'">付款(剩余59:28)</button>
+				<button class="btn" v-if="item.bookStatus=='MATCH_SUCCESS'" @click="goToPay">付款(剩余59:28)</button>
 				<view class="btnStatus fail" v-if="item.bookStatus=='MATCH_FAIL'"><button class="notStatus">匹配失败</button></view>
 				<view class="btnStatus" v-if="item.bookStatus=='WAITING_MATCH'"><button class="notStatus">等待匹配</button></view>
 			</view>
@@ -133,6 +133,11 @@
 			}
 		},
 		methods: {
+			goToPay(){
+				uni.navigateTo({
+					url:'/pages/userPay_new/userPay_new'
+				})
+			}
 		}
 	}
 </script>

@@ -65,6 +65,12 @@ export const api = {
 		return request("GET",url,params)
 	},
 	
+	//玩家付款
+	userPay(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/57/confirmPayment?pictureUrl=`
+		return request("POST",url,params)
+	},
+	
 	//获取个人详情信息
 	getInformation(params,id){
 		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`

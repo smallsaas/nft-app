@@ -237,6 +237,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/userPay_new/userPay_new",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "付款",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

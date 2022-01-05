@@ -78,9 +78,9 @@
 				isOpenLook: ['../../static/login/eyeoff.png', '../../static/login/eye.png'],
 				openIndex: 0,
 				data: {
-					name: '小老虎',
-					phone: '18664521877',
-					loginPassword: '123456',
+					name: '',
+					phone: '',
+					loginPassword: '',
 					email: '',
 					invitationCode: 'PNywB5'
 				}
