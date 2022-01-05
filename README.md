@@ -93,3 +93,8 @@ card:带有标题的容器
 ## 页面数据
 
 页面数据放置在http文件夹中 请使用Vscode中的rest-client插件进行操作
+
+## vant组件编译工具
+
+地址 [./utils/vant-build-tools.js](./utils/vant-build-tools.js)
+使用方法 node vant-build-tools.js 会生成vantComponents.js 迁移至最外层即可
