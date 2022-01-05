@@ -14,7 +14,6 @@ Content-Type: application/json
     "name": "MyMarket",
     "title": "我的精灵",
     "pageStyle": {
-        "margin-top":"20px"
     },
     "loadApi": "",
     "response": {
@@ -30,7 +29,9 @@ Content-Type: application/json
         "name":"",
         "key":"e59992z8-bb88-a788-9922-1623488775885",
         "container":{
-            "height":""
+            "height":"",
+            "padding-top":"20px",
+            "background":"#050E17"
         }
       }
     ],
