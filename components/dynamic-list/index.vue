@@ -333,6 +333,7 @@
           }
         },
 		mounted() {
+			console.log(this.config)
 		 // 外部传入数据源
 		 if (_.get(this.config, 'loadApi')) {
 		    this.updateData()
@@ -439,6 +440,7 @@
                       token: uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
                   },
                   complete: (res) => {
+					  console.log(res)
                      // uni.hideLoading()
                      if (['000000', 200].includes(_.get(res, 'data.code'))) {
                         const data = _.get(res, 'data.data')

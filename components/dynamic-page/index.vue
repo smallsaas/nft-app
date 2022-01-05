@@ -4,7 +4,7 @@
         <van-skeleton row="10" :loading="skeletonLoading">
 			<!-- #endif -->
 			<!-- #ifdef APP-PLUS -->
-				<view v-if="skeletonLoading">
+				<view v-if="!skeletonLoading">
 			<!-- #endif -->
           <block v-if="_get(config, 'modules', []).length > 0">
             <view v-for="(item, index) in config.modules" :key="index">
@@ -522,7 +522,7 @@
 					this.fetchPageData(data, pageUrl)
 				} else {
 					this.config = data
-					this.skeletonLoading = false                               
+					this.skeletonLoading = false                            
 				}
 				if (_.has(data, 'title')) {
 					uni.setNavigationBarTitle({
