@@ -3,8 +3,8 @@
 		<view class="sign-content">
 			<view class="sign-image-content">
 				<view class="sign-image-ended" v-if="item.status === 'ended'">
-					<view class="sign-isSign-signed" v-if="item.isSign">已签到</view>
-					<button class="sign-isSign-unSigned" v-if="!item.isSign" @click="handleFill">补签</button>
+					<view class="sign-isSign-signed" v-if="item.isSign">已簽到</view>
+					<button class="sign-isSign-unSigned" v-if="!item.isSign" @click="handleFill">補簽</button>
 				</view>
 				<view :class="'sign-image-round '+isToday">
 					<image :src="item.image" class="sign-image-icon" mode="aspectFit"></image>
@@ -19,16 +19,16 @@
 </template>
 
 <script>
-	/* 签到子项说明
+	/* 簽到子項說明
 		props:
-		item:子项属性
-		item.isSign 是否签到
-		item.status 三种状态 normal today ended
-		item.day 第几天
-		item.image 中间显示的图片
+		item:子項屬性
+		item.isSign 是否簽到
+		item.status 三種狀态 normal today ended
+		item.day 第幾天
+		item.image 中間顯示的圖片
 		item.text 文本
 		事件
-		@fill 点击补签触发
+		@fill 點擊補簽觸發
 	 */
 	export default {
 		name:"signItem",
@@ -77,7 +77,7 @@
 			this.icon = res.data
 		},
 		methods:{
-			// 补签事件
+			// 補簽事件
 			handleFill(){
 				this.$emit("fill")
 			}
@@ -98,7 +98,7 @@
 		border-radius: @boxRadius;
 		padding: @boxPadding; 
 		box-sizing: border-box;
-		font-family: 微软雅黑,黑体;
+		font-family: 微軟雅黑,黑體;
 		letter-spacing:5rpx;
 	}
 	.ended{

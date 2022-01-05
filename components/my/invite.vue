@@ -3,11 +3,11 @@
 		<view class="invite-mask"></view>
 		<view class="invite">
 			<view class="boxT">
-				<text class="info infoO">我的邀请码为</text>
+				<text class="info infoO">我的邀請碼爲</text>
 				<view class="border-invite">
 					<text class="info infoT">{{data.invitationCode}}</text>
 				</view>
-				<text class="info infoTH" @click="a">复制邀请码</text>
+				<text class="info infoTH" @click="a">複制邀請碼</text>
 			</view>
 			<view class="boxB">
 				<view class="boxB-round1"></view>
@@ -15,7 +15,7 @@
 				<view class="QRcode-container">
 					<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="ewm"></image>
 				</view>
-				<text class="save">长按保存图片</text>
+				<text class="save">長按保存圖片</text>
 			</view>
 			<view class="boxBB">
 				<image src="../../static/service/close.png" mode="widthFix" class="close" @click="closeMast"></image>
@@ -40,7 +40,7 @@
 				this.$copyText('aaaaaa').then(
 					res => {
 						uni.showToast({
-							title: '复制成功'
+							title: '複制成功'
 						})
 					}
 				)
@@ -50,7 +50,7 @@
 					data: 'aaaaaa',
 					success: () => {
 						uni.showToast({
-							title: '复制成功'
+							title: '複制成功'
 						})
 					}
 				})

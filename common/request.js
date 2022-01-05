@@ -1,7 +1,7 @@
 import { toPromise } from './toPromise'
 import { globalConfig } from '@/config.js'
 
-// 封装请求
+// 封裝請求
 export const request = (method, url, params = {}, header = {}) => {
   const _request = toPromise(uni.request)
   if (method === 'GET' || method === 'get') {
@@ -32,7 +32,7 @@ export const request = (method, url, params = {}, header = {}) => {
   })
 }
 
-// 上传文件
+// 上傳文件
 export const upLoad = (url, filePath, params, name) => {
   const _upLoad = toPromise(uni.uploadFile)
   const token = uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''

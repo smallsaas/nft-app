@@ -1,14 +1,14 @@
 <template>
 	<view class="re_new">
-		<view class="all"><text class="info" @click="checkMore">查看申述记录(结果)</text></view>
+		<view class="all"><text class="info" @click="checkMore">查看申述記錄(結果)</text></view>
 		<view class="title ttt"><text class="info">申述原因</text></view>
 		<view class="select">
-			<input  v-model="value" type="text" disabled="true" placeholder="选择申述原因" class="read" />
+			<input  v-model="value" type="text" disabled="true" placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
-		<van-picker title="选择申述原因" show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel"
+		<van-picker title="選擇申述原因" show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel"
 			@change="onChange" class="fix" v-if="isShow" default-index=""/>
-		<view class="title"><text class="info">备注</text></view>
+		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
 			<textarea placeholder="添加其他申述原因" class="text"></textarea>
 		</view>
@@ -21,7 +21,7 @@
 		data() {
 			return {
 				isShow: false,
-				columns: ['对方没付款','情况不符合'],
+				columns: ['對方沒付款','情況不符合'],
 				value:''
 			}
 		},

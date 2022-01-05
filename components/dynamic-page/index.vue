@@ -133,7 +133,7 @@
 							:days = "getComponentsData(item) || 0"
 						/>
 						<!-- end -->
-						<!-- 步骤条组件 2021-6-29 -->
+						<!-- 步驟條組件 2021-6-29 -->
 						<steps
 							v-if="_get(item, 'type') === 'steps'"
 							:list="getComponentsData(item) ||  _get(config.moduleData, `${item.key}.steps`, [])"
@@ -162,7 +162,7 @@
 						 							:item="getComponentsData(item)"
 						 							:pathData="_get(config.moduleData,item.key,{})"
 						 ></user>
-						 <!-- tab栏组件 -->
+						 <!-- tab欄組件 -->
 						 <pageTabbar
 							v-if="_get(item,'type') === 'pageTabbar'"
 							:tabs="_get(config.moduleData,item.key,{tabs:[]}).tabs"
@@ -214,11 +214,11 @@
     import { globalConfig } from '@/config.js'
     import {LoadComplete} from '@/common/api.js'
 	
-	//服务中心
+	//服務中心
 	import Service from '../my/service.vue'
-	//我的记录
+	//我的記錄
 	import MyHistory from '../history/myhistory.vue'
-	//直推查询列表
+	//直推查詢列表
 	import CheckTeamList from '../team/checkTeamList.vue'
 	export default {
 		components: { 
@@ -242,18 +242,18 @@
 			CheckTeamList
 		},
 		props: {
-			API: String,  // 页面数据请求接口
-            requsetParam: {  // 页面数据请求参数
+			API: String,  // 頁面數據請求接口
+            requsetParam: {  // 頁面數據請求參數
 				type: Object,
 				default: function () {
 					return {}
 				}
 			},
-            contentType: {  //页面数据类型 [base64, json]
+            contentType: {  //頁面數據類型 [base64, json]
                 type: String,
                 default: 'json'
             },
-            contentPayload: {  //页面有效数据位置
+            contentPayload: {  //頁面有效數據位置
                 type: String,
                 default: 'data'
             },
@@ -273,7 +273,7 @@
 								return ""
 							}
 						},
-						// 用于表单自定义提交
+						// 用于表單自定義提交
 						ifManualSubmit:{
 							type:Boolean,
 							default:false
@@ -281,11 +281,11 @@
 		},
 		data () {
 			return {
-				config: null, //页面配置信息
-				pageData: {}, // 页面数据
+				config: null, //頁面配置信息
+				pageData: {}, // 頁面數據
 				skeletonLoading: true,
 				
-				header: {  // 请求header
+				header: {  // 請求header
 						Authorization: `Bearer ${uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''}`,
 						token: uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
 				},
@@ -305,9 +305,9 @@
 				let data = this.$timeCache(`page_${id}`)
 				let formData = this.$timeCache(`page_${id}_form_Srv`)
 				if(data){
-					console.log("使用缓存page_"+id,data)
+					console.log("使用緩存page_"+id,data)
 					if(formData){
-						console.log(`使用缓存page_${id}_form_Srv`,formData)
+						console.log(`使用緩存page_${id}_form_Srv`,formData)
 						that.formData = formData
 					}
 					console.log(this.formData,"this")
@@ -328,9 +328,9 @@
 				let data = this.$timeCache(`page_${id}`)
 				let formData = this.$timeCache(`page_${id}_form_Srv`)
 				if(data){
-					console.log("使用缓存page_"+id,data)
+					console.log("使用緩存page_"+id,data)
 					if(formData){
-						console.log(`使用缓存page_${id}_form_Srv`,formData)
+						console.log(`使用緩存page_${id}_form_Srv`,formData)
 						that.formData = formData
 					}
 					console.log(this.formData,"this",this.srvFormData)
@@ -351,7 +351,7 @@
 				this.config.modules.map((item,i)=>{
 					if(_.get(item, 'type') === 'autoform'){
 						let FormKey = _.get(item,'FormKey','')
-						// console.log("能到这")
+						// console.log("能到這")
 						if(FormKey){
 							// console.log("FormKey",FormKey)
 							this.getWorkflow(FormKey)	
@@ -363,7 +363,7 @@
 					}
 				})
 			}
-			// console.log("执行完了")
+			// console.log("執行完了")
 		},
 		updated(){
 			let TFormKey = this.FormKey
@@ -386,12 +386,12 @@
 			_get (data, field, value) {
 				return _.get(data, field, value)
 			},
-			// 表单自定义提交
+			// 表單自定義提交
 			handleSubmit(e){
 				console.log(e,"data")
 				this.$emit('submit',e)
 			},
-			// 获取页面请求数据接口 
+			// 獲取頁面請求數據接口 
 			getRequestUrl (resData) {
                 let url
 				if (_.has(resData, 'dataSource.api') && resData.dataSource.api) {
@@ -425,7 +425,7 @@
 				}
 				return url
 			},
-			// 获取id
+			// 獲取id
 			formatId(api){
 				if(api){
 					api = api.toString()
@@ -469,20 +469,20 @@
 							let id = that.formatId(that.API)
 							// console.log(that.formatId(that.API),"id")
 							if(id){
-								that.$timeCache(`page_${id}`,resData,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制缓存策略
-								// page缓存列表
+								that.$timeCache(`page_${id}`,resData,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制緩存策略
+								// page緩存列表
 								let pageCacheList = that.$cache.get("pageCacheList")||[]
 								pageCacheList.push(`page_${id}`)
 								that.$cache.set("pageCacheList",pageCacheList)
 								if(that.srvFormData){
 									let srvForm = that.srvFormData
-									that.$timeCache(`page_${id}_form_Srv`,srvForm,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制缓存策略
+									that.$timeCache(`page_${id}_form_Srv`,srvForm,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制緩存策略
 									let pageFormCacheList = that.$cache.get('pageFormCacheList')||[]
 									pageFormCacheList.push(`page_${id}_form_Srv`)
 									that.$cache.set(`pageFormCacheList`,pageFormCacheList)
 								}
 							}
-                            // 获取页面请求接口
+                            // 獲取頁面請求接口
 							that.loadPage(resData)
        //                      let pageUrl
        //                      const dataPayload = _.get(resData, 'dataPayload')
@@ -493,7 +493,7 @@
        //                         pageUrl = this.getRequestUrl(resData)
        //                      }
 							// 							console.log(pageUrl)
-							// // 加载页面数据
+							// // 加載頁面數據
 							// if (pageUrl) {
 							// 	this.fetchPageData(resData, pageUrl)
 							// } else {
@@ -502,14 +502,14 @@
 							// }
 							// if (_.has(resData, 'title')) {
 							// 	uni.setNavigationBarTitle({
-							// 		title: _.get(resData, 'title', '动态页面')
+							// 		title: _.get(resData, 'title', '動态頁面')
 							// 	})
 							// }
 						}
 					}
 				})
 			},
-			// 加载
+			// 加載
 			loadPage(data){
 				let pageUrl
 				const dataPayload = _.get(data,'dataPayload')
@@ -527,7 +527,7 @@
 				}
 				if (_.has(data, 'title')) {
 					uni.setNavigationBarTitle({
-						title: _.get(data, 'title', '动态页面')
+						title: _.get(data, 'title', '動态頁面')
 					})
 				}
 			},
@@ -554,7 +554,7 @@
 					}
 				})
 			},
-			// 获取组件数据
+			// 獲取組件數據
 			getComponentsData (item) {
 				if (!_.has(item, 'binding') || JSON.stringify(item.binding) === '{}') {
 					return false
@@ -595,7 +595,7 @@
 				}
                 return value
 			},
-            // 获取组件容器外层布局
+            // 獲取組件容器外層布局
             getComponentStyle (item) {
                 if (_.has(item, 'container') && JSON.stringify(item.container) !== '{}') {
                     return _.get(item, 'container', {})

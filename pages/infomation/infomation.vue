@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<dynamic-page :API="api" :srvFormData="srvFormData"></dynamic-page>
-		<!-- <text @click="changeInfo">修改个人信息</text> -->
+		<!-- <text @click="changeInfo">修改個人信息</text> -->
 	</view>
 </template>
 
@@ -22,7 +22,7 @@
 		},
 		methods: {
 			async getFormData(){
-				console.log('开始了-------------')
+				console.log('開始了-------------')
 				let res = await this.$api.getInformationNew()
 				console.log(res)
 				this.srvFormData = res.data

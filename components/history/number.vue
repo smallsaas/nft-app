@@ -1,24 +1,24 @@
 <template>
 	<view class="number">
 		<view class="item">
-			<text class="title">推荐积分:</text>
+			<text class="title">推薦積分:</text>
 			<text class="num">{{data.recommendPoints}}</text>
 		</view>
 		<view class="item">
-			<text class="title">帮会积分:</text>
+			<text class="title">幫會積分:</text>
 			<text class="num">{{data.tradeUnionPoints}}</text>
 		</view>
 		<view class="item">
-			<text class="title">市场积分:</text>
+			<text class="title">市場積分:</text>
 			<text class="num">{{data.marketPoints}}</text>
-			<text class="o" @click="forParent">转化精灵令</text>
-			<text class="ot" @click="transferSpiritForMarket">转化精灵</text>
+			<text class="o" @click="forParent">轉化精靈令</text>
+			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
 		</view>
 		<view class="item">
-			<text class="title">转存积分:</text>
+			<text class="title">轉存積分:</text>
 			<text class="num">{{data.depositPoints}}</text>
-			<text class="o" @click="forParentTwo">转化精灵令</text>
-			<text class="ot" @click="transferSpiritForDeposi">转化精灵</text>
+			<text class="o" @click="forParentTwo">轉化精靈令</text>
+			<text class="ot" @click="transferSpiritForDeposi">轉化精靈</text>
 		</view>
 	</view>
 </template>

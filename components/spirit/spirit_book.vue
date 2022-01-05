@@ -12,12 +12,12 @@
 				<view class="spiritBox">
 					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="imgs"></image>
 				</view>
-				<text class="tt">消耗精灵令</text>
+				<text class="tt">消耗精靈令</text>
 				<view class="ttt">
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.costWispCoin}}</text>
 				</view>
-				<text class="tt two">消耗陪伴精灵</text>
+				<text class="tt two">消耗陪伴精靈</text>
 				<view class="ttt twott">
 					<image src="../../static/spirit/company.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.costAccompanyWisp}}</text>
@@ -28,10 +28,10 @@
 					<text class="number">x{{itemInfo.growthDays}}</text>
 				</view>
 				<view class="nameBox"><text class="name">{{itemInfo.name}}</text></view>
-				<view class="nameBox nTwo"><text class="name nametwo">预约剩余时间 {{itemInfo.remainingBookMinutes}}分钟 确定预约吗？</text></view>
+				<view class="nameBox nTwo"><text class="name nametwo">預約剩餘時間 {{itemInfo.remainingBookMinutes}}分鍾 确定預約嗎？</text></view>
 				<view class="btnBox">
 					<button class="btn cancel" @click="cancel">取消</button>
-					<button class="btn"  @click="book">马上预约</button>
+					<button class="btn"  @click="book">馬上預約</button>
 				</view>
 				<!-- <view class="bodyBox">
 					<view class="bodyLeft">
@@ -46,11 +46,11 @@
 					</view>
 					<view class="bodyRight">
 						<view class="bodyItems">
-							<view class="labelBox"><text class="label">消耗精灵令</text></view>
+							<view class="labelBox"><text class="label">消耗精靈令</text></view>
 							<view class="infoBox"><image class="infoImage" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costWispCoin}}</text></view>
 						</view>
 						<view class="bodyItems">
-							<view class="labelBox"><text class="label">消耗陪伴精灵</text></view>
+							<view class="labelBox"><text class="label">消耗陪伴精靈</text></view>
 							<view class="infoBox"><image class="infoImage" src="../../static/spirit/company.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costAccompanyWisp}}</text></view>
 						</view>
 						<view class="bodyItems">
@@ -61,11 +61,11 @@
 				</view>
 				<view class="tips">
 					<view class="bigTitle">{{itemInfo.name}}</view>
-					<view class="bookTime">预约剩余时间 52:32  确定预约吗?</view>
+					<view class="bookTime">預約剩餘時間 52:32  确定預約嗎?</view>
 				</view>
 				<view class="btnBox">
 					<button class="btnCancel btn cancel" @click="cancel">取消</button>
-					<button class="btnSuccess btn book" @click="book">预约</button>
+					<button class="btnSuccess btn book" @click="book">預約</button>
 				</view> -->
 			</view>
 		</view>
@@ -122,7 +122,7 @@
 				}
 				if(res.code == 200){
 					this.cancel()
-					this.msg('预约成功')
+					this.msg('預約成功')
 					return;
 				}
 			}

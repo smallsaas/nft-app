@@ -20,7 +20,7 @@ export default {
     },
     data() {
         return {
-            paddingBottomHeight: 0,  //苹果X以上手机底部适配高度
+            paddingBottomHeight: 0,  //蘋果X以上手機底部适配高度
             list: []
         };
     },
@@ -30,7 +30,7 @@ export default {
             success: function (res) {
                 let model = ['X', 'XR', 'XS', '11', '12', '13', '14', '15'];
                 model.forEach(item => {
-                    //适配iphoneX以上的底部，给tabbar一定高度的padding-bottom
+                    //适配iphoneX以上的底部，給tabbar一定高度的padding-bottom
                     if(res.model.indexOf(item) != -1 && res.model.indexOf('iPhone') != -1) {
                         that.paddingBottomHeight = 40;
                     }
@@ -47,10 +47,10 @@ export default {
             uni.switchTab({
                 url: path,
 				success:res =>{
-					// console.log("跳转成功")
+					// console.log("跳轉成功")
 				},
 				fail:err =>{
-					// console.log("跳转失败", err)
+					// console.log("跳轉失敗", err)
 					if(err.errMsg === "switchTab:fail can not switch to no-tabBar page"){
 						uni.navigateTo({
 							url: path

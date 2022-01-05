@@ -55,7 +55,7 @@ export default {
 			jumpText:{
 				type:String,
 				default(){
-					return "跳过"
+					return "跳過"
 				}
 			},
       otherStyle:{

@@ -1,10 +1,10 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ //pages數組中第一項表示應用啓動頁，參考：https://uniapp.dcloud.io/collocation/pages
 		{
 		    "path" : "pages/login_new/login_new",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "登录",
+		        "navigationBarTitleText": "登錄",
 		        "enablePullDownRefresh": false
 						
 		    }
@@ -14,7 +14,7 @@
 		    "path" : "pages/regist_new/regist_new",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "注册",
+		        "navigationBarTitleText": "注冊",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -23,7 +23,7 @@
 		    "path" : "pages/find_password_new/find_password_new",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "找回密码",
+		        "navigationBarTitleText": "找回密碼",
 		        "enablePullDownRefresh": false
 		    }
 		    
@@ -172,7 +172,7 @@
             "path" : "pages/regist/regist",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "注册",
+                "navigationBarTitleText": "注冊",
                 "enablePullDownRefresh": false
             }
             

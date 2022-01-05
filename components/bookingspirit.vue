@@ -1,6 +1,6 @@
 <!-- <template>
 	<view>
-		预约精灵
+		預約精靈
 		<dynamic-page :API="api"></dynamic-page>
 	</view>
 </template>
@@ -32,7 +32,7 @@
 			<view class="item">
 				<view class="left">
 					<view class="img"><image class="pic" src="https://s2.loli.net/2021/12/24/7bn1rPlMmYVihAR.jpg" mode="widthFix"></image></view>
-					<view class="time"><text>匹配时间:2012-12-12 10:20:30</text></view>
+					<view class="time"><text>匹配時間:2012-12-12 10:20:30</text></view>
 					<view class="info">
 						<view class="infoItem">
 							<image class="type" src="https://s2.loli.net/2021/12/24/rR5NMP2s4izc6WG.jpg" mode="widthFix"></image>
@@ -49,12 +49,12 @@
 					</view>
 				</view>
 				<view class="right">
-					<view>小天使精灵</view>
-					<view>级别:lv5</view>
-					<view>增长能力:远攻</view>
+					<view>小天使精靈</view>
+					<view>級别:lv5</view>
+					<view>增長能力:遠攻</view>
 					<view>能力值"200-300</view>
-					<view>培养天数"15天</view>
-					<button @click="yuyue">预约</button>
+					<view>培養天數"15天</view>
+					<button @click="yuyue">預約</button>
 				</view>
 			</view>
 		</view>
@@ -72,7 +72,7 @@
 		methods:{
 			yuyue(){
 				uni.showModal({
-					content:'预约成功'
+					content:'預約成功'
 				})
 			}
 		}

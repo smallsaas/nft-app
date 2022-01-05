@@ -29,7 +29,7 @@
                 :accept="param.accept || 'image'"
                 @after-read="handleAfterRead"
             >
-              <van-button size="small" icon="upgrade" type="default">上传文件</van-button>
+              <van-button size="small" icon="upgrade" type="default">上傳文件</van-button>
             </van-uploader>
 		  </template>
 		</van-field>

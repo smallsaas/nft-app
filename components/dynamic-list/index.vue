@@ -217,10 +217,10 @@
 	import CompanyStateToEnforcement from './listItem/AvatarStateList/companyStateToEnforcement/companyStateToEnforcement.vue'
     import { globalConfig } from '@/config.js'
 	
-	//引入精灵市场
+	//引入精靈市場
 	import spiritMarket from './listItem/spiritMarket.vue'
 	
-	//引入精灵市场
+	//引入精靈市場
 	import spirit from './listItem/spirit.vue'
 	
 	
@@ -256,7 +256,7 @@
 			bookspirit,
 			
 			
-			//新版页面
+			//新版頁面
 			spiritMarketNew,
 			myHistoryNew,
 			moreRepresentationNew,
@@ -282,7 +282,7 @@
 					return false
 				}
 			},
-			// 外部传入的查询
+			// 外部傳入的查詢
 			otherSearch:{
 				type:Object,
 				default(){
@@ -298,10 +298,10 @@
                 typeList: [],
                 tabActive: 0,
                 
-                listSearch: {}, // 列表查询参数
-                pageNoField: '',  // 页数配置的字段名
+                listSearch: {}, // 列表查詢參數
+                pageNoField: '',  // 頁數配置的字段名
                 pageSizeField: '', // size配置的字段名
-								isStop:false ,//是否停止自动刷新
+								isStop:false ,//是否停止自動刷新
 								Time:null,
 								isDelete:false
 								
@@ -311,13 +311,13 @@
           heightReduce () {
             return this.typeList.length > 0 ? 88 : 0
           },
-		  //是否外部传入数据
+		  //是否外部傳入數據
 		  isPropsList () {
 			return _.has(this.config, 'list') && _.isArray(this.config.list)
 		  },
           // 列表高度
           fixedHeight () {
-             // 默认传入的为px
+             // 默認傳入的爲px
              let height = 0
              if (_.get(this.config, 'outStyle.height')) {
                 height = parseInt(_.get(this.config, 'outStyle.height', 0)) - (this.typeList.length > 0 ? 44 : 0)
@@ -334,7 +334,7 @@
         },
 		mounted() {
 			console.log(this.config)
-		 // 外部传入数据源
+		 // 外部傳入數據源
 		 if (_.get(this.config, 'loadApi')) {
 		    this.updateData()
 				this.Time = setInterval(()=>{
@@ -372,7 +372,7 @@
             handleDelete(e){
 							this.isDelete = e
 						},
-            // 切换tab
+            // 切換tab
             handleSelectTab (e, item) {
                 this.tabActive = e
                 const typeField = _.get(this.config, 'request.fixed')
@@ -384,7 +384,7 @@
                 this.fetchList({ refresh: true })
             },
             
-            // 更新数据
+            // 更新數據
             updateData () {  
                 this.typeList =  _.get(this.config, 'tabConfig.show') === true ? _.get(this.config, 'tabConfig.list', []) : []
                 const requestData = _.get(this.config, 'request', {})
@@ -425,7 +425,7 @@
                }
             },
             
-            // 获取列表信息
+            // 獲取列表信息
             fetchList (searchData = {}) {
               // uni.showLoading({
               //     title: "loading...",
@@ -472,10 +472,10 @@
               })  
             },
             
-            // 加载更多
+            // 加載更多
             loadMore () {
 							if(!this.unloading){
-							// console.log("加载更多")
+							// console.log("加載更多")
 				if (this.isPropsList) {
 					return
 				}
@@ -489,7 +489,7 @@
 								}
             },
             
-            // 上拉加载刷新
+            // 上拉加載刷新
             refresh () {
 							if(!this.unloading){
 								// console.log("刷新")
@@ -504,7 +504,7 @@
 							}
             },
 			
-			// 列表项组件与列表数据绑定
+			// 列表項組件與列表數據綁定
 			getComponentBindData (item) {
 				if (!_.has(this.config, 'binding') || JSON.stringify(this.config.binding) === '{}') {
 					return {}
@@ -516,7 +516,7 @@
 				return comonentScouce
 			},
 			
-			// 统一跳转路由
+			// 統一跳轉路由
 			handleJumpRoute (item) {
 				if(this.isDelete){
 					return
@@ -538,15 +538,15 @@
 				    routeUrl += '?query=' + encodeURIComponent(JSON.stringify(query))
 				}
 				// console.log('routeUrl= ', routeUrl)
-				// 旧跳转方式
+				// 舊跳轉方式
 				uni.navigateTo({
 					url:routeUrl
 				})
-				// 栈溢出,改用redirectTo
+				// 棧溢出,改用redirectTo
 				// uni.redirectTo({
 				// 	url: routeUrl
-				// 	// success:res =>{// console.log("跳转成功")},
-				// 	// fail:err =>(// console.log("跳转失败",err))
+				// 	// success:res =>{// console.log("跳轉成功")},
+				// 	// fail:err =>(// console.log("跳轉失敗",err))
 				// })
 			}
 		}

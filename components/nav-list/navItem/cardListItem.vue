@@ -10,7 +10,7 @@
 						<image class="cardlist" :src="item.img" mode="widthFix" v-if="item.svg===undefined&&item.img!==undefined"></image>
 						<view class="cardList-title">
 							{{item.title}}
-							<!-- <button @click="test()">测试</button> -->
+							<!-- <button @click="test()">測試</button> -->
 						</view>
 					</navigator>
 				</view>
@@ -41,7 +41,7 @@
 </script>
 
 <style lang="less">
-	// 字体文件
+	// 字體文件
 	@font-face {
   font-family: "cardlist"; /* Project id 2618527 */
   /* Color fonts */

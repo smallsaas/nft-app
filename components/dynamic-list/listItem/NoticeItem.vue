@@ -2,9 +2,9 @@
 	<view class="noticeItem">
 		<image mode="aspectFit" :src="icon.notice" class="image"></image>
 		<view class="content">
-			<view><span style="margin-right:5px">发布人:</span>{{item.author}}</view>
-			<view><span style="margin-right:5px">发布标题:</span>{{item.title}}</view>
-			<view><span style="margin-right:5px">发布时间:</span>{{item.create_time}}</view>
+			<view><span style="margin-right:5px">發布人:</span>{{item.author}}</view>
+			<view><span style="margin-right:5px">發布标題:</span>{{item.title}}</view>
+			<view><span style="margin-right:5px">發布時間:</span>{{item.create_time}}</view>
 		</view>
 		<image mode="aspectFit" :src="icon.arrowRight" class="image"></image>
 	</view>

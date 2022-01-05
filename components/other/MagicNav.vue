@@ -29,7 +29,7 @@ export default {
       uni.navigateTo({
 				url:item.url,
 				success:res=>{
-					// console.log("跳转成功"+res)
+					// console.log("跳轉成功"+res)
 				},
 				fail:err=>{
 					// console.log(err)

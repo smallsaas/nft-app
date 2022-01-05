@@ -34,15 +34,15 @@
 	export default {
 		props: {
 			value: [Number, String],
-			list: { // 传值
+			list: { // 傳值
 				type: Array,
 				default: ()=> {
 					return []
 				}
 			},
-			itemColor: String, // tab主色调
-			lineColor: String ,// 下划线主色调
-			lineAnimated: { // 是否展示下划线动画
+			itemColor: String, // tab主色調
+			lineColor: String ,// 下劃線主色調
+			lineAnimated: { // 是否展示下劃線動畫
 				type: Boolean,
 				default: true
 			}
@@ -103,7 +103,7 @@
 					const item = this.list[this.currentIndex]
 					lineWidth = item.title.length * 26
 					
-					// lineLeft = el.width * (this.currentIndex + 0.5)  // 此种只能针对每个item长度一致的
+					// lineLeft = el.width * (this.currentIndex + 0.5)  // 此種隻能針對每個item長度一緻的
 					lineLeft = el.width / 2 + (-data[0].left) + el.left
 					this.lineStyle = {
 						width: `${lineWidth}rpx`,
@@ -112,7 +112,7 @@
 					};
 				})
 			},
-			scrollIntoview() {  // item滚动
+			scrollIntoview() {  // item滾動
 				let lineLeft = 0;
 				this.getElementData('#tab_list', (data)=> {
 					let list = data[0]
@@ -143,7 +143,7 @@
 		background: #fff;
 		.my_scroll_view {
 			::-webkit-scrollbar {
-				/* 隐藏滚动条，但依旧具备可以滚动的功能 */
+				/* 隐藏滾動條，但依舊具備可以滾動的功能 */
 				display: none;
 			}
 		}

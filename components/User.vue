@@ -2,8 +2,8 @@
 	<view class="Box" @click="navigateTo()">
 		<image class="avatar" src="../static/logo.png"></image>
 		<text>小王</text>
-		<text>账号状态:</text>
-		<text>查看详情</text>
+		<text>賬号狀态:</text>
+		<text>查看詳情</text>
 	</view>
 </template>
 
@@ -11,7 +11,7 @@
 	export default {
 		name:"User",
 		props:{
-			// 获取
+			// 獲取
 			item:{
 				type:Object,
 				default:{}

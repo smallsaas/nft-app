@@ -2,19 +2,19 @@
 	<view class="tabs">
 		<view class="item" @click="goTo">
 			<image class="tabImgOne" src="../../static/service/book.png" mode="widthFix"></image>
-			<text class="tabTitleOne">我的记录</text>
+			<text class="tabTitleOne">我的記錄</text>
 		</view>
 		<view class="item items" @click="goToTeam">
 			<image class="tabImgOne" src="../../static/service/team.png" mode="widthFix"></image>
-			<text class="tabTitleOne">我的团队</text>
+			<text class="tabTitleOne">我的團隊</text>
 		</view>
 		<!-- <view class="item" @click="goTo">
 			<view class="tabBox"><image class="tabImg" src="../../static/service/book.png" mode="widthFix"></image></view>
-			<text class="tabTitle">我的记录</text>
+			<text class="tabTitle">我的記錄</text>
 		</view>
 		<view class="item">
 			<view class="tabBox"><image class="tabImg" src="../../static/service/team.png" mode="widthFix"></image></view>
-			<text class="tabTitle" @click="goToTeam">我的团队</text>
+			<text class="tabTitle" @click="goToTeam">我的團隊</text>
 		</view> -->
 	</view>
 </template>

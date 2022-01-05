@@ -6,10 +6,10 @@
 					<image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image>
 				</view>
 				<view class="right">
-					<view class="flex i"><text class="name">刘华强</text></view>
+					<view class="flex i"><text class="name">劉華強</text></view>
 					<view class="flex"><text class="account">18664521094</text></view>
 					<view class="flex ii">
-						<text class="num">上级:  王小虎/18664521094</text>
+						<text class="num">上級:  王小虎/18664521094</text>
 					</view>
 				</view>
 			</view>
@@ -19,12 +19,12 @@
 						<image src="../../../static/spirit/coin.png" mode="widthFix" class="img"></image>
 					</view>
 					<view class="viewC">
-						<view class="cN"><text class="name">稀有精灵猫</text></view>
+						<view class="cN"><text class="name">稀有精靈貓</text></view>
 						<view class="cI"><image src="../../../static/spirit/levelThree.png" mode="widthFix" class="imgs"></image></view>
 					</view>
 					<view class="viewR">
 						<view class="ro"><text class="time">45:30:20</text></view>
-						<view class="rt"><text class="t">剩余付款时间</text></view>
+						<view class="rt"><text class="t">剩餘付款時間</text></view>
 					</view>
 				</view>
 			</view>

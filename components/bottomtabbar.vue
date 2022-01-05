@@ -1,9 +1,9 @@
 <template>
 	<view class="bottomTabbar">
 		<view class="box">
-			<view class="Child"><text @click="goTo('/pages/market/market')">精灵广场</text></view>
-			<view class="Child" @click="goTo('/pages/bookSpirit/bookSpirit')"><text>我的精灵</text></view>
-			<view class="Child"><text @click="goTo('/pages/servicenew/servicenew')">服务中心</text></view>
+			<view class="Child"><text @click="goTo('/pages/market/market')">精靈廣場</text></view>
+			<view class="Child" @click="goTo('/pages/bookSpirit/bookSpirit')"><text>我的精靈</text></view>
+			<view class="Child"><text @click="goTo('/pages/servicenew/servicenew')">服務中心</text></view>
 		</view>
 	</view>
 </template>

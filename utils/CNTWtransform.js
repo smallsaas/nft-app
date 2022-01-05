@@ -33,30 +33,41 @@ function ReadDirGroup(path){
 	let readDir = fs.readdirSync(path)
 	return readDir
 }
+console.log("开始转换，将会过滤部分文件")
 let fileGroup = []
 function readItem(url){
 	let read = ReadDirGroup(url)
 	read.map((item,i)=>{
 		if(item.indexOf(".")!==0){
 			if(fs.statSync(path.join(url,item)).isDirectory()){
-				readItem(path.join(url,item))
+				if(item !== 'wxcomponents'&&item!=="node_modules"&&item!=="http"&&item!=="unpackage"){
+					readItem(path.join(url,item))
+				}else{
+					console.log("过滤",item)
+				}
 			}else{
 				fileGroup.push(path.join(url,item))
 			}
 		}else{
-			console.log("过滤"+item)
+			console.log("过滤",item)
 		}
 	})
 }
-// console.log(path.join(__dirname,"/../"))
 readItem(path.join(__dirname+"/../"))
-// console.log(fileGroup)
-// console.log(readDir)
-// fileGroup.map((file,f)=>{
-	
-// })
-let readContent = fs.readFileSync(fileGroup[0])
-fs.writeFileSync(fileGroup[0],transformToTW(readContent.toString()))
-console.log("转换成功")
+fileGroup.map((file,f)=>{
+	if(file.indexOf('.png')===-1&&file.indexOf('.otf')===-1&&file!=="package.json"&&file!=="package-lock.json"&&file!=="README.md"&&file.indexOf("CNTWtransform")===-1&&file!=="manifest.json"){
+		console.log("开始转换",file)
+		let readContent = fs.readFileSync(file)
+		// 转换繁体
+		fs.writeFileSync(file,transformToTW(readContent.toString()))
+		// 转换简体(注意，有字体文件则需要重新引入，否则会报错)
+		// fs.writeFileSync(file,transformToCN(readContent.toString()))
+		console.log("转换成功",file)
+	}else{
+		console.log("过滤文件",file)
+	}
+})
+
+console.log("全部文件转换繁体成功")
 
 module.exports = {transformToCN,transformToTW}

@@ -12,24 +12,24 @@
 					<text class="types" :class="{type:index==0}">{{item.type}}</text>
 				</view>
 			</view>
-			<text class="info">消耗精灵令：</text>
+			<text class="info">消耗精靈令：</text>
 			<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImg"></image>
 			<text class="numbers">x{{itemInfo.coinCostPerDay}}</text>
-			<text class="titleInfo">土地等级：</text>
+			<text class="titleInfo">土地等級：</text>
 			<view class="typeTwo">
 				<view class="tItem" v-for="(item,index) in landTypeTwo" :key="index">
 					<text class="infoTwoItem" :class="{infoItem:index==0}">{{item.type}}-收益{{item.get}}%</text>
 				</view>
 			</view>
-			<text class="titleInfo dd">租用天数：</text>
+			<text class="titleInfo dd">租用天數：</text>
 			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
 			<button class="btnNum">{{number}}</button>
 			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
 			<view class="btnBox">
-				<text class="tt">共消耗精灵令</text>
+				<text class="tt">共消耗精靈令</text>
 				<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImgs"></image>
 				<text class="ttt">x{{number*itemInfo.coinCostPerDay}}</text>
-				<button class="btnMore" @click="landBuy">立即购买</button>
+				<button class="btnMore" @click="landBuy">立即購買</button>
 			</view>
 			<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 			<!-- <view class="top">
@@ -39,19 +39,19 @@
 				<view class="topR">
 					<view class="Cname"><text class="name">安防科技啥叫看</text></view>
 					<view class="CLname"><text class="names" :class="{name:index==indexType}" v-for="(item,index) in landType" :key="item.id" @click="chooseType(index)">{{item.type}}</text></view>
-					<view class="CInfo"><text class="info">消耗精灵令:</text>
+					<view class="CInfo"><text class="info">消耗精靈令:</text>
 						<image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text>
 					</view>
 				</view>
 			</view>
 			<view class="add">
-				<view class="CL"><text class="info">土地等级:</text></view>
+				<view class="CL"><text class="info">土地等級:</text></view>
 				<view class="CR">
 					<text class="names" @click="chooseTypeTwo(index)" :class="{name:index==indexTypeTwo}" v-for="(item,index) in landTypeTwo" :key="index">{{item.type}}-收益{{item.get}}%</text>
 				</view>
 			</view>
 			<view class="center">
-				<view class="CL"><text class="info">租用天数:</text></view>
+				<view class="CL"><text class="info">租用天數:</text></view>
 				<view class="CR">
 					<button class="btn">-</button>
 					<button class="btn num">0</button>
@@ -60,14 +60,14 @@
 			</view>
 			<view class="bottom">
 				<view class="bL">
-					<view class="info"><text class="infoText">共消耗精灵令</text></view>
+					<view class="info"><text class="infoText">共消耗精靈令</text></view>
 					<view class="num">
 						<image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text
 							class="infoText">x12</text>
 					</view>
 				</view>
 				<view class="bR">
-					<button class="buyBtn">立即购买</button>
+					<button class="buyBtn">立即購買</button>
 				</view>
 			</view> -->
 			<!-- </van-popup> -->
@@ -100,12 +100,12 @@
 						get: 0
 					}, {
 						id: 2,
-						type: "精装",
+						type: "精裝",
 						get: 2
 					},
 					{
 						id: 3,
-						type: "豪华",
+						type: "豪華",
 						get: 5
 					}
 				],
@@ -142,7 +142,7 @@
 				this.$emit('addLandNumber', this.number)
 			},
 
-			//购买土地
+			//購買土地
 			async landBuy() {
 				console.log(this.itemInfo.id, 11111111111)
 				const data = {

@@ -10,12 +10,12 @@
 				<image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image>
 			</view>
 			<view class="right">
-				<view class="flex i"><text class="name">刘华强</text></view>
+				<view class="flex i"><text class="name">劉華強</text></view>
 				<view class="flex"><text class="account">18664521094 (lv2)</text></view>
 				<view class="flex ii">
-					<text class="num">领养数:  13人</text>
-					<text class="num">直推数:  13人</text>
-					<text class="num tt">预约数:  13人</text>
+					<text class="num">領養數:  13人</text>
+					<text class="num">直推數:  13人</text>
+					<text class="num tt">預約數:  13人</text>
 				</view>
 			</view>
 		</view>

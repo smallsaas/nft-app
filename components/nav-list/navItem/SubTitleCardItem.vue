@@ -56,7 +56,7 @@
 </script>
 
 <style lang="less">
-	/* 字体文件 图标*/
+	/* 字體文件 圖标*/
 	@font-face {
 	  font-family: 'cardIcon';  /* Project id 2627814 */
 	  src: url('//at.alicdn.com/t/font_2627814_ijwngxtkupi.woff2?t=1624417982103') format('woff2'),
@@ -75,23 +75,23 @@
 			align-items: center;
 	}
 	
-	.icon-street:before {	//街镇用户
+	.icon-street:before {	//街鎮用戶
 	  content: "\e645";
 	}
 	
-	.icon-enterprise:before { //企业用户
+	.icon-enterprise:before { //企業用戶
 	  content: "\e666";
 	}
 	
-	.icon-enforcement:before { //执法人员
+	.icon-enforcement:before { //執法人員
 	  content: "\e62e";
 	}
 	
-	.icon-management:before {	//管理人员
+	.icon-management:before {	//管理人員
 	  content: "\e736";
 	}
 	
-	// 样式文件
+	// 樣式文件
 	.SubTitleCard{
 		background-color: white;
 		box-shadow: 0px 2px 5px 2px #D8D8D8;

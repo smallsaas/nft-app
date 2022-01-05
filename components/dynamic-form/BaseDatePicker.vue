@@ -24,8 +24,8 @@
 			/>
 		</van-popup>
 		<view class="base-date-picker-button-box" v-if="(!param.readonly&&!param.disabled)&&param.hasButton">
-			<van-button class="base-date-picker-button" type="primary" size="small" @click="handleChange('无固定期限')">无固定期限</van-button>
-			<van-button class="base-date-picker-button" type="primary" size="small" @click="handleChange('长期')">长期</van-button>
+			<van-button class="base-date-picker-button" type="primary" size="small" @click="handleChange('無固定期限')">無固定期限</van-button>
+			<van-button class="base-date-picker-button" type="primary" size="small" @click="handleChange('長期')">長期</van-button>
 		</view>
 	</view>
 </template>
@@ -81,9 +81,9 @@
 			convertToLateDate() {
 				var data = new Date();
 					// var Da = new Date(data.getTime() + 24 * 60 * 60 * 1000 * 30);
-					// 以上两行代码为关键代码，若想要返回一天后的时间，则可以将第二行代码更换为下面代码
+					// 以上兩行代碼爲關鍵代碼，若想要返回一天後的時間，則可以将第二行代碼更換爲下面代碼
 					// var Da = new Date(data.getTime() + 24 * 60 * 60 * 1000);
-					// 若是想要返回值为当前时间，则上面两行代码可以直接修改为下面代码即可。
+					// 若是想要返回值爲當前時間，則上面兩行代碼可以直接修改爲下面代碼即可。
 					var Da = new Date()
 					var y = Da.getFullYear();
 					var m = Da.getMonth() + 1;

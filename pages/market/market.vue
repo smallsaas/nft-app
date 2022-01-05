@@ -1,8 +1,8 @@
 <template>
 	<view class="navBox">
 		<view class="nav">
-			<view>精灵市场</view>
-			<view @click="goTo">签到抽盒</view>
+			<view>精靈市場</view>
+			<view @click="goTo">簽到抽盒</view>
 		</view>
 		<dynamic-page :API="api"></dynamic-page>
 		<bottomtabbar></bottomtabbar>

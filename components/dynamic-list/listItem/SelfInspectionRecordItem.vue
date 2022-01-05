@@ -4,22 +4,22 @@
 			<view class="left flex1">
 				<view class="title text-line-1">{{ item.name }}</view>
 				<view class="times text-line-1">
-					期间: {{ item.code }}
+					期間: {{ item.code }}
 				</view>
-				<view class="submit-time">提交时间: {{ item.createTime }}</view>
+				<view class="submit-time">提交時間: {{ item.createTime }}</view>
 			</view>
 			<view class="right">
 				<view v-if="item.status === 'START'" class="status">
-					待审核
+					待審核
 				</view>
 				<view v-else-if="item.status === 'VERIFYING'" class="status" style="background-color: #F5A623;">
-					审核中
+					審核中
 				</view>
 				<view v-else-if="item.status === 'CLOSE_REJECTED'" class="status" style="background-color: #D43030;">
-					被拒绝
+					被拒絕
 				</view>
 				<view v-else-if="item.status === 'CLOSE_APPROVED'" class="status" style="background-color: #979797;">
-					已审核
+					已審核
 				</view>
 			</view>
 		</view>

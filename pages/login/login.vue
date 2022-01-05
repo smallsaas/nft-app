@@ -1,12 +1,12 @@
 <template>
 	<view class="LoginBox">
-		<input type="text" placeholder="请输入手机号码" v-model="data.account"/>
-		<input type="password" placeholder="请输入密码" v-model="data.password"/>
-		<button @click="login">登录</button>
+		<input type="text" placeholder="請輸入手機号碼" v-model="data.account"/>
+		<input type="password" placeholder="請輸入密碼" v-model="data.password"/>
+		<button @click="login">登錄</button>
 		<br>
 		<br>
 		<br>
-		<button @click="goToRegist">注册</button>
+		<button @click="goToRegist">注冊</button>
 	</view>
 </template>
 
@@ -27,7 +27,7 @@
 				console.log(res)
 				that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
 				uni.showModal({
-					content:'登录成功'
+					content:'登錄成功'
 				})
 				// that.$cache.set('userId',res.data.userId)
 				// that.$cache.set('userAvatar',res.data.avatar)

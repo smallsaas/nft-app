@@ -1,4 +1,4 @@
-<!-- 由于web-view中不支持嵌套多层web-view 所以这边使用slot方式来决定不同页面的渲染 -->
+<!-- 由于web-view中不支持嵌套多層web-view 所以這邊使用slot方式來決定不同頁面的渲染 -->
 <template>
 	<view class="navBar">
 		<view class="navBar-content" :style="[contentStyle]">
@@ -7,7 +7,7 @@
 			</slot>
 		</view>
 		<view class="navBar-container">
-			<view v-for="(nav,n) in navs" class="navBar-nav" @click="handleClick(n)">
+			<view v-for="(nav,n) in navs" v-if="Array.isArray(navs)&&navs.length>0" class="navBar-nav" @click="handleClick(n)">
 				<view :class="'navBar-party'+isClick(n)">
 					<image :src="nav.image" class="navBar-party-image">
 					</image>
@@ -42,7 +42,7 @@
 		},
 		created() {
 			this.clicked = this.defaultClick
-			console.log("加载",this.defaultClick)
+			console.log("加載",this.defaultClick)
 			// #ifdef H5
 				this.contentStyle = {
 					"height": "calc(100vh - 220rpx)"
@@ -55,7 +55,7 @@
 			// #endif
 		},
 		methods:{
-			// 点击时事件
+			// 點擊時事件
 			handleClick(click){
 				this.clicked = click
 				this.$emit("change",click)

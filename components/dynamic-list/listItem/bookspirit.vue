@@ -1,12 +1,12 @@
 <template>
 	<view class="bookSpirit">
-		<text>预约状态{{item.bookStatus}}</text>
+		<text>預約狀态{{item.bookStatus}}</text>
 		<br>
 		<text>玩家id{{item.playerId}}</text>
 		<br>
-		<text>预约场次号{{item.marketSessionId}}</text>
+		<text>預約場次号{{item.marketSessionId}}</text>
 		<br>
-		<text>预约时间{{item.appointmentTime}}</text>
+		<text>預約時間{{item.appointmentTime}}</text>
 	</view>
 </template>
 

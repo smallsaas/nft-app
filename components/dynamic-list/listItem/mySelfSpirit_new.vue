@@ -5,7 +5,7 @@
 				<image src="../../../static/spirit/text.png" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
-				<text class="name">极品九尾灵狐</text>
+				<text class="name">極品九尾靈狐</text>
 			</view>
 			<view class="levelBox">
 				<image src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
@@ -17,12 +17,12 @@
 				<text class="info">出售：2021-12-16 12:25:48</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">买家：18545879654</text>
+				<text class="info">買家：18545879654</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<text class="timeOne">对方付款中...</text>
-				<text class="timeTwo">剩余付款时间 01:58:32</text>
+				<text class="timeOne">對方付款中...</text>
+				<text class="timeTwo">剩餘付款時間 01:58:32</text>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -45,7 +45,7 @@
 			// 	this.isShowToast = true
 			// },
 			// noMessage(){
-			// 	this.toast('功能暂未开放，敬请期待!')
+			// 	this.toast('功能暫未開放，敬請期待!')
 			// },
 			// closeToast(){
 			// 	this.isShowToast = false

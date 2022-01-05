@@ -1,8 +1,8 @@
 <template>
 	<view class="spiritMarket">
 		<view class="head" @click="g">
-			<view class="tab">精灵商店</view>
-			<view class="tab">预约签到</view>
+			<view class="tab">精靈商店</view>
+			<view class="tab">預約簽到</view>
 		</view>
 		<view class="bodyList">
 			<list></list>

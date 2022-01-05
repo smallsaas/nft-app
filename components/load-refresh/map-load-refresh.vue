@@ -1,9 +1,9 @@
 <template>
 	<view class="load-refresh">
-		<!-- 刷新动画，可自定义，占高100rpx -->
+		<!-- 刷新動畫，可自定義，占高100rpx -->
 		<view class="animation" :style="{'--color': color}">
 			<view v-if="!playState" class="remind">
-				{{moving ? '↑ 松开释放' : '↓ 下拉刷新'}}
+				{{moving ? '↑ 松開釋放' : '↓ 下拉刷新'}}
 			</view>
 			<view v-if="playState && refreshType === 'hollowDots'" class="refresh hollow-dots-spinner">
 				<view class="dot"></view>
@@ -21,7 +21,7 @@
 				<view class="square"></view>
 			</view>
 		</view>
-		<!-- 数据列表块 -->
+		<!-- 數據列表塊 -->
 		<view
 			class="cover-container"
 			:style="[{
@@ -33,9 +33,9 @@
 			@touchmove="coverTouchmove"
 			@touchend="coverTouchend">
 			<scroll-view scroll-y class="list" :scroll-top="scrollTop" @scrolltolower="loadMore" :style="getHeight">
-				<!-- 数据集插槽 -->
+				<!-- 數據集插槽 -->
 				<slot name="content-list"></slot>
-				<!-- 上拉加载 -->
+				<!-- 上拉加載 -->
 				<view class="load-more">{{loadText}}</view>
 			</scroll-view>
 		</view>
@@ -83,17 +83,17 @@
 			return {
 				startY: 0,
 				moveY: 0,
-				updating: false, // 数据更新状态（true: 更新中）
-				updateType: true, // 数据更新类型（true: 下拉刷新: false: 加载更多）
+				updating: false, // 數據更新狀态（true: 更新中）
+				updateType: true, // 數據更新類型（true: 下拉刷新: false: 加載更多）
 				moving: false,
 				scrollTop: -1,
 				coverTransform: 'translateY(0px)',
 				coverTransition: '0s',
-				playState: false // 动画的状态 暂停 paused/开始 running
+				playState: false // 動畫的狀态 暫停 paused/開始 running
 			}
 		},
 		computed: {
-			// 计算组件所占屏幕高度
+			// 計算組件所占屏幕高度
 			getHeight() {
 				// rpx = px / uni.getSystemInfoSync().windowWidth * 750
 				if (Number(this.fixedHeight)) {
@@ -103,20 +103,20 @@
 					return `height: ${height}px;`
 				}
 			},
-			// 判断loadText，可以根据需求自定义
+			// 判斷loadText，可以根據需求自定義
 			loadText() {
 				const { currentPage, totalPages, updating, updateType } = this
 				if (!updateType && updating) {
-					return '加载中...'
+					return '加載中...'
 				} else if (currentPage < totalPages) {
-					return '上拉加载更多'
+					return '上拉加載更多'
 				} else {
-					return '没更多数据了'
+					return '沒更多數據了'
 				}
 			}
 		},
 		methods: {
-			// 根据currentPage和totalPages的值来判断 是否触发@loadMore
+			// 根據currentPage和totalPages的值來判斷 是否觸發@loadMore
 			loadMore() {
 				const { currentPage, totalPages } = this
 				if (!this.updating && currentPage < totalPages) {
@@ -125,7 +125,7 @@
 					this.$emit('loadMore')
 				}
 			},
-			// 回弹效果
+			// 回彈效果
 			coverTouchstart(e) {
 				if (!this.isRefresh) {
 					return
@@ -203,7 +203,7 @@
 		}
 	}
 	
-	/* 动画 */
+	/* 動畫 */
 	.animation {
 		width: 100%;
 		height: 100rpx;

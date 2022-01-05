@@ -18,18 +18,18 @@
 				<text class="info">能力值：400</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<text class="info">增长能力：{{item.wisp.growthPercent}}%</text>
+				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">领养：</text>
+				<text class="info">領養：</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<button class="btn one" v-if="true" @click="noMessage">铸造</button>
+				<button class="btn one" v-if="true" @click="noMessage">鑄造</button>
 				<view class="boxs" v-if="true">
 					<button class="two" @click="noMessage">出售</button>
 				</view>
-				<text class="time" v-if="false">剩余时间 48:52:47</text>
+				<text class="time" v-if="false">剩餘時間 48:52:47</text>
 			</view>
 		</view>
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
@@ -56,7 +56,7 @@
 				this.isShowToast = true
 			},
 			noMessage(){
-				this.toast('功能暂未开放，敬请期待!')
+				this.toast('功能暫未開放，敬請期待!')
 			},
 			closeToast(){
 				this.isShowToast = false

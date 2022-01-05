@@ -25,9 +25,9 @@
 		data() {
 			return {
 				navs:[
-					{"title":"精灵广场","image":"/static/public/elvesSquare.png"},
-					{"title":"我的精灵","image":"/static/public/MySpirit.png"},
-					{"title":"服务中心","image":"/static/public/服务中心.png"}
+					{"title":"精靈廣場","image":"/static/public/elvesSquare.png"},
+					{"title":"我的精靈","image":"/static/public/MySpirit.png"},
+					{"title":"服務中心","image":"/static/public/服務中心.png"}
 				],
 				clicked:0,
 				apis:[

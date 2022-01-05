@@ -2,99 +2,99 @@
 
 ## 工具
 
-[HBuilder X工具官网](https://www.dcloud.io/hbuilderx.html)
+[HBuilder X工具官網](https://www.dcloud.io/hbuilderx.html)
 
-[规范定义](https://github.com/smallsaas/auto-render)
+[規範定義](https://github.com/smallsaas/auto-render)
 
 ## 使用方法
 
-h5-render 需要配合工具 HBuilder X 进行开发，请前往上面的地址下载工具
+h5-render 需要配合工具 HBuilder X 進行開發，請前往上面的地址下載工具
 
-使用 运行>运行到浏览器 打开
+使用 運行>運行到浏覽器 打開
 
 ## 打包方法
 
-使用 HBuilder X 中的打包功能进行打包
+使用 HBuilder X 中的打包功能進行打包
 
-## 动态页面缓存策略
+## 動态頁面緩存策略
 
-> 缓存策略只对动态页面数据进行缓存，不对其余组件做操作
+> 緩存策略隻對動态頁面數據進行緩存，不對其餘組件做操作
 
-### 缓存策略配置方法
+### 緩存策略配置方法
 
-前往[config.js](./config.js)进行配置
+前往[config.js](./config.js)進行配置
 
-以下是对于有关缓存策略项的说明:
+以下是對于有關緩存策略項的說明:
 
 #### cachePolicy
 
-说明：对缓存的策略 以天时间单位来决定页面缓存的时间 为0不进行缓存
+說明：對緩存的策略 以天時間單位來決定頁面緩存的時間 爲0不進行緩存
 
 #### clearPageCache
 
-说明：决定是否在重新进入程序时清除原先的页面缓存
+說明：決定是否在重新進入程序時清除原先的頁面緩存
 
-## 全局变量及说明
+## 全局變量及說明
 
 ### this.$config
 
-说明：引用主目录下的 config.js 文件中的 globalConfig 内容
+說明：引用主目錄下的 config.js 文件中的 globalConfig 内容
 
 ### this.$api
 
-说明：引入主目录下的 common/api.js 文件中的 api 属性
+說明：引入主目錄下的 common/api.js 文件中的 api 屬性
 
 ### this.$cache.(function)
 
-说明：永久缓存
+說明：永久緩存
 
-**this.$cache.get(key):** 获取指定key的永久缓存
+**this.$cache.get(key):** 獲取指定key的永久緩存
 
-**this.$cache.set(key,value):** 设置指定key的永久缓存
+**this.$cache.set(key,value):** 設置指定key的永久緩存
 
-**this.$cache.remove(key):** 删除指定key的永久缓存
+**this.$cache.remove(key):** 删除指定key的永久緩存
 
-**this.$cache.clear()** 清除所有缓存
+**this.$cache.clear()** 清除所有緩存
 
 ### this.$timeCache(key,value,time)
 
-说明：临时缓存
+說明：臨時緩存
 
-**this.$timeCache(key)** 获取指定key缓存
-**this.$timeCache(key,value,time)** 设置临时缓存 如果time不设置 默认一天
+**this.$timeCache(key)** 獲取指定key緩存
+**this.$timeCache(key,value,time)** 設置臨時緩存 如果time不設置 默認一天
 
 ### this.$reload()
 
-说明：重新加载当前页面
+說明：重新加載當前頁面
 
-## 全局组件
+## 全局組件
 
-dynamic-page:自动页面
+dynamic-page:自動頁面
 
-dynamic-form:自动表单
+dynamic-form:自動表單
 
-dynamic-list:自动列表
+dynamic-list:自動列表
 
-card:带有标题的容器
+card:帶有标題的容器
 
-## 自动页面、自动列表、自动表单加组件方法
+## 自動頁面、自動列表、自動表單加組件方法
 
-进入 "@/components/dynamic-page/index.vue"，在
+進入 "@/components/dynamic-page/index.vue"，在
 ```vue
 	<view v-for="(item, index) in config.modules" :key="index">
 ```
-下面增加组件，然后 import 引入组件，在components中引入即可
+下面增加組件，然後 import 引入組件，在components中引入即可
 
-以此类推，自动列表和自动页面同理
+以此類推，自動列表和自動頁面同理
 
 ### 注意
-自动表单加组件需要在"@/components/dynamic-form/BaseVants.vue"中加
+自動表單加組件需要在"@/components/dynamic-form/BaseVants.vue"中加
 
-## 页面数据
+## 頁面數據
 
-页面数据放置在http文件夹中 请使用Vscode中的rest-client插件进行操作
+頁面數據放置在http文件夾中 請使用Vscode中的rest-client插件進行操作
 
-## vant组件编译工具
+## vant組件編譯工具
 
 地址 [./utils/vant-build-tools.js](./utils/vant-build-tools.js)
-使用方法 node vant-build-tools.js 会生成vantComponents.js 将内容复制到main.js即可
+使用方法 node vant-build-tools.js 會生成vantComponents.js 将内容複制到main.js即可

@@ -1,22 +1,22 @@
 <template>
 	<view class="transfers">
 		<text class="t">
-			转化精灵令
+			轉化精靈令
 		</text>
 		<text class="tt">
-			转化数量
+			轉化數量
 		</text>
-		<input class="ttt" type="number" placeholder="最多可转化2000" v-model="transferWispCoind" />
+		<input class="ttt" type="number" placeholder="最多可轉化2000" v-model="transferWispCoind" />
 		<view class="line"></view>
 		<view class="btnBox">
 			<button class="btn ccc" @click="cancel">取消</button>
 			<button class="btn" @click="sureTransfer">确定</button>
 		</view>
-		<!-- <view class="title"><text class="info">转化精灵令</text></view>
+		<!-- <view class="title"><text class="info">轉化精靈令</text></view>
 		<view class="opView">
 			<view class="item">
-				<text class="ti">转化数量</text>
-				<input class="in" type="number" placeholder="输入数量,最多可转化2000" />
+				<text class="ti">轉化數量</text>
+				<input class="in" type="number" placeholder="輸入數量,最多可轉化2000" />
 			</view>
 		</view>
 		<view class="btnBox">
@@ -52,7 +52,7 @@
 				if(this.dataTwo==undefined){
 					if (this.data.marketPoints < 200000000) {
 						const data = {
-							message: '收益未达到2000暂不可转化为精灵令',
+							message: '收益未達到2000暫不可轉化爲精靈令',
 						}
 						this.$emit('forParentMessage', data)
 					} else {
@@ -61,7 +61,7 @@
 				}else if(this.data == undefined){
 					if (this.dataTwo.depositPoints < 200000000) {
 						const data = {
-							message: '收益未达到2000暂不可转化为精灵令',
+							message: '收益未達到2000暫不可轉化爲精靈令',
 						}
 						this.$emit('forParentMessageTwo', data)
 					} else {

@@ -3,7 +3,7 @@
 		<view class="titleBox">
 			<span class="title">{{item.name}}</span>
 			<span class="state-high" v-if="isHigh(item.type)">高危</span>
-			<span class="state state-example" v-if="item.state.example.status">检查 {{item.state.example.number}}</span>
+			<span class="state state-example" v-if="item.state.example.status">檢查 {{item.state.example.number}}</span>
 			<span class="state state-self" v-if="item.state.self.status">自查 {{item.state.self.number}}</span>
 		</view>
 		<view class="subTitleBox">
@@ -30,7 +30,7 @@
 				let that = this
 				let typeGroup = JSON.parse(type)
 				let high;
-				let highGroup = ["游泳","滑雪","潜水","攀岩"]
+				let highGroup = ["遊泳","滑雪","潛水","攀岩"]
 				typeGroup.map((item,i)=>{
 						let company = that.$whatCompany(item)
 						if(highGroup.indexOf(company)!==-1){

@@ -130,28 +130,28 @@ export const Base64 = {
       return string;
     } 
 }
-    //生成随机 GUID 数
+    //生成随機 GUID 數
 export const guid = () => {
     function S4() {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     }
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
-// 设置定时缓存
+// 設置定時緩存
 export const timeCache=(key,value,seconds = 3600 *24)=>{
 		let nowTime = Date.parse(new Date()) / 1000;
 		if (key && value) {
 			let expire = nowTime + Number(seconds);
 			uni.setStorageSync(key,JSON.stringify(value) + '|' +expire)
-			// console.log('已经把' + key + '存入缓存,过期时间为' + expire)
+			// console.log('已經把' + key + '存入緩存,過期時間爲' + expire)
 		} else if (key && !value) {
 			let val = uni.getStorageSync(key);
 			if (val) {
-				// 缓存存在，判断是否过期
+				// 緩存存在，判斷是否過期
 				let temp = val.split('|')
 				if (!temp[1] || temp[1] <= nowTime) {
 					uni.removeStorageSync(key)
-					// console.log(key + '缓存已失效')
+					// console.log(key + '緩存已失效')
 					return '';
 				} else {
 					return JSON.parse(temp[0]);
@@ -159,7 +159,7 @@ export const timeCache=(key,value,seconds = 3600 *24)=>{
 			}
 		}
 }
-// 设置永久缓存 获取永久缓存 清除永久缓存 清除所偶有缓存
+// 設置永久緩存 獲取永久緩存 清除永久緩存 清除所偶有緩存
 export const cache={
 	get(key){
 		return uni.getStorageSync(key)
@@ -174,7 +174,7 @@ export const cache={
 		uni.clearStorageSync()
 	}
 }
-// 重新加载当前页面 (带onload参数)
+// 重新加載當前頁面 (帶onload參數)
 export default function reload(){
 	let pages = getCurrentPages()
 	let nowPage = pages[pages.length-1];
@@ -182,7 +182,7 @@ export default function reload(){
 		url:nowPage.$page.fullPath
 	})
 }
-// 公共上传
+// 公共上傳
 export const upload = async(url,file) =>{
 	let res = await new Promise(resolve=>{
 		let token = cache.get(globalConfig.tokenStorageKey)
@@ -205,7 +205,7 @@ export const upload = async(url,file) =>{
 				}else{
 					uni.showToast({
 						icon:"error",
-						title:"上传失败"
+						title:"上傳失敗"
 					})
 					resolve("/static/BaseImage/fail.png")
 				}

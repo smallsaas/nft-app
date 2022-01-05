@@ -4,15 +4,15 @@
 			<view class="backImg">
 				<image  @click="goBack" class="back" src="../../static/login/back.png" mode="widthFix"></image>
 			</view>
-			<view class="loginText"><text class="text">找回密码</text></view>
-			<view class="label"><text class="labelTxt">账号</text></view>
-			<view class="inputBox"><input class="account" type="number" placeholder="请输入手机号码"></view>
-			<view class="info" v-if="false"><text class="infoText">账号有误，请输入正确的手机号码</text></view>
-			<view class="label"><text class="labelTxt">验证码</text></view>
-			<view class="inputBox"><input class="account" type="number" placeholder="请输入验证码"><text
-					class="getYZM">获取验证码</text></view>
-			<view class="label"><text class="labelTxt">设置新密码</text></view>
-			<view class="inputBox"><input class="account" type="text" :password="isShowPassword" placeholder="请输入密码">
+			<view class="loginText"><text class="text">找回密碼</text></view>
+			<view class="label"><text class="labelTxt">賬号</text></view>
+			<view class="inputBox"><input class="account" type="number" placeholder="請輸入手機号碼"></view>
+			<view class="info" v-if="false"><text class="infoText">賬号有誤，請輸入正确的手機号碼</text></view>
+			<view class="label"><text class="labelTxt">驗證碼</text></view>
+			<view class="inputBox"><input class="account" type="number" placeholder="請輸入驗證碼"><text
+					class="getYZM">獲取驗證碼</text></view>
+			<view class="label"><text class="labelTxt">設置新密碼</text></view>
+			<view class="inputBox"><input class="account" type="text" :password="isShowPassword" placeholder="請輸入密碼">
 				<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 			</view>
 			<view class="loginBox"><button class="loginBtn">确定</button></view>

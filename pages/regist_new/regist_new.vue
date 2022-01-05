@@ -4,63 +4,63 @@
 			<view class="backImg">
 				<image class="back" @click="goBackStep" src="../../static/login/back.png" mode="widthFix"></image>
 			</view>
-			<view class="loginText"><text class="text" v-if="!isShowRegistInfo">会员注册</text></view>
+			<view class="loginText"><text class="text" v-if="!isShowRegistInfo">會員注冊</text></view>
 			<view v-if="step==0">
-				<view class="label"><text class="labelTxt">昵称</text></view>
-				<view class="inputBox"><input class="account" type="text" placeholder="请输入您的昵称" v-model="data.name">
+				<view class="label"><text class="labelTxt">昵稱</text></view>
+				<view class="inputBox"><input class="account" type="text" placeholder="請輸入您的昵稱" v-model="data.name">
 				</view>
-				<view class="label"><text class="labelTxt">手机号码</text></view>
-				<view class="inputBox"><input class="account" type="number" placeholder="请输入您的手机号码"
+				<view class="label"><text class="labelTxt">手機号碼</text></view>
+				<view class="inputBox"><input class="account" type="number" placeholder="請輸入您的手機号碼"
 						v-model="data.phone"></view>
-				<view class="info" v-if="false"><text class="infoText">请输入正确的手机号码</text></view>
-				<view class="label"><text class="labelTxt">验证码</text></view>
-				<view class="inputBox"><input class="account" type="number" placeholder="请输入验证码"><text
-						class="getYZM">获取验证码</text></view>
-				<view class="info" v-if="false"><text class="infoText">验证码有误</text></view>
+				<view class="info" v-if="false"><text class="infoText">請輸入正确的手機号碼</text></view>
+				<view class="label"><text class="labelTxt">驗證碼</text></view>
+				<view class="inputBox"><input class="account" type="number" placeholder="請輸入驗證碼"><text
+						class="getYZM">獲取驗證碼</text></view>
+				<view class="info" v-if="false"><text class="infoText">驗證碼有誤</text></view>
 				<view class="loginBox"><button class="loginBtn" @click="nextStep()">下一步</button></view>
-				<view class="goToInfo"><text class="hasAccount">已有账号？<text class="goToLogin"
-							@click="goLogin">去登陆</text></text></view>
-				<view class="downLoad"><text class="downTxt">下载APP</text>
+				<view class="goToInfo"><text class="hasAccount">已有賬号？<text class="goToLogin"
+							@click="goLogin">去登陸</text></text></view>
+				<view class="downLoad"><text class="downTxt">下載APP</text>
 					<image class="downImg" src="../../static/login/download.png" mode="widthFix"></image>
 				</view>
 			</view>
 			<view v-if="step==1 && isShowRegistInfo==false">
-				<view class="label"><text class="labelTxt">邀请码</text></view>
-				<view class="inputBox"><input class="account" type="text" placeholder="请输入您的邀请码"
+				<view class="label"><text class="labelTxt">邀請碼</text></view>
+				<view class="inputBox"><input class="account" type="text" placeholder="請輸入您的邀請碼"
 						v-model="data.invitationCode"></view>
-				<view class="label"><text class="labelTxt">登录密码</text></view>
+				<view class="label"><text class="labelTxt">登錄密碼</text></view>
 				<view class="inputBox"><input v-model="data.loginPassword" class="account" type="text"
-						placeholder="请输入您的登录密码" :password="isShowPassword">
+						placeholder="請輸入您的登錄密碼" :password="isShowPassword">
 					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 				</view>
-				<view class="label"><text class="labelTxt">邮箱 (选填)</text></view>
-				<view class="inputBox"><input class="account" type="text" placeholder="请输入邮箱" v-model="data.email">
+				<view class="label"><text class="labelTxt">郵箱 (選填)</text></view>
+				<view class="inputBox"><input class="account" type="text" placeholder="請輸入郵箱" v-model="data.email">
 				</view>
-				<view class="info" v-if="false"><text class="infoText">邮箱有误</text></view>
+				<view class="info" v-if="false"><text class="infoText">郵箱有誤</text></view>
 				<view class="check">
 					<view class="checkBox" :class="{'haveRead':isReadRegistInfo==true}" @click="readRegistMessage">
 						<image v-if="isReadRegistInfo" class="rightImg" src="../../static/login/right.png"
 							mode="widthFix"></image>
 					</view>
-					<view class="checkInfo"><text>注册/登录即代表您已阅读并同意<text class="registInfo" @click="lookRegist">
-								<<用户注册协议>>
+					<view class="checkInfo"><text>注冊/登錄即代表您已閱讀并同意<text class="registInfo" @click="lookRegist">
+								<<用戶注冊協議>>
 							</text></text></view>
 				</view>
-				<view class="loginBox"><button class="loginBtn" @click="registAndLogin">注册并登录</button></view>
-				<view class="goToInfo"><text class="hasAccount">已有账号？<text class="goToLogin"
-							@click="goLogin">去登陆</text></text></view>
+				<view class="loginBox"><button class="loginBtn" @click="registAndLogin">注冊并登錄</button></view>
+				<view class="goToInfo"><text class="hasAccount">已有賬号？<text class="goToLogin"
+							@click="goLogin">去登陸</text></text></view>
 			</view>
-			<view class="downLoad"><text class="downTxt" v-if="true">下载APP</text>
+			<view class="downLoad"><text class="downTxt" v-if="true">下載APP</text>
 				<image class="downImg" src="../../static/login/download.png" mode="widthFix"></image>
 			</view>
 
 			<view class="registInfoTex" v-if="isShowRegistInfo">
-				<view class="title"><text class="infoRegist">用户注册协议</text></view>
+				<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
 				<view class="info"><text
 						class="infoTwo">啊水水啊水水水水水水水水啊水水水水水水水水水水啊水水水水水水水水水水水水水水啊水水水水水水水水水水水水水水啊水水水水水水水水水水水水水水啊水水水水水水水水水水水水啊水水水水水水水水啊啊水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水啊水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水啊水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水</text>
 				</view>
 				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
-						@click="no">拒绝</button></view>
+						@click="no">拒絕</button></view>
 			</view>
 
 		</view>
@@ -121,7 +121,7 @@
 				if (this.isReadRegistInfo == false) {
 					uni.showToast({
 						icon: 'error',
-						title: '请勾选用户注册协议',
+						title: '請勾選用戶注冊協議',
 						duration: 1000
 					})
 					return;
@@ -139,7 +139,7 @@
 					if (resUser.code == 200) {
 						uni.showToast({
 							icon: 'success',
-							title: '注册成功',
+							title: '注冊成功',
 							duration: 1000
 						})
 						setTimeout(()=>{

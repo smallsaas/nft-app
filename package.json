@@ -11,7 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "echo 请使用HBuilder X打开项目!"
+    "start": "echo 請使用HBuilder X打開項目!",
+    "transform":"node ./utils/CNTWtransform.js"
   },
   "keywords": [],
   "author": "",

@@ -1,12 +1,12 @@
 <template>
 	<view class="regist">
 		<view class="box">
-			<input type="text" placeholder="请输入昵称" v-model="info.name"/>
-			<input type="number" placeholder="请输入手机号码" v-model="info.phone"/>
-			<!-- <input type="number" placeholder="请输入验证码" />
-			<input type="text" placeholder="请输入邀请码" /> -->
-			<input type="text" placeholder="请输入登录密码" v-model="info.password"/>
-			<button @click="regist"> 注册并登录 </button>
+			<input type="text" placeholder="請輸入昵稱" v-model="info.name"/>
+			<input type="number" placeholder="請輸入手機号碼" v-model="info.phone"/>
+			<!-- <input type="number" placeholder="請輸入驗證碼" />
+			<input type="text" placeholder="請輸入邀請碼" /> -->
+			<input type="text" placeholder="請輸入登錄密碼" v-model="info.password"/>
+			<button @click="regist"> 注冊并登錄 </button>
 		</view>
 	</view>
 </template>
@@ -29,7 +29,7 @@
 				console.log(res)
 				if(res.code == 200) {
 					uni.showModal({
-						content:'注册成功'
+						content:'注冊成功'
 					})
 					uni.navigateTo({
 						url:'/pages/login/login'

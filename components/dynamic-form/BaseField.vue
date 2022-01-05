@@ -69,7 +69,7 @@
                         inputBlock: false,
                         type: 'text',
                         value: '',
-                        placeholder: '请填写',
+                        placeholder: '請填寫',
                         required: false,
                         clearable: false,
                         maxlength: -1,
@@ -135,7 +135,7 @@
 									})
 								}else{
 									uni.showToast({
-										title:param.errorText||"失败",
+										title:param.errorText||"失敗",
 										icon:'error'
 									})
 								}
@@ -150,7 +150,7 @@
 							if(this.status === this.param.doNotUseValue){
 								uni.showToast({
 									icon:"error",
-									title:"当前状态不可用"
+									title:"當前狀态不可用"
 								})
 								return ;
 							}else{
@@ -170,7 +170,7 @@
 											}else{
 												uni.showToast({
 													icon:"error",
-													title:"更改失败"
+													title:"更改失敗"
 												})
 											}
 										}

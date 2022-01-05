@@ -1,5 +1,5 @@
 <template>
-	<button class="c-button" @click="switchTo()">{{get(config,'content',"跳转")}}</button>
+	<button class="c-button" @click="switchTo()">{{get(config,'content',"跳轉")}}</button>
 </template>
 
 <script>

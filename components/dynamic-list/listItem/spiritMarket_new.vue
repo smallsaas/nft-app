@@ -5,7 +5,7 @@
 				<view class="o">
 					<image :src="item.previewPhotoUrl" mode="aspectFit" class="spiritImg"></image>
 				</view>
-				<view class="t"><text class="matchTime">匹配时间：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
+				<view class="t"><text class="matchTime">匹配時間：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
 				<view class="th">
 					<view class="thC">
 						<image src="../../../static/spirit/newCoin.png" mode="aspectFit" class="coinImg"></image>
@@ -33,7 +33,7 @@
 					<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.level==5"></image>
 				</view>
 				<view class="rth">
-					<text class="rthL">增长能力</text>
+					<text class="rthL">增長能力</text>
 					<text class="rthR">{{item.growthPercent}}%</text>
 				</view>
 				<view class="rth rtho">
@@ -41,14 +41,14 @@
 					<text class="rthR">400-500</text>
 				</view>
 				<view class="rth rtht">
-					<text class="rthL">培养天数</text>
+					<text class="rthL">培養天數</text>
 					<text class="rthR">{{item.growthDays}}</text>
 				</view>
 				<view class="btnBox">
-					<button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
-					<view class="father" v-if="item.stage=='DISALLOW_BOOK'"><button class="noStatus">不可预约</button></view>
-					<view class="father" v-if="item.stage=='END_OF_MATCH'"><button class="noStatus">匹配结束</button></view>
-					<view class="father" v-if="item.stage=='GROWING'"><button class="noStatus">成长中</button></view>
+					<button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">馬上預約</button>
+					<view class="father" v-if="item.stage=='DISALLOW_BOOK'"><button class="noStatus">不可預約</button></view>
+					<view class="father" v-if="item.stage=='END_OF_MATCH'"><button class="noStatus">匹配結束</button></view>
+					<view class="father" v-if="item.stage=='GROWING'"><button class="noStatus">成長中</button></view>
 					<view class="father" v-if="item.stage=='WAITING_MATCH'"><button class="noStatus">待匹配</button></view>
 					<view class="father" v-if="item.stage=='WAITING_FOR_PAYMENT '"><button class="noStatus">待支付</button></view>
 				</view>
@@ -69,7 +69,7 @@
 				</view>
 				<view class="tBox">
 					<view class="Child">
-						<text class="Co">增长能力</text>
+						<text class="Co">增長能力</text>
 						<text class="Ct">{{item.growthPercent}}%</text>
 					</view>
 					<view class="Child">
@@ -77,12 +77,12 @@
 						<text class="Ct">400-500</text>
 					</view>
 					<view class="Child">
-						<text class="Co">培养天数</text>
+						<text class="Co">培養天數</text>
 						<text class="Ct">{{item.growthDays}}天</text>
 					</view>
 				</view>
 			</view>
-			<view class="timeBox"><text class="time">匹配时间：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
+			<view class="timeBox"><text class="time">匹配時間：{{item.startMatchTime}}-{{item.endMatchTime}}</text></view>
 			<view class="oBox">
 				<view class="Child">
 					<image src="../../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
@@ -103,38 +103,38 @@
 				</view>
 			</view>
 			<view class="btnBox">
-				<button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
-				<view class="btnStatus" v-if="item.stage=='DISALLOW_BOOK'"><button class="notStatus">不可预约</button></view>
-				<view class="btnStatus" v-if="item.stage=='END_OF_MATCH'"><button class="notStatus">匹配结束</button></view>
-				<view class="btnStatus" v-if="item.stage=='GROWING'"><button class="notStatus">成长中</button></view>
+				<button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">馬上預約</button>
+				<view class="btnStatus" v-if="item.stage=='DISALLOW_BOOK'"><button class="notStatus">不可預約</button></view>
+				<view class="btnStatus" v-if="item.stage=='END_OF_MATCH'"><button class="notStatus">匹配結束</button></view>
+				<view class="btnStatus" v-if="item.stage=='GROWING'"><button class="notStatus">成長中</button></view>
 				<view class="btnStatus" v-if="item.stage=='WAITING_MATCH'"><button class="notStatus">待匹配</button></view>
 				<view class="btnStatus" v-if="item.stage=='WAITING_FOR_PAYMENT '"><button class="notStatus">待支付</button></view>
 			</view>
 		</view> -->
 
-		<!-- 预约组件 -->
+		<!-- 預約組件 -->
 		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild" @getMsg="getMsgToast">
 		</spiritBook>
-		<!-- 陪伴精灵组件 -->
+		<!-- 陪伴精靈組件 -->
 		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy" :itemInfo="itemInfoForComponentChild"
 			@decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
-		<!-- 土地组件 -->
+		<!-- 土地組件 -->
 		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose"
 			:itemInfo="itemInfoForComponentLandChild" @decLandNumber="getLandDec" @addLandNumber="getLandAdd"
 			@buySuccess="childBuyLandSuccess"></spiritLandBuy>
-		<!-- 提示组件 -->
+		<!-- 提示組件 -->
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
 </template>
 
 <script>
-	//预约精灵组件
+	//預約精靈組件
 	import spiritBook from '@/components/spirit/spirit_book.vue'
-	//购买陪伴精灵组件
+	//購買陪伴精靈組件
 	import spiritComponenyBuy from '@/components/spirit/spirit_buy.vue'
-	//购买土地组件
+	//購買土地組件
 	import spiritLandBuy from '@/components/spirit/land_buy.vue'
-	//温馨提示
+	//溫馨提示
 	import toast from '@/components/spirit/toast.vue'
 	import {
 		globalConfig
@@ -206,7 +206,7 @@
 				this.toast(value)
 			},
 
-			//处理子组件减数量
+			//處理子組件減數量
 			getDec(value) {
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
@@ -214,18 +214,18 @@
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
 
-			//陪伴精灵购买成功
+			//陪伴精靈購買成功
 			childBuySuccess(res) {
 				this.isShowBuyComponeny = false
 				console.log(res)
 				if (res.code == 200) {
-					this.toast('购买成功!')
+					this.toast('購買成功!')
 				} else {
 					this.toast(res.message)
 				}
 			},
 
-			//处理土地子组件加减数量
+			//處理土地子組件加減數量
 			getLandDec(value) {
 				console.log(value, 1111)
 				this.itemInfoForComponentLandChild.growthDays = value
@@ -234,12 +234,12 @@
 				console.log(value, 1111)
 				this.itemInfoForComponentLandChild.growthDays = value
 			},
-			//土地购买成功
+			//土地購買成功
 			childBuyLandSuccess(res) {
 				this.isShowLandBuy = false
 				console.log(res)
 				if (res.code == 200) {
-					this.toast('购买成功!')
+					this.toast('購買成功!')
 				} else {
 					this.toast(res.message)
 				}
@@ -269,7 +269,7 @@
 
 			.left {
 				margin-top: 24rpx;
-				margin-left: 60rpx;
+				margin-left: 30rpx;
 				display: flex;
 				flex-direction: column;
 

@@ -12,21 +12,21 @@
 					<text class="info">{{itemInfo.description}}</text>
 				</view>
 				<view class="type cc">
-					<text class="one">消耗精灵令：</text>
+					<text class="one">消耗精靈令：</text>
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="bg"></image>
 					<text class="two">x{{itemInfo.wispCoin}}</text>
 				</view>
 				<text class="buyBox">
-					购买数量：
+					購買數量：
 				</text>
 				<image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image>
 				<button class="num">{{number}}</button>
 				<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
 				<view class="bottomBox">
-					<text class="ce">共消耗精灵令</text>
+					<text class="ce">共消耗精靈令</text>
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
 					<text class="ce cetwo">x{{number * itemInfo.wispCoin}}</text>
-					<button class="btn" @click="buyComponeySpirit">立即购买</button>
+					<button class="btn" @click="buyComponeySpirit">立即購買</button>
 				</view>
 				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 				<!-- <view class="top">
@@ -35,12 +35,12 @@
 					</view>
 					<view class="topR">
 						<view class="Cname"><text class="name">安防科技啥叫看</text></view>
-						<view class="CLname"><text class="name">撒娇开发哈桑飞机库哈斯</text></view>
-						<view class="CInfo"><text class="info">消耗精灵令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
+						<view class="CLname"><text class="name">撒嬌開發哈桑飛機庫哈斯</text></view>
+						<view class="CInfo"><text class="info">消耗精靈令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
 					</view>
 				</view>
 				<view class="center">
-					<view class="CL"><text class="info">购买数量:</text></view>
+					<view class="CL"><text class="info">購買數量:</text></view>
 					<view class="CR">
 						<button class="btn" @click="dec">-</button>
 						<button class="btn num">{{num}}</button>
@@ -49,11 +49,11 @@
 				</view>
 				<view class="bottom">
 					<view class="bL">
-						<view class="info"><text class="infoText">共消耗精灵令</text></view>
+						<view class="info"><text class="infoText">共消耗精靈令</text></view>
 						<view class="num"><image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoText">x12</text></view>
 					</view>
 					<view class="bR">
-						<button class="buyBtn">立即购买</button>
+						<button class="buyBtn">立即購買</button>
 					</view>
 				</view> -->
 			</view>
@@ -99,7 +99,7 @@
 				this.$emit('addNumber',this.number)
 			},
 			
-			//购买陪伴精灵
+			//購買陪伴精靈
 			async buyComponeySpirit(){
 				console.log(this.itemInfo.id,1)
 				const data = {

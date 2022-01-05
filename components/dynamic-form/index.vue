@@ -1,4 +1,4 @@
-<!-- 由于uniapp小程序对jsx很不友好，所以config.fields的children只支持到第一层 -->
+<!-- 由于uniapp小程序對jsx很不友好，所以config.fields的children隻支持到第一層 -->
 <template>
 	<view class="base_vants_container" :style="[_get(config, 'outStyle', {})]">
 		<!-- #ifdef H5 -->
@@ -34,7 +34,7 @@
 									:jump="_get(item,'__config__.jump',false)"
 									:url="config.NextNavigation||config.submittedNavigation"
 									>
-									<!-- 以上card为标题容器 -->
+									<!-- 以上card爲标題容器 -->
 										<!-- <view class="line"></view> -->
 										<!-- <view>{{_get(item, '__config__.componentName')}}</view> -->
 						        <block v-for="(k, i) in _get(item, '__config__.children', [])" :key="i">
@@ -93,7 +93,7 @@
     import { globalConfig } from '@/config.js'
 
     const SUNMIT_API =  globalConfig.formHost + '/custom'
-    const LOAD_API = globalConfig.formHost + '/userinfos'  // 默认获取数据
+    const LOAD_API = globalConfig.formHost + '/userinfos'  // 默認獲取數據
     const DEFAULT_CONFIG = globalConfig.formHost + '/form'
     
 	export default {
@@ -113,21 +113,21 @@
 			    return {}
 			  }
 			},
-			// 额外标题
+			// 額外标題
 			outTitle:{
 				type:String,
 				default(){
 					return ""
 				}
 			},
-            // 默认的提交数据
+            // 默認的提交數據
             formInfo: {
               type: Object,
               default() {
                 return {}
               }
             },
-            ifManualSubmit: Boolean, // 用于自定义提交
+            ifManualSubmit: Boolean, // 用于自定義提交
 						Details:{
 							type:Boolean,
 							default:false
@@ -139,7 +139,7 @@
 		},
 		data() {
 			return {
-                formConfig: {}, // 表单配置
+                formConfig: {}, // 表單配置
 				fields: [],
 				form: {},
 				skeletonLoading: true,
@@ -169,17 +169,17 @@
         },
 		mounted() {
             console.log("srv",this.srvFormData)
-            // 有具体配置信息时
+            // 有具體配置信息時
             if (Object.keys(this.config).length > 0) {
                 this.formConfig = _.cloneDeep(this.config)
             }
             if (_.has(this.formConfig, 'fields')) {
                 this.handleInitFormData()
             } else {
-               // 从默认配置中获取表单
+               // 從默認配置中獲取表單
                this.fetchDefaultFormConfig()
             }
-			// 外部传入的数据源
+			// 外部傳入的數據源
 			if (Object.keys(this.srvFormData).length > 0) {
                 this.form = { ...this.srvFormData }
 								this.$forceUpdate()
@@ -191,7 +191,7 @@
             _get (item, str, defauleValue = '') {
               return _.get(item, str, defauleValue)
             },
-						// 跳转
+						// 跳轉
 						handleJump(url){
 							uni.navigateTo({
 								url:"/pages"+url,
@@ -200,7 +200,7 @@
 								}
 							})
 						},
-            // 获取表单数据
+            // 獲取表單數據
             fetchFormData () {
 				let that = this
                 uni.request({
@@ -222,7 +222,7 @@
                 })
             },
             
-            // 从默认接口中获取表单配置
+            // 從默認接口中獲取表單配置
             fetchDefaultFormConfig () {
 							let that = this
                 uni.request({
@@ -244,7 +244,7 @@
                 })
             },
             
-            // 从props中或者表单配置
+            // 從props中或者表單配置
             handleInitFormData () {
 				const renderChild = (data = []) => {
 					data.map(x => {
@@ -262,7 +262,7 @@
             	this.fields = [...renderChild(_.cloneDeep(_.get(this.formConfig, 'fields', [])))]
 				this.skeletonLoading = false
             },
-            // 改变值时
+            // 改變值時
             handleChange (e, item) {
               this.form[item.__vModel__] = e
               const checkRequired = (data = []) => {
@@ -289,7 +289,7 @@
 								delta:1
 							})
 						},
-            // 清空时
+            // 清空時
             handleClear (e, item) {
                 this.form[item.__vModel__] = ''
                 const checkRequired = (data = []) => {
@@ -306,7 +306,7 @@
                 }
                 this.fields = [...checkRequired(this.fields)]
             },
-            // 设置错误信息
+            // 設置錯誤信息
             handleRecursive (data = []) {
                 data.map(x => {
                     if (_.get(x, '__config__.required') === true) {
@@ -367,7 +367,7 @@
                 }
             },
             
-            // 组件内默认提交
+            // 組件内默認提交
             handleSubmitRequest (data) {
 							let that = thi
                 const url = this.$config.endpoint + _.get(this.formConfig, 'saveApi') || SUNMIT_API

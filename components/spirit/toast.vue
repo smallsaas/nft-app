@@ -1,7 +1,7 @@
 <template>
 	<view class="toast">
 		<view class="title">
-			<text class="info">温馨提示</text>
+			<text class="info">溫馨提示</text>
 		</view>
 		<view class="content">
 			<text class="infoT">{{this.data}}</text>
@@ -11,7 +11,7 @@
 			<button class="btn" @click="cencel">确定</button>
 		</view>
 		<!-- <view class="top">
-			<text class="info">温馨提示</text>
+			<text class="info">溫馨提示</text>
 			<text class="info i">{{this.data}}</text>
 		</view>
 		<view class="bottom">

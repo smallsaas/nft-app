@@ -1,14 +1,14 @@
-<!-- 搜索功能已完成，差样式及子项 -->
-<!-- 默认可直接调用，使用stateSearchItem列表子项，调用的api对应的字段通过field来定义 -->
+<!-- 搜索功能已完成，差樣式及子項 -->
+<!-- 默認可直接調用，使用stateSearchItem列表子項，調用的api對應的字段通過field來定義 -->
 <template>
 	<view>
 		<view :class="'search-box '+searchType">
 			<view class="searchIcon search_Icons">&#xe600;</view>
 			<view class="search-input">
-				<input type="text" class="SearchinputBox" v-model="inputValue" @input="getList()" @change="getList()" adjust-position="false" placeholder="请输入....."/>
+				<input type="text" class="SearchinputBox" v-model="inputValue" @input="getList()" @change="getList()" adjust-position="false" placeholder="請輸入....."/>
 			</view>
 			<!-- <view class="talkIcon search_Icons">&#xe6ff;</view> -->
-			<!-- 语音输入按钮 -->
+			<!-- 語音輸入按鈕 -->
 			<view class="talkIcon search_Icons" style="color: #2C405A;" v-if="config.addIcon" @click="additems()">&#xe7fe;</view>
 		</view>
 		<view :class="'search-list '+searchType" @touchstart="touchStart" @touchend="loadMore">
@@ -30,7 +30,7 @@
 			</view>
 			<view v-for="(item,i) in searchlist" v-if="inputValue!==''" style="position: relative;">
 				<navigator :url="url[i]">
-					<!-- 子项添加处 -->
+					<!-- 子項添加處 -->
 				<state-search-item v-if="config.itemModule.name==='stateSearchItem'"
 					:item="item"
 				></state-search-item>
@@ -113,7 +113,7 @@
 			uni.removeStorage({
 			    key: 'selectName',
 			    success: function (res) {
-			        // console.log("清除缓存成功");
+			        // console.log("清除緩存成功");
 			    }
 			});
 			// console.log(this.config.params)
@@ -154,7 +154,7 @@
 							key:"selectName",
 							data:name,
 							success(e) {
-								// console.log("保存缓存成功",name)
+								// console.log("保存緩存成功",name)
 							}
 						})
 					},
@@ -168,22 +168,22 @@
 				}
 				return request('GET', url, params,header)
 			},
-			// 记录滑动
+			// 記錄滑動
 			touchStart(e){
-				// this.touchData.clientX = e.changeTouches[0].clientX;//X轴滑动
+				// this.touchData.clientX = e.changeTouches[0].clientX;//X軸滑動
 				// console.log(e)
-				this.touchData.clientY = e.changedTouches[0].clientY;//Y轴滑动
+				this.touchData.clientY = e.changedTouches[0].clientY;//Y軸滑動
 				this.value=this.size
 			},
-			// 加载更多
+			// 加載更多
 			loadMore(e){
-				// 移动
+				// 移動
 				// console.log("end",e)
 				const subY = e.changedTouches[0].clientY - this.touchData.clientY
 				// console.log(subY)
 				if(subY<=-200){
 					uni.showLoading({
-						title:"加载中"
+						title:"加載中"
 					})
 						let params;
 						if(this.config.pz&&this.config.pn){
@@ -199,7 +199,7 @@
 							if(this.num<=this.total){
 								this.getData(params)
 							}else{
-								this.text = "没有更多数据了"
+								this.text = "沒有更多數據了"
 						}
 						uni.hideLoading()
 				}
@@ -274,7 +274,7 @@
 </script>
 
 <style lang="less">
-	// 图标文件
+	// 圖标文件
 	@font-face {
 		font-family: 'search';  /* Project id 2631740 */
 		src: url('//at.alicdn.com/t/font_2631740_0t7xyvzf3dk.woff2?t=1625558763632') format('woff2'),

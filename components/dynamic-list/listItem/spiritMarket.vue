@@ -7,21 +7,21 @@
 						<image class="spiritImg" :src="item.previewPhotoUrl" lazy-load mode="aspectFit"></image>
 					</view>
 					<view class="spiritInfoBox">
-						<view class="spiritTitle"><text>NFT精灵-{{item.name}}</text></view>
+						<view class="spiritTitle"><text>NFT精靈-{{item.name}}</text></view>
 						<view class="spiritTwoSideBox">
-							<view class="sideLeft">匹配时间：<text>{{item.waitingMatchMinute}}</text></view>
-							<view class="sideRight">级别：<text>V{{item.level}}</text></view>
+							<view class="sideLeft">匹配時間：<text>{{item.waitingMatchMinute}}</text></view>
+							<view class="sideRight">級别：<text>V{{item.level}}</text></view>
 						</view>
 						<view class="spiritTwoSideBox">
-							<view class="sideLeft">增长能力：<text>{{item.growthPercent}}%</text></view>
+							<view class="sideLeft">增長能力：<text>{{item.growthPercent}}%</text></view>
 							<view class="sideRight">能力值：<text>200~300</text></view>
 						</view>
 						<view class="spiritTwoSideBox">
-							<view class="sideLeft">培养时间：<text>{{item.growthDays}}</text></view>
-							<view class="sideRight">匹配消耗精灵令：<text>{{item.costWispCoin}}</text></view>
+							<view class="sideLeft">培養時間：<text>{{item.growthDays}}</text></view>
+							<view class="sideRight">匹配消耗精靈令：<text>{{item.costWispCoin}}</text></view>
 						</view>
 						<view class="spiritTwoSideBox">
-							<view class="sideLeft">消耗陪伴精灵：<text>{{item.costAccompanyWisp}}个</text></view>
+							<view class="sideLeft">消耗陪伴精靈：<text>{{item.costAccompanyWisp}}個</text></view>
 							<view class="sideRight">匹配需要土地</view>
 						</view>
 					</view>
@@ -31,7 +31,7 @@
 						<text>{{item.stage}}</text>
 					</view>
 					<view class="spiritBuyBtn">
-						购买陪伴精灵
+						購買陪伴精靈
 					</view>
 					<view class="spiritLandSelect">
 						<select class="selectLand">

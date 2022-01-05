@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="signSmoke-tips">
-			{{month}}月已签到<text class="signSmoke-tips-day">{{signDay}}</text>天
+			{{month}}月已簽到<text class="signSmoke-tips-day">{{signDay}}</text>天
 		</view>
 		<view class="signSmoke-list">
 			<view v-for="(item,index) in dayGroup" :key="index" :class="'signSmoke-signItem '+ispack">
@@ -36,7 +36,7 @@
 		},
 		computed:{
 			ispack(){
-				if(this.packText === "查看全部奖励"){
+				if(this.packText === "查看全部獎勵"){
 					return "small"
 				}else{
 					return ''
@@ -44,12 +44,12 @@
 			},
 			isSign(){
 				if(this.sign){
-					this.signText="已签到"
+					this.signText="已簽到"
 					this.signImage="/static/signSmoke/signedIn.png"
 					this.$forceUpdate()
 					return "sign"
 				}else{
-					this.signText="签到抽盒"
+					this.signText="簽到抽盒"
 					this.signImage="/static/signSmoke/gift.png"
 					this.$forceUpdate()
 					return ""
@@ -67,9 +67,9 @@
 		},
 		data() {
 			return {
-				packText:"查看全部奖励",
+				packText:"查看全部獎勵",
 				packIcon:"/static/signSmoke/more.png",
-				signText:"签到抽盒",
+				signText:"簽到抽盒",
 				signImage:"/static/signSmoke/gift.png",
 				sign:false,
 				month:0,
@@ -101,9 +101,9 @@
 				let date = new Date()
 				this.month = date.getMonth()+1
 			},
-			// 补签事件
+			// 補簽事件
 			handleFill(){
-				console.log("补签！")
+				console.log("補簽！")
 			},
 			getNowGroup(){
 				let that = this
@@ -122,10 +122,10 @@
 					}
 				})
 			},
-			// 收起时操作
+			// 收起時操作
 			handlePack(){
 				if(this.packText === "收起"){
-					this.packText = "查看全部奖励"
+					this.packText = "查看全部獎勵"
 					this.getNowGroup()
 					this.dayGroup = this.nowGroup
 					this.packIcon = "/static/signSmoke/more.png"
@@ -136,9 +136,9 @@
 				}
 				this.$forceUpdate()
 			},
-			// 签到事件
+			// 簽到事件
 			handleSign(){
-				console.log("签到！")
+				console.log("簽到！")
 				this.sign = true
 			}
 		}

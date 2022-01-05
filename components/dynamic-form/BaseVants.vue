@@ -8,7 +8,7 @@
                    type: _get(item, '__config__.tagIcon') === 'input' ? 'text' : _get(item, '__config__.tagIcon'),
 									 options:_get(item,'__slot__.options',[]),
                    ..._get(item, 'error') 
-                      ? { 'error-message': item['error-message'] || `请填写${_get(item, '__config__.label')}`} 
+                      ? { 'error-message': item['error-message'] || `請填寫${_get(item, '__config__.label')}`} 
                       : {}
                  }"
 								 :status="form[_get(item,'statusField')]"
@@ -22,7 +22,7 @@
                    ...item.min !== undefined ? { min: item.min } : {},
                    ...item.max !== undefined ? { max: item.max } : {},
                    ..._get(item, 'error', false) ? { error: item.error } : {},
-                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请填写${_get(item, '__config__.label')}` } : {}
+                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請填寫${_get(item, '__config__.label')}` } : {}
                }"
                @change="(e) => handleSetValue(e, fields[index])"
            />
@@ -31,7 +31,7 @@
                :param="{
                    ...getBaseParam(item),
                    columns: _get(item, '__slot__.options', []),
-                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {}
+                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {}
                }"
                @confirm="(e) => handleSetValue(e, fields[index])"
            />
@@ -41,7 +41,7 @@
                :param="{
                    ...getBaseParam(item),
                    ..._get(item, 'error', false) ? { error: item.error } : {},
-                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {}
+                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {}
                }"
                @change="(e) => handleSetValue(e, fields[index])"
            />
@@ -52,7 +52,7 @@
                    ...getBaseParam(item),
                    options: _get(item, '__slot__.options', []),
                    ..._get(item, 'error', false) ? { error: item.error } : {},
-                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {}
+                   ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {}
                }"
                @change="(e) => handleSetValue(e, fields[index])"
            />
@@ -63,7 +63,7 @@
                   ...getBaseParam(item),
                   options: _get(item, '__slot__.options', []),
                   ..._get(item, 'error', false) ? { error: item.error } : {},
-                  ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {}
+                  ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {}
                }"
                @change="(e) => handleSetValue(e, fields[index])"
            />
@@ -73,7 +73,7 @@
               :param="{
                 ...getBaseParam(item),
                 ..._get(item, 'error', false) ? { error: item.error } : {},
-                ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {}
+                ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {}
               }"
               @change="(e) => handleSetValue(e, fields[index])"
            />
@@ -94,7 +94,7 @@
 			  :param="{
 				  ...getBaseParam(item),
                   ..._get(item, 'error', false) ? { error: item.error } : {},
-				  ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {}
+				  ..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {}
 			  }"
 			  @change="(e) => handleSetValue(e, fields[index])"
 			/>
@@ -104,20 +104,20 @@
 			:param="{
 				...getBaseParam(item),
 				..._get(item, 'error', false) ? { error: item.error } : {},
-				..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {},
+				..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {},
 				...item['max-count'] ? { 'max-count': item['max-count'] } : {},
 				..._has(item, 'deletable') ? { deletable: item.deletable } : {},
                 ..._has(item, 'accept') ? { accept: item.accept } : {},
 			}"
             @change="(e) => handleSetValue(e, fields[index])"
 		   />
-			 <!-- 仅作为查看的图像 -->
+			 <!-- 僅作爲查看的圖像 -->
 			 <base-image
 				v-if="_get(item,'__config__.tag') === 'el-image'"
 				:params="{
 					...getBaseParam(item),
 					..._get(item, 'error', false) ? { error: item.error } : {},
-					..._get(item, 'error') ? { 'error-message' : item['error-message'] || `请选择${_get(item, '__config__.label')}` } : {},
+					..._get(item, 'error') ? { 'error-message' : item['error-message'] || `請選擇${_get(item, '__config__.label')}` } : {},
 					...item['max-count'] ? { 'max-count': item['max-count'] } : {},
 				}"
 				@change="(e)=>handleSetValue(e,fields[index])"

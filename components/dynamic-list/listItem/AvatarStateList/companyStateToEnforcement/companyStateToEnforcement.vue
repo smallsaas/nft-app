@@ -1,21 +1,21 @@
 <!-- options值：
-hideTime:true 隐藏时间字段
+hideTime:true 隐藏時間字段
 hideUser:true 隐藏user字段
 hideNext:true 隐藏下一步字段
-hideForm:true 隐藏表单字段
+hideForm:true 隐藏表單字段
 
-timeText: 时间文本
-userText: 用户文本
+timeText: 時間文本
+userText: 用戶文本
 nextText: 下一步文本
-formText: 表单文本
+formText: 表單文本
 workText
 
-timeField: 时间字段
-userField: 用户字段
+timeField: 時間字段
+userField: 用戶字段
 nextField: 下一步字段
-formField: 表单字段
+formField: 表單字段
 
-hideState: 隐藏状态
+hideState: 隐藏狀态
 noSuccess: 未完成文本
 success: 完成文本
 wait: 待完成文本
@@ -25,9 +25,9 @@ wait: 待完成文本
 		<view class="state_allcontent">
 			<view class="AvatarStateList">
 				<view class="formNumber" >
-					{{options.workText||"工作名称"}}:
+					{{options.workText||"工作名稱"}}:
 					<span>{{item[options.workField]||item.workName}}</span>
-					<!-- <span class="enforcementState enforcement" v-if="item.finishState==='enforcement'">执法中</span> -->
+					<!-- <span class="enforcementState enforcement" v-if="item.finishState==='enforcement'">執法中</span> -->
 
 				</view>
 				<view class="body">
@@ -36,11 +36,11 @@ wait: 待完成文本
 					</view>
 					<view class="content">
 						<view class="titleBox">
-							<view class="time" v-if="item.actApplyTime&&!options.hideTime"><span class="content-title">{{options.timeText||"开始时间"}}:</span>{{_get(item,options.timeField)||item.actApplyTime}}</view>
-							<view class="object" v-if="item.actApplyUserName&&!options.hideUser"><span class="content-title">{{options.userText||"执法人员"}}:</span>{{_get(item,options.userField)||item.actApplyUserName}}</view>
-							<view class="company" v-if="item.actCurrDualUserName&&!options.hideNext"><span class="content-title">{{options.nextText||"下一步办理人"}}:</span>{{_get(item,options.nextField)||item.actCurrDualUserName}}</view>
-							<!-- <view class="department" v-if="item.department"><span class="content-title">执法科室:</span>{{item.department}}</view> -->
-							<!-- <view class="remarks" v-if="item.formName&&!hideForm"><span class="content-title">{{optons.formText||"表单名"}}:</span>{{item[options.formField]||item.formName}}</view> -->
+							<view class="time" v-if="item.actApplyTime&&!options.hideTime"><span class="content-title">{{options.timeText||"開始時間"}}:</span>{{_get(item,options.timeField)||item.actApplyTime}}</view>
+							<view class="object" v-if="item.actApplyUserName&&!options.hideUser"><span class="content-title">{{options.userText||"執法人員"}}:</span>{{_get(item,options.userField)||item.actApplyUserName}}</view>
+							<view class="company" v-if="item.actCurrDualUserName&&!options.hideNext"><span class="content-title">{{options.nextText||"下一步辦理人"}}:</span>{{_get(item,options.nextField)||item.actCurrDualUserName}}</view>
+							<!-- <view class="department" v-if="item.department"><span class="content-title">執法科室:</span>{{item.department}}</view> -->
+							<!-- <view class="remarks" v-if="item.formName&&!hideForm"><span class="content-title">{{optons.formText||"表單名"}}:</span>{{item[options.formField]||item.formName}}</view> -->
 						</view>
 					</view>
 					<view style="position: relative;width: 90px;" v-if="options.showDelete">
@@ -53,7 +53,7 @@ wait: 待完成文本
 					</view>
 <!-- 					<view class="state" v-if="item.state">
 							<view v-if="item.state.modify" class="modify">修改</view>
-							<view v-if="item.state.approval" class="approval">审批</view>
+							<view v-if="item.state.approval" class="approval">審批</view>
 					</view> -->
 				</view>
 			</view>
@@ -115,7 +115,7 @@ wait: 待完成文本
 				}
 				let that = this
 				uni.showModal({
-					title:"您确定要删除该流程吗？",
+					title:"您确定要删除該流程嗎？",
 					confirmColor:"#FF0000",
 					success(button) {
 						if(button.confirm){
@@ -137,7 +137,7 @@ wait: 待完成文本
 										})
 									}else{
 										uni.showToast({
-											title:"删除失败",
+											title:"删除失敗",
 											icon:"error"
 										})
 									}

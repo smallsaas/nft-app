@@ -4,8 +4,8 @@
 			<image :src="getIcon()"></image>
 		</view>
 		<view class="aqyItem_text">
-			<view class="aqyItem_startTime"><span class="aqyItem_label">{{options.TimeText||"发起时间"}}:</span>{{item.create_time}}</view>
-			<view class="aqyItem_company"><span class="aqyItem_label">{{options.CompanyText||"发起公司"}}:</span>{{item.companyName}}</view>
+			<view class="aqyItem_startTime"><span class="aqyItem_label">{{options.TimeText||"發起時間"}}:</span>{{item.create_time}}</view>
+			<view class="aqyItem_company"><span class="aqyItem_label">{{options.CompanyText||"發起公司"}}:</span>{{item.companyName}}</view>
 		</view>
 	</view>
 </template>

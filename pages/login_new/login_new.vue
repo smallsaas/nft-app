@@ -2,18 +2,18 @@
 	<view class="loginBox">
 		<view class="box">
 			<!-- <view class="backImg"><image class="back" src="../../static/login/back.png" mode="widthFix"></image></view> -->
-			<!-- <view class="loginText"><text class="text">欢迎登录NFT平台</text></view> -->
+			<!-- <view class="loginText"><text class="text">歡迎登錄NFT平台</text></view> -->
 			<image src="../../static/login/bg.png" mode="widthFix" class="loginBg"></image>
-			<view class="label"><text class="labelTxt">账号</text></view>
-			<view class="inputBox"><input :class="{focus:isShowFocusA}" class="account" type="text" placeholder="请输入账号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
-			<view class="info" v-if="false"><text class="infoText">账号有误，请输入正确的手机号码</text></view>
-			<view class="label"><text class="labelTxt">密码</text></view>
+			<view class="label"><text class="labelTxt">賬号</text></view>
+			<view class="inputBox"><input :class="{focus:isShowFocusA}" class="account" type="text" placeholder="請輸入賬号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
+			<view class="info" v-if="false"><text class="infoText">賬号有誤，請輸入正确的手機号碼</text></view>
+			<view class="label"><text class="labelTxt">密碼</text></view>
 			<view class="inputBox">
-				<input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="请输入密码" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
-			<!-- <view class="label"><text class="labelTxt">验证码</text></view>
-			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="请输入验证码" class="yzm" @focus="focus(3)" @blur="blur(3)"><view class="yzmBox"></view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view> -->
-			<view class="loginBox"><button class="loginBtn" @click="login">登录</button></view>
-			<view class="opeation"><text class="forget" @click="goFindP">忘记密码?</text><text class="regist" @click="goToRegist()">注册账号</text></view>
+				<input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="請輸入密碼" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
+			<!-- <view class="label"><text class="labelTxt">驗證碼</text></view>
+			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="請輸入驗證碼" class="yzm" @focus="focus(3)" @blur="blur(3)"><view class="yzmBox"></view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view> -->
+			<view class="loginBox"><button class="loginBtn" @click="login">登錄</button></view>
+			<view class="opeation"><text class="forget" @click="goFindP">忘記密碼?</text><text class="regist" @click="goToRegist()">注冊賬号</text></view>
 		</view>
 	</view>
 </template>
@@ -82,7 +82,7 @@
 				if(res.code == 200){
 					that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
 					uni.showToast({
-						title:'登录成功',
+						title:'登錄成功',
 						duration:1000
 					})
 					setTimeout(()=>{

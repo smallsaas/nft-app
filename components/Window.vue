@@ -1,7 +1,7 @@
 <template>
 	<view class="window">
 		<view class="">
-			我是弹窗
+			我是彈窗
 		</view>
 	</view>
 </template>

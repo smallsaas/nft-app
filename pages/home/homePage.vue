@@ -39,18 +39,25 @@
 		},
 		async created(){
 			let res = await this.$api.homePage()
-			let data = res.data
-			console.log("进来了",data)
-			this.navs = data.navs
-			this.apis = []
-			let that = this
-			data.api.map((item,i)=>{
-				that.apis.push(that.endpoint+item)
-			})
-			this.clicked = data.defaultClick
-			this.defaultClick = data.defaultClick.toString()
-			console.log(this.defaultClick,"default")
-			this.$forceUpdate()
+			if(res.status === 200){
+				let data = res.data
+				console.log("進來了",data)
+				this.navs = data.navs
+				this.apis = []
+				let that = this
+				data.api.map((item,i)=>{
+					that.apis.push(that.endpoint+item)
+				})
+				this.clicked = data.defaultClick
+				this.defaultClick = data.defaultClick.toString()
+				console.log(this.defaultClick,"default")
+				this.$forceUpdate()
+			}else{
+				uni.showToast({
+					icon:"error",
+					title:"請檢查網絡"
+				})
+			}
 		},
 		methods: {
 			handleChange(e){

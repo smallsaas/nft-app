@@ -1,7 +1,7 @@
 <template>
 	<view class="checkTeamList">
 		<view class="check">
-			<input type="number" placeholder="请输入手机号码查询" class="phone"/>
+			<input type="number" placeholder="請輸入手機号碼查詢" class="phone"/>
 			<image src="../../static/service/search.png" mode="widthFix" class="search"></image>
 		</view>
 		<view class="box">
@@ -10,9 +10,9 @@
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="avator"></image>
 				</view>
 				<view class="info">
-					<text class="infoN">刘华强</text>
+					<text class="infoN">劉華強</text>
 					<text class="infoP">18664521094</text>
-					<text class="infoPT">备用手机号: 18664521094</text>
+					<text class="infoPT">備用手機号: 18664521094</text>
 				</view>
 			</view>
 		</view>

@@ -6,12 +6,12 @@
 					<view class="img"><image class="pic" src="https://s2.loli.net/2021/12/24/7bn1rPlMmYVihAR.jpg" mode="widthFix"></image></view>
 				</view>
 				<view class="right">
-					<view>小天使精灵</view>
-					<view>级别:lv3</view>
-					<view>增长能力:20</view>
+					<view>小天使精靈</view>
+					<view>級别:lv3</view>
+					<view>增長能力:20</view>
 					<view>能力值:200-300</view>
-					<view>领养:2012-21-11</view>
-					<button @click="zhuzhao">铸造</button>
+					<view>領養:2012-21-11</view>
+					<button @click="zhuzhao">鑄造</button>
 					<button @click="sell">出售</button>
 				</view>
 			</view>
@@ -30,7 +30,7 @@
 		methods:{
 			zhuzhao(){
 				uni.showModal({
-					content:'铸造成功'
+					content:'鑄造成功'
 				})
 			},
 			sell(){

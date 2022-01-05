@@ -9,20 +9,20 @@
 				<view class="title text-line-1">
 					{{ item[options.formName]||item.workName }}
 				</view>
-				<view class="submit-time">提交时间: {{ item.actApplyTime }}</view>
+				<view class="submit-time">提交時間: {{ item.actApplyTime }}</view>
 			</view>
 			<view class="right">
 <!-- 				<view v-if="item.finishState === '3'" class="status">
-					待审核
+					待審核
 				</view>
 				<view v-else-if="item.finishState === '2'" class="status" style="background-color: #F5A623;">
-					审核中
+					審核中
 				</view> -->
 				<view v-if="item.finishState === '1'" class="status" style="background-color: #2dffab;">
 					{{options.finishText||"已完成"}}
 				</view>
 				<view v-else-if="item.finishState === '0'" class="status" style="background-color: #F5A623;">
-					{{options.waitText||"进行中"}}
+					{{options.waitText||"進行中"}}
 				</view>
 			</view>
 		</view>

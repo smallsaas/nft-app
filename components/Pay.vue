@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<text>测试</text>
+		<text>測試</text>
 		<view></view>
 	</view>
 </template>

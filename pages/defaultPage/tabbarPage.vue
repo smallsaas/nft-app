@@ -1,4 +1,4 @@
-<!-- 对接PageTabbar组件的标准页面 -->
+<!-- 對接PageTabbar組件的标準頁面 -->
 <template>
 	<view>
 		<page-tabbar
@@ -46,7 +46,7 @@
 				let res = await this.$api.tabbar(tabId)
 				this.tabs = res.data.tabs
 			},
-			// 改变时
+			// 改變時
 			handleChange(e){
 				console.log(e)
 				this.click = e

@@ -15,7 +15,7 @@
 				</view>
 				<view class="tBox">
 					<view class="Child">
-						<text class="Co">增长能力</text>
+						<text class="Co">增長能力</text>
 						<text class="Ct">{{item.wisp.growthPercent}}%</text>
 					</view>
 					<view class="Child">
@@ -23,12 +23,12 @@
 						<text class="Ct">400-500</text>
 					</view>
 					<view class="Child">
-						<text class="Co">培养天数</text>
+						<text class="Co">培養天數</text>
 						<text class="Ct">{{item.wisp.growthDays}}天</text>
 					</view>
 				</view>
 			</view>
-			<view class="timeBox"><text class="time">预约时间：{{change}}</text></view>
+			<view class="timeBox"><text class="time">預約時間：{{change}}</text></view>
 			<view class="oBox">
 				<view class="Child">
 					<image src="../../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
@@ -49,12 +49,12 @@
 				</view>
 			</view>
 			<view class="btnBox">
-				<button class="btn"  v-if="true">预约成功</button>
-				<!-- <view class="btnStatus" v-if="item.bookStatus=='DISALLOW_BOOK'"><button class="notStatus">不可预约</button></view>
-				<view class="btnStatus" v-if="item.bookStatus=='END_OF_MATCH'"><button class="notStatus">匹配结束</button></view>
-				<view class="btnStatus" v-if="item.bookStatus=='GROWING'"><button class="notStatus">成长中</button></view>
+				<button class="btn"  v-if="true">預約成功</button>
+				<!-- <view class="btnStatus" v-if="item.bookStatus=='DISALLOW_BOOK'"><button class="notStatus">不可預約</button></view>
+				<view class="btnStatus" v-if="item.bookStatus=='END_OF_MATCH'"><button class="notStatus">匹配結束</button></view>
+				<view class="btnStatus" v-if="item.bookStatus=='GROWING'"><button class="notStatus">成長中</button></view>
 				<view class="btnStatus" v-if="item.bookStatus=='WAITING_MATCH'"><button class="notStatus">待匹配</button></view>
-				<view class="btnStatus fail" v-if="item.bookStatus=='MATCH_FAIL'"><button class="notStatus">匹配失败</button></view>
+				<view class="btnStatus fail" v-if="item.bookStatus=='MATCH_FAIL'"><button class="notStatus">匹配失敗</button></view>
 				<view class="btnStatus" v-if="item.bookStatus=='MATCH_SUCCESS'"><button class="notStatus">匹配成功</button></view> -->
 			</view>
 		</view>
@@ -74,12 +74,12 @@
 								<image class="levelImg" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.level==4"></image>
 								<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.level==5"></image>
 							</view>
-							<view class="infoItem"><text class="infoTitle">增长能力:</text><text class="infoValue">{{item.growthPercent}}%</text></view>
+							<view class="infoItem"><text class="infoTitle">增長能力:</text><text class="infoValue">{{item.growthPercent}}%</text></view>
 							<view class="infoItem"><text class="infoTitle">能力值:</text><text class="infoValue">10%</text></view>
-							<view class="infoItem"><text class="infoTitle">培养天数:</text><text class="infoValue">{{item.growthDays}}天</text></view>
+							<view class="infoItem"><text class="infoTitle">培養天數:</text><text class="infoValue">{{item.growthDays}}天</text></view>
 						</view>
 					</view>
-					<view class="ItemCenter"><text class="matchTime">匹配时间:{{item.startMatchTime.substring(0,5)}}-{{item.endMatchTime.substring(0,5)}}</text></view>
+					<view class="ItemCenter"><text class="matchTime">匹配時間:{{item.startMatchTime.substring(0,5)}}-{{item.endMatchTime.substring(0,5)}}</text></view>
 					<view class="ItemBottom">
 						<view class="ItemLeft">
 							<view class="itemB">
@@ -96,12 +96,12 @@
 							</view>
 						</view>
 						<view class="ItemRight">
-							<button class="BTN" @click="operation(item)" v-if="item.stage=='BOOKABLE'">马上预约</button>
-							<view class="TTTT" v-if="item.stage=='DISALLOW_BOOK'"><button class="BTN BTNthree BBB">不可预约</button></view>
+							<button class="BTN" @click="operation(item)" v-if="item.stage=='BOOKABLE'">馬上預約</button>
+							<view class="TTTT" v-if="item.stage=='DISALLOW_BOOK'"><button class="BTN BTNthree BBB">不可預約</button></view>
 							<button class="BTN BTNthree" v-if="item.stage=='WAITING_MATCH'">待匹配</button>
-							<button class="BTN BTNthree" v-if="item.stage=='WAITING_FOR_PAYMENT'">匹配结束</button>
-							<view class="TTTT" v-if="item.stage=='END_OF_MATCH'"><button class="BTN BTNthree BBB">匹配结束</button></view>
-							<button class="BTN BTNfour" v-if="item.stage=='GROWING'">成长中</button>
+							<button class="BTN BTNthree" v-if="item.stage=='WAITING_FOR_PAYMENT'">匹配結束</button>
+							<view class="TTTT" v-if="item.stage=='END_OF_MATCH'"><button class="BTN BTNthree BBB">匹配結束</button></view>
+							<button class="BTN BTNfour" v-if="item.stage=='GROWING'">成長中</button>
 						</view>
 					</view>
 				</view>

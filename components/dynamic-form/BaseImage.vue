@@ -56,7 +56,7 @@
 		},
 		data(){
 			return {
-				showLarge:false, //是否展示大图
+				showLarge:false, //是否展示大圖
 				scale:1,
 				iconList:{},
 				imageList:[],
@@ -98,16 +98,16 @@
 			}
 		},
 		methods:{
-			// 点击时显示大图
+			// 點擊時顯示大圖
 			handleClick(i){
 				this.showLarge = i
 				this.$forceUpdate()
 			},
-			// 缩放放大操作时响应的事件
+			// 縮放放大操作時響應的事件
 			handleScale(){
 				
 			},
-			// 是否上传图片超过上限
+			// 是否上傳圖片超過上限
 			isMax(){
 				let that = this
 				if(that.params["max-count"]){
@@ -118,7 +118,7 @@
 					}
 				}
 			},
-			// 双击操作
+			// 雙擊操作
 			handledblClick(){
 				if(this.scale == 10){
 					this.scale = 1
@@ -126,7 +126,7 @@
 					this.scale = 10
 				}
 			},
-			// 上传
+			// 上傳
 			upload(){
 				let that = this
 				uni.chooseImage({

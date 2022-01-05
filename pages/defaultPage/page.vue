@@ -1,8 +1,8 @@
-<!-- 自动渲染的动态页面 跳转过来即可渲染 跳转参数 id 支持encodeURIComponent([query])和纯id -->
+<!-- 自動渲染的動态頁面 跳轉過來即可渲染 跳轉參數 id 支持encodeURIComponent([query])和純id -->
 <template>
 	<view>
 		<dynamic-page :API="api" v-if="api"></dynamic-page>
-		<view v-if="!api">请通过跳转来访问此页面！</view>
+		<view v-if="!api">請通過跳轉來訪問此頁面！</view>
 	</view>
 </template>
 

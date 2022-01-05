@@ -3,17 +3,17 @@
 		<view class="left">
 			<view class="leftL">
 				<view class="T">
-					<view class="TT"><text class="info">我的精灵令</text></view>
+					<view class="TT"><text class="info">我的精靈令</text></view>
 					<view class="TB"><image src="../../static/spirit/coin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.coinsAmount}}</text></view>
 				</view>
 				<view class="B">
-					<view class="btnbtn"><button class="btn" @click="transfer">转让</button></view>
-					<view class="btnbtn"><button class="btn btns" @click="goTo">历史记录</button></view>
+					<view class="btnbtn"><button class="btn" @click="transfer">轉讓</button></view>
+					<view class="btnbtn"><button class="btn btns" @click="goTo">曆史記錄</button></view>
 				</view>
 			</view>
 			<view class="leftR">
 				<view class="item">
-					<view class="Info">我的陪伴精灵</view>
+					<view class="Info">我的陪伴精靈</view>
 					<view class="TTT"><image src="../../static/spirit/company.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.companionWispAmount}}</text></view>
 				</view>
 				<view class="item">
@@ -26,7 +26,7 @@
 		<transfer v-if="isShowTransfer" @close="getClose"></transfer>
 		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
 		<transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
-		<!-- 提示组件 -->
+		<!-- 提示組件 -->
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
 </template>
@@ -38,7 +38,7 @@
 	import toast from '../spirit/toast.vue'
 	export default{
 		props:{
-			// 获取
+			// 獲取
 			item:{
 				type:Object,
 				default:{}
@@ -96,14 +96,14 @@
 			getMessageForChild(data){
 				console.log(data)
 				this.isShowTransferCoin = false
-				data.message = data.message + '当前收益市场积分为:' + this.item.marketPoints
+				data.message = data.message + '當前收益市場積分爲:' + this.item.marketPoints
 				this.toast(data.message)
 			},
 			
 			getMessageForChildTwo(data){
 				console.log(data)
 				this.isShowTransferCoinTwo = false
-				data.message = data.message + '当前转存积分为:' + this.item.depositPoints
+				data.message = data.message + '當前轉存積分爲:' + this.item.depositPoints
 				this.toast(data.message)
 			},
 			
@@ -111,7 +111,7 @@
 				this.isShowToast = false
 			},
 			
-			//打开提示
+			//打開提示
 			toast(msg) {
 				this.toastMsg = msg
 				this.isShowToast = true

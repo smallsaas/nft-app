@@ -1,4 +1,4 @@
-<!-- 由于web-view很不友好 所以使用slot方式实现 -->
+<!-- 由于web-view很不友好 所以使用slot方式實現 -->
 <template>
 	<view>
 		<view class="pageTabbar_TitleBox">
@@ -18,7 +18,7 @@
 	export default {
 		name:"pageTabbar",
 		props:{
-			// tab栏配置
+			// tab欄配置
 			tabs:{
 				type:Array,
 				default:[],
@@ -44,7 +44,7 @@
 			this.$emit("change",this.clicked)
 		},
 		methods:{
-			// tab被点击时
+			// tab被點擊時
 			handleClick(click){
 				this.clicked = click
 				this.$emit("change",click)

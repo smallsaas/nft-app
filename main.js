@@ -149,17 +149,17 @@ Vue.component("van-empty",vanempty)
 // #endif
 Vue.prototype.$config = globalConfig
 Vue.prototype.$api = api
-// 永久缓存
+// 永久緩存
 Vue.prototype.$cache = cache
-// 临时缓存
+// 臨時緩存
 Vue.prototype.$timeCache = timeCache
 Vue.prototype.$reload = reload
 Vue.prototype.$upload = upload
-// 简繁体转换
+// 簡繁體轉換
 Vue.prototype.$zh_tw = transformTools.transformToTW
 Vue.prototype.$zh_cn = transformTools.transformToCN
 Vue.prototype.$JSONTW = transformTools.JSONTW
-//组件声明
+//組件聲明
 Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)
 Vue.component("dynamic-list",DynamicList)

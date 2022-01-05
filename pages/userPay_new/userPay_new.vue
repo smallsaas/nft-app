@@ -1,7 +1,7 @@
 <template>
 	<view class="payBox">
 		<view class="boxA">
-			<text class="A">付款给：18548756489</text>
+			<text class="A">付款給：18548756489</text>
 		</view>
 		<view class="boxB">
 			<text class="B">￥648.00</text>
@@ -9,31 +9,31 @@
 		<view class="boxC">
 			<view class="top">
 				<view class="topL">
-					<text class="L">移动支付</text>
+					<text class="L">移動支付</text>
 				</view>
 				<view class="topR"></view>
 			</view>
 			<view class="bottom">
-				<text class="z">支付账号：18767827627</text>
+				<text class="z">支付賬号：18767827627</text>
 				<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image>
-				<text class="zz">支付二维码</text>
+				<text class="zz">支付二維碼</text>
 			</view>
 		</view>
 		<view class="boxD">
 			<view class="top">
 				<view class="topL">
-					<text class="L">银行卡支付</text>
+					<text class="L">銀行卡支付</text>
 				</view>
 				<view class="topR"></view>
 			</view>
 			<view class="bottom">
-				<text class="z">银行卡号：6227 2215 5487 256</text>
-				<text class="z zz">户名：刘华强</text>
+				<text class="z">銀行卡号：6227 2215 5487 256</text>
+				<text class="z zz">戶名：劉華強</text>
 			</view>
 		</view>
 		<view class="boxF">
 			<view class="top">
-				<text class="z">上传付款凭证</text>
+				<text class="z">上傳付款憑證</text>
 			</view>
 			<view class="bottom">
 				<view class="imgBox">
@@ -48,11 +48,11 @@
 			</view>
 		</view>
 		<view class="boxE">
-			<button class="btn" @click="pay">确认已付款</button>
+			<button class="btn" @click="pay">确認已付款</button>
 		</view>
 		
 		
-		<!-- //模态组件 -->
+		<!-- //模态組件 -->
 		<view class="motai" v-if="showBigImg">
 			<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="upload"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>

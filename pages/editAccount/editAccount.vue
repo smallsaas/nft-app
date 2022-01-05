@@ -14,17 +14,17 @@
 		},
 		methods: {
 			async getSrvFormData(){
-				let res = await this.$api.getAccountData(109)//传入id获取用户信息
+				let res = await this.$api.getAccountData(109)//傳入id獲取用戶信息
 				if(res.code == 200){
 					this.srvFormData = res.data
 				}else{
 					uni.showToast({
 						icon:"error",
-						title:"加载失败"
+						title:"加載失敗"
 					})
 				}
 			},
-			// 额外提交方法
+			// 額外提交方法
 			async handleSubmit(data){
 				let res = await this.$api.editAccountData(109,data)
 				if(res.code == 200){

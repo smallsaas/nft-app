@@ -7,7 +7,7 @@
 		</view>
 		<view class="item items" @click="logout">
 			<image src="../../static/service/out.png" mode="widthFix" class="icon"></image>
-			<text class="name">退出登录</text>
+			<text class="name">退出登錄</text>
 			<image class="moreImg" src="../../static/service/more.png" mode="widthFix"></image>
 		</view>
 		<view class="line"></view>
@@ -25,12 +25,12 @@
 			<view class="item" @click="logout">
 				<view class="itemL">
 					<image class="tapI" src="../../static/service/out.png" mode="widthFix"></image>
-					<text class="title">退出登录</text>
+					<text class="title">退出登錄</text>
 				</view>
 				<view class="itemR"><image class="moreImg" src="../../static/service/more.png" mode="widthFix"></image></view>
 			</view>
 		</view>
-		<!-- 邀请组件 -->
+		<!-- 邀請組件 -->
 		<invite v-if="isShowInvite" :data="forChild" @close="getValueFromChild"></invite>
 	</view>
 </template>
@@ -46,13 +46,13 @@
 			return{
 				list:[{
 					icon:'../../static/service/invite.png',
-					title:'邀请好友'
+					title:'邀請好友'
 				},{
 					icon:'../../static/service/shenshu.png',
-					title:'申述服务'
+					title:'申述服務'
 				},{
 					icon:'../../static/service/com.png',
-					title:'联系我们'
+					title:'聯系我們'
 				}],
 				isShowInvite:false,
 				forChild:{}

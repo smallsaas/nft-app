@@ -1,12 +1,12 @@
 <template>
 	<view class="load-refresh">
-		<!-- 刷新动画，可自定义，占高100rpx -->
+		<!-- 刷新動畫，可自定義，占高100rpx -->
 		<view class="animation" 
 			:style="{'--color': color}" 
 			v-if="isRefresh"
 		>
 			<view v-if="!playState" class="remind">
-				{{moving ? '↑ 松开释放' : '↓ 下拉刷新'}}
+				{{moving ? '↑ 松開釋放' : '↓ 下拉刷新'}}
 			</view>
 			<view v-if="playState && refreshType === 'hollowDots'" class="refresh hollow-dots-spinner">
 				<view class="dot"></view>
@@ -24,8 +24,8 @@
 				<view class="square"></view>
 			</view>
 		</view>
-		<!-- 数据列表块 -->
-		<!-- 由于 transform使用之后使用不了fixed 故 transform: coverTransform,删除 -->
+		<!-- 數據列表塊 -->
+		<!-- 由于 transform使用之後使用不了fixed 故 transform: coverTransform,删除 -->
 		<view
 			class="cover-container"
 			:style="[{
@@ -51,9 +51,9 @@
 									:scroll-top="scrollTop" 
 									@scrolltolower="loadMore" 
 							> -->
-				<!-- 数据集插槽 -->
+				<!-- 數據集插槽 -->
 				<slot name="content-list"></slot>
-				<!-- 上拉加载 -->
+				<!-- 上拉加載 -->
 				<!-- <view class="load-more" v-if="pagination !== false&&!unloading">{{loadText}}</view> -->
 			</scroll-view>
 		</view>
@@ -105,7 +105,7 @@
             pagination: {
                 type: Boolean,
                 default: true
-            }  // 是否分页加载数据
+            }  // 是否分頁加載數據
 		},
 		data() {
 			return {
@@ -113,17 +113,17 @@
 				moveY: 0,
 				listStartY:0,
 				listEndY:0,
-				updating: false, // 数据更新状态（true: 更新中）
-				updateType: true, // 数据更新类型（true: 下拉刷新: false: 加载更多）
+				updating: false, // 數據更新狀态（true: 更新中）
+				updateType: true, // 數據更新類型（true: 下拉刷新: false: 加載更多）
 				moving: false,
 				scrollTop: -1,
 				coverTransform: '',
 				coverTransition: '0s',
-				playState: false // 动画的状态 暂停 paused/开始 running
+				playState: false // 動畫的狀态 暫停 paused/開始 running
 			}
 		},
 		computed: {
-			// 计算组件所占屏幕高度
+			// 計算組件所占屏幕高度
 			getHeight() {
 				// console.log(this.unloading)
 				// rpx = px / uni.getSystemInfoSync().windowWidth * 750
@@ -134,22 +134,22 @@
 					return `height: ${height}px;`
 				}
 			},
-			// 判断loadText，可以根据需求自定义
+			// 判斷loadText，可以根據需求自定義
 			loadText() {
 				if(!this.unloading){
 					const { currentPage, totalPages, updating, updateType } = this
 					if (!updateType && updating) {
-						return '加载中...'
+						return '加載中...'
 					} else if (currentPage < totalPages) {
-						return '上拉加载更多'
+						return '上拉加載更多'
 					} else {
-						return '没更多数据了'
+						return '沒更多數據了'
 					}
 				}
 			}
 		},
 		methods: {
-			// 根据currentPage和totalPages的值来判断 是否触发@loadMore
+			// 根據currentPage和totalPages的值來判斷 是否觸發@loadMore
 			loadMore() {
                 if (this.pagination === false) {
                     return
@@ -165,11 +165,11 @@
 				// console.log(touch,"start")
 				this.listStartY = touch.changedTouches[0].clientY
 			},
-			// 滑动列表动作中
+			// 滑動列表動作中
 			listTouchMove(touch){
 				// console.log(touch,"move")
 			},
-			// 胡丹列表动作结束
+			// 胡丹列表動作結束
 			listTouchEnd(touch){
 				if (this.pagination === false) {
 				    return
@@ -185,7 +185,7 @@
 				}
 				// console.log(touch,"end")
 			},
-			// 回弹效果
+			// 回彈效果
 			coverTouchstart(e) {
                 if (this.pagination === false) {
                     return
@@ -275,7 +275,7 @@
 		}
 	}
 	
-	/* 动画 */
+	/* 動畫 */
 	.animation {
 		width: 100%;
 		height: 100rpx;

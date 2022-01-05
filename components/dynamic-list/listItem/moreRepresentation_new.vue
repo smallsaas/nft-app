@@ -1,10 +1,10 @@
 <template>
 	<view class="more">
 		<view class="item">
-			<view class="status"><text class="title">申述原因:</text><text class="info">对方没付款</text></view>
-			<view class="status"><text class="title">备注信息:</text><text class="info">还差我100</text></view>
-			<view class="status"><text class="title">申述状态:</text><text class="info">处理中</text></view>
-			<view class="status"><text class="title">申述反馈:</text><text class="info">已沟通</text></view>
+			<view class="status"><text class="title">申述原因:</text><text class="info">對方沒付款</text></view>
+			<view class="status"><text class="title">備注信息:</text><text class="info">還差我100</text></view>
+			<view class="status"><text class="title">申述狀态:</text><text class="info">處理中</text></view>
+			<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
 		</view>
 	</view>
 </template>

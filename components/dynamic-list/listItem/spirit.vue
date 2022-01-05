@@ -2,14 +2,14 @@
 	<view class="spirit">
 		<view class="item">
 			<text>姓名:{{item.name}}</text>
-			<text>主手机号码:{{item.mobilePhone}}</text>
-			<text>副手机号码:{{item.secondMobilePhone}}</text>
-			<text>账号状态:{{item.status}}</text>
-			<text>移动账号:{{item.wechatAccount}}</text>
-			<text>支付二维码:<image src="https://s2.loli.net/2021/12/20/WPKatHfhmSsdQuF.jpg" mode="widthFix"></image></text>
-			<text>银行卡号:{{item.bankAccountNumber}}</text>
-			<text>户名:{{item.bankAccountName}}</text>
-			<text>支付密码:{{item.paymentPassword}}</text>
+			<text>主手機号碼:{{item.mobilePhone}}</text>
+			<text>副手機号碼:{{item.secondMobilePhone}}</text>
+			<text>賬号狀态:{{item.status}}</text>
+			<text>移動賬号:{{item.wechatAccount}}</text>
+			<text>支付二維碼:<image src="https://s2.loli.net/2021/12/20/WPKatHfhmSsdQuF.jpg" mode="widthFix"></image></text>
+			<text>銀行卡号:{{item.bankAccountNumber}}</text>
+			<text>戶名:{{item.bankAccountName}}</text>
+			<text>支付密碼:{{item.paymentPassword}}</text>
 		</view>
 	</view>
 </template>

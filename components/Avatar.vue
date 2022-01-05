@@ -16,7 +16,7 @@
 			};
 		},
 		props:{
-			// 获取
+			// 獲取
 			item:{
 				type:Object,
 				default:{}
