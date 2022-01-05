@@ -450,6 +450,7 @@
 					method: 'GET',
 					header: this.header,
 					complete: (res) => {
+						res = that.$JSONTW(res)
 						if (_.get(res, 'data.code') === 200) {                 
                             const contentType = this.contentType || 'json'
                             const contentPayload = this.contentPayload || 'data'
@@ -531,12 +532,14 @@
 				}
 			},
 			fetchPageData (configData = {}, pageUrl) {
+				let that = this
 				uni.request({
 					url: pageUrl,
 					method: 'GET',
                     data: _.get(configData, 'dataSource.request', {}),
                     header: this.header,
 					complete: (res) => {
+						res = that.$JSONTW(res)
 						this.config = { ...configData }
 						this.skeletonLoading = false
 						if (_.get(res, 'data.code') === 200) {			

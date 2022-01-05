@@ -210,6 +210,7 @@
 											Authorization:`Bearer ${that.$cache.get(globalConfig.tokenStorageKey)}`
 										},
                     complete: (res) => {
+											res = that.$JSONTW(res)
                        if (_.get(res, 'data.code') === 200) {
                            let resData = _.cloneDeep(_.get(res, 'data.data', {}))
                            if (_.isFunction(_.get(that.$parent, 'formatLoadData'))) {
@@ -223,11 +224,13 @@
             
             // 从默认接口中获取表单配置
             fetchDefaultFormConfig () {
+							let that = this
                 uni.request({
                     url: DEFAULT_CONFIG + _.get(this.formConfig, 'url', ''),
                     method: 'GET',
                     data:  _.has(this.formConfig, 'id') ? { id: this.formConfig.id } : {},
                     complete: (res) => {
+											res = that.$JSONTW(res)
                         if (_.get(res, 'data.code') === 200) {
                             this.formConfig = {
                                 ..._.get(res, 'data.data', {}),
@@ -366,6 +369,7 @@
             
             // 组件内默认提交
             handleSubmitRequest (data) {
+							let that = thi
                 const url = this.$config.endpoint + _.get(this.formConfig, 'saveApi') || SUNMIT_API
                 uni.showLoading({ title: '', mask: true })
                 uni.request({
@@ -373,6 +377,7 @@
                     method:_.get(this.formConfig,'saveMethod')||'POST',
                     data: data,
                     complete: (res) => {
+											res = that.$JSONTW(res)
                         uni.hideLoading()
                         if (_.get(res, 'data.code') === 200) {
                             uni.showToast({

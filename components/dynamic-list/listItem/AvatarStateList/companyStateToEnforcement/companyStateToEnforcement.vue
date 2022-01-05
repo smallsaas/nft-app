@@ -127,6 +127,7 @@ wait: 待完成文本
 									Authorization:`Bearer ${uni.getStorageSync(globalConfig.tokenStorageKey)}`
 								},
 								success(res) {
+									res = that.$JSONTW(res)
 									that.$emit("delete",false)
 									if(res.data.code === "00000"){
 										that.$reload()

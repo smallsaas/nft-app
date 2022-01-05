@@ -10,8 +10,7 @@ import {api} from './common/api.js'
 import {timeCache,cache,reload,upload} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
 import './other.less'
-
-
+let transformTools= require('./utils/CNTWtransformTools.js')
 Vue.config.productionTip = false
 // #ifdef H5
 import Vant from 'vant'
@@ -156,6 +155,10 @@ Vue.prototype.$cache = cache
 Vue.prototype.$timeCache = timeCache
 Vue.prototype.$reload = reload
 Vue.prototype.$upload = upload
+// 简繁体转换
+Vue.prototype.$zh_tw = transformTools.transformToTW
+Vue.prototype.$zh_cn = transformTools.transformToCN
+Vue.prototype.$JSONTW = transformTools.JSONTW
 //组件声明
 Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)

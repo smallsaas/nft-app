@@ -431,6 +431,7 @@
               //     title: "loading...",
               //     mask: true
               // })
+							let that = this
               uni.request({
                   url: this.$config.endpoint + _.get(this.config, 'loadApi'),
                   method: _.get(this.config,'method','GET'),
@@ -440,7 +441,8 @@
                       token: uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
                   },
                   complete: (res) => {
-					  console.log(res)
+										res = that.$JSONTW(res)
+										console.log(res)
                      // uni.hideLoading()
                      if (['000000', 200].includes(_.get(res, 'data.code'))) {
                         const data = _.get(res, 'data.data')

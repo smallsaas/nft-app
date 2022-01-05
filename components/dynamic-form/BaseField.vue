@@ -123,9 +123,11 @@
 						}
 					},
 					handleAPI(param){
+						let that = this
 						uni.request({
 							url:param.api,
 							success(res) {
+								res = that.$JSONTW(res)
 								if(res.data.code === 200){
 									uni.showToast({
 										title:param.successText||"成功",
@@ -157,6 +159,7 @@
 										url:that.param.saveAPI,
 										method:that.param.method||'GET',
 										complete(res) {
+											res = that.$JSONTW(res)
 											if(res.data.code === 200){
 												this.isRead = !this.isRead
 												this.saveText = "修改"
