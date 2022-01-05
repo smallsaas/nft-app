@@ -1,3 +1,7 @@
 node_modules/
 package-lock.json
-unpackage/
+unpackage/cache/
+unpackage/dist/
+unpackage/release/
+unpackage/resources/
+unpackage/debug/
