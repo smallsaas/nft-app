@@ -106,6 +106,7 @@ Content-Type: application/json
                         },
                         "canChange":true,
                         "saveAPI":"",
+                        "method":"GET",
                         "doNotUseValue":"FROZEN",
                         "statusField":"status",
                         "readonly": true,

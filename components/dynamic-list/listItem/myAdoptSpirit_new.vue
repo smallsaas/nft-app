@@ -2,22 +2,26 @@
 	<view class="box">
 		<view class="item">
 			<view class="imgBox">
-				<image src="../../../static/spirit/text.png" mode="widthFix" class="img"></image>
+				<image :src="item.wisp.previewPhotoUrl" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
-				<text class="name">极品九尾灵狐</text>
+				<text class="name">{{item.wisp.name}}</text>
 			</view>
 			<view class="levelBox">
-				<image src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 1" src="../../../static/spirit/levelOne.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 2" src="../../../static/spirit/levelTwo.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 3" src="../../../static/spirit/levelThree.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 4" src="../../../static/spirit/levelFour.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 5" src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
 			</view>
 			<view class="infoBox">
 				<text class="info">能力值：400</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<text class="info">增长能力：10%</text>
+				<text class="info">增长能力：{{item.wisp.growthPercent}}%</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">领养：2021-12-16 12:25:48</text>
+				<text class="info">领养：</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
@@ -36,6 +40,10 @@
 	import toast from '../../spirit/toast.vue'
 	export default{
 		components:{toast},
+		props: {
+			item: Object,
+			ext: Object
+		},
 		data() {
 			return {
 				isShowToast:false,

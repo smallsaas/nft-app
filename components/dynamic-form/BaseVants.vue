@@ -212,6 +212,7 @@
 									..._.has(item, 'saveAPI') ? { 'saveAPI': item['saveAPI'] } : {},
 									..._.has(item, 'doNotUseValue') ? { 'doNotUseValue': item['doNotUseValue'] } : {},
 									..._.has(item, 'tips') ? { 'tips': item['tips'] } : {},
+									..._.has(item,'method')?{'method':item['method']}:{}
 							 }
 						 }
 

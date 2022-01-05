@@ -155,6 +155,7 @@
 								if(this.saveText === '保存'){
 									uni.request({
 										url:that.param.saveAPI,
+										method:that.param.method||'GET',
 										complete(res) {
 											if(res.data.code === 200){
 												this.isRead = !this.isRead
