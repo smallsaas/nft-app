@@ -246,8 +246,12 @@
 		width: 100%;
 		height: 100%;
 		background: rgb(5, 14, 23);
+<<<<<<< HEAD
 		padding-bottom: 20rpx;
 
+=======
+		padding-bottom: 10px;
+>>>>>>> c22d418ccbc28a204fa7bf67c367525e78ab4813
 		.newBox {
 			width: 343px;
 			height: 230px;
@@ -256,7 +260,10 @@
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
 			margin: 0 auto;
+<<<<<<< HEAD
 			// margin-bottom: 10px;
+=======
+>>>>>>> c22d418ccbc28a204fa7bf67c367525e78ab4813
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
 			position: relative;

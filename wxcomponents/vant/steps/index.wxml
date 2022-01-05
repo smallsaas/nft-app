@@ -1,0 +1,85 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view class="custom-class {{ utils.bem('steps', [direction]) }}">
+  <view class="van-step__wrapper">
+    <view
+      wx:for="{{ steps }}"
+      wx:key="index"
+      bindtap="onClick"
+      data-index="{{ index }}"
+      class="{{ utils.bem('step', [direction, status(index, active)]) }} van-hairline"
+      style="{{ status(index, active) === 'inactive' ? 'color: ' + inactiveColor: '' }}"
+    >
+      <view class="van-step__title" style="{{ index === active ? 'color: ' + activeColor : '' }}">
+        <view style="color: #505050; margin-bottom: 5rpx; {{item.isLink ? 'padding-right: 50rpx;' : ''}}">
+			<van-row type="flex">
+				<van-col wx:if="{{item.textLabel}}">
+					<view style="margin-right: 6rpx; color: #a6a6a6;">{{item.textLabel}}</view>
+				</van-col>
+				<van-col>
+					<view>{{ item.text }}<span wx:if="{{item.state}}" style="border:1px solid #007AFF;color: #007AFF;padding: 2px 5px;margin-left: 10px;font-size: 10px;">{{ item.state }}</span></view>
+				</van-col>
+			</van-row>
+		</view>
+        <view class="desc-class" style="color: #505050; margin-bottom: 8rpx; {{item.isLink ? 'padding-right: 50rpx;' : ''}}">
+			<van-row type="flex">
+				<van-col wx:if="{{item.descLabel}}">
+					<view style="margin-right: 6rpx; color: #a6a6a6;">{{item.descLabel}}</view>
+				</van-col>
+				<van-col>
+					<view>{{ item.desc }}</view>
+				</van-col>
+			</van-row>
+		</view>
+        <view class="desc-class" style="color: #505050; margin-bottom: 8rpx; {{item.isLink ? 'padding-right: 50rpx;' : ''}}">
+			<van-row type="flex">
+				<van-col wx:if="{{item.opinionLabel}}">
+					<view style="margin-right: 6rpx; color: #a6a6a6;">{{item.opinionLabel}}</view>
+				</van-col>
+				<van-col>
+					<view>{{ item.opinion }}</view>
+				</van-col>
+			</van-row>
+		</view>
+		<view wx:if="{{item.isLink}}" style="position: absolute; right: 20rpx; top: 48rpx;">
+			<van-icon name="arrow" />
+		</view>
+      </view>
+      <view class="van-step__circle-container">
+        <block wx:if="{{ index !== active }}">
+          <van-icon
+            wx:if="{{ item.inactiveIcon || inactiveIcon }}"
+            color="{{ status(index, active) === 'inactive' ? inactiveColor: activeColor }}"
+            name="{{ item.inactiveIcon || inactiveIcon }}"
+            custom-class="van-step__icon"
+          />
+          <view
+            wx:else
+            class="van-step__circle"
+            style="{{ 'background-color: ' + (index < active ? activeColor : inactiveColor) }}"
+          />
+        </block>
+
+        <van-icon wx:else name="{{ item.activeIcon || activeIcon }}" color="{{ activeColor }}" custom-class="van-step__icon" />
+      </view>
+      <view
+        wx:if="{{ index !== steps.length - 1 }}"
+        class="van-step__line" style="{{ 'background-color: ' + (index < active ? activeColor : inactiveColor) }}"
+      />
+    </view>
+  </view>
+</view>
+
+<wxs module="status">
+function get(index, active) {
+  if (index < active) {
+    return 'finish';
+  } else if (index === active) {
+    return 'process';
+  }
+
+  return 'inactive';
+}
+
+module.exports = get;
+</wxs>

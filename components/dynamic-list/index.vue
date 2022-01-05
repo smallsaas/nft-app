@@ -553,7 +553,7 @@
 	.venue_dynamic_list_container {
 		width: 100%;
 		display: block;
-
+		background-color: #050E17;
 		.tab_list {
 			border-bottom: 1px solid #f2f2f2;
 			position: relative;

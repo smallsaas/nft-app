@@ -10,7 +10,7 @@
 												..._get(config.moduleData, item.key, {}),
 												outStyle: getComponentStyle(item)
 										 }"
-										:srvFormData="getComponentsData(item) || (srvFormData||{})"
+										:srvFormData="getComponentsData(item) || ((formData||srvFormData)||{})"
 										:outTitle="_get(item,'name')"
 										:navigator="_get(item,'navigator')"
 										:ifManualSubmit="ifManualSubmit"
@@ -283,17 +283,26 @@
 				codeAPI:"",
 				code:"",
 				state:null,
-				conf:null
+				conf:null,
+				formData:null
 			}
 
 		},
 		created() {
+			let that = this
 			let id = this.formatId(this.API)
 			if(id){
 				let data = this.$timeCache(`page_${id}`)
+				let formData = this.$timeCache(`page_${id}_form_Srv`)
 				if(data){
 					console.log("使用缓存page_"+id,data)
+					if(formData){
+						console.log(`使用缓存page_${id}_form_Srv`,formData)
+						that.formData = formData
+					}
+					console.log(this.formData,"this")
 					this.loadPage(data)
+					this.$forceUpdate()
 				}else{
 					this.fetchConfigData()
 				}
@@ -303,17 +312,27 @@
 		},
 		mounted(){
 			let id = this.formatId(this.API)
+			let that = this
+			this.skeletonLoading = true
 			if(id){
 				let data = this.$timeCache(`page_${id}`)
+				let formData = this.$timeCache(`page_${id}_form_Srv`)
 				if(data){
 					console.log("使用缓存page_"+id,data)
+					if(formData){
+						console.log(`使用缓存page_${id}_form_Srv`,formData)
+						that.formData = formData
+					}
+					console.log(this.formData,"this",this.srvFormData)
 					this.loadPage(data)
+					this.$forceUpdate()
 				}else{
 					this.fetchConfigData()
 				}
 			}else{
 				this.fetchConfigData()
 			}
+			this.skeletonLoading = false
 			// console.log("srv",this.srvFormData)
 			let TFormKey = this.FormKey
 			// console.log(this.FormKey)
@@ -444,6 +463,13 @@
 								let pageCacheList = that.$cache.get("pageCacheList")||[]
 								pageCacheList.push(`page_${id}`)
 								that.$cache.set("pageCacheList",pageCacheList)
+								if(that.srvFormData){
+									let srvForm = that.srvFormData
+									that.$timeCache(`page_${id}_form_Srv`,srvForm,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制缓存策略
+									let pageFormCacheList = that.$cache.get('pageFormCacheList')||[]
+									pageFormCacheList.push(`page_${id}_form_Srv`)
+									that.$cache.set(`pageFormCacheList`,pageFormCacheList)
+								}
 							}
                             // 获取页面请求接口
 							that.loadPage(resData)

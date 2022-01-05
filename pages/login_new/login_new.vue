@@ -1,7 +1,7 @@
 <template>
 	<view class="loginBox">
 		<view class="box">
-			<view class="backImg"><image class="back" src="../../static/login/back.png" mode="widthFix"></image></view>
+			<!-- <view class="backImg"><image class="back" src="../../static/login/back.png" mode="widthFix"></image></view> -->
 			<view class="loginText"><text class="text">欢迎登录NFT平台</text></view>
 			<view class="label"><text class="labelTxt">账号</text></view>
 			<view class="inputBox"><input :class="{focus:isShowFocusA}" class="account" type="text" placeholder="请输入账号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
@@ -74,7 +74,6 @@
 				})
 			},
 			async login(){
-				console.log(this.data)
 				let that = this;
 				let res=await that.$api.login(that.data)
 				console.log(res)

@@ -6,6 +6,7 @@
 		    {
 		        "navigationBarTitleText": "登录",
 		        "enablePullDownRefresh": false
+						
 		    }
 		    
 		},
@@ -242,5 +243,5 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#050E17",
 		"backgroundColor": "#050E17"
-		}
+	}
 }
