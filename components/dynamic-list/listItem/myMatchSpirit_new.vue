@@ -12,6 +12,9 @@
 					<image class="level" src="../../../static/spirit/levelThree.png" mode="widthFix" v-if="item.wisp.level==3"></image>
 					<image class="level" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.wisp.level==4"></image>
 					<image class="level" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.wisp.level==5"></image>
+					<image class="level" src="../../../static/spirit/level6.png" mode="widthFix" v-if="item.wisp.level==6"></image>
+					<image class="level" src="../../../static/spirit/level7.png" mode="widthFix" v-if="item.wisp.level==7"></image>
+					<image class="level" src="../../../static/spirit/level8.png" mode="widthFix" v-if="item.wisp.level==8"></image>
 				</view>
 				<view class="tBox">
 					<view class="Child">

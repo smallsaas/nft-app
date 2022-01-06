@@ -18,10 +18,10 @@
 						</view>
 						<view class="spiritTwoSideBox">
 							<view class="sideLeft">培養時間：<text>{{item.growthDays}}</text></view>
-							<view class="sideRight">匹配消耗精靈令：<text>{{item.costWispCoin}}</text></view>
+							<view class="sideRight">匹配消耗GuGu令：<text>{{item.costWispCoin}}</text></view>
 						</view>
 						<view class="spiritTwoSideBox">
-							<view class="sideLeft">消耗陪伴精靈：<text>{{item.costAccompanyWisp}}個</text></view>
+							<view class="sideLeft">消耗能力晶石：<text>{{item.costAccompanyWisp}}個</text></view>
 							<view class="sideRight">匹配需要土地</view>
 						</view>
 					</view>
@@ -31,7 +31,7 @@
 						<text>{{item.stage}}</text>
 					</view>
 					<view class="spiritBuyBtn">
-						購買陪伴精靈
+						購買能力晶石
 					</view>
 					<view class="spiritLandSelect">
 						<select class="selectLand">

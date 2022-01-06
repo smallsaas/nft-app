@@ -1,20 +1,20 @@
 <template>
 	<view class="registBox">
 		<view class="box">
-			<view class="backImg">
+<!-- 			<view class="backImg">
 				<image class="back" @click="goBackStep" src="../../static/login/back.png" mode="widthFix"></image>
-			</view>
+			</view> -->
 			<view class="loginText"><text class="text" v-if="!isShowRegistInfo">會員注冊</text></view>
 			<view v-if="step==0">
 				<view class="label"><text class="labelTxt">昵稱</text></view>
-				<view class="inputBox"><input class="account" type="text" placeholder="請輸入您的昵稱" v-model="data.name">
+				<view class="inputBox"><input :class="isFocus==='name'?'focus account':'account'" type="text" placeholder="請輸入您的昵稱" v-model="data.name" @focus="handleFocus('name')" @blur="handleFocus('')">
 				</view>
 				<view class="label"><text class="labelTxt">手機号碼</text></view>
-				<view class="inputBox"><input class="account" type="number" placeholder="請輸入您的手機号碼"
+				<view class="inputBox"><input :class="isFocus==='phone'?'focus account':'account'" type="number" placeholder="請輸入您的手機号碼" @focus="handleFocus('phone')" @blur="handleFocus('')"
 						v-model="data.phone"></view>
 				<view class="info" v-if="false"><text class="infoText">請輸入正确的手機号碼</text></view>
 				<view class="label"><text class="labelTxt">驗證碼</text></view>
-				<view class="inputBox"><input class="account" type="number" placeholder="請輸入驗證碼"><text
+				<view class="inputBox"><input :class="isFocus==='code'?'focus account':'account'" type="number" placeholder="請輸入驗證碼" @focus="handleFocus('code')" @blur="handleFocus('')"><text
 						class="getYZM">獲取驗證碼</text></view>
 				<view class="info" v-if="false"><text class="infoText">驗證碼有誤</text></view>
 				<view class="loginBox"><button class="loginBtn" @click="nextStep()">下一步</button></view>
@@ -83,7 +83,8 @@
 					loginPassword: '',
 					email: '',
 					invitationCode: 'PNywB5'
-				}
+				},
+				isFocus:''
 			}
 		},
 		methods: {
@@ -115,6 +116,9 @@
 			yes() {
 				this.isShowRegistInfo = false
 				this.isReadRegistInfo = !this.isReadRegistInfo
+			},
+			handleFocus(name){
+				this.isFocus = name
 			},
 			async registAndLogin() {
 				console.log(this.data)
@@ -156,6 +160,10 @@
 </script>
 
 <style lang="less">
+	.focus{
+		border: 2rpx solid;
+		border-image: linear-gradient(to left,#9331F5,#0A95FF) 10;
+	}
 	.registBox {
 		width: 100%;
 		height: 100vh;
@@ -271,7 +279,7 @@
 		.label {
 			width: 100%;
 			height: 40rpx;
-			margin-top: 20rpx;
+			margin-top: 40rpx;
 			padding-left: 30rpx;
 
 			.labelTxt {
@@ -282,32 +290,37 @@
 		.inputBox {
 			width: 100%;
 			height: 80rpx;
-			padding-left: 30rpx;
-			margin-top: 5rpx;
+			// padding-left: 30rpx;
+			margin-top: 20rpx;
 			position: relative;
-
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			.account {
-				width: 90%;
+				width: 85%;
 				height: 80rpx;
+				display: flex;
+				justify-content: center;
 				border-radius: 20rpx;
 				background: rgb(36, 42, 51);
-				padding-left: 10rpx;
+				// padding-left: 10rpx;
+					padding: 10rpx 20rpx;
+					// margin: 20rpx 0;
 			}
 
 			.eye {
 				width: 60rpx;
 				height: 60rpx;
 				position: absolute;
-				right: 80rpx;
-				top: 15rpx;
+				right: 8%;
 			}
 
 			.getYZM {
 				position: absolute;
 				color: rgb(47, 113, 168);
-				right: 90rpx;
+				right: 8%;
 				font-size: 30rpx;
-				top: 25rpx;
+				// top: 25rpx;
 			}
 		}
 
@@ -335,6 +348,8 @@
 				width: 680rpx;
 				height: 80rpx;
 				display: flex;
+				margin-top: 50rpx;
+				margin-bottom: 50rpx;
 				align-items: center;
 				justify-content: center;
 				color: #fff;

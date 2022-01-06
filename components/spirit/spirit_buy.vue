@@ -12,7 +12,7 @@
 					<text class="info">{{itemInfo.description}}</text>
 				</view>
 				<view class="type cc">
-					<text class="one">消耗精靈令：</text>
+					<text class="one">消耗GuGu令：</text>
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="bg"></image>
 					<text class="two">x{{itemInfo.wispCoin}}</text>
 				</view>
@@ -23,7 +23,7 @@
 				<button class="num">{{number}}</button>
 				<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
 				<view class="bottomBox">
-					<text class="ce">共消耗精靈令</text>
+					<text class="ce">共消耗GuGu令</text>
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
 					<text class="ce cetwo">x{{number * itemInfo.wispCoin}}</text>
 					<button class="btn" @click="buyComponeySpirit">立即購買</button>
@@ -36,7 +36,7 @@
 					<view class="topR">
 						<view class="Cname"><text class="name">安防科技啥叫看</text></view>
 						<view class="CLname"><text class="name">撒嬌開發哈桑飛機庫哈斯</text></view>
-						<view class="CInfo"><text class="info">消耗精靈令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
+						<view class="CInfo"><text class="info">消耗GuGu令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
 					</view>
 				</view>
 				<view class="center">
@@ -49,7 +49,7 @@
 				</view>
 				<view class="bottom">
 					<view class="bL">
-						<view class="info"><text class="infoText">共消耗精靈令</text></view>
+						<view class="info"><text class="infoText">共消耗GuGu令</text></view>
 						<view class="num"><image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoText">x12</text></view>
 					</view>
 					<view class="bR">
@@ -99,7 +99,7 @@
 				this.$emit('addNumber',this.number)
 			},
 			
-			//購買陪伴精靈
+			//購買能力晶石
 			async buyComponeySpirit(){
 				console.log(this.itemInfo.id,1)
 				const data = {
@@ -210,7 +210,7 @@
 				align-items: center;
 
 				.one {
-					width: 84px;
+					// width: 84px;
 					height: 20px;
 					font-size: 14px;
 					font-family: PingFang SC-Regular, PingFang SC;
@@ -285,7 +285,7 @@
 				border-top: 1px solid rgba(255, 255, 255, 0.1);
 
 				.ce {
-					width: 72px;
+					// width: 72px;
 					height: 17px;
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;

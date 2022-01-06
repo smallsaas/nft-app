@@ -1,7 +1,7 @@
 <template>
 	<view class="transfers">
 		<text class="t">
-			轉讓精靈令
+			轉讓GuGu令
 		</text>
 		<text class="tt">
 			對方手機号碼
@@ -20,7 +20,7 @@
 			<button class="btn ccc"  @click="cancel">取消</button>
 			<button class="btn">确定</button>
 		</view>
-		<!-- <view class="title"><text class="info">轉讓精靈令</text></view>
+		<!-- <view class="title"><text class="info">轉讓GuGu令</text></view>
 		<view class="opView">
 			<view class="item">
 				<text class="ti">對方手機号碼</text>

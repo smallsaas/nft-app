@@ -4,7 +4,7 @@
 //玩家  /api/crud/oms/player/players
 //签到  /api/crud/oms/playerSignRecord/playerSignRecords
 //添加预约  /api/crud/oms/wispBookingRecord/wispBookingRecords
-//购买陪伴精灵  /api/crud/oms/companionWispOrder/companionWispOrders/generate
+//购买能力晶石  /api/crud/oms/companionWispOrder/companionWispOrders/generate
 
 
 

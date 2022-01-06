@@ -527,7 +527,7 @@
 				}
 				if (_.has(data, 'title')) {
 					uni.setNavigationBarTitle({
-						title: _.get(data, 'title', '動态頁面')
+						title: this.$zh_tw(_.get(data, 'title', '動态頁面'))
 					})
 				}
 			},

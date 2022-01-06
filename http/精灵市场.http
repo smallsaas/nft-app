@@ -45,7 +45,7 @@ Content-Type: application/json
                 "default":{
                 },
                 "ps":"pageSize",
-                "pn":"pageNo"
+                "pn":"pageNum"
             },
             "itemModule":{
                 "name":"spiritMarket"

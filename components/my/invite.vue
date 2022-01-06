@@ -67,12 +67,16 @@
 		padding: 4rpx;
 	}
 	.invite-mask{
-		background-color: #0009;
-		position: absolute;
-		left: 0;
+		background-color: #000;
+		opacity: .8;
+		width: 100vw;
+		// height: 100vh;
+		position: fixed;
 		top: 0;
+		left: 0;
 		right: 0;
 		bottom: 0;
+		// z-index: 501;
 	}
 	.invite-container{
 		display: flex;

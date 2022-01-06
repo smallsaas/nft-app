@@ -48,7 +48,7 @@ export const api = {
 	const url = `${globalConfig.endpoint}/api/u/wisp/${params.wispId}/book`
 	return request('POST',url,params)
 	},
-	//購買陪伴精靈
+	//購買能力晶石
 	buyCompanySpirit(params){
 	const url = `${globalConfig.endpoint}/api/u/companionWisp/${params.companionWispId}/buy`
 	return request('POST',url,params)

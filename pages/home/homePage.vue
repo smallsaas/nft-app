@@ -39,7 +39,7 @@
 		},
 		async created(){
 			let res = await this.$api.homePage()
-			if(res.status === 200){
+			if(res.code == 200){
 				let data = res.data
 				console.log("進來了",data)
 				this.navs = data.navs

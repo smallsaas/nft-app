@@ -46,7 +46,7 @@
 	/*每個頁面公共css */
 	@font-face {
 		font-family:"繁體";
-		src: url('./font/繁體.otf');
+		src: url('./font/ft.otf');
 	}
 	*{
 		font-family: "繁體";

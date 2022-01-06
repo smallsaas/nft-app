@@ -5,7 +5,8 @@
 			<!-- <view class="loginText"><text class="text">歡迎登錄NFT平台</text></view> -->
 			<image src="../../static/login/bg.png" mode="widthFix" class="loginBg"></image>
 			<view class="label"><text class="labelTxt">賬号</text></view>
-			<view class="inputBox"><input :class="{focus:isShowFocusA}" class="account" type="text" placeholder="請輸入賬号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
+			<view class="inputBox">
+				<input :class="isShowFocusA?'account focus':'account'" type="text" placeholder="請輸入賬号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
 			<view class="info" v-if="false"><text class="infoText">賬号有誤，請輸入正确的手機号碼</text></view>
 			<view class="label"><text class="labelTxt">密碼</text></view>
 			<view class="inputBox">
@@ -86,7 +87,7 @@
 						duration:1000
 					})
 					setTimeout(()=>{
-						uni.navigateTo({
+						uni.reLaunch({
 							url:'/pages/home/homePage'
 						})
 					},1000)
@@ -157,7 +158,7 @@
 			.label{
 				width: 100%;
 				height: 40rpx;
-				margin-top: 20rpx;
+				margin-top: 30rpx;
 				padding-left: 4%;
 				.labelTxt{
 					color: grey;
@@ -168,8 +169,7 @@
 				width: 100%;
 				height: 80rpx;
 				// padding-left: 30rpx;
-				margin-top: 5rpx;
-				position: relative;
+				margin-top: 30rpx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -178,7 +178,9 @@
 					height: 80rpx;
 					border-radius: 10rpx;
 					background: rgb(36,42,51);
-					padding-left: 20rpx;
+					// padding-left: 20rpx;
+					padding: 10rpx 20rpx;
+					margin: 20rpx 0;
 					outline-style: none;
 				}
 				.eye{

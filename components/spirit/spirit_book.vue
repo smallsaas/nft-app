@@ -8,16 +8,19 @@
 					<image class="img" src="../../static/spirit/levelThree.png" mode="widthFix" v-if="itemInfo.level == 3"></image>
 					<image class="img" src="../../static/spirit/levelFour.png" mode="widthFix" v-if="itemInfo.level == 4"></image>
 					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 5"></image>
+					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 6"></image>
+					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 7"></image>
+					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 8"></image>
 				</view>
 				<view class="spiritBox">
 					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="imgs"></image>
 				</view>
-				<text class="tt">消耗精靈令</text>
+				<text class="tt">消耗GuGu令</text>
 				<view class="ttt">
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.costWispCoin}}</text>
 				</view>
-				<text class="tt two">消耗陪伴精靈</text>
+				<text class="tt two">消耗能力晶石</text>
 				<view class="ttt twott">
 					<image src="../../static/spirit/company.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.costAccompanyWisp}}</text>
@@ -46,11 +49,11 @@
 					</view>
 					<view class="bodyRight">
 						<view class="bodyItems">
-							<view class="labelBox"><text class="label">消耗精靈令</text></view>
+							<view class="labelBox"><text class="label">消耗GuGu令</text></view>
 							<view class="infoBox"><image class="infoImage" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costWispCoin}}</text></view>
 						</view>
 						<view class="bodyItems">
-							<view class="labelBox"><text class="label">消耗陪伴精靈</text></view>
+							<view class="labelBox"><text class="label">消耗能力晶石</text></view>
 							<view class="infoBox"><image class="infoImage" src="../../static/spirit/company.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costAccompanyWisp}}</text></view>
 						</view>
 						<view class="bodyItems">

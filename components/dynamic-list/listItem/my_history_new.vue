@@ -3,7 +3,7 @@
 		<view class="item">
 			<view class="o"><image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image></view>
 			<view class="t">
-				<text class="i io">轉讓精靈令-王小二</text>
+				<text class="i io">轉讓GuGu令-王小二</text>
 				<text class="i it">2012-10-12 12:00:00</text>
 			</view>
 			<view class="h">

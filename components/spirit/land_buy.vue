@@ -12,7 +12,7 @@
 					<text class="types" :class="{type:index==0}">{{item.type}}</text>
 				</view>
 			</view>
-			<text class="info">消耗精靈令：</text>
+			<text class="info">消耗GuGu令：</text>
 			<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImg"></image>
 			<text class="numbers">x{{itemInfo.coinCostPerDay}}</text>
 			<text class="titleInfo">土地等級：</text>
@@ -26,7 +26,7 @@
 			<button class="btnNum">{{number}}</button>
 			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
 			<view class="btnBox">
-				<text class="tt">共消耗精靈令</text>
+				<text class="tt">共消耗GuGu令</text>
 				<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImgs"></image>
 				<text class="ttt">x{{number*itemInfo.coinCostPerDay}}</text>
 				<button class="btnMore" @click="landBuy">立即購買</button>
@@ -39,7 +39,7 @@
 				<view class="topR">
 					<view class="Cname"><text class="name">安防科技啥叫看</text></view>
 					<view class="CLname"><text class="names" :class="{name:index==indexType}" v-for="(item,index) in landType" :key="item.id" @click="chooseType(index)">{{item.type}}</text></view>
-					<view class="CInfo"><text class="info">消耗精靈令:</text>
+					<view class="CInfo"><text class="info">消耗GuGu令:</text>
 						<image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text>
 					</view>
 				</view>
@@ -60,7 +60,7 @@
 			</view>
 			<view class="bottom">
 				<view class="bL">
-					<view class="info"><text class="infoText">共消耗精靈令</text></view>
+					<view class="info"><text class="infoText">共消耗GuGu令</text></view>
 					<view class="num">
 						<image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text
 							class="infoText">x12</text>
@@ -278,7 +278,7 @@
 			}
 
 			.info {
-				width: 84px;
+				// width: 84px;
 				height: 20px;
 				font-size: 14px;
 				font-family: PingFang SC-Regular, PingFang SC;
@@ -294,14 +294,14 @@
 				width: 20px;
 				height: 20px !important;
 				top: 108px;
-				left: 214px;
+				left: 220px;
 				margin-right: 3px;
 			}
 
 			.numbers {
 				position: absolute;
 				top: 105px;
-				left: 242px;
+				left: 250px;
 				width: 21px;
 				height: 25px;
 				font-size: 18px;
@@ -418,7 +418,7 @@
 				border-top: 1px solid rgba(255, 255, 255, 0.1);
 
 				.tt {
-					width: 72px;
+					// width: 72px;
 					height: 17px;
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;

@@ -164,7 +164,7 @@ Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)
 Vue.component("dynamic-list",DynamicList)
 Vue.component("card",card)
-Vue.component("mask",mask)
+Vue.component("gMask",mask)
 
 App.mpType = 'app'
 

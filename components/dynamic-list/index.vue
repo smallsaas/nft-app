@@ -388,38 +388,22 @@
             updateData () {  
                 this.typeList =  _.get(this.config, 'tabConfig.show') === true ? _.get(this.config, 'tabConfig.list', []) : []
                 const requestData = _.get(this.config, 'request', {})
-								let customData;
-								let fileno;
-								// console.log(this.fileno)
-								
-								if(_.get(this.config,'request.fileno')==='fileno'){
-									if(this.fileno){
-										 fileno=this.fileno
-										 customData = {
-										 	"customValues":{
-												"fileno":fileno
-											}
-										 }
-										 // console.log(customData)
-									}
-								}
-
                 const searchData = {}
                 for (const key in requestData) {
                     if (key !== 'default') {
                         searchData[requestData[key]] = ''
                     }
                 }
-                if (_.has(searchData, 'pageNo')) {
-                    searchData.pageNo = 1
+                if (_.has(searchData, 'pageNum')) {
+                    searchData.pageNum = 1
                 }
                 if (_.has(searchData, 'pageSize')) {
                     searchData.pageSize = 10
                 }
 								
-                this.pageNoField = _.get(searchData, 'pn', 'pageNo')
+                this.pageNoField = _.get(searchData, 'pn', 'pageNum')
                 this.pageSizeField = _.get(searchData, 'ps', 'pageSize')
-                this.listSearch = { ...searchData, ..._.get(this.config, 'request.default', {}),...customData||{},...this.otherSearch||{} }
+                this.listSearch = { ...searchData, ..._.get(this.config, 'request.default', {}),...this.otherSearch||{} }
                 if (_.get(this.config, 'loadApi')) {
                     this.fetchList({ refresh: true })
                }
@@ -456,7 +440,7 @@
                         this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
                         this.$refs.loadRefresh.completed()
                      }
-										if(res.data.code==='00000'){
+										if(res.data.code==='00000'||res.data.code===200){
 											const data = _.get(res, 'data.data')
 											const listField = _.get(this.config, 'response.list', '')
 											const totolField = _.get(this.config, 'response.total', 0)
@@ -468,6 +452,7 @@
 											this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
 											this.$refs.loadRefresh.completed()
 										}
+										that.$forceUpdate()
                   }
               })  
             },
@@ -482,9 +467,9 @@
 				this.isStop = true
                 this.listSearch = {
                     ...this.listSearch,
-                    [this.pageNoField]: this.listSearch[this.pageNoField] + 1
+                    [this.pageNoField]: parseInt(this.listSearch[this.pageNoField]) + 1
                 }
-                this.fetchList()
+                this.fetchList(this.listsearch)
 								
 								}
             },
@@ -498,7 +483,7 @@
 				}
             	this.listSearch = {
             	    ...this.listSearch,
-            	    [this.pageNoField]: 1
+            	    [this.pageNoField]: parseInt(1)
             	}
             	this.fetchList({ refresh: true })
 							}

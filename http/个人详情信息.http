@@ -304,7 +304,7 @@ Content-Type: application/json
                         "formId": 113,
                         "renderKey": 1621415432107
                         },
-                        "tips":"(用于精灵令)",
+                        "tips":"(用于GuGu令)",
                         "readonly": true,
                         "__vModel__": "paymentPassword"
                     }

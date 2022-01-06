@@ -13,6 +13,9 @@
 				<image v-if="item.wisp.level == 3" src="../../../static/spirit/levelThree.png" mode="widthFix" class="levelImg"></image>
 				<image v-if="item.wisp.level == 4" src="../../../static/spirit/levelFour.png" mode="widthFix" class="levelImg"></image>
 				<image v-if="item.wisp.level == 5" src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 6" src="../../../static/spirit/level6.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 7" src="../../../static/spirit/level7.png" mode="widthFix" class="levelImg"></image>
+				<image v-if="item.wisp.level == 8" src="../../../static/spirit/level8.png" mode="widthFix" class="levelImg"></image>
 			</view>
 			<view class="infoBox">
 				<text class="info">能力值：400</text>

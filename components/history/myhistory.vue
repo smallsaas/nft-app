@@ -3,7 +3,7 @@
 		<view class="left">
 			<view class="leftL">
 				<view class="T">
-					<view class="TT"><text class="info">我的精靈令</text></view>
+					<view class="TT"><text class="info">我的GuGu令</text></view>
 					<view class="TB"><image src="../../static/spirit/coin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.coinsAmount}}</text></view>
 				</view>
 				<view class="B">
@@ -13,7 +13,7 @@
 			</view>
 			<view class="leftR">
 				<view class="item">
-					<view class="Info">我的陪伴精靈</view>
+					<view class="Info">我的能力晶石</view>
 					<view class="TTT"><image src="../../static/spirit/company.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.companionWispAmount}}</text></view>
 				</view>
 				<view class="item">

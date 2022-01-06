@@ -11,11 +11,11 @@
 						<image src="../../../static/spirit/newCoin.png" mode="aspectFit" class="coinImg"></image>
 						<text class="numberText">x{{item.costWispCoin}}</text>
 					</view>
-					<view class="thC">
+					<view class="thC" @click="showBuyChild(item)">
 						<image src="../../../static/spirit/newC.png" mode="aspectFit" class="coinImg"></image>
 						<text class="numberText">x{{item.costAccompanyWisp}}</text>
 					</view>
-					<view class="thC">
+					<view class="thC" @click="showLandChild(item)">
 						<image src="../../../static/spirit/land.png" mode="aspectFit" class="coinImg"></image>
 						<text class="numberText">x{{item.growthDays}}</text>
 					</view>
@@ -31,6 +31,9 @@
 					<image class="levelImg" src="../../../static/spirit/levelThree.png" mode="widthFix" v-if="item.level==3"></image>
 					<image class="levelImg" src="../../../static/spirit/levelFour.png" mode="widthFix" v-if="item.level==4"></image>
 					<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix" v-if="item.level==5"></image>
+					<image class="levelImg" src="../../../static/spirit/level6.png" mode="widthFix" v-if="item.level==6"></image>
+					<image class="levelImg" src="../../../static/spirit/level7.png" mode="widthFix" v-if="item.level==7"></image>
+					<image class="levelImg" src="../../../static/spirit/level8.png" mode="widthFix" v-if="item.level==8"></image>
 				</view>
 				<view class="rth">
 					<text class="rthL">增長能力</text>
@@ -113,9 +116,10 @@
 		</view> -->
 
 		<!-- 預約組件 -->
+		<view class="spirit_mask" v-if="isShowBookChild||isShowBuyComponeny||isShowLandBuy||isShowToast"></view>
 		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild" @getMsg="getMsgToast">
 		</spiritBook>
-		<!-- 陪伴精靈組件 -->
+		<!-- 能力晶石組件 -->
 		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy" :itemInfo="itemInfoForComponentChild"
 			@decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
 		<!-- 土地組件 -->
@@ -130,7 +134,7 @@
 <script>
 	//預約精靈組件
 	import spiritBook from '@/components/spirit/spirit_book.vue'
-	//購買陪伴精靈組件
+	//購買能力晶石組件
 	import spiritComponenyBuy from '@/components/spirit/spirit_buy.vue'
 	//購買土地組件
 	import spiritLandBuy from '@/components/spirit/land_buy.vue'
@@ -214,7 +218,7 @@
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
 
-			//陪伴精靈購買成功
+			//能力晶石購買成功
 			childBuySuccess(res) {
 				this.isShowBuyComponeny = false
 				console.log(res)
@@ -249,6 +253,16 @@
 </script>
 
 <style lang="less">
+	.spirit_mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 502;
+		background-color: #000;
+		opacity: .8;
+	}
 	.newBuGu {
 		width: 100%;
 		height: 100%;

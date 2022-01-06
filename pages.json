@@ -1,5 +1,19 @@
 {
-	"pages": [ //pages數組中第一項表示應用啓動頁，參考：https://uniapp.dcloud.io/collocation/pages
+		"pages": [ //pages數組中第一項表示應用啓動頁，參考：https://uniapp.dcloud.io/collocation/pages
+		// #ifdef H5
+		{
+				"path" : "pages/home/H5Home",
+				"style" :                                                                                    
+				{
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false,
+						"app-plus":{
+							"titleNView":false
+						}
+				}
+				
+		},
+		// #endif
 		{
 		    "path" : "pages/login_new/login_new",
 		    "style" :                                                                                    

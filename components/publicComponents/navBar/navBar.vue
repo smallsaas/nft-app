@@ -80,7 +80,7 @@
 	.navBar-container{
 		width: 100%;
 		height: 140rpx;
-		z-index: 999999;
+		z-index: 500;
 		position: fixed;
 		bottom: 0;
 		display: flex;

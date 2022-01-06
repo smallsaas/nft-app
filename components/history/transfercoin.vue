@@ -1,7 +1,7 @@
 <template>
 	<view class="transfers">
 		<text class="t">
-			轉化精靈令
+			轉化GuGu令
 		</text>
 		<text class="tt">
 			轉化數量
@@ -12,7 +12,7 @@
 			<button class="btn ccc" @click="cancel">取消</button>
 			<button class="btn" @click="sureTransfer">确定</button>
 		</view>
-		<!-- <view class="title"><text class="info">轉化精靈令</text></view>
+		<!-- <view class="title"><text class="info">轉化GuGu令</text></view>
 		<view class="opView">
 			<view class="item">
 				<text class="ti">轉化數量</text>
@@ -52,7 +52,7 @@
 				if(this.dataTwo==undefined){
 					if (this.data.marketPoints < 200000000) {
 						const data = {
-							message: '收益未達到2000暫不可轉化爲精靈令',
+							message: '收益未達到2000暫不可轉化爲GuGu令',
 						}
 						this.$emit('forParentMessage', data)
 					} else {
@@ -61,7 +61,7 @@
 				}else if(this.data == undefined){
 					if (this.dataTwo.depositPoints < 200000000) {
 						const data = {
-							message: '收益未達到2000暫不可轉化爲精靈令',
+							message: '收益未達到2000暫不可轉化爲GuGu令',
 						}
 						this.$emit('forParentMessageTwo', data)
 					} else {
