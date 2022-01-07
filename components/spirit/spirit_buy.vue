@@ -8,7 +8,7 @@
 				</view>
 				<view class="name">
 					<!-- <text class="nameI">{{itemInfo.name}}</text> -->
-					<text class="nameI">培养精灵需消耗</text>
+					<text class="nameI">培養精靈需消耗</text>
 				</view>
 				<view class="type">
 					<text class="info">{{itemInfo.description}}</text>

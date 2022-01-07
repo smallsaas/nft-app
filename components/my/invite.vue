@@ -15,7 +15,7 @@
 				<view class="QRcode-container">
 					<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="ewm"></image>
 				</view>
-				<text class="save"> 扫我加入 metagogo 的世界 </text>
+				<text class="save"> 掃我加入 metagogo 的世界 </text>
 			</view>
 			<view class="boxBB">
 				<image src="../../static/service/close.png" mode="widthFix" class="close" @click="closeMast"></image>

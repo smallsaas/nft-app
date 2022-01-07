@@ -2,17 +2,17 @@
 	<view class="successPay">
 		<view class="box">
 			<view class="top">
-				<text class="t">买家联系电话：15845484521</text>
+				<text class="t">買家聯系電話：15845484521</text>
 			</view>
 			<view class="body">
-				<view class="tt">买家付款凭证：</view>
+				<view class="tt">買家付款憑證：</view>
 				<view class="imgBox">
 					<image src="../../static/spirit/newCoin.png" mode="aspectFit" class="img" @click="showBig"></image>
 				</view>
 			</view>
 			<view class="btnBox">
-				<button class="btn" @click="successPay">确认收款</button>
-				<button class="btn shenshu">申诉</button>
+				<button class="btn" @click="successPay">确認收款</button>
+				<button class="btn shenshu">申訴</button>
 			</view>
 		</view>
 		<view class="spirit_mask" v-if="isShowToast"></view>
@@ -51,7 +51,7 @@
 			},
 			successPay(){
 				this.isShowToast = true
-				this.toast('确认收到对方的付款凭证款项吗？')
+				this.toast('确認收到對方的付款憑證款項嗎？')
 			},
 			closeToast(){
 				this.isShowToast = false

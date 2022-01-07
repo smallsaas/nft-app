@@ -1,50 +1,50 @@
 <template>
 	<view class="registBox">
 		<view class="box newBox">
-			<view class="A">会员注册</view>
-			<view class="B">昵称</view>
+			<view class="A">會員注冊</view>
+			<view class="B">昵稱</view>
 			<view class="C">
-				<input v-model="data.name" @focus="focus(1)" @blur="blur(1)" :class="{focus:isAddArticleA}" class="i" placeholder="请输入昵称" type="text" />
+				<input v-model="data.name" @focus="focus(1)" @blur="blur(1)" :class="{focus:isAddArticleA}" class="i" placeholder="請輸入昵稱" type="text" />
 			</view>
-			<view class="B">手机号码</view>
+			<view class="B">手機号碼</view>
 			<view class="C">
-				<input v-model="data.phone"  @focus="focus(2)" @blur="blur(2)" :class="{focus:isAddArticleB}" class="i" placeholder="请输入手机号码" type="number" />
+				<input v-model="data.phone"  @focus="focus(2)" @blur="blur(2)" :class="{focus:isAddArticleB}" class="i" placeholder="請輸入手機号碼" type="number" />
 			</view>
-			<view class="B">验证码</view>
+			<view class="B">驗證碼</view>
 			<view class="C">
-				<input v-model="data.yzm"  @focus="focus(3)" @blur="blur(3)" :class="{focus:isAddArticleC}" class="i" placeholder="请输入验证码" type="number" />
+				<input v-model="data.yzm"  @focus="focus(3)" @blur="blur(3)" :class="{focus:isAddArticleC}" class="i" placeholder="請輸入驗證碼" type="number" />
 			</view>
-			<view class="B">登录密码</view>
+			<view class="B">登錄密碼</view>
 			<view class="C">
-				<input v-model="data.loginPassword"  @focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" class="i" placeholder="请输入登录密码" :password="isShowPassword" />
+				<input v-model="data.loginPassword"  @focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" class="i" placeholder="請輸入登錄密碼" :password="isShowPassword" />
 				<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 			</view>
-			<view class="B">邮箱（选填）</view>
+			<view class="B">郵箱（選填）</view>
 			<view class="C">
-				<input v-model="data.email" @focus="focus(5)" @blur="blur(5)" :class="{focus:isAddArticleE}" class="i" placeholder="请输入邮箱" type="text" />
+				<input v-model="data.email" @focus="focus(5)" @blur="blur(5)" :class="{focus:isAddArticleE}" class="i" placeholder="請輸入郵箱" type="text" />
 			</view>
-			<view class="B">邀请码</view>
+			<view class="B">邀請碼</view>
 			<view class="C">
-				<input v-model="data.invitationCode"  @focus="focus(6)" @blur="blur(6)" :class="{focus:isAddArticleF}" class="i" placeholder="请输入邀请码" type="text" />
+				<input v-model="data.invitationCode"  @focus="focus(6)" @blur="blur(6)" :class="{focus:isAddArticleF}" class="i" placeholder="請輸入邀請碼" type="text" />
 			</view>
 			<view class="T">
 				<view class="ii" :class="{'haveRead':isReadRegistInfo==true}" @click="readRegistMessage">
 					<image v-if="isReadRegistInfo" class="rightImg" src="../../static/login/right.png"
 						mode="widthFix"></image>
 				</view>
-				<view class="iii">注册/登录即代表您已阅读并同意</view>
-				<view class="iiii" @click="lookRegist">《用户注册协议》</view>
+				<view class="iii">注冊/登錄即代表您已閱讀并同意</view>
+				<view class="iiii" @click="lookRegist">《用戶注冊協議》</view>
 			</view>
 			<view class="TT">
-				<button class="btn"  @click="registAndLogin">注册并登录</button>
+				<button class="btn"  @click="registAndLogin">注冊并登錄</button>
 			</view>
-			<view class="last"><text class="ss">已有账号？</text><text class="sss" @click="goLogin">去登录</text></view>
+			<view class="last"><text class="ss">已有賬号？</text><text class="sss" @click="goLogin">去登錄</text></view>
 			
 			
 			<view class="registInfoTex" v-if="isShowRegistInfo">
 				<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
 				<view class="info"><text
-						class="infoTwo">请勾选用户注册协议</text>
+						class="infoTwo">請勾選用戶注冊協議</text>
 				</view>
 				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
 						@click="no">拒絕</button></view>
@@ -256,7 +256,7 @@
 				}else{
 					uni.showToast({
 						icon: 'success',
-						title: '注冊失败',
+						title: '注冊失敗',
 						duration: 1000
 					})
 				}

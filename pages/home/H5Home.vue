@@ -116,8 +116,8 @@
  			</view>
  			<view class="bodyBox">
  				<image src="../../static/login/bodyLogoNew.png" class="bodyImg"></image>
- 				<button class="btn" :class="{addClass:isShowAddClass}" @click="addClass" @touchstart="a">开始游戏</button>
- 				<button class="btn btns">下载安卓APP</button>
+ 				<button class="btn" :class="{addClass:isShowAddClass}" @click="addClass" @touchstart="a">開始遊戲</button>
+ 				<button class="btn btns">下載安卓APP</button>
  			</view>
  		</view>
  	</view>

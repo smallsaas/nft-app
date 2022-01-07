@@ -18,6 +18,7 @@
 										:srvFormData="getComponentsData(item) || ((formData||srvFormData)||{})"
 										:outTitle="_get(item,'name')"
 										:navigator="_get(item,'navigator')"
+										:modal="_get(item,'modal')"
 										:ifManualSubmit="ifManualSubmit"
 										@submit="handleSubmit"
 									/>

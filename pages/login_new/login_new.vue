@@ -93,14 +93,14 @@
 				let that = this;
 				if(this.checkyzm == ''){
 					uni.showToast({
-						title:'请输入验证码',
+						title:'請輸入驗證碼',
 						icon:"error"
 					})
 					return
 				}
 				if(this.checkyzm !== this.yanzhengma){
 					uni.showToast({
-						title:'验证码错误',
+						title:'驗證碼錯誤',
 						icon:"error"
 					})
 				}else{

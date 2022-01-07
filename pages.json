@@ -264,7 +264,7 @@
             "path" : "pages/successPay/successPay",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "确认收款",
+                "navigationBarTitleText": "确認收款",
                 "enablePullDownRefresh": false
             }
             

@@ -9,6 +9,7 @@ import {globalConfig} from '@/config.js'
 import {api} from './common/api.js'
 import {timeCache,cache,reload,upload} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
+import prettyButton from './components/prettyButton.vue'
 import './other.less'
 let transformTools= require('./utils/CNTWtransformTools.js')
 Vue.config.productionTip = false
@@ -165,6 +166,7 @@ Vue.component("dynamic-form",DynamicForm)
 Vue.component("dynamic-list",DynamicList)
 Vue.component("card",card)
 Vue.component("gMask",mask)
+Vue.component("pretty-button",prettyButton)
 
 App.mpType = 'app'
 

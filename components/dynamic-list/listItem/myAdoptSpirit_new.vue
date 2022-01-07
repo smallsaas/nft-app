@@ -32,7 +32,7 @@
 				<view class="boxs" v-if="true">
 					<button class="two" @click="noMessage">出售</button>
 				</view> -->
-				<text class="times" v-if="true">成长中</text>
+				<text class="times" v-if="true">成長中</text>
 				<text class="time" v-if="true">剩餘時間 48:52:47</text>
 			</view>
 		</view>

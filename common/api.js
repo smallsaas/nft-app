@@ -15,7 +15,7 @@ export const api = {
 		console.log(id)
 		return request('GET',url,params)
 	},
-	// 個人資料編輯
+	// 個人資料編輯(修改副手機号，修改支付密碼)
 	editAccountData(id,params){
 		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
 		return request('PUT',url,params)
@@ -59,7 +59,7 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
-	//转让精灵令
+	//轉讓精靈令
 	transferCoin(params){
 	const url = `${globalConfig.endpoint}/api/u/player/transferCoins`
 	return request('POST',url,params)

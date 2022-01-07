@@ -48,9 +48,23 @@ Content-Type: application/json
           "type": "autoform", 
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b4", 
           "name": "支付密码", 
-          "navigator":{
-              "url":"/formImageTest/formImageTest",
-              "title":"修改密码"
+          "modal":{
+              "title":"修改密码",
+              "ModalTitle":"修改支付密码",
+              "components":[
+                {
+                    "label": "副手机号验证码",
+                    "type": "code",
+                    "placeholder": "输入验证码",
+                    "requestUrl": ""
+                },
+                {
+                    "label": "新的支付密码",
+                    "placeholder": "设置新的支付密码",
+                    "field": "paymentPassword",
+                    "type":"password"
+                }
+              ]
           },
           "container": {
           }
@@ -107,6 +121,20 @@ Content-Type: application/json
                         "canChange":true,
                         "saveAPI":"",
                         "method":"GET",
+                        "ModalTitle":"修改副手机号",
+                        "components":[
+                            {
+                                "label":"主手机号验证码",
+                                "type":"code",
+                                "placeholder":"输入验证码",
+                                "requestUrl":""
+                            },
+                            {
+                                "label":"副手机号码",
+                                "placeholder":"输入新的副手机号码",
+                                "field":"backupMobilePhone"
+                            }
+                        ],
                         "doNotUseValue":"FROZEN",
                         "statusField":"status",
                         "readonly": true,
