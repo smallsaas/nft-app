@@ -2,7 +2,7 @@
 	<view class="box">
 		<view class="item">
 			<view class="imgBox">
-				<image :src="item.wisp.previewPhotoUrl" mode="widthFix" class="img"></image>
+				<image :src="getImage(item.wisp.previewPhotoUrl)" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
 				<text class="name">{{item.wisp.name}}</text>
@@ -18,21 +18,22 @@
 				<image v-if="item.wisp.level == 8" src="../../../static/spirit/level8.png" mode="widthFix" class="levelImg"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：400</text>
+				<text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">領養：</text>
+				<text class="info">領養：{{item.growthExpiryDate}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<button class="btn one" v-if="true" @click="noMessage">鑄造</button>
+				<!-- <button class="btn one" v-if="true" @click="noMessage">鑄造</button>
 				<view class="boxs" v-if="true">
 					<button class="two" @click="noMessage">出售</button>
-				</view>
-				<text class="time" v-if="false">剩餘時間 48:52:47</text>
+				</view> -->
+				<text class="times" v-if="true">成长中</text>
+				<text class="time" v-if="true">剩餘時間 48:52:47</text>
 			</view>
 		</view>
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
@@ -54,6 +55,31 @@
 			}
 		},
 		methods:{
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint + "/" +imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			},
 			toast(msg) {
 				this.toastMsg = msg
 				this.isShowToast = true
@@ -160,6 +186,16 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-around;
+				.times{
+					position: absolute;
+					left: 32rpx;
+					width: 119px;
+					height: 22px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #31E4B9;
+				}
 				.time{
 					position: absolute;
 					right: 32rpx;

@@ -3,10 +3,12 @@
 		<!-- <van-popup class="box" v-model="show" round position="bottom" @close="getClose"> -->
 			<view class="box">
 				<view class="imgBox">
-					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image>
+					<!-- <image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image> -->
+					<image src="../../static/spirit/newC.png" mode="aspectFit" class="img"></image>
 				</view>
 				<view class="name">
-					<text class="nameI">{{itemInfo.name}}</text>
+					<!-- <text class="nameI">{{itemInfo.name}}</text> -->
+					<text class="nameI">培养精灵需消耗</text>
 				</view>
 				<view class="type">
 					<text class="info">{{itemInfo.description}}</text>

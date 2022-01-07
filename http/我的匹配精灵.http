@@ -38,7 +38,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775858": {
-            "loadApi":"/api/u/player/getWispBookRecords",
+            "loadApi":"/api/u/player/queryPlayerWispInstance?stage=TRADING",
             "itemNavigation": "",
             "response":{
                 "list":"records"

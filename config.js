@@ -11,6 +11,7 @@ export const globalConfig = {
 	formHost: "http://repo.dev.smallsaas.cn:8087/form",
   dataHost: "http://repo.dev.smallsaas.cn:8087/data",
   endpoint: "http://repo.dev.smallsaas.cn:8087",
+  imageEndpoint: "http://repo.dev.smallsaas.cn:8087",
   tokenStorageKey:"token",
 	iconList:iconList
 }
@@ -23,6 +24,7 @@ export const globalConfig = {
 	formHost: "/form",
   dataHost: "/data",
   endpoint: "",
+  imageEndpoint: "http://repo.dev.smallsaas.cn:8087",
   tokenStorageKey:"token",
 	iconList:iconList
 }

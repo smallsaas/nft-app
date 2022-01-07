@@ -5,7 +5,7 @@
 			<tab class="tab"></tab>
 		</view>
 		<!-- <down class="down"></down> -->
-		<view class="bgs"><image src="https://s2.loli.net/2021/12/30/JusqwV13KkaWlrT.png" mode="widthFix" class="chatu"></image></view>
+		<view class="bgs"><image src="../../static/service/xc.png" mode="widthFix" class="chatu"></image></view>
 		<bottomTap class="bottomTapa" :data="forBottomTapChild"></bottomTap>
 	</view>
 </template>

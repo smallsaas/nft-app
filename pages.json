@@ -260,6 +260,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/successPay/successPay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "确认收款",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

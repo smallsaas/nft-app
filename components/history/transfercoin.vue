@@ -88,7 +88,7 @@
 		border-left: 2rpx solid rgb(50, 71, 137);
 
 		.t {
-			width: 90px;
+			width: 150px;
 			height: 25px;
 			font-size: 18px;
 			font-family: PingFang SC-Bold, PingFang SC;

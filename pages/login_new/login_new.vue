@@ -11,8 +11,8 @@
 			<view class="label"><text class="labelTxt">密碼</text></view>
 			<view class="inputBox">
 				<input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="請輸入密碼" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
-			<!-- <view class="label"><text class="labelTxt">驗證碼</text></view>
-			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="請輸入驗證碼" class="yzm" @focus="focus(3)" @blur="blur(3)"><view class="yzmBox"></view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view> -->
+			<view class="label"><text class="labelTxt">驗證碼</text></view>
+			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="請輸入驗證碼" class="yzm" @focus="focus(3)" @blur="blur(3)" v-model="checkyzm"><view class="yzmBox">{{yanzhengma}}</view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view>
 			<view class="loginBox"><button class="loginBtn" @click="login">登錄</button></view>
 			<view class="opeation"><text class="forget" @click="goFindP">忘記密碼?</text><text class="regist" @click="goToRegist()">注冊賬号</text></view>
 		</view>
@@ -30,11 +30,24 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'13692842253',
-					password:'123456'
-				}
+					account:'15322315902',
+					password:'admin',
+					  // 15322315902
+				},
+				list:[1,2,3,4,5,6,7,8,9],
+				listTwo:['a','b','c','d','e','f','g','h','i','j'],
+				yanzhengma:'',
+				checkyzm:''
 			}
 		}, 
+		mounted() {
+			const first = Math.floor( Math.random() * 9)
+			const two = Math.floor( Math.random() * 9)
+			const three = Math.floor( Math.random() * 9)
+			const four = Math.floor( Math.random() * 9)
+			console.log(first,two,three,four)
+			this.yanzhengma = this.list[first] + this.listTwo[two] + this.list[three] + this.listTwo[four]
+		},
 		methods: {
 			focus(id){
 				console.log(id)
@@ -78,24 +91,38 @@
 			},
 			async login(){
 				let that = this;
-				let res=await that.$api.login(that.data)
-				console.log(res)
-				if(res.code == 200){
-					that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
+				if(this.checkyzm == ''){
 					uni.showToast({
-						title:'登錄成功',
-						duration:1000
-					})
-					setTimeout(()=>{
-						uni.reLaunch({
-							url:'/pages/home/homePage'
-						})
-					},1000)
-				}else{
-					uni.showToast({
-						title:res.message,
+						title:'请输入验证码',
 						icon:"error"
 					})
+					return
+				}
+				if(this.checkyzm !== this.yanzhengma){
+					uni.showToast({
+						title:'验证码错误',
+						icon:"error"
+					})
+				}else{
+					let res=await that.$api.login(that.data)
+					console.log(res)
+					if(res.code == 200){
+						that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
+						uni.showToast({
+							title:'登錄成功',
+							duration:1000
+						})
+						setTimeout(()=>{
+							uni.reLaunch({
+								url:'/pages/home/homePage'
+							})
+						},1000)
+					}else{
+						uni.showToast({
+							title:res.message,
+							icon:"error"
+						})
+					}
 				}
 				
 				
@@ -204,10 +231,10 @@
 			}
 			
 			.viewBox{
-				margin-top: 5rpx;
+				margin-top: 15rpx;
 				width: 100%;
 				height: 80rpx;
-				padding-left: 30rpx;
+				padding-left: 20rpx;
 				display: flex;
 				flex-direction: row;
 				position: relative;
@@ -221,9 +248,14 @@
 				.yzmBox{
 					width: 40%;
 					height: 80rpx;
-					border: 1px solid red;
 					margin-left: 25rpx;
 					border-radius: 20rpx;
+					background: rgb(178,178,178);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: rgb(173,92,250);
+					font-size: 28px;
 				}
 				.right{
 					position: absolute;

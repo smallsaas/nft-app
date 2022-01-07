@@ -59,6 +59,12 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
+	//转让精灵令
+	transferCoin(params){
+	const url = `${globalConfig.endpoint}/api/u/player/transferCoins`
+	return request('POST',url,params)
+	},
+	
 	//新獲取用戶個人詳情信息
 	getInformationNew(params){
 		const url = `${globalConfig.endpoint}/api/u/player`

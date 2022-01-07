@@ -15,7 +15,7 @@
 				<view class="QRcode-container">
 					<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="ewm"></image>
 				</view>
-				<text class="save">長按保存圖片</text>
+				<text class="save"> 扫我加入 metagogo 的世界 </text>
 			</view>
 			<view class="boxBB">
 				<image src="../../static/service/close.png" mode="widthFix" class="close" @click="closeMast"></image>
@@ -157,9 +157,10 @@
 
 			.save {
 				font-size: 28rpx;
-				color: #5D677C;
+				color: #FFFFFF;
 				margin-top: 20rpx;
 				margin-bottom: 84rpx;
+				font-weight: bolder;
 			}
 			.boxB-round1,.boxB-round2{
 				position: absolute;

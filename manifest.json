@@ -118,7 +118,11 @@
                 "/api" : {
                     "target" : "http://repo.dev.smallsaas.cn:8084",
                     "changeOrigin" : true
-                }
+                },
+				"/images":{
+                    "target" : "http://repo.dev.smallsaas.cn:8087",
+				    "changeOrigin":true
+				}
             }
         }
     }

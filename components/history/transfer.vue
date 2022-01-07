@@ -6,20 +6,22 @@
 		<text class="tt">
 			對方手機号碼
 		</text>
-		<input class="ttt" placeholder="輸入手機号" type="number" />
+		<input v-model="data.number" class="ttt" placeholder="輸入手機号" type="number" />
 		<text class="tt tttt">
 			轉讓數量
 		</text>
-		<input class="ttt ttttt" placeholder="輸入數量,最低500起" type="number" />
+		<input v-model="data.targetPlayerMobilePhone" class="ttt ttttt" placeholder="輸入數量,最低500起" type="number" />
 		<text class="tt tttttt">
 			支付密碼
 		</text>
-		<input class="ttt ttttttt" placeholder="輸入支付密碼" type="number" />
+		<input v-model="data.paymentPassword " class="ttt ttttttt" placeholder="輸入支付密碼" type="number" />
 		<view class="line"></view>
 		<view class="btnBox">
 			<button class="btn ccc"  @click="cancel">取消</button>
-			<button class="btn">确定</button>
+			<button class="btn" @click="successTransfer">确定</button>
 		</view>
+		
+		
 		<!-- <view class="title"><text class="info">轉讓GuGu令</text></view>
 		<view class="opView">
 			<view class="item">
@@ -44,9 +46,24 @@
 
 <script>
 	export default{
+		data() {
+			return {
+				data:{
+					targetPlayerMobilePhone:'',
+					number:'',
+					paymentPassword :''
+				}
+			}
+		},
 		methods:{
 			cancel(){
 				this.$emit('close')
+			},
+			async successTransfer(){
+				this.data.number = parseInt(this.data.number)
+				console.log(this.data)
+				const res = await this.$api.transferCoin(this.data)
+				console.log(res)
 			}
 		}
 	}
@@ -67,7 +84,7 @@
 		border-left: 2rpx solid rgb(50, 71, 137);
 		
 		.t{
-			width: 90px;
+			width: 200px;
 			height: 25px;
 			font-size: 18px;
 			font-family: PingFang SC-Bold, PingFang SC;

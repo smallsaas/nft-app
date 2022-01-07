@@ -4,11 +4,12 @@
 
 		<view class="box">
 			<view class="imgBox">
-				<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image>
+				<!-- <image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image> -->
+			   <image src="../../static/spirit/land.png" mode="aspectFit" class="img"></image>
 			</view>
 			<text class="name">所需土地</text>
 			<view class="typeOne">
-				<view class="item" v-for="(item,index) in landType" :key="index">
+				<view class="item" :class="{block:index==0}" v-for="(item,index) in landType" :key="index">
 					<text class="types" :class="{type:index==0}">{{item.type}}</text>
 				</view>
 			</view>
@@ -17,7 +18,7 @@
 			<text class="numbers">x{{itemInfo.coinCostPerDay}}</text>
 			<text class="titleInfo">土地等級：</text>
 			<view class="typeTwo">
-				<view class="tItem" v-for="(item,index) in landTypeTwo" :key="index">
+				<view class="tItem" :class="{block:index==0}" v-for="(item,index) in landTypeTwo" :key="index">
 					<text class="infoTwoItem" :class="{infoItem:index==0}">{{item.type}}-收益{{item.get}}%</text>
 				</view>
 			</view>
@@ -96,17 +97,22 @@
 				indexType: 0,
 				landTypeTwo: [{
 						id: 1,
-						type: '毛胚',
+						type: '普通',
 						get: 0
 					}, {
 						id: 2,
-						type: "精裝",
+						type: "稀有",
 						get: 2
 					},
 					{
 						id: 3,
-						type: "豪華",
+						type: "传奇",
 						get: 5
+					},
+					{
+						id: 3,
+						type: "神秘",
+						get: 10
 					}
 				],
 				indexTypeTwo: 0,
@@ -239,7 +245,7 @@
 					height: 24px;
 					border-radius: 2px 2px 2px 2px;
 					opacity: 1;
-					border: 1px solid #0B95FF;
+					border: 1px solid #aaa;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -274,6 +280,9 @@
 							border-color: transparent rgb(11, 149, 255) rgb(11, 149, 255) transparent;
 						}
 					}
+				}
+				.block{
+					border: 1px solid #0B95FF !important;
 				}
 			}
 
@@ -331,13 +340,13 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: wrap;
-
 				.tItem {
 					width: 90px;
 					height: 24px;
 					border-radius: 2px 2px 2px 2px;
 					opacity: 1;
-					border: 1px solid #0B95FF;
+					border: 1px solid #aaa;
+					// 0B95FF
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -372,6 +381,9 @@
 							border-color: transparent rgb(11, 149, 255) rgb(11, 149, 255) transparent;
 						}
 					}
+				}
+				.block{
+						border: 1px solid #0B95FF !important;
 				}
 			}
 

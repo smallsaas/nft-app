@@ -2,19 +2,19 @@
 	<view class="box">
 		<view class="item">
 			<view class="imgBox">
-				<image src="../../../static/spirit/text.png" mode="widthFix" class="img"></image>
+				<image :src="getImage(item.wisp.previewPhotoUrl)" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
-				<text class="name">極品九尾靈狐</text>
+				<text class="name">{{item.wisp.name}}</text>
 			</view>
 			<view class="levelBox">
 				<image src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：400</text>
+				<text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<text class="info">出售：2021-12-16 12:25:48</text>
+				<text class="info">出售：{{item.stageChangeTime}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
 				<text class="info">買家：18545879654</text>
@@ -32,6 +32,10 @@
 <script>
 	// import toast from '../../spirit/toast.vue'
 	export default{
+		props: {
+			item: Object,
+			ext: Object
+		},
 		// components:{toast},
 		data() {
 			return {
@@ -40,6 +44,31 @@
 			}
 		},
 		methods:{
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint + "/" +imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			}
 			// toast(msg) {
 			// 	this.toastMsg = msg
 			// 	this.isShowToast = true

@@ -1,10 +1,58 @@
 <template>
 	<view class="registBox">
-		<view class="box">
+		<view class="box newBox">
+			<view class="A">会员注册</view>
+			<view class="B">昵称</view>
+			<view class="C">
+				<input v-model="data.name" @focus="focus(1)" @blur="blur(1)" :class="{focus:isAddArticleA}" class="i" placeholder="请输入昵称" type="text" />
+			</view>
+			<view class="B">手机号码</view>
+			<view class="C">
+				<input v-model="data.phone"  @focus="focus(2)" @blur="blur(2)" :class="{focus:isAddArticleB}" class="i" placeholder="请输入手机号码" type="number" />
+			</view>
+			<view class="B">验证码</view>
+			<view class="C">
+				<input v-model="data.yzm"  @focus="focus(3)" @blur="blur(3)" :class="{focus:isAddArticleC}" class="i" placeholder="请输入验证码" type="number" />
+			</view>
+			<view class="B">登录密码</view>
+			<view class="C">
+				<input v-model="data.loginPassword"  @focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" class="i" placeholder="请输入登录密码" :password="isShowPassword" />
+				<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
+			</view>
+			<view class="B">邮箱（选填）</view>
+			<view class="C">
+				<input v-model="data.email" @focus="focus(5)" @blur="blur(5)" :class="{focus:isAddArticleE}" class="i" placeholder="请输入邮箱" type="text" />
+			</view>
+			<view class="B">邀请码</view>
+			<view class="C">
+				<input v-model="data.invitationCode"  @focus="focus(6)" @blur="blur(6)" :class="{focus:isAddArticleF}" class="i" placeholder="请输入邀请码" type="text" />
+			</view>
+			<view class="T">
+				<view class="ii" :class="{'haveRead':isReadRegistInfo==true}" @click="readRegistMessage">
+					<image v-if="isReadRegistInfo" class="rightImg" src="../../static/login/right.png"
+						mode="widthFix"></image>
+				</view>
+				<view class="iii">注册/登录即代表您已阅读并同意</view>
+				<view class="iiii" @click="lookRegist">《用户注册协议》</view>
+			</view>
+			<view class="TT">
+				<button class="btn"  @click="registAndLogin">注册并登录</button>
+			</view>
+			<view class="last"><text class="ss">已有账号？</text><text class="sss" @click="goLogin">去登录</text></view>
+			
+			
+			<view class="registInfoTex" v-if="isShowRegistInfo">
+				<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
+				<view class="info"><text
+						class="infoTwo">请勾选用户注册协议</text>
+				</view>
+				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
+						@click="no">拒絕</button></view>
+			</view>
 <!-- 			<view class="backImg">
 				<image class="back" @click="goBackStep" src="../../static/login/back.png" mode="widthFix"></image>
 			</view> -->
-			<view class="loginText"><text class="text" v-if="!isShowRegistInfo">會員注冊</text></view>
+		<!-- 	<view class="loginText"><text class="text" v-if="!isShowRegistInfo">會員注冊</text></view>
 			<view v-if="step==0">
 				<view class="label"><text class="labelTxt">昵稱</text></view>
 				<view class="inputBox"><input :class="isFocus==='name'?'focus account':'account'" type="text" placeholder="請輸入您的昵稱" v-model="data.name" @focus="handleFocus('name')" @blur="handleFocus('')">
@@ -61,8 +109,8 @@
 				</view>
 				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
 						@click="no">拒絕</button></view>
-			</view>
-
+			</view> -->
+         
 		</view>
 	</view>
 </template>
@@ -80,14 +128,66 @@
 				data: {
 					name: '',
 					phone: '',
+					yzm:'',
 					loginPassword: '',
 					email: '',
 					invitationCode: 'PNywB5'
 				},
-				isFocus:''
+				isFocus:'',
+				
+				isAddArticleA:false,
+				isAddArticleB:false,
+				isAddArticleC:false,
+				isAddArticleD:false,
+				isAddArticleE:false,
+				isAddArticleF:false
 			}
 		},
 		methods: {
+			focus(id){
+				if(id==1){
+					this.isAddArticleA = true
+					return
+				}else if(id == 2){
+					this.isAddArticleB = true
+					return
+				}else if(id == 3){
+					this.isAddArticleC = true
+					return
+				}else if(id == 4){
+					this.isAddArticleD = true
+					return
+				}else if(id == 5){
+					this.isAddArticleE = true
+					return
+				}else if(id == 6){
+					this.isAddArticleF = true
+					return
+				}
+			},
+			
+			blur(id){
+			if(id==1){
+				this.isAddArticleA = false
+				return
+			}else if(id == 2){
+				this.isAddArticleB = false
+				return
+			}else if(id == 3){
+				this.isAddArticleC = false
+				return
+			}else if(id == 4){
+				this.isAddArticleD = false
+				return
+			}else if(id == 5){
+				this.isAddArticleE = false
+				return
+			}else if(id == 6){
+				this.isAddArticleF = false
+				return
+			}
+			},
+			
 			nextStep() {
 				this.step = 1
 			},
@@ -153,6 +253,12 @@
 							})
 						},1000)
 					}
+				}else{
+					uni.showToast({
+						icon: 'success',
+						title: '注冊失败',
+						duration: 1000
+					})
 				}
 			}
 		}
@@ -160,6 +266,151 @@
 </script>
 
 <style lang="less">
+	.spirit_mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 502;
+		background-color: #000;
+		opacity: .8;
+	}
+	.newBox{
+		width: 100%;
+		height: 100vh;
+		.focus{
+			border: 1px solid !important;
+		    border-image: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253)) 10 !important;
+		}
+		.last{
+			width: 100%;
+			height: 5%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			padding-right: 5%;
+			.ss{
+				font-size: 14px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: rgb(101,118,104);
+			}
+			.sss{
+				font-size: 14px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #33A7FF;
+				margin-right: 5%;
+			}
+		}
+		.TT{
+			width: 100%;
+			height: 10%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.btn{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 90%;
+				height: 56px;
+				background: linear-gradient(45deg, #9331F5 0%, #0A95FF 100%);
+				border-radius: 8px 8px 8px 8px;
+				opacity: 1;
+				color: #ffffff;
+			}
+		}
+		.T{
+			width: 100%;
+			height: 5%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			padding-left: 5%;
+			.haveRead {
+				background: linear-gradient(to right, rgb(135, 57, 245) 0%, rgb(70, 104, 253), rgb(25, 137, 253)) !important;
+			}
+			.ii{
+				width: 20px;
+				height: 20px;
+				background: rgb(36,42,51);
+				position: relative;
+				.rightImg{
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 20px;
+					height: 20px;
+				}
+			}
+			.iii{
+				font-size: 12px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #ffffff;
+				margin-left: 5px;
+			}
+			.iiii{
+				font-size: 12px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;			
+				color: #33A7FF;
+				margin-left: 5px;
+			}
+		}
+		.A{
+			width: 100%;
+			height: 5%;
+			display: flex;
+			align-items: center;
+			padding-left: 2%;
+			font-size: 24px;
+			font-family: PingFang SC-Bold, PingFang SC;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		.B{
+			width: 100%;
+			height: 4%;
+			display: flex;
+			align-items: center;
+			padding-left: 5%;
+			font-size: 14px;
+			font-family: PingFang SC-Bold, PingFang SC;
+			font-weight: bold;
+			color: rgb(88,94,100);
+		}
+		.C{
+			width: 100%;
+			height: 10%;
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			position: relative;
+			.eye{
+				position: absolute;
+				right: 5%;
+				top: 5%;
+				width: 48px;
+				height: 48px !important;
+			}
+			.i{
+				width: 90%;
+				height: 56px;
+				font-size: 14px;
+				color: rgb(88,94,100);
+				padding-left: 10px;
+				background: #242A33;
+				border-radius: 8px 8px 8px 8px;
+				opacity: 1;
+				border: 1px solid #363F4D;
+			}
+		}
+	}
+	
+	
 	.focus{
 		border: 2rpx solid;
 		border-image: linear-gradient(to left,#9331F5,#0A95FF) 10;

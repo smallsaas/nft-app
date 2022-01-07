@@ -4,7 +4,7 @@
 			<view class="leftL">
 				<view class="T">
 					<view class="TT"><text class="info">我的GuGu令</text></view>
-					<view class="TB"><image src="../../static/spirit/coin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.coinsAmount}}</text></view>
+					<view class="TB"><image src="../../static/spirit/newCoin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.coinsAmount}}</text></view>
 				</view>
 				<view class="B">
 					<view class="btnbtn"><button class="btn" @click="transfer">轉讓</button></view>
@@ -14,7 +14,7 @@
 			<view class="leftR">
 				<view class="item">
 					<view class="Info">我的能力晶石</view>
-					<view class="TTT"><image src="../../static/spirit/company.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.companionWispAmount}}</text></view>
+					<view class="TTT"><image src="../../static/spirit/newC.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.companionWispAmount}}</text></view>
 				</view>
 				<view class="item">
 					<view class="Info">租用土地</view>
@@ -22,6 +22,7 @@
 				</view>
 			</view>
 		</view>
+		<view class="spirit_mask" v-if="isShowTransfer||isShowTransferCoin||isShowTransferCoinTwo"></view>
 		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild"></number>
 		<transfer v-if="isShowTransfer" @close="getClose"></transfer>
 		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
@@ -121,6 +122,16 @@
 </script>
 
 <style lang="less">
+	.spirit_mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 502;
+		background-color: #000;
+		opacity: .8;
+	}
 	.myHistory{
 		width: 100%;
 		height: 100vh;
