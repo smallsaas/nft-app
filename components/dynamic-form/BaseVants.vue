@@ -212,7 +212,9 @@
 									..._.has(item, 'saveAPI') ? { 'saveAPI': item['saveAPI'] } : {},
 									..._.has(item, 'doNotUseValue') ? { 'doNotUseValue': item['doNotUseValue'] } : {},
 									..._.has(item, 'tips') ? { 'tips': item['tips'] } : {},
-									..._.has(item,'method')?{'method':item['method']}:{}
+									..._.has(item,'method')?{'method':item['method']}:{},
+									..._.has(item,'modalTitle')?{'modalTitle':item['modalTitle']}:{},
+									..._.has(item,'components')?{'components':item['components']}:{}
 							 }
 						 }
 

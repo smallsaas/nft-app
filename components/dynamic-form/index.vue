@@ -8,7 +8,37 @@
 				<view v-if="!skeletonLoading">
 		<!-- #endif -->
 					<view class="fields_Title" v-if="![undefined,null,''].includes(outTitle)">{{outTitle}}
-						<text class="fields_jumpTitle" @click="handleJump(navigator.url)" v-if="navigator">{{navigator.title||""}}</text>
+						<text class="fields_jumpTitle" @click="handleJump(navigator.url)" v-if="navigator.title">{{navigator.title||""}}</text>
+						<text @click="showModal" v-if="modal.title" class="fields_jumpTitle">{{modal.title||"修改"}}</text>
+						<view v-if="isModal">
+							<view class="Modal-mask"></view>
+							<view class="Modal-Content">
+								<view class="Modal-window">
+									<view class="Modal-title">{{modal.ModalTitle||"修改"}}</view>
+									<view class="Modal-ContentBox">
+										<view v-for="(item,i) in modal.components">
+											<view class="Modal-ContentBox-Label">
+												{{item.label}}
+											</view>
+											<view v-if="item.type === 'code'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+												<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3;font-size:28rpx" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
+												<text :class="canPush?'Modal-ContentBox-code':'Modal-ContentBox-code unPush'" @click="handleGetCode(item.requestUrl)">{{canPush?'获取验证码':+codeTime+'秒后重试'}}</text>
+											</view>
+											<view v-else-if="item.type === 'password'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+												<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3;font-size:28rpx" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
+											</view>
+											<view v-else :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+												<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3;font-size:28rpx" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
+											</view>
+										</view>
+									</view>
+									<view class="Modal-ButtonGroup">
+										<pretty-button class="Modal-btn" borderRadius="8rpx" type="gray" borderType="gray" :text="modal.ModalCancelText||'取消'" @click="hideModal()"></pretty-button>
+										<pretty-button class="Modal-btn" borderRadius="8rpx" :text="modal.ModalSuccessText||'确定'" @click="handleSumbitModal()"></pretty-button>
+									</view>
+								</view>
+							</view>
+						</view>
 					</view>
 					<view :class="_get(fields[0],'__config__.layout') === 'colFormItem'?'fields-block':''">
 						<block v-for="(item, index) in fields" :key="index">
@@ -135,6 +165,10 @@
 						navigator:{
 							type:Object,
 							default:{}
+						},
+						modal:{
+							type:Object,
+							default:{}
 						}
 		},
 		data() {
@@ -143,6 +177,10 @@
 				fields: [],
 				form: {},
 				skeletonLoading: true,
+				isModal:false,
+				isFocus:-1,
+				canPush:true,
+				codeTime:60
 			}
 		},
         watch: {
@@ -197,6 +235,59 @@
 								url:"/pages"+url,
 								fail(err){
 									console.log(err)
+								}
+							})
+						},
+						// 显示模态框
+						showModal(){
+							this.isModal = true
+						},
+						hideModal(){
+							this.isModal = false
+						},
+						// 字段改变时
+						handleFieldChange(field,value){
+							this.formData[field] = value.target.value
+						},
+						// 提交
+						async handleSumbitModal(){
+							let userCache = this.$cache.get("userCache")
+							console.log("读取用户缓存",userCache)
+							let param ={
+								...this.formData
+							}
+							let res = await this.$api.editAccountData(userCache.id,param)
+							console.log(res)
+							
+						},
+						// 获取验证码
+						handleGetCode(api){
+							let that = this
+							if(!that.canPush){
+								return ;
+							}
+							uni.request({
+								url:this.$config.endpoint + api,
+								success(res) {
+									console.log(res,"success")
+									that.canPush = false
+									that.timeCache = setInterval(()=>{
+										that.codeTime = that.codeTime - 1
+										if(that.codeTime === 0){
+											that.canPush = true
+											that.codeTime = 60
+											clearInterval(that.timeCache)
+										}
+									},1000)
+									uni.showToast({
+										title:"发送成功",
+										icon:"success"
+									})
+								},
+								fail(err) {
+									uni.showToast({
+										title:err.message||err.msg
+									})
 								}
 							})
 						},
@@ -394,7 +485,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	.fields_Title{
 		font-size: 34rpx;
 		margin-left: 20rpx;
@@ -453,5 +544,107 @@
 			background-color: transparent;
 			border: 1px solid #5F646A;
 			color: #5F646A;
+		}
+		.Modal-mask{
+			background: #000;
+			opacity: .8;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1000;
+		}
+		.Modal-Content{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			z-index: 1001;
+		}
+		.Modal-title{
+			font-size: 36rpx;
+			color: #FFFFFF;
+			margin-bottom: 24rpx;
+		}
+		.Modal-window{
+			background-color: #192746;
+			width: 70%;
+			display: flex;
+			flex-direction: column;
+			// height: 500px;
+			padding: 48rpx;
+			border-radius: 16rpx;
+			box-shadow: inset 2rpx 2rpx 0rpx 2rpx #23335E;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.Modal-ContentBox{
+			width: 100%;
+		}
+		
+		.Modal-ContentBox-Label{
+			color: #fff;
+			opacity: .5;
+			margin-bottom: 16rpx;
+			font-size: 24rpx;
+		}
+		.Modal-ContentBox-InputBox{
+			background-color: #363F4C;
+			padding: 2rpx;
+			border-radius: 8rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 16rpx;
+			position: relative;
+		}
+		.focus{
+			background: linear-gradient(90deg, #9331F5 0%, #0A95FF 100%);
+		}
+		.Modal-ContentBox-Input{
+			width: 100%;
+			background-color: #131D33;
+			padding: 18rpx 24rpx;
+			border-radius: 8rpx;
+		}
+		.Modal-ContentBox-code{
+			color: #33A7FF;
+			position: absolute;
+			right: 20rpx;
+			font-size: 28rpx;
+			z-index: 5000;
+			cursor: pointer;
+		}
+		.unPush{
+			color: #7F8798;
+		}
+		.Modal-ButtonGroup{
+			width: 100%;
+			// height: 176rpx;
+			margin-top: 16rpx;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			border-top: 2rpx solid;
+			// padding-top: 48rpx;
+			border-image: linear-gradient(270deg, #182641 0%, #3F547D 49%, #182641 100%) 20;
+			box-shadow: 0px -2px 10px 0px #172240;
+			padding: 48rpx 48rpx 0 48rpx;
+		}
+		.Modal-btn{
+			// width: 90%;
+			margin: 0 24rpx 0 0;
+			flex: 1;
+			height: 80rpx;
+		}
+		.Modal-btn:last-child{
+			margin: 0;
 		}
 </style>

@@ -26,6 +26,7 @@
 				let res = await this.$api.getInformationNew()
 				console.log(res)
 				this.srvFormData = res.data
+				this.$cache.set('userCache',res.data)
 			},
 			async changeInfo(){
 				console.log('asfafs')

@@ -53,7 +53,38 @@
 					:class="isRead?'readonly':'baseInput'"
 				/>
 				<text v-if="param.tips" style="font-size:24rpx;color: #3D4348;">{{param.tips}}</text>
-				<text v-if="param.canChange" :class="canUse?'canUse':'unUse'" @click="handleChange()">{{saveText}}</text></template>
+				<!-- <text v-if="param.canChange" :class="canUse?'canUse':'unUse'" @click="handleChange()">{{saveText}}</text></template> -->
+				<text @click="showModal" v-if="param.canChange" :class="canUse?'canUse':'unUse'">{{saveText||"修改"}}</text>
+				<view v-if="isModal">
+					<view class="Modal-mask"></view>
+					<view class="Modal-Content">
+						<view class="Modal-window">
+							<view class="Modal-title">{{param.ModalTitle||"修改"}}</view>
+							<view class="Modal-ContentBox">
+								<view v-for="(item,i) in param.components">
+									<view class="Modal-ContentBox-Label">
+										{{item.label}}
+									</view>
+									<view v-if="item.type === 'code'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
+										<text :class="canPush?'Modal-ContentBox-code':'Modal-ContentBox-code unPush'" @click="handleGetCode(item.requestUrl)">{{canPush?'获取验证码':+codeTime+'秒后重试'}}</text>
+									</view>
+									<view v-else-if="item.type === 'password'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
+									</view>
+									<view v-else :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
+									</view>
+								</view>
+							</view>
+							<view class="Modal-ButtonGroup">
+								<pretty-button class="Modal-btn" borderRadius="8rpx" type="gray" borderType="gray" :text="param.ModalCancelText||'取消'" @click="hideModal()"></pretty-button>
+								<pretty-button class="Modal-btn" borderRadius="8rpx" :text="param.ModalSuccessText||'确定'" @click="handleSumbit()"></pretty-button>
+							</view>
+						</view>
+					</view>
+				</view>
+			</template>
 		</van-field>
     </view>
 </template>
@@ -95,7 +126,13 @@
 			return {
 				focus: false,
 				saveText:"修改",
-				isRead:false
+				isRead:false,
+				isModal:false,
+				isFocus:-1,
+				timeCache:null,
+				codeTime:60,
+				canPush:true,
+				formData:{}
 			}
 		},
 		created() {
@@ -111,6 +148,57 @@
 			}
 		},
         methods: {
+					// 字段改变时
+					handleFieldChange(field,value){
+						this.formData[field] = value.target.value
+					},
+					// 提交
+					async handleSumbit(){
+						let userCache = this.$cache.get("userCache")
+						console.log("读取用户缓存",userCache)
+						let param ={
+							...this.formData
+						}
+						let res = await this.$api.editAccountData(userCache.id,param)
+						console.log(res)
+						
+					},
+					handleGetCode(api){
+						let that = this
+						if(!that.canPush){
+							return ;
+						}
+						uni.request({
+							url:this.$config.endpoint + api,
+							success(res) {
+								console.log(res,"success")
+								that.canPush = false
+								that.timeCache = setInterval(()=>{
+									that.codeTime = that.codeTime - 1
+									if(that.codeTime === 0){
+										that.canPush = true
+										that.codeTime = 60
+										clearInterval(that.timeCache)
+									}
+								},1000)
+								uni.showToast({
+									title:"发送成功",
+									icon:"success"
+								})
+							},
+							fail(err) {
+								uni.showToast({
+									title:err.message||err.msg
+								})
+							}
+						})
+					},
+					handleFocus(i){
+						this.isFocus = i
+					},
+					handleBlur(){
+						this.isFocus = -1
+					},
 					getStatus(value){
 						let find = this.param.options.find(item=>item.value === value)
 						return find
@@ -121,6 +209,12 @@
 						}else{
 							this.isRead = false
 						}
+					},
+					showModal(){
+						this.isModal = true
+					},
+					hideModal(){
+						this.isModal = false
 					},
 					handleAPI(param){
 						let that = this
@@ -211,5 +305,107 @@
 		}
 		.unUse{
 			color: #3B4146;
+		}
+		.Modal-mask{
+			background: #000;
+			opacity: .8;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1000;
+		}
+		.Modal-Content{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			z-index: 1001;
+		}
+		.Modal-title{
+			font-size: 36rpx;
+			color: #FFFFFF;
+			margin-bottom: 24rpx;
+		}
+		.Modal-window{
+			background-color: #192746;
+			width: 70%;
+			display: flex;
+			flex-direction: column;
+			// height: 500px;
+			padding: 48rpx;
+			border-radius: 16rpx;
+			box-shadow: inset 2rpx 2rpx 0rpx 2rpx #23335E;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.Modal-ContentBox{
+			width: 100%;
+		}
+
+		.Modal-ContentBox-Label{
+			color: #fff;
+			opacity: .5;
+			margin-bottom: 16rpx;
+			font-size: 24rpx;
+		}
+		.Modal-ContentBox-InputBox{
+			background-color: #363F4C;
+			padding: 2rpx;
+			border-radius: 8rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 16rpx;
+			position: relative;
+		}
+		.focus{
+			background: linear-gradient(90deg, #9331F5 0%, #0A95FF 100%);
+		}
+		.Modal-ContentBox-Input{
+			width: 100%;
+			background-color: #131D33;
+			padding: 18rpx 24rpx;
+			border-radius: 8rpx;
+		}
+		.Modal-ContentBox-code{
+			color: #33A7FF;
+			position: absolute;
+			right: 20rpx;
+			z-index: 5000;
+			font-size: 28rpx;
+			cursor: pointer;
+		}
+		.unPush{
+			color: #7F8798;
+		}
+		.Modal-ButtonGroup{
+			width: 100%;
+			// height: 176rpx;
+			margin-top: 16rpx;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			border-top: 2rpx solid;
+			// padding-top: 48rpx;
+			border-image: linear-gradient(270deg, #182641 0%, #3F547D 49%, #182641 100%) 20;
+			box-shadow: 0px -2px 10px 0px #172240;
+			padding: 48rpx 48rpx 0 48rpx;
+		}
+		.Modal-btn{
+			// width: 90%;
+			margin: 0 24rpx 0 0;
+			flex: 1;
+			height: 80rpx;
+		}
+		.Modal-btn:last-child{
+			margin: 0;
 		}
 </style>

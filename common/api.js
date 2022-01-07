@@ -15,7 +15,7 @@ export const api = {
 		console.log(id)
 		return request('GET',url,params)
 	},
-	// 個人資料編輯
+	// 個人資料編輯(修改副手机号，修改支付密码)
 	editAccountData(id,params){
 		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
 		return request('PUT',url,params)
