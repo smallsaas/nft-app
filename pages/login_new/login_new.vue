@@ -89,8 +89,9 @@
 					url:'/pages/find_password_new/find_password_new'
 				})
 			},
-			async login(){
+		async login(){
 				let that = this;
+				console.log(this.checkyzm , this.yanzhengma)
 				if(this.checkyzm == ''){
 					uni.showToast({
 						title:'請輸入驗證碼',
@@ -108,15 +109,19 @@
 					console.log(res)
 					if(res.code == 200){
 						that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
-						uni.showToast({
-							title:'登錄成功',
-							duration:1000
-						})
-						setTimeout(()=>{
-							uni.reLaunch({
-								url:'/pages/home/homePage'
+						let user = await that.$api.getInformationNew()
+						if(user.code == 200){
+							that.$cache.set("userId",user.data.id)
+							uni.showToast({
+								title:'登錄成功',
+								duration:1000
 							})
-						},1000)
+							setTimeout(()=>{
+								uni.reLaunch({
+									url:'/pages/home/homePage'
+								})
+							},1000)
+						}
 					}else{
 						uni.showToast({
 							title:res.message,

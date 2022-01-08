@@ -65,6 +65,28 @@
 		methods:{
 			logout(){
 				this.$cache.remove('token')
+				let pageCacheList = this.$cache.get('pageCacheList')
+				let pageFormCacheList = this.$cache.get("pageFormCacheList")
+				let that = this
+				if(this.$config.clearPageCache){
+					console.log("開始删除頁面緩存")
+					if(pageCacheList){
+						pageCacheList.map((item,i)=>{
+								that.$cache.remove(item)
+								console.log("删除頁面緩存"+item)
+						})
+					}
+					if(pageFormCacheList){
+						pageFormCacheList.map((item,i)=>{
+							that.$cache.remove(item)
+							console.log("删除頁面表單緩存"+item)
+						})
+					}
+					this.$cache.remove('pageCacheList')
+					this.$cache.remove('pageFormCacheList')
+					console.log("删除緩存成功")
+				}
+				this.$cache.remove('userCache')
 				uni.showToast({
 					title:'退出成功',
 					duration:1000

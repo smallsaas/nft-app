@@ -38,10 +38,10 @@ Content-Type: application/json
                 "span": 24,
                 "formId": 101,
                 "renderKey": "1011641015256431",
-                "componentName": "移动支付账号",
+                "componentName": "微信支付",
                 "children": [{
                     "__config__": {
-                    "label": "移动账号",
+                    "label": "微信账号",
                     "labelWidth": null,
                     "showLabel": true,
                     "changeTag": true,
@@ -59,7 +59,7 @@ Content-Type: application/json
                     "prepend": "",
                     "append": ""
                     },
-                    "placeholder": "请输入移动账号",
+                    "placeholder": "请输入微信账号",
                     "style": {
                     "width": "100%"
                     },
@@ -71,7 +71,7 @@ Content-Type: application/json
                     "readonly": false,
                     "hidden": false,
                     "disabled": false,
-                    "__vModel__": "field102"
+                    "__vModel__": "wechatAccount"
                 }, {
                     "__config__": {
                     "label": "支付二维码",
@@ -85,7 +85,7 @@ Content-Type: application/json
                     "max-count":"1",
                     "readonly": false,
                     "disabled": false,
-                    "__vModel__": "field103"
+                    "__vModel__": "wechatQrCodePhotoUrl"
                 }]
                 },
                 "type": "default",
@@ -100,10 +100,10 @@ Content-Type: application/json
                 "span": 24,
                 "formId": 105,
                 "renderKey": "1051641015334975",
-                "componentName": "移动支付账号2",
+                "componentName": "支付宝支付",
                 "children": [{
                     "__config__": {
-                    "label": "移动账号",
+                    "label": "支付宝账号",
                     "labelWidth": null,
                     "showLabel": true,
                     "changeTag": true,
@@ -121,7 +121,7 @@ Content-Type: application/json
                     "prepend": "",
                     "append": ""
                     },
-                    "placeholder": "请输入移动账号",
+                    "placeholder": "请输入支付宝账号",
                     "style": {
                     "width": "100%"
                     },
@@ -133,7 +133,7 @@ Content-Type: application/json
                     "readonly": false,
                     "hidden": false,
                     "disabled": false,
-                    "__vModel__": "field107"
+                    "__vModel__": "alipayAccount"
                 }, {
                     "__config__": {
                     "label": "支付二维码",
@@ -147,7 +147,7 @@ Content-Type: application/json
                     "max-count":"1",
                     "readonly": false,
                     "disabled": false,
-                    "__vModel__": "field108"
+                    "__vModel__": "alipayQrCodePhotoUrl"
                 }]
                 },
                 "type": "default",
@@ -195,7 +195,7 @@ Content-Type: application/json
                     "readonly": false,
                     "hidden": false,
                     "disabled": false,
-                    "__vModel__": "field109"
+                    "__vModel__": "bankAccountNumber"
                 }, {
                     "__config__": {
                     "label": "户名",
@@ -228,7 +228,7 @@ Content-Type: application/json
                     "readonly": false,
                     "hidden": false,
                     "disabled": false,
-                    "__vModel__": "field110"
+                    "__vModel__": "bankAccountName"
                 }]
                 },
                 "type": "default",
@@ -245,8 +245,9 @@ Content-Type: application/json
             "disabled": false,
             "span": 24,
             "formBtns": true,
-            "saveApi": "",
-            "loadApi": "",
+            "saveApi": "/api/u/player",
+            "saveMethod":"PUT",
+            "loadApi": "/api/u/player",
             "isLawForm": false
         }
 

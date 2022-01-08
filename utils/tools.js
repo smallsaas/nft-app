@@ -214,3 +214,18 @@ export const upload = async(url,file) =>{
 	})
 	return res
 }
+// 無權限返回登錄頁
+export const unToken = (code) =>{
+	console.log(code)
+	if([401,"401",403,"403"].includes(code)){
+		uni.showToast({
+			title:"請先登錄！",
+			success() {
+				uni.navigateTo({
+					url:`/pages/login_new/login_new`
+				})
+			}
+		})
+		return ;
+	}
+}

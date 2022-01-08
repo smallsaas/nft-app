@@ -39,6 +39,17 @@ Content-Type: application/json
         },
          {
           "type": "autoform", 
+          "key": "96afd71a-c8d5-11eb-aca5-0800271e55c9", 
+          "name": "", 
+          "navigator":{
+              "url":"/defaultPage/page?id=71541",
+              "title":"修改账户信息"
+          },
+          "container": {
+          }
+        },
+         {
+          "type": "autoform", 
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b5", 
           "name": "", 
           "container": {
@@ -198,11 +209,11 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "移动支付账号1",
+                    "componentName": "微信支付",
                     "children": [
                     {
                         "__config__": {
-                        "label": "移动账号:",
+                        "label": "微信账号:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -231,6 +242,68 @@ Content-Type: application/json
                         },
                         "readonly": true,
                         "__vModel__": "wechatQrCodePhotoUrl"
+                    }
+                    ]
+                },
+                "type": "default",
+                "justify": "start",
+                "align": "top"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi":""
+        },
+            "96afd71a-c8d5-11eb-aca5-0800271e55c9":{
+            "fields": [
+                     {
+                "__config__": {
+                    "layout": "rowFormItem",
+                    "tagIcon": "row",
+                    "layoutTree": true,
+                    "formId": 112,
+                    "renderKey": 1621415404383,
+                    "componentName": "支付宝支付",
+                    "children": [
+                    {
+                        "__config__": {
+                        "label": "支付宝账号:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "alipayAccount"
+                    },
+                     {
+                        "__config__": {
+                        "label": "支付二维码:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-image",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "alipayQrCodePhotoUrl"
                     }
                     ]
                 },

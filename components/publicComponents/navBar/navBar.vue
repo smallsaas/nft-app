@@ -1,6 +1,9 @@
 <!-- 由于web-view中不支持嵌套多層web-view 所以這邊使用slot方式來決定不同頁面的渲染 -->
 <template>
 	<view class="navBar">
+		<!-- #ifdef APP-PLUS -->
+		<view class="top-title"></view>
+		<!-- #endif -->
 		<view class="navBar-content" :style="[contentStyle]">
 			<slot name="content-container">
 				
@@ -111,5 +114,14 @@
 	}
 	.navBar-clicked{
 		background-color: #333644;
+	}
+	.top-title{
+		width: 100%;
+		height: 100rpx;
+		text-align: center;
+		font-weight: bolder;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
