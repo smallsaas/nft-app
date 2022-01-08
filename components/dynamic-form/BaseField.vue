@@ -213,7 +213,7 @@
 					showModal(){
 						if(!this.canUse){
 							uni.showToast({
-								title:"当前状态不可用",
+								title:"當前狀态不可用",
 								icon:"error"
 							})
 							return ;

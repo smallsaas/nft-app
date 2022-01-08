@@ -15,7 +15,7 @@ export const api = {
 		console.log(id)
 		return request('GET',url,params)
 	},
-	// 用户个人信息编辑(修改手机号)
+	// 用戶個人信息編輯(修改手機号)
 	editUserData(params){
 		const url = `${globalConfig.endpoint}/api/u/player`
 		return request('PUT',url,params)
@@ -70,7 +70,7 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
-	//重新获取钱包
+	//重新獲取錢包
 	getUserWallet(params){
 		const url = `${globalConfig.endpoint}/api/u/player/wallet`
 		return request("GET",url,params)
