@@ -304,7 +304,13 @@
 			let id = this.formatId(this.API)
 			if(id){
 				let data = this.$timeCache(`page_${id}`)
-				let formData = this.$timeCache(`page_${id}_form_Srv`)
+				let change = this.$cache.get("FormChange")
+				let formData
+				if(!change){
+					formData = this.$timeCache(`page_${id}_form_Srv`)
+				}else{
+					this.$cache.remove('FormChange')
+				}
 				if(data){
 					console.log("使用緩存page_"+id,data)
 					if(formData){
@@ -323,7 +329,7 @@
 		},
 		mounted(){
 			let id = this.formatId(this.API)
-			let that = this
+			let that = this 
 			this.skeletonLoading = true
 			if(id){
 				let data = this.$timeCache(`page_${id}`)

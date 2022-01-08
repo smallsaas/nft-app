@@ -160,6 +160,23 @@
 							...this.formData
 						}
 						let res = await this.$api.editUserData(param)
+						if(res.code === 200){
+							let that =this
+							uni.showToast({
+								title:"提交成功",
+								icon:"success",
+								success(){
+									that.isModal = false
+									that.$cache.set("FormChange",true)
+									that.$reload()
+								}
+							})
+						}else{
+							uni.showToast({
+								title:"提交失败",
+								icon:"error"
+							})
+						}
 						// console.log(res)
 						
 					},
