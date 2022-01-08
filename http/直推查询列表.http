@@ -32,7 +32,7 @@ Content-Type: application/json
         }
     ],
     "dataSource":{
-        "api":"/api/u/player/getChildrenByUserId/1"
+        "api":"/api/u/player/getChildrenById"
     },
     "moduleData": {
     }
