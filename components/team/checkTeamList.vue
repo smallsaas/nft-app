@@ -12,7 +12,7 @@
 				<view class="info">
 					<text class="infoN">{{item.name}}</text>
 					<text class="infoP">{{item.mobilePhone}}</text>
-					<text class="infoPT">備用手機号: {{item.backupMobilePhone==null?'暂无':item.backupMobilePhone}}</text>
+					<text class="infoPT">備用手機号: {{item.backupMobilePhone==null?'暫無':item.backupMobilePhone}}</text>
 				</view>
 			</view>
 		</view>

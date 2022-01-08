@@ -155,7 +155,7 @@
 								duration:1000,
 								success() {
 									setTimeout(async()=>{
-										// 获取后台配置缓存
+										// 獲取後台配置緩存
 										let fieldConfig = await that.$api.getFieldConfig()
 										if(fieldConfig.code === 200){
 											let fieldData = fieldConfig.data
@@ -168,7 +168,7 @@
 											that.$cache.set("fieldGroup",fieldGroup)
 										}else{
 											uni.showToast({
-												title:"获取配置失败",
+												title:"獲取配置失敗",
 												icon:"error"
 											})
 										}

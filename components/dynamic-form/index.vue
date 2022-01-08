@@ -276,7 +276,7 @@
 							})
 						}else{
 							uni.showToast({
-								title:"提交失败",
+								title:"提交失敗",
 								icon:"error"
 							})
 						}
@@ -337,7 +337,7 @@
                     }
                 })
             },
-            // 查找表单字段
+            // 查找表單字段
 						searchConfig(config){
 							let that = this
 							console.log(config,"CONFIG")
@@ -490,7 +490,7 @@
                     ..._.get(this.srvFormData, 'id') ? { id: this.srvFormData.id } : {},
                     ...this.form
                 }
-								// 只提交已有字段
+								// 隻提交已有字段
 								let fieldSumbit = {}
 								this.fieldGroup.map((item,i)=>{
 									fieldSumbit[item] = submitData[item]

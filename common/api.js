@@ -4,12 +4,12 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
-	// 后台字段配置
+	// 後台字段配置
 	getFieldConfig(params){
 		const url = `${globalConfig.endpoint}/api/u/config/fields`
 		return request('GET',url,params)
 	},
-	// 解冻
+	// 解凍
 	unlock(params){
 		const url = `${globalConfig.endpoint}/api/u/player/unlock`
 		return request('POST',url,params)
@@ -86,7 +86,7 @@ export const api = {
 		return request("GET",url,params)
 	},
 	
-	//获取直推查询列表
+	//獲取直推查詢列表
 	getStrightTeam(params){
 		const url = `${globalConfig.endpoint}/api/u/player/getChildrenById`
 		return request("GET",url,params)

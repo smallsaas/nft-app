@@ -73,7 +73,7 @@
 										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
 									</view>
 									<view v-else-if="item.type === 'status'" class="Modal-Status">
-										<view class="Modal-Status-SubTitle">申请解冻需要{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}个精灵令，是否马上申请？</view>
+										<view class="Modal-Status-SubTitle">申請解凍需要{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}個精靈令，是否馬上申請？</view>
 										<view class="Modal-Status-Bbox"><image src="../../static/spirit/coin.png" class="Modal-Status-icon"></image>x{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}</view>
 									</view>
 									<view v-else :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
@@ -171,13 +171,13 @@
 						this.isModal = false
 						this.isTypeStatus = false
 						this.components = [
-							{"type":"password","label":"请输入支付密码","field":"password"}
+							{"type":"password","label":"請輸入支付密碼","field":"password"}
 						]
 						this.isModal = true
 						console.log(this.components)
 						this.$forceUpdate()
 					},
-					// 更改状态(解冻)
+					// 更改狀态(解凍)
 					async handleStatus(){
 						let param = {
 							...this.formData
@@ -187,7 +187,7 @@
 						let res = await this.$api.unlock(param)
 						if(res.code === 200){
 							uni.showToast({
-								title:"解锁成功",
+								title:"解鎖成功",
 								icon:"success"
 							})
 						}
@@ -218,7 +218,7 @@
 							})
 						}else{
 							uni.showToast({
-								title:"提交失败",
+								title:"提交失敗",
 								icon:"error"
 							})
 						}
