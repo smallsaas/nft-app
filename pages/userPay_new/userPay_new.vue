@@ -11,7 +11,8 @@
 				<view class="topL">
 					<text class="L">移動支付</text>
 				</view>
-				<view class="topR"></view>
+				<view class="topR" @click="selectTypeOne" v-if="!fistType"></view>
+				<view class="topY" v-if="fistType"></view>
 			</view>
 			<view class="bottom">
 				<text class="z">支付賬号：18767827627</text>
@@ -24,7 +25,8 @@
 				<view class="topL">
 					<text class="L">銀行卡支付</text>
 				</view>
-				<view class="topR"></view>
+				<view class="topR" @click="selectTypeTwp" v-if="!secondType"></view>
+				<view class="topY" v-if="secondType"></view>
 			</view>
 			<view class="bottom">
 				<text class="z">銀行卡号：6227 2215 5487 256</text>
@@ -64,6 +66,9 @@
 	export default {
 		data() {
 			return {
+				fistType:false,
+				secondType:false,
+				
 				list:['https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg'],
 				showBigImg:false,
 				bigImgSrc:''
@@ -76,6 +81,14 @@
 				 }
 				 const res = await this.$api.userPay(data)
 				 console.log(res)
+			},
+			selectTypeOne(){
+				this.fistType = !this.fistType
+				this.secondType = false
+			},
+			selectTypeTwp(){
+				this.secondType = !this.secondType
+				this.fistType = false
 			},
 			check(url){
 				this.bigImgSrc = url
@@ -218,6 +231,15 @@
 				width: 16px;
 				height: 16px;
 				margin-right: 10px;
+				border: 1px solid #C4C4C4;
+			}
+			.topY{
+				width: 16px;
+				height: 16px;
+				margin-right: 10px;
+				background: url(../../static/login/yes.png) no-repeat;
+				background-size: 100% 100%;
+				background-position: center;
 			}
 		}
 		.bottom{
@@ -266,6 +288,15 @@
 				width: 16px;
 				height: 16px;
 				margin-right: 10px;
+				border: 1px solid #C4C4C4;
+			}
+			.topY{
+				width: 16px;
+				height: 16px;
+				margin-right: 10px;
+				background: url(../../static/login/yes.png) no-repeat;
+				background-size: 100% 100%;
+				background-position: center;
 			}
 		}
 		.bottom{

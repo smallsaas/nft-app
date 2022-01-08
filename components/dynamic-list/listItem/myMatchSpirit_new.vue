@@ -650,37 +650,16 @@
   					<text class="rthR">{{item.wisp.growthDays}}</text>
   				</view>
   				<view class="btnBox">
-  				<button class="btn" v-if="item.stage=='MATCH_SUCCESS'" @click="goToPay">付款(剩餘59:28)</button>
+  				<button class="btn" v-if="item.stage=='TRADING'" @click="goToPay(item)">付款(剩餘59:28)</button>
   				<view class="btnStatus fail" v-if="item.stage=='MATCH_FAIL'"><button class="notStatus">匹配失敗</button></view>
   				<view class="btnStatus" v-if="item.stage=='MATCHING'"><button class="notStatus">等待匹配</button></view>
   				</view>
   			</view>
   		</view>
-  		<!-- 預約組件 -->
-  		<view class="spirit_mask" v-if="isShowBookChild||isShowBuyComponeny||isShowLandBuy||isShowToast"></view>
-  		<spiritBook v-if="isShowBookChild" :itemInfo="itemInfoForChild" @cancelChild="getChild" @getMsg="getMsgToast">
-  		</spiritBook>
-  		<!-- 能力晶石組件 -->
-  		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy" :itemInfo="itemInfoForComponentChild"
-  			@decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
-  		<!-- 土地組件 -->
-  		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose"
-  			:itemInfo="itemInfoForComponentLandChild" @decLandNumber="getLandDec" @addLandNumber="getLandAdd"
-  			@buySuccess="childBuyLandSuccess"></spiritLandBuy>
-  		<!-- 提示組件 -->
-  		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
   	</view>
   </template>
   
   <script>
-  	//預約精靈組件
-  	import spiritBook from '@/components/spirit/spirit_book.vue'
-  	//購買能力晶石組件
-  	import spiritComponenyBuy from '@/components/spirit/spirit_buy.vue'
-  	//購買土地組件
-  	import spiritLandBuy from '@/components/spirit/land_buy.vue'
-  	//溫馨提示
-  	import toast from '@/components/spirit/toast.vue'
   	import {
   		globalConfig
   	} from '@/config.js'
@@ -689,31 +668,23 @@
   	} from '@/common/api.js'
   	export default {
   		name: 'spiritMarketNew',
-  		components: {
-  			spiritBook,
-  			spiritComponenyBuy,
-  			spiritLandBuy,
-  			toast
-  		},
   		props: {
   			item: Object,
   			ext: Object
   		},
   		data() {
   			return {
-  				isShowBookChild: false,
-  				itemInfoForChild: {},
-  				isShowBuyComponeny: false,
-  				isShowLandBuy: false,
-  				itemInfoForComponentChild: {},
-  				itemInfoForComponentLandChild: {},
-  
-  				isShowToast: false,
-  				toastMsg: '',
   
   			}
   		},
   		methods: {
+			goToPay(item){
+				console.log(item)
+				uni.navigateTo({
+					url:'/pages/userPay_new/userPay_new?data=' + item
+				})
+			},
+			
   			getImage(url) {
   				console.log(this.$config)
   				let that = this
@@ -739,84 +710,8 @@
   				}
   				return imagePath
   			},
-  			toast(msg) {
-  				this.toastMsg = msg
-  				this.isShowToast = true
-  			},
-  			operation(item) {
-  				console.log('operation', item)
-  				this.isShowBookChild = true
-  				this.itemInfoForChild = item
-  				console.log(this.itemInfoForChild)
-  			},
-  			getChild() {
-  				this.isShowBookChild = false
-  			},
-  			showBuyChild(item) {
-  				console.log(item)
-  				this.itemInfoForComponentChild = item.companionWisp
-  				this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
-  				this.isShowBuyComponeny = true
-  			},
-  			getChildBuy() {
-  				this.isShowBuyComponeny = false
-  			},
-  			showLandChild(item) {
-  				this.itemInfoForComponentLandChild = item.land
-  				this.itemInfoForComponentLandChild.growthDays = item.growthDays
-  				this.isShowLandBuy = true
-  			},
-  			getLandChildClose() {
-  				this.isShowLandBuy = false
-  			},
-  			closeToast() {
-  				this.isShowToast = false
-  			},
-  			getMsgToast(value) {
-  				console.log(value, 12132132132)
-  				this.toast(value)
-  			},
-  
-  			//處理子組件減數量
-  			getDec(value) {
-  				this.itemInfoForComponentChild.costAccompanyWisp = value
-  			},
-  			getAdd(value) {
-  				this.itemInfoForComponentChild.costAccompanyWisp = value
-  			},
-  
-  			//能力晶石購買成功
-  			childBuySuccess(res) {
-  				this.isShowBuyComponeny = false
-  				console.log(res)
-  				if (res.code == 200) {
-  					this.toast('購買成功!')
-  				} else {
-  					this.toast(res.message)
-  				}
-  			},
-  
-  			//處理土地子組件加減數量
-  			getLandDec(value) {
-  				console.log(value, 1111)
-  				this.itemInfoForComponentLandChild.growthDays = value
-  			},
-  			getLandAdd(value) {
-  				console.log(value, 1111)
-  				this.itemInfoForComponentLandChild.growthDays = value
-  			},
-  			//土地購買成功
-  			childBuyLandSuccess(res) {
-  				this.isShowLandBuy = false
-  				console.log(res)
-  				if (res.code == 200) {
-  					this.toast('購買成功!')
-  				} else {
-  					this.toast(res.message)
-  				}
-  			},
-  		}
-  	}
+  	},
+}
   </script>
   
   <style lang="less">

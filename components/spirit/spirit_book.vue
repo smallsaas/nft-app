@@ -13,16 +13,16 @@
 					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 8"></image>
 				</view>
 				<view class="spiritBox">
-					<image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="imgs"></image>
+					<image :src="getImage(itemInfo.previewPhotoUrl)" mode="aspectFit" class="imgs"></image>
 				</view>
 				<text class="tt">消耗GuGu令</text>
 				<view class="ttt">
-					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<image src="../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.costWispCoin}}</text>
 				</view>
 				<text class="tt two">消耗能力晶石</text>
 				<view class="ttt twott">
-					<image src="../../static/spirit/company.png" mode="widthFix" class="icon"></image>
+					<image src="../../static/spirit/newC.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.costAccompanyWisp}}</text>
 				</view>
 				<text class="tt three">需要土地</text>
@@ -36,40 +36,6 @@
 					<button class="btn cancel" @click="cancel">取消</button>
 					<button class="btn"  @click="book">馬上預約</button>
 				</view>
-				<!-- <view class="bodyBox">
-					<view class="bodyLeft">
-						<image class="level" src="../../static/spirit/levelOne.png" mode="widthFix" v-if="itemInfo.level == 1"></image>
-						<image class="level" src="../../static/spirit/levelTwo.png" mode="widthFix" v-if="itemInfo.level == 2"></image>
-						<image class="level" src="../../static/spirit/levelThree.png" mode="widthFix" v-if="itemInfo.level == 3"></image>
-						<image class="level" src="../../static/spirit/levelFour.png" mode="widthFix" v-if="itemInfo.level == 4"></image>
-						<image class="level" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 5"></image>
-					</view>
-					<view class="bodyCenter">
-						<image class="spiritImgs" :src="itemInfo.previewPhotoUrl" mode="widthFix"></image>
-					</view>
-					<view class="bodyRight">
-						<view class="bodyItems">
-							<view class="labelBox"><text class="label">消耗GuGu令</text></view>
-							<view class="infoBox"><image class="infoImage" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costWispCoin}}</text></view>
-						</view>
-						<view class="bodyItems">
-							<view class="labelBox"><text class="label">消耗能力晶石</text></view>
-							<view class="infoBox"><image class="infoImage" src="../../static/spirit/company.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.costAccompanyWisp}}</text></view>
-						</view>
-						<view class="bodyItems">
-							<view class="labelBox"><text class="label">需要土地</text></view>
-							<view class="infoBox"><image class="infoImage" src="../../static/spirit/land.png" mode="widthFix"></image><text class="infoLabel">x{{itemInfo.growthDays}}</text></view>
-						</view>
-					</view>
-				</view>
-				<view class="tips">
-					<view class="bigTitle">{{itemInfo.name}}</view>
-					<view class="bookTime">預約剩餘時間 52:32  确定預約嗎?</view>
-				</view>
-				<view class="btnBox">
-					<button class="btnCancel btn cancel" @click="cancel">取消</button>
-					<button class="btnSuccess btn book" @click="book">預約</button>
-				</view> -->
 			</view>
 		</view>
 	</view>
@@ -94,6 +60,32 @@
 			
 		},
 		methods:{
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint + "/" +imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			},
+			
 			handleTime(number){
 				
 			},

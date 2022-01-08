@@ -6,13 +6,18 @@
 			<input  v-model="value" type="text" disabled="true" placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
-		<van-picker title="選擇申述原因" show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel"
-			@change="onChange" class="fix" v-if="isShow" default-index=""/>
+		<!-- <van-picker title="選擇申述原因" show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel"
+			@change="onChange" class="fix" v-if="isShow" default-index=""/> -->
 		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
 			<textarea placeholder="添加其他申述原因" class="text"></textarea>
 		</view>
 		<view class="btnBox"><button class="btn">提交申述</button></view>
+		<view class="fix" v-if="isShow">
+			<view class="item" v-for="(i,index) in columns" :key="index" @click="get(i)">{{i}}</view>
+			<image class="close" mode="aspectFit" src="../../static/service/close.png" @click="onCancel"></image>
+		</view>
+		<view class="spirit_mask" v-if="isShow"></view>
 	</view>
 </template>
 
@@ -43,12 +48,26 @@
 				uni.navigateTo({
 					url:'/pages/defaultPage/page?id=' + 111222333
 				})
+			},
+			get(item){
+				this.value = item;
+				this.isShow = false
 			}
 		}
 	}
 </script>
 
 <style lang="less">
+	.spirit_mask {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 502;
+		background-color: #000;
+		opacity: .8;
+	}
 	.re_new {
 		width: 100%;
 		height: 100%;
@@ -136,8 +155,42 @@
 			position: fixed;
 			bottom: 0;
 			width: 100%;
-			// background: rgb(5,14,23);
+			height: 50%;
+			background: rgb(5,14,23);
 			z-index: 9999;
+			border-radius: 8px;
+			padding-top: 13%;
+			.item{
+				width: 100%;
+				height: 40px;
+				// margin-top: 12%;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				// font-size: 20px;
+				// font-weight: bold;
+				// color: #ffffff;
+				background: rgb(1,3,5);
+				margin-top: 1px;
+				// .
+				.o{
+					font-size: 20px;
+					font-weight: bold;
+					color: #ffffff;
+				}
+				.t{
+					width: 15px;
+					height: 15px;
+					border: 1px solid #2C405A;
+				}
+			}
+			.close{
+				width: 24px;
+				height: 24px !important;
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
 		}
 	}
 </style>

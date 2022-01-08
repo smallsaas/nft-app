@@ -21,7 +21,20 @@
 
 <script>
 	export default{
+		props: {
+			data: Object,
+		},
+		created() {
+			console.log(this.data,'我是data')
+		},
 		methods:{
+			async getTeam(){
+				const data = {
+					userId:this.data.userId
+				}
+				const res = await this.$api.searchTeam(data)
+				console.log(res,'res')
+			},
 			goTo(){
 				uni.navigateTo({
 					url:"/pages/defaultPage/page?id=" + 999666

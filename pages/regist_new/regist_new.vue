@@ -13,6 +13,8 @@
 			<view class="B">驗證碼</view>
 			<view class="C">
 				<input v-model="data.yzm"  @focus="focus(3)" @blur="blur(3)" :class="{focus:isAddArticleC}" class="i" placeholder="請輸入驗證碼" type="number" />
+				<text class="get" v-if="isShowYZM" @click="getYZM">获取验证码</text>
+				<text class="get gets" v-if="!isShowYZM">{{count}}秒重试</text>
 			</view>
 			<view class="B">登錄密碼</view>
 			<view class="C">
@@ -119,6 +121,9 @@
 	export default {
 		data() {
 			return {
+				isShowYZM:true,
+				count:5,
+				
 				step: 0,
 				isReadRegistInfo: false,
 				isShowRegistInfo: false,
@@ -144,6 +149,23 @@
 			}
 		},
 		methods: {
+			getYZM(){
+				clearInterval(time)
+				uni.showToast({
+					title:'获取成功',
+					icon:"success"
+				})
+				this.isShowYZM = !this.isShowYZM
+				this.count = 5
+				let time = setInterval(()=>{
+					this.count-=1
+					if(this.count == 0){
+						this.isShowYZM = !this.isShowYZM
+						clearInterval(time)
+					}
+				},1000)
+			},
+			
 			focus(id){
 				if(id==1){
 					this.isAddArticleA = true
@@ -252,10 +274,16 @@
 								url: '/pages/home/homePage'
 							})
 						},1000)
+					}else{
+						uni.showToast({
+							icon: 'error',
+							title: '登录失敗',
+							duration: 1000
+						})
 					}
 				}else{
 					uni.showToast({
-						icon: 'success',
+						icon: 'error',
 						title: '注冊失敗',
 						duration: 1000
 					})
@@ -389,6 +417,18 @@
 			align-items: flex-start;
 			justify-content: center;
 			position: relative;
+			.gets{
+				color: #ccc !important;
+			}
+		    .get{
+				position: absolute;
+				right: 5%;
+				top: 25%;
+				font-size: 16px;
+				font-family: PingFang SC-Medium, PingFang SC;
+				font-weight: 500;
+				color: #33A7FF;
+			}
 			.eye{
 				position: absolute;
 				right: 5%;

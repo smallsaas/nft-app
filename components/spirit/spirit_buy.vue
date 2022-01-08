@@ -1,13 +1,10 @@
 <template>
 	<view class="spiritBuy">
-		<!-- <van-popup class="box" v-model="show" round position="bottom" @close="getClose"> -->
 			<view class="box">
 				<view class="imgBox">
-					<!-- <image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image> -->
 					<image src="../../static/spirit/newC.png" mode="aspectFit" class="img"></image>
 				</view>
 				<view class="name">
-					<!-- <text class="nameI">{{itemInfo.name}}</text> -->
 					<text class="nameI">培養精靈需消耗</text>
 				</view>
 				<view class="type">
@@ -15,51 +12,24 @@
 				</view>
 				<view class="type cc">
 					<text class="one">消耗GuGu令：</text>
-					<image src="../../static/spirit/coin.png" mode="widthFix" class="bg"></image>
+					<image src="../../static/spirit/newCoin.png" mode="widthFix" class="bg"></image>
 					<text class="two">x{{itemInfo.wispCoin}}</text>
 				</view>
 				<text class="buyBox">
 					購買數量：
 				</text>
 				<image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image>
-				<button class="num">{{number}}</button>
+				<!-- <button class="num">{{number}}</button> -->
+				<input type="number" class="num" v-model="number" @focus="focusIng"/>
 				<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
 				<view class="bottomBox">
 					<text class="ce">共消耗GuGu令</text>
-					<image src="../../static/spirit/coin.png" mode="widthFix" class="icon"></image>
+					<image src="../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
 					<text class="ce cetwo">x{{number * itemInfo.wispCoin}}</text>
 					<button class="btn" @click="buyComponeySpirit">立即購買</button>
 				</view>
 				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
-				<!-- <view class="top">
-					<view class="topL">
-						<image class="Cimg" src="../../static/spirit/company.png" mode="widthFix"></image>
-					</view>
-					<view class="topR">
-						<view class="Cname"><text class="name">安防科技啥叫看</text></view>
-						<view class="CLname"><text class="name">撒嬌開發哈桑飛機庫哈斯</text></view>
-						<view class="CInfo"><text class="info">消耗GuGu令:</text><image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text></view>
-					</view>
-				</view>
-				<view class="center">
-					<view class="CL"><text class="info">購買數量:</text></view>
-					<view class="CR">
-						<button class="btn" @click="dec">-</button>
-						<button class="btn num">{{num}}</button>
-						<button class="btn add" @click="add">+</button>
-					</view>
-				</view>
-				<view class="bottom">
-					<view class="bL">
-						<view class="info"><text class="infoText">共消耗GuGu令</text></view>
-						<view class="num"><image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text class="infoText">x12</text></view>
-					</view>
-					<view class="bR">
-						<button class="buyBtn">立即購買</button>
-					</view>
-				</view> -->
 			</view>
-		<!-- </van-popup> -->
 	</view>
 </template>
 
@@ -85,19 +55,22 @@
 			this.number = this.itemInfo.costAccompanyWisp
 		},
 		methods: {
+			focusIng(){
+				this.$emit('AllNumber',parseInt(this.number))
+			},
 			getClose() {
 				this.$emit('closeBuyChild', false)
 			},
 			dec() {
-				if(this.number== 0){
+				if(parseInt(this.number)== 0){
 					this.number = 0
 					return
 				} 
-				this.number-=1
+				this.number=parseInt(this.number) - 1
 				this.$emit('decNumber',this.number)
 			},
 			add() {
-				this.number+=1
+				this.number=parseInt(this.number) + 1
 				this.$emit('addNumber',this.number)
 			},
 			
@@ -258,13 +231,13 @@
 
 			.num {
 				width: 80px;
-				height: 32px;
+				height: 30px;
 				border-radius: 4px 4px 4px 4px;
 				opacity: 1;
 				border: 1px solid rgba(255, 255, 255, 0.5);
 				position: absolute;
 				top: 156px;
-				left: 140px;
+				left: 139px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -273,6 +246,8 @@
 				font-weight: 400;
 				color: #FFFFFF;
 				background: #1C294C;
+				line-height: 32px;
+				text-align: center;
 			}
 
 			.ad {

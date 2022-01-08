@@ -12,17 +12,6 @@
 			<button class="btn ccc" @click="cancel">取消</button>
 			<button class="btn" @click="sureTransfer">确定</button>
 		</view>
-		<!-- <view class="title"><text class="info">轉化GuGu令</text></view>
-		<view class="opView">
-			<view class="item">
-				<text class="ti">轉化數量</text>
-				<input class="in" type="number" placeholder="輸入數量,最多可轉化2000" />
-			</view>
-		</view>
-		<view class="btnBox">
-			<button class="btn cancel" @click="cancel">取消</button>
-			<button class="btn add">确定</button>
-		</view> -->
 	</view>
 </template>
 

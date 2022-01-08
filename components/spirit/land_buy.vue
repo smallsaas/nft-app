@@ -1,10 +1,7 @@
 <template>
 	<view class="spiritBuy">
-		<!-- <van-popup class="box" v-model="show" round position="bottom" @close="getClose"> -->
-
 		<view class="box">
 			<view class="imgBox">
-				<!-- <image :src="itemInfo.previewPhotoUrl" mode="widthFix" class="img"></image> -->
 			   <image src="../../static/spirit/land.png" mode="aspectFit" class="img"></image>
 			</view>
 			<text class="name">所需土地</text>
@@ -14,7 +11,7 @@
 				</view>
 			</view>
 			<text class="info">消耗GuGu令：</text>
-			<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImg"></image>
+			<image src="../../static/spirit/newCoin.png" mode="widthFix" class="coinImg"></image>
 			<text class="numbers">x{{itemInfo.coinCostPerDay}}</text>
 			<text class="titleInfo">土地等級：</text>
 			<view class="typeTwo">
@@ -24,54 +21,16 @@
 			</view>
 			<text class="titleInfo dd">租用天數：</text>
 			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
-			<button class="btnNum">{{number}}</button>
+			<!-- <button class="btnNum">{{number}}</button> -->
+			<input type="number" class="btnNum" v-model="number" />
 			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
 			<view class="btnBox">
 				<text class="tt">共消耗GuGu令</text>
-				<image src="../../static/spirit/coin.png" mode="widthFix" class="coinImgs"></image>
+				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="coinImgs"></image>
 				<text class="ttt">x{{number*itemInfo.coinCostPerDay}}</text>
 				<button class="btnMore" @click="landBuy">立即購買</button>
 			</view>
 			<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
-			<!-- <view class="top">
-				<view class="topL">
-					<image class="Cimg" src="../../static/spirit/land.png" mode="widthFix"></image>
-				</view>
-				<view class="topR">
-					<view class="Cname"><text class="name">安防科技啥叫看</text></view>
-					<view class="CLname"><text class="names" :class="{name:index==indexType}" v-for="(item,index) in landType" :key="item.id" @click="chooseType(index)">{{item.type}}</text></view>
-					<view class="CInfo"><text class="info">消耗GuGu令:</text>
-						<image class="Ccoin" src="../../static/spirit/coin.png"></image><text class="Cpay">x6</text>
-					</view>
-				</view>
-			</view>
-			<view class="add">
-				<view class="CL"><text class="info">土地等級:</text></view>
-				<view class="CR">
-					<text class="names" @click="chooseTypeTwo(index)" :class="{name:index==indexTypeTwo}" v-for="(item,index) in landTypeTwo" :key="index">{{item.type}}-收益{{item.get}}%</text>
-				</view>
-			</view>
-			<view class="center">
-				<view class="CL"><text class="info">租用天數:</text></view>
-				<view class="CR">
-					<button class="btn">-</button>
-					<button class="btn num">0</button>
-					<button class="btn add">+</button>
-				</view>
-			</view>
-			<view class="bottom">
-				<view class="bL">
-					<view class="info"><text class="infoText">共消耗GuGu令</text></view>
-					<view class="num">
-						<image class="coin" src="../../static/spirit/coin.png" mode="widthFix"></image><text
-							class="infoText">x12</text>
-					</view>
-				</view>
-				<view class="bR">
-					<button class="buyBtn">立即購買</button>
-				</view>
-			</view> -->
-			<!-- </van-popup> -->
 		</view>
 	</view>
 </template>
@@ -136,15 +95,15 @@
 				this.indexTypeTwo = index
 			},
 			dec() {
-				if (this.number == 0) {
+				if (parseInt(this.number) == 0) {
 					this.number = 0
 					return
 				}
-				this.number -= 1
+				this.number = parseInt(this.number) - 1
 				this.$emit('decLandNumber', this.number)
 			},
 			add() {
-				this.number += 1
+				this.number = parseInt(this.number) + 1
 				this.$emit('addLandNumber', this.number)
 			},
 
@@ -402,9 +361,9 @@
 			.btnNum {
 				position: absolute;
 				top: 236px;
-				left: 140px;
+				left: 139px;
 				width: 80px;
-				height: 32px;
+				height: 30px;
 				border-radius: 4px 4px 4px 4px;
 				opacity: 1;
 				border: 1px solid rgba(255, 255, 255, 0.5);
@@ -416,6 +375,7 @@
 				font-weight: 400;
 				color: #FFFFFF;
 				background: #1C294C;
+				text-align: center;
 			}
 
 			.ads {

@@ -76,7 +76,7 @@
 		</spiritBook>
 		<!-- 能力晶石組件 -->
 		<spiritComponenyBuy v-if="isShowBuyComponeny" @closeBuyChild="getChildBuy" :itemInfo="itemInfoForComponentChild"
-			@decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess"></spiritComponenyBuy>
+			@decNumber="getDec" @addNumber="getAdd" @buySuccess="childBuySuccess" @AllNumber="getAllNumber"></spiritComponenyBuy>
 		<!-- 土地組件 -->
 		<spiritLandBuy v-if="isShowLandBuy" @closeLandChild="getLandChildClose"
 			:itemInfo="itemInfoForComponentLandChild" @decLandNumber="getLandDec" @addLandNumber="getLandAdd"
@@ -196,6 +196,9 @@
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
 			getAdd(value) {
+				this.itemInfoForComponentChild.costAccompanyWisp = value
+			},
+			getAllNumber(value){
 				this.itemInfoForComponentChild.costAccompanyWisp = value
 			},
 

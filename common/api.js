@@ -65,11 +65,23 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
+	//重新获取钱包
+	getUserWallet(params){
+		const url = `${globalConfig.endpoint}/api/u/player/wallet`
+		return request("GET",url,params)
+	},
+	
+	searchTeam(params){
+		const url = `${globalConfig.endpoint}/api/u/player/getChildrenByUserId/${params.userId}`
+		return request('POST',url,params)
+	},
+	
 	//新獲取用戶個人詳情信息
 	getInformationNew(params){
 		const url = `${globalConfig.endpoint}/api/u/player`
 		return request("GET",url,params)
 	},
+	
 	
 	//玩家付款
 	userPay(params){
