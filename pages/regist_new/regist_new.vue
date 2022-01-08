@@ -136,7 +136,8 @@
 					yzm:'',
 					loginPassword: '',
 					email: '',
-					invitationCode: 'PNywB5'
+					invitationCode: '',
+					// PNywB5
 				},
 				isFocus:'',
 				

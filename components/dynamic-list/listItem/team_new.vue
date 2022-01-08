@@ -1,21 +1,17 @@
 <template>
 	<view class="team newTeam">
-		<!-- <view class="newItem">
-			<view class="imgBox">
-				<image src="../../../static/spirit/coin.png" mode="widthFix" class="userImg"></image>
-			</view>
-		</view> -->
 		<view class="item">
 			<view class="left">
-				<image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image>
+				<!-- <image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image> -->
+				<image src="https://s2.loli.net/2022/01/08/3EKGbBZTCUR6pfy.jpg" mode="widthFix" class="avator"></image>
 			</view>
 			<view class="right">
-				<view class="flex i"><text class="name">劉華強</text></view>
-				<view class="flex"><text class="account">18664521094 (lv2)</text></view>
+				<view class="flex i"><text class="name">{{item.name}}</text></view>
+				<view class="flex"><text class="account">{{item.mobilePhone}} (lv2)</text></view>
 				<view class="flex ii">
-					<text class="num">領養數:  13人</text>
+					<text class="num">領養數:  {{item.adoptCount}}人</text>
 					<text class="num">直推數:  13人</text>
-					<text class="num tt">預約數:  13人</text>
+					<text class="num tt">預約數:  {{item.appointmentCount}}人</text>
 				</view>
 			</view>
 		</view>
@@ -23,37 +19,21 @@
 </template>
 
 <script>
+	import {globalConfig} from '@/config.js'
+	import {api} from '@/common/api.js'
+	export default {
+		name:'spiritMarket',
+		props: {
+			item: Object,
+			ext: Object
+		},
+		created() {
+		 console.log(this.item,'我是item')
+		},
+	}
 </script>
 
 <style lang="less">
-	// .newTeam{
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	background-color: #050E17;
-	// 	padding-bottom: 20rpx;
-	// 	.newItem{
-	// 		margin: 0rpx auto;
-	// 		width: 686rpx;
-	// 		height: 200rpx;
-	// 		background: #11181E;
-	// 		box-shadow: 0rpx 8rpx 8rpx 2rpx rgba(0, 0, 0, 0.25);
-	// 		border-radius: 8rpx 8rpx 8rpx 8rpx;
-	// 		opacity: 1;
-	// 		border: 1rpx solid red;
-	// 		position: relative;
-	// 		.imgBox{
-	// 			position: absolute;
-	// 			top: 32rpx;
-	// 			left: 32rpx;
-	// 			border: 1px solid red;
-	// 			width: 96rpx;
-	// 			height: 96rpx;
-	// 			.userImg{
-					
-	// 			}
-	// 		}
-	// 	}
-	// }
 	.team{
 		width: 100%;
 		background: rgb(5,14,23);

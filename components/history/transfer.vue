@@ -28,9 +28,11 @@
 		data() {
 			return {
 				data: {
-					targetPlayerMobilePhone: '13692842253',
-					number: "1",
-					paymentPassword: '123456'
+					// 13692842253
+					// 123456
+					targetPlayerMobilePhone: '',
+					number: "",
+					paymentPassword: ''
 				}
 			}
 		},

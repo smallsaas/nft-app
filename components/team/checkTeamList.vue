@@ -5,14 +5,14 @@
 			<image src="../../static/service/search.png" mode="widthFix" class="search"></image>
 		</view>
 		<view class="box">
-			<view class="item">
+			<view class="item" v-for="(item,index) in list" :key="index">
 				<view class="img">
 					<image src="../../static/spirit/coin.png" mode="widthFix" class="avator"></image>
 				</view>
 				<view class="info">
-					<text class="infoN">劉華強</text>
-					<text class="infoP">18664521094</text>
-					<text class="infoPT">備用手機号: 18664521094</text>
+					<text class="infoN">{{item.name}}</text>
+					<text class="infoP">{{item.mobilePhone}}</text>
+					<text class="infoPT">備用手機号: {{item.backupMobilePhone==null?'暂无':item.backupMobilePhone}}</text>
 				</view>
 			</view>
 		</view>
@@ -20,6 +20,28 @@
 </template>
 
 <script>
+	import {globalConfig} from '@/config.js'
+	import {api} from '@/common/api.js'
+	export default {
+		name:'spiritMarket',
+		data(){
+			return{
+				list:[]
+			}
+		},
+		mounted() {
+			this.getStrightTeam()
+		},
+		methods:{
+			async getStrightTeam(){
+				const res = await this.$api.getStrightTeam()
+				console.log(res)
+				if(res.code == 200){
+					this.list = res.data
+				}
+			}
+		}
+	}
 </script>
 
 <style lang="less">
@@ -60,6 +82,7 @@
 				margin-left: 4.5%;
 				display: flex;
 				flex-direction: row;
+				margin-bottom: 20rpx;
 				.img{
 					width: 25%;
 					height: 100%;
