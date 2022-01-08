@@ -76,6 +76,12 @@ export const api = {
 		return request("GET",url,params)
 	},
 	
+	//获取直推查询列表
+	getStrightTeam(params){
+		const url = `${globalConfig.endpoint}/api/u/player/getChildrenById`
+		return request("GET",url,params)
+	},
+	
 	searchTeam(params){
 		const url = `${globalConfig.endpoint}/api/u/player/getChildrenByUserId/${params.userId}`
 		return request('POST',url,params)

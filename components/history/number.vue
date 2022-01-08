@@ -1,21 +1,21 @@
 <template>
 	<view class="number">
 		<view class="item">
-			<text class="title">推薦積分:</text>
+			<text class="title">推薦收益:</text>
 			<text class="num">{{data.recommendPoints}}</text>
 		</view>
 		<view class="item">
-			<text class="title">幫會積分:</text>
+			<text class="title">幫會收益:</text>
 			<text class="num">{{data.tradeUnionPoints}}</text>
 		</view>
 		<view class="item">
-			<text class="title">市場積分:</text>
+			<text class="title">市場收益:</text>
 			<text class="num">{{data.marketPoints}}</text>
 			<text class="o" @click="forParent">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
 		</view>
 		<view class="item">
-			<text class="title">轉存積分:</text>
+			<text class="title">轉存收益:</text>
 			<text class="num">{{data.depositPoints}}</text>
 			<text class="o" @click="forParentTwo">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForDeposi">轉化精靈</text>

@@ -461,7 +461,8 @@
                         const totolField = _.get(this.config, 'response.total', 0)
                         // console.log(data,"data")
                         const prevList = _.get(searchData, 'refresh') ? [] : this.list
-                        this.list = prevList.concat(listField ? _.get(data, listField, []) : _.get(res, 'list', []))
+                        this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
+						console.log(this.list,"LIST")
                         const total = _.get(data, totolField, 0)
                         this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
                         this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
@@ -473,7 +474,7 @@
 											const totolField = _.get(this.config, 'response.total', 0)
 											// console.log(data,"data")
 											const prevList = _.get(searchData, 'refresh') ? [] : this.list
-											this.list = prevList.concat(listField ? _.get(data, listField, []) : _.get(res, 'list', []))
+											this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
 											const total = _.get(data, totolField, 0)
 											this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
 											this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
