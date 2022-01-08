@@ -24,7 +24,7 @@
 				this.$cache.remove('pageFormCacheList')
 				console.log("删除緩存成功")
 			}
-			this.$cache.remove('userCache')
+			this.$cache.remove('userId')
 			let config = await this.$api.getGlobalConfig()
 			this.$cache.set("globalConfigStorage", config.data)
 			let icon = await this.$api.getIcon()

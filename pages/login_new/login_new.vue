@@ -150,7 +150,29 @@
 							that.$cache.set("userId",user.data.id)
 							uni.showToast({
 								title:'登錄成功',
-								duration:1000
+								duration:1000,
+								success() {
+									setTimeout(async()=>{
+										// 获取后台配置缓存
+										let fieldConfig = await that.$api.getFieldConfig()
+										if(fieldConfig.code === 200){
+											let fieldData = fieldConfig.data
+											let fieldGroup = {}
+											fieldData.map((item,i)=>{
+												console.log(item,"ITEM")
+												fieldGroup[item.field] = item.value
+											})
+											console.log(fieldGroup,"fieldGroup")
+											that.$cache.set("fieldGroup",fieldGroup)
+										}else{
+											uni.showToast({
+												title:"获取配置失败",
+												icon:"error"
+											})
+										}
+									},1000)
+
+								}
 							})
 							setTimeout(()=>{
 								uni.reLaunch({

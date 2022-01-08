@@ -132,7 +132,7 @@ Content-Type: application/json
                         "canChange":true,
                         "saveAPI":"",
                         "method":"GET",
-                        "ModalTitle":"修改副手机号",
+                        "modalTitle":"修改副手机号",
                         "components":[
                             {
                                 "label":"主手机号验证码",
@@ -184,6 +184,12 @@ Content-Type: application/json
                                 }
                             ]
                         },
+                        "modalTitle":"申请解冻",
+                        "components":[
+                            {
+                                "type":"status"
+                            }
+                        ],
                         "readonly": true,
                         "__vModel__": "status"
                     }
@@ -198,7 +204,7 @@ Content-Type: application/json
             "disabled": false,
             "formBtns": false,
             "unFocusedComponentBorder": false,
-            "loadApi":""
+            "loadApi":"/api/u/player"
         },
            "96afd71a-c8d5-11eb-aca5-0800271e55b6":{
             "fields": [
@@ -322,7 +328,7 @@ Content-Type: application/json
             "disabled": false,
             "formBtns": false,
             "unFocusedComponentBorder": false,
-            "loadApi":""
+            "loadApi":"/api/u/player"
         },
           "96afd71a-c8d5-11eb-aca5-0800271e55b5":{
             "fields": [
@@ -384,7 +390,7 @@ Content-Type: application/json
             "disabled": false,
             "formBtns": false,
             "unFocusedComponentBorder": false,
-            "loadApi":""
+            "loadApi":"/api/u/player"
         },
             "96afd71a-c8d5-11eb-aca5-0800271e55b4":{
             "fields": [
@@ -420,7 +426,7 @@ Content-Type: application/json
             "disabled": false,
             "formBtns": false,
             "unFocusedComponentBorder": false,
-            "loadApi":""
+            "loadApi":"/api/u/player"
         }
     }
 }
