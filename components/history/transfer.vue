@@ -45,7 +45,7 @@
 				console.log(res)
 				if (res.code == 200) {
 					uni.showToast({
-						title: '转让成功',
+						title: '轉讓成功',
 						icon: "success",
 						duration: 1000
 					})

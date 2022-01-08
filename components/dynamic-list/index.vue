@@ -154,10 +154,14 @@
 											}"
 					/>	
 					
-					<my-book-spirit-new 	v-if="getListItemKey() === 'my-book-spirit-new'"
+					<my-book-spirit-new v-if="getListItemKey() === 'my-book-spirit-new'"
 						:item="{
 												...item,
 												...getComponentBindData(item)
+											}"
+											:wisp="{
+												...item.wisp,
+												...getComponentBindData(item).wisp
 											}"
 					/>	
 					
@@ -408,16 +412,39 @@
                     this.fetchList({ refresh: true })
                }
             },
-            
+            formatLoadApi(api){
+							let that = this
+							let apistring
+							if(api.indexOf("{{")!==-1){
+								let string = api.split("{{")[1]
+								let string1 = string.split("}}")[0]
+								if(string1.indexOf('.')!==-1){
+									let cache = that.$cache.get(string1)
+									let itemString = string1.split(".")[1]
+									let value = cache[itemString]
+									 apistring = api.replace(`{{${string1}}}`,value)
+								}else{
+									let cache = that.$cache.get(string1)
+									console.log(cache,"cache",string1)
+									apistring = api.replace("{{"+string1+"}}",cache)
+								}
+							}else{
+								apistring = api
+								console.log("noCache",apistring)
+							}
+							console.log(apistring)
+							return apistring
+						},
             // 獲取列表信息
             fetchList (searchData = {}) {
               // uni.showLoading({
               //     title: "loading...",
               //     mask: true
               // })
+							console.log(this.formatLoadApi(_.get(this.config,'loadApi')),"loadAPi")
 							let that = this
               uni.request({
-                  url: this.$config.endpoint + _.get(this.config, 'loadApi'),
+                  url: this.$config.endpoint + this.formatLoadApi(_.get(this.config, 'loadApi')),
                   method: _.get(this.config,'method','GET'),
                   data: this.listSearch,
                   header: {

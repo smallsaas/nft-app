@@ -286,27 +286,27 @@
  		<view class="item">
  			<view class="left">
  				<view class="o">
- 					<image :src="getImage(item.wisp.previewPhotoUrl)" mode="aspectFit" class="spiritImg"></image>
+ 					<image :src="getImage(item.wisp?item.wisp.previewPhotoUrl:'')" mode="aspectFit" class="spiritImg"></image>
  				</view>
- 				<view class="t"><text class="matchTime">匹配時間：{{item.wisp.startMatchTime}}-{{item.wisp.endMatchTime}}</text></view>
+ 				<view class="t"><text class="matchTime">匹配時間：{{item.wisp?item.wisp.startMatchTime:0}}-{{item.wisp?item.wisp.endMatchTime:0}}</text></view>
  				<view class="th">
  					<view class="thC">
  						<image src="../../../static/spirit/newCoin.png" mode="aspectFit" class="coinImg"></image>
- 						<text class="numberText">x{{item.wisp.costWispCoin}}</text>
+ 						<text class="numberText">x{{item.wisp?item.wisp.costWispCoin:0}}</text>
  					</view>
  					<view class="thC" @click="showBuyChild(item)">
  						<image src="../../../static/spirit/newC.png" mode="aspectFit" class="coinImg"></image>
- 						<text class="numberText">x{{item.wisp.costAccompanyWisp}}</text>
+ 						<text class="numberText">x{{item.wisp?item.wisp.costAccompanyWisp:0}}</text>
  					</view>
  					<view class="thC" @click="showLandChild(item)">
  						<image src="../../../static/spirit/land.png" mode="aspectFit" class="coinImg"></image>
- 						<text class="numberText">x{{item.wisp.growthDays}}</text>
+ 						<text class="numberText">x{{item.wisp?item.wisp.growthDays:0}}</text>
  					</view>
  				</view>
  			</view>
  			<view class="right">
  				<view class="ro">
- 					<text class="spiritName">{{item.wisp.name}}</text>
+ 					<text class="spiritName">{{item.wisp?item.wisp.name:''}}</text>
  				</view>
  				<view class="rt">
  					<image class="levelImg" src="../../../static/spirit/levelOne.png" mode="widthFix"
@@ -328,15 +328,15 @@
  				</view>
  				<view class="rth">
  					<text class="rthL">增長能力</text>
- 					<text class="rthR">{{item.wisp.growthPercent}}%</text>
+ 					<text class="rthR">{{item.wisp?item.wisp.growthPercent:0}}%</text>
  				</view>
  				<view class="rth rtho">
  					<text class="rthL">能力值</text>
- 					<text class="rthR">{{item.wisp.minimumValue}}-{{item.wisp.maximumValue}}</text>
+ 					<text class="rthR">{{item.wisp?item.wisp.minimumValue:0}}-{{item.wisp?item.wisp.maximumValue:0}}</text>
  				</view>
  				<view class="rth rtht">
  					<text class="rthL">培養天數</text>
- 					<text class="rthR">{{item.wisp.growthDays}}</text>
+ 					<text class="rthR">{{item.wisp?item.wisp.growthDays:0}}</text>
  				</view>
  				<view class="btnBox">
 					<button class="btn"  v-if="true">預約成功</button>
@@ -383,7 +383,7 @@
  		api
  	} from '@/common/api.js'
  	export default {
- 		name: 'spiritMarketNew',
+ 		name: 'bookSpriitNew',
  		components: {
  			spiritBook,
  			spiritComponenyBuy,
@@ -410,29 +410,33 @@
  		},
  		methods: {
  			getImage(url) {
- 				console.log(this.$config)
- 				let that = this
- 				let imagePath;
- 				if (url.indexOf("http" || "https") === 0) {
- 					imagePath = url
- 				} else {
- 					console.log(url.indexOf("["))
- 					if (url.indexOf("[") === 0) {
- 						let urlJSON = JSON.parse(url)
- 						let imageUrl = urlJSON[0].url
- 						if (imageUrl.indexOf("http" || "https") === 0) {
- 							imagePath = imageUrl
- 						} else {
- 							if(![undefined,null,''].includes(that.$config.endpoint)){
- 								imagePath = that.$config.endpoint + "/" +imageUrl;								
- 							}else{
- 								imagePath = that.$config.imageEndpoint + "/" +imageUrl
- 							}
- 							// return this.$config.endpoint + "/" + imageUrl
- 						}
- 					}
- 				}
- 				return imagePath
+				if(![undefined,null,''].includes(url)){
+					console.log(this.$config)
+					let that = this
+					let imagePath;
+					if (url.indexOf("http" || "https") === 0) {
+						imagePath = url
+					} else {
+						console.log(url.indexOf("["))
+						if (url.indexOf("[") === 0) {
+							let urlJSON = JSON.parse(url)
+							let imageUrl = urlJSON[0].url
+							if (imageUrl.indexOf("http" || "https") === 0) {
+								imagePath = imageUrl
+							} else {
+								if(![undefined,null,''].includes(that.$config.endpoint)){
+									imagePath = that.$config.endpoint + "/" +imageUrl;								
+								}else{
+									imagePath = that.$config.imageEndpoint + "/" +imageUrl
+								}
+								// return this.$config.endpoint + "/" + imageUrl
+							}
+						}
+					}
+					return imagePath
+				}else{
+					return ''
+				}
  			},
  			toast(msg) {
  				this.toastMsg = msg

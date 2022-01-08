@@ -15,6 +15,11 @@ export const api = {
 		console.log(id)
 		return request('GET',url,params)
 	},
+	// 用戶個人信息編輯(修改手機号)
+	editUserData(params){
+		const url = `${globalConfig.endpoint}/api/u/player`
+		return request('PUT',url,params)
+	},
 	// 個人資料編輯(修改副手機号，修改支付密碼)
 	editAccountData(id,params){
 		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
@@ -65,7 +70,7 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
-	//重新获取钱包
+	//重新獲取錢包
 	getUserWallet(params){
 		const url = `${globalConfig.endpoint}/api/u/player/wallet`
 		return request("GET",url,params)

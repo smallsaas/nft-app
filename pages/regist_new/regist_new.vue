@@ -13,8 +13,8 @@
 			<view class="B">驗證碼</view>
 			<view class="C">
 				<input v-model="data.yzm"  @focus="focus(3)" @blur="blur(3)" :class="{focus:isAddArticleC}" class="i" placeholder="請輸入驗證碼" type="number" />
-				<text class="get" v-if="isShowYZM" @click="getYZM">获取验证码</text>
-				<text class="get gets" v-if="!isShowYZM">{{count}}秒重试</text>
+				<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
+				<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>
 			</view>
 			<view class="B">登錄密碼</view>
 			<view class="C">
@@ -152,7 +152,7 @@
 			getYZM(){
 				clearInterval(time)
 				uni.showToast({
-					title:'获取成功',
+					title:'獲取成功',
 					icon:"success"
 				})
 				this.isShowYZM = !this.isShowYZM
@@ -277,7 +277,7 @@
 					}else{
 						uni.showToast({
 							icon: 'error',
-							title: '登录失敗',
+							title: '登錄失敗',
 							duration: 1000
 						})
 					}

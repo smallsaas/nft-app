@@ -154,13 +154,13 @@
 					},
 					// 提交
 					async handleSumbit(){
-						let userCache = this.$cache.get("userCache")
-						console.log("讀取用戶緩存",userCache)
+						// let userCache = this.$cache.get("userCache")
+						// console.log("讀取用戶緩存",userCache)
 						let param ={
 							...this.formData
 						}
-						let res = await this.$api.editAccountData(userCache.id,param)
-						console.log(res)
+						let res = await this.$api.editUserData(param)
+						// console.log(res)
 						
 					},
 					handleGetCode(api){
@@ -211,6 +211,13 @@
 						}
 					},
 					showModal(){
+						if(!this.canUse){
+							uni.showToast({
+								title:"當前狀态不可用",
+								icon:"error"
+							})
+							return ;
+						}
 						this.isModal = true
 					},
 					hideModal(){

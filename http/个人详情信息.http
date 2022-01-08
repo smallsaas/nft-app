@@ -209,11 +209,11 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "移动支付账号1",
+                    "componentName": "微信支付",
                     "children": [
                     {
                         "__config__": {
-                        "label": "移动账号:",
+                        "label": "微信账号:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -271,11 +271,11 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "移动支付账号2",
+                    "componentName": "支付宝支付",
                     "children": [
                     {
                         "__config__": {
-                        "label": "移动账号:",
+                        "label": "支付宝账号:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",

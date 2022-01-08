@@ -125,7 +125,7 @@
 					url:'/pages/find_password_new/find_password_new'
 				})
 			},
-			async login(){
+		async login(){
 				let that = this;
 				console.log(this.checkyzm , this.yanzhengma)
 				if(this.checkyzm == ''){

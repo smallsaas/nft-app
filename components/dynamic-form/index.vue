@@ -164,11 +164,15 @@
 						},
 						navigator:{
 							type:Object,
-							default:{}
+							default(){
+								return {}
+							}
 						},
 						modal:{
 							type:Object,
-							default:{}
+							default(){
+								return {}
+							}
 						}
 		},
 		data() {
@@ -180,7 +184,8 @@
 				isModal:false,
 				isFocus:-1,
 				canPush:true,
-				codeTime:60
+				codeTime:60,
+				formData:{}
 			}
 		},
         watch: {
@@ -251,12 +256,12 @@
 						},
 						// 提交
 						async handleSumbitModal(){
-							let userCache = this.$cache.get("userCache")
-							console.log("讀取用戶緩存",userCache)
+							// let userCache = this.$cache.get("userCache")
+							// console.log("讀取用戶緩存",userCache)
 							let param ={
 								...this.formData
 							}
-							let res = await this.$api.editAccountData(userCache.id,param)
+						let res = await this.$api.editUserData(param)
 							console.log(res)
 							
 						},
@@ -450,7 +455,6 @@
                 if (_.isFunction(_.get(this.$parent, 'formatSubmitData'))) {
                     submitData = this.$parent.formatSubmitData(submitData)
                 }
-                console.log("submit",this.ifManualSubmit)
                 if (this.ifManualSubmit) {
                     this.$emit('submit', submitData)
                 } else {
@@ -460,7 +464,7 @@
             
             // 組件内默認提交
             handleSubmitRequest (data) {
-							let that = thi
+							let that = this
                 const url = this.$config.endpoint + _.get(this.formConfig, 'saveApi') || SUNMIT_API
                 uni.showLoading({ title: '', mask: true })
                 uni.request({
@@ -477,7 +481,12 @@
                             setTimeout(() => {
                                 uni.navigateBack()
                             }, 500)
-                        }
+                        }else{
+													uni.showToast({
+														title:'提交失敗',
+														icon:'error'
+													})
+												}
                     }
                 })
             }
@@ -537,7 +546,7 @@
 			font-size: 32rpx;
 		}
 		.dynamic-form-submitButton{
-			background: linear-gradient(left,#8C30EB,#0C98FF);
+			background: linear-gradient(to left,#8C30EB,#0C98FF);
 			color: #E8EBFE;
 		}
 		.dynamic-form-backButton{
