@@ -164,11 +164,15 @@
 						},
 						navigator:{
 							type:Object,
-							default:{}
+							default(){
+								return {}
+							}
 						},
 						modal:{
 							type:Object,
-							default:{}
+							default(){
+								return {}
+							}
 						}
 		},
 		data() {
@@ -451,7 +455,6 @@
                 if (_.isFunction(_.get(this.$parent, 'formatSubmitData'))) {
                     submitData = this.$parent.formatSubmitData(submitData)
                 }
-                console.log("submit",this.ifManualSubmit)
                 if (this.ifManualSubmit) {
                     this.$emit('submit', submitData)
                 } else {
@@ -478,7 +481,12 @@
                             setTimeout(() => {
                                 uni.navigateBack()
                             }, 500)
-                        }
+                        }else{
+													uni.showToast({
+														title:'提交失败',
+														icon:'error'
+													})
+												}
                     }
                 })
             }

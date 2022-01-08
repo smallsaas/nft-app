@@ -3,7 +3,7 @@
 		<view class="box">
 			<!-- <view class="backImg"><image class="back" src="../../static/login/back.png" mode="widthFix"></image></view> -->
 			<!-- <view class="loginText"><text class="text">歡迎登錄NFT平台</text></view> -->
-			<image src="../../static/login/bg.png" mode="widthFix" class="loginBg"></image>
+			<image src="../../static/login/bg.png" mode="aspectFit" class="loginBg"></image>
 			<view class="label"><text class="labelTxt">賬号</text></view>
 			<view class="inputBox">
 				<input :class="isShowFocusA?'account focus':'account'" type="text" placeholder="請輸入賬号" v-model="data.account" @focus="focus(1)" @blur="blur(1)"></view>
@@ -12,7 +12,7 @@
 			<view class="inputBox">
 				<input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="請輸入密碼" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
 			<view class="label"><text class="labelTxt">驗證碼</text></view>
-			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="請輸入驗證碼" class="yzm" @focus="focus(3)" @blur="blur(3)" v-model="checkyzm"><view class="yzmBox">{{yanzhengma}}</view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view>
+			<view class="viewBox"><input :class="{focus:isShowFocusY}"  type="text" placeholder="請輸入驗證碼" class="yzm" @focus="focus(3)" @blur="blur(3)" v-model="checkyzm"><view class="yzmBox" @click="change"><span :style="so" class="a">{{list[o]}}</span><span :style="st" class="a">{{list[t]}}</span><span :style="sth" class="a">{{list[th]}}</span><span :style="sf" class="a">{{list[f]}}</span></view><image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image></view>
 			<view class="loginBox"><button class="loginBtn" @click="login">登錄</button></view>
 			<view class="opeation"><text class="forget" @click="goFindP">忘記密碼?</text><text class="regist" @click="goToRegist()">注冊賬号</text></view>
 		</view>
@@ -34,21 +34,57 @@
 					password:'admin',
 					  // 15322315902
 				},
-				list:[1,2,3,4,5,6,7,8,9],
-				listTwo:['a','b','c','d','e','f','g','h','i','j'],
+				list:['1','2','3','4','5','6','7','8','9'],
 				yanzhengma:'',
-				checkyzm:''
+				checkyzm:'',
+				o:0,
+				t:0,
+				th:0,
+				f:0,
+				so:'',
+				st:'',
+				sth:'',
+				sf:''
 			}
 		}, 
 		mounted() {
-			const first = Math.floor( Math.random() * 9)
-			const two = Math.floor( Math.random() * 9)
-			const three = Math.floor( Math.random() * 9)
-			const four = Math.floor( Math.random() * 9)
-			console.log(first,two,three,four)
-			this.yanzhengma = this.list[first] + this.listTwo[two] + this.list[three] + this.listTwo[four]
+			this.o = Math.floor( Math.random() * 9)
+			this.t = Math.floor( Math.random() * 9)
+			this.th = Math.floor( Math.random() * 9)
+			this.f = Math.floor( Math.random() * 9)
+			this.yanzhengma = this.list[this.o] + this.list[this.t] + this.list[this.th] + this.list[this.f]
+			this.getStyle()
 		},
 		methods: {
+			getStyle(){
+			let chars = [
+			"font-weight: bold;margin-right:5px;font-size: 32px;text-decoration:overline;color:#BA55D3;font-family: 'Arabic Typesetting'",
+			"font-weight: bold;font-size: 26px;text-decoration:overline;color:pink;font-family: 'PingFang SC'",
+			"font-weight: solid;font-size: 33px;text-decoration:line-through;color:hotpink;font-family: Vijaya",
+			"font-weight: bold;font-size: 25px;text-decoration:underline;color:#9400D3; font-family: Aharoni",
+			"font-weight: bold;font-size: 29px;text-decoration:underline;color:#FF8C00;font-family: 'Arabic Typesetting'",
+			"font-weight: bold;font-size: 27px;text-decoration:line-through;color:#FF1493;font-family: 'PingFang SC'",
+			"font-weight: solid;font-size: 28px;text-decoration:line-through;color:#1E90FF;font-family: Vijaya",
+			];
+			let res = [];
+			for (let i = 0; i < 9; i++) {
+			let id = Math.ceil(Math.random() * 9);
+			res[i] += chars[id-1];
+			}
+			this.so = res[0];
+			this.st = res[1];
+			this.sth = res[2];
+			this.sf = res[3];
+			return res.toString();
+			},
+			change(){
+				this.o = Math.floor( Math.random() * 9)
+				this.t = Math.floor( Math.random() * 9)
+				this.th = Math.floor( Math.random() * 9)
+				this.f = Math.floor( Math.random() * 9)
+				this.yanzhengma = this.list[this.o] + this.list[this.t] + this.list[this.th] + this.list[this.f]
+				this.getStyle()
+			},
 			focus(id){
 				console.log(id)
 				if(id==1){
@@ -255,12 +291,16 @@
 					height: 80rpx;
 					margin-left: 25rpx;
 					border-radius: 20rpx;
-					background: rgb(178,178,178);
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					color: rgb(173,92,250);
 					font-size: 28px;
+				    background-image: url(https://s2.loli.net/2022/01/08/QK4IeajhiuzA1RZ.jpg);
+					opacity: .8;
+					.a{
+						margin-right: 15px;
+					}
 				}
 				.right{
 					position: absolute;

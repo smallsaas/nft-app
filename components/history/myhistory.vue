@@ -4,7 +4,7 @@
 			<view class="leftL">
 				<view class="T">
 					<view class="TT"><text class="info">我的GuGu令</text></view>
-					<view class="TB"><image src="../../static/spirit/newCoin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.coinsAmount}}</text></view>
+					<view class="TB"><image src="../../static/spirit/newCoin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{coin}}</text></view>
 				</view>
 				<view class="B">
 					<view class="btnbtn"><button class="btn" @click="transfer">轉讓</button></view>
@@ -24,7 +24,7 @@
 		</view>
 		<view class="spirit_mask" v-if="isShowTransfer||isShowTransferCoin||isShowTransferCoinTwo"></view>
 		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild"></number>
-		<transfer v-if="isShowTransfer" @close="getClose"></transfer>
+		<transfer v-if="isShowTransfer" @close="getClose" @tellFather="getChildren"></transfer>
 		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
 		<transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
 		<!-- 提示組件 -->
@@ -56,7 +56,11 @@
 				forJudgeTwo:{},
 				
 				isShowToast: false,
-				toastMsg: ''
+				toastMsg: '',
+				
+				
+				
+				coin:0
 			}
 		},
 		created() {
@@ -67,6 +71,9 @@
 			
 			this.forJudge.marketPoints = this.item.marketPoints
 			this.forJudgeTwo.depositPoints = this.item.depositPoints
+		},
+		mounted() {
+			this.coin = this.item.coinsAmount
 		},
 		methods:{
 			transfer(){
@@ -117,6 +124,15 @@
 				this.toastMsg = msg
 				this.isShowToast = true
 			},
+			
+			async getChildren(value){
+				console.log(value,12123132)
+				if(value == true){
+					const res = await this.$api.getUserWallet()
+					console.log(res)
+					this.coin = res.data.coinsAmount
+				}
+			}
 		}
 	}
 </script>

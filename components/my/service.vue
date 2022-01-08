@@ -2,7 +2,7 @@
 	<view class="service">
 		<view class="line-bg">
 			<user class="bg" :data="forChild"></user>
-			<tab class="tab"></tab>
+			<tab class="tab" :data="forTabChild"></tab>
 		</view>
 		<!-- <down class="down"></down> -->
 		<view class="bgs"><image @click="showModal()" src="../../static/service/xc.png" mode="widthFix" class="chatu"></image></view>
@@ -44,7 +44,8 @@
 			return{
 				forChild:{},
 				forBottomTapChild:{},
-				isModal:false
+				isModal:false,
+				forTabChild:{},
 			}
 		},
 		methods:{
@@ -63,6 +64,7 @@
 			this.forChild.avatar = this.item.avatar
 			this.forBottomTapChild.invitationCode = this.item.invitationCode
 			console.log(this.forChild)
+			this.forTabChild.userId = this.item.userId
 		}
 	}
 </script>
