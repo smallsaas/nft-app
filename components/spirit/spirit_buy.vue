@@ -13,7 +13,7 @@
 				<view class="type cc">
 					<text class="one">消耗GuGu令：</text>
 					<image src="../../static/spirit/newCoin.png" mode="widthFix" class="bg"></image>
-					<text class="two">x{{itemInfo.wispCoin}}</text>
+					<text class="two">x{{itemInfo.wispCoin||itemInfo.costWispCoin}}</text>
 				</view>
 				<text class="buyBox">
 					購買數量：
@@ -25,7 +25,7 @@
 				<view class="bottomBox">
 					<text class="ce">共消耗GuGu令</text>
 					<image src="../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
-					<text class="ce cetwo">x{{number * itemInfo.wispCoin}}</text>
+					<text class="ce cetwo">x{{number * (itemInfo.wispCoin)}}</text>
 					<button class="btn" @click="buyComponeySpirit">立即購買</button>
 				</view>
 				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>

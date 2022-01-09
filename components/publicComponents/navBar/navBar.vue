@@ -46,16 +46,9 @@
 		created() {
 			this.clicked = this.defaultClick
 			console.log("加載",this.defaultClick)
-			// #ifdef H5
 				this.contentStyle = {
 					"height": "calc(100vh - 220rpx)"
 				}
-			// #endif
-			// #ifdef APP-PLUS
-				this.contentStyle = {
-					"height": "calc(100vh - 140rpx)"
-				}
-			// #endif
 		},
 		methods:{
 			// 點擊時事件
