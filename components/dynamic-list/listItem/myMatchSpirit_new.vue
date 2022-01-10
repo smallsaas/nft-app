@@ -58,11 +58,11 @@
   				</view>
   				<view class="btnBox">
   				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩餘59:28)</button>
-				<view class="btnStatus fail" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false"><button class="notStatus">等待买家付款</button></view>
+				<view class="btnStatus fail" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false"><button class="notStatus">等待買家付款</button></view>
   				<view class="btnStatus fail" v-if="item.status=='PAID'"><button class="notStatus">已付款</button></view>
-  				<view class="btnStatus" v-if="item.status=='PAYMENT_TIMEOUT'"><button class="notStatus">付款超时</button></view>
-				<view class="btnStatus" v-if="item.status=='RECEIVED'"><button class="notStatus">已确认收款</button></view>
-				<view class="btnStatus" v-if="item.status=='COMPLAINING'"><button class="notStatus">申诉中</button></view>
+  				<view class="btnStatus" v-if="item.status=='PAYMENT_TIMEOUT'"><button class="notStatus">付款超時</button></view>
+				<view class="btnStatus" v-if="item.status=='RECEIVED'"><button class="notStatus">已确認收款</button></view>
+				<view class="btnStatus" v-if="item.status=='COMPLAINING'"><button class="notStatus">申訴中</button></view>
 				<view class="btnStatus" v-if="item.status=='CANCEL'"><button class="notStatus">已取消</button></view>
   				</view>
   			</view>

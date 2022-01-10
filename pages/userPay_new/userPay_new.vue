@@ -91,12 +91,12 @@
 			}
 		},
 		methods: {
-			// 删除图片
+			// 删除圖片
 			deleteImage(i){
 				this.list.splice(i,1)
 				this.$forceUpdate()
 			},
-			// 上传图片
+			// 上傳圖片
 			uploadImage(){
 				let that = this
 				uni.chooseImage({
@@ -133,14 +133,14 @@
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					uni.showToast({
-						title:'获取信息成功',
+						title:'獲取信息成功',
 						icon:'success',
 						duration:1000
 					})
 					console.log(this.sellerInfo,123)
 				}else{
 					uni.showToast({
-						title:'获取信息失败',
+						title:'獲取信息失敗',
 						icon:'error',
 						duration:1000
 					})

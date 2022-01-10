@@ -174,7 +174,7 @@
 								return {}
 							}
 						},
-						useField:{ //使用现有字段提交，默认提交全部
+						useField:{ //使用現有字段提交，默認提交全部
 								type:Boolean,
 								default(){
 									return true
