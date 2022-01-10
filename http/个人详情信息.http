@@ -72,7 +72,7 @@ Content-Type: application/json
                 {
                     "label": "新的支付密码",
                     "placeholder": "设置新的支付密码",
-                    "field": "paymentPassword",
+                    "field": "newPassword",
                     "type":"password"
                 }
               ]

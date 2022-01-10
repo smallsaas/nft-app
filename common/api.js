@@ -9,6 +9,11 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/config/fields`
 		return request('GET',url,params)
 	},
+	// 修改密码
+	changePassword(params){
+		const url = `${globalConfig.endpoint}/api/u/player/password/change`
+		return request('POST',url,params)
+	},
 	// 解凍
 	unlock(params){
 		const url = `${globalConfig.endpoint}/api/u/player/unlock`
