@@ -173,6 +173,12 @@
 							default(){
 								return {}
 							}
+						},
+						useField:{ //使用现有字段提交，默认提交全部
+								type:Boolean,
+								default(){
+									return true
+								}
 						}
 		},
 		data() {
@@ -263,6 +269,7 @@
 								...this.formData
 							}
 						let res = await this.$api.editUserData(param)
+						console.log(res,"res")
 						if(res.code === 200){
 							let that =this
 							uni.showToast({
@@ -271,7 +278,9 @@
 								success(){
 									that.isModal = false
 									that.$cache.set("FormChange",true)
-									that.$reload()
+									setTimeout(()=>{
+										that.$reload()
+									},1000)
 								}
 							})
 						}else{
@@ -492,9 +501,14 @@
                 }
 								// 隻提交已有字段
 								let fieldSumbit = {}
-								this.fieldGroup.map((item,i)=>{
-									fieldSumbit[item] = submitData[item]
-								})
+								if(this.useField){
+									this.fieldGroup.map((item,i)=>{
+										fieldSumbit[item] = submitData[item]
+									})
+								}else{
+									fieldSumbit = submitData
+								}
+
                 if (_.isFunction(_.get(this.$parent, 'formatSubmitData'))) {
                     fieldSumbit = this.$parent.formatSubmitData(fieldSumbit)
                 }

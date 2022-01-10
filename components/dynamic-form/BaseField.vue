@@ -182,13 +182,32 @@
 						let param = {
 							...this.formData
 						}
+						let that = this
 						this.isModal = false
 						this.components = this.param.components
 						let res = await this.$api.unlock(param)
 						if(res.code === 200){
 							uni.showToast({
 								title:"解鎖成功",
-								icon:"success"
+								icon:"success",
+								success() {
+									// that.$reload()
+									that.$cache.set("FormChange",true)
+									setTimeout(()=>{
+										that.$reload()
+									},1000)
+								}
+							})
+						}else{
+							uni.showToast({
+								title:res.message,
+								icon:"error",
+								success() {
+									that.$cache.set("FormChange",true)
+									setTimeout(()=>{
+										that.$reload()
+									},1000)
+								}
 							})
 						}
 						console.log(res)
@@ -201,6 +220,7 @@
 					async handleSumbit(){
 						// let userCache = this.$cache.get("userCache")
 						// console.log("讀取用戶緩存",userCache)
+						console.log("submit")
 						let param ={
 							...this.formData
 						}
@@ -217,8 +237,9 @@
 								}
 							})
 						}else{
+							console.log("fail")
 							uni.showToast({
-								title:"提交失敗",
+								title:res.message||"提交失敗",
 								icon:"error"
 							})
 						}
@@ -233,7 +254,6 @@
 						uni.request({
 							url:this.$config.endpoint + api,
 							success(res) {
-								console.log(res,"success")
 								that.canPush = false
 								that.timeCache = setInterval(()=>{
 									that.codeTime = that.codeTime - 1

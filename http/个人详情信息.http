@@ -266,7 +266,7 @@ Content-Type: application/json
             "disabled": false,
             "formBtns": false,
             "unFocusedComponentBorder": false,
-            "loadApi":""
+            "loadApi":"/api/u/player"
         },
             "96afd71a-c8d5-11eb-aca5-0800271e55c9":{
             "fields": [

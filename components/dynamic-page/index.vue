@@ -19,6 +19,7 @@
 										:outTitle="_get(item,'name')"
 										:navigator="_get(item,'navigator')"
 										:modal="_get(item,'modal')"
+										:useField="_get(item,'useField',false)"
 										:ifManualSubmit="ifManualSubmit"
 										@submit="handleSubmit"
 									/>
