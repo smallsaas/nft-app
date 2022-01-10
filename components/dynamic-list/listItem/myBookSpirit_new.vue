@@ -6,7 +6,7 @@
  				<view class="o">
  					<image :src="getImage(item.wisp?item.wisp.previewPhotoUrl:'')" mode="aspectFit" class="spiritImg"></image>
  				</view>
- 				<view class="t"><text class="matchTime">匹配時間：{{item.wisp?item.wisp.startMatchTime:0}}-{{item.wisp?item.wisp.endMatchTime:0}}</text></view>
+ 				<view class="t"><text class="matchTime">預約時間：{{item.wisp?item.wisp.startMatchTime:0}}-{{item.wisp?item.wisp.endMatchTime:0}}</text></view>
  				<view class="th">
  					<view class="thC">
  						<image src="../../../static/spirit/newCoin.png" mode="aspectFit" class="coinImg"></image>
@@ -143,9 +143,9 @@
 								imagePath = imageUrl
 							} else {
 								if(![undefined,null,''].includes(that.$config.endpoint)){
-									imagePath = that.$config.endpoint + "/" +imageUrl;								
+									imagePath = that.$config.endpoint +imageUrl;								
 								}else{
-									imagePath = that.$config.imageEndpoint + "/" +imageUrl
+									imagePath = that.$config.imageEndpoint+imageUrl
 								}
 								// return this.$config.endpoint + "/" + imageUrl
 							}
@@ -170,9 +170,8 @@
  				this.isShowBookChild = false
  			},
  			showBuyChild(item) {
- 				console.log(item)
  				this.itemInfoForComponentChild = item.companionWisp
- 				this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
+ 				this.itemInfoForComponentChild.costAccompanyWisp = item.wisp.costAccompanyWisp
  				this.isShowBuyComponeny = true
  			},
  			getChildBuy() {
@@ -180,7 +179,7 @@
  			},
  			showLandChild(item) {
  				this.itemInfoForComponentLandChild = item.land
- 				this.itemInfoForComponentLandChild.growthDays = item.growthDays
+ 				this.itemInfoForComponentLandChild.growthDays = item.wisp.growthDays
  				this.isShowLandBuy = true
  			},
  			getLandChildClose() {

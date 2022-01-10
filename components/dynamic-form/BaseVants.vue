@@ -7,7 +7,8 @@
                   ...getBaseParam(item),
                    type: _get(item, '__config__.tagIcon') === 'input' ? 'text' : _get(item, '__config__.tagIcon'),
 									 options:_get(item,'__slot__.options',[]),
-                   ..._get(item, 'error') 
+									 modalTitle:_get(item,'modalTitle'),
+                   ..._get(item, 'error')
                       ? { 'error-message': item['error-message'] || `請填寫${_get(item, '__config__.label')}`} 
                       : {}
                  }"
@@ -229,6 +230,7 @@
               return _.get(item, str, defauleValue)
            },
            handleSetValue (e, item) {
+						 console.log(e,item)
               this.$emit('change', e, item)
            },
            handleClear (e, item) {

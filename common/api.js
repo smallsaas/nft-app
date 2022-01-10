@@ -4,6 +4,16 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
+	// 後台字段配置
+	getFieldConfig(params){
+		const url = `${globalConfig.endpoint}/api/u/config/fields`
+		return request('GET',url,params)
+	},
+	// 解凍
+	unlock(params){
+		const url = `${globalConfig.endpoint}/api/u/player/unlock`
+		return request('POST',url,params)
+	},
 	// 主頁配置
 	homePage(params){
 		const url = `${globalConfig.dataHost}?id=1000000`

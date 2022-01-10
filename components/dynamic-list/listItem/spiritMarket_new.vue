@@ -143,9 +143,9 @@
 							imagePath = imageUrl
 						} else {
 							if(![undefined,null,''].includes(that.$config.endpoint)){
-								imagePath = that.$config.endpoint + "/" +imageUrl;								
+								imagePath = that.$config.endpoint+imageUrl;								
 							}else{
-								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+								imagePath = that.$config.imageEndpoint +imageUrl
 							}
 							// return this.$config.endpoint + "/" + imageUrl
 						}

@@ -173,6 +173,12 @@
 							default(){
 								return {}
 							}
+						},
+						useField:{ //使用现有字段提交，默认提交全部
+								type:Boolean,
+								default(){
+									return true
+								}
 						}
 		},
 		data() {
@@ -185,7 +191,8 @@
 				isFocus:-1,
 				canPush:true,
 				codeTime:60,
-				formData:{}
+				formData:{},
+				fieldGroup:[]
 			}
 		},
         watch: {
@@ -262,6 +269,7 @@
 								...this.formData
 							}
 						let res = await this.$api.editUserData(param)
+						console.log(res,"res")
 						if(res.code === 200){
 							let that =this
 							uni.showToast({
@@ -270,7 +278,9 @@
 								success(){
 									that.isModal = false
 									that.$cache.set("FormChange",true)
-									that.$reload()
+									setTimeout(()=>{
+										that.$reload()
+									},1000)
 								}
 							})
 						}else{
@@ -324,17 +334,36 @@
 										},
                     complete: (res) => {
 											res = that.$JSONTW(res)
+											that.searchConfig(that.config.fields)
                        if (_.get(res, 'data.code') === 200) {
                            let resData = _.cloneDeep(_.get(res, 'data.data', {}))
                            if (_.isFunction(_.get(that.$parent, 'formatLoadData'))) {
                                resData = that.$parent.formatLoadData(resData)
                            }
+													 console.log(resData,"RESDATA")
                            that.form = { ...that.form, ...resData }
                        }
                     }
                 })
             },
-            
+            // 查找表單字段
+						searchConfig(config){
+							let that = this
+							console.log(config,"CONFIG")
+							config.map((item,i)=>{
+								console.log(item,"ITEM")
+								if(item.__vModel__){
+									that.fieldGroup.push(item.__vModel__)
+									console.log(that.fieldGroup,"FIELDGROUP")
+								}else{
+									if(item.__config__){
+										if(item.__config__.children){
+											that.searchConfig(item.__config__.children)
+										}
+									}
+								}
+							})
+						},
             // 從默認接口中獲取表單配置
             fetchDefaultFormConfig () {
 							let that = this
@@ -378,6 +407,7 @@
             // 改變值時
             handleChange (e, item) {
               this.form[item.__vModel__] = e
+							console.log(this.form)
               const checkRequired = (data = []) => {
                   data.map(x => {
                       if (x['__vModel__'] === item['__vModel__']) {
@@ -469,13 +499,23 @@
                     ..._.get(this.srvFormData, 'id') ? { id: this.srvFormData.id } : {},
                     ...this.form
                 }
+								// 隻提交已有字段
+								let fieldSumbit = {}
+								if(this.useField){
+									this.fieldGroup.map((item,i)=>{
+										fieldSumbit[item] = submitData[item]
+									})
+								}else{
+									fieldSumbit = submitData
+								}
+
                 if (_.isFunction(_.get(this.$parent, 'formatSubmitData'))) {
-                    submitData = this.$parent.formatSubmitData(submitData)
+                    fieldSumbit = this.$parent.formatSubmitData(fieldSumbit)
                 }
                 if (this.ifManualSubmit) {
-                    this.$emit('submit', submitData)
+                    this.$emit('submit', fieldSumbit)
                 } else {
-                    this.handleSubmitRequest(submitData)
+                    this.handleSubmitRequest(fieldSumbit)
                 }
             },
             
@@ -488,6 +528,9 @@
                     url: url,
                     method:_.get(this.formConfig,'saveMethod')||'POST',
                     data: data,
+										header:{
+											Authorization:`Bearer ${that.$cache.get(that.$config.tokenStorageKey)}`
+										},
                     complete: (res) => {
 											res = that.$JSONTW(res)
                         uni.hideLoading()

@@ -24,7 +24,7 @@
 					</text>
 					<text v-if="getStatus(param.value).display" 
 					class="canUse" 
-					@click="handleAPI(getStatus(param.value))"
+					@click="showModal()"
 					>
 					{{getStatus(param.value).displayLabel}}
 					</text>
@@ -59,10 +59,10 @@
 					<view class="Modal-mask"></view>
 					<view class="Modal-Content">
 						<view class="Modal-window">
-							<view class="Modal-title">{{param.ModalTitle||"修改"}}</view>
+							<view class="Modal-title">{{param.modalTitle||"修改"}}</view>
 							<view class="Modal-ContentBox">
-								<view v-for="(item,i) in param.components">
-									<view class="Modal-ContentBox-Label">
+								<view v-for="(item,i) in components">
+									<view class="Modal-ContentBox-Label" v-if="item.type!=='status'">
 										{{item.label}}
 									</view>
 									<view v-if="item.type === 'code'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
@@ -72,14 +72,21 @@
 									<view v-else-if="item.type === 'password'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
 										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
 									</view>
+									<view v-else-if="item.type === 'status'" class="Modal-Status">
+										<view class="Modal-Status-SubTitle">申請解凍需要{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}個精靈令，是否馬上申請？</view>
+										<view class="Modal-Status-Bbox"><image src="../../static/spirit/coin.png" class="Modal-Status-icon"></image>x{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}</view>
+									</view>
 									<view v-else :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
 										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
 									</view>
 								</view>
 							</view>
+							<view class="password-Box">
+								
+							</view>
 							<view class="Modal-ButtonGroup">
 								<pretty-button class="Modal-btn" borderRadius="8rpx" type="gray" borderType="gray" :text="param.ModalCancelText||'取消'" @click="hideModal()"></pretty-button>
-								<pretty-button class="Modal-btn" borderRadius="8rpx" :text="param.ModalSuccessText||'确定'" @click="handleSumbit()"></pretty-button>
+								<pretty-button class="Modal-btn" borderRadius="8rpx" :text="param.ModalSuccessText||'确定'" @click="isTypeStatus?handleShowPassword():param.type==='status'?handleStatus():handleSumbit()"></pretty-button>
 							</view>
 						</view>
 					</view>
@@ -132,11 +139,23 @@
 				timeCache:null,
 				codeTime:60,
 				canPush:true,
-				formData:{}
+				formData:{},
+				fieldCache:{},
+				components:[],
+				isTypeStatus:false
 			}
 		},
 		created() {
+			// console.log(this.param,"PARAM")
+			this.components = this.param.components
+			if(this.param.type === 'status'){
+				this.isTypeStatus = true
+			}
 			this.whatIsRead()
+			let fieldGroup = this.$cache.get("fieldGroup")
+			if(fieldGroup){
+				this.fieldCache = fieldGroup
+			}
 		},
 		computed:{
 			canUse(){
@@ -148,6 +167,51 @@
 			}
 		},
         methods: {
+					handleShowPassword(){
+						this.isModal = false
+						this.isTypeStatus = false
+						this.components = [
+							{"type":"password","label":"請輸入支付密碼","field":"password"}
+						]
+						this.isModal = true
+						console.log(this.components)
+						this.$forceUpdate()
+					},
+					// 更改狀态(解凍)
+					async handleStatus(){
+						let param = {
+							...this.formData
+						}
+						let that = this
+						this.isModal = false
+						this.components = this.param.components
+						let res = await this.$api.unlock(param)
+						if(res.code === 200){
+							uni.showToast({
+								title:"解鎖成功",
+								icon:"success",
+								success() {
+									// that.$reload()
+									that.$cache.set("FormChange",true)
+									setTimeout(()=>{
+										that.$reload()
+									},1000)
+								}
+							})
+						}else{
+							uni.showToast({
+								title:res.message,
+								icon:"error",
+								success() {
+									that.$cache.set("FormChange",true)
+									setTimeout(()=>{
+										that.$reload()
+									},1000)
+								}
+							})
+						}
+						console.log(res)
+					},
 					// 字段改變時
 					handleFieldChange(field,value){
 						this.formData[field] = value.target.value
@@ -156,24 +220,30 @@
 					async handleSumbit(){
 						// let userCache = this.$cache.get("userCache")
 						// console.log("讀取用戶緩存",userCache)
+						console.log("submit")
 						let param ={
 							...this.formData
 						}
+						let that =this
 						let res = await this.$api.editUserData(param)
 						if(res.code === 200){
-							let that =this
+							that.$cache.set("FormChange",true)
+							that.$reload()
 							uni.showToast({
 								title:"提交成功",
 								icon:"success",
 								success(){
 									that.isModal = false
-									that.$cache.set("FormChange",true)
-									that.$reload()
 								}
 							})
 						}else{
+							console.log("fail")
 							uni.showToast({
+<<<<<<< HEAD
 								title:"提交失敗",
+=======
+								title:res.message||"提交失敗",
+>>>>>>> 24762c73f1e0c0dad779bf451150ff5f1ee3dbf2
 								icon:"error"
 							})
 						}
@@ -188,7 +258,6 @@
 						uni.request({
 							url:this.$config.endpoint + api,
 							success(res) {
-								console.log(res,"success")
 								that.canPush = false
 								that.timeCache = setInterval(()=>{
 									that.codeTime = that.codeTime - 1
@@ -238,6 +307,7 @@
 						this.isModal = true
 					},
 					hideModal(){
+						this.components = this.param.components
 						this.isModal = false
 					},
 					handleAPI(param){
@@ -355,6 +425,30 @@
 			font-size: 36rpx;
 			color: #FFFFFF;
 			margin-bottom: 24rpx;
+		}
+		.Modal-Status{
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding-bottom: 30rpx;
+			color: #fff;
+		}
+		.Modal-Status-SubTitle{
+			opacity: .5;
+		}
+		.Modal-Status-Bbox{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-top: 20rpx;
+			letter-spacing:5rpx
+		}
+		.Modal-Status-icon{
+			width: 50rpx;
+			height: 50rpx;
+			margin-right: 5rpx;
 		}
 		.Modal-window{
 			background-color: #192746;
