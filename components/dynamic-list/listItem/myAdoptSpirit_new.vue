@@ -28,12 +28,12 @@
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<!-- <button class="btn one" v-if="true" @click="noMessage">鑄造</button>
+				<button class="btn one" v-if="true" @click="noMessage">鑄造</button>
 				<view class="boxs" v-if="true">
-					<button class="two" @click="noMessage">出售</button>
-				</view> -->
-				<text class="times" v-if="true">成長中</text>
-				<text class="time" v-if="true">剩餘時間 48:52:47</text>
+					<button class="two">系统自动挂售</button>
+				</view>
+				<!-- <text class="times" v-if="true">成長中</text>
+				<text class="time" v-if="true">剩餘時間 48:52:47</text> -->
 			</view>
 		</view>
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>

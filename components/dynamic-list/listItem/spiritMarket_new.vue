@@ -26,21 +26,21 @@
 					<text class="spiritName">{{item.name}}</text>
 				</view>
 				<view class="rt">
-					<image class="levelImg" src="../../../static/spirit/levelOne.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/one.png" mode="widthFix"
 						v-if="item.level==1"></image>
-					<image class="levelImg" src="../../../static/spirit/levelTwo.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/two.png" mode="widthFix"
 						v-if="item.level==2"></image>
-					<image class="levelImg" src="../../../static/spirit/levelThree.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/three.png" mode="widthFix"
 						v-if="item.level==3"></image>
-					<image class="levelImg" src="../../../static/spirit/levelFour.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/four.png" mode="widthFix"
 						v-if="item.level==4"></image>
-					<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/five.png" mode="widthFix"
 						v-if="item.level==5"></image>
-					<image class="levelImg" src="../../../static/spirit/level6.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/six.png" mode="widthFix"
 						v-if="item.level==6"></image>
-					<image class="levelImg" src="../../../static/spirit/level7.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/seven.png" mode="widthFix"
 						v-if="item.level==7"></image>
-					<image class="levelImg" src="../../../static/spirit/level8.png" mode="widthFix"
+					<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
 						v-if="item.level==8"></image>
 				</view>
 				<view class="rth">

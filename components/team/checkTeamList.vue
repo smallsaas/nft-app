@@ -7,12 +7,13 @@
 		<view class="box">
 			<view class="item" v-for="(item,index) in list" :key="index">
 				<view class="img">
-					<image src="../../static/spirit/coin.png" mode="widthFix" class="avator"></image>
+					<!-- <image src="../../static/spirit/coin.png" mode="widthFix" class="avator"></image> -->
+					<image :src="item.avatar" mode="widthFix" class="avator"></image>
 				</view>
 				<view class="info">
 					<text class="infoN">{{item.name}}</text>
 					<text class="infoP">{{item.mobilePhone}}</text>
-					<text class="infoPT">備用手機号: {{item.backupMobilePhone==null?'暂无':item.backupMobilePhone}}</text>
+					<text class="infoPT">備用手機号: {{item.backupMobilePhone==null?'暫無':item.backupMobilePhone}}</text>
 				</view>
 			</view>
 		</view>
@@ -33,11 +34,36 @@
 			this.getStrightTeam()
 		},
 		methods:{
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint + "/" +imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			},
 			async getStrightTeam(){
 				const res = await this.$api.getStrightTeam()
 				console.log(res)
 				if(res.code == 200){
-					this.list = res.data
+					this.list = res.data.records
 				}
 			}
 		}

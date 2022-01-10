@@ -76,9 +76,21 @@ export const api = {
 		return request("GET",url,params)
 	},
 	
-	//获取直推查询列表
+	//獲取直推查詢列表
 	getStrightTeam(params){
 		const url = `${globalConfig.endpoint}/api/u/player/getChildrenById`
+		return request("GET",url,params)
+	},
+	
+	//获取付款信息
+	getOrderInfo(data,params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/queryByBuyer`
+		return request("GET",url,params)
+	},
+	
+	//获取精灵订单信息
+	getSpiritOrderInfo(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp`
 		return request("GET",url,params)
 	},
 	

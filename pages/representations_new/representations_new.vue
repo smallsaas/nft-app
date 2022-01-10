@@ -171,7 +171,9 @@
 				// font-weight: bold;
 				// color: #ffffff;
 				background: rgb(1,3,5);
-				margin-top: 1px;
+				// margin-top: 1px;
+				// background: white;
+				background: rgb(5,14,23);
 				// .
 				.o{
 					font-size: 20px;

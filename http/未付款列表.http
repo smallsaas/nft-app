@@ -39,6 +39,7 @@ Content-Type: application/json
             "loadApi":"/api/u/player/getUnpaidTeamUserById",
             "itemNavigation": "",
             "response":{
+               "list":"records"
             },
             "request":{
                 "default":{

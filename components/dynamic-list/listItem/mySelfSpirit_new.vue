@@ -2,19 +2,19 @@
 	<view class="box">
 		<view class="item">
 			<view class="imgBox">
-				<image :src="getImage(item.wisp.previewPhotoUrl)" mode="widthFix" class="img"></image>
+				<image :src="getImage(item.wispOrder.pictureUrl)" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
-				<text class="name">{{item.wisp.name}}</text>
+				<text class="name">{{item.wispOrder.name}}</text>
 			</view>
 			<view class="levelBox">
 				<image src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text>
+				<!-- <text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text> -->
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<text class="info">出售：{{item.stageChangeTime}}</text>
+				<!-- <text class="info">出售：{{item.stageChangeTime}}</text> -->
 			</view>
 			<view class="infoBox infoBoxThree">
 				<text class="info">買家：18545879654</text>
@@ -31,7 +31,7 @@
 
 <script>
 	// import toast from '../../spirit/toast.vue'
-	export default{
+	export default {
 		props: {
 			item: Object,
 			ext: Object
@@ -43,7 +43,7 @@
 				// toastMsg:''
 			}
 		},
-		methods:{
+		methods: {
 			getImage(url) {
 				console.log(this.$config)
 				let that = this
@@ -58,10 +58,10 @@
 						if (imageUrl.indexOf("http" || "https") === 0) {
 							imagePath = imageUrl
 						} else {
-							if(![undefined,null,''].includes(that.$config.endpoint)){
-								imagePath = that.$config.endpoint + "/" +imageUrl;								
-							}else{
-								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+							if (![undefined, null, ''].includes(that.$config.endpoint)) {
+								imagePath = that.$config.endpoint + "/" + imageUrl;
+							} else {
+								imagePath = that.$config.imageEndpoint + "/" + imageUrl
 							}
 							// return this.$config.endpoint + "/" + imageUrl
 						}
@@ -84,12 +84,13 @@
 </script>
 
 <style lang="less">
-	.box{
+	.box {
 		width: 100%;
 		height: 100%;
 		background: #050E17;
 		padding-bottom: 20rpx;
-		.item{
+
+		.item {
 			margin: 0rpx auto;
 			width: 686rpx;
 			height: 470rpx;
@@ -99,8 +100,9 @@
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
 			position: relative;
+
 			// margin-bottom: 20rpx;
-			.imgBox{
+			.imgBox {
 				width: 280rpx;
 				height: 280rpx;
 				border-radius: 0px 0px 0px 0px;
@@ -108,58 +110,69 @@
 				position: absolute;
 				top: 24rpx;
 				left: 24rpx;
-				.img{
+
+				.img {
 					width: 280rpx;
 					height: 280rpx !important;
 				}
 			}
-			.nameBox{
+
+			.nameBox {
 				width: 350rpx !important;
 				height: 44rpx;
 				position: absolute;
 				top: 32rpx;
 				left: 328rpx;
-				.name{
+
+				.name {
 					font-size: 16px;
 					font-family: PingFang SC-Bold, PingFang SC;
 					font-weight: bold;
 					color: #FFFFFF;
 				}
 			}
-			.levelBox{
+
+			.levelBox {
 				width: 134rpx;
 				height: 36rpx !important;
 				position: absolute;
 				top: 92rpx;
 				left: 328rpx;
-				.levelImg{
+
+				.levelImg {
 					width: 134rpx;
 					height: 36rpx !important;
 				}
 			}
-				
-			.infoBox,.infoBoxTwo,.infoBoxThree{
+
+			.infoBox,
+			.infoBoxTwo,
+			.infoBoxThree {
 				width: 350rpx !important;
 				height: 34rpx;
 				position: absolute;
 				top: 148rpx;
 				left: 328rpx;
-				.info{
+
+				.info {
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
 					color: #FFFFFF;
 				}
 			}
-			.infoBoxTwo{
+
+			.infoBoxTwo {
 				position: absolute;
 				top: 202rpx !important;
 			}
-			.infoBoxThree{
+
+			.infoBoxThree {
 				position: absolute;
 				top: 256rpx !important;
 			}
-			.line{
+
+			.line {
 				width: 684rpx;
 				height: 2rpx;
 				background: linear-gradient(270deg, #182641 0%, #3F547D 49%, #182641 100%);
@@ -168,13 +181,15 @@
 				position: absolute;
 				top: 324rpx;
 			}
-			.btnBox{
+
+			.btnBox {
 				width: 100%;
 				height: 142rpx;
 				position: absolute;
 				bottom: 0rpx;
 				position: relative;
-				.timeOne{
+
+				.timeOne {
 					width: 81px;
 					height: 22px;
 					font-size: 14px;
@@ -185,7 +200,8 @@
 					top: 388rpx;
 					left: 32rpx;
 				}
-				.timeTwo{
+
+				.timeTwo {
 					width: 147px;
 					height: 22px;
 					font-size: 14px;

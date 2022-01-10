@@ -51,68 +51,6 @@
 				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
 						@click="no">拒絕</button></view>
 			</view>
-<!-- 			<view class="backImg">
-				<image class="back" @click="goBackStep" src="../../static/login/back.png" mode="widthFix"></image>
-			</view> -->
-		<!-- 	<view class="loginText"><text class="text" v-if="!isShowRegistInfo">會員注冊</text></view>
-			<view v-if="step==0">
-				<view class="label"><text class="labelTxt">昵稱</text></view>
-				<view class="inputBox"><input :class="isFocus==='name'?'focus account':'account'" type="text" placeholder="請輸入您的昵稱" v-model="data.name" @focus="handleFocus('name')" @blur="handleFocus('')">
-				</view>
-				<view class="label"><text class="labelTxt">手機号碼</text></view>
-				<view class="inputBox"><input :class="isFocus==='phone'?'focus account':'account'" type="number" placeholder="請輸入您的手機号碼" @focus="handleFocus('phone')" @blur="handleFocus('')"
-						v-model="data.phone"></view>
-				<view class="info" v-if="false"><text class="infoText">請輸入正确的手機号碼</text></view>
-				<view class="label"><text class="labelTxt">驗證碼</text></view>
-				<view class="inputBox"><input :class="isFocus==='code'?'focus account':'account'" type="number" placeholder="請輸入驗證碼" @focus="handleFocus('code')" @blur="handleFocus('')"><text
-						class="getYZM">獲取驗證碼</text></view>
-				<view class="info" v-if="false"><text class="infoText">驗證碼有誤</text></view>
-				<view class="loginBox"><button class="loginBtn" @click="nextStep()">下一步</button></view>
-				<view class="goToInfo"><text class="hasAccount">已有賬号？<text class="goToLogin"
-							@click="goLogin">去登陸</text></text></view>
-				<view class="downLoad"><text class="downTxt">下載APP</text>
-					<image class="downImg" src="../../static/login/download.png" mode="widthFix"></image>
-				</view>
-			</view>
-			<view v-if="step==1 && isShowRegistInfo==false">
-				<view class="label"><text class="labelTxt">邀請碼</text></view>
-				<view class="inputBox"><input class="account" type="text" placeholder="請輸入您的邀請碼"
-						v-model="data.invitationCode"></view>
-				<view class="label"><text class="labelTxt">登錄密碼</text></view>
-				<view class="inputBox"><input v-model="data.loginPassword" class="account" type="text"
-						placeholder="請輸入您的登錄密碼" :password="isShowPassword">
-					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
-				</view>
-				<view class="label"><text class="labelTxt">郵箱 (選填)</text></view>
-				<view class="inputBox"><input class="account" type="text" placeholder="請輸入郵箱" v-model="data.email">
-				</view>
-				<view class="info" v-if="false"><text class="infoText">郵箱有誤</text></view>
-				<view class="check">
-					<view class="checkBox" :class="{'haveRead':isReadRegistInfo==true}" @click="readRegistMessage">
-						<image v-if="isReadRegistInfo" class="rightImg" src="../../static/login/right.png"
-							mode="widthFix"></image>
-					</view>
-					<view class="checkInfo"><text>注冊/登錄即代表您已閱讀并同意<text class="registInfo" @click="lookRegist">
-								<<用戶注冊協議>>
-							</text></text></view>
-				</view>
-				<view class="loginBox"><button class="loginBtn" @click="registAndLogin">注冊并登錄</button></view>
-				<view class="goToInfo"><text class="hasAccount">已有賬号？<text class="goToLogin"
-							@click="goLogin">去登陸</text></text></view>
-			</view>
-			<view class="downLoad"><text class="downTxt" v-if="true">下載APP</text>
-				<image class="downImg" src="../../static/login/download.png" mode="widthFix"></image>
-			</view>
-
-			<view class="registInfoTex" v-if="isShowRegistInfo">
-				<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
-				<view class="info"><text
-						class="infoTwo">啊水水啊水水水水水水水水啊水水水水水水水水水水啊水水水水水水水水水水水水水水啊水水水水水水水水水水水水水水啊水水水水水水水水水水水水水水啊水水水水水水水水水水水水啊水水水水水水水水啊啊水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水啊水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水啊水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水水水水水水水水水啊水水水水水水水水啊水水水水水水水水水水水水水水</text>
-				</view>
-				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
-						@click="no">拒絕</button></view>
-			</view> -->
-         
 		</view>
 	</view>
 </template>
@@ -122,7 +60,7 @@
 		data() {
 			return {
 				isShowYZM:true,
-				count:5,
+				count:60,
 				
 				step: 0,
 				isReadRegistInfo: false,
@@ -136,7 +74,7 @@
 					yzm:'',
 					loginPassword: '',
 					email: '',
-					invitationCode: '',
+					invitationCode: 'PNywB5',
 					// PNywB5
 				},
 				isFocus:'',
@@ -157,7 +95,7 @@
 					icon:"success"
 				})
 				this.isShowYZM = !this.isShowYZM
-				this.count = 5
+				this.count = 60
 				let time = setInterval(()=>{
 					this.count-=1
 					if(this.count == 0){

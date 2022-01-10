@@ -1,5 +1,7 @@
 # @endpoint = https://api.mock.smallsaas.cn
-@endpoint = https://api.mock.smallsaas.cn
+# @endpoint = https://api.mock.smallsaas.cn
+
+@endpoint = http://repo.dev.smallsaas.cn:8086
 
 
 ### 获取列表页面信息
@@ -38,7 +40,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775858": {
-            "loadApi":"/api/u/player/queryPlayerWispInstance?stage=TRADING",
+            "loadApi":"/api/u/order/wisp",
             "itemNavigation": "",
             "response":{
                 "list":"records"

@@ -1,21 +1,20 @@
 <template>
 	<view class="findBox">
 		<view class="box">
-<!-- 			<view class="backImg">
-				<image  @click="goBack" class="back" src="../../static/login/back.png" mode="widthFix"></image>
-			</view> -->
 			<view class="loginText"><text class="text">找回密碼</text></view>
 			<view class="label"><text class="labelTxt">賬号</text></view>
 			<view class="inputBox"><input :class="isFocus==='phone'?'focus account':'account'" type="number" placeholder="請輸入手機号碼" @focus="handleFocus('phone')" @blur="handleFocus('')"></view>
 			<view class="info" v-if="false"><text class="infoText">賬号有誤，請輸入正确的手機号碼</text></view>
 			<view class="label"><text class="labelTxt">驗證碼</text></view>
-			<view class="inputBox"><input :class="isFocus==='code'?'focus account':'account'" type="number" placeholder="請輸入驗證碼" @focus="handleFocus('code')" @blur="handleFocus('')"><text
-					class="getYZM">獲取驗證碼</text></view>
+			<view class="inputBox"><input :class="isFocus==='code'?'focus account':'account'" type="number" placeholder="請輸入驗證碼"  @focus="handleFocus('code')" @blur="handleFocus('')" ><text
+					class="getYZM" @click="getYZM" v-if="isShowYZM">獲取驗證碼</text>
+					<text class="getYZM gets" v-if="!isShowYZM">{{count}}秒重試</text>
+					</view>
 			<view class="label"><text class="labelTxt">設置新密碼</text></view>
 			<view class="inputBox"><input :class="isFocus==='password'?'focus account':'account'" type="text" :password="isShowPassword" placeholder="請輸入密碼" @focus="handleFocus('password')" @blur="handleFocus('')">
 				<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 			</view>
-			<view class="loginBox"><button class="loginBtn">确定</button></view>
+			<view class="loginBox"><button class="loginBtn" @click="success">确定</button></view>
 		</view>
 	</view>
 </template>
@@ -27,10 +26,32 @@
 				isShowPassword: true,
 				isOpenLook: ['../../static/login/eyeoff.png', '../../static/login/eye.png'],
 				openIndex: 0,
-				isFocus:""
+				isFocus:"",
+				
+				isShowYZM:true,
+				count:60
 			}
 		},
 		methods: {
+			success(){
+				console.log('aaa')
+			},
+			getYZM(){
+				clearInterval(time)
+				uni.showToast({
+					title:'獲取成功',
+					icon:"success"
+				})
+				this.isShowYZM = !this.isShowYZM
+				this.count = 60
+				let time = setInterval(()=>{
+					this.count-=1
+					if(this.count == 0){
+						this.isShowYZM = !this.isShowYZM
+						clearInterval(time)
+					}
+				},1000)
+			},
 			changeLook() {
 				this.isShowPassword = !this.isShowPassword
 				this.isShowPassword == true ? this.openIndex = 0 : this.openIndex = 1
@@ -94,7 +115,7 @@
 				width: 100%;
 				height: 40rpx;
 				margin-top: 40rpx;
-				padding-left: 30rpx;
+				padding-left: 5%;
 
 				.labelTxt {
 					color: grey;
@@ -129,6 +150,10 @@
 					right: 8%;
 					// top: 15rpx;
 				}
+				
+				.gets{
+					color: #ccc !important;
+				}
 
 				.getYZM {
 					position: absolute;
@@ -158,7 +183,7 @@
 				align-items: center;
 				justify-content: center;
 				.loginBtn{
-					width: 680rpx;
+					width: 90%;
 					height: 80rpx;
 					display: flex;
 					align-items: center;

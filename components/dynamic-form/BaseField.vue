@@ -173,7 +173,7 @@
 							})
 						}else{
 							uni.showToast({
-								title:"提交失败",
+								title:"提交失敗",
 								icon:"error"
 							})
 						}

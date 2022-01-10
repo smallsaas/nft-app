@@ -3,14 +3,14 @@
 		<view class="spirit_mask">
 			<view class="spirit_book">
 				<view class="imgBox">
-					<image class="img" src="../../static/spirit/levelOne.png" mode="widthFix" v-if="itemInfo.level == 1"></image>
-					<image class="img" src="../../static/spirit/levelTwo.png" mode="widthFix" v-if="itemInfo.level == 2"></image>
-					<image class="img" src="../../static/spirit/levelThree.png" mode="widthFix" v-if="itemInfo.level == 3"></image>
-					<image class="img" src="../../static/spirit/levelFour.png" mode="widthFix" v-if="itemInfo.level == 4"></image>
-					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 5"></image>
-					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 6"></image>
-					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 7"></image>
-					<image class="img" src="../../static/spirit/levelFive.png" mode="widthFix" v-if="itemInfo.level == 8"></image>
+					<image class="img" src="../../static/level/one.png" mode="widthFix" v-if="itemInfo.level == 1"></image>
+					<image class="img" src="../../static/level/two.png" mode="widthFix" v-if="itemInfo.level == 2"></image>
+					<image class="img" src="../../static/level/three.png" mode="widthFix" v-if="itemInfo.level == 3"></image>
+					<image class="img" src="../../static/level/four.png" mode="widthFix" v-if="itemInfo.level == 4"></image>
+					<image class="img" src="../../static/level/five.png" mode="widthFix" v-if="itemInfo.level == 5"></image>
+					<image class="img" src="../../static/level/six.png" mode="widthFix" v-if="itemInfo.level == 6"></image>
+					<image class="img" src="../../static/level/seven.png" mode="widthFix" v-if="itemInfo.level == 7"></image>
+					<image class="img" src="../../static/level/eight.png" mode="widthFix" v-if="itemInfo.level == 8"></image>
 				</view>
 				<view class="spiritBox">
 					<image :src="getImage(itemInfo.previewPhotoUrl)" mode="aspectFit" class="imgs"></image>

@@ -4,7 +4,8 @@
 			<view class="top">
 				<view class="left">
 					<!-- <image :src="item.avatar" mode="widthFix" class="avator"></image> -->
-					<image src="https://s2.loli.net/2022/01/08/3EKGbBZTCUR6pfy.jpg" mode="widthFix" class="avator"></image>
+					<!-- <image src="https://s2.loli.net/2022/01/08/3EKGbBZTCUR6pfy.jpg" mode="widthFix" class="avator"></image> -->
+					<image :src="item.avatar" mode="widthFix" class="avator"></image>
 				</view>
 				<view class="right">
 					<view class="flex i"><text class="name">{{item.name}}</text></view>

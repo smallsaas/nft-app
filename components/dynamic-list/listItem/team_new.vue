@@ -3,14 +3,15 @@
 		<view class="item">
 			<view class="left">
 				<!-- <image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image> -->
-				<image src="https://s2.loli.net/2022/01/08/3EKGbBZTCUR6pfy.jpg" mode="widthFix" class="avator"></image>
+				<!-- <image ：src="https://s2.loli.net/2022/01/08/3EKGbBZTCUR6pfy.jpg" mode="widthFix" class="avator"></image> -->
+				<image :src="getImage(item.avatar)" mode="widthFix" class="avator"></image>
 			</view>
 			<view class="right">
 				<view class="flex i"><text class="name">{{item.name}}</text></view>
 				<view class="flex"><text class="account">{{item.mobilePhone}} (lv2)</text></view>
 				<view class="flex ii">
 					<text class="num">領養數:  {{item.adoptCount}}人</text>
-					<text class="num">直推數:  13人</text>
+					<text class="num">直推數:  {{item.recommendCount}}人</text>
 					<text class="num tt">預約數:  {{item.appointmentCount}}人</text>
 				</view>
 			</view>
@@ -30,6 +31,33 @@
 		created() {
 		 console.log(this.item,'我是item')
 		},
+		methods:{
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint + "/" +imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint + "/" +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			}
+		}
 	}
 </script>
 
