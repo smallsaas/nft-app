@@ -36,9 +36,15 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
+<<<<<<< HEAD
+					account:'15322315902',
+					password:'admin',
+					verifyCode:'123456'
+=======
 					account:'',
 					password:'',
 					verifyCode:''
+>>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 					  // 15322315902
 					  // 13313331137
 					  // 123456

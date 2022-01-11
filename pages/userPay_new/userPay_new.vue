@@ -72,7 +72,7 @@
 			// // console.log(id, 1111)
 			// // this.getOrder(e.data)
 			this.iid = e.data
-			this.getOrder(this.iid)
+			this.getOrder(53)
 		},
 		// mounted() {
 		// 	this.getOrder(this.iid)
@@ -91,6 +91,32 @@
 			}
 		},
 		methods: {
+<<<<<<< HEAD
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint+imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+=======
 			// 删除圖片
 			deleteImage(i){
 				this.list.splice(i,1)
@@ -113,6 +139,7 @@
 						}
 					}
 				})
+>>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 			},
 			async getOrder(id) {
 				const data = {
@@ -123,6 +150,12 @@
 				if(res.code == 200){
 					this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
+<<<<<<< HEAD
+					this.sellerInfo.wechatAccount = res.data.buyer.wechatAccount
+					this.sellerInfo.wechatQrCodePhotoUrl = res.data.buyer.wechatQrCodePhotoUrl
+					this.sellerInfo.bankAccountNumber = res.data.buyer.bankAccountNumber
+					this.sellerInfo.bankAccountName = res.data.buyer.bankAccountName
+=======
 					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
 					if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0){
 						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
@@ -132,6 +165,7 @@
 					}
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
+>>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 					uni.showToast({
 						title:'獲取信息成功',
 						icon:'success',
