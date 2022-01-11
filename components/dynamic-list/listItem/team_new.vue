@@ -2,8 +2,6 @@
 	<view class="team newTeam">
 		<view class="item">
 			<view class="left">
-				<!-- <image src="../../../static/spirit/coin.png" mode="widthFix" class="avator"></image> -->
-				<!-- <image ：src="https://s2.loli.net/2022/01/08/3EKGbBZTCUR6pfy.jpg" mode="widthFix" class="avator"></image> -->
 				<image :src="getImage(item.avatar)" mode="widthFix" class="avator"></image>
 			</view>
 			<view class="right">

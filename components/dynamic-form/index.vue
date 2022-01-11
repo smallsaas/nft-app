@@ -179,6 +179,12 @@
 								default(){
 									return true
 								}
+						},
+						formId:{ //页面缓存的id
+							type:String,
+							default(){
+								return '0'
+							}
 						}
 		},
 		data() {
@@ -229,6 +235,7 @@
                // 從默認配置中獲取表單
                this.fetchDefaultFormConfig()
             }
+			console.log("SRVFORMDATA",this.srvFormData)
 			// 外部傳入的數據源
 			if (Object.keys(this.srvFormData).length > 0) {
                 this.form = { ...this.srvFormData }
@@ -325,6 +332,7 @@
 						},
             // 獲取表單數據
             fetchFormData () {
+				console.log("USE FETCH")
 				let that = this
                 uni.request({
                     url: that.$config.endpoint + _.get(that.formConfig, 'loadApi', '') || LOAD_API,
@@ -342,6 +350,7 @@
                            }
 													 console.log(resData,"RESDATA")
                            that.form = { ...that.form, ...resData }
+						   that.$timeCache(`page_${that.formId}_form_Srv`,that.form,that.$config.cachePolicy*24*60*60)
                        }
                     }
                 })
@@ -539,7 +548,10 @@
                                 title:'操作成功'
                             })
                             setTimeout(() => {
-                                uni.navigateBack()
+								that.$cache.set("FormChange",true)
+                                uni.navigateBack({
+									delta:2
+								})
                             }, 500)
                         }else{
 													uni.showToast({

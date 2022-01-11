@@ -14,7 +14,7 @@
 		<text class="tt tttttt">
 			支付密碼
 		</text>
-		<input v-model="data.paymentPassword " class="ttt ttttttt" placeholder="輸入支付密碼" type="number" />
+		<input v-model="data.paymentPassword " class="ttt ttttttt" placeholder="輸入支付密碼" type="number" :password="true" />
 		<view class="line"></view>
 		<view class="btnBox">
 			<button class="btn ccc" @click="cancel">取消</button>

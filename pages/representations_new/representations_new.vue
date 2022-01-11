@@ -6,16 +6,22 @@
 			<input  v-model="value" type="text" disabled="true" placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
-		<!-- <van-picker title="選擇申述原因" show-toolbar :columns="columns" @confirm="onConfirm" @cancel="onCancel"
-			@change="onChange" class="fix" v-if="isShow" default-index=""/> -->
 		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
 			<textarea placeholder="添加其他申述原因" class="text"></textarea>
 		</view>
 		<view class="btnBox"><button class="btn">提交申述</button></view>
 		<view class="fix" v-if="isShow">
-			<view class="item" v-for="(i,index) in columns" :key="index" @click="get(i)">{{i}}</view>
-			<image class="close" mode="aspectFit" src="../../static/service/close.png" @click="onCancel"></image>
+			<view class="t">
+				<text class="info" @click="cancel">取消</text>
+				<text class="info infos">选择申诉原因</text>
+				<text class="info" @click="sure">确定</text>
+			</view>
+			<view class="b">
+				<view class="item" :class="{active:inx == index}"  v-for="(i,index) in columns" :key="index" @click="choose(index)">
+					{{i}}
+				</view>
+			</view>
 		</view>
 		<view class="spirit_mask" v-if="isShow"></view>
 	</view>
@@ -26,31 +32,24 @@
 		data() {
 			return {
 				isShow: false,
-				columns: ['對方沒付款','情況不符合'],
+				columns: ['對方沒付款','情況不符合','其他'],
+				inx:-1,
 				value:''
 			}
 		},
 		methods: {
 			show() {
+				this.inx = -1
 				this.isShow = true
 			},
-			onConfirm(value, index) {
-				this.value = value
+			choose(index){
+				this.inx = index
+			},
+			cancel(){
 				this.isShow = false
 			},
-			onChange(picker, value, index) {
-				this.value = value
-			},
-			onCancel() {
-				this.isShow = false
-			},
-			checkMore(){
-				uni.navigateTo({
-					url:'/pages/defaultPage/page?id=' + 111222333
-				})
-			},
-			get(item){
-				this.value = item;
+			sure(){
+				this.value = this.columns[this.inx]
 				this.isShow = false
 			}
 		}
@@ -58,6 +57,9 @@
 </script>
 
 <style lang="less">
+	.active{
+		color: #FFFFFF !important;
+	}
 	.spirit_mask {
 		position: fixed;
 		top: 0;
@@ -156,42 +158,31 @@
 			bottom: 0;
 			width: 100%;
 			height: 50%;
-			background: rgb(5,14,23);
+			background: #1C294C;
 			z-index: 9999;
-			border-radius: 8px;
-			padding-top: 13%;
-			.item{
+			border-radius: 16px 16px 0px 0px;
+			.t{
 				width: 100%;
-				height: 40px;
-				// margin-top: 12%;
+				height: 10%;
 				display: flex;
 				align-items: center;
 				justify-content: space-around;
-				// font-size: 20px;
-				// font-weight: bold;
-				// color: #ffffff;
-				background: rgb(1,3,5);
-				// margin-top: 1px;
-				// background: white;
-				background: rgb(5,14,23);
-				// .
-				.o{
-					font-size: 20px;
-					font-weight: bold;
-					color: #ffffff;
-				}
-				.t{
-					width: 15px;
-					height: 15px;
-					border: 1px solid #2C405A;
+				.infos{
+					color: #FFFFFF;
 				}
 			}
-			.close{
-				width: 24px;
-				height: 24px !important;
-				position: absolute;
-				right: 10px;
-				top: 10px;
+			.b{
+				width: 100%;
+				height: 85%;
+				overflow: scroll;
+				.item{
+					margin-top: 20rpx;
+					width: 100%;
+					height: 60rpx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
 			}
 		}
 	}

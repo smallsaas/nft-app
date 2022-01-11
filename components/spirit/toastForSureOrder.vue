@@ -8,7 +8,7 @@
 		</view>
 		<view class="btnBox">
 			<button class="btn cancel" @click="cencel">取消</button>
-			<button class="btn" @click="cencel">确定</button>
+			<button class="btn" @click="sure">确定</button>
 		</view>
 	</view>
 </template>

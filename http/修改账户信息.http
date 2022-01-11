@@ -165,6 +165,39 @@ Content-Type: application/json
                 "componentName": "银行卡信息",
                 "children": [{
                     "__config__": {
+                    "label": "开户行",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "changeTag": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "span": 24,
+                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
+                    "regList": [],
+                    "formId": 109,
+                    "renderKey": "1091641015423239"
+                    },
+                    "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                    },
+                    "placeholder": "请输入开户行",
+                    "style": {
+                    "width": "100%"
+                    },
+                    "clearable": true,
+                    "prefix-icon": "",
+                    "suffix-icon": "",
+                    "maxlength": null,
+                    "show-word-limit": false,
+                    "readonly": false,
+                    "hidden": false,
+                    "disabled": false,
+                    "__vModel__": "bankName"
+                },{
+                    "__config__": {
                     "label": "银行卡号",
                     "labelWidth": null,
                     "showLabel": true,

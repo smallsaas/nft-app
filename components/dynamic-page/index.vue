@@ -15,6 +15,7 @@
 												..._get(config.moduleData, item.key, {}),
 												outStyle: getComponentStyle(item)
 										 }"
+										 :formId = "pageId"
 										:srvFormData="getComponentsData(item) || ((formData||srvFormData)||{})"
 										:outTitle="_get(item,'name')"
 										:navigator="_get(item,'navigator')"
@@ -296,7 +297,8 @@
 				code:"",
 				state:null,
 				conf:null,
-				formData:null
+				formData:null,
+				pageId:"0"
 			}
 
 		},
@@ -304,6 +306,7 @@
 			let that = this
 			let id = this.formatId(this.API)
 			if(id){
+				this.pageId = id
 				let data = this.$timeCache(`page_${id}`)
 				let change = this.$cache.get("FormChange")
 				let formData

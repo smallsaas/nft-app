@@ -11,8 +11,9 @@ export const api = {
 	},
 	// 修改密碼
 	changePassword(params){
-		const url = `${globalConfig.endpoint}/api/u/player/password/change`
-		return request('POST',url,params)
+		let param={...params,"verifyCode":"123456"}
+		const url = `${globalConfig.endpoint}/api/u/player/paymentPassword/change`
+		return request('POST',url,param)
 	},
 	// 解凍
 	unlock(params){
@@ -31,14 +32,32 @@ export const api = {
 		return request('GET',url,params)
 	},
 	// 用戶個人信息編輯(修改手機号)
+	// editUserData(params){
+	// 	const url = `${globalConfig.endpoint}/api/u/player`
+	// 	return request('PUT',url,params)
+	// },
+	// // 個人資料編輯(修改副手機号，修改支付密碼)
+	// editAccountData(id,params){
+	// 	const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
+	// 	return request('PUT',url,params)
+	// },
+	
+	// 新版用戶個人信息編輯(修改手機号)
 	editUserData(params){
-		const url = `${globalConfig.endpoint}/api/u/player`
-		return request('PUT',url,params)
+		let param={...params,"verifyCode":"123456"}
+		const url = `${globalConfig.endpoint}/api/u/player/backupMobilePhone/change`
+		return request('POST',url,param)
 	},
-	// 個人資料編輯(修改副手機号，修改支付密碼)
-	editAccountData(id,params){
-		const url = `${globalConfig.endpoint}/api/crud/oms/player/players/${id}`
-		return request('PUT',url,params)
+	
+	// 新版個人資料編輯(修改副手機号，修改支付密碼)
+	editAccountData(params){
+		const url = `${globalConfig.endpoint}/api/u/player/phone/change`
+		return request('POST',url,params)
+	},
+	//新版修改副手机号
+	editBackUpPhone(params){
+		const url = `${globalConfig.endpoint}/api/u/player/phone/change`
+		return request('POST',url,params)
 	},
 	// tabbar 頁配置
 	tabbar(id,params){
@@ -123,7 +142,7 @@ export const api = {
 	
 	//玩家付款
 	userPay(params){
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/57/confirmPayment?pictureUrl=`
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/${params.wispOrderId}/confirmPayment`
 		return request("POST",url,params)
 	},
 	

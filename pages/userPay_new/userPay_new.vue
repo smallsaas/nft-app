@@ -42,7 +42,7 @@
 				<view class="imgBox">
 					<view class="success" v-for="(item,index) in list" :key="index">
 						<image :src="item" mode="widthFix" class="upload" @click="check(item)"></image>
-						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg" @click="deleteImage(index)"></image>
+						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg" @click="deleteImage(index)" v-if="!showBigImg"></image>
 					</view>
 					<view class="ifsuccess" @click="uploadImage">
 						<image src="../../static/spirit/addImg.png" mode="widthFix" class="upload"></image>
@@ -58,7 +58,7 @@
 		<!-- //模态組件 -->
 		<view class="motai-mask" v-if="showBigImg"></view>
 		<view class="motai" v-if="showBigImg">
-			<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="upload"></image>
+			<image :src="bigImgSrc" mode="widthFix" class="upload"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
 		</view>
 	</view>
@@ -68,15 +68,9 @@
 	export default {
 		onLoad(e) {
 			console.log("ID",e)
-			// // let id = JSON.parse(e.data).id
-			// // console.log(id, 1111)
-			// // this.getOrder(e.data)
 			this.iid = e.data
-			this.getOrder(53)
+			this.getOrder(this.iid)
 		},
-		// mounted() {
-		// 	this.getOrder(this.iid)
-		// },
 		data() {
 			return {
 				fistType: false,
@@ -91,32 +85,6 @@
 			}
 		},
 		methods: {
-<<<<<<< HEAD
-			getImage(url) {
-				console.log(this.$config)
-				let that = this
-				let imagePath;
-				if (url.indexOf("http" || "https") === 0) {
-					imagePath = url
-				} else {
-					console.log(url.indexOf("["))
-					if (url.indexOf("[") === 0) {
-						let urlJSON = JSON.parse(url)
-						let imageUrl = urlJSON[0].url
-						if (imageUrl.indexOf("http" || "https") === 0) {
-							imagePath = imageUrl
-						} else {
-							if(![undefined,null,''].includes(that.$config.endpoint)){
-								imagePath = that.$config.endpoint+imageUrl;								
-							}else{
-								imagePath = that.$config.imageEndpoint +imageUrl
-							}
-							// return this.$config.endpoint + "/" + imageUrl
-						}
-					}
-				}
-				return imagePath
-=======
 			// 删除圖片
 			deleteImage(i){
 				this.list.splice(i,1)
@@ -139,7 +107,6 @@
 						}
 					}
 				})
->>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 			},
 			async getOrder(id) {
 				const data = {
@@ -150,22 +117,15 @@
 				if(res.code == 200){
 					this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
-<<<<<<< HEAD
 					this.sellerInfo.wechatAccount = res.data.buyer.wechatAccount
-					this.sellerInfo.wechatQrCodePhotoUrl = res.data.buyer.wechatQrCodePhotoUrl
+					// if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0){
+					// 	let url = JSON.parse(res.data.buyer.wechatQrCodePhotoUrl)[0]
+					// 	this.sellerInfo.wechatQrCodePhotoUrl = url
+					// }else{
+					// 	this.sellerInfo.wechatQrCodePhotoUrl = res.data.buyer.wechatQrCodePhotoUrl
+					// }
 					this.sellerInfo.bankAccountNumber = res.data.buyer.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.buyer.bankAccountName
-=======
-					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-					if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0){
-						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
-						this.sellerInfo.wechatQrCodePhotoUrl = url
-					}else{
-						this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
-					}
-					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
-					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
->>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 					uni.showToast({
 						title:'獲取信息成功',
 						icon:'success',
@@ -180,7 +140,7 @@
 					})
 					return;
 				}
-				this.$forceUpdate()
+				await this.$forceUpdate()
 			},
 			// async getOrderInfo() {
 			// 	const res = await this.$api.getSpiritOrderInfo()
@@ -188,7 +148,7 @@
 			// },
 			async pay() {
 				const data = {
-					wispOrderId: 3
+					wispOrderId: this.iid
 				}
 				const res = await this.$api.userPay(data)
 				console.log(res)

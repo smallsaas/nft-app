@@ -8,14 +8,22 @@
 				<text class="name">{{item.wisp.name}}</text>
 			</view>
 			<view class="levelBox">
-				<image v-if="item.wisp.level == 1" src="../../../static/spirit/levelOne.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 2" src="../../../static/spirit/levelTwo.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 3" src="../../../static/spirit/levelThree.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 4" src="../../../static/spirit/levelFour.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 5" src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 6" src="../../../static/spirit/level6.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 7" src="../../../static/spirit/level7.png" mode="widthFix" class="levelImg"></image>
-				<image v-if="item.wisp.level == 8" src="../../../static/spirit/level8.png" mode="widthFix" class="levelImg"></image>
+				<image class="levelImg" src="../../../static/level/one.png" mode="widthFix"
+					v-if="item.wisp.level==1"></image>
+				<image class="levelImg" src="../../../static/level/two.png" mode="widthFix"
+					v-if="item.wisp.level==2"></image>
+				<image class="levelImg" src="../../../static/level/three.png" mode="widthFix"
+					v-if="item.wisp.level==3"></image>
+				<image class="levelImg" src="../../../static/level/four.png" mode="widthFix"
+					v-if="item.wisp.level==4"></image>
+				<image class="levelImg" src="../../../static/level/five.png" mode="widthFix"
+					v-if="item.wisp.level==5"></image>
+				<image class="levelImg" src="../../../static/level/six.png" mode="widthFix"
+					v-if="item.wisp.level==6"></image>
+				<image class="levelImg" src="../../../static/level/seven.png" mode="widthFix"
+					v-if="item.wisp.level==7"></image>
+				<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
+					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
 				<text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text>
@@ -28,7 +36,7 @@
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<button class="btn one" v-if="true" @click="noMessage">鑄造</button>
+				<button class="btn one" v-if="true" @click="noMessage">铸造(待开放</button>
 				<view class="boxs" v-if="true">
 					<button class="two">系統自動挂售</button>
 				</view>

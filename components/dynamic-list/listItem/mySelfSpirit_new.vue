@@ -2,27 +2,45 @@
 	<view class="box">
 		<view class="item">
 			<view class="imgBox">
-				<image :src="getImage(item.wispOrder.pictureUrl)" mode="widthFix" class="img"></image>
+				<image :src="item.wispOrder.pictureUrl" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
 				<text class="name">{{item.wispOrder.name}}</text>
 			</view>
 			<view class="levelBox">
-				<image src="../../../static/spirit/levelFive.png" mode="widthFix" class="levelImg"></image>
+				<image class="levelImg" src="../../../static/level/one.png" mode="widthFix"
+					v-if="item.wispOrder.level==1"></image>
+				<image class="levelImg" src="../../../static/level/two.png" mode="widthFix"
+					v-if="item.wispOrder.level==2"></image>
+				<image class="levelImg" src="../../../static/level/three.png" mode="widthFix"
+					v-if="item.wispOrder.level==3"></image>
+				<image class="levelImg" src="../../../static/level/four.png" mode="widthFix"
+					v-if="item.wispOrder.level==4"></image>
+				<image class="levelImg" src="../../../static/level/five.png" mode="widthFix"
+					v-if="item.wispOrder.level==5"></image>
+				<image class="levelImg" src="../../../static/level/six.png" mode="widthFix"
+					v-if="item.wispOrder.level==6"></image>
+				<image class="levelImg" src="../../../static/level/seven.png" mode="widthFix"
+					v-if="item.wispOrder.level==7"></image>
+				<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
+					v-if="item.wispOrder.level==8"></image>
 			</view>
 			<view class="infoBox">
-				<!-- <text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text> -->
+				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<!-- <text class="info">出售：{{item.stageChangeTime}}</text> -->
+				<text class="info">出售：{{item.wispOrder.createTime}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">買家：18545879654</text>
+				<text class="info">買家：{{item.wispOrder.buyerName}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<text class="timeOne">對方付款中...</text>
-				<text class="timeTwo">剩餘付款時間 01:58:32</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
+				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
+				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">对方未付款</text>
+				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}</text>
+			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive">玩家已处理请确认</button>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -44,6 +62,13 @@
 			}
 		},
 		methods: {
+			goToResive(){
+				uni.navigateTo({
+					url:'/pages/successGetMoney_new/successGetMoney_new'
+				})
+			},
+			
+			
 			getImage(url) {
 				console.log(this.$config)
 				let that = this
@@ -89,6 +114,20 @@
 		height: 100%;
 		background: #050E17;
 		padding-bottom: 20rpx;
+		
+		.grey{
+			color: rgb(81,101,136) !important;
+		}
+		
+		.sOne{
+			color: #FFAD33 !important;
+		}
+		.sTwo{
+			color: #31E4B9 !important;
+		}
+		.sThree{
+			color: #FF3355 !important;
+		}
 
 		.item {
 			margin: 0rpx auto;
@@ -188,6 +227,24 @@
 				position: absolute;
 				bottom: 0rpx;
 				position: relative;
+				
+				.btn{
+					width: 160px !important;
+					height: 40px !important;
+					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
+					border-radius: 8px 8px 8px 8px !important;
+					opacity: 1;
+					position: absolute;
+					top: 358rpx !important;
+					left: 320rpx !important;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 32rpx;
+					font-family: PingFang SC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #ffffff;
+				}
 
 				.timeOne {
 					width: 81px;

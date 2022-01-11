@@ -36,15 +36,9 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-<<<<<<< HEAD
 					account:'15322315902',
 					password:'admin',
 					verifyCode:'123456'
-=======
-					account:'',
-					password:'',
-					verifyCode:''
->>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 					  // 15322315902
 					  // 13313331137
 					  // 123456
@@ -326,21 +320,23 @@
 					flex-direction: row;
 					display: flex;
 					align-items: center;
-					justify-content: center;
+					// justify-content: center;
 					.yzm{
 						// margin-left: 4%;
-						width: 90%;
+						width: 40%;
 						height: 80rpx;
 						border-radius: 10rpx;
 						background: rgb(36,42,51);
 						// padding-left: 20rpx;
 						padding: 10rpx 20rpx;
 						outline-style: none;
+						margin-left: 3%;
+						margin-right: 25rpx;
 					}
 					.yzmBox{
 						// margin-left: 2.5%;
 						// margin-right: 4%;
-						width: 50%;
+						width: 40%;
 						height: 80rpx;
 						// margin-left: 1%;
 						border-radius: 10rpx;
@@ -351,8 +347,8 @@
 						font-size: 28px;
 					    background-image: url(https://s2.loli.net/2022/01/08/QK4IeajhiuzA1RZ.jpg);
 						opacity: .8;
-						position: absolute;
-						right: 2.5%;
+						// position: absolute;
+						// right: 2.5%;
 						padding: 10rpx 20rpx;
 						// right: 10%;
 						.a{

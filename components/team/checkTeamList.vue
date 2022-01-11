@@ -1,13 +1,13 @@
 <template>
 	<view class="checkTeamList">
 		<view class="check">
-			<input type="number" placeholder="請輸入手機号碼查詢" class="phone"/>
-			<image src="../../static/service/search.png" mode="widthFix" class="search"></image>
+			<input type="number" placeholder="請輸入手機号碼查詢" class="phone" v-model="searchPhone"/>
+			<image src="../../static/service/search.png" mode="widthFix" class="search" v-if="!isSearching" @click="searchIng"></image>
+			<image src="../../static/service/close.png" mode="widthFix" class="search" v-if="isSearching" @click="giveUpsearchIng"></image>
 		</view>
 		<view class="box">
 			<view class="item" v-for="(item,index) in list" :key="index">
 				<view class="img">
-					<!-- <image src="../../static/spirit/coin.png" mode="widthFix" class="avator"></image> -->
 					<image :src="item.avatar" mode="widthFix" class="avator"></image>
 				</view>
 				<view class="info">
@@ -27,13 +27,42 @@
 		name:'spiritMarket',
 		data(){
 			return{
-				list:[]
+				isSearching:false,
+				searchPhone:'',
+				list:[],
+				copyList:[]
 			}
 		},
 		mounted() {
 			this.getStrightTeam()
 		},
+		watch:{
+			searchPhone(value){
+				if(value == ''){
+					this.list = this.copyList
+				}
+			}
+		},
 		methods:{
+			searchIng(){
+				if(this.searchPhone.length == 0){
+					uni.showToast({
+						title:'查询手机号码不能为空',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+				this.copyList = this.list
+				this.isSearching = !this.isSearching
+				this.list = this.list.filter((item)=>{
+					return item.mobilePhone == this.searchPhone
+				})
+			},
+			giveUpsearchIng(){
+				this.searchPhone = ''
+				this.isSearching = !this.isSearching
+			},
 			getImage(url) {
 				console.log(this.$config)
 				let that = this

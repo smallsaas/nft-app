@@ -27,21 +27,21 @@
   					<text class="spiritName">{{item.wisp.name}}</text>
   				</view>
   				<view class="rt">
-  					<image class="levelImg" src="../../../static/spirit/levelOne.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/one.png" mode="widthFix"
   						v-if="item.wisp.level==1"></image>
-  					<image class="levelImg" src="../../../static/spirit/levelTwo.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/two.png" mode="widthFix"
   						v-if="item.wisp.level==2"></image>
-  					<image class="levelImg" src="../../../static/spirit/levelThree.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/three.png" mode="widthFix"
   						v-if="item.wisp.level==3"></image>
-  					<image class="levelImg" src="../../../static/spirit/levelFour.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/four.png" mode="widthFix"
   						v-if="item.wisp.level==4"></image>
-  					<image class="levelImg" src="../../../static/spirit/levelFive.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/five.png" mode="widthFix"
   						v-if="item.wisp.level==5"></image>
-  					<image class="levelImg" src="../../../static/spirit/level6.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/six.png" mode="widthFix"
   						v-if="item.wisp.level==6"></image>
-  					<image class="levelImg" src="../../../static/spirit/level7.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/seven.png" mode="widthFix"
   						v-if="item.wisp.level==7"></image>
-  					<image class="levelImg" src="../../../static/spirit/level8.png" mode="widthFix"
+  					<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
   						v-if="item.wisp.level==8"></image>
   				</view>
   				<view class="rth">
@@ -57,14 +57,10 @@
   					<text class="rthR">{{item.wisp.growthDays}}</text>
   				</view>
   				<view class="btnBox">
-  				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩餘59:28)</button>
-<<<<<<< HEAD
+  				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩餘{{item.remainingMinutes}})</button>
                 <button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false">等待買家付款</button>
-=======
-				<view class="btnStatus fail" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false"><button class="notStatus">等待買家付款</button></view>
->>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
   				<view class="btnStatus fail" v-if="item.status=='PAID'"><button class="notStatus">已付款</button></view>
-  				<view class="btnStatus" v-if="item.status=='PAYMENT_TIMEOUT'"><button class="notStatus">付款超時</button></view>
+  				<view class="btnStatus" v-if="item.status=='PAYMENT_TIMEOUT'"><button class="notStatus">玩家处理超时</button></view>
 				<view class="btnStatus" v-if="item.status=='RECEIVED'"><button class="notStatus">已确認收款</button></view>
 				<view class="btnStatus" v-if="item.status=='COMPLAINING'"><button class="notStatus">申訴中</button></view>
 				<view class="btnStatus" v-if="item.status=='CANCEL'"><button class="notStatus">已取消</button></view>
