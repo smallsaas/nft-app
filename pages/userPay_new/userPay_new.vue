@@ -71,7 +71,7 @@
 			// // console.log(id, 1111)
 			// // this.getOrder(e.data)
 			this.iid = e.data
-			this.getOrder(this.iid)
+			this.getOrder(53)
 		},
 		// mounted() {
 		// 	this.getOrder(this.iid)
@@ -90,6 +90,31 @@
 			}
 		},
 		methods: {
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint+imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			},
 			async getOrder(id) {
 				const data = {
 					wispOrderId: id
@@ -98,20 +123,20 @@
 				console.log("RES",res)
 				if(res.code == 200){
 					this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
-					this.sellerInfo.transactionAmount = res.data.seller.transactionAmount
-					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-					this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
-					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
-					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
+					this.sellerInfo.transactionAmount = res.data.transactionAmount
+					this.sellerInfo.wechatAccount = res.data.buyer.wechatAccount
+					this.sellerInfo.wechatQrCodePhotoUrl = res.data.buyer.wechatQrCodePhotoUrl
+					this.sellerInfo.bankAccountNumber = res.data.buyer.bankAccountNumber
+					this.sellerInfo.bankAccountName = res.data.buyer.bankAccountName
 					uni.showToast({
-						title:'获取信息成功',
+						title:'獲取信息成功',
 						icon:'success',
 						duration:1000
 					})
 					console.log(this.sellerInfo,123)
 				}else{
 					uni.showToast({
-						title:'获取信息失败',
+						title:'獲取信息失敗',
 						icon:'error',
 						duration:1000
 					})

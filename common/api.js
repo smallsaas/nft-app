@@ -92,13 +92,13 @@ export const api = {
 		return request("GET",url,params)
 	},
 	
-	//获取付款信息
+	//獲取付款信息
 	getOrderInfo(data,params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/queryByBuyer`
 		return request("GET",url,params)
 	},
 	
-	//获取精灵订单信息
+	//獲取精靈訂單信息
 	getSpiritOrderInfo(params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp`
 		return request("GET",url,params)

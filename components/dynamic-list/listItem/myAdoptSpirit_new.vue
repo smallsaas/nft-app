@@ -30,7 +30,7 @@
 			<view class="btnBox">
 				<button class="btn one" v-if="true" @click="noMessage">鑄造</button>
 				<view class="boxs" v-if="true">
-					<button class="two">系统自动挂售</button>
+					<button class="two">系統自動挂售</button>
 				</view>
 				<!-- <text class="times" v-if="true">成長中</text>
 				<text class="time" v-if="true">剩餘時間 48:52:47</text> -->

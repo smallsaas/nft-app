@@ -239,11 +239,7 @@
 						}else{
 							console.log("fail")
 							uni.showToast({
-<<<<<<< HEAD
-								title:"提交失敗",
-=======
 								title:res.message||"提交失敗",
->>>>>>> 24762c73f1e0c0dad779bf451150ff5f1ee3dbf2
 								icon:"error"
 							})
 						}
