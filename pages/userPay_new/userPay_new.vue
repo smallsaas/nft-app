@@ -90,6 +90,14 @@
 				this.list.splice(i,1)
 				this.$forceUpdate()
 			},
+			getImage(item){
+				console.log("圖片路徑",item)
+				if(item.indexOf('http'||'https')===0){
+					return item
+				}else{
+					return this.$config.endpoint + item
+				}
+			},
 			// 上傳圖片
 			uploadImage(){
 				let that = this
@@ -99,10 +107,9 @@
 						let files = path.tempFiles
 						for(var i=0;i<files.length;i++){
 							let file = files[i]
-							let webPath = await that.$upload("/api/u/fs/uploadfile",file)
-							// console.log(webPath)
+							let webPath = await that.$upload("/api/u/fs/uploadfile",file.path)
 							let fileList = that.list
-							fileList.push(webPath)
+							fileList.push(that.$config.endpoint+webPath)
 							// console.log(fileList)
 						}
 					}
