@@ -36,7 +36,7 @@
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<button class="btn one" v-if="true" @click="noMessage">铸造(待开放</button>
+				<button class="btn one" v-if="true" @click="noMessage">鑄造(待開放</button>
 				<view class="boxs" v-if="true">
 					<button class="two">系統自動挂售</button>
 				</view>

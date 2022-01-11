@@ -14,7 +14,7 @@
 		<view class="fix" v-if="isShow">
 			<view class="t">
 				<text class="info" @click="cancel">取消</text>
-				<text class="info infos">选择申诉原因</text>
+				<text class="info infos">選擇申訴原因</text>
 				<text class="info" @click="sure">确定</text>
 			</view>
 			<view class="b">

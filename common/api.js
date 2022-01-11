@@ -54,7 +54,7 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/player/phone/change`
 		return request('POST',url,params)
 	},
-	//新版修改副手机号
+	//新版修改副手機号
 	editBackUpPhone(params){
 		const url = `${globalConfig.endpoint}/api/u/player/phone/change`
 		return request('POST',url,params)

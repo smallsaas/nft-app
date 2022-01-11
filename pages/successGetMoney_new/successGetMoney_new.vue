@@ -2,28 +2,28 @@
 	<view class="success">
 		<view class="box">
 			<view class="top">
-				<text class="o">买家联系电话：15845484521</text>
+				<text class="o">買家聯系電話：15845484521</text>
 			</view>
 			<view class="body">
-				<text class="o">买家付款凭证</text>
+				<text class="o">買家付款憑證</text>
 				<view class="b">
 					<image src="../../static/spirit/newBALL.png" mode="widthFix" class="img" @click="showBImg"></image>
 				</view>
 			</view>
 			<view class="bottom">
-				<pretty-button class="btn" text="确认收款" @click="sureOrder"></pretty-button>
+				<pretty-button class="btn" text="确認收款" @click="sureOrder"></pretty-button>
 				<button class="btn btns" @click="goTo">申述</button>
 			</view>
 		</view>
 
-		<!-- 模态组件 -->
+		<!-- 模态組件 -->
 		<view class="motai-mask" v-if="showBigImg==true || isShowToast==true"></view>
 		<view class="motai" v-if="showBigImg">
 			<image src="../../static/spirit/newBALL.png" mode="widthFix" class="upload"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
 		</view>
 
-		<!-- 交互组件 -->
+		<!-- 交互組件 -->
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
 	</view>
 </template>
@@ -53,7 +53,7 @@
 			},
 			sureOrder(){
 				this.isShowToast = true
-				this.toast('确认收到对方的付款凭证款项吗？')
+				this.toast('确認收到對方的付款憑證款項嗎？')
 			},
 			showBImg() {
 				this.showBigImg = true

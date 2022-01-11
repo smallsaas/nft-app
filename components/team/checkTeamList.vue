@@ -47,7 +47,7 @@
 			searchIng(){
 				if(this.searchPhone.length == 0){
 					uni.showToast({
-						title:'查询手机号码不能为空',
+						title:'查詢手機号碼不能爲空',
 						icon:'error',
 						duration:1000
 					})

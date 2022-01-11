@@ -59,7 +59,7 @@
  				<view class="btnBox">
 					<button class="btn"  v-if="item.bookStatus == 'WAITING_MATCH'">預約成功</button>
 					<button class="btn"  v-if="item.bookStatus == 'MATCH_SUCCESS'">匹配成功</button>
-					<button class="btn"  v-if="item.bookStatus == 'MATCH_FAIL'">匹配失败</button>
+					<button class="btn"  v-if="item.bookStatus == 'MATCH_FAIL'">匹配失敗</button>
  					<!-- <button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">馬上預約</button>
  					<view class="father" v-if="item.stage=='DISALLOW_BOOK'"><button class="noStatus">不可預約</button>
  					</view>

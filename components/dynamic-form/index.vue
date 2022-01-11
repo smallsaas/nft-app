@@ -180,7 +180,7 @@
 									return true
 								}
 						},
-						formId:{ //页面缓存的id
+						formId:{ //頁面緩存的id
 							type:String,
 							default(){
 								return '0'
