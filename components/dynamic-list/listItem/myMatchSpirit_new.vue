@@ -58,7 +58,11 @@
   				</view>
   				<view class="btnBox">
   				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩餘59:28)</button>
+<<<<<<< HEAD
                 <button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false">等待買家付款</button>
+=======
+				<view class="btnStatus fail" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false"><button class="notStatus">等待買家付款</button></view>
+>>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
   				<view class="btnStatus fail" v-if="item.status=='PAID'"><button class="notStatus">已付款</button></view>
   				<view class="btnStatus" v-if="item.status=='PAYMENT_TIMEOUT'"><button class="notStatus">付款超時</button></view>
 				<view class="btnStatus" v-if="item.status=='RECEIVED'"><button class="notStatus">已确認收款</button></view>

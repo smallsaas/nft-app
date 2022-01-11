@@ -268,7 +268,7 @@
 							let param ={
 								...this.formData
 							}
-						let res = await this.$api.editUserData(param)
+						let res = await this.$api.changePassword(param)
 						console.log(res,"res")
 						if(res.code === 200){
 							let that =this

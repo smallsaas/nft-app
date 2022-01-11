@@ -40,11 +40,11 @@
 			</view>
 			<view class="bottom">
 				<view class="imgBox">
-					<view class="success" v-for="(item,index) in list" :key="index" @click="check(item)">
-						<image :src="item" mode="widthFix" class="upload"></image>
-						<image src="../../static/service/close.png" mode="widthFix" class="deleteImg"></image>
+					<view class="success" v-for="(item,index) in list" :key="index">
+						<image :src="item" mode="widthFix" class="upload" @click="check(item)"></image>
+						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg" @click="deleteImage(index)"></image>
 					</view>
-					<view class="ifsuccess">
+					<view class="ifsuccess" @click="uploadImage">
 						<image src="../../static/spirit/addImg.png" mode="widthFix" class="upload"></image>
 					</view>
 				</view>
@@ -56,6 +56,7 @@
 
 
 		<!-- //模态組件 -->
+		<view class="motai-mask" v-if="showBigImg"></view>
 		<view class="motai" v-if="showBigImg">
 			<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="upload"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
@@ -81,7 +82,7 @@
 				fistType: false,
 				secondType: false,
 
-				list: ['https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg'],
+				list: [],
 				showBigImg: false,
 				bigImgSrc: '',
 				
@@ -90,6 +91,7 @@
 			}
 		},
 		methods: {
+<<<<<<< HEAD
 			getImage(url) {
 				console.log(this.$config)
 				let that = this
@@ -114,6 +116,30 @@
 					}
 				}
 				return imagePath
+=======
+			// 删除圖片
+			deleteImage(i){
+				this.list.splice(i,1)
+				this.$forceUpdate()
+			},
+			// 上傳圖片
+			uploadImage(){
+				let that = this
+				uni.chooseImage({
+					count:9,
+					success:async function(path) {
+						let files = path.tempFiles
+						for(var i=0;i<files.length;i++){
+							let file = files[i]
+							let webPath = await that.$upload("/api/u/fs/uploadfile",file)
+							// console.log(webPath)
+							let fileList = that.list
+							fileList.push(webPath)
+							// console.log(fileList)
+						}
+					}
+				})
+>>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 			},
 			async getOrder(id) {
 				const data = {
@@ -124,10 +150,22 @@
 				if(res.code == 200){
 					this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
+<<<<<<< HEAD
 					this.sellerInfo.wechatAccount = res.data.buyer.wechatAccount
 					this.sellerInfo.wechatQrCodePhotoUrl = res.data.buyer.wechatQrCodePhotoUrl
 					this.sellerInfo.bankAccountNumber = res.data.buyer.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.buyer.bankAccountName
+=======
+					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
+					if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0){
+						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
+						this.sellerInfo.wechatQrCodePhotoUrl = url
+					}else{
+						this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
+					}
+					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
+					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
+>>>>>>> 02fc54cb2659746b781dd443d1d57e7120e86d99
 					uni.showToast({
 						title:'獲取信息成功',
 						icon:'success',
@@ -178,26 +216,40 @@
 	.payBox {
 		width: 100%;
 		height: 100%;
-	
+	.motai-mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background-color: #000;
+		opacity: .8;
+		z-index: 5000;
+	}
 	.motai {
-			width: 340px;
-			height: 570px;
+			// width: 340px;
+			// height: 570px;
 			position: fixed;
-			top: 50px;
-			left: 5%;
-
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			z-index: 5001;
 			.upload {
-				width: 340px;
-				height: 570px !important;
+				// width: 340px;
+				// height: 570px !important;
+				width: 80%;
 			}
 
 			.deleteImg {
 				position: fixed;
-				right: 20px;
-				top: 60px;
-				width: 30px;
-				height: 30px;
-				z-index: 99999999;
+				bottom: 50rpx;
+				width: 50px;
+				height: 50px;
 			}
 		}
 
@@ -212,7 +264,7 @@
 			.top {
 				width: 100%;
 				height: 56px;
-				border-bottom: 1px solid #C4C4C4;
+				border-bottom: 1px solid #1B2228;
 				position: relative;
 
 				.z {
@@ -222,7 +274,7 @@
 					font-size: 16px;
 					font-family: PingFang SC-Medium, PingFang SC;
 					font-weight: 500;
-					color: #FFFFFF;
+					color: #B9BBBD;
 				}
 			}
 
@@ -244,15 +296,16 @@
 						.upload {
 							width: 100px;
 							height: 100px !important;
-							border-radius: 5px 5px 0px 0px;
+							border-radius: 16rpx 16rpx 16rpx 16rpx;
 						}
 
 						.deleteImg {
 							position: absolute;
-							right: 5px;
-							top: 5px;
-							width: 15px;
-							height: 15px;
+							right: 8rpx;
+							top: 8rpx;
+							width: 40rpx;
+							height: 40rpx;
+							z-index: 50000;
 						}
 					}
 
@@ -303,7 +356,7 @@
 			.top {
 				width: 100%;
 				height: 56px;
-				border-bottom: 1px solid #C4C4C4;
+				border-bottom: 1px solid #1B2228;
 				display: flex;
 				flex-direction: row;
 				align-items: center;
@@ -315,7 +368,7 @@
 					font-size: 16px;
 					font-family: PingFang SC-Medium, PingFang SC;
 					font-weight: 500;
-					color: #FFFFFF;
+					color: #B9BBBD;
 					margin-left: 10px;
 				}
 
@@ -348,7 +401,7 @@
 					font-size: 14px;
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
-					color: #FFFFFF;
+					color: #B9BBBD;
 				}
 
 				.zz {
@@ -368,7 +421,7 @@
 			.top {
 				width: 100%;
 				height: 56px;
-				border-bottom: 1px solid #C4C4C4;
+				border-bottom: 1px solid #1B2228;
 				display: flex;
 				flex-direction: row;
 				align-items: center;
@@ -380,7 +433,7 @@
 					font-size: 16px;
 					font-family: PingFang SC-Medium, PingFang SC;
 					font-weight: 500;
-					color: #FFFFFF;
+					color: #B9BBBD;
 					margin-left: 10px;
 				}
 
@@ -413,7 +466,7 @@
 					font-size: 14px;
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
-					color: #FFFFFF;
+					color: #B9BBBD;
 				}
 
 				.img {
@@ -431,7 +484,7 @@
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
-					color: #FFFFFF;
+					color: #B9BBBD;
 				}
 			}
 		}
@@ -447,7 +500,7 @@
 				font-size: 14px;
 				font-family: PingFang SC-Regular, PingFang SC;
 				font-weight: 400;
-				color: #FFFFFF;
+				color: #B9BBBD;
 			}
 		}
 
@@ -463,7 +516,7 @@
 				font-size: 36px;
 				font-family: PingFang SC-Medium, PingFang SC;
 				font-weight: 500;
-				color: #FFFFFF;
+				color: #B9BBBD;
 			}
 		}
 	}
