@@ -58,8 +58,9 @@
  				</view>
  				<view class="btnBox">
 					<button class="btn"  v-if="item.bookStatus == 'WAITING_MATCH'">預約成功</button>
-					<button class="btn"  v-if="item.bookStatus == 'MATCH_SUCCESS'">匹配成功</button>
-					<button class="btn"  v-if="item.bookStatus == 'MATCH_FAIL'">匹配失敗</button>
+					<pretty-button class="btn" v-if="item.bookStatus=='MATCH_SUCCESS'"  type="hollow"  text="匹配成功"></pretty-button>
+					<pretty-button class="btn" v-if="item.bookStatus=='MATCH_FAIL'"  type="hollow"  text="匹配失敗"></pretty-button>
+					<!-- <button class="btn btnNo"  v-if="item.bookStatus == 'MATCH_FAIL'">匹配失敗</button> -->
  					<!-- <button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'">馬上預約</button>
  					<view class="father" v-if="item.stage=='DISALLOW_BOOK'"><button class="noStatus">不可預約</button>
  					</view>
@@ -392,6 +393,10 @@
  					display: flex;
  					align-items: center;
  					justify-content: flex-end;
+					
+					.btnNo{
+						background: rgb(24,38,65) !important;
+					}
  
  					.btn {
  						width: 326rpx;

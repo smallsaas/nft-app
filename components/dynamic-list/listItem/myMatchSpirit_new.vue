@@ -57,7 +57,7 @@
   					<text class="rthR">{{item.wisp.growthDays}}</text>
   				</view>
   				<view class="btnBox">
-  				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩餘{{item.remainingMinutes}})</button>
+  				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩{{item.remainingMinutes}}分钟)</button>
                 <button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false">等待買家付款</button>
   				<view class="btnStatus fail" v-if="item.status=='PAID'"><button class="notStatus">已付款</button></view>
   				<view class="btnStatus" v-if="item.status=='PAYMENT_TIMEOUT'"><button class="notStatus">玩家處理超時</button></view>

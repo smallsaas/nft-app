@@ -68,6 +68,9 @@
 </script>
 
 <style lang="less">
+	.navBar{
+		z-index: -10 !important;
+	}
 	.navBar-content{
 		width: 100%;
 		overflow: auto;

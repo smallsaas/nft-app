@@ -29,7 +29,7 @@
 				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
-				<text class="info">出售：{{item.wispOrder.createTime}}</text>
+				<text class="info">出售：{{time}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
 				<text class="info">買家：{{item.wispOrder.buyerName}}</text>
@@ -39,8 +39,8 @@
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
-				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}</text>
-			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive">玩家已處理請确認</button>
+				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}分钟</text>
+			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.id)">玩家已處理請确認</button>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -59,7 +59,13 @@
 			return {
 				// isShowToast:false,
 				// toastMsg:''
+				time:''
 			}
+		},
+		mounted() {
+			const split = this.item.createTime.split('T')
+			const l = split[0]
+			this.time = l
 		},
 		methods: {
 			goToResive(){

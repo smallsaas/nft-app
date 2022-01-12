@@ -1,6 +1,6 @@
 <!-- 由于web-view很不友好 所以使用slot方式實現 -->
 <template>
-	<view>
+	<view class="bar">
 		<view class="pageTabbar_TitleBox">
 			<view :class="'pageTabbar_Title'+isClick(t)" @click="handleClick(t)"  v-for="(tab,t) in tabs">
 				{{tab.title}}
@@ -61,6 +61,9 @@
 </script>
 
 <style>
+	.bar{
+		z-index: -10 !important;
+	}
 	.pageTabbar_TitleBox{
 		display: flex;
 		align-items: flex-start;

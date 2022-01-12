@@ -134,7 +134,7 @@
 <style lang="less">
 	.spiritBuy {
 		width: 100%;
-		height: 70% !important;
+		height: 80% !important;
 		position: fixed;
 		bottom: -10rpx;
 		z-index: 99999999;
@@ -142,7 +142,7 @@
 
 		.box {
 			width: 100%;
-			height: 70% !important;
+			height: 80% !important;
 			background: #1C294C;
 			border-radius: 16px 16px 0px 0px;
 			opacity: 1;

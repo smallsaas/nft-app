@@ -195,7 +195,7 @@ Content-Type: application/json
                     "readonly": false,
                     "hidden": false,
                     "disabled": false,
-                    "__vModel__": "bankName"
+                    "__vModel__": "bank_name"
                 },{
                     "__config__": {
                     "label": "银行卡号",

@@ -122,17 +122,21 @@
 				const res = await this.$api.getOrderInfo(data)
 				console.log("RES",res)
 				if(res.code == 200){
-					this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
+					if(res.data.seller.mobilePhone == null){
+						this.sellerInfo.mobilePhone = ''
+					}else{
+						this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
+					}
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
-					this.sellerInfo.wechatAccount = res.data.buyer.wechatAccount
-					// if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0){
-					// 	let url = JSON.parse(res.data.buyer.wechatQrCodePhotoUrl)[0]
-					// 	this.sellerInfo.wechatQrCodePhotoUrl = url
-					// }else{
-					// 	this.sellerInfo.wechatQrCodePhotoUrl = res.data.buyer.wechatQrCodePhotoUrl
-					// }
-					this.sellerInfo.bankAccountNumber = res.data.buyer.bankAccountNumber
-					this.sellerInfo.bankAccountName = res.data.buyer.bankAccountName
+					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
+					if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0 && res.data.seller.wechatQrCodePhotoUrl!==null){
+						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
+						this.sellerInfo.wechatQrCodePhotoUrl = url
+					}else{
+						this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
+					}
+					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
+					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					uni.showToast({
 						title:'獲取信息成功',
 						icon:'success',

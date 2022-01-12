@@ -237,6 +237,10 @@
 </script>
 
 <style lang="less">
+	.list_content{
+		display: none !important;
+		opacity: 0 !important;
+	}
 	.spirit_mask {
 		position: fixed;
 		top: 0;
@@ -253,8 +257,11 @@
 		height: 100%;
 		display: flex;
 		flex-direction: row;
-		padding-bottom: 20rpx;
+		padding-top: 20rpx;
+		// padding-bottom: 20rpx;
 		background-color: #050e17;
+		
+		
 
 		.item {
 			width: 95%;
