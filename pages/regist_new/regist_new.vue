@@ -146,7 +146,12 @@
 <script>
 	export default {
 		onLoad(e) {
-			this.invitationCode = e.inviteCode
+			if(e.inviteCode == undefined){
+				this.data.invitationCode = ''
+				console.log(this.data)
+			}else{
+				this.data.invitationCode = e.inviteCode
+			}
 			console.log('RESSSSS', e)
 			console.log('RESSSSSaaaaaaaaaaaaaaaaaaaaaaa', e.inviteCode)
 		},
@@ -167,7 +172,7 @@
 					yzm: '',
 					loginPassword: '',
 					email: '',
-					invitationCode: 'PNywB5',
+					invitationCode: '',
 					// PNywB5
 				},
 				isFocus: '',
