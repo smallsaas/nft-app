@@ -383,7 +383,7 @@
 			font-size: 24rpx;
 		}
 		.readonly{
-			width: 7.5em;
+			// width: 7.5em;
 			font-size: 24rpx;
 			color: #B4B6B8;
 		}

@@ -43,7 +43,7 @@
 		methods: {
 			shengcheng(){
 				new qrCode('codeimg',{
-					text:`${this.$config.src}/#/pages/regist_new/regist_new?inviteCode=` + this.data.invitationCode,
+					text:`${this.$config.endpoint}/#/pages/regist_new/regist_new?inviteCode=` + this.data.invitationCode,
 					width:150,
 					height:150,
 					colorDark:"#333333"
@@ -54,16 +54,6 @@
 				this.$emit('close', false)
 			},
 			copyText() {
-				// #ifdef H5
-				this.$copyText(this.data.invitationCode).then(
-					res => {
-						uni.showToast({
-							title: '複制成功'
-						})
-					}
-				)
-				// #endif
-				// #ifndef H5
 				uni.setClipboardData({
 					data: this.data.invitationCode,
 					success: () => {
@@ -72,7 +62,6 @@
 						})
 					}
 				})
-				// #endif
 			}
 		}
 	}
@@ -167,7 +156,7 @@
 			position: relative;
 			.QRcode-container{
 				background-color: #FFFFFF;
-				// padding: 20rpx;
+				padding: 20rpx;
 				width: 150px;
 				height: 150px;
 				display: flex;

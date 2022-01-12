@@ -34,7 +34,7 @@
 				const res = await this.$api.getRegistInfo(data)
 				if(res.code == 200){
 					uni.showToast({
-						title:'确认收款成功',
+						title:'确認收款成功',
 						icon:"success",
 						duration:1000
 					})

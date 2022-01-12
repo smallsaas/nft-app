@@ -43,9 +43,9 @@ export const globalConfig = isDev?{
 }:{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
-	formHost: "/form",
-	dataHost: "/data",
-	endpoint: "",
+	formHost: "https://www.metagugu.net/form",
+	dataHost: "https://www.metagugu.net/data",
+	endpoint: "https://www.metagugu.net",
 	imageEndpoint: "https://www.metagugu.net",
 	tokenStorageKey:"token",
 	iconList:iconList

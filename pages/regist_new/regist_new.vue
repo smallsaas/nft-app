@@ -13,52 +13,52 @@
 				<text class="text">會員注冊</text>
 			</view>
 			<view class="labelTetx">
-				<text class="text">昵称</text>
+				<text class="text">昵稱</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="请输入昵称" class="inputBoxC" v-model="data.name" @focus="focus(1)"
+				<input type="text" placeholder="請輸入昵稱" class="inputBoxC" v-model="data.name" @focus="focus(1)"
 					@blur="blur(1)" :class="{focus:isAddArticleA}" />
 			</view>
 			<view class="labelTetx">
-				<text class="text">手机号码</text>
+				<text class="text">手機号碼</text>
 			</view>
 			<view class="inputBox">
-				<input type="number" placeholder="请输入手机号码" class="inputBoxC" v-model="data.phone" @focus="focus(2)"
+				<input type="number" placeholder="請輸入手機号碼" class="inputBoxC" v-model="data.phone" @focus="focus(2)"
 					@blur="blur(2)" :class="{focus:isAddArticleB}" />
 			</view>
 			<view class="labelTetx">
-				<text class="text">验证码</text>
+				<text class="text">驗證碼</text>
 			</view>
 			<view class="inputBox">
 				<view class="HC">
-					<input type="number" placeholder="请输入验证码" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
+					<input type="number" placeholder="請輸入驗證碼" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
 						@blur="blur(3)" :class="{focus:isAddArticleC}" />
 					<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
 					<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>
 				</view>
 			</view>
 			<view class="labelTetx">
-				<text class="text">登录密码</text>
+				<text class="text">登錄密碼</text>
 			</view>
 			<view class="inputBox">
 				<view class="HCC">
-					<input type="text" placeholder="请输入登录密码" class="inputBoxC" v-model="data.loginPassword"
+					<input type="text" placeholder="請輸入登錄密碼" class="inputBoxC" v-model="data.loginPassword"
 						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" />
 					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 				</view>
 			</view>
 			<view class="labelTetx">
-				<text class="text">邮箱(选填)</text>
+				<text class="text">郵箱(選填)</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="请输入邮箱" class="inputBoxC" v-model="data.email" @focus="focus(5)"
+				<input type="text" placeholder="請輸入郵箱" class="inputBoxC" v-model="data.email" @focus="focus(5)"
 					@blur="blur(5)" :class="{focus:isAddArticleE}" />
 			</view>
 			<view class="labelTetx">
-				<text class="text">邀请码</text>
+				<text class="text">邀請碼</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="请输入邀请码" class="inputBoxC" v-model="data.invitationCode"
+				<input type="text" placeholder="請輸入邀請碼" class="inputBoxC" v-model="data.invitationCode"
 					@focus="focus(6)" @blur="blur(6)" :class="{focus:isAddArticleF}" />
 			</view>
 			<view class="INFO">
@@ -66,17 +66,17 @@
 					<view class="circle" @click="readRegistMessage" v-if="!isReadRegistInfo"></view>
 					<image v-if="isReadRegistInfo" class="rightImg" src="../../static/login/yes.png" mode="widthFix"
 						@click="readRegistMessage"></image>
-					<text class="infoccc">注册/登录即代表您已阅读并同意</text>
-					<text class="infoblue" @click="lookRegist">《用户注册协议》</text>
+					<text class="infoccc">注冊/登錄即代表您已閱讀并同意</text>
+					<text class="infoblue" @click="lookRegist">《用戶注冊協議》</text>
 				</view>
 			</view>
 			<view class="btnBox">
-				<pretty-button class="btn" text="注册并登录" @click="registAndLogin"></pretty-button>
+				<pretty-button class="btn" text="注冊并登錄" @click="registAndLogin"></pretty-button>
 			</view>
 			<view class="LAST">
 				<view class="LASTc">
-					<text class="TEXT">已有账号？</text>
-					<text class="TEXT TEXTB" @click="goLogin">去登录</text>
+					<text class="TEXT">已有賬号？</text>
+					<text class="TEXT TEXTB" @click="goLogin">去登錄</text>
 				</view>
 			</view>
 		</view>

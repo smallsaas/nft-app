@@ -78,7 +78,8 @@
 				listGroup:[
 					
 				],
-				nowGroup:[]
+				nowGroup:[],
+				isSignGroup:{}
 			};
 		},
 		props:{
@@ -87,7 +88,10 @@
 				default:{}
 			}
 		},
-		created() {
+		async created() {
+			uni.showLoading({
+				title:"獲取簽到數據中"
+			})
 			console.log(this.signData,"signData")
 			this.listGroup = this.signData.list
 			this.sign = this.signData.isSign
@@ -95,11 +99,42 @@
 			this.getMonth()
 			this.getNowGroup()
 			this.dayGroup = this.nowGroup
+			let that = this
+			let signMes = await this.$api.getSignMes({month:this.getMonth()})
+			console.log(signMes)
+			if(signMes.data.records){
+				let records = signMes.data.records
+				let today = this.getToday()
+				console.log(records,"RECORDS",today)
+				let find = records.find(item=>item.signDate === today)
+				console.log(find,"FIND")
+				if(![[],'',undefined,null].includes(find)){
+					this.sign = true
+					let today = this.fetchDay(find.signDate)
+					for(var i in records){
+						let item = records[i]
+						if(that.fetchDay(item.signDate)<=today){
+							that.isSignGroup[that.fetchDay(item.signDate)] = true
+						}
+					}
+				}
+			}
+			uni.hideLoading()
 		},
 		methods:{
+			fetchDay(date){
+				return date.split('-')[2]
+			},
 			getMonth(){
 				let date = new Date()
 				this.month = date.getMonth()+1
+			},
+			getToday(){
+				let date = new Date()
+				let year = date.getFullYear()
+				let month = date.getMonth()+1<10?`0${date.getMonth()+1}`:date.getMonth()+1
+				let day = date.getDate()<10?"0"+date.getDate():date.getDate()
+				return year+"-"+month+"-"+day
 			},
 			// 補簽事件
 			handleFill(){
@@ -137,9 +172,22 @@
 				this.$forceUpdate()
 			},
 			// 簽到事件
-			handleSign(){
+			async handleSign(){
 				console.log("簽到！")
 				this.sign = true
+				let res = await this.$api.sign()
+				if(res.code === 200){
+					uni.showToast({
+						title:"簽到成功",
+						icon:'success'
+					})
+				}else{
+					uni.showToast({
+						title:"簽到失敗",
+						icon:"error"
+					})
+				}
+				
 			}
 		}
 	}

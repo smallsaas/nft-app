@@ -34,7 +34,7 @@
 		onLoad(e) {
 			console.log('RES',parseInt(e.orderId))
 			this.orderIdS = parseInt(e.orderId)
-			console.log('惨过了参数',this.orderIdS)
+			console.log('慘過了參數',this.orderIdS)
 		},
 		data() {
 			return {
@@ -66,7 +66,7 @@
 					relationOrderId:this.orderIdS,
 					title:this.value,
 					content:this.moreValue,
-					credentialLink: "凭证链接"
+					credentialLink: "憑證鏈接"
 				}
 				const res = await this.$api.orderCpmplain(data)
 				console.log('RES',res)

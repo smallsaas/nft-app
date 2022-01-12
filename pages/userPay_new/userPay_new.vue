@@ -24,16 +24,16 @@
 		<view class="boxDD">
 			<view class="top">
 				<view class="topL">
-					<text class="L">支付宝支付</text>
+					<text class="L">支付寶支付</text>
 				</view>
 				<view class="topR" @click="selectTypeThree" v-if="!thirdType"></view>
 				<view class="topY" v-if="thirdType"></view>
 			</view>
 			<view class="bottom">
-				<text class="z">支付宝賬号：{{sellerInfo.alipayAccount}}</text>
+				<text class="z">支付寶賬号：{{sellerInfo.alipayAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
 				<image :src="sellerInfo.alipayQrCodePhotoUrl" mode="widthFix" class="img"></image>
-				<text class="zz">支付宝二維碼</text>
+				<text class="zz">支付寶二維碼</text>
 			</view>
 		</view>
 		<view class="boxD">
@@ -192,7 +192,7 @@
 				console.log(this.fistType,this.secondType,this.thirdType)
 				if(this.fistType==false && this.secondType==false && this.thirdType==false){
 					uni.showToast({
-						title:'请勾选付款方式',
+						title:'請勾選付款方式',
 						icon:'error',
 						duration:1000
 					})
@@ -209,7 +209,7 @@
 				}
 				if(this.list.length == 0){
 					uni.showToast({
-						title:'请上传付款凭证',
+						title:'請上傳付款憑證',
 						icon:'error',
 						duration:1000
 					})

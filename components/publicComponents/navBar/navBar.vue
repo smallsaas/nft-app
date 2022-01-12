@@ -1,9 +1,7 @@
 <!-- 由于web-view中不支持嵌套多層web-view 所以這邊使用slot方式來決定不同頁面的渲染 -->
 <template>
 	<view class="navBar">
-		<!-- #ifdef APP-PLUS -->
 		<view class="top-title"></view>
-		<!-- #endif -->
 		<view class="navBar-content" :style="[contentStyle]">
 			<slot name="content-container">
 				
@@ -73,8 +71,10 @@
 	}
 	.navBar-content{
 		width: 100%;
-		overflow: auto;
+		// height: 100%;
+		overflow: scroll;
 		position: relative;
+		
 	}
 	.navBar-container{
 		width: 100%;
