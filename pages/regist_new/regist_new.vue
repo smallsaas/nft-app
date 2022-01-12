@@ -348,7 +348,7 @@
 		}
 		.B{
 			width: 100%;
-			height: 4%;
+			height: 50rpx;
 			display: flex;
 			align-items: center;
 			padding-left: 5%;
@@ -359,18 +359,18 @@
 		}
 		.C{
 			width: 100%;
-			height: 10%;
+			height: 130rpx;
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;
-			// position: relative;
+			position: relative;
 			.gets{
 				color: #ccc !important;
 			}
 		    .get{
 				position: absolute;
 				right: 5%;
-				top: 42.5%;
+				top: 25%;
 				font-size: 16px;
 				font-family: PingFang SC-Medium, PingFang SC;
 				font-weight: 500;
@@ -379,7 +379,7 @@
 			.eye{
 				position: absolute;
 				right: 5%;
-				top: 55%;
+				top: 6%;
 				width: 48px;
 				height: 48px !important;
 			}
