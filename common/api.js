@@ -142,7 +142,7 @@ export const api = {
 	
 	//玩家付款
 	userPay(params){
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/${params.wispOrderId}/confirmPayment`
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/confirmPayment`
 		return request("POST",url,params)
 	},
 	

@@ -12,24 +12,6 @@
 		</view>
 		<view class="line"></view>
 		<view class="line lineT"></view>
-		<!-- <view class="box">
-			<view class="item" v-for="(item,index) in list" :key="index" @click="opeation(index)">
-				<view class="itemL">
-					<image class="tapI" :src="item.icon" mode="widthFix"></image>
-					<text class="title">{{item.title}}</text>
-				</view>
-				<view class="itemR"><image class="moreImg" src="../../static/service/more.png" mode="widthFix"></image></view>
-			</view>
-		</view>
-		<view class="elseBox">
-			<view class="item" @click="logout">
-				<view class="itemL">
-					<image class="tapI" src="../../static/service/out.png" mode="widthFix"></image>
-					<text class="title">退出登錄</text>
-				</view>
-				<view class="itemR"><image class="moreImg" src="../../static/service/more.png" mode="widthFix"></image></view>
-			</view>
-		</view>
 		<!-- 邀請組件 -->
 		<invite v-if="isShowInvite" :data="forChild" @close="getValueFromChild"></invite>
 	</view>

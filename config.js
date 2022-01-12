@@ -9,6 +9,7 @@ const iconList = cache.get("iconList")
 const isDev = true
 // #ifdef APP-PLUS
 export const globalConfig = isDev?{
+	src:'https://www.metagugu.net',
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
 	formHost: "http://api.dev.smallsaas.cn:8087/form",
@@ -30,6 +31,7 @@ export const globalConfig = isDev?{
 // #endif
 // #ifdef H5
 export const globalConfig = isDev?{
+	src:'http://api.dev.smallsaas.cn:8087',
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
 	formHost: "/form",

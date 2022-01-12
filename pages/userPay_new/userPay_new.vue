@@ -9,16 +9,31 @@
 		<view class="boxC">
 			<view class="top">
 				<view class="topL">
-					<text class="L">移動支付</text>
+					<text class="L">微信支付</text>
 				</view>
 				<view class="topR" @click="selectTypeOne" v-if="!fistType"></view>
 				<view class="topY" v-if="fistType"></view>
 			</view>
 			<view class="bottom">
-				<text class="z">支付賬号：{{sellerInfo.wechatAccount}}</text>
+				<text class="z">微信賬号：{{sellerInfo.wechatAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
 				<image :src="sellerInfo.wechatQrCodePhotoUrl" mode="widthFix" class="img"></image>
-				<text class="zz">支付二維碼</text>
+				<text class="zz">微信二維碼</text>
+			</view>
+		</view>
+		<view class="boxDD">
+			<view class="top">
+				<view class="topL">
+					<text class="L">支付宝支付</text>
+				</view>
+				<view class="topR" @click="selectTypeThree" v-if="!thirdType"></view>
+				<view class="topY" v-if="thirdType"></view>
+			</view>
+			<view class="bottom">
+				<text class="z">支付宝賬号：{{sellerInfo.alipayAccount}}</text>
+				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
+				<image :src="sellerInfo.alipayQrCodePhotoUrl" mode="widthFix" class="img"></image>
+				<text class="zz">支付宝二維碼</text>
 			</view>
 		</view>
 		<view class="boxD">
@@ -42,7 +57,8 @@
 				<view class="imgBox">
 					<view class="success" v-for="(item,index) in list" :key="index">
 						<image :src="item" mode="widthFix" class="upload" @click="check(item)"></image>
-						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg" @click="deleteImage(index)" v-if="!showBigImg"></image>
+						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg"
+							@click="deleteImage(index)" v-if="!showBigImg"></image>
 					</view>
 					<view class="ifsuccess" @click="uploadImage">
 						<image src="../../static/spirit/addImg.png" mode="widthFix" class="upload"></image>
@@ -67,7 +83,7 @@
 <script>
 	export default {
 		onLoad(e) {
-			console.log("ID",e)
+			console.log("ID", e)
 			this.iid = e.data
 			this.getOrder(this.iid)
 		},
@@ -75,41 +91,42 @@
 			return {
 				fistType: false,
 				secondType: false,
+				thirdType:false,
 
 				list: [],
 				showBigImg: false,
 				bigImgSrc: '',
-				
-				iid:0,
-				sellerInfo:{}
+
+				iid: 0,
+				sellerInfo: {}
 			}
 		},
 		methods: {
 			// 删除圖片
-			deleteImage(i){
-				this.list.splice(i,1)
+			deleteImage(i) {
+				this.list.splice(i, 1)
 				this.$forceUpdate()
 			},
-			getImage(item){
-				console.log("圖片路徑",item)
-				if(item.indexOf('http'||'https')===0){
+			getImage(item) {
+				console.log("圖片路徑", item)
+				if (item.indexOf('http' || 'https') === 0) {
 					return item
-				}else{
+				} else {
 					return this.$config.endpoint + item
 				}
 			},
 			// 上傳圖片
-			uploadImage(){
+			uploadImage() {
 				let that = this
 				uni.chooseImage({
-					count:9,
-					success:async function(path) {
+					count: 9,
+					success: async function(path) {
 						let files = path.tempFiles
-						for(var i=0;i<files.length;i++){
+						for (var i = 0; i < files.length; i++) {
 							let file = files[i]
-							let webPath = await that.$upload("/api/u/fs/uploadfile",file.path)
+							let webPath = await that.$upload("/api/u/fs/uploadfile", file.path)
 							let fileList = that.list
-							fileList.push(that.$config.endpoint+webPath)
+							fileList.push(that.$config.endpoint + webPath)
 							// console.log(fileList)
 						}
 					}
@@ -120,57 +137,119 @@
 					wispOrderId: id
 				}
 				const res = await this.$api.getOrderInfo(data)
-				console.log("RES",res)
-				if(res.code == 200){
-					if(res.data.seller.mobilePhone == null){
+				console.log("RES", res)
+				if (res.code == 200) {
+					if (res.data.seller.mobilePhone == null) {
 						this.sellerInfo.mobilePhone = ''
-					}else{
+					} else {
 						this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
 					}
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
 					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-					if(res.data.seller.wechatQrCodePhotoUrl.indexOf('[')===0 && res.data.seller.wechatQrCodePhotoUrl!==null){
+					if (res.data.seller.wechatQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
+						.wechatQrCodePhotoUrl !== null) {
 						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
 						this.sellerInfo.wechatQrCodePhotoUrl = url
-					}else{
+					} else {
 						this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
+					}
+					this.sellerInfo.alipayAccount = res.data.seller.alipayAccount
+					if (res.data.seller.alipayQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
+						.alipayQrCodePhotoUrl !== null) {
+						let url = JSON.parse(res.data.seller.alipayQrCodePhotoUrl)[0]
+						this.sellerInfo.alipayQrCodePhotoUrl = url
+					} else {
+						this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
 					}
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					uni.showToast({
-						title:'獲取信息成功',
-						icon:'success',
-						duration:1000
+						title: '獲取信息成功',
+						icon: 'success',
+						duration: 1000
 					})
-					console.log(this.sellerInfo,123)
-				}else{
+					console.log(this.sellerInfo, 123)
+				} else {
 					uni.showToast({
-						title:'獲取信息失敗',
-						icon:'error',
-						duration:1000
+						title: '獲取信息失敗',
+						icon: 'error',
+						duration: 1000
 					})
 					return;
 				}
 				await this.$forceUpdate()
 			},
-			// async getOrderInfo() {
-			// 	const res = await this.$api.getSpiritOrderInfo()
-			// 	console.log(res, 123)
-			// },
+
 			async pay() {
 				const data = {
-					wispOrderId: this.iid
+					wispOrderId: this.iid,
+					pictureUrl: this.bigImgSrc,
+					paymentMethod: "",
+					// BANK_CARD_PAYMENT,
+					// ALIPAY_PAYMENT,
+					// WECHAT_PAYMENT
+				}
+				console.log(this.fistType,this.secondType,this.thirdType)
+				if(this.fistType==false && this.secondType==false && this.thirdType==false){
+					uni.showToast({
+						title:'请勾选付款方式',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+				if(this.fistType==true && this.secondType==false && this.thirdType==false){
+					data.paymentMethod = 'WECHAT_PAYMENT'
+				}
+				if(this.fistType==false && this.secondType==true && this.thirdType==false){
+					data.paymentMethod = 'ALIPAY_PAYMENT'
+				}
+				if(this.fistType==false && this.secondType==false && this.thirdType==true){
+					data.paymentMethod = 'BANK_CARD_PAYMENT'
+				}
+				if(this.list.length == 0){
+					uni.showToast({
+						title:'请上传付款凭证',
+						icon:'error',
+						duration:1000
+					})
+					return
 				}
 				const res = await this.$api.userPay(data)
 				console.log(res)
+				if (res.code == 200) {
+					uni.showToast({
+						title: '付款成功',
+						icon: 'success',
+						duration: 1000
+					})
+					setTimeout(() => {
+						uni.navigateBack({
+							delta: 1
+						})
+					}, 1000)
+				} else {
+					uni.showToast({
+						title: res.message,
+						icon: 'error',
+						duration: 1000
+					})
+				}
 			},
 			selectTypeOne() {
 				this.fistType = !this.fistType
 				this.secondType = false
+				this.thirdType = false
 			},
 			selectTypeTwp() {
 				this.secondType = !this.secondType
 				this.fistType = false
+				this.thirdType = false
+			},
+			selectTypeThree() {
+				this.thirdType = !this.thirdType
+				this.fistType = false
+				this.secondType = false
 			},
 			check(url) {
 				this.bigImgSrc = url
@@ -187,17 +266,19 @@
 	.payBox {
 		width: 100%;
 		height: 100%;
-	.motai-mask{
-		position: fixed;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		background-color: #000;
-		opacity: .8;
-		z-index: 5000;
-	}
-	.motai {
+
+		.motai-mask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: #000;
+			opacity: .8;
+			z-index: 5000;
+		}
+
+		.motai {
 			// width: 340px;
 			// height: 570px;
 			position: fixed;
@@ -210,6 +291,7 @@
 			justify-content: center;
 			width: 100%;
 			z-index: 5001;
+
 			.upload {
 				// width: 340px;
 				// height: 570px !important;
@@ -377,6 +459,84 @@
 
 				.zz {
 					top: 40px;
+				}
+			}
+		}
+
+		.boxDD {
+			width: 343px;
+			height: 239px;
+			background: #11181E;
+			border-radius: 8px 8px 8px 8px;
+			opacity: 1;
+			margin: -12px auto 24px auto;
+			.top {
+				width: 100%;
+				height: 56px;
+				border-bottom: 1px solid #1B2228;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+
+				.topL {
+					width: 200px;
+					height: 24px;
+					font-size: 16px;
+					font-family: PingFang SC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #B9BBBD;
+					margin-left: 10px;
+				}
+
+				.topR {
+					width: 16px;
+					height: 16px;
+					margin-right: 10px;
+					border: 1px solid #C4C4C4;
+				}
+
+				.topY {
+					width: 16px;
+					height: 16px;
+					margin-right: 10px;
+					background: url(../../static/login/yes.png) no-repeat;
+					background-size: 100% 100%;
+					background-position: center;
+				}
+			}
+
+			.bottom {
+				width: 100%;
+				height: 182px;
+				position: relative;
+
+				.z {
+					position: absolute;
+					top: 8px;
+					left: 16px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #B9BBBD;
+				}
+
+				.img {
+					width: 100px;
+					height: 100px !important;
+					position: absolute;
+					top: 40px;
+					left: 122px;
+				}
+
+				.zz {
+					position: absolute;
+					top: 142px;
+					left: 142px;
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #B9BBBD;
 				}
 			}
 		}

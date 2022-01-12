@@ -2,18 +2,22 @@
 	<view class="invite-container">
 		<view class="invite-mask"></view>
 		<view class="invite">
+			<!-- <view class="cs">
+				<canvas canvas-id="codeimg" style="width: 200px;height: 200px;border: 1px solid red;"></canvas>
+			</view> -->
 			<view class="boxT">
 				<text class="info infoO">我的邀請碼爲</text>
 				<view class="border-invite">
 					<text class="info infoT">{{data.invitationCode}}</text>
 				</view>
-				<text class="info infoTH" @click="a">複制邀請碼</text>
+				<text class="info infoTH" @click="copyText">複制邀請碼</text>
 			</view>
 			<view class="boxB">
 				<view class="boxB-round1"></view>
 				<view class="boxB-round2"></view>
 				<view class="QRcode-container">
-					<image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="ewm"></image>
+					<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="ewm"></image> -->
+					<canvas canvas-id="codeimg" style="width: 150px;height: 150px;"></canvas>
 				</view>
 				<text class="save"> 掃我加入 metagugu 的世界 </text>
 			</view>
@@ -26,18 +30,32 @@
 </template>
 
 <script>
+	const qrCode = require('../../utils/weapp-qrcode')
 	export default {
 		props: {
 			data: Object,
 		},
+		mounted() {
+			console.log('this',this.$config)
+			console.log('asfafasfsafmounted')
+			this.shengcheng()
+		},
 		methods: {
+			shengcheng(){
+				new qrCode('codeimg',{
+					text:`${this.$config.src}/#/pages/regist_new/regist_new?inviteCode=` + this.data.invitationCode,
+					width:150,
+					height:150,
+					colorDark:"#333333"
+					// correctLevel:qrCode.correctLevel.H
+				})
+			},
 			closeMast() {
 				this.$emit('close', false)
 			},
-			a() {
-				console.log('aaaaaaa')
+			copyText() {
 				// #ifdef H5
-				this.$copyText('aaaaaa').then(
+				this.$copyText(this.data.invitationCode).then(
 					res => {
 						uni.showToast({
 							title: '複制成功'
@@ -47,7 +65,7 @@
 				// #endif
 				// #ifndef H5
 				uni.setClipboardData({
-					data: 'aaaaaa',
+					data: this.data.invitationCode,
 					success: () => {
 						uni.showToast({
 							title: '複制成功'
@@ -149,7 +167,12 @@
 			position: relative;
 			.QRcode-container{
 				background-color: #FFFFFF;
-				padding: 20rpx;
+				// padding: 20rpx;
+				width: 150px;
+				height: 150px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 			.ewm {
 				width: 300rpx;

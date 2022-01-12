@@ -57,6 +57,12 @@
 
 <script>
 	export default {
+		onLoad(e) {
+			if(e.inviteCode){
+				this.invitationCode = e.inviteCode
+			}
+			console.log('RESSSSS',e)
+		},
 		data() {
 			return {
 				isShowYZM:true,
@@ -182,51 +188,54 @@
 				this.isFocus = name
 			},
 			async registAndLogin() {
-				console.log(this.data)
-				if (this.isReadRegistInfo == false) {
-					uni.showToast({
-						icon: 'error',
-						title: '請勾選用戶注冊協議',
-						duration: 1000
-					})
-					return;
-				}
-				const res = await this.$api.regist(this.data)
-				console.log(res)
-				if (res.code == 200) {
-					const loginUser = {
-						account:this.data.phone?this.data.phone:this.data.email,
-						password:this.data.loginPassword
-					}
-					console.log(loginUser)
-					let resUser = await this.$api.login(loginUser)
-					console.log(resUser)
-					if (resUser.code == 200) {
-						uni.showToast({
-							icon: 'success',
-							title: '注冊成功',
-							duration: 1000
-						})
-						setTimeout(()=>{
-							this.$cache.set(this.$config.tokenStorageKey, resUser.data.accessToken)
-							uni.navigateTo({
-								url: '/pages/home/homePage'
-							})
-						},1000)
-					}else{
-						uni.showToast({
-							icon: 'error',
-							title: '登錄失敗',
-							duration: 1000
-						})
-					}
-				}else{
-					uni.showToast({
-						icon: 'error',
-						title: '注冊失敗',
-						duration: 1000
-					})
-				}
+				var reg = /^[a-zA-Z]/; 
+				var v = reg.test(this.data.loginPassword);     alert(v);
+				// console.log(this.data)
+				// if (this.isReadRegistInfo == false) {
+				// 	uni.showToast({
+				// 		icon: 'error',
+				// 		title: '請勾選用戶注冊協議',
+				// 		duration: 1000
+				// 	})
+				// 	return;
+				// }
+				// // if(this.data.loginPassword)
+				// const res = await this.$api.regist(this.data)
+				// console.log(res)
+				// if (res.code == 200) {
+				// 	const loginUser = {
+				// 		account:this.data.phone?this.data.phone:this.data.email,
+				// 		password:this.data.loginPassword
+				// 	}
+				// 	console.log(loginUser)
+				// 	let resUser = await this.$api.login(loginUser)
+				// 	console.log(resUser)
+				// 	if (resUser.code == 200) {
+				// 		uni.showToast({
+				// 			icon: 'success',
+				// 			title: '注冊成功',
+				// 			duration: 1000
+				// 		})
+				// 		setTimeout(()=>{
+				// 			this.$cache.set(this.$config.tokenStorageKey, resUser.data.accessToken)
+				// 			uni.navigateTo({
+				// 				url: '/pages/home/homePage'
+				// 			})
+				// 		},1000)
+				// 	}else{
+				// 		uni.showToast({
+				// 			icon: 'error',
+				// 			title: '登錄失敗',
+				// 			duration: 1000
+				// 		})
+				// 	}
+				// }else{
+				// 	uni.showToast({
+				// 		icon: 'error',
+				// 		title: '注冊失敗',
+				// 		duration: 1000
+				// 	})
+				// }
 			}
 		}
 	}

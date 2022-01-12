@@ -107,7 +107,8 @@
 		width: 100%;
 		height: 100%;
 		background: #050E17;
-		padding-bottom: 20rpx;
+		padding-top: 20rpx;
+		// padding-bottom: 20rpx;
 		.item{
 			margin: 0rpx auto;
 			width: 686rpx;
