@@ -100,6 +100,22 @@ Content-Type: application/json
                         "readonly": true,
                         "__vModel__": "name"
                     },
+                    {
+                        "__config__": {
+                        "label": "会员等级:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "grade"
+                    },
                      {
                         "__config__": {
                         "label": "主手机号码:",
@@ -359,7 +375,7 @@ Content-Type: application/json
                     },
                     {
                         "__config__": {
-                        "label": "银行卡号:",
+                        "label": "银行卡号1:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -372,6 +388,22 @@ Content-Type: application/json
                         },
                         "readonly": true,
                         "__vModel__": "bankAccountNumber"
+                    },
+                     {
+                        "__config__": {
+                        "label": "银行卡号2:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "bank_account_number2"
                     },
                      {
                         "__config__": {

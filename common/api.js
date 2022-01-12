@@ -4,6 +4,26 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
+	//用户注册协议
+	getUserRegistInfo(params){
+		const url = `${globalConfig.endpoint}/api/pub/cms/term/config/type=MEMBER_RULE`
+		return request('GET',url,params)
+	},
+	//确认收款
+	getRegistInfo(params){
+		const url = `${globalConfig.endpoint}/api/u/wisp/selling`
+		return request('GET',url,params)
+	},
+	//卖家确认收款信息
+	getRegistInfo(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/${params.wispOrderId}/confirmReceived`
+		return request('POST',url,params)
+	},
+	//提交订单申述
+	orderCpmplain(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complain`
+		return request('POST',url,params)
+	},
 	// 後台字段配置
 	getFieldConfig(params){
 		const url = `${globalConfig.endpoint}/api/u/config/fields`

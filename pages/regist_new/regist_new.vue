@@ -1,6 +1,14 @@
 <template>
 	<view class="registBox">
 		<view class="box">
+			<!-- 模态框 -->
+			<view class="motai" v-if="isShowRegistInfo">
+				<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
+				<view class="info"><text class="infoTwo">請勾選用戶注冊協議</text>
+				</view>
+				<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
+						@click="no">拒絕</button></view>
+			</view>
 			<view class="registText">
 				<text class="text">會員注冊</text>
 			</view>
@@ -8,21 +16,25 @@
 				<text class="text">昵称</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="请输入昵称" class="inputBoxC" />
+				<input type="text" placeholder="请输入昵称" class="inputBoxC" v-model="data.name" @focus="focus(1)"
+					@blur="blur(1)" :class="{focus:isAddArticleA}" />
 			</view>
 			<view class="labelTetx">
 				<text class="text">手机号码</text>
 			</view>
 			<view class="inputBox">
-				<input type="number" placeholder="请输入手机号码" class="inputBoxC" />
+				<input type="number" placeholder="请输入手机号码" class="inputBoxC" v-model="data.phone" @focus="focus(2)"
+					@blur="blur(2)" :class="{focus:isAddArticleB}" />
 			</view>
 			<view class="labelTetx">
 				<text class="text">验证码</text>
 			</view>
 			<view class="inputBox">
 				<view class="HC">
-					<input type="number" placeholder="请输入验证码" class="inputBoxC" />
+					<input type="number" placeholder="请输入验证码" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
+						@blur="blur(3)" :class="{focus:isAddArticleC}" />
 					<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
+					<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>
 				</view>
 			</view>
 			<view class="labelTetx">
@@ -30,7 +42,8 @@
 			</view>
 			<view class="inputBox">
 				<view class="HCC">
-					<input type="text" placeholder="请输入登录密码" class="inputBoxC" />
+					<input type="text" placeholder="请输入登录密码" class="inputBoxC" v-model="data.loginPassword"
+						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" />
 					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 				</view>
 			</view>
@@ -38,32 +51,43 @@
 				<text class="text">邮箱(选填)</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="请输入邮箱" class="inputBoxC" />
+				<input type="text" placeholder="请输入邮箱" class="inputBoxC" v-model="data.email" @focus="focus(5)"
+					@blur="blur(5)" :class="{focus:isAddArticleE}" />
 			</view>
 			<view class="labelTetx">
 				<text class="text">邀请码</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="请输入邀请码" class="inputBoxC" />
+				<input type="text" placeholder="请输入邀请码" class="inputBoxC" v-model="data.invitationCode"
+					@focus="focus(6)" @blur="blur(6)" :class="{focus:isAddArticleF}" />
 			</view>
 			<view class="INFO">
 				<view class="INFOc">
-					<view class="circle"></view>
-					<image class="rightImg" src="../../static/login/yes.png" mode="widthFix"></image>
+					<view class="circle" @click="readRegistMessage" v-if="!isReadRegistInfo"></view>
+					<image v-if="isReadRegistInfo" class="rightImg" src="../../static/login/yes.png" mode="widthFix"
+						@click="readRegistMessage"></image>
 					<text class="infoccc">注册/登录即代表您已阅读并同意</text>
-					<text class="infoblue">《用户注册协议》</text>
+					<text class="infoblue" @click="lookRegist">《用户注册协议》</text>
 				</view>
 			</view>
 			<view class="btnBox">
-				<pretty-button class="btn" text="注册并登录"></pretty-button>
+				<pretty-button class="btn" text="注册并登录" @click="registAndLogin"></pretty-button>
 			</view>
 			<view class="LAST">
 				<view class="LASTc">
 					<text class="TEXT">已有账号？</text>
-					<text class="TEXT TEXTB">去登录</text>
+					<text class="TEXT TEXTB" @click="goLogin">去登录</text>
 				</view>
 			</view>
 		</view>
+
+		<!-- 	<view class="registInfoTex">
+			<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
+			<view class="info"><text class="infoTwo">請勾選用戶注冊協議</text>
+			</view>
+			<view class="btnGroup"><button class="btn agree" @click="yes">同意</button><button class="btn noAgree"
+					@click="no">拒絕</button></view>
+		</view> -->
 		<!-- <view class="box newBox">
 			<view class="A">會員注冊</view>
 			<view class="B">昵稱</view>
@@ -143,7 +167,7 @@
 					yzm: '',
 					loginPassword: '',
 					email: '',
-					invitationCode: '',
+					invitationCode: 'PNywB5',
 					// PNywB5
 				},
 				isFocus: '',
@@ -175,6 +199,7 @@
 			},
 
 			focus(id) {
+				console.log(id)
 				if (id == 1) {
 					this.isAddArticleA = true
 					return
@@ -236,8 +261,17 @@
 					url: '/pages/login_new/login_new'
 				})
 			},
-			lookRegist() {
+			async lookRegist() {
+				console.log('AAAA')
 				this.isShowRegistInfo = true
+				// const res = await this.$api.getUserRegistInfo()
+				uni.request({
+					url:'http://localhost:8080/api/pub/cms/term/config?type=MEMBER_RULE',
+					success: (res) => {
+						console.log(res)
+					}
+				})
+				// console.log('Re',res)
 			},
 			no() {
 				this.isShowRegistInfo = false
@@ -251,55 +285,52 @@
 				this.isFocus = name
 			},
 			async registAndLogin() {
-				var reg = /^[a-zA-Z]/;
-				var v = reg.test(this.data.loginPassword);
-				alert(v);
-				// console.log(this.data)
-				// if (this.isReadRegistInfo == false) {
-				// 	uni.showToast({
-				// 		icon: 'error',
-				// 		title: '請勾選用戶注冊協議',
-				// 		duration: 1000
-				// 	})
-				// 	return;
-				// }
-				// // if(this.data.loginPassword)
-				// const res = await this.$api.regist(this.data)
-				// console.log(res)
-				// if (res.code == 200) {
-				// 	const loginUser = {
-				// 		account:this.data.phone?this.data.phone:this.data.email,
-				// 		password:this.data.loginPassword
-				// 	}
-				// 	console.log(loginUser)
-				// 	let resUser = await this.$api.login(loginUser)
-				// 	console.log(resUser)
-				// 	if (resUser.code == 200) {
-				// 		uni.showToast({
-				// 			icon: 'success',
-				// 			title: '注冊成功',
-				// 			duration: 1000
-				// 		})
-				// 		setTimeout(()=>{
-				// 			this.$cache.set(this.$config.tokenStorageKey, resUser.data.accessToken)
-				// 			uni.navigateTo({
-				// 				url: '/pages/home/homePage'
-				// 			})
-				// 		},1000)
-				// 	}else{
-				// 		uni.showToast({
-				// 			icon: 'error',
-				// 			title: '登錄失敗',
-				// 			duration: 1000
-				// 		})
-				// 	}
-				// }else{
-				// 	uni.showToast({
-				// 		icon: 'error',
-				// 		title: '注冊失敗',
-				// 		duration: 1000
-				// 	})
-				// }
+				console.log(this.data)
+				if (this.isReadRegistInfo == false) {
+					uni.showToast({
+						icon: 'error',
+						title: '請勾選用戶注冊協議',
+						duration: 1000
+					})
+					return;
+				}
+				// if(this.data.loginPassword)
+				const res = await this.$api.regist(this.data)
+				console.log(res)
+				if (res.code == 200) {
+					const loginUser = {
+						account: this.data.phone ? this.data.phone : this.data.email,
+						password: this.data.loginPassword
+					}
+					console.log(loginUser)
+					let resUser = await this.$api.login(loginUser)
+					console.log(resUser)
+					if (resUser.code == 200) {
+						uni.showToast({
+							icon: 'success',
+							title: '注冊成功',
+							duration: 1000
+						})
+						setTimeout(() => {
+							this.$cache.set(this.$config.tokenStorageKey, resUser.data.accessToken)
+							uni.navigateTo({
+								url: '/pages/home/homePage'
+							})
+						}, 1000)
+					} else {
+						uni.showToast({
+							icon: 'error',
+							title: '登錄失敗',
+							duration: 1000
+						})
+					}
+				} else {
+					uni.showToast({
+						icon: 'error',
+						title: '注冊失敗',
+						duration: 1000
+					})
+				}
 			}
 		}
 	}
@@ -309,38 +340,122 @@
 	.box {
 		width: 100%;
 		height: 100%;
-		
-		.LAST{
-			width: 100%;
-			height:50rpx;
-			.LASTc{
+
+		.motai {
+			width: 90%;
+			height: 900rpx;
+			position: fixed;
+			top: 200rpx;
+			margin-left: 5%;
+			// background-color: rgb(24, 38, 65);
+			border-bottom: none;
+			z-index: 99999999;
+			
+			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
+			// box-shadow: inset 1px 1px 0px 1px rgba(255,255,255,0.75), 0px 4px 16px 1px rgba(0,0,0,0.25);
+			border-radius: 8px 8px 8px 8px;
+			opacity: 1;
+			// margin-bottom: 10px;
+			border-top: 2rpx solid rgb(50, 71, 137);
+			border-left: 2rpx solid rgb(50, 71, 137);
+
+			.title {
 				width: 100%;
-				height:50rpx;
+				height: 80rpx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid rgb(123, 130, 151);
+				border-bottom: none;
+				border-right: none;
+				border-left: none;
+
+				.infoRegist {
+					color: #FFFFFF;
+					font-size: 35rpx;
+					font-weight: bold;
+				}
+			}
+
+			.info {
+				width: 95%;
+				height: 650rpx;
+				display: flex;
+				justify-content: center;
+				overflow: scroll;
+
+				.infoTwo {
+					color: #FFFFFF;
+					padding-right: 20rpx;
+				}
+			}
+
+			.btnGroup {
+				width: 100%;
+				height: 155rpx;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+
+				.btn {
+					width: 220rpx;
+					height: 65rpx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: #FFFFFF;
+				}
+
+				.agree {
+					background: linear-gradient(to right, rgb(135, 57, 245) 0%, rgb(70, 104, 253), rgb(25, 137, 253));
+				}
+
+				.noAgree {
+					border: 1px solid rgb(123, 130, 151);
+					background: rgb(29, 41, 77);
+				}
+			}
+		}
+
+		.focus {
+			border: 1px solid !important;
+			border-image: linear-gradient(to right, rgb(135, 57, 245) 0%, rgb(70, 104, 253), rgb(25, 137, 253)) 10 !important;
+		}
+
+		.LAST {
+			width: 100%;
+			height: 50rpx;
+
+			.LASTc {
+				width: 100%;
+				height: 50rpx;
 				display: flex;
 				align-items: center;
 				justify-content: flex-end;
-				
-				.TEXT{
+
+				.TEXT {
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
 					color: #ffffff;
 				}
-				
-				.TEXTB{
+
+				.TEXTB {
 					color: #33A7FF !important;
 					margin-right: 5%;
 				}
 			}
 		}
-		
-		.btnBox{
+
+		.btnBox {
 			width: 100%;
 			height: 150rpx;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			.btn{
+
+			.btn {
 				width: 90%;
 				height: 112rpx;
 			}
@@ -362,11 +477,14 @@
 					width: 20px;
 					height: 20px;
 					background: rgb(36, 42, 51);
+					margin-right: 10rpx;
 				}
 
 				.rightImg {
+					margin-left: 30rpx;
 					width: 20px;
 					height: 20px !important;
+					margin-right: 10rpx;
 				}
 
 				.infoccc {
@@ -375,8 +493,8 @@
 					font-weight: 400;
 					color: #ffffff;
 				}
-				
-				.infoblue{
+
+				.infoblue {
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
@@ -456,6 +574,10 @@
 					font-family: PingFang SC-Medium, PingFang SC;
 					font-weight: 500;
 					color: #33A7FF;
+				}
+
+				.gets {
+					color: rgb(88, 94, 100) !important;
 				}
 			}
 

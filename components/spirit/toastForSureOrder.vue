@@ -18,15 +18,36 @@
 		props:{
 			data:{
 				type:String
+			},
+			orderId:{
+				type:Number
 			}
 		},
 		methods:{
 			cencel(){
 				this.$emit('cancelToast',false)
+			},
+			async sure(){
+				let data = {
+					wispOrderId:this.orderId
+				}
+				const res = await this.$api.getRegistInfo(data)
+				if(res.code == 200){
+					uni.showToast({
+						title:'确认收款成功',
+						icon:"success",
+						duration:1000
+					})
+					this.$emit('cancelToast',false)
+					uni.navigateBack({
+						delta:1
+					})
+				}
 			}
 		},
 		created() {
 			console.log(this.data,123132123132)
+			console.log('resadsafasf',this.orderId,123132123132)
 		}
 	}
 </script>

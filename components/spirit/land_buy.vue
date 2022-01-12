@@ -134,7 +134,7 @@
 <style lang="less">
 	.spiritBuy {
 		width: 100%;
-		height: 80% !important;
+		height: 60% !important;
 		position: fixed;
 		bottom: -10rpx;
 		z-index: 99999999;

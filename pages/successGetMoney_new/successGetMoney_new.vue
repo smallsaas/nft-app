@@ -2,12 +2,12 @@
 	<view class="success">
 		<view class="box">
 			<view class="top">
-				<text class="o">買家聯系電話：15845484521</text>
+				<text class="o">買家聯系電話：{{buyInfo.buyerPhone}}</text>
 			</view>
 			<view class="body">
 				<text class="o">買家付款憑證</text>
 				<view class="b">
-					<image src="../../static/spirit/newBALL.png" mode="widthFix" class="img" @click="showBImg"></image>
+					<image :src="buyInfo.pictureUrl" mode="widthFix" class="img" @click="showBImg"></image>
 				</view>
 			</view>
 			<view class="bottom">
@@ -24,7 +24,7 @@
 		</view>
 
 		<!-- 交互組件 -->
-		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
+		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast" :orderId="this.iid"></toast>
 	</view>
 </template>
 
@@ -34,7 +34,8 @@
 		onLoad(e) {
 			console.log("ID", e)
 			this.iid = e.data
-			this.getOrder(this.iid)
+			console.log(this.iid)
+			this.getOrder()
 		},
 		components: {
 			toast
@@ -46,55 +47,19 @@
 				iid: 0,
 				isShowToast: false,
 				toastMsg: '',
+				buyInfo:{}
 			}
 		},
 		methods: {
 			
-			async getOrder(id) {
-				const data = {
-					wispOrderId: id
-				}
-				const res = await this.$api.getOrderInfo(data)
+			async getOrder() {
+				const res = await this.$api.getRegistInfo()
 				console.log("RES", res)
-				// if (res.code == 200) {
-				// 	if (res.data.seller.mobilePhone == null) {
-				// 		this.sellerInfo.mobilePhone = ''
-				// 	} else {
-				// 		this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
-				// 	}
-				// 	this.sellerInfo.transactionAmount = res.data.transactionAmount
-				// 	this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-				// 	if (res.data.seller.wechatQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
-				// 		.wechatQrCodePhotoUrl !== null) {
-				// 		let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
-				// 		this.sellerInfo.wechatQrCodePhotoUrl = url
-				// 	} else {
-				// 		this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
-				// 	}
-				// 	this.sellerInfo.alipayAccount = res.data.seller.alipayAccount
-				// 	if (res.data.seller.alipayQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
-				// 		.alipayQrCodePhotoUrl !== null) {
-				// 		let url = JSON.parse(res.data.seller.alipayQrCodePhotoUrl)[0]
-				// 		this.sellerInfo.alipayQrCodePhotoUrl = url
-				// 	} else {
-				// 		this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
-				// 	}
-				// 	this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
-				// 	this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
-				// 	uni.showToast({
-				// 		title: '獲取信息成功',
-				// 		icon: 'success',
-				// 		duration: 1000
-				// 	})
-				// 	console.log(this.sellerInfo, 123)
-				// } else {
-				// 	uni.showToast({
-				// 		title: '獲取信息失敗',
-				// 		icon: 'error',
-				// 		duration: 1000
-				// 	})
-				// 	return;
-				// }
+				if(res.code == 200){
+					this.buyInfo.buyerPhone = res.wispOrder.buyerPhone
+					this.buyInfo.pictureUrl = res.wispOrder.pictureUrl
+
+				}
 				await this.$forceUpdate()
 			},
 		
@@ -118,7 +83,7 @@
 			},
 			goTo(){
 				uni.navigateTo({
-					url:'/pages/representations_new/representations_new'
+					url:'/pages/representations_new/representations_new?orderId=' + this.iid 
 				})
 			}
 		}

@@ -8,9 +8,9 @@
 		</view>
 		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
-			<textarea placeholder="添加其他申述原因" class="text"></textarea>
+			<textarea placeholder="添加其他申述原因" class="text" v-model="moreValue"></textarea>
 		</view>
-		<view class="btnBox"><button class="btn">提交申述</button></view>
+		<view class="btnBox"><button class="btn" @click="shenshu">提交申述</button></view>
 		<view class="fix" v-if="isShow">
 			<view class="t">
 				<text class="info" @click="cancel">取消</text>
@@ -29,12 +29,21 @@
 
 <script>
 	export default {
+		props:{
+		},
+		onLoad(e) {
+			console.log('RES',parseInt(e.orderId))
+			this.orderIdS = parseInt(e.orderId)
+			console.log('惨过了参数',this.orderIdS)
+		},
 		data() {
 			return {
 				isShow: false,
 				columns: ['對方沒付款','情況不符合','其他'],
 				inx:-1,
-				value:''
+				value:'',
+				moreValue:'',
+				orderIdS:0
 			}
 		},
 		methods: {
@@ -51,6 +60,16 @@
 			sure(){
 				this.value = this.columns[this.inx]
 				this.isShow = false
+			},
+			async shenshu(){
+				let data = {
+					relationOrderId:this.orderIdS,
+					title:this.value,
+					content:this.moreValue,
+					credentialLink: "凭证链接"
+				}
+				const res = await this.$api.orderCpmplain(data)
+				console.log('RES',res)
 			}
 		}
 	}
