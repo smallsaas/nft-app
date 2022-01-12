@@ -363,14 +363,14 @@
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;
-			position: relative;
+			// position: relative;
 			.gets{
 				color: #ccc !important;
 			}
 		    .get{
 				position: absolute;
 				right: 5%;
-				top: 25%;
+				top: 41%;
 				font-size: 16px;
 				font-family: PingFang SC-Medium, PingFang SC;
 				font-weight: 500;
@@ -379,7 +379,7 @@
 			.eye{
 				position: absolute;
 				right: 5%;
-				top: 6%;
+				top: 53.5%;
 				width: 48px;
 				height: 48px !important;
 			}
