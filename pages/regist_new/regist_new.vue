@@ -58,10 +58,9 @@
 <script>
 	export default {
 		onLoad(e) {
-			if(e.inviteCode){
-				this.invitationCode = e.inviteCode
-			}
+			this.invitationCode = e.inviteCode
 			console.log('RESSSSS',e)
+			console.log('RESSSSSaaaaaaaaaaaaaaaaaaaaaaa',e.inviteCode)
 		},
 		data() {
 			return {
@@ -364,14 +363,14 @@
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;
-			position: relative;
+			// position: relative;
 			.gets{
 				color: #ccc !important;
 			}
 		    .get{
 				position: absolute;
 				right: 5%;
-				top: 25%;
+				top: 42.5%;
 				font-size: 16px;
 				font-family: PingFang SC-Medium, PingFang SC;
 				font-weight: 500;
@@ -380,7 +379,7 @@
 			.eye{
 				position: absolute;
 				right: 5%;
-				top: 5%;
+				top: 55%;
 				width: 48px;
 				height: 48px !important;
 			}
@@ -394,6 +393,7 @@
 				border-radius: 8px 8px 8px 8px;
 				opacity: 1;
 				border: 1px solid #363F4D;
+				position: relative;
 			}
 		}
 	}
