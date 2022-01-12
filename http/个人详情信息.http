@@ -403,7 +403,7 @@ Content-Type: application/json
                         "renderKey": 1621415432107
                         },
                         "readonly": true,
-                        "__vModel__": "bank_account_number2"
+                        "__vModel__": "bankAccountNumber2"
                     },
                      {
                         "__config__": {
