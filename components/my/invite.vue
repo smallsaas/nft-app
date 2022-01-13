@@ -43,7 +43,7 @@
 		methods: {
 			shengcheng(){
 				new qrCode('codeimg',{
-					text:`${this.$config.src}/#/pages/regist_new/regist_new?inviteCode=` + this.data.invitationCode,
+					text:`${this.$config.endPoint}/#/pages/regist_new/regist_new?inviteCode=` + this.data.invitationCode,
 					width:150,
 					height:150,
 					colorDark:"#333333"

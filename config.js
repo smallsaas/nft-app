@@ -6,7 +6,7 @@ const globalConfigStorage = cache.get('globalConfigStorage')
 const iconList = cache.get("iconList")
 
 // 是否爲開發環境 雙配置 兼容生産及開發環境
-const isDev = true
+const isDev = false
 // #ifdef APP-PLUS
 export const globalConfig = isDev?{
 	src:'https://www.metagugu.net',
