@@ -100,7 +100,7 @@
 			//購買能力晶石
 			 buyComponeySpirit(){
 				this.isShowToast = true
-				this.toast('确认购买么？')
+				this.toast('确認購買麽？')
 				this.info.companionWispId = this.itemInfo.id
 				this.info.number = this.number
 				this.info.paymentPassword = '123456'

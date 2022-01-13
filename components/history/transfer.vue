@@ -7,7 +7,7 @@
 			對方手機号碼
 		</text>
 		<input v-model="data.targetPlayerMobilePhone" class="ttt" placeholder="輸入手機号" type="number" />
-		<text class="error" v-if="showError">手機号碼格式(长度)错误</text>
+		<text class="error" v-if="showError">手機号碼格式(長度)錯誤</text>
 		<text class="tt tttt">
 			轉讓數量
 		</text>

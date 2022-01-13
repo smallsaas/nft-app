@@ -31,7 +31,7 @@
 			</view>
 			<view class="inputBox">
 				<view class="HC">
-					<input type="number" placeholder="以字母开头的6-20个字母、数字、下划线" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
+					<input type="number" placeholder="请输入验证码" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
 						@blur="blur(3)" :class="{focus:isAddArticleC}" />
 					<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
 					<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>
@@ -42,7 +42,7 @@
 			</view>
 			<view class="inputBox">
 				<view class="HCC">
-					<input type="text" placeholder="請輸入登錄密碼" class="inputBoxC" v-model="data.loginPassword"
+					<input type="text" placeholder="以字母開頭的6-20個字母、數字、下劃線" class="inputBoxC" v-model="data.loginPassword"
 						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}"  :password="isShowPassword"/>
 					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 				</view>

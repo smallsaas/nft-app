@@ -158,7 +158,7 @@ export const api = {
 	// 	return request("POST",url,params)
 	// },
 	
-	//success卖家收款
+	//success賣家收款
 	successGetMoneyForSeller(data,params){
 			const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/confirmReceived`
 			return request("POST",url,params)

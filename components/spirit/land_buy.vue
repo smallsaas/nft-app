@@ -132,7 +132,7 @@
 			//購買土地
 			 landBuy() {
 				 this.isShowToast = true
-				 this.toast('确认购买么？')
+				 this.toast('确認購買麽？')
 				 this.info.landId = this.itemInfo.id
 				 this.info.purchaseQuantity = this.number
 				 this.info.paymentPassword = '123456'

@@ -9,7 +9,7 @@
 		<text class="status">
 			<text>賬号狀态：</text><text class="wid" :class="{forzen:data.status !=='NORMAL'}">{{data.status=='NORMAL'?'正常':'凍結'}}</text>
 		</text>
-		<text class="shezhi">设置</text>
+		<text class="shezhi">設置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
 			<view class="LImg"><image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image></view>
