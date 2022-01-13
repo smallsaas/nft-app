@@ -32,11 +32,16 @@
 			</view>
 			<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 		</view>
+		
+		<!-- 提示組件 -->
+		<toast v-if="isShowToast" :data="toastMsg"  @cancelToast="closeToast" :buyMsg="info" @successCloseToast="getSuccessClose"></toast>
 	</view>
 </template>
 
 <script>
+	import toast from './toastForLandBuy.vue'
 	export default {
+		components:{toast},
 		props: {
 			itemInfo: {
 				type: Object,
@@ -75,7 +80,12 @@
 					}
 				],
 				indexTypeTwo: 0,
-				number: 0
+				number: 0,
+				
+				
+				isShowToast: false,
+				toastMsg: '',
+				info:{}
 			}
 		},
 		mounted() {
@@ -83,6 +93,18 @@
 			this.number = this.itemInfo.growthDays
 		},
 		methods: {
+			toast(msg) {
+				this.toastMsg = msg
+				this.isShowToast = true
+			},
+			closeToast() {
+				this.isShowToast = false
+			},
+			
+			getSuccessClose(response){
+				this.$emit('buySuccess',response)
+			},
+			
 			getClose() {
 				this.$emit('closeLandChild', false)
 			},
@@ -108,24 +130,29 @@
 			},
 
 			//購買土地
-			async landBuy() {
-				console.log(this.itemInfo.id, 11111111111)
-				const data = {
-					landId: this.itemInfo.id,
-					purchaseQuantity: this.number,
-					paymentPassword: '123456'
-				}
-				const res = await this.$api.buyLand(data)
-				console.log(res)
-				const response = {
-					code: res.code,
-					message: res.message
-				}
-				if (res.code == 200) {
-					this.$emit('buySuccess', response)
-				} else {
-					this.$emit('buySuccess', response)
-				}
+			 landBuy() {
+				 this.isShowToast = true
+				 this.toast('确认购买么？')
+				 this.info.landId = this.itemInfo.id
+				 this.info.purchaseQuantity = this.number
+				 this.info.paymentPassword = '123456'
+				// console.log(this.itemInfo.id, 11111111111)
+				// const data = {
+				// 	landId: this.itemInfo.id,
+				// 	purchaseQuantity: this.number,
+				// 	paymentPassword: '123456'
+				// }
+				// const res = await this.$api.buyLand(data)
+				// console.log(res)
+				// const response = {
+				// 	code: res.code,
+				// 	message: res.message
+				// }
+				// if (res.code == 200) {
+				// 	this.$emit('buySuccess', response)
+				// } else {
+				// 	this.$emit('buySuccess', response)
+				// }
 			}
 		}
 	}

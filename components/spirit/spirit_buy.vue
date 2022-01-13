@@ -30,11 +30,18 @@
 				</view>
 				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 			</view>
+			
+			<!-- 提示組件 -->
+			<toast v-if="isShowToast" :data="toastMsg" :buyMsg="info" @cancelToast="closeToast" @successCloseToast="getSuccessClose"></toast>
+			
+			<!-- <view class="spirit_mask" v-if="!isShowToast && !show"></view> -->
 	</view>
 </template>
 
 <script>
+	import toast from './toastSuccessForBuyCoin.vue'
 	export default {
+		components:{toast},
 		props: {
 			itemInfo: {
 				type: Object,
@@ -48,13 +55,29 @@
 		data() {
 			return {
 				show: true,
-				number: 0
+				number: 0,
+				
+				
+				isShowToast: false,
+				toastMsg: '',
+				
+				info:{}
 			}
 		},
 		mounted(){
 			this.number = this.itemInfo.costAccompanyWisp
 		},
 		methods: {
+			toast(msg) {
+				this.toastMsg = msg
+				this.isShowToast = true
+			},
+			closeToast() {
+				this.isShowToast = false
+			},
+			getSuccessClose(response){
+				this.$emit('buySuccess',response)
+			},
 			focusIng(){
 				this.$emit('AllNumber',parseInt(this.number))
 			},
@@ -75,24 +98,29 @@
 			},
 			
 			//購買能力晶石
-			async buyComponeySpirit(){
-				console.log(this.itemInfo.id,1)
-				const data = {
-					companionWispId:this.itemInfo.id,
-					number:this.number,
-					paymentPassword:'123456'
-				}
-				const res = await this.$api.buyCompanySpirit(data)
-				console.log(res)
-				const response = {
-					code:res.code,
-					message:res.message
-				}
-				if(res.code == 200){
-					this.$emit('buySuccess',response)
-				}else{
-					this.$emit('buySuccess',response)
-				}
+			 buyComponeySpirit(){
+				this.isShowToast = true
+				this.toast('确认购买么？')
+				this.info.companionWispId = this.itemInfo.id
+				this.info.number = this.number
+				this.info.paymentPassword = '123456'
+				// console.log(this.itemInfo.id,1)
+				// const data = {
+				// 	companionWispId:this.itemInfo.id,
+				// 	number:this.number,
+				// 	paymentPassword:'123456'
+				// }
+				// const res = await this.$api.buyCompanySpirit(data)
+				// console.log(res)
+				// const response = {
+				// 	code:res.code,
+				// 	message:res.message
+				// }
+				// if(res.code == 200){
+				// 	this.$emit('buySuccess',response)
+				// }else{
+				// 	this.$emit('buySuccess',response)
+				// }
 			}
 		}
 	}
@@ -106,6 +134,17 @@
 		position: fixed;
 		bottom: -10rpx;
 		z-index: 9999999 !important;
+		
+		.spirit_mask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 502;
+			background-color: #000;
+			opacity: .8;
+		}
 
 		.box {
 			background: rgb(28, 41, 76);

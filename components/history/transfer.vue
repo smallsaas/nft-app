@@ -7,6 +7,7 @@
 			對方手機号碼
 		</text>
 		<input v-model="data.targetPlayerMobilePhone" class="ttt" placeholder="輸入手機号" type="number" />
+		<text class="error" v-if="showError">手機号碼格式(长度)错误</text>
 		<text class="tt tttt">
 			轉讓數量
 		</text>
@@ -32,34 +33,41 @@
 					// 123456
 					targetPlayerMobilePhone: '',
 					number: "",
-					paymentPassword: ''
-				}
+					paymentPassword: '',
+				},
+				showError:false
 			}
 		},
 		methods: {
 			cancel() {
 				this.$emit('close')
 			},
-			async successTransfer() {
-				// this.data.number = parseInt(this.data.number)
-				console.log(this.data)
-				const res = await this.$api.transferCoin(this.data)
-				console.log(res)
-				if (res.code == 200) {
-					uni.showToast({
-						title: '轉讓成功',
-						icon: "success",
-						duration: 1000
-					})
-					this.$emit('close')
-					this.$emit('tellFather',true)
-				} else {
-					uni.showToast({
-						title: res.message,
-						icon: "error",
-						duration: 1000
-					})
-					this.$emit('close')
+			 async successTransfer() {
+				console.log(this.showError)
+					
+				if(this.data.targetPlayerMobilePhone.length<6 || this.data.targetPlayerMobilePhone.length>11){
+					this.showError = true
+				}else{
+					this.data.number = parseInt(this.data.number)
+					console.log(this.data)
+					const res = await this.$api.transferCoin(this.data)
+					console.log(res)
+					if (res.code == 200) {
+						uni.showToast({
+							title: '轉讓成功',
+							icon: "success",
+							duration: 1000
+						})
+						this.$emit('close')
+						this.$emit('tellFather',true)
+					} else {
+						uni.showToast({
+							title: res.message,
+							icon: "error",
+							duration: 1000
+						})
+						this.$emit('close')
+					}
 				}
 			}
 		}
@@ -115,6 +123,14 @@
 			top: 172rpx;
 			left: 38rpx;
 			padding-left: 10rpx;
+		}
+		
+		.error{
+			color: red;
+			position: absolute;
+			top: 255rpx;
+			left: 40rpx;
+			font-size: 12px;
 		}
 
 		.tttt {

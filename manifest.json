@@ -1,5 +1,5 @@
 {
-    "name" : "MetaGuGu 开发版",
+    "name" : "MetaGuGu开发版",
     "appid" : "__UNI__D05D711",
     "description" : "",
     "versionName" : "1.0.0",
@@ -108,11 +108,11 @@
             "port" : 8080,
             "proxy" : {
                 "/form" : {
-                    "target" : "https://api.mock.smallsaas.cn",
+                    "target" : "http://api.dev.smallsaas.cn:8086",
                     "changeOrigin" : true
                 },
                 "/data" : {
-                    "target" : "https://api.mock.smallsaas.cn",
+                    "target" : "http://api.dev.smallsaas.cn:8086",
                     "changeOrigin" : true
                 },
                 "/api" : {

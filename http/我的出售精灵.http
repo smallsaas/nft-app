@@ -1,5 +1,5 @@
 # @endpoint = https://api.mock.smallsaas.cn
-@endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://api.dev.smallsaas.cn:8086
 
 
 ### 获取列表页面信息
@@ -45,7 +45,7 @@ Content-Type: application/json
             "request":{
                 "default":{
                 },
-                "ps":"pageSize",
+                "ps":"pageSize=100",
                 "pn":"pageNum"
             },
             "itemModule":{

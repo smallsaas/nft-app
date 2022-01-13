@@ -6,7 +6,7 @@
  				<view class="o">
  					<image :src="getImage(item.wisp?item.wisp.previewPhotoUrl:'')" mode="aspectFit" class="spiritImg"></image>
  				</view>
- 				<view class="t"><text class="matchTime">預約時間：{{item.wisp?item.wisp.startMatchTime:0}}-{{item.wisp?item.wisp.endMatchTime:0}}</text></view>
+ 				<view class="t"><text class="matchTime">匹配时间：{{item.wisp?item.wisp.startMatchTime:0}}-{{item.wisp?item.wisp.endMatchTime:0}}</text></view>
  				<view class="th">
  					<view class="thC">
  						<image src="../../../static/spirit/newCoin.png" mode="aspectFit" class="coinImg"></image>

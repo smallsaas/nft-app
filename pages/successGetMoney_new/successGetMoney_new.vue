@@ -34,8 +34,10 @@
 		onLoad(e) {
 			console.log("ID", e)
 			this.iid = e.data
-			console.log(this.iid)
-			this.getOrder()
+			console.log('res',this.iid)
+			// this.getOrder(this.iid)
+		},
+		mounted() {
 		},
 		components: {
 			toast
@@ -52,15 +54,18 @@
 		},
 		methods: {
 			
-			async getOrder() {
-				const res = await this.$api.getRegistInfo()
+			async getOrder(id) {
+				const data = {
+					wispOrderId:id
+				}
+				const res = await this.$api.getOrderBuyerInfo(data)
 				console.log("RES", res)
 				if(res.code == 200){
 					this.buyInfo.buyerPhone = res.wispOrder.buyerPhone
 					this.buyInfo.pictureUrl = res.wispOrder.pictureUrl
 
 				}
-				await this.$forceUpdate()
+				// await this.$forceUpdate()
 			},
 		
 			toast(msg) {
@@ -70,9 +75,14 @@
 			closeToast() {
 				this.isShowToast = false
 			},
-			sureOrder(){
-				this.isShowToast = true
-				this.toast('确認收到對方的付款憑證款項嗎？')
+			async sureOrder(){
+				// this.isShowToast = true
+				// this.toast('确認收到對方的付款憑證款項嗎？')
+				const data = {
+					wispOrderId:this.iid
+				}
+				const res = await this.$api.successGetMoneyForSeller(data)
+				console.log('RES',res)
 			},
 			showBImg() {
 				this.showBigImg = true

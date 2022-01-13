@@ -9,6 +9,7 @@
 		<text class="status">
 			<text>賬号狀态：</text><text class="wid" :class="{forzen:data.status !=='NORMAL'}">{{data.status=='NORMAL'?'正常':'凍結'}}</text>
 		</text>
+		<text class="shezhi">设置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
 			<view class="LImg"><image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image></view>
@@ -82,6 +83,15 @@
 			position: absolute;
 			top: 110rpx;
 			left: 202rpx;
+		}
+		.shezhi{
+			font-size: 14px;
+			font-family: PingFang SC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #FFFFFF;
+			position: absolute;
+			top: 85rpx;
+			left: 620rpx;
 		}
 		.forzen{
 			color: red !important;

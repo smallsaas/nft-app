@@ -437,10 +437,6 @@
 						},
             // 獲取列表信息
             fetchList (searchData = {}) {
-              // uni.showLoading({
-              //     title: "loading...",
-              //     mask: true
-              // })
 							console.log(this.formatLoadApi(_.get(this.config,'loadApi')),"loadAPi")
 							let that = this
               uni.request({
@@ -462,8 +458,10 @@
                         this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
 						console.log(this.list,"LIST")
                         const total = _.get(data, totolField, 0)
-                        this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
-                        this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
+						// this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
+						// this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
+                        this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 1)
+                        this.listTotalPages = total < 10 ? 1 : Math.floor(total / 1)
                         this.$refs.loadRefresh.completed()
                      }
 										if(res.data.code==='00000'||res.data.code===200){
@@ -474,8 +472,10 @@
 											const prevList = _.get(searchData, 'refresh') ? [] : this.list
 											this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
 											const total = _.get(data, totolField, 0)
-											this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
-											this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
+											// this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
+											// this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
+											this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 1)
+											this.listTotalPages = total < 10 ? 1 : Math.floor(total / 1)
 											this.$refs.loadRefresh.completed()
 										}
 										that.$forceUpdate()

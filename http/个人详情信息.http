@@ -1,4 +1,4 @@
-@endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://api.dev.smallsaas.cn:8086
 
 GET {{endpoint}}/form?id=222333
 
@@ -55,6 +55,13 @@ Content-Type: application/json
           "container": {
           }
         },
+        {
+          "type": "autoform", 
+          "key": "96afd71a-c8d5-11eb-aca5-0800271e55c8", 
+          "name": "", 
+          "container": {
+          }
+        },
          {
           "type": "autoform", 
           "key": "96afd71a-c8d5-11eb-aca5-0800271e55b4", 
@@ -105,13 +112,28 @@ Content-Type: application/json
                         "label": "会员等级:",
                         "labelWidth": null,
                         "showLabel": true,
-                        "tag": "el-input",
-                        "tagIcon": "input",
+                        "tag": "el-select",
+                        "tagIcon": "select",
                         "required": false,
                         "layout": "colFormItem",
                         "regList": [],
                         "formId": 113,
                         "renderKey": 1621415432107
+                        },
+                        "__slot__": {
+                            "options": [
+                            {
+                                "label": "Lv0",
+                                "value": "0"
+                            },
+                            {
+                                "label": "Lv1",
+                                "value": "1"
+                            }
+                            ]
+                        },
+                        "style":{
+                            "color":"#164882"
                         },
                         "readonly": true,
                         "__vModel__": "grade"
@@ -355,7 +377,7 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "银行卡信息",
+                    "componentName": "银行卡信息1",
                     "children": [
                     {
                         "__config__": {
@@ -375,38 +397,6 @@ Content-Type: application/json
                     },
                     {
                         "__config__": {
-                        "label": "银行卡号1:",
-                        "labelWidth": null,
-                        "showLabel": true,
-                        "tag": "el-input",
-                        "tagIcon": "input",
-                        "required": false,
-                        "layout": "colFormItem",
-                        "regList": [],
-                        "formId": 113,
-                        "renderKey": 1621415432107
-                        },
-                        "readonly": true,
-                        "__vModel__": "bankAccountNumber"
-                    },
-                     {
-                        "__config__": {
-                        "label": "银行卡号2:",
-                        "labelWidth": null,
-                        "showLabel": true,
-                        "tag": "el-input",
-                        "tagIcon": "input",
-                        "required": false,
-                        "layout": "colFormItem",
-                        "regList": [],
-                        "formId": 113,
-                        "renderKey": 1621415432107
-                        },
-                        "readonly": true,
-                        "__vModel__": "bankAccountNumber2"
-                    },
-                     {
-                        "__config__": {
                         "label": "户名:",
                         "labelWidth": null,
                         "showLabel": true,
@@ -420,6 +410,100 @@ Content-Type: application/json
                         },
                         "readonly": true,
                         "__vModel__": "bankAccountName"
+                    },
+                    {
+                        "__config__": {
+                        "label": "银行卡号:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "bankAccountNumber"
+                    }
+                    ]
+                },
+                "type": "default",
+                "justify": "start",
+                "align": "top"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi":"/api/u/player"
+        },
+          "96afd71a-c8d5-11eb-aca5-0800271e55c8":{
+            "fields": [
+                     {
+                "__config__": {
+                    "layout": "rowFormItem",
+                    "tagIcon": "row",
+                    "layoutTree": true,
+                    "formId": 112,
+                    "renderKey": 1621415404383,
+                    "componentName": "银行卡信息2",
+                    "children": [
+                    {
+                        "__config__": {
+                        "label": "开户行:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "bankName2"
+                    },
+                    {
+                        "__config__": {
+                        "label": "户名:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "bankAccountName2"
+                    },
+                    {
+                        "__config__": {
+                        "label": "银行卡号:",
+                        "labelWidth": null,
+                        "showLabel": true,
+                        "tag": "el-input",
+                        "tagIcon": "input",
+                        "required": false,
+                        "layout": "colFormItem",
+                        "regList": [],
+                        "formId": 113,
+                        "renderKey": 1621415432107
+                        },
+                        "readonly": true,
+                        "__vModel__": "bankAccountNumber2"
                     }
                     ]
                 },

@@ -6,7 +6,7 @@ const globalConfigStorage = cache.get('globalConfigStorage')
 const iconList = cache.get("iconList")
 
 // 是否爲開發環境 雙配置 兼容生産及開發環境
-const isDev = false
+const isDev = true
 // #ifdef APP-PLUS
 export const globalConfig = isDev?{
 	src:'https://www.metagugu.net',
@@ -36,7 +36,7 @@ export const globalConfig = isDev?{
 	clearPageCache: true,//重啓時是否清除頁面緩存
 	formHost: "/form",
   dataHost: "/data",
-  endpoint: "",
+  endpoint: "http://api.dev.smallsaas.cn:8087",
   imageEndpoint: "http://api.dev.smallsaas.cn:8087",
   tokenStorageKey:"token",
 	iconList:iconList

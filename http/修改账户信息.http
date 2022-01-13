@@ -1,4 +1,4 @@
-@endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://api.dev.smallsaas.cn:8086
 
 GET {{endpoint}}/form?id=71541
 
@@ -162,7 +162,7 @@ Content-Type: application/json
                 "span": 24,
                 "formId": 106,
                 "renderKey": "1061641015339774",
-                "componentName": "银行卡信息",
+                "componentName": "银行卡信息1",
                 "children": [{
                     "__config__": {
                     "label": "开户行",
@@ -198,73 +198,6 @@ Content-Type: application/json
                     "__vModel__": "bankName"
                 },{
                     "__config__": {
-                    "label": "银行卡号1",
-                    "labelWidth": null,
-                    "showLabel": true,
-                    "changeTag": true,
-                    "tag": "el-input",
-                    "tagIcon": "input",
-                    "required": false,
-                    "layout": "colFormItem",
-                    "span": 24,
-                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
-                    "regList": [],
-                    "formId": 109,
-                    "renderKey": "1091641015423239"
-                    },
-                    "__slot__": {
-                    "prepend": "",
-                    "append": ""
-                    },
-                    "placeholder": "请输入银行卡号",
-                    "style": {
-                    "width": "100%"
-                    },
-                    "clearable": true,
-                    "prefix-icon": "",
-                    "suffix-icon": "",
-                    "maxlength": null,
-                    "show-word-limit": false,
-                    "readonly": false,
-                    "hidden": false,
-                    "disabled": false,
-                    "__vModel__": "bankAccountNumber"
-                },
-                {
-                    "__config__": {
-                    "label": "银行卡号2",
-                    "labelWidth": null,
-                    "showLabel": true,
-                    "changeTag": true,
-                    "tag": "el-input",
-                    "tagIcon": "input",
-                    "required": false,
-                    "layout": "colFormItem",
-                    "span": 24,
-                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
-                    "regList": [],
-                    "formId": 109,
-                    "renderKey": "1091641015423239"
-                    },
-                    "__slot__": {
-                    "prepend": "",
-                    "append": ""
-                    },
-                    "placeholder": "请输入银行卡号",
-                    "style": {
-                    "width": "100%"
-                    },
-                    "clearable": true,
-                    "prefix-icon": "",
-                    "suffix-icon": "",
-                    "maxlength": null,
-                    "show-word-limit": false,
-                    "readonly": false,
-                    "hidden": false,
-                    "disabled": false,
-                    "__vModel__": "bankAccountNumber2"
-                }, {
-                    "__config__": {
                     "label": "户名",
                     "labelWidth": null,
                     "showLabel": true,
@@ -296,7 +229,157 @@ Content-Type: application/json
                     "hidden": false,
                     "disabled": false,
                     "__vModel__": "bankAccountName"
-                }]
+                },{
+                    "__config__": {
+                    "label": "银行卡号",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "changeTag": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "span": 24,
+                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
+                    "regList": [],
+                    "formId": 109,
+                    "renderKey": "1091641015423239"
+                    },
+                    "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                    },
+                    "placeholder": "请输入银行卡号",
+                    "style": {
+                    "width": "100%"
+                    },
+                    "clearable": true,
+                    "prefix-icon": "",
+                    "suffix-icon": "",
+                    "maxlength": null,
+                    "show-word-limit": false,
+                    "readonly": false,
+                    "hidden": false,
+                    "disabled": false,
+                    "__vModel__": "bankAccountNumber"
+                }
+                ]
+                },
+                "type": "default",
+                "justify": "start",
+                "align": "top"
+            },{
+                "__config__": {
+                "layout": "rowFormItem",
+                "tagIcon": "row",
+                "layoutTree": true,
+                "document": "https://element.eleme.cn/#/zh-CN/component/layout#row-attributes",
+                "span": 24,
+                "formId": 106,
+                "renderKey": "1061641015339774",
+                "componentName": "银行卡信息2",
+                "children": [{
+                    "__config__": {
+                    "label": "开户行",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "changeTag": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "span": 24,
+                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
+                    "regList": [],
+                    "formId": 109,
+                    "renderKey": "1091641015423239"
+                    },
+                    "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                    },
+                    "placeholder": "请输入开户行",
+                    "style": {
+                    "width": "100%"
+                    },
+                    "clearable": true,
+                    "prefix-icon": "",
+                    "suffix-icon": "",
+                    "maxlength": null,
+                    "show-word-limit": false,
+                    "readonly": false,
+                    "hidden": false,
+                    "disabled": false,
+                    "__vModel__": "bankName2"
+                },
+                 {
+                    "__config__": {
+                    "label": "户名",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "changeTag": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "span": 24,
+                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
+                    "regList": [],
+                    "formId": 110,
+                    "renderKey": "1101641015461694"
+                    },
+                    "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                    },
+                    "placeholder": "请输入户名",
+                    "style": {
+                    "width": "100%"
+                    },
+                    "clearable": true,
+                    "prefix-icon": "",
+                    "suffix-icon": "",
+                    "maxlength": null,
+                    "show-word-limit": false,
+                    "readonly": false,
+                    "hidden": false,
+                    "disabled": false,
+                    "__vModel__": "bankAccountName2"
+                },{
+                    "__config__": {
+                    "label": "银行卡号",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "changeTag": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "span": 24,
+                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
+                    "regList": [],
+                    "formId": 109,
+                    "renderKey": "1091641015423239"
+                    },
+                    "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                    },
+                    "placeholder": "请输入银行卡号",
+                    "style": {
+                    "width": "100%"
+                    },
+                    "clearable": true,
+                    "prefix-icon": "",
+                    "suffix-icon": "",
+                    "maxlength": null,
+                    "show-word-limit": false,
+                    "readonly": false,
+                    "hidden": false,
+                    "disabled": false,
+                    "__vModel__": "bankAccountNumber2"
+                }
+                ]
                 },
                 "type": "default",
                 "justify": "start",

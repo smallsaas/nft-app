@@ -20,15 +20,15 @@ export const api = {
 		return request('POST',url,params)
 	},
 	//确認收款
-	getRegistInfo(params){
+	getUserOrderInfo(params){
 		const url = `${globalConfig.endpoint}/api/u/wisp/selling`
 		return request('GET',url,params)
 	},
-	//賣家确認收款信息
-	getRegistInfo(params){
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/${params.wispOrderId}/confirmReceived`
-		return request('POST',url,params)
-	},
+	// //賣家确認收款信息
+	// getUserOrderInfo(params){
+	// 	const url = `${globalConfig.endpoint}/api/u/order/wisp/${params.wispOrderId}/confirmReceived`
+	// 	return request('POST',url,params)
+	// },
 	//提交訂單申述
 	orderCpmplain(params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complain`
@@ -150,6 +150,18 @@ export const api = {
 	getOrderInfo(data,params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/queryByBuyer`
 		return request("GET",url,params)
+	},
+	
+	// //收款信息
+	// getOrderBuyerInfo(data,params){
+	// 	const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/confirmReceived`
+	// 	return request("POST",url,params)
+	// },
+	
+	//success卖家收款
+	successGetMoneyForSeller(data,params){
+			const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/confirmReceived`
+			return request("POST",url,params)
 	},
 	
 	//獲取精靈訂單信息

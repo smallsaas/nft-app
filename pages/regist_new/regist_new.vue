@@ -31,7 +31,7 @@
 			</view>
 			<view class="inputBox">
 				<view class="HC">
-					<input type="number" placeholder="請輸入驗證碼" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
+					<input type="number" placeholder="以字母开头的6-20个字母、数字、下划线" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
 						@blur="blur(3)" :class="{focus:isAddArticleC}" />
 					<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
 					<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>
@@ -43,7 +43,7 @@
 			<view class="inputBox">
 				<view class="HCC">
 					<input type="text" placeholder="請輸入登錄密碼" class="inputBoxC" v-model="data.loginPassword"
-						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" />
+						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}"  :password="isShowPassword"/>
 					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 				</view>
 			</view>
@@ -80,6 +80,8 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="spirit_mask" v-if="isShowRegistInfo"></view>
 
 		<!-- 	<view class="registInfoTex">
 			<view class="title"><text class="infoRegist">用戶注冊協議</text></view>
@@ -184,7 +186,7 @@
 				isAddArticleE: false,
 				isAddArticleF: false,
 				
-				//注册协议
+				//注冊協議
 				content:''
 			}
 		},
@@ -332,7 +334,7 @@
 				} else {
 					uni.showToast({
 						icon: 'error',
-						title: '注冊失敗',
+						title: res.message,
 						duration: 1000
 					})
 				}
@@ -345,6 +347,17 @@
 	.box {
 		width: 100%;
 		height: 100%;
+		
+		.spirit_mask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 502;
+			background-color: #000;
+			opacity: .8;
+		}
 
 		.motai {
 			width: 90%;
