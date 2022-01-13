@@ -8,7 +8,7 @@
  				<image src="../../static/login/menuLogo.png" class="menulogo" mode="aspectFit"></image>
  			</view> -->
  			<view class="bodyBox">
- 				<image src="../../static/login/newLoginPage.png" class="bodyImg"></image>
+ 				<image src="../../static/H5home/nH.png" class="bodyImg"></image>
  				<button class="btn" :class="{addClass:isShowAddClass}" @click="addClass" @touchstart="a">開始遊戲</button>
  				<button class="btn btns">下載安卓APP</button>
  			</view>

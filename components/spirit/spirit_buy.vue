@@ -149,7 +149,7 @@
 		.box {
 			background: rgb(28, 41, 76);
 			width: 100%;
-			height: 70% !important;
+			height: 100% !important;
 			background: #1C294C;
 			border-radius: 16px 16px 0px 0px;
 			opacity: 1;
@@ -294,9 +294,9 @@
 
 			.bottomBox {
 				position: absolute;
-				bottom: 15%;
+				top: 33%;
 				width: 100% !important;
-				height: 320rpx;
+				height: 10%;
 				border-top: 1px solid rgba(255, 255, 255, 0.1);
 
 				.ce {
