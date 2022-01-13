@@ -10,7 +10,7 @@
 			<view class="info" v-if="false"><text class="infoText">賬号有誤，請輸入正确的手機号碼</text></view>
 			<view class="label"><text class="labelTxt">密碼</text></view>
 			<view class="inputBox">
-				<input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="以字母開頭的6-20個字母、數字、下劃線" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
+				<input :class="{focus:isShowFocusP}" class="account" type="text" v-model="data.password" :password="isShowPassword" placeholder="请输入密码" @focus="focus(2)" @blur="blur(2)"><image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image></view>
 			<view class="label"><text class="labelTxt">驗證碼</text></view>
 			<view class="viewBox">
 				<view class="n">
@@ -36,8 +36,8 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'15322315902',
-					password:'admin',
+					account:'',
+					password:'',
 					verifyCode:''
 					  // 15322315902
 					  // 13313331137
