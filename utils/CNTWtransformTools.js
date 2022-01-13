@@ -26,19 +26,19 @@ function transformToCN(string){
 	return string
 }
 
-function JSONTW(json){
-	return json
-}
-// JSON转换为繁体
 // function JSONTW(json){
-// 	uni.showLoading({
-// 		title:"开始加载"
-// 	})
-// 	let string = JSON.stringify(json)
-// 	string = transformToTW(string)
-// 	setTimeout(()=>{
-// 		uni.hideLoading()
-// 	},2000)
-// 	return JSON.parse(string)
+// 	return json
 // }
+// JSON转换为繁体
+function JSONTW(json){
+	uni.showLoading({
+		title:"开始加载"
+	})
+	let string = JSON.stringify(json)
+	string = transformToTW(string)
+	setTimeout(()=>{
+		uni.hideLoading()
+	},2000)
+	return JSON.parse(string)
+}
 module.exports = {transformToCN,transformToTW,JSONTW}

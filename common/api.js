@@ -9,6 +9,16 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/pub/cms/term/config?type=MEMBER_RULE`
 		return request('GET',url,params)
 	},
+	// 獲取簽到記錄
+	getSignMes(params){
+		const url = `${globalConfig.endpoint}/api/u/sign`
+		return request('GET',url,params)
+	},
+	// 簽名
+	sign(params){
+		const url = `${globalConfig.endpoint}/api/u/sign`
+		return request('POST',url,params)
+	},
 	//确認收款
 	getRegistInfo(params){
 		const url = `${globalConfig.endpoint}/api/u/wisp/selling`

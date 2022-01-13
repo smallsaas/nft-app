@@ -384,9 +384,9 @@
 
 			.btnBox {
 				width: 100% !important;
-				height: 30% !important;
+				height: 350rpx !important;
 				position: absolute;
-				top: 285px;
+				bottom: 120rpx;
 				border-top: 1px solid rgba(255, 255, 255, 0.1);
 				.tt {
 					// width: 72px;

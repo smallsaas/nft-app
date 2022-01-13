@@ -452,8 +452,6 @@
                       token: uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
                   },
                   complete: (res) => {
-										res = that.$JSONTW(res)
-										console.log(res)
                      // uni.hideLoading()
                      if (['000000', 200].includes(_.get(res, 'data.code'))) {
                         const data = _.get(res, 'data.data')

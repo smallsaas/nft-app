@@ -257,7 +257,7 @@
 				position: absolute;
 				bottom: 15%;
 				width: 100% !important;
-				height: 40% !important;
+				height: 320rpx;
 				border-top: 1px solid rgba(255, 255, 255, 0.1);
 
 				.ce {

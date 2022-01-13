@@ -1,5 +1,5 @@
 {
-    "name" : "MetaGuGu",
+    "name" : "MetaGuGu 开发版",
     "appid" : "__UNI__D05D711",
     "description" : "",
     "versionName" : "1.0.0",
@@ -124,6 +124,8 @@
                     "changeOrigin" : true
                 }
             }
-        }
+        },
+        "template" : "index.html",
+        "title" : "MetaGuGu"
     }
 }
