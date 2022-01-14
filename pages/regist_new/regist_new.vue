@@ -31,7 +31,7 @@
 			</view>
 			<view class="inputBox">
 				<view class="HC">
-					<input type="number" placeholder="请输入验证码" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
+					<input type="number" placeholder="請輸入驗證碼" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
 						@blur="blur(3)" :class="{focus:isAddArticleC}" />
 					<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
 					<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>

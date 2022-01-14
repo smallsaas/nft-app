@@ -2,7 +2,7 @@
 	<view class="box">
 		<view class="item">
 			<view class="o">
-				<text class="name">昵称: 刘大花</text>
+				<text class="name">昵稱: 劉大花</text>
 			</view>
 		</view>
 	</view>

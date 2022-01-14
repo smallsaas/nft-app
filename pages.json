@@ -282,7 +282,7 @@
             "path" : "pages/rDetail/rDetail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "帮会推荐收益明细",
+                "navigationBarTitleText": "幫會推薦收益明細",
                 "enablePullDownRefresh": false
             }
             

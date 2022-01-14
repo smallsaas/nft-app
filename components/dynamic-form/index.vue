@@ -131,7 +131,7 @@
           BaseVants 
         },
 		props: {
-			//验证是否有副手机号码
+			//驗證是否有副手機号碼
 			checkBackPhone:{
 				type:String,
 				default(){
@@ -262,7 +262,7 @@
 								uni.showToast({
 									icon:'error',
 									duration:1000,
-									title:'请先完善副手机号!'
+									title:'請先完善副手機号!'
 								})
 								return
 							}
@@ -364,12 +364,12 @@
                            if (_.isFunction(_.get(that.$parent, 'formatLoadData'))) {
                                resData = that.$parent.formatLoadData(resData)
                            }
-													 console.log(resData,"RESDATAqqqqqqqq快乐的测试")
+													 console.log(resData,"RESDATAqqqqqqqq快樂的測試")
                            that.form = { ...that.form, ...resData }
 						   that.$timeCache(`page_${that.formId}_form_Srv`,that.form,that.$config.cachePolicy*24*60*60)
 						   
 						   
-						   console.log('RESDATE快乐的测试',resData)
+						   console.log('RESDATE快樂的測試',resData)
                        }
                     }
                 })

@@ -27,7 +27,7 @@
 				console.log('---------------------')
 				console.log('開始了-------------')
 				let res = await this.$api.getInformationNew()
-				console.log('快乐的测试RES',res)
+				console.log('快樂的測試RES',res)
 				this.srvFormData = res.data
 				this.$cache.set('userCache',res.data)
 				console.log('---------------------')

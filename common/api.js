@@ -34,7 +34,7 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complain`
 		return request('POST',url,params)
 	},
-	//查看申述记录
+	//查看申述記錄
 	checkOrderCpmplain(data,params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains`
 		return request('GET',url,params)
