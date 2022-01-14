@@ -85,7 +85,7 @@
 				}
 				if(index==1){
 					uni.navigateTo({
-						url:'/pages/representations_new/representations_new'
+						url:'/pages/defaultPage/page?id=' + 111222333
 					})
 				}
 			},

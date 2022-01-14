@@ -64,9 +64,9 @@
 			}
 		},
 		created() {
-			this.forChild.recommendPoints = this.item.recommendPoints
-			this.forChild.tradeUnionPoints = this.item.tradeUnionPoints
-			this.forChild.marketPoints = this.item.marketPoints
+			this.forChild.inviting = parseInt(this.item.invitingOneBallance) + parseInt(this.item.invitingTwoBallance)
+			this.forChild.signBallance = this.item.signBallance
+			this.forChild.teamBallance = this.item.teamBallance
 			this.forChild.depositPoints = this.item.depositPoints
 			
 			this.forJudge.marketPoints = this.item.marketPoints

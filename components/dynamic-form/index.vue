@@ -131,6 +131,14 @@
           BaseVants 
         },
 		props: {
+			//验证是否有副手机号码
+			checkBackPhone:{
+				type:String,
+				default(){
+					return ""
+				}
+			},
+			
 			config: {
                 type: Object,
                 default: function () {
@@ -250,6 +258,14 @@
             },
 						// 跳轉
 						handleJump(url){
+							if(this.form.backupMobilePhone == null || this.form.backupMobilePhone==''){
+								uni.showToast({
+									icon:'error',
+									duration:1000,
+									title:'请先完善副手机号!'
+								})
+								return
+							}
 							uni.navigateTo({
 								url:"/pages"+url,
 								fail(err){
@@ -348,9 +364,12 @@
                            if (_.isFunction(_.get(that.$parent, 'formatLoadData'))) {
                                resData = that.$parent.formatLoadData(resData)
                            }
-													 console.log(resData,"RESDATA")
+													 console.log(resData,"RESDATAqqqqqqqq快乐的测试")
                            that.form = { ...that.form, ...resData }
 						   that.$timeCache(`page_${that.formId}_form_Srv`,that.form,that.$config.cachePolicy*24*60*60)
+						   
+						   
+						   console.log('RESDATE快乐的测试',resData)
                        }
                     }
                 })

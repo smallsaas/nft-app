@@ -278,6 +278,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/rDetail/rDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "帮会推荐收益明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

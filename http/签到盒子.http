@@ -1,4 +1,4 @@
-@endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://api.dev.smallsaas.cn:8086
 @devEndpoint = http://localhost:8080
 GET {{endpoint}}/form?id=7777799
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
         }
     ],
     "dataSource":{
-        "api":"/data?id=550311"
+        "api":"/api/u/sign"
     },
     "moduleData": {
         "95afd71a-c8d5-11eb-aca5-0800271e55b7":{

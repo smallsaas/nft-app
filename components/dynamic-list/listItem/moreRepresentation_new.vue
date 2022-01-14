@@ -1,15 +1,24 @@
 <template>
 	<view class="more">
 		<view class="item">
-			<view class="status"><text class="title">申述原因:</text><text class="info">對方沒付款</text></view>
-			<view class="status"><text class="title">備注信息:</text><text class="info">還差我100</text></view>
-			<view class="status"><text class="title">申述狀态:</text><text class="info">處理中</text></view>
+			<view class="status"><text class="title">申述原因:</text><text class="info">{{item.title}}</text></view>
+			<view class="status"><text class="title">備注信息:</text><text class="info">{{item.content}}</text></view>
+			<view class="status"><text class="title">申述狀态:</text><text class="info">{{item.status}}</text></view>
 			<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
 		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		props: {
+			item: Object,
+			ext: Object
+		},
+		mounted() {
+			console.log(this.item,'--------------')
+		}
+	}
 </script>
 
 <style lang="less">

@@ -1,5 +1,5 @@
 # @endpoint = https://api.mock.smallsaas.cn
-@endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://api.dev.smallsaas.cn:8086
 
 
 ### 获取列表页面信息
@@ -36,7 +36,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"/api/u/wisp/market",
+            "loadApi":"/api/u/order/wisp/complains",
             "itemNavigation": "",
             "response":{
                 "list":"records"
@@ -48,7 +48,7 @@ Content-Type: application/json
                 "pn":"pageNum"
             },
             "itemModule":{
-                "name":"no-pay-new"
+                "name":"more-representation-new"
             }
         }
     }

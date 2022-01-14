@@ -183,7 +183,7 @@
 			async pay() {
 				const data = {
 					wispOrderId: this.iid,
-					pictureUrl: this.bigImgSrc,
+					pictureUrl: this.list[0],
 					paymentMethod: "",
 					// BANK_CARD_PAYMENT,
 					// ALIPAY_PAYMENT,

@@ -200,6 +200,13 @@
 											}"
 					/>	
 					
+					<more-representation-new	v-if="getListItemKey() === 'more-representation-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
                   </view>
               </view>
             </load-refresh>

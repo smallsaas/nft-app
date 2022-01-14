@@ -2,12 +2,12 @@
 	<view class="success">
 		<view class="box">
 			<view class="top">
-				<text class="o">買家聯系電話：{{buyInfo.buyerPhone}}</text>
+				<text class="o">買家聯系電話：{{buyphone}}</text>
 			</view>
 			<view class="body">
 				<text class="o">買家付款憑證</text>
 				<view class="b">
-					<image :src="buyInfo.pictureUrl" mode="widthFix" class="img" @click="showBImg"></image>
+					<image :src="pictureUrl" mode="widthFix" class="img" @click="showBImg"></image>
 				</view>
 			</view>
 			<view class="bottom">
@@ -34,8 +34,9 @@
 		onLoad(e) {
 			console.log("ID", e)
 			this.iid = e.data
-			console.log('res',this.iid)
-			// this.getOrder(this.iid)
+			this.buyphone = e.phone
+			this.pictureUrl = e.picture
+			// console.log('res',this.iid)
 		},
 		mounted() {
 		},
@@ -49,24 +50,25 @@
 				iid: 0,
 				isShowToast: false,
 				toastMsg: '',
-				buyInfo:{}
+				buyphone:'',
+				pictureUrl:''
 			}
 		},
 		methods: {
 			
-			async getOrder(id) {
-				const data = {
-					wispOrderId:id
-				}
-				const res = await this.$api.getOrderBuyerInfo(data)
-				console.log("RES", res)
-				if(res.code == 200){
-					this.buyInfo.buyerPhone = res.wispOrder.buyerPhone
-					this.buyInfo.pictureUrl = res.wispOrder.pictureUrl
+			// async getOrder(id) {
+			// 	const data = {
+			// 		wispOrderId:id
+			// 	}
+			// 	const res = await this.$api.getOrderBuyerInfo(data)
+			// 	console.log("RES", res)
+			// 	if(res.code == 200){
+			// 		this.buyInfo.buyerPhone = res.wispOrder.buyerPhone
+			// 		this.buyInfo.pictureUrl = res.wispOrder.pictureUrl
 
-				}
-				// await this.$forceUpdate()
-			},
+			// 	}
+			// 	// await this.$forceUpdate()
+			// },
 		
 			toast(msg) {
 				this.toastMsg = msg
@@ -76,13 +78,20 @@
 				this.isShowToast = false
 			},
 			async sureOrder(){
-				// this.isShowToast = true
-				// this.toast('确認收到對方的付款憑證款項嗎？')
-				const data = {
-					wispOrderId:this.iid
-				}
-				const res = await this.$api.successGetMoneyForSeller(data)
-				console.log('RES',res)
+				this.isShowToast = true
+				this.toast('确認收到對方的付款憑證款項嗎？')
+				// const data = {
+				// 	wispOrderId:this.iid
+				// }
+				// const res = await this.$api.successGetMoneyForSeller(data)
+				// if(res.code == 200){
+				// 	uni.showToast({
+				// 		icon:'success',
+				// 		duration:100,
+				// 		title:'确认收款成功'
+				// 	})
+				// }
+				// console.log('RES',res)
 			},
 			showBImg() {
 				this.showBigImg = true

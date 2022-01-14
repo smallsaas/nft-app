@@ -31,17 +31,31 @@
 				let data = {
 					wispOrderId:this.orderId
 				}
-				const res = await this.$api.getRegistInfo(data)
+				const res = await this.$api.successGetMoneyForSeller(data)
 				if(res.code == 200){
 					uni.showToast({
 						title:'确認收款成功',
 						icon:"success",
 						duration:1000
 					})
-					this.$emit('cancelToast',false)
-					uni.navigateBack({
-						delta:1
+					setTimeout(()=>{
+						this.$emit('cancelToast',false)
+						uni.navigateBack({
+							delta:1
+						})
+					},2000)
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:"success",
+						duration:1000
 					})
+					setTimeout(()=>{
+						this.$emit('cancelToast',false)
+						uni.navigateBack({
+							delta:1
+						})
+					},2000)
 				}
 			}
 		},

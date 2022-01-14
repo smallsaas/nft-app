@@ -36,8 +36,8 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'',
-					password:'',
+					account:'15322315902',
+					password:'admin',
 					verifyCode:''
 					  // 15322315902
 					  // 13313331137
@@ -201,7 +201,7 @@
 				}
 				
 				
-				// that.$cache.set(that.$config.tokenStorageKey,'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJvcmdJZCI6NSwidXNlcklkIjoxLCJhY2NvdW50IjoiYWRtaW4iLCJkb21haW5Vc2VySWQiOjEsImlhdCI6MTY0MTczNDU3NSwianRpIjoiMSIsInN1YiI6ImFkbWluIiwiZXhwIjoxNjQxOTkzNzc1fQ.JXPuF5zKO8-LRudvpXJloyazVwl_SvTOXLFJd99OcImGkgf-qPGvjCiaKDHPm-u1uaBe7nfMEZ8w278aImQDlg')
+				// that.$cache.set(that.$config.tokenStorageKey,'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJvcmdJZCI6IjEiLCJ1c2VySWQiOiI4NzY3MDgwODI0MzcxOTc4ODgiLCJ0ZW5hbnRPcmdJZCI6MSwiYWNjb3VudCI6Im1hbmFnZTMiLCJ1c2VyVHlwZSI6MCwiZGV2VXNlclR5cGUiOjAsImJVc2VyVHlwZSI6IlNZU1RFTSIsImlhdCI6MTY0MTc5NTgyNywianRpIjoiODc2NzA4MDgyNDM3MTk3ODg4Iiwic3ViIjoibWFuYWdlMyIsImV4cCI6MTY0MjA1NTAyN30.RNGGX2Nx_5oLBrRlybW3hIECv1JStVbLlMHYJs7UUGzJoq-_H0v7KcHHGf6N6GS_S8SVdbamq4ITijSbDyeM7w')
 				// uni.navigateTo({
 				// 	url:'/pages/home/homePage'
 				// })

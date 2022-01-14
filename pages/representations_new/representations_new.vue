@@ -61,8 +61,14 @@
 				this.value = this.columns[this.inx]
 				this.isShow = false
 			},
+			checkMore(){
+				uni.navigateTo({
+					url:'/pages/defaultPage/page?id=' + 111222333
+				})
+			},
 			async shenshu(){
 				let data = {
+					//71
 					relationOrderId:this.orderIdS,
 					title:this.value,
 					content:this.moreValue,
@@ -70,9 +76,29 @@
 				}
 				const res = await this.$api.orderCpmplain(data)
 				console.log('RES',res)
-			}
+				if(res.code == 200){
+					uni.showToast({
+						icon:'success',
+						duration:1000,
+						title:'提交申述成功'
+					})
+					uni.navigateTo({
+						url:'/pages/defaultPage/page?id=' + 111222333
+					})
+				}else{
+					uni.showToast({
+						icon:'error',
+						duration:1000,
+						title:res.message
+					})
+				}
+				
+				
+			// const res = await this.$api.checkOrderCpmplain()
+			// console.log('RES',res)
 		}
-	}
+	},
+}
 </script>
 
 <style lang="less">

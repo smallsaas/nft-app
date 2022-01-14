@@ -34,6 +34,11 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complain`
 		return request('POST',url,params)
 	},
+	//查看申述记录
+	checkOrderCpmplain(data,params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains`
+		return request('GET',url,params)
+	},
 	// 後台字段配置
 	getFieldConfig(params){
 		const url = `${globalConfig.endpoint}/api/u/config/fields`

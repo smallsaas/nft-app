@@ -14,19 +14,23 @@
 			}
 		},
 		onLoad(e) {
+			console.log('---------------------')
 			console.log(e)
 			console.log(e.id)
 			let id = e.id
 			console.log(id)
 			this.getFormData()
+			console.log('---------------------')
 		},
 		methods: {
 			async getFormData(){
+				console.log('---------------------')
 				console.log('開始了-------------')
 				let res = await this.$api.getInformationNew()
-				console.log(res)
+				console.log('快乐的测试RES',res)
 				this.srvFormData = res.data
 				this.$cache.set('userCache',res.data)
+				console.log('---------------------')
 			},
 			async changeInfo(){
 				console.log('asfafs')

@@ -40,7 +40,7 @@
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}分鍾</text>
-			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.id)">玩家已處理請确認</button>
+			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.wispOrder.id,item.wispOrder.buyerPhone,item.wispOrder.pictureUrl)">玩家已處理請确認{{item.wispOrder.id}}</button>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -68,9 +68,9 @@
 			this.time = l
 		},
 		methods: {
-			goToResive(id){
+			goToResive(id,phone,pictrue){
 				uni.navigateTo({
-					url:'/pages/successGetMoney_new/successGetMoney_new?data=' + id
+					url:'/pages/successGetMoney_new/successGetMoney_new?data=' + id + '&phone=' + phone + '&picture=' + pictrue
 				})
 			},
 			
