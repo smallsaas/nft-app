@@ -384,6 +384,57 @@ Content-Type: application/json
                 "type": "default",
                 "justify": "start",
                 "align": "top"
+            },
+            {
+                "__config__": {
+                "layout": "rowFormItem",
+                "tagIcon": "row",
+                "layoutTree": true,
+                "document": "https://element.eleme.cn/#/zh-CN/component/layout#row-attributes",
+                "span": 24,
+                "formId": 106,
+                "renderKey": "1061641015339774",
+                "componentName": "验证码",
+                "children": [
+                {
+                    "__config__": {
+                    "label": "副手机号",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "changeTag": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "span": 24,
+                    "document": "https://element.eleme.cn/#/zh-CN/component/input",
+                    "regList": [],
+                    "formId": 109,
+                    "renderKey": "1091641015423239"
+                    },
+                    "__slot__": {
+                    "prepend": "",
+                    "append": "获取验证码"
+                    },
+                    "placeholder": "请输入手机验证码",
+                    "style": {
+                    "width": "100%"
+                    },
+                    "clearable": true,
+                    "prefix-icon": "",
+                    "suffix-icon": "",
+                    "maxlength": null,
+                    "show-word-limit": false,
+                    "readonly": false,
+                    "hidden": false,
+                    "disabled": false,
+                    "__vModel__": ""
+                }
+                ]
+                },
+                "type": "default",
+                "justify": "start",
+                "align": "top"
             }],
             "formRef": "elForm",
             "formModel": "formData",

@@ -185,6 +185,8 @@
 					justify-content: center;
 					background: #11181E;
 					border: 1px solid #F95D5D;
+					font-weight: bold;
+					color: #FFFFFF;
 				}
 			}
 

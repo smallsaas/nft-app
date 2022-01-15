@@ -287,6 +287,78 @@
             }
             
         }
+        ,{
+            "path" : "pages/complainhistory/complainhistory",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "申述记录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/sign/sign",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "签到",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/toushu/toushu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "投诉记录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/teams/teams",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的团队",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/banghuishouyimingxi/banghuishouyimingxi",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "帮会收益明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/tuijianshouyimingxi/tuijianshouyimingxi",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "推荐收益明细",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/zhuangrangjilu/zhuangrangjilu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "转让记录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/toushupage/toushupage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "投诉",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "#FCFCFC",

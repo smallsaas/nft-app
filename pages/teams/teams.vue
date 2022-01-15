@@ -1,11 +1,11 @@
 <template>
 	<view class="team newTeam">
-		<!-- <view class="self" v-if="">
+		<view class="self">
 			<text class="num">团队总人数:{{item.teamSize}}</text>
 			<text class="num">領養數: {{item.adoptCount||0}}人</text>
 			<text class="num">直推數: {{item.recommendCount||0}}人</text>
 			<text class="num tt">預約數: {{item.appointmentCount||0}}人</text>
-		</view> -->
+		</view>
 		<view class="item">
 			<view class="left">
 				<image :src="getImage(item.avatar)" mode="widthFix" class="avator"></image>

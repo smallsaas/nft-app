@@ -3,21 +3,21 @@
 		<view class="item">
 			<text class="title">簽到收益:</text>
 			<text class="num">{{data.signBallance}}</text>
-			<text class="o" @click="a">提取</text>
+			<text class="o" @click="tiqu">提取</text>
 		</view>
 		<view class="item">
 			<text class="title">推薦收益:</text>
 			<text class="num">{{data.inviting}}</text>
-			<text class="o" @click="forParent">轉化GuGu令</text>
+			<text class="o" @click="zhaunhua">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
-			<text class="ott" @click="transferSpiritForMarket">查看明細</text>
+			<text class="ott" @click="goToTuiJian">查看明細</text>
 		</view>
 		<view class="item">
 			<text class="title">幫會收益:</text>
 			<text class="num">{{data.teamBallance}}</text>
-			<text class="o" @click="forParent">轉化GuGu令</text>
+			<text class="o" @click="zhuancunTwo">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
-			<text class="ott" @click="transferSpiritForMarket">查看明細</text>
+			<text class="ott" @click="goToBangHui">查看明細</text>
 		</view>
 		<view class="item">
 			<text class="title">轉存收益:</text>
@@ -36,11 +36,48 @@
 			}
 		},
 		mounted() {
-			console.log('---------')
+			console.log('---------',this.data)
 			
 		},
 		methods:{
-			a(){
+			async zhaunhua(){
+				// this.$emit('forParentCloseTwo')
+				const res = await this.$api.zhuanhuaType()
+				console.log('rrrrr',res)
+				if(res.code == 200){
+					uni.showToast({
+						title:'转化成功',
+						icon:'success',
+						duration:1000
+					})
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+			},
+			async zhuancunTwo(){
+				const res = await this.$api.zhuanhuaTypeTwo()
+				console.log('rrrrr',res)
+				if(res.code == 200){
+					uni.showToast({
+						title:'转化成功',
+						icon:'success',
+						duration:1000
+					})
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+			},
+			tiqu(){
 				uni.request({
 					url:'http://api.dev.smallsaas.cn:8087/api/u/player/signInSettlement/signINProfit',
 					success: (res) => {
@@ -57,6 +94,16 @@
 					}
 				})
 			},
+			goToBangHui(){
+				uni.navigateTo({
+					url:'/pages/banghuishouyimingxi/banghuishouyimingxi'
+				})
+			},
+			goToTuiJian(){
+				uni.navigateTo({
+					url:'/pages/tuijianshouyimingxi/tuijianshouyimingxi'
+				})
+			}
 			// forParentTwo(){
 			// 	this.$emit('forParentCloseTwo')
 			// },

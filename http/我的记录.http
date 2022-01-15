@@ -34,7 +34,11 @@ Content-Type: application/json
                 "tradeUnionPoints":"tradeUnionPoints",
                 "marketPoints":"marketPoints",
                 "depositPoints":"depositPoints",
-                "landRemainingDays":"landRemainingDays"
+                "landRemainingDays":"landRemainingDays",
+                "invitingOneBallance":"invitingOneBallance",
+                "invitingTwoBallance":"invitingTwoBallance",
+                "signBallance":"signBallance",
+                "teamBallance":"teamBallance"
             }
         }
     ],

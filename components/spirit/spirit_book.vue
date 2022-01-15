@@ -30,11 +30,12 @@
 					<image src="../../static/spirit/land.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.growthDays}}</text>
 				</view>
+				<view class="newAdd"><view class="checkBtn" :class="{active:isClick==true}" @click="change"></view><text>自动预约</text></view>
 				<view class="nameBox"><text class="name">{{itemInfo.name}}</text></view>
 				<view class="nameBox nTwo"><text class="name nametwo">預約剩餘時間 {{itemInfo.remainingBookMinutes}}分鍾 确定預約嗎？</text></view>
 				<view class="btnBox">
 					<button class="btn cancel" @click="cancel">取消</button>
-					<button class="btn"  @click="book">馬上預約</button>
+					<button class="btn"  @click="book" :disabled="status=='FROZEN'">馬上預約</button>
 				</view>
 			</view>
 		</view>
@@ -49,17 +50,21 @@
 				default:{}
 			}
 		},
+		created() {
+			console.log('00000000000000',this.$cache.get('status'))
+			this.status = this.$cache.get('status')
+		},
 		data(){
 			return{
+				status:'',
 				show:true,
+				isClick:true
 			}
 		},
-		created() {
-			console.log(this.itemInfo.remainingBookMinutes)
-			
-			
-		},
 		methods:{
+			change(){
+				this.isClick = !this.isClick
+			},
 			getImage(url) {
 				console.log(this.$config)
 				let that = this
@@ -204,8 +209,8 @@
 		position: relative;
 			.imgBox{
 				position: absolute;
-				left: 24px;
-				top: 32px;
+				left: 80px;
+				top: 25px;
 				width: 67px;
 				height: 18px;
 				.img{
@@ -218,7 +223,7 @@
 				width: 200px;
 				height: 200px;
 				position: absolute;
-				left: 60px;
+				left: 10px;
 				top: 32px;
 				display: flex;
 				align-items: center;
@@ -230,7 +235,7 @@
 			}
 			
 			.tt{
-				width: 60px;
+				width: 70px;
 				height: 17px;
 				position: absolute;
 				top: 37px;
@@ -239,6 +244,44 @@
 				font-family: PingFang SC-Regular, PingFang SC;
 				font-weight: 400;
 				color: #FFFFFF;
+			}
+			
+			.newAdd{
+				width: 150px;
+				height: 17px;
+				position: absolute;
+				top: 210px;
+				right: 12px;
+				font-size: 12px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFFFFF;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: flex-end;
+				.active{
+					background-color: rgb(16,143,233) !important;
+					border: none !important;
+					&::after{
+						content: '√';
+						color: #FFFFFF;
+						font-weight: bolder;
+						font-size: 10rpx;
+						position: absolute;
+						top: 0;
+						left: 20%;
+					}
+				}
+				.checkBtn{
+					margin-top: 5rpx;
+					width: 35rpx;
+					height: 35rpx;
+					border-radius: 50%;
+					border: 1px solid white;
+					margin-right: 5rpx;
+					position: relative;
+				}
 			}
 		    
 			.ttt{

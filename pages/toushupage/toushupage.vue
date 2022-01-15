@@ -1,16 +1,15 @@
 <template>
 	<view class="re_new">
-		<view class="all"><text class="info" @click="checkMore">查看申述記錄(結果)</text></view>
-		<view class="title ttt"><text class="info">申述原因</text></view>
+		<view class="title ttt"><text class="info">投诉原因</text></view>
 		<view class="select">
-			<input  v-model="value" type="text" disabled="true" placeholder="選擇申述原因" class="read" />
+			<input  v-model="value" type="text"  placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
 		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
-			<textarea placeholder="添加其他申述原因" class="text" v-model="moreValue"></textarea>
+			<textarea placeholder="添加其他投诉原因" class="text" v-model="moreValue"></textarea>
 		</view>
-		<view class="btnBox"><button class="btn" @click="shenshu">提交申述</button></view>
+		<view class="btnBox"><button class="btn" @click="shenshu">提交投诉</button></view>
 		<view class="fix" v-if="isShow">
 			<view class="t">
 				<text class="info" @click="cancel">取消</text>
@@ -66,37 +65,37 @@
 					url:'/pages/complainhistory/complainhistory'
 				})
 			},
-			async shenshu(){
-				let data = {
-					//71
-					relationOrderId:this.orderIdS,
-					title:this.value,
-					content:this.moreValue,
-					credentialLink: "憑證鏈接"
-				}
-				const res = await this.$api.orderCpmplain(data)
-				console.log('RES',res)
-				if(res.code == 200){
-					uni.showToast({
-						icon:'success',
-						duration:1000,
-						title:'提交申述成功'
-					})
-					uni.navigateTo({
-						url:'/pages/defaultPage/page?id=' + 111222333
-					})
-				}else{
-					uni.showToast({
-						icon:'error',
-						duration:1000,
-						title:res.message
-					})
-				}
+		// 	async shenshu(){
+		// 		let data = {
+		// 			//71
+		// 			relationOrderId:this.orderIdS,
+		// 			title:this.value,
+		// 			content:this.moreValue,
+		// 			credentialLink: "憑證鏈接"
+		// 		}
+		// 		const res = await this.$api.orderCpmplain(data)
+		// 		console.log('RES',res)
+		// 		if(res.code == 200){
+		// 			uni.showToast({
+		// 				icon:'success',
+		// 				duration:1000,
+		// 				title:'提交申述成功'
+		// 			})
+		// 			uni.navigateTo({
+		// 				url:'/pages/defaultPage/page?id=' + 111222333
+		// 			})
+		// 		}else{
+		// 			uni.showToast({
+		// 				icon:'error',
+		// 				duration:1000,
+		// 				title:res.message
+		// 			})
+		// 		}
 				
 				
-			// const res = await this.$api.checkOrderCpmplain()
-			// console.log('RES',res)
-		}
+		// 	// const res = await this.$api.checkOrderCpmplain()
+		// 	// console.log('RES',res)
+		// }
 	},
 }
 </script>

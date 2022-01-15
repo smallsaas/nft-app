@@ -31,7 +31,7 @@
 			</view>
 			<view class="inputBox">
 				<view class="HC">
-					<input type="number" placeholder="請輸入驗證碼" class="inputBoxC" v-model="data.yzm" @focus="focus(3)"
+					<input type="number" placeholder="請輸入驗證碼" class="inputBoxC" v-model="data.verifyCode" @focus="focus(3)"
 						@blur="blur(3)" :class="{focus:isAddArticleC}" />
 					<text class="get" v-if="isShowYZM" @click="getYZM">獲取驗證碼</text>
 					<text class="get gets" v-if="!isShowYZM">{{count}}秒重試</text>
@@ -43,7 +43,7 @@
 			<view class="inputBox">
 				<view class="HCC">
 					<input type="text" placeholder="以字母開頭的6-20個字母、數字、下劃線" class="inputBoxC" v-model="data.loginPassword"
-						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}"  :password="isShowPassword"/>
+						@focus="focus(4)" @blur="blur(4)" :class="{focus:isAddArticleD}" :password="isShowPassword" />
 					<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 				</view>
 			</view>
@@ -80,7 +80,7 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="spirit_mask" v-if="isShowRegistInfo"></view>
 
 		<!-- 	<view class="registInfoTex">
@@ -148,10 +148,10 @@
 <script>
 	export default {
 		onLoad(e) {
-			if(e.inviteCode == undefined){
+			if (e.inviteCode == undefined) {
 				this.data.invitationCode = ''
 				console.log(this.data)
-			}else{
+			} else {
 				this.data.invitationCode = e.inviteCode
 			}
 			console.log('RESSSSS', e)
@@ -171,10 +171,11 @@
 				data: {
 					name: '',
 					phone: '',
-					yzm: '',
+					verifyCode: '',
 					loginPassword: '',
 					email: '',
 					invitationCode: '',
+					// operation: "register"
 					// PNywB5
 				},
 				isFocus: '',
@@ -185,27 +186,33 @@
 				isAddArticleD: false,
 				isAddArticleE: false,
 				isAddArticleF: false,
-				
+
 				//注冊協議
-				content:''
+				content: ''
 			}
 		},
 		methods: {
-			getYZM() {
+			async getYZM() {
+				console.log(this.data)
 				clearInterval(time)
-				uni.showToast({
-					title: '獲取成功',
-					icon: "success"
-				})
-				this.isShowYZM = !this.isShowYZM
-				this.count = 60
-				let time = setInterval(() => {
-					this.count -= 1
-					if (this.count == 0) {
-						this.isShowYZM = !this.isShowYZM
-						clearInterval(time)
-					}
-				}, 1000)
+				const data = {
+					"phone": this.data.phone,
+					"operation": "register"
+				}
+				const res = await this.$api.message(data)
+					uni.showToast({
+						title: '发送验证码成功',
+						icon: "success"
+					})
+					this.isShowYZM = !this.isShowYZM
+					this.count = 60
+					var time = setInterval(() => {
+						this.count -= 1
+						if (this.count == 0) {
+							this.isShowYZM = !this.isShowYZM
+							clearInterval(time)
+						}
+					}, 1000)
 			},
 
 			focus(id) {
@@ -275,10 +282,10 @@
 				console.log('AAAA')
 				this.isShowRegistInfo = true
 				const res = await this.$api.getUserRegistInfo()
-				if(res.code == 200){
+				if (res.code == 200) {
 					this.content = res.data.content
 				}
-				console.log('Re',res)
+				console.log('Re', res)
 			},
 			no() {
 				this.isShowRegistInfo = false
@@ -347,7 +354,7 @@
 	.box {
 		width: 100%;
 		height: 100%;
-		
+
 		.spirit_mask {
 			position: fixed;
 			top: 0;
@@ -368,7 +375,7 @@
 			// background-color: rgb(24, 38, 65);
 			border-bottom: none;
 			z-index: 99999999;
-			
+
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			// box-shadow: inset 1px 1px 0px 1px rgba(255,255,255,0.75), 0px 4px 16px 1px rgba(0,0,0,0.25);
 			border-radius: 8px 8px 8px 8px;

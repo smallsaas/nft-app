@@ -21,19 +21,17 @@
 			</view>
 			<text class="titleInfo dd">租用天數：</text>
 			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
-			<!-- <button class="btnNum">{{number}}</button> -->
 			<input type="number" class="btnNum" v-model="number" />
 			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
 			<view class="btnBox">
 				<text class="tt">共消耗GuGu令</text>
 				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="coinImgs"></image>
 				<text class="ttt">x{{number*itemInfo.coinCostPerDay}}</text>
-				<button class="btnMore" @click="landBuy">立即購買</button>
+				<button class="btnMore" @click="landBuy" :disabled="status=='FROZEN'">立即購買</button>
 			</view>
 			<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 		</view>
 		
-		<!-- 提示組件 -->
 		<toast v-if="isShowToast" :data="toastMsg"  @cancelToast="closeToast" :buyMsg="info" @successCloseToast="getSuccessClose"></toast>
 	</view>
 </template>
@@ -50,6 +48,7 @@
 		},
 		data() {
 			return {
+				status:'',
 				show: true,
 				landType: [{
 					id: 1,
@@ -91,6 +90,7 @@
 		mounted() {
 			console.log(this.itemInfo)
 			this.number = this.itemInfo.growthDays
+			this.status = this.$cache.get('status')
 		},
 		methods: {
 			toast(msg) {

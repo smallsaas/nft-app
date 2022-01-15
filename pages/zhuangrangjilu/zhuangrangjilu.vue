@@ -1,0 +1,113 @@
+<template>
+	<view class="history">
+		<view class="item" v-for="(item,index) in list" :key="index">
+			<view class="o"><image src="" mode="widthFix" class="avator"></image></view>
+			<view class="t">
+				<text class="i io">轉讓GuGu令-王小二</text>
+				<text class="i it">{{item.createTime}}</text>
+			</view>
+			<view class="h">
+				<text class="ip">{{item.coin}}</text>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default{
+		data(){
+			return{
+				list:[]
+			}
+		},
+		mounted() {
+			this.load()
+		},
+		methods:{
+			async load(){
+				const res = await this.$api.checkHistory()
+				console.log('------')
+				if(res.code == 200){
+					
+					this.list = res.data.filter(item=>{
+						return item.orderType == 'PLAYER_TRANSFER_ACCOUNTS'
+					})
+					uni.showToast({
+						title:'获取数据成功',
+						icon:'success',
+						duration:1000
+					})
+				}else{
+					uni.showToast({
+						title:'获取数据失败',
+						icon:'error',
+						duration:1000
+					})
+				}
+				console.log('------',res)
+			}
+		}
+	}
+</script>
+
+<style lang="less">
+	.history{
+		width: 100%;
+		height: 100%;
+		padding-top: 30rpx;
+		background: rgb(5,14,23);
+		.item{
+			width: 90%;
+			height: 140rpx;
+			margin-left: 5%;
+			border-radius: 10rpx;
+			background: rgb(17,24,30);
+			display: flex;
+			margin-bottom: 20rpx;
+			flex-direction: row;
+			.o{
+				width: 25%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.avator{
+					width: 120rpx;
+					height: 120rpx;
+					border-radius: 50%;
+				}
+			}
+			.t{
+				width: 50%;
+				height: 100%;
+				display: flex;
+				align-items: flex-start;
+				justify-content: center;
+				flex-direction: column;
+				.i{
+					font-size: 30rpx;
+					color: #FFFFFF;
+				}
+				.io{
+					margin-bottom: 20rpx;
+				}
+				.it{
+					color: grey;
+					font-size: 25rpx;
+				}
+			}
+			.h{
+				width: 25%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.ip{
+					color: #FFFFFF;
+					font-weight: bold;
+					font-size: 45rpx;
+				}
+			}
+		}
+	}
+</style>

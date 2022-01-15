@@ -4,6 +4,46 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
+	//转化帮会收益
+	zhuanhuaTypeTwo(params){
+		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/teamBenefits`
+		return request('GET',url,params)
+	},
+	//转化推荐收益
+	zhuanhuaType(params){
+		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/levelOneShare`
+		return request('GET',url,params)
+	},
+	//短信
+	message(params){
+		const url = `${globalConfig.endpoint}/api/u/sms/v1/captcha`
+		return request('POST',url,params)
+	},
+	//查看转让记录
+	checkHistory(params){
+		const url = `${globalConfig.endpoint}/api/u/player/getUserGUGURecord`
+		return request('GET',url,params)
+	},
+	//查看推荐收益明细
+	checkT(params){
+		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/levelOneShare`
+		return request('GET',url,params)
+	},
+	//查看帮会收益明细
+	checkB(params){
+		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/teamBenefits`
+		return request('GET',url,params)
+	},
+	//获取用户签到记录
+	loadUserSignHistory(data,params){
+		const url = `${globalConfig.endpoint}/api/u/sign?month=${data.month}&year=${data.year}`
+		return request('GET',url,params)
+	},
+	//获取申述记录
+	loadUserComplainHistory(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains`
+		return request('GET',url,params)
+	},
 	//用戶注冊協議
 	getUserRegistInfo(params){
 		const url = `${globalConfig.endpoint}/api/pub/cms/term/config?type=MEMBER_RULE`
@@ -206,5 +246,11 @@ export const api = {
 	getspiritMarket(params){
 	const url = `${globalConfig.endpoint}/api/crud/oms/wisp/wisps/market`
 	return request('GET',url,params)
+	},
+	
+	//更新玩家信息
+	updateUserAvatar(params){
+	const url = `${globalConfig.endpoint}/api/u/player/Avatar/change`
+	return request('POST',url,params)
 	},
 }

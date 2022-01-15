@@ -36,14 +36,14 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'15322315902',
-					password:'admin',
+					account:'13814736900',
+					password:'a123456',
 					verifyCode:''
 					  // 15322315902
 					  // 13313331137
 					  // 123456
 					  //13147258369
-					  
+					  // 13321370747
 					  //15322315900
 				},
 				list:['1','2','3','4','5','6','7','8','9'],
@@ -160,6 +160,7 @@
 						let user = await that.$api.getInformationNew()
 						if(user.code == 200){
 							that.$cache.set("userId",user.data.id)
+							that.$cache.set("status",user.data.status)
 							uni.showToast({
 								title:'登錄成功',
 								duration:1000,

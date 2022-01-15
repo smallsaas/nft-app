@@ -86,6 +86,7 @@
 			console.log("ID", e)
 			this.iid = e.data
 			this.getOrder(this.iid)
+			console.log('-------------------------')
 		},
 		data() {
 			return {
@@ -146,21 +147,23 @@
 					}
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
 					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-					if (res.data.seller.wechatQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
-						.wechatQrCodePhotoUrl !== null) {
-						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
-						this.sellerInfo.wechatQrCodePhotoUrl = url
-					} else {
+					// if (res.data.seller.wechatQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
+					// 	.wechatQrCodePhotoUrl !== null) {
+					// 	let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
+					// 	this.sellerInfo.wechatQrCodePhotoUrl = url
+					// } else {
+					// 	this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
+					// }
 						this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
-					}
 					this.sellerInfo.alipayAccount = res.data.seller.alipayAccount
-					if (res.data.seller.alipayQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
-						.alipayQrCodePhotoUrl !== null) {
-						let url = JSON.parse(res.data.seller.alipayQrCodePhotoUrl)[0]
-						this.sellerInfo.alipayQrCodePhotoUrl = url
-					} else {
+					// if (res.data.seller.alipayQrCodePhotoUrl.indexOf('[') === 0 && res.data.seller
+					// 	.alipayQrCodePhotoUrl !== null) {
+					// 	let url = JSON.parse(res.data.seller.alipayQrCodePhotoUrl)[0]
+					// 	this.sellerInfo.alipayQrCodePhotoUrl = url
+					// } else {
+					// 	this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
+					// }
 						this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
-					}
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					uni.showToast({

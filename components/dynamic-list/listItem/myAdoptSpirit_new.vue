@@ -26,19 +26,22 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：{{item.wisp.minimumValue}} - {{item.wisp.maximumValue}}</text>
+				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.coinsPrice)+item.amountAddedValue}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">領養：{{item.growthExpiryDate}}</text>
+				<text class="info">培养天数：{{item.wisp.growthDays}}</text>
+			</view>
+			<view class="infoBox infoBoxThree">
+				<text class="info sss">領養：{{item.growthExpiryDate}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
 				<button class="btn one" v-if="true" @click="noMessage">鑄造(待開放</button>
 				<view class="boxs" v-if="true">
-					<button class="two">系統自動挂售</button>
+					<button class="two">(培养中)自動挂售</button>
 				</view>
 				<!-- <text class="times" v-if="true">成長中</text>
 				<text class="time" v-if="true">剩餘時間 48:52:47</text> -->
@@ -112,7 +115,7 @@
 		.item{
 			margin: 0rpx auto;
 			width: 686rpx;
-			height: 470rpx;
+			height: 490rpx;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -169,6 +172,9 @@
 					font-weight: 400;
 					color: #FFFFFF;
 				}
+				.sss{
+					top: 168rpx !important;
+				}
 			}
 			.infoBoxTwo{
 				position: absolute;
@@ -177,6 +183,10 @@
 			.infoBoxThree{
 				position: absolute;
 				top: 256rpx !important;
+				.sss{
+					position: relative;
+					top: 40rpx !important;
+				}
 			}
 			.line{
 				width: 684rpx;
@@ -185,7 +195,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 324rpx;
+				top: 344rpx;
 			}
 			.btnBox{
 				width: 100%;
@@ -240,7 +250,7 @@
 					.two{
 						width: 300rpx !important;
 						height: 80rpx !important;
-						font-size: 16px;
+						font-size: 15px;
 						font-family: PingFang SC-Medium, PingFang SC;
 						font-weight: 500;
 						color: #FFFFFF;

@@ -64,6 +64,7 @@
 			}
 		},
 		created() {
+			console.log('res',this.item)
 			this.forChild.inviting = parseInt(this.item.invitingOneBallance) + parseInt(this.item.invitingTwoBallance)
 			this.forChild.signBallance = this.item.signBallance
 			this.forChild.teamBallance = this.item.teamBallance
@@ -96,7 +97,7 @@
 			},
 			goTo(){
 				uni.navigateTo({
-					url:'/pages/defaultPage/page?id=' + 111222
+					url:'/pages/zhuangrangjilu/zhuangrangjilu'
 				})
 			},
 			

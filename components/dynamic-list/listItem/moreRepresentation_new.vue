@@ -3,8 +3,11 @@
 		<view class="item">
 			<view class="status"><text class="title">申述原因:</text><text class="info">{{item.title}}</text></view>
 			<view class="status"><text class="title">備注信息:</text><text class="info">{{item.content}}</text></view>
-			<view class="status"><text class="title">申述狀态:</text><text class="info">{{item.status}}</text></view>
+			<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'处理中':'已处理'}}</text></view>
 			<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
+		</view>
+		<view class="fixBtn">
+			
 		</view>
 	</view>
 </template>
@@ -26,6 +29,11 @@
 		width: 100%;
 		padding-top: 50rpx;
 		background: rgb(5,14,23);
+		.fixBtn{
+			width: 100%;
+			height: 100rpx;
+			border: 1px solid red;
+		}
 		.item{
 			width: 90%;
 			height: auto;
@@ -44,6 +52,9 @@
 				.title{
 					width: 140rpx;
 					font-size: 30rpx;
+				}
+				.infos{
+					color: #31E4B9 !important;
 				}
 				.info{
 					width: 70%;

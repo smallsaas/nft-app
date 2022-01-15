@@ -569,7 +569,7 @@
                             setTimeout(() => {
 								that.$cache.set("FormChange",true)
                                 uni.navigateBack({
-									delta:2,
+									delta:1,
 									success(){
 										that.$reload()
 									}

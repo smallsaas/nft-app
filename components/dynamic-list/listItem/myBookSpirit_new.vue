@@ -1,7 +1,7 @@
 
  <template>
  	<view class="spiritMarketNew newBuGu">
- 		<view class="item">
+ 		<view class="item" :class="{itemss:item.bookStatus=='MATCH_FAIL'}">
  			<view class="left">
  				<view class="o">
  					<image :src="getImage(item.wisp?item.wisp.previewPhotoUrl:'')" mode="aspectFit" class="spiritImg"></image>
@@ -56,6 +56,14 @@
  					<text class="rthL">培養天數</text>
  					<text class="rthR">{{item.wisp?item.wisp.growthDays:0}}</text>
  				</view>
+				<view class="rth rtht">
+					<text class="rthL">预约时间</text>
+					<text class="rthR">{{time}}</text>
+				</view>
+				<view class="rth rtht" v-if="item.bookStatus=='MATCH_FAIL'">
+					<text class="rthL">退</text>
+					<text class="rthR rr">GUGUX{{item.wisp?item.wisp.costWispCoin:0}} 能量晶石X{{item.wisp?item.wisp.costAccompanyWisp:0}} 土地X{{item.wisp?item.wisp.growthDays:0}}</text>
+				</view>
  				<view class="btnBox">
 					<button class="btn"  v-if="item.bookStatus == 'WAITING_MATCH'">預約成功</button>
 					<pretty-button class="btn" v-if="item.bookStatus=='MATCH_SUCCESS'"  type="hollow"  text="匹配成功"></pretty-button>
@@ -126,9 +134,16 @@
  
  				isShowToast: false,
  				toastMsg: '',
+				time:''
  
  			}
  		},
+		mounted() {
+			console.log('0000000')
+			const s = this.item.appointmentTime.split('T')
+			this.time = s[0] + ' ' + s[1]
+			console.log(s)
+		},
  		methods: {
  			getImage(url) {
 				if(![undefined,null,''].includes(url)){
@@ -257,10 +272,12 @@
  		flex-direction: row;
  		padding-bottom: 20rpx;
  		background-color: #050e17;
- 
+		.itemss{
+			height: 550rpx !important;
+		}
  		.item {
- 			width: 95%;
- 			height: 460rpx;
+ 			width: 96%;
+ 			height: 500rpx;
  			border-top: 2rpx solid rgb(50, 71, 137);
  			border-left: 2rpx solid rgb(50, 71, 137);
  			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
@@ -300,7 +317,7 @@
  					flex-direction: row;
  					align-items: center;
  					justify-content: space-around;
- 					margin-top: 16rpx;
+ 					margin-top: 36rpx;
  
  					.thC {
  						display: flex;
@@ -378,6 +395,9 @@
  						font-weight: 400;
  						color: #dcdde2;
  					}
+					.rr{
+						font-size: 10px !important;
+					}
  				}
  
  				.rtho,
@@ -386,7 +406,7 @@
  				}
  
  				.btnBox {
- 					margin-top: 44rpx;
+ 					margin-top: 20rpx;
  					// width: 326rpx;
  					margin-right: 30rpx;
  					height: 80rpx;

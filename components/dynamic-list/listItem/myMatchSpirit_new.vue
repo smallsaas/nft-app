@@ -50,12 +50,16 @@
   				</view>
   				<view class="rth rtho">
   					<text class="rthL">能力值</text>
-  					<text class="rthR">{{item.wisp.minimumValue}}-{{item.wisp.maximumValue}}</text>
+  					<text class="rthR">{{item.wisp.minimumValue}}--{{item.wisp.maximumValue}}</text>
   				</view>
   				<view class="rth rtht">
   					<text class="rthL">培養天數</text>
   					<text class="rthR">{{item.wisp.growthDays}}</text>
   				</view>
+				<view class="rth rtht">
+					<text class="rthL">当前能力值</text>
+					<text class="rthR">{{item.transactionAmount}}</text>
+				</view>
   				<view class="btnBox">
   				<button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==true" @click="goToPay(item)">待付款(剩{{item.remainingMinutes}}分鍾)</button>
                 <button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false">等待買家付款</button>
@@ -147,7 +151,7 @@
   
   		.item {
   			width: 95%;
-  			height: 460rpx;
+  			height: 480rpx;
   			border-top: 2rpx solid rgb(50, 71, 137);
   			border-left: 2rpx solid rgb(50, 71, 137);
   			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
@@ -273,7 +277,7 @@
   				}
   
   				.btnBox {
-  					margin-top: 44rpx;
+  					margin-top: 16rpx;
   					// width: 326rpx;
   					margin-right: 30rpx;
   					height: 80rpx;

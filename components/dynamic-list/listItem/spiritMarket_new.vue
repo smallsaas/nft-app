@@ -56,17 +56,13 @@
 					<text class="rthR">{{item.growthDays}}</text>
 				</view>
 				<view class="btnBox">
-					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'" text="馬上預約"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'" type="hollow" text="不可預約"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="匹配結束"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='GROWING'"  type="hollow"  text="成長中"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH'"  type="hollow"  text="待匹配"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='WAITING_FOR_PAYMENT'"  type="hollow"  text="待支付"></pretty-button>
-					<!-- <view class="father" v-if="item.stage=='DISALLOW_BOOK'"><button class="noStatus">不可預約</button></view> -->
-					<!-- <view class="father" v-if="item.stage=='END_OF_MATCH'"><button class="noStatus">匹配結束</button></view> -->
-<!-- 					<view class="father" v-if="item.stage=='GROWING'"><button class="noStatus">成長中</button></view>
-					<view class="father" v-if="item.stage=='WAITING_MATCH'"><button class="noStatus">待匹配</button></view>
-					<view class="father" v-if="item.stage=='WAITING_FOR_PAYMENT '"><button class="noStatus">待支付</button></view> -->
+					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'" text="馬上預約" ></pretty-button>
+					<!-- <pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'" type="hollow" text="不可預約"></pretty-button> -->
+					<!-- <pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="匹配結束"></pretty-button> -->
+					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='GROWING'"  type="hollow"  text="馬上預約"></pretty-button>
+					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH'"  type="hollow"  text="已预约"></pretty-button>
+					<pretty-button class="btn" v-if="item.stage!=='WAITING_MATCH' && item.stage!=='BOOKABLE'"  type="hollow"  text="匹配中"></pretty-button>
+					<!-- <pretty-button class="btn" v-if="item.stage=='WAITING_FOR_PAYMENT'"  type="hollow"  text="待支付"></pretty-button> -->
 				</view>
 			</view>
 		</view>
@@ -113,8 +109,13 @@
 			item: Object,
 			ext: Object
 		},
+		created() {
+			console.log('00000000000000',this.$cache.get('status'))
+			this.status = this.$cache.get('status')
+		},
 		data() {
 			return {
+				status:'',
 				isShowBookChild: false,
 				itemInfoForChild: {},
 				isShowBuyComponeny: false,

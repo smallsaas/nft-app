@@ -1,7 +1,8 @@
 <template>
 	<view class="usernew">
 		<view class="imgBox">
-			<image class="img" :src="data.avatar" mode="widthFix"></image>
+			<image class="img" :src="data.avatar" mode="widthFix" v-if="false"></image>
+			<image class="upload" @click="uploadImage" :src="list[0]"/></image>
 		</view>
 		<view class="names">
 			<text class="name">{{data.name}}</text>
@@ -29,10 +30,37 @@
 		props: {
 			data: Object,
 		},
+		data(){
+			return{
+				uploadsrc:'',
+				list:[]
+			}
+		},
 		created() {
 			console.log(this.data,11111111111111111111111111)
 		},
 		methods:{
+			async uploadImage() {
+				let that = this
+				await uni.chooseImage({
+					count: 9,
+					success: async function(path) {
+						let files = path.tempFiles
+						for (var i = 0; i < files.length; i++) {
+							let file = files[i]
+							let webPath = await that.$upload("/api/u/fs/uploadfile", file.path)
+							let fileList = that.list
+							fileList.push(that.$config.endpoint + webPath)
+							// console.log(fileList)
+						}
+						let data = {
+							avater:that.list[0]
+						}
+						const wait = await that.$api.updateUserAvatar(data)
+						console.log('wait',wait)
+					}
+				})
+			},
 			getDetail(){
 				uni.navigateTo({
 					url:'/pages/infomation/infomation?id=' + this.data.userId
@@ -58,6 +86,16 @@
 				height: 72px !important;
 				border-radius: 50%;
 				border: 1px solid rgb(132,133,147);
+			}
+			.upload{
+				position: absolute;
+				top: 0px;
+				width: 72px;
+				height: 72px !important;
+				border-radius: 50%;
+				border: 1px solid rgb(132,133,147);
+				opacity: 1;
+				z-index: 99999999;
 			}
 		}
 		.names{

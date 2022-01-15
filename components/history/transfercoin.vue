@@ -6,7 +6,7 @@
 		<text class="tt">
 			轉化數量
 		</text>
-		<input class="ttt" type="number" placeholder="最多可轉化2000" v-model="transferWispCoind" />
+		<input class="ttt" type="number" placeholder="最多可轉化100" v-model="transferWispCoind" />
 		<view class="line"></view>
 		<view class="btnBox">
 			<button class="btn ccc" @click="cancel">取消</button>
@@ -37,26 +37,45 @@
 			cancel() {
 				this.$emit('closeCoin')
 			},
-			sureTransfer() {
-				if(this.dataTwo==undefined){
-					if (this.data.marketPoints < 200000000) {
-						const data = {
-							message: '收益未達到2000暫不可轉化爲GuGu令',
-						}
-						this.$emit('forParentMessage', data)
-					} else {
-						return
-					}
-				}else if(this.data == undefined){
-					if (this.dataTwo.depositPoints < 200000000) {
-						const data = {
-							message: '收益未達到2000暫不可轉化爲GuGu令',
-						}
-						this.$emit('forParentMessageTwo', data)
-					} else {
-						return
-					}
+			async sureTransfer() {
+				const res = await this.$api.zhuanhuaType()
+				console.log('rrrrr',res)
+				if(res.code == 200){
+					uni.showToast({
+						title:'转化成功',
+						icon:'success',
+						duration:1000
+					})
+					this.$emit('forParentMessage', res.message)
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'error',
+						duration:1000
+					})
+					this.$emit('forParentMessage', res.message)
+					return
 				}
+				
+				// if(this.dataTwo==undefined){
+				// 	if (this.data.marketPoints < 200000000) {
+				// 		const data = {
+				// 			message: '收益未達到2000暫不可轉化爲GuGu令',
+				// 		}
+				// 		this.$emit('forParentMessage', data)
+				// 	} else {
+				// 		return
+				// 	}
+				// }else if(this.data == undefined){
+				// 	if (this.dataTwo.depositPoints < 200000000) {
+				// 		const data = {
+				// 			message: '收益未達到2000暫不可轉化爲GuGu令',
+				// 		}
+				// 		this.$emit('forParentMessageTwo', data)
+				// 	} else {
+				// 		return
+				// 	}
+				// }
 			}
 		}
 	}

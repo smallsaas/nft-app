@@ -43,6 +43,7 @@
 			goToTeam(){
 				uni.navigateTo({
 					url:"/pages/defaultPage/tabbarPage?id=" + 666999
+					// url:'/pages/teams/teams'
 				})
 			}
 		}

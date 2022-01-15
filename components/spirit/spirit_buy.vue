@@ -1,5 +1,40 @@
 <template>
-	<view class="spiritBuy">
+	<view class="newBUYItem">
+		<view class="boxItem">
+			<view class="ImgBox">
+				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg"
+					@click="getClose"></image>
+			</view>
+			<view class="imgBox">
+				<image src="../../static/spirit/newC.png" mode="aspectFit" class="img"></image>
+			</view>
+			<view class="name">
+				<text class="nameI">培養精靈需消耗</text>
+			</view>
+			<view class="type">
+				<text class="info">{{itemInfo.description}}</text>
+			</view>
+			<view class="type cc">
+				<text class="one">消耗GuGu令：</text>
+				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="bg"></image>
+				<text class="two">x{{itemInfo.wispCoin||itemInfo.costWispCoin}}</text>
+			</view>
+			<text class="buyBox">
+				購買數量：
+			</text>
+			<image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image>
+			<input type="number" class="num" v-model="number" @focus="focusIng"/>
+			<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
+			<view class="bottomBox">
+				<text class="ce">共消耗GuGu令</text>
+				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
+				<text class="ce cetwo">x{{number * (itemInfo.wispCoin)}}</text>
+				<button class="btn" @click="buyComponeySpirit" :disabled="status=='FROZEN'">立即購買</button>
+			</view>
+		</view>
+		<toast v-if="isShowToast" :data="toastMsg" :buyMsg="info" @cancelToast="closeToast" @successCloseToast="getSuccessClose"></toast>
+	</view>
+	<!-- <view class="spiritBuy newBUY">
 			<view class="box">
 				<view class="imgBox">
 					<image src="../../static/spirit/newC.png" mode="aspectFit" class="img"></image>
@@ -19,7 +54,6 @@
 					購買數量：
 				</text>
 				<image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image>
-				<!-- <button class="num">{{number}}</button> -->
 				<input type="number" class="num" v-model="number" @focus="focusIng"/>
 				<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
 				<view class="bottomBox">
@@ -31,17 +65,17 @@
 				<image src="../../static/BaseImage/bigImage/close@3x.png" mode="widthFix" class="closeImg" @click="getClose"></image>
 			</view>
 			
-			<!-- 提示組件 -->
+
 			<toast v-if="isShowToast" :data="toastMsg" :buyMsg="info" @cancelToast="closeToast" @successCloseToast="getSuccessClose"></toast>
-			
-			<!-- <view class="spirit_mask" v-if="!isShowToast && !show"></view> -->
-	</view>
+	</view> -->
 </template>
 
 <script>
 	import toast from './toastSuccessForBuyCoin.vue'
 	export default {
-		components:{toast},
+		components: {
+			toast
+		},
 		props: {
 			itemInfo: {
 				type: Object,
@@ -51,20 +85,22 @@
 		created() {
 			console.log(this.itemInfo)
 			console.log(123)
+		    this.status = this.$cache.get('status')
 		},
 		data() {
 			return {
+				status:'',
 				show: true,
 				number: 0,
-				
-				
+
+
 				isShowToast: false,
 				toastMsg: '',
-				
-				info:{}
+
+				info: {}
 			}
 		},
-		mounted(){
+		mounted() {
 			this.number = this.itemInfo.costAccompanyWisp
 		},
 		methods: {
@@ -75,36 +111,44 @@
 			closeToast() {
 				this.isShowToast = false
 			},
-			getSuccessClose(response){
-				this.$emit('buySuccess',response)
+			getSuccessClose(response) {
+				this.$emit('buySuccess', response)
 			},
-			focusIng(){
-				this.$emit('AllNumber',parseInt(this.number))
+			focusIng() {
+				this.$emit('AllNumber', parseInt(this.number))
 			},
 			getClose() {
 				this.$emit('closeBuyChild', false)
 			},
 			dec() {
-				if(parseInt(this.number)== 0){
+				if (parseInt(this.number) == 0) {
 					this.number = 0
 					return
-				} 
-				this.number=parseInt(this.number) - 1
-				this.$emit('decNumber',this.number)
+				}
+				this.number = parseInt(this.number) - 1
+				this.$emit('decNumber', this.number)
 			},
 			add() {
-				this.number=parseInt(this.number) + 1
-				this.$emit('addNumber',this.number)
+				this.number = parseInt(this.number) + 1
+				this.$emit('addNumber', this.number)
 			},
-			
+
 			//購買能力晶石
-			 buyComponeySpirit(){
+			async buyComponeySpirit() {
+				// if(this.status = ''){
+				// 	uni.showToast({
+				// 		icon:'error',
+				// 		title:'你的账户被冻结，请申请解冻后再操作',
+				// 		duration:1000
+				// 	})
+				// 	return
+				// }
 				this.isShowToast = true
 				this.toast('确認購買麽？')
 				this.info.companionWispId = this.itemInfo.id
 				this.info.number = this.number
 				this.info.paymentPassword = '123456'
-				// console.log(this.itemInfo.id,1)
+				console.log(this.itemInfo.id,1)
 				// const data = {
 				// 	companionWispId:this.itemInfo.id,
 				// 	number:this.number,
@@ -126,15 +170,234 @@
 	}
 </script>
 <style lang="less">
-	.spiritBuy {
+	.newBUYItem {
 		width: 100%;
-		height: 50% !important;
+		height: 654rpx;
 		// border: 1px solid red;
 		border-radius: 16px 16px 0px 0px;
 		position: fixed;
 		bottom: -10rpx;
 		z-index: 9999999 !important;
-		
+
+		.boxItem {
+			background: rgb(28, 41, 76);
+			width: 100%;
+			height: 100% !important;
+			background: #1C294C;
+			border-radius: 16px 16px 0px 0px;
+			opacity: 1;
+			z-index: 9999999 !important;
+			position: fixed;
+
+			.ImgBox {
+				position: absolute;
+				right: 15rpx;
+				top: 15rpx;
+				width: 40rpx;
+				height: 40rpx;
+
+				.closeImg {
+					width: 40rpx;
+					height: 40rpx;
+				}
+			}
+			
+			.imgBox {
+				position: absolute;
+				left: 32rpx;
+				top: 64rpx;
+				width: 100px;
+				height: 100px;
+				background: #1C294C;
+				border-radius: 8px 8px 8px 8px;
+				opacity: 1;
+				border: 1px solid rgba(196, 196, 196, 0.5);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			
+				.img {
+					width: 88px;
+					height: 88px !important;
+				}
+			}
+			
+			.name {
+				position: absolute;
+				left: 256rpx;
+				top: 64rpx;
+				width: 240px;
+				height: 25px;
+			
+				.nameI {
+					font-size: 18px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
+				}
+			}
+			
+			.type {
+				position: absolute;
+				left: 256rpx;
+				top: 138rpx;
+				width: 240px;
+				height: 25px;
+			
+				.info {
+					width: 128px;
+					height: 20px;
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #E14CFF;
+					border: 1px solid #E14CFF;
+					padding: 2px 8px 2px 8px;
+				}
+			}
+			.cc {
+				top: 216rpx;
+				display: flex;
+				align-items: center;
+			
+				.one {
+					// width: 84px;
+					height: 20px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+				}
+			
+				.bg {
+					width: 20px;
+					height: 20px !important;
+					margin-right: 3px;
+				}
+			
+				.two {
+					width: 21px;
+					height: 25px;
+					font-size: 18px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
+				}
+			}
+			
+			.buyBox {
+				position: absolute;
+				top: 320rpx;
+				left: 32rpx;
+				width: 80px;
+				height: 24px;
+				font-size: 16px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFFFFF;
+			}
+			
+			.bd {
+				width: 32px;
+				height: 32px !important;
+				position: absolute;
+				top: 312rpx;
+				left: 208rpx;
+			}
+			
+			.num {
+				width: 80px;
+				height: 30px;
+				border-radius: 4px 4px 4px 4px;
+				opacity: 1;
+				border: 1px solid rgba(255, 255, 255, 0.5);
+				position: absolute;
+				top: 312rpx;
+				left: 280rpx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				font-family: PingFang SC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFFFFF;
+				background: #1C294C;
+				line-height: 32px;
+				text-align: center;
+			}
+			
+			.ad {
+				left: 448rpx;
+			}
+			
+			.bottomBox {
+				position: absolute;
+				top: 424rpx;
+				width: 100% !important;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+			
+				.ce {
+					// width: 72px;
+					height: 17px;
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+					position: absolute;
+					left: 16px;
+					top: 24px;
+				}
+			
+				.icon {
+					width: 20px;
+					height: 20px !important;
+					position: absolute;
+					left: 16px;
+					top: 48px;
+					margin-right: 3px;
+				}
+			
+				.cetwo {
+					position: absolute;
+					left: 44px;
+					top: 45px;
+					font-size: 18px;
+					font-family: PingFang SC-Bold, PingFang SC;
+					font-weight: bold;
+					color: #FFFFFF;
+				}
+			
+				.btn {
+					width: 224px;
+					height: 48px;
+					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
+					border-radius: 8px 8px 8px 8px;
+					opacity: 1;
+					font-size: 16px;
+					font-family: PingFang SC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #FFFFFF;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: absolute;
+					top: 24px;
+					left: 135px;
+					;
+				}
+			}
+		}
+	}
+
+	.spiritBuy {
+		width: 100%;
+		height: 50%;
+		// border: 1px solid red;
+		border-radius: 16px 16px 0px 0px;
+		position: fixed;
+		bottom: -10rpx;
+		z-index: 9999999 !important;
+
 		.spirit_mask {
 			position: fixed;
 			top: 0;
@@ -155,12 +418,13 @@
 			opacity: 1;
 			z-index: 9999999 !important;
 			position: fixed;
-			.closeImg{
-				width:50rpx;
+
+			.closeImg {
+				width: 50rpx;
 				height: 50rpx;
 				position: absolute;
 				right: 50rpx;
-				top:20rpx;
+				top: 20rpx;
 			}
 
 			.imgBox {
@@ -319,8 +583,8 @@
 					top: 48px;
 					margin-right: 3px;
 				}
-				
-				.cetwo{
+
+				.cetwo {
 					position: absolute;
 					left: 44px;
 					top: 45px;
@@ -329,8 +593,8 @@
 					font-weight: bold;
 					color: #FFFFFF;
 				}
-				
-				.btn{
+
+				.btn {
 					width: 224px;
 					height: 48px;
 					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
@@ -345,7 +609,8 @@
 					justify-content: center;
 					position: absolute;
 					top: 24px;
-					left: 135px;;
+					left: 135px;
+					;
 				}
 			}
 		}

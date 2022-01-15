@@ -40,7 +40,7 @@
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}分鍾</text>
-			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.wispOrder.id,item.wispOrder.buyerPhone,item.wispOrder.pictureUrl)">玩家已處理請确認{{item.wispOrder.id}}</button>
+			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.wispOrder.id,item.wispOrder.buyerPhone,item.wispOrder.pictureUrl)" :disabled="status=='FROZEN'">玩家已處理請确認</button>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -63,9 +63,11 @@
 			}
 		},
 		mounted() {
-			const split = this.item.createTime.split('T')
-			const l = split[0]
+			const split = this.item.stageChangeTime.split('T')
+			console.log('000000000000000',split)
+			const l = split[0] +  ' ' + split[1]
 			this.time = l
+			this.status = this.$cache.get('status')
 		},
 		methods: {
 			goToResive(id,phone,pictrue){

@@ -11,7 +11,8 @@
 		<text class="tt tttt">
 			轉讓數量
 		</text>
-		<input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低500起" type="number" />
+		<text class="errors" v-if="showErrorTwo">转让最低数量最低为200</text>
+		<input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低200起" type="number" />
 		<text class="tt tttttt">
 			支付密碼
 		</text>
@@ -35,7 +36,8 @@
 					number: "",
 					paymentPassword: '',
 				},
-				showError:false
+				showError:false,
+				showErrorTwo:false
 			}
 		},
 		methods: {
@@ -44,9 +46,15 @@
 			},
 			 async successTransfer() {
 				console.log(this.showError)
+				
+				if(this.data.number < 200){
+					this.showErrorTwo = true
+					return
+				}
 					
 				if(this.data.targetPlayerMobilePhone.length<6 || this.data.targetPlayerMobilePhone.length>11){
 					this.showError = true
+					return
 				}else{
 					this.data.number = parseInt(this.data.number)
 					console.log(this.data)
@@ -125,6 +133,13 @@
 			padding-left: 10rpx;
 		}
 		
+		.errors{
+			color: red;
+			position: absolute;
+			top: 420rpx;
+			left: 40rpx;
+			font-size: 12px;
+		}
 		.error{
 			color: red;
 			position: absolute;
