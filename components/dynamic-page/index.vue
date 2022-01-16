@@ -182,6 +182,13 @@
 						 							v-if="_get(item,'type') === 'check-team-list'"
 						 							:item="getComponentsData(item)"
 						 ></check-team-list>
+						 <!-- 統計團隊組件 也可統計其他 fieldGroup 字段組 loadApi 獲取數據api unitGroup 單位組-->
+						 <data-show 
+							v-if="_get(item,'type') === 'dataShow'"
+							 :fieldGroup="_get(_get(config.moduleData,item.key,{}),'fieldGroup',{})"
+							 :loadApi="_get(_get(config.moduleData,item.key,{}),'loadApi','')"
+							 :unitGroup="_get(_get(config.moduleData,item.key,{}),'unitGroup',{})"
+						 ></data-show>
             </view>
           </block>
 		<!-- #ifdef H5 -->
@@ -223,6 +230,8 @@
 	import MyHistory from '../history/myhistory.vue'
 	//直推查詢列表
 	import CheckTeamList from '../team/checkTeamList.vue'
+	// 數據展示
+	import dataShow from '../dataShow/index.vue'
 	export default {
 		components: { 
 			dynamicList, 
@@ -242,7 +251,8 @@
 			pageTabbar,
 			Service,
 			MyHistory,
-			CheckTeamList
+			CheckTeamList,
+			dataShow
 		},
 		props: {
 			API: String,  // 頁面數據請求接口

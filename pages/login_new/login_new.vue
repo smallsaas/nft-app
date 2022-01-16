@@ -202,7 +202,7 @@
 				}
 				
 				
-				// that.$cache.set(that.$config.tokenStorageKey,'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJvcmdJZCI6IjEiLCJ1c2VySWQiOiI4NzY3MDgwODI0MzcxOTc4ODgiLCJ0ZW5hbnRPcmdJZCI6MSwiYWNjb3VudCI6Im1hbmFnZTMiLCJ1c2VyVHlwZSI6MCwiZGV2VXNlclR5cGUiOjAsImJVc2VyVHlwZSI6IlNZU1RFTSIsImlhdCI6MTY0MTc5NTgyNywianRpIjoiODc2NzA4MDgyNDM3MTk3ODg4Iiwic3ViIjoibWFuYWdlMyIsImV4cCI6MTY0MjA1NTAyN30.RNGGX2Nx_5oLBrRlybW3hIECv1JStVbLlMHYJs7UUGzJoq-_H0v7KcHHGf6N6GS_S8SVdbamq4ITijSbDyeM7w')
+				// that.$cache.set(that.$config.tokenStorageKey,'eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJvcmdJZCI6IiIsInVzZXJJZCI6MTEzLCJhY2NvdW50IjoiYWNjNjExMjQ4MzciLCJkb21haW5Vc2VySWQiOjU4LCJpYXQiOjE2NDIxMjUxNTUsImp0aSI6IjExMyIsInN1YiI6ImFjYzYxMTI0ODM3IiwiZXhwIjoxNjQyMzg0MzU1fQ.jyVzbOeysm6hQPPKKyzKGALTR6STLGvhIqgbcH2cCa9AnmFWznT5qRQ4JZTsSCjirjjgZ4_jwz0DsNdhCvOmBw')
 				// uni.navigateTo({
 				// 	url:'/pages/home/homePage'
 				// })

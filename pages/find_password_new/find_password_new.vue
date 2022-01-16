@@ -3,15 +3,15 @@
 		<view class="box">
 			<view class="loginText"><text class="text">找回密碼</text></view>
 			<view class="label"><text class="labelTxt">賬号</text></view>
-			<view class="inputBox"><input :class="isFocus==='phone'?'focus account':'account'" type="number" placeholder="請輸入手機号碼" @focus="handleFocus('phone')" @blur="handleFocus('')"></view>
+			<view class="inputBox"><input :class="isFocus==='phone'?'focus account':'account'" type="number" placeholder="請輸入手機号碼" @focus="handleFocus('phone')" @blur="handleFocus('')" v-model="phone"></view>
 			<view class="info" v-if="false"><text class="infoText">賬号有誤，請輸入正确的手機号碼</text></view>
 			<view class="label"><text class="labelTxt">驗證碼</text></view>
-			<view class="inputBox"><input :class="isFocus==='code'?'focus account':'account'" type="number" placeholder="請輸入驗證碼"  @focus="handleFocus('code')" @blur="handleFocus('')" ><text
+			<view class="inputBox"><input :class="isFocus==='code'?'focus account':'account'" type="number" placeholder="請輸入驗證碼"  @focus="handleFocus('code')" @blur="handleFocus('')"  v-model="verifyCode"><text
 					class="getYZM" @click="getYZM" v-if="isShowYZM">獲取驗證碼</text>
 					<text class="getYZM gets" v-if="!isShowYZM">{{count}}秒重試</text>
 					</view>
 			<view class="label"><text class="labelTxt">設置新密碼</text></view>
-			<view class="inputBox"><input :class="isFocus==='password'?'focus account':'account'" type="text" :password="isShowPassword" placeholder="請輸入密碼" @focus="handleFocus('password')" @blur="handleFocus('')">
+			<view class="inputBox"><input :class="isFocus==='password'?'focus account':'account'" type="text" :password="isShowPassword" placeholder="請輸入密碼" @focus="handleFocus('password')" @blur="handleFocus('')" v-model="newPassword">
 				<image @click="changeLook()" class="eye" :src="isOpenLook[openIndex]" mode="widthFix"></image>
 			</view>
 			<view class="loginBox"><button class="loginBtn" @click="success">确定</button></view>
@@ -29,19 +29,49 @@
 				isFocus:"",
 				
 				isShowYZM:true,
-				count:60
+				count:60,
+				phone:"",
+				verifyCode:"",
+				newPassword:""
 			}
 		},
 		methods: {
-			success(){
+			async success(){
 				console.log('aaa')
+				let params = {
+					"phone":this.phone, 
+					"verifyCode":this.verifyCode,
+					"newPassword":this.newPassword
+				}
+				let res = await this.$api.findPassword(params)
 			},
-			getYZM(){
+			async getYZM(){
 				clearInterval(time)
-				uni.showToast({
-					title:'獲取成功',
-					icon:"success"
-				})
+				if([undefined,null,''].includes(this.phone)){
+					uni.showToast({
+						title:"電話号碼不能爲空",
+						icon:"error"
+					})
+					return ;
+				}
+				let params = {
+					phone:this.phone,
+					operation: "changePassword"
+				}
+				let res = await this.$api.message(params)
+				console.log(res)
+				if(res.statusCode === 200){
+					uni.showToast({
+						title:'獲取成功',
+						icon:"success"
+					})
+				}else{
+					uni.showToast({
+						title:"獲取失敗",
+						icon:"error"
+					})
+				}
+
 				this.isShowYZM = !this.isShowYZM
 				this.count = 60
 				let time = setInterval(()=>{

@@ -3,8 +3,8 @@
 		<view class="item" v-for="(item,index) in list" :key="index">
 			<view class="o"><image src="" mode="widthFix" class="avator"></image></view>
 			<view class="t">
-				<text class="i io">轉讓GuGu令-王小二</text>
-				<text class="i it">{{item.createTime}}</text>
+				<text class="i io">轉讓GuGu令-{{item.name}}</text>
+				<text class="i it">{{formatTime(item.createTime)}}</text>
 			</view>
 			<view class="h">
 				<text class="ip">{{item.coin}}</text>
@@ -45,6 +45,16 @@
 					})
 				}
 				console.log('------',res)
+			},
+			formatTime(time){
+				let date = new Date(time)
+				let year = date.getFullYear()
+				let month = date.getMonth()+1
+				let day = date.getDate()
+				let Hour = date.getHours()
+				 let Min = date.getMinutes()
+				 let Second = date.getSeconds()
+				return `${year}年${month}月${day}日 ${Hour}時${Min}分${Second}秒`
 			}
 		}
 	}

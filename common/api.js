@@ -14,9 +14,14 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/levelOneShare`
 		return request('GET',url,params)
 	},
+	// 找回密碼
+	findPassword(params){
+		const url = `${globalConfig.endpoint}/api/pub/user/findPassword`
+		return request("POST",url,params)
+	},
 	//短信
 	message(params){
-		const url = `${globalConfig.endpoint}/api/u/sms/v1/captcha`
+		const url = `${globalConfig.endpoint}/api/sms/v1/captcha`
 		return request('POST',url,params)
 	},
 	//查看轉讓記錄

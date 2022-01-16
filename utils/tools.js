@@ -241,3 +241,13 @@ export const unToken = (code) =>{
 		return ;
 	}
 }
+// 凍結事件
+export const frozen = () =>{
+	if(cache.get("status") === "FROZEN"){
+		uni.showToast({
+			title:"請解凍後重試",
+			icon:"error"
+		})
+		return true;
+	}
+}

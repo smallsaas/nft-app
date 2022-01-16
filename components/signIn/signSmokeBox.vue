@@ -184,6 +184,9 @@
 			},
 			// 補簽事件
 			async handleFill(day){
+				if(this.$frozen()){
+					return ;
+				}
 				let date = `${this.year}-${this.month<10?`0${this.month}`:this.month}-${day}`
 				console.log("補簽！",date)
 				let res = await this.$api.repleinishSign({replenishSignDate:date})
@@ -240,6 +243,9 @@
 			},
 			// 簽到事件
 			async handleSign(){
+				if(this.$frozen()){
+					return ;
+				}
 				if(this.isSign==="sign"){
 					return ;
 				}

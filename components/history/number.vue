@@ -2,26 +2,26 @@
 	<view class="number">
 		<view class="item">
 			<text class="title">簽到收益:</text>
-			<text class="num">{{data.signBallance}}</text>
+			<text class="num">{{data.signBallance||0}}</text>
 			<text class="o" @click="tiqu">提取</text>
 		</view>
 		<view class="item">
 			<text class="title">推薦收益:</text>
-			<text class="num">{{data.inviting}}</text>
+			<text class="num">{{data.inviting||0}}</text>
 			<text class="o" @click="zhaunhua">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
 			<text class="ott" @click="goToTuiJian">查看明細</text>
 		</view>
 		<view class="item">
 			<text class="title">幫會收益:</text>
-			<text class="num">{{data.teamBallance}}</text>
+			<text class="num">{{data.teamBallance||0}}</text>
 			<text class="o" @click="zhuancunTwo">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
 			<text class="ott" @click="goToBangHui">查看明細</text>
 		</view>
 		<view class="item">
 			<text class="title">轉存收益:</text>
-			<text class="num">{{data.depositPoints}}</text>
+			<text class="num">{{data.depositPoints||0}}</text>
 			<text class="o" @click="forParentTwo">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForDeposi">轉化精靈</text>
 		</view>

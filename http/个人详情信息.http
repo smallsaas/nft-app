@@ -1,4 +1,5 @@
 @endpoint = http://api.dev.smallsaas.cn:8086
+# @endpoint = https://www.metagugu.net
 
 GET {{endpoint}}/form?id=222333
 
@@ -74,7 +75,7 @@ Content-Type: application/json
                     "label": "副手机号验证码",
                     "type": "code",
                     "placeholder": "输入验证码",
-                    "requestUrl": ""
+                    "requestUrl": "/api/sms/v1/captcha"
                 },
                 {
                     "label": "新的支付密码",
@@ -176,7 +177,7 @@ Content-Type: application/json
                                 "label":"主手机号验证码",
                                 "type":"code",
                                 "placeholder":"输入验证码",
-                                "requestUrl":""
+                                "requestUrl":"/api/sms/v1/captcha"
                             },
                             {
                                 "label":"副手机号码",
@@ -533,6 +534,7 @@ Content-Type: application/json
                         "showLabel": true,
                         "tag": "el-input",
                         "tagIcon": "password",
+                        "defaultValue":"******",
                         "required": false,
                         "layout": "colFormItem",
                         "regList": [],

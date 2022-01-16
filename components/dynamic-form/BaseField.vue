@@ -127,6 +127,10 @@
 						status:{
 							type:String,
 							default:""
+						},
+						phone:{
+							type:String,
+							default:""
 						}
         },
 		data() {
@@ -251,26 +255,43 @@
 						if(!that.canPush){
 							return ;
 						}
+						let token = this.$cache.get(that.$config.tokenStorageKey)
 						uni.request({
 							url:this.$config.endpoint + api,
+							data:{
+								phone:this.phone,
+								operation:"changeAccount"
+							},
+							header:{
+								Authorization:`Bearer ${token}`
+							},
+							method:"POST",
 							success(res) {
-								that.canPush = false
-								that.timeCache = setInterval(()=>{
-									that.codeTime = that.codeTime - 1
-									if(that.codeTime === 0){
-										that.canPush = true
-										that.codeTime = 60
-										clearInterval(that.timeCache)
-									}
-								},1000)
-								uni.showToast({
-									title:"發送成功",
-									icon:"success"
-								})
+								if(res.data.code === 200){
+									that.canPush = false
+									that.timeCache = setInterval(()=>{
+										that.codeTime = that.codeTime - 1
+										if(that.codeTime === 0){
+											that.canPush = true
+											that.codeTime = 60
+											clearInterval(that.timeCache)
+										}
+									},1000)
+									uni.showToast({
+										title:"發送成功",
+										icon:"success"
+									})
+								}else{
+									uni.showToast({
+										title:res.data.message||res.data.msg,
+										icon:"error"
+									})
+								}
 							},
 							fail(err) {
 								uni.showToast({
-									title:err.message||err.msg
+									title:err.data.message||err.data.msg,
+									icon:"error"
 								})
 							}
 						})
@@ -293,6 +314,9 @@
 						}
 					},
 					showModal(){
+						if(this.$frozen()){
+							return ;
+						}
 						if(!this.canUse){
 							uni.showToast({
 								title:"當前狀态不可用",

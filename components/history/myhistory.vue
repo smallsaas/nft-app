@@ -4,7 +4,7 @@
 			<view class="leftL">
 				<view class="T">
 					<view class="TT"><text class="info">我的GuGu令</text></view>
-					<view class="TB"><image src="../../static/spirit/newCoin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{coin}}</text></view>
+					<view class="TB"><image src="../../static/spirit/newCoin.png" mode="widthFix" class="img"></image><text class="infoT">x  {{coin||0}}</text></view>
 				</view>
 				<view class="B">
 					<view class="btnbtn"><button class="btn" @click="transfer">轉讓</button></view>
@@ -14,11 +14,11 @@
 			<view class="leftR">
 				<view class="item">
 					<view class="Info">我的能力晶石</view>
-					<view class="TTT"><image src="../../static/spirit/newC.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.companionWispAmount}}</text></view>
+					<view class="TTT"><image src="../../static/spirit/newC.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.companionWispAmount||0}}</text></view>
 				</view>
 				<view class="item">
 					<view class="Info">租用土地</view>
-					<view class="TTT"><image src="../../static/spirit/land.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.landRemainingDays}}</text></view>
+					<view class="TTT"><image src="../../static/spirit/land.png" mode="widthFix" class="img"></image><text class="infoT">x  {{item.landRemainingDays||0}}</text></view>
 				</view>
 			</view>
 		</view>

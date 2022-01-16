@@ -7,7 +7,7 @@ import DynamicList from './components/dynamic-list/index.vue'
 import card from './components/other/Card.vue'
 import {globalConfig} from '@/config.js'
 import {api} from './common/api.js'
-import {timeCache,cache,reload,upload} from '@/utils/tools.js'
+import {timeCache,cache,reload,upload,frozen} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
 import prettyButton from './components/prettyButton.vue'
 import './other.less'
@@ -161,6 +161,8 @@ Vue.prototype.$zh_tw = transformTools.transformToTW
 Vue.prototype.$zh_cn = transformTools.transformToCN
 Vue.prototype.$JSONTW = transformTools.JSONTW
 Vue.prototype.$JSONCN = transformTools.JSONCN
+// 是否解凍
+Vue.prototype.$frozen = frozen
 //組件聲明
 Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)

@@ -258,6 +258,7 @@
             },
 						// 跳轉
 						handleJump(url){
+							this.$frozen()
 							if(this.form.backupMobilePhone == null || this.form.backupMobilePhone==''){
 								uni.showToast({
 									icon:'error',
@@ -275,6 +276,9 @@
 						},
 						// 顯示模态框
 						showModal(){
+							if(this.$frozen()){
+								return ;
+							}
 							this.isModal = true
 						},
 						hideModal(){
@@ -322,27 +326,44 @@
 							if(!that.canPush){
 								return ;
 							}
+							let token = this.$cache.get(that.$config.tokenStorageKey)
 							uni.request({
 								url:this.$config.endpoint + api,
+								data:{
+									"phone":this.form.backupMobilePhone,
+									"operation":"changePassword"
+								},
+								header:{
+									Authorization:`Bearer ${token}`
+								},
+								method:"POST",
 								success(res) {
-									console.log(res,"success")
-									that.canPush = false
-									that.timeCache = setInterval(()=>{
-										that.codeTime = that.codeTime - 1
-										if(that.codeTime === 0){
-											that.canPush = true
-											that.codeTime = 60
-											clearInterval(that.timeCache)
-										}
-									},1000)
-									uni.showToast({
-										title:"發送成功",
-										icon:"success"
-									})
+									if(res.data.code === 200){
+										console.log(res,"success")
+										that.canPush = false
+										that.timeCache = setInterval(()=>{
+											that.codeTime = that.codeTime - 1
+											if(that.codeTime === 0){
+												that.canPush = true
+												that.codeTime = 60
+												clearInterval(that.timeCache)
+											}
+										},1000)
+										uni.showToast({
+											title:"發送成功",
+											icon:"success"
+										})
+									}else{
+										uni.showToast({
+											title:res.data.message||res.data.msg,
+											icon:"error"
+										})
+									}
 								},
 								fail(err) {
 									uni.showToast({
-										title:err.message||err.msg
+										title:err.data.message||err.data.msg,
+										icon:"error"
 									})
 								}
 							})

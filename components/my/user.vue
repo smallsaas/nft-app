@@ -1,7 +1,7 @@
 <template>
 	<view class="usernew">
 		<view class="imgBox">
-			<image class="img" :src="data.avatar" mode="widthFix" v-if="false"></image>
+			<image class="img" :src="data.avatar" mode="widthFix"></image>
 			<image class="upload" @click="uploadImage" :src="list[0]"/></image>
 		</view>
 		<view class="names">
@@ -33,11 +33,13 @@
 		data(){
 			return{
 				uploadsrc:'',
-				list:[]
+				list:[],
+				avatar:null
 			}
 		},
 		created() {
-			console.log(this.data,11111111111111111111111111)
+			console.log(this.data,"DATA")
+			this.avatar = this.data.avatar
 		},
 		methods:{
 			async uploadImage() {
@@ -54,7 +56,7 @@
 							// console.log(fileList)
 						}
 						let data = {
-							avater:that.list[0]
+							avatar:that.list[0]
 						}
 						const wait = await that.$api.updateUserAvatar(data)
 						console.log('wait',wait)

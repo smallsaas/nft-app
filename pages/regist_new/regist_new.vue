@@ -48,6 +48,13 @@
 				</view>
 			</view>
 			<view class="labelTetx">
+				<text class="text">支付密碼</text>
+			</view>
+			<view class="inputBox">
+				<input type="text" placeholder="請設置支付密碼" class="inputBoxC" v-model="data.paymentPassword"
+					@focus="focus(7)" @blur="blur(7)" :class="whatFocus===7?'focus':''" />
+			</view>
+			<view class="labelTetx">
 				<text class="text">郵箱(選填)</text>
 			</view>
 			<view class="inputBox">
@@ -179,7 +186,7 @@
 					// PNywB5
 				},
 				isFocus: '',
-
+				whatFocus:-1,
 				isAddArticleA: false,
 				isAddArticleB: false,
 				isAddArticleC: false,
@@ -193,6 +200,13 @@
 		},
 		methods: {
 			async getYZM() {
+				if([undefined,null,''].includes(this.data.phone)){
+					uni.showToast({
+						title:"請輸入手機号碼",
+						icon:"error"
+					})
+					return ;
+				}
 				console.log(this.data)
 				clearInterval(time)
 				const data = {
@@ -200,10 +214,17 @@
 					"operation": "register"
 				}
 				const res = await this.$api.message(data)
+				if(res.statusCode === 200){
 					uni.showToast({
 						title: '發送驗證碼成功',
 						icon: "success"
 					})
+				}else{
+					uni.showToast({
+						title: '發送驗證碼失敗',
+						icon: "error"
+					})
+				}
 					this.isShowYZM = !this.isShowYZM
 					this.count = 60
 					var time = setInterval(() => {
@@ -235,6 +256,8 @@
 				} else if (id == 6) {
 					this.isAddArticleF = true
 					return
+				}else{
+					this.whatFocus = id
 				}
 			},
 
@@ -257,6 +280,8 @@
 				} else if (id == 6) {
 					this.isAddArticleF = false
 					return
+				}else{
+					this.whatFocus = -1
 				}
 			},
 

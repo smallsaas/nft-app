@@ -13,6 +13,7 @@
                       : {}
                  }"
 								 :status="form[_get(item,'statusField')]"
+								 :phone="form['mobilePhone']"
                  @input="(e) => handleSetValue(e, fields[index])"
                  @clear="(e) => handleClear(e, fields[index])"
             />
@@ -200,7 +201,7 @@
 							    disabled: _.get(item, 'disabled', false),
 							    clearable: _.get(item, 'clearable', false),
 							    inputBlock: _.get(item, 'inputBlock', false),
-							    value: this.form[item.__vModel__],
+							    value: this.form[item.__vModel__]||_.get(item,'__config__.defaultValue'),
 							    style: _.get(item, 'style', ''),
 							    regList: _.get(item, '__config__.regList', []),
 							    ..._.has(item, 'placeholder') ? { placeholder: item.placeholder } : {},
