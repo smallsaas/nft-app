@@ -30,7 +30,7 @@
 					<image src="../../static/spirit/land.png" mode="widthFix" class="icon"></image>
 					<text class="number">x{{itemInfo.growthDays}}</text>
 				</view>
-				<view class="newAdd"><view class="checkBtn" :class="{active:isClick==true}" @click="change"></view><text>自动预约</text></view>
+				<view class="newAdd"><view class="checkBtn" :class="{active:isClick==true}" @click="change"></view><text>自動預約</text></view>
 				<view class="nameBox"><text class="name">{{itemInfo.name}}</text></view>
 				<view class="nameBox nTwo"><text class="name nametwo">預約剩餘時間 {{itemInfo.remainingBookMinutes}}分鍾 确定預約嗎？</text></view>
 				<view class="btnBox">

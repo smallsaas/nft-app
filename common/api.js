@@ -4,12 +4,12 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
-	//转化帮会收益
+	//轉化幫會收益
 	zhuanhuaTypeTwo(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/teamBenefits`
 		return request('GET',url,params)
 	},
-	//转化推荐收益
+	//轉化推薦收益
 	zhuanhuaType(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/levelOneShare`
 		return request('GET',url,params)
@@ -19,27 +19,27 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/sms/v1/captcha`
 		return request('POST',url,params)
 	},
-	//查看转让记录
+	//查看轉讓記錄
 	checkHistory(params){
 		const url = `${globalConfig.endpoint}/api/u/player/getUserGUGURecord`
 		return request('GET',url,params)
 	},
-	//查看推荐收益明细
+	//查看推薦收益明細
 	checkT(params){
 		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/levelOneShare`
 		return request('GET',url,params)
 	},
-	//查看帮会收益明细
+	//查看幫會收益明細
 	checkB(params){
 		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/teamBenefits`
 		return request('GET',url,params)
 	},
-	//获取用户签到记录
+	//獲取用戶簽到記錄
 	loadUserSignHistory(data,params){
 		const url = `${globalConfig.endpoint}/api/u/sign?month=${data.month}&year=${data.year}`
 		return request('GET',url,params)
 	},
-	//获取申述记录
+	//獲取申述記錄
 	loadUserComplainHistory(params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains`
 		return request('GET',url,params)
@@ -57,6 +57,11 @@ export const api = {
 	// 簽名
 	sign(params){
 		const url = `${globalConfig.endpoint}/api/u/sign`
+		return request('POST',url,params)
+	},
+	// 補簽事件
+	repleinishSign(params){
+		const url = `${globalConfig.endpoint}/api/u/sign/replenish`
 		return request('POST',url,params)
 	},
 	//确認收款

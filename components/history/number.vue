@@ -46,7 +46,7 @@
 				console.log('rrrrr',res)
 				if(res.code == 200){
 					uni.showToast({
-						title:'转化成功',
+						title:'轉化成功',
 						icon:'success',
 						duration:1000
 					})
@@ -64,7 +64,7 @@
 				console.log('rrrrr',res)
 				if(res.code == 200){
 					uni.showToast({
-						title:'转化成功',
+						title:'轉化成功',
 						icon:'success',
 						duration:1000
 					})

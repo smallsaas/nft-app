@@ -160,6 +160,7 @@ Vue.prototype.$upload = upload
 Vue.prototype.$zh_tw = transformTools.transformToTW
 Vue.prototype.$zh_cn = transformTools.transformToCN
 Vue.prototype.$JSONTW = transformTools.JSONTW
+Vue.prototype.$JSONCN = transformTools.JSONCN
 //組件聲明
 Vue.component("dynamic-page",DynamicPage)
 Vue.component("dynamic-form",DynamicForm)

@@ -4,12 +4,12 @@
 			<view class="item" v-for="(item,index) in list" :key="index">
 				<view class="status"><text class="title">申述原因:</text><text class="info">{{item.title}}</text></view>
 				<view class="status"><text class="title">備注信息:</text><text class="info">{{item.content}}</text></view>
-				<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'处理中':'已处理'}}</text></view>
+				<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'處理中':'已處理'}}</text></view>
 				<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
 			</view>
 		</view>
 		<view class="fixBtn">
-			<pretty-button class="btn" text="投诉" @click="goTo"></pretty-button>
+			<pretty-button class="btn" text="投訴" @click="goTo"></pretty-button>
 		</view>
 	</view>
 </template>
@@ -41,7 +41,7 @@
 					this.list = res.data.records
 				}else{
 					uni.showToast({
-						title:'获取错误',
+						title:'獲取錯誤',
 						icon:'error',
 						duration:1000
 					})

@@ -60,7 +60,7 @@
 					<!-- <pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'" type="hollow" text="不可預約"></pretty-button> -->
 					<!-- <pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="匹配結束"></pretty-button> -->
 					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='GROWING'"  type="hollow"  text="馬上預約"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH'"  type="hollow"  text="已预约"></pretty-button>
+					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH'"  type="hollow"  text="已預約"></pretty-button>
 					<pretty-button class="btn" v-if="item.stage!=='WAITING_MATCH' && item.stage!=='BOOKABLE'"  type="hollow"  text="匹配中"></pretty-button>
 					<!-- <pretty-button class="btn" v-if="item.stage=='WAITING_FOR_PAYMENT'"  type="hollow"  text="待支付"></pretty-button> -->
 				</view>

@@ -57,7 +57,7 @@
   					<text class="rthR">{{item.wisp.growthDays}}</text>
   				</view>
 				<view class="rth rtht">
-					<text class="rthL">当前能力值</text>
+					<text class="rthL">當前能力值</text>
 					<text class="rthR">{{item.transactionAmount}}</text>
 				</view>
   				<view class="btnBox">

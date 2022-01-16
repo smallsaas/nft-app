@@ -41,4 +41,15 @@ function JSONTW(json){
 	},2000)
 	return JSON.parse(string)
 }
-module.exports = {transformToCN,transformToTW,JSONTW}
+function JSONCN(json){
+	uni.showLoading({
+		title:"开始加载"
+	})
+	let string = JSON.stringify(json)
+	string = transformToCN(string)
+	setTimeout(()=>{
+		uni.hideLoading()
+	},2000)
+	return JSON.parse(string)
+}
+module.exports = {transformToCN,transformToTW,JSONTW,JSONCN}

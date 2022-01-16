@@ -5,7 +5,7 @@
 		</view>
 		<view class="signSmoke-list">
 			<view v-for="(item,index) in dayGroup" :key="index" :class="'signSmoke-signItem '+ispack">
-				<sign-item :item="item" @fill="handleFill"></sign-item>
+				<sign-item :item="item" @fill="(day)=>handleFill(day)"></sign-item>
 			</view>
 		</view>
 		<view :class="'signSmoke-pack '+ispack" @click="handlePack()">
@@ -73,6 +73,7 @@
 				signImage:"/static/signSmoke/gift.png",
 				sign:false,
 				month:0,
+				year:0,
 				signDay:0,
 				dayGroup:[],
 				listGroup:[
@@ -92,42 +93,87 @@
 			uni.showLoading({
 				title:"獲取簽到數據中"
 			})
-			console.log(this.signData,"signData")
-			this.listGroup = this.signData.list
-			this.sign = this.signData.isSign
-			this.signDay = this.signData.day||0
+			this.getYear()
 			this.getMonth()
-			this.getNowGroup()
-			this.dayGroup = this.nowGroup
 			let that = this
-			let signMes = await this.$api.getSignMes({month:this.getMonth()})
-			console.log(signMes)
+			let signMes = await this.$api.getSignMes({month:that.month,year:that.year})
+			// console.log(this.signData,"signData")
+			// this.listGroup = this.signData.list
+			// this.sign = this.signData.isSign
+			// this.signDay = this.signData.day||0
+			this.signDay = signMes.data.records.length
 			if(signMes.data.records){
 				let records = signMes.data.records
 				let today = this.getToday()
 				console.log(records,"RECORDS",today)
-				let find = records.find(item=>item.signDate === today)
+				let find = records.find(item=>item.signDate <= today)
 				console.log(find,"FIND")
 				if(![[],'',undefined,null].includes(find)){
-					this.sign = true
 					let today = this.fetchDay(find.signDate)
+					console.log(today,"TODAY")
 					for(var i in records){
 						let item = records[i]
-						if(that.fetchDay(item.signDate)<=today){
+						console.log(that.fetchDay(item.signDate),today)
+						if(that.fetchDay(item.signDate)<today){
+							that.isSignGroup[that.fetchDay(item.signDate)] = true
+						}else if(that.fetchDay(item.signDate)==today){
+							that.sign = true
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
 						}
 					}
 				}
+				console.log(that.isSignGroup,"ISSIGNGROUP")
 			}
+			this.getListGroup()
+			this.getNowGroup()
+			this.dayGroup = this.nowGroup
 			uni.hideLoading()
 		},
 		methods:{
+			getListGroup(){
+				let that = this
+				let nowYear = this.year
+				let nowMonth = this.month
+				let monthDay = this.getMonthDay(nowYear,nowMonth)
+				console.log(monthDay,"monthDay")
+				for(var i=0;i<monthDay;i++){
+					let template
+					if((i+1)%4===0){
+						template = {
+							"isSign":that.isSignGroup[i+1]||false,
+							"status":i+1>that.fetchDay(that.getToday())?"normal":i+1==that.fetchDay(that.getToday())?"today":"ended",
+							"day":i+1,
+							"image":"/static/spirit/newBALL.png",
+							"text":"能量晶石x1"
+						}
+					}else{
+						template = {
+							"isSign":that.isSignGroup[i+1]||false,
+							"status":i+1>that.fetchDay(that.getToday())?"normal":i+1===that.fetchDay(that.getToday())?"today":"ended",
+							"day":i+1,
+							"image":"/static/spirit/newGUGU.png",
+							"text":"GUGU币x1"
+						}
+					}
+					that.listGroup.push(template)
+				}
+				console.log(this.listGroup)
+			},
+			// 獲取當前月份的天數
+			getMonthDay(year,month){
+				var date = new Date(year,month,0)
+				return date.getDate()
+			},
 			fetchDay(date){
 				return date.split('-')[2]
 			},
 			getMonth(){
 				let date = new Date()
 				this.month = date.getMonth()+1
+			},
+			getYear(){
+				let date = new Date()
+				this.year = date.getFullYear()
 			},
 			getToday(){
 				let date = new Date()
@@ -137,8 +183,28 @@
 				return year+"-"+month+"-"+day
 			},
 			// 補簽事件
-			handleFill(){
-				console.log("補簽！")
+			async handleFill(day){
+				let date = `${this.year}-${this.month<10?`0${this.month}`:this.month}-${day}`
+				console.log("補簽！",date)
+				let res = await this.$api.repleinishSign({replenishSignDate:date})
+				let that = this
+				if(res.code === 200){
+					uni.showToast({
+						title:"補簽成功!",
+						icon:"success",
+						success() {
+							that.listGroup[day-1].isSign = true
+							that.getNowGroup()
+							that.dayGroup = that.nowGroup
+							that.$forceUpdate()
+						}
+					})
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:"error"
+					})
+				}
 			},
 			getNowGroup(){
 				let that = this
@@ -156,6 +222,7 @@
 						}
 					}
 				})
+				console.log(that.nowGroup,"NOWGROUP")
 			},
 			// 收起時操作
 			handlePack(){
@@ -173,7 +240,11 @@
 			},
 			// 簽到事件
 			async handleSign(){
+				if(this.isSign==="sign"){
+					return ;
+				}
 				console.log("簽到！")
+				let that = this
 				this.sign = true
 				let res = await this.$api.sign()
 				if(res.code === 200){

@@ -57,7 +57,7 @@
  					<text class="rthR">{{item.wisp?item.wisp.growthDays:0}}</text>
  				</view>
 				<view class="rth rtht">
-					<text class="rthL">预约时间</text>
+					<text class="rthL">預約時間</text>
 					<text class="rthR">{{time}}</text>
 				</view>
 				<view class="rth rtht" v-if="item.bookStatus=='MATCH_FAIL'">

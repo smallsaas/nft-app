@@ -291,7 +291,7 @@
             "path" : "pages/complainhistory/complainhistory",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "申述记录",
+                "navigationBarTitleText": "申述記錄",
                 "enablePullDownRefresh": false
             }
             
@@ -300,7 +300,7 @@
             "path" : "pages/sign/sign",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "签到",
+                "navigationBarTitleText": "簽到",
                 "enablePullDownRefresh": false
             }
             
@@ -309,7 +309,7 @@
             "path" : "pages/toushu/toushu",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "投诉记录",
+                "navigationBarTitleText": "投訴記錄",
                 "enablePullDownRefresh": false
             }
             
@@ -318,7 +318,7 @@
             "path" : "pages/teams/teams",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "我的团队",
+                "navigationBarTitleText": "我的團隊",
                 "enablePullDownRefresh": false
             }
             
@@ -327,7 +327,7 @@
             "path" : "pages/banghuishouyimingxi/banghuishouyimingxi",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "帮会收益明细",
+                "navigationBarTitleText": "幫會收益明細",
                 "enablePullDownRefresh": false
             }
             
@@ -336,7 +336,7 @@
             "path" : "pages/tuijianshouyimingxi/tuijianshouyimingxi",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "推荐收益明细",
+                "navigationBarTitleText": "推薦收益明細",
                 "enablePullDownRefresh": false
             }
             
@@ -345,7 +345,7 @@
             "path" : "pages/zhuangrangjilu/zhuangrangjilu",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "转让记录",
+                "navigationBarTitleText": "轉讓記錄",
                 "enablePullDownRefresh": false
             }
             
@@ -354,7 +354,7 @@
             "path" : "pages/toushupage/toushupage",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "投诉",
+                "navigationBarTitleText": "投訴",
                 "enablePullDownRefresh": false
             }
             

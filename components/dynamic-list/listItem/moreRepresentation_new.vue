@@ -3,7 +3,7 @@
 		<view class="item">
 			<view class="status"><text class="title">申述原因:</text><text class="info">{{item.title}}</text></view>
 			<view class="status"><text class="title">備注信息:</text><text class="info">{{item.content}}</text></view>
-			<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'处理中':'已处理'}}</text></view>
+			<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'處理中':'已處理'}}</text></view>
 			<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
 		</view>
 		<view class="fixBtn">

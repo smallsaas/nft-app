@@ -1,15 +1,15 @@
 <template>
 	<view class="re_new">
-		<view class="title ttt"><text class="info">投诉原因</text></view>
+		<view class="title ttt"><text class="info">投訴原因</text></view>
 		<view class="select">
 			<input  v-model="value" type="text"  placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
 		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
-			<textarea placeholder="添加其他投诉原因" class="text" v-model="moreValue"></textarea>
+			<textarea placeholder="添加其他投訴原因" class="text" v-model="moreValue"></textarea>
 		</view>
-		<view class="btnBox"><button class="btn" @click="shenshu">提交投诉</button></view>
+		<view class="btnBox"><button class="btn" @click="shenshu">提交投訴</button></view>
 		<view class="fix" v-if="isShow">
 			<view class="t">
 				<text class="info" @click="cancel">取消</text>

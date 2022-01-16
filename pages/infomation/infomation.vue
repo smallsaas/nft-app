@@ -13,14 +13,24 @@
 				srvFormData:{}
 			}
 		},
+		destroyed() {
+			this.$cache.remove("page_222333")
+		},
 		onLoad(e) {
-			console.log('---------------------')
+			// console.log('---------------------')
 			console.log(e)
 			console.log(e.id)
 			let id = e.id
 			console.log(id)
 			this.getFormData()
-			console.log('---------------------')
+			// console.log('---------------------')
+		},
+		onShow(option) {
+			let change = this.$cache.get("FormChange")
+			if(change){
+				console.log("顯示了")
+				this.$reload()
+			}
 		},
 		methods: {
 			async getFormData(){

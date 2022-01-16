@@ -247,6 +247,8 @@
 			// 外部傳入的數據源
 			if (Object.keys(this.srvFormData).length > 0) {
                 this.form = { ...this.srvFormData }
+								this.form = this.$JSONCN(this.form)
+								console.log("MOUNTFORM",this.form)
 								this.$forceUpdate()
 				return
 			}
@@ -292,18 +294,19 @@
 								...this.formData
 							}
 						let res = await this.$api.changePassword(param)
+						let that =this
 						console.log(res,"res")
 						if(res.code === 200){
-							let that =this
 							uni.showToast({
 								title:"提交成功",
 								icon:"success",
 								success(){
 									that.isModal = false
 									that.$cache.set("FormChange",true)
-									setTimeout(()=>{
-										that.$reload()
-									},1000)
+									// let self = that
+									// setTimeout(()=>{
+										// self.$reload()
+									// },1000)
 								}
 							})
 						}else{
@@ -366,6 +369,7 @@
                            }
 													 console.log(resData,"RESDATAqqqqqqqq快樂的測試")
                            that.form = { ...that.form, ...resData }
+													 that.form = that.$JSONCN(that.form)
 						   that.$timeCache(`page_${that.formId}_form_Srv`,that.form,that.$config.cachePolicy*24*60*60)
 						   
 						   
@@ -427,6 +431,7 @@
 						}
 						return x
 					})
+					this.form = this.$JSONCN(this.form)
 					return data
 				}
             	this.fields = [...renderChild(_.cloneDeep(_.get(this.formConfig, 'fields', [])))]
@@ -567,13 +572,10 @@
                                 title:'操作成功'
                             })
                             setTimeout(() => {
-								that.$cache.set("FormChange",true)
-                                uni.navigateBack({
-									delta:1,
-									success(){
-										that.$reload()
-									}
-								})
+															that.$cache.set("FormChange",true)
+															uni.navigateBack({
+																delta:1
+															})
                             }, 500)
                         }else{
 													uni.showToast({

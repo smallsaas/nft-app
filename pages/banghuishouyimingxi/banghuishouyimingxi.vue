@@ -2,8 +2,8 @@
 	<view class="view">
 		<view class="item" v-for="(item,index) in list" :key="index">
 			<text class="name">{{item.profitName}}</text>
-			<text class="names">精灵昵称</text>
-			<text class="namess">精灵金额</text>
+			<text class="names">精靈昵稱</text>
+			<text class="namess">精靈金額</text>
 			<text class="namesss">收益:{{item.profitMoney}}</text>
 			<text class="namessss">{{item.settlementTime}}</text>
 		</view>

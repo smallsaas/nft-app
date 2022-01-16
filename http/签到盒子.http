@@ -30,9 +30,6 @@ Content-Type: application/json
  
         }
     ],
-    "dataSource":{
-        "api":""
-    },
     "moduleData": {
         "95afd71a-c8d5-11eb-aca5-0800271e55b7":{
         }

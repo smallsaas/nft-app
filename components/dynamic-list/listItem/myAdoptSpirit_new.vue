@@ -32,7 +32,7 @@
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info">培养天数：{{item.wisp.growthDays}}</text>
+				<text class="info">培養天數：{{item.wisp.growthDays}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
 				<text class="info sss">領養：{{item.growthExpiryDate}}</text>
@@ -41,7 +41,7 @@
 			<view class="btnBox">
 				<button class="btn one" v-if="true" @click="noMessage">鑄造(待開放</button>
 				<view class="boxs" v-if="true">
-					<button class="two">(培养中)自動挂售</button>
+					<button class="two">(培養中)自動挂售</button>
 				</view>
 				<!-- <text class="times" v-if="true">成長中</text>
 				<text class="time" v-if="true">剩餘時間 48:52:47</text> -->

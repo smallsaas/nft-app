@@ -138,7 +138,7 @@
 				// if(this.status = ''){
 				// 	uni.showToast({
 				// 		icon:'error',
-				// 		title:'你的账户被冻结，请申请解冻后再操作',
+				// 		title:'你的賬戶被凍結，請申請解凍後再操作',
 				// 		duration:1000
 				// 	})
 				// 	return

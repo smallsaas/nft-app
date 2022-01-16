@@ -33,13 +33,13 @@
 						return item.orderType == 'PLAYER_TRANSFER_ACCOUNTS'
 					})
 					uni.showToast({
-						title:'获取数据成功',
+						title:'獲取數據成功',
 						icon:'success',
 						duration:1000
 					})
 				}else{
 					uni.showToast({
-						title:'获取数据失败',
+						title:'獲取數據失敗',
 						icon:'error',
 						duration:1000
 					})

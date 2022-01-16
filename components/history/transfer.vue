@@ -11,7 +11,7 @@
 		<text class="tt tttt">
 			轉讓數量
 		</text>
-		<text class="errors" v-if="showErrorTwo">转让最低数量最低为200</text>
+		<text class="errors" v-if="showErrorTwo">轉讓最低數量最低爲200</text>
 		<input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低200起" type="number" />
 		<text class="tt tttttt">
 			支付密碼

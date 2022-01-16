@@ -201,7 +201,7 @@
 				}
 				const res = await this.$api.message(data)
 					uni.showToast({
-						title: '发送验证码成功',
+						title: '發送驗證碼成功',
 						icon: "success"
 					})
 					this.isShowYZM = !this.isShowYZM

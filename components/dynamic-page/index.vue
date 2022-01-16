@@ -305,23 +305,29 @@
 		created() {
 			let that = this
 			let id = this.formatId(this.API)
+			console.log("重新創建")
 			if(id){
 				this.pageId = id
 				let data = this.$timeCache(`page_${id}`)
 				let change = this.$cache.get("FormChange")
-				let formData
+				// let formData
 				if(!change){
-					formData = this.$timeCache(`page_${id}_form_Srv`)
+					// formData = this.$timeCache(`page_${id}_form_Srv`)
+					// formData = {
+					// 	...formData,
+					// 	...that.srvFormData
+					// }
 				}else{
 					this.$cache.remove('FormChange')
+					formData = that.srvFormData
 				}
 				if(data){
 					console.log("使用緩存page_"+id,data)
-					if(formData){
-						console.log(`使用緩存page_${id}_form_Srv`,formData)
-						that.formData = formData
-					}
-					console.log(this.formData,"this")
+					// if(formData){
+					// 	console.log(`使用緩存page_${id}_form_Srv`,formData)
+					// 	that.formData = formData
+					// }
+					// console.log(this.formData,"this")
 					this.loadPage(data)
 					this.$forceUpdate()
 				}else{
@@ -332,19 +338,34 @@
 			}
 		},
 		mounted(){
+			console.log("重新挂載")
 			let id = this.formatId(this.API)
 			let that = this 
+			// console.log(that.srvFormData,"SRVFORMDATA")
 			this.skeletonLoading = true
 			if(id){
+				this.pageId = id
 				let data = this.$timeCache(`page_${id}`)
-				let formData = this.$timeCache(`page_${id}_form_Srv`)
+				let change = this.$cache.get("FormChange")
+				// let formData
+				// if(!change){
+					// formData = this.$timeCache(`page_${id}_form_Srv`)
+					// formData = {
+					// 	...formData,
+					// 	...that.srvFormData
+					// }
+				// }else{
+					// console.log("改變")
+					// this.$cache.remove('FormChange')
+					// formData = that.srvFormData
+				// }
 				if(data){
 					console.log("使用緩存page_"+id,data)
-					if(formData){
-						console.log(`使用緩存page_${id}_form_Srv`,formData)
-						that.formData = formData
-					}
-					console.log(this.formData,"this",this.srvFormData)
+					// if(formData){
+					// 	console.log(`使用緩存page_${id}_form_Srv`,formData)
+					// 	that.formData = formData
+					// }
+					// console.log(this.formData,"this")
 					this.loadPage(data)
 					this.$forceUpdate()
 				}else{
@@ -355,29 +376,29 @@
 			}
 			this.skeletonLoading = false
 			// console.log("srv",this.srvFormData)
-			let TFormKey = this.FormKey
+			// let TFormKey = this.FormKey
 			// console.log(this.FormKey)
 			// console.log("modules",this.config.modules)
-			if(this.config){
-				this.config.modules.map((item,i)=>{
-					if(_.get(item, 'type') === 'autoform'){
-						let FormKey = _.get(item,'FormKey','')
-						// console.log("能到這")
-						if(FormKey){
-							// console.log("FormKey",FormKey)
-							this.getWorkflow(FormKey)	
-						}else if(TFormKey){
-							this.getWorkflow(TFormKey)
-						}else{
-							this.getCodeData(this.codeAPI,this.code)
-						}
-					}
-				})
-			}
+			// if(this.config){
+			// 	this.config.modules.map((item,i)=>{
+			// 		if(_.get(item, 'type') === 'autoform'){
+			// 			let FormKey = _.get(item,'FormKey','')
+			// 			// console.log("能到這")
+			// 			if(FormKey){
+			// 				// console.log("FormKey",FormKey)
+			// 				this.getWorkflow(FormKey)	
+			// 			}else if(TFormKey){
+			// 				this.getWorkflow(TFormKey)
+			// 			}else{
+			// 				this.getCodeData(this.codeAPI,this.code)
+			// 			}
+			// 		}
+			// 	})
+			// }
 			// console.log("執行完了")
 		},
 		updated(){
-			let TFormKey = this.FormKey
+			// let TFormKey = this.FormKey
 			// console.log(this.FormKey)
 			// this.config.modules.map((item,i)=>{
 			// 	if(_.get(item, 'type') === 'autoform'){
@@ -485,13 +506,13 @@
 								let pageCacheList = that.$cache.get("pageCacheList")||[]
 								pageCacheList.push(`page_${id}`)
 								that.$cache.set("pageCacheList",pageCacheList)
-								if(that.srvFormData){
-									let srvForm = that.srvFormData
-									that.$timeCache(`page_${id}_form_Srv`,srvForm,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制緩存策略
-									let pageFormCacheList = that.$cache.get('pageFormCacheList')||[]
-									pageFormCacheList.push(`page_${id}_form_Srv`)
-									that.$cache.set(`pageFormCacheList`,pageFormCacheList)
-								}
+								// if(that.srvFormData){
+								// 	let srvForm = that.srvFormData
+								// 	that.$timeCache(`page_${id}_form_Srv`,srvForm,that.$config.cachePolicy*24*60*60)// config中的cachePolicy可以控制緩存策略
+								// 	let pageFormCacheList = that.$cache.get('pageFormCacheList')||[]
+								// 	pageFormCacheList.push(`page_${id}_form_Srv`)
+								// 	that.$cache.set(`pageFormCacheList`,pageFormCacheList)
+								// }
 							}
                             // 獲取頁面請求接口
 							that.loadPage(resData)

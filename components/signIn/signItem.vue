@@ -79,7 +79,7 @@
 		methods:{
 			// 補簽事件
 			handleFill(){
-				this.$emit("fill")
+				this.$emit("fill",this.item.day)
 			}
 		}
 	}
