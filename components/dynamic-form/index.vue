@@ -247,8 +247,6 @@
 			// 外部傳入的數據源
 			if (Object.keys(this.srvFormData).length > 0) {
                 this.form = { ...this.srvFormData }
-								this.form = this.$JSONCN(this.form)
-								console.log("MOUNTFORM",this.form)
 								this.$forceUpdate()
 				return
 			}
@@ -360,20 +358,14 @@
 											Authorization:`Bearer ${that.$cache.get(globalConfig.tokenStorageKey)}`
 										},
                     complete: (res) => {
-											res = that.$JSONTW(res)
 											that.searchConfig(that.config.fields)
                        if (_.get(res, 'data.code') === 200) {
                            let resData = _.cloneDeep(_.get(res, 'data.data', {}))
                            if (_.isFunction(_.get(that.$parent, 'formatLoadData'))) {
                                resData = that.$parent.formatLoadData(resData)
                            }
-													 console.log(resData,"RESDATAqqqqqqqq快樂的測試")
                            that.form = { ...that.form, ...resData }
-													 that.form = that.$JSONCN(that.form)
 						   that.$timeCache(`page_${that.formId}_form_Srv`,that.form,that.$config.cachePolicy*24*60*60)
-						   
-						   
-						   console.log('RESDATE快樂的測試',resData)
                        }
                     }
                 })
@@ -431,7 +423,6 @@
 						}
 						return x
 					})
-					this.form = this.$JSONCN(this.form)
 					return data
 				}
             	this.fields = [...renderChild(_.cloneDeep(_.get(this.formConfig, 'fields', [])))]
