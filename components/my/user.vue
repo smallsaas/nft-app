@@ -4,7 +4,7 @@
 			<image class="img" :src="data.avatar" mode="widthFix"></image>
 			<image class="upload" @click="uploadImage" :src="list[0]"/></image>
 			
-			<text class="noImg" v-if="list.length!==0">点击上传头像</text>
+			<text class="noImg" v-if="list.length!==0">點擊上傳頭像</text>
 		</view>
 		<view class="names">
 			<text class="name">{{data.name}}</text>

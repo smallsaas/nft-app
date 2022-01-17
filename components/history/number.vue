@@ -27,7 +27,7 @@
 			<text class="ot" @click="transferSpiritForMarket('redepositBallance')">轉化精靈</text>
 		</view>
 		<view class="item">
-			<text class="title">市场收益:</text>
+			<text class="title">市場收益:</text>
 			<text class="num">{{data.depositPoints||0}}</text>
 		</view>
 		
@@ -82,7 +82,7 @@
 			async zhaunhua(){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})
@@ -109,7 +109,7 @@
 			async zhuancunTwo(){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})
@@ -135,7 +135,7 @@
 			async zhuancunThree(){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})
@@ -161,7 +161,7 @@
 			async tiqu(){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})

@@ -4,12 +4,12 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
-	//提取签到收益
+	//提取簽到收益
 	tiquqiandaoshouyi(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/signINProfit`
 		return request('GET',url,params)
 	},
-	//轉化转存收益
+	//轉化轉存收益
 	zhuanhuaTypeThree(params){
 		const url = `${globalConfig.endpoint}/api/u/player/getRedepositBallance`
 		return request('GET',url,params)

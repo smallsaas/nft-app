@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<dynamic-page :API="api" :srvFormData="srvFormData"></dynamic-page>
+		<dynamic-page :API="api"></dynamic-page>
 		<!-- <text @click="changeInfo">修改個人信息</text> -->
 	</view>
 </template>

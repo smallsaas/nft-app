@@ -58,7 +58,7 @@
 				<view class="btnBox">
 					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE' || item.stage=='GROWING'" text="馬上預約" ></pretty-button>
 					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH' || item.stage=='WAITING_FOR_PAYMENT' || item.stage=='END_OF_MATCH'"  type="hollow"  text="已預約"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'"  type="hollow"  text="预约结束"></pretty-button>
+					<pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'"  type="hollow"  text="預約結束"></pretty-button>
 					<!-- <pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'" type="hollow" text="不可預約"></pretty-button> -->
 					<!-- <pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="匹配結束"></pretty-button> -->
 					<!-- <pretty-button class="btn" @click="operation(item)" v-if="item.stage=='GROWING'"  type="hollow"  text="馬上預約"></pretty-button> -->
@@ -163,7 +163,7 @@
 				console.log('operation', item)
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})
@@ -179,7 +179,7 @@
 			showBuyChild(item) {
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})
@@ -196,7 +196,7 @@
 			showLandChild(item) {
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
-						title:'当前状态不可用',
+						title:'當前狀态不可用',
 						icon:'error',
 						duration:1000
 					})

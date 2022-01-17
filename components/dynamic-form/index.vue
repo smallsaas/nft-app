@@ -281,7 +281,7 @@
 							}
 							if([undefined,null,''].includes(this.form.backupMobilePhone)){
 								uni.showToast({
-									title:"请先填写副手机号！",
+									title:"請先填寫副手機号！",
 									icon:"error"
 								})
 								return ;

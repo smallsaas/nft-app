@@ -13,7 +13,7 @@
                       : {}
                  }"
 								 :status="form[_get(item,'statusField')]"
-								 :phone="form['mobilePhone']"
+								 :phone="_get(item, '__config__.tagIcon') === 'yzm'?form['backupMobilePhone']:form['mobilePhone']"
                  @input="(e) => handleSetValue(e, fields[index])"
                  @clear="(e) => handleClear(e, fields[index])"
             />

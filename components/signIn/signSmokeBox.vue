@@ -149,7 +149,7 @@
 					}else{
 						template = {
 							"isSign":that.isSignGroup[i+1]||false,
-							"status":i+1>that.fetchDay(that.getToday())?"normal":i+1===that.fetchDay(that.getToday())?"today":"ended",
+							"status":i+1>that.fetchDay(that.getToday())?"normal":i+1==that.fetchDay(that.getToday())?"today":"ended",
 							"day":i+1,
 							"image":"/static/spirit/newGUGU.png",
 							"text":"GUGU币x1"
@@ -187,7 +187,7 @@
 				if(this.$frozen()){
 					return ;
 				}
-				let date = `${this.year}-${this.month<10?`0${this.month}`:this.month}-${day}`
+				let date = `${this.year}-${this.month<10?`0${this.month}`:this.month}-${day<10?`0${day}`:day}`
 				console.log("補簽！",date)
 				let res = await this.$api.repleinishSign({replenishSignDate:date})
 				let that = this
@@ -212,6 +212,7 @@
 			getNowGroup(){
 				let that = this
 				this.listGroup.map((item,i)=>{
+					console.log(item.status)
 					if(item.status === "today"){
 						that.nowGroup = []
 						if(item.day/9<=1){
@@ -223,6 +224,7 @@
 						}else if(item.day/12<=4&&item.day/9>3){
 							that.nowGroup = that.listGroup.slice(27,31)
 						}
+						console.log(that.nowGroup,"NOWGROUP____")
 					}
 				})
 				console.log(that.nowGroup,"NOWGROUP")

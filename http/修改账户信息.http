@@ -398,12 +398,12 @@ Content-Type: application/json
                 "children": [
                 {
                     "__config__": {
-                    "label": "副手机号",
+                    "label": "手机验证码",
                     "labelWidth": null,
                     "showLabel": true,
                     "changeTag": true,
                     "tag": "el-input",
-                    "tagIcon": "input",
+                    "tagIcon": "yzm",
                     "required": false,
                     "layout": "colFormItem",
                     "span": 24,

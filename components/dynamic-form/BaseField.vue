@@ -40,6 +40,21 @@
 					:value="param.value"
 					@input="handleInput"
 				/>
+				<view v-else-if="param.type === 'yzm'" class="yzm-container">
+					<input
+						:type="param.type"
+						:placeholder="param.placeholder"
+						:placeholder-style="param['placeholder-style'] || 'color: #7D8187'"
+						:disabled="isRead"
+						:maxlength="param.maxlength || -1"
+						:password="param.password"
+						:value="param.value"
+						@input="handleInput"
+						:class="isRead?'readonly':'baseInput'"
+					/>
+					<text class="yzm" @click="handleGetCode('/api/sms/v1/captcha')">{{canPush?"獲取驗證碼":codeTime+'秒後重試'}}</text>
+				</view>
+
 				<input
 					v-else
 					:type="param.type"
@@ -67,7 +82,7 @@
 									</view>
 									<view v-if="item.type === 'code'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
 										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
-										<text :class="canPush?'Modal-ContentBox-code':'Modal-ContentBox-code unPush'" @click="handleGetCode(item.requestUrl)">{{canPush?'獲取驗證碼':+codeTime+'秒後重試'}}</text>
+										<text :class="canPush?'Modal-ContentBox-code':'Modal-ContentBox-code unPush'" @click="handleGetCode(item.requestUrl)">{{canPush?'獲取驗證碼':codeTime+'秒後重試'}}</text>
 									</view>
 									<view v-else-if="item.type === 'password'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
 										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
@@ -251,6 +266,7 @@
 						
 					},
 					handleGetCode(api){
+						console.log(api)
 						let that = this
 						if(!that.canPush){
 							return ;
@@ -332,7 +348,7 @@
 						// const status = this.$cache.get('status')
 						// if(status === 'FROZEN'){
 						// 		// uni.showToast({
-						// 		// 	title:"请解冻后再试",
+						// 		// 	title:"請解凍後再試",
 						// 		// 	icon:"error"
 						// 		// })
 						// 		// return
@@ -559,5 +575,18 @@
 		}
 		.Modal-btn:last-child{
 			margin: 0;
+		}
+		.yzm{
+			position: absolute;
+			right: 20px;
+			top: 50%;
+			transform: translate(0,-50%);
+			z-index: 999999;
+			color: #3A72F8;
+		}
+		.yzm-container{
+			width: 100%;
+			display: flex;
+			// position: relative;
 		}
 </style>
