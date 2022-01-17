@@ -36,8 +36,8 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'',
-					password:'',
+					account:'18664521094',
+					password:'A123456789',
 					//13814736900
 					//a123456
 					verifyCode:'',
@@ -48,6 +48,7 @@
 					  //13147258369
 					  // 13321370747
 					  //15322315900
+					  //13929292929
 				},
 				list:['1','2','3','4','5','6','7','8','9'],
 				yanzhengma:'',

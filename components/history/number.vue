@@ -8,35 +8,53 @@
 		<view class="item">
 			<text class="title">推薦收益:</text>
 			<text class="num">{{data.inviting||0}}</text>
-			<text class="o" @click="zhaunhua">轉化GuGu令</text>
-			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
+			<text class="o" @click="typeForGUGU('levelShare')">轉化GuGu令</text> 
+			<!-- //zhaunhua -->
+			<text class="ot" @click="transferSpiritForMarket('levelShare')">轉化精靈</text>
 			<text class="ott" @click="goToTuiJian">查看明細</text>
 		</view>
 		<view class="item">
 			<text class="title">幫會收益:</text>
 			<text class="num">{{data.teamBallance||0}}</text>
-			<text class="o" @click="zhuancunTwo">轉化GuGu令</text>
-			<text class="ot" @click="transferSpiritForMarket">轉化精靈</text>
+			<text class="o" @click="typeForGUGU('teamBenefits')">轉化GuGu令</text>
+			<text class="ot" @click="transferSpiritForMarket('teamBenefits')">轉化精靈</text>
 			<text class="ott" @click="goToBangHui">查看明細</text>
 		</view>
 		<view class="item">
 			<text class="title">轉存收益:</text>
 			<text class="num">{{data.depositPoints||0}}</text>
-			<text class="o" @click="zhuancunThree">轉化GuGu令</text>
-			<text class="ot" @click="transferSpiritForDeposi">轉化精靈</text>
+			<text class="o" @click="typeForGUGU('redepositBallance')">轉化GuGu令</text>
+			<text class="ot" @click="transferSpiritForMarket('redepositBallance')">轉化精靈</text>
 		</view>
 		<view class="item">
 			<text class="title">市场收益:</text>
 			<text class="num">{{data.depositPoints||0}}</text>
 		</view>
+		
+		<view class="spirit_mask" v-if="isShowToast || isShowIncomeTypeForTransfer"></view>
+		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
+		<transferCoin v-if="isShowIncomeTypeForTransfer" @closeCoin="closeType" :type="forChildType"></transferCoin>
 	</view>
 </template>
 
 <script>
+	import toast from '../spirit/toast.vue'
+	import transferCoin from './transfercoin.vue'
 	export default{
+		components:{toast,transferCoin},
 		props:{
 			data:{
 				type:Object
+			}
+		},
+		data(){
+			return{
+				isShowToast:false,
+				toastMsg:'',
+				
+				isShowIncomeTypeForTransfer:false,
+				
+				forChildType:''
 			}
 		},
 		mounted() {
@@ -44,6 +62,23 @@
 			
 		},
 		methods:{
+			typeForGUGU(type){
+				this.forChildType = type
+				this.isShowIncomeTypeForTransfer = true
+			},
+			closeType(){
+				this.isShowIncomeTypeForTransfer = false
+			},
+			typeForRecomment(){
+				this.isShowIncomeTypeForTransfer = true
+			},
+			toast(msg) {
+				this.toastMsg = msg
+				this.isShowToast = true
+			},
+			closeToast(){
+				this.isShowToast = false
+			},
 			async zhaunhua(){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
@@ -171,9 +206,10 @@
 			// forParentTwo(){
 			// 	this.$emit('forParentCloseTwo')
 			// },
-			transferSpiritForMarket(){
+			transferSpiritForMarket(type){
+				console.log('------',type)
 				uni.navigateTo({
-					url:'/pages/defaultPage/page?id='+ 11447722
+					url:'/pages/defaultPage/page?id='+ 11447722 + '&type=' + type 
 				})
 			},
 			// transferSpiritForDeposi(){
@@ -193,6 +229,16 @@
 		border-radius: 20rpx;
 		margin-left: 2.5%;
 		margin-top: 50rpx;
+		.spirit_mask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 502;
+			background-color: #000;
+			opacity: .8;
+		}
 		.item{
 			width: 95%;
 			height:60rpx;
@@ -205,7 +251,7 @@
 			}
 			.num{
 				font-size: 30rpx;
-				margin-left: 80rpx;
+				margin-left: 40rpx;
 				color: #FFFFFF;
 			}
 			.o,.ot,.ott{

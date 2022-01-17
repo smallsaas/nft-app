@@ -324,15 +324,17 @@
 						// 	})
 						// 	return ;
 						// }
+						console.log('00000000000000------------------')
 						const status = this.$cache.get('status')
 						if(status === 'FROZEN'){
-								uni.showToast({
-									title:"请解冻后再试",
-									icon:"error"
-								})
-								return
+								// uni.showToast({
+								// 	title:"请解冻后再试",
+								// 	icon:"error"
+								// })
+								// return
+								this.isModal = true
 						}
-						this.isModal = true
+						// this.isModal = true
 					},
 					hideModal(){
 						this.components = this.param.components

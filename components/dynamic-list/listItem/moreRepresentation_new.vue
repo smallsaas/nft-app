@@ -6,9 +6,6 @@
 			<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'處理中':'已處理'}}</text></view>
 			<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
 		</view>
-		<view class="fixBtn">
-			
-		</view>
 	</view>
 </template>
 
@@ -29,11 +26,6 @@
 		width: 100%;
 		padding-top: 50rpx;
 		background: rgb(5,14,23);
-		.fixBtn{
-			width: 100%;
-			height: 100rpx;
-			border: 1px solid red;
-		}
 		.item{
 			width: 90%;
 			height: auto;

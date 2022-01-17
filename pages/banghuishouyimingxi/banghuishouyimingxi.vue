@@ -2,9 +2,7 @@
 	<view class="view">
 		<view class="item" v-for="(item,index) in list" :key="index">
 			<text class="name">{{item.profitName}}</text>
-			<text class="names">精靈昵稱</text>
-			<text class="namess">精靈金額</text>
-			<text class="namesss">收益:{{item.profitMoney}}</text>
+			<text class="namesss">+{{item.profitMoney}}</text>
 			<text class="namessss">{{item.settlementTime}}</text>
 		</view>
 	</view>
@@ -43,12 +41,15 @@
 		border-radius: 8px;
 		margin: 0 auto;
 		width: 90%;
-		height: 180rpx;
+		height: 150rpx;
 		position: relative;
 		margin-bottom: 20rpx;
 		.name{
 			font-size: 14px;
-			margin-left: 10rpx;
+			margin-left: 15rpx;
+			font-size: 30rpx;
+			position: absolute;
+			top: 5px;
 		}
 		.names{
 			position: absolute;
@@ -65,14 +66,17 @@
 		.namesss{
 			position: absolute;
 			font-size: 14px;
-			top: 45px;
-			left: 5px;
+			top: 5px;
+			right: 15px;
+			font-size: 40rpx;
+			font-weight: bold;
+			color: #ffffff;
 		}
 		.namessss{
 			position: absolute;
 			font-size: 14px;
-			top: 65px;
-			left: 195px;
+			top:45px;
+			left: 200px;
 		}
 	}
 }
