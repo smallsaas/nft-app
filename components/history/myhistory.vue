@@ -78,6 +78,14 @@
 		},
 		methods:{
 			transfer(){
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				this.isShowTransfer = true
 			},
 			getClose(){

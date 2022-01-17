@@ -22,8 +22,12 @@
 		<view class="item">
 			<text class="title">轉存收益:</text>
 			<text class="num">{{data.depositPoints||0}}</text>
-			<text class="o" @click="forParentTwo">轉化GuGu令</text>
+			<text class="o" @click="zhuancunThree">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForDeposi">轉化精靈</text>
+		</view>
+		<view class="item">
+			<text class="title">市场收益:</text>
+			<text class="num">{{data.depositPoints||0}}</text>
 		</view>
 	</view>
 </template>
@@ -41,6 +45,14 @@
 		},
 		methods:{
 			async zhaunhua(){
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				// this.$emit('forParentCloseTwo')
 				const res = await this.$api.zhuanhuaType()
 				console.log('rrrrr',res)
@@ -60,6 +72,14 @@
 				}
 			},
 			async zhuancunTwo(){
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				const res = await this.$api.zhuanhuaTypeTwo()
 				console.log('rrrrr',res)
 				if(res.code == 200){
@@ -77,13 +97,57 @@
 					return
 				}
 			},
-			tiqu(){
-				uni.request({
-					url:'http://api.dev.smallsaas.cn:8087/api/u/player/signInSettlement/signINProfit',
-					success: (res) => {
-						console.log('res',res)
-					}
-				})
+			async zhuancunThree(){
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+				const res = await this.$api.zhuanhuaTypeThree()
+				console.log('rrrrr',res)
+				if(res.code == 200){
+					uni.showToast({
+						title:'轉化成功',
+						icon:'success',
+						duration:1000
+					})
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+			},
+			async tiqu(){
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
+				const res = await this.$api.tiquqiandaoshouyi()
+				console.log('-------------',res)
+				if(res.code == 200){
+					uni.showToast({
+						title:'轉化成功',
+						icon:'success',
+						duration:1000
+					})
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 			},
 			forParent(){
 				// this.$emit('forParentClose')
@@ -103,15 +167,15 @@
 				uni.navigateTo({
 					url:'/pages/tuijianshouyimingxi/tuijianshouyimingxi'
 				})
-			}
+			},
 			// forParentTwo(){
 			// 	this.$emit('forParentCloseTwo')
 			// },
-			// transferSpiritForMarket(){
-			// 	uni.navigateTo({
-			// 		url:'/pages/defaultPage/page?id='+ 11447722
-			// 	})
-			// },
+			transferSpiritForMarket(){
+				uni.navigateTo({
+					url:'/pages/defaultPage/page?id='+ 11447722
+				})
+			},
 			// transferSpiritForDeposi(){
 			// 	uni.navigateTo({
 			// 		url:'/pages/defaultPage/page?id='+ 22559988
@@ -124,7 +188,7 @@
 <style lang="less">
 	.number{
 		width: 95%;
-		height: 390rpx;
+		height: 470rpx;
 		background: rgb(17,24,30);
 		border-radius: 20rpx;
 		margin-left: 2.5%;

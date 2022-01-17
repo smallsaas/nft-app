@@ -3,12 +3,14 @@
 		<view class="imgBox">
 			<image class="img" :src="data.avatar" mode="widthFix"></image>
 			<image class="upload" @click="uploadImage" :src="list[0]"/></image>
+			
+			<text class="noImg" v-if="list.length!==0">点击上传头像</text>
 		</view>
 		<view class="names">
 			<text class="name">{{data.name}}</text>
 		</view>
 		<text class="status">
-			<text>賬号狀态：</text><text class="wid" :class="{forzen:data.status !=='NORMAL'}">{{data.status=='NORMAL'?'正常':'凍結'}}</text>
+			<text>賬号狀态：</text><text class="wid" :class="{forzen: status!=='NORMAL'}">{{status=='NORMAL'?'正常':'凍結'}}</text>
 		</text>
 		<text class="shezhi">設置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
@@ -34,12 +36,19 @@
 			return{
 				uploadsrc:'',
 				list:[],
-				avatar:null
+				avatar:null,
+				
+				
+				status:''
 			}
 		},
 		created() {
 			console.log(this.data,"DATA")
 			this.avatar = this.data.avatar
+			//data.status
+			setInterval(()=>{
+				this.status = this.$cache.get('status')
+			},1000)
 		},
 		methods:{
 			async uploadImage() {
@@ -98,6 +107,14 @@
 				border: 1px solid rgb(132,133,147);
 				opacity: 1;
 				z-index: 99999999;
+			}
+			.noImg{
+				position: absolute;
+				top: 50rpx;
+				left: 0rpx;
+				color: grey;
+				font-weight: bold;
+				font-size: 10rpx;
 			}
 		}
 		.names{

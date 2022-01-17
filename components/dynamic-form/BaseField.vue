@@ -267,7 +267,7 @@
 							},
 							method:"POST",
 							success(res) {
-								if(res.data.code === 200){
+								if(res.statusCode === 200){
 									that.canPush = false
 									that.timeCache = setInterval(()=>{
 										that.codeTime = that.codeTime - 1
@@ -314,15 +314,23 @@
 						}
 					},
 					showModal(){
-						if(this.$frozen()){
-							return ;
-						}
-						if(!this.canUse){
-							uni.showToast({
-								title:"當前狀态不可用",
-								icon:"error"
-							})
-							return ;
+						// if(this.$frozen()){
+						// 	return ;
+						// }
+						// if(!this.canUse){
+						// 	uni.showToast({
+						// 		title:"當前狀态不可用",
+						// 		icon:"error"
+						// 	})
+						// 	return ;
+						// }
+						const status = this.$cache.get('status')
+						if(status === 'FROZEN'){
+								uni.showToast({
+									title:"请解冻后再试",
+									icon:"error"
+								})
+								return
 						}
 						this.isModal = true
 					},

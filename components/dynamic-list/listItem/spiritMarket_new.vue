@@ -56,12 +56,13 @@
 					<text class="rthR">{{item.growthDays}}</text>
 				</view>
 				<view class="btnBox">
-					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE'" text="馬上預約" ></pretty-button>
+					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE' || item.stage=='GROWING'" text="馬上預約" ></pretty-button>
+					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH' || item.stage=='WAITING_FOR_PAYMENT' || item.stage=='DISALLOW_BOOK'"  type="hollow"  text="已預約"></pretty-button>
+					<pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="预约结束"></pretty-button>
 					<!-- <pretty-button class="btn" v-if="item.stage=='DISALLOW_BOOK'" type="hollow" text="不可預約"></pretty-button> -->
 					<!-- <pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="匹配結束"></pretty-button> -->
-					<pretty-button class="btn" @click="operation(item)" v-if="item.stage=='GROWING'"  type="hollow"  text="馬上預約"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH'"  type="hollow"  text="已預約"></pretty-button>
-					<pretty-button class="btn" v-if="item.stage!=='WAITING_MATCH' && item.stage!=='BOOKABLE'"  type="hollow"  text="匹配中"></pretty-button>
+					<!-- <pretty-button class="btn" @click="operation(item)" v-if="item.stage=='GROWING'"  type="hollow"  text="馬上預約"></pretty-button> -->
+					<!-- <pretty-button class="btn" v-if="item.stage!=='WAITING_MATCH' && item.stage!=='BOOKABLE'"  type="hollow"  text="匹配中"></pretty-button> -->
 					<!-- <pretty-button class="btn" v-if="item.stage=='WAITING_FOR_PAYMENT'"  type="hollow"  text="待支付"></pretty-button> -->
 				</view>
 			</view>
@@ -160,6 +161,14 @@
 			},
 			operation(item) {
 				console.log('operation', item)
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				this.isShowBookChild = true
 				this.itemInfoForChild = item
 				console.log(this.itemInfoForChild)
@@ -168,6 +177,14 @@
 				this.isShowBookChild = false
 			},
 			showBuyChild(item) {
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				console.log(item)
 				this.itemInfoForComponentChild = item.companionWisp
 				this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
@@ -177,6 +194,14 @@
 				this.isShowBuyComponeny = false
 			},
 			showLandChild(item) {
+				if(this.$cache.get('status') !== 'NORMAL'){
+					uni.showToast({
+						title:'当前状态不可用',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				this.itemInfoForComponentLandChild = item.land
 				this.itemInfoForComponentLandChild.growthDays = item.growthDays
 				this.isShowLandBuy = true

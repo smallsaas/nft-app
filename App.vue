@@ -32,6 +32,14 @@
 			this.$cache.set("iconList", icon.data)
 			console.log('App Launch')
 			this.$cache.get("iconList")
+			
+			setInterval(async ()=>{
+				const changeUserStatus = await this.$api.getInformationNew()
+				console.log('00000000000000',changeUserStatus,'--------------')
+				if(changeUserStatus.code == 200){
+				this.$cache.set("status",changeUserStatus.data.status)
+				}
+			},6000)
 		},
 		onShow: function() {
 			console.log('App Show')

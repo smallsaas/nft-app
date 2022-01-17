@@ -279,6 +279,13 @@
 							if(this.$frozen()){
 								return ;
 							}
+							if([undefined,null,''].includes(this.form.backupMobilePhone)){
+								uni.showToast({
+									title:"请先填写副手机号！",
+									icon:"error"
+								})
+								return ;
+							}
 							this.isModal = true
 						},
 						hideModal(){
@@ -338,7 +345,7 @@
 								},
 								method:"POST",
 								success(res) {
-									if(res.data.code === 200){
+									if(res.statusCode === 200){
 										console.log(res,"success")
 										that.canPush = false
 										that.timeCache = setInterval(()=>{

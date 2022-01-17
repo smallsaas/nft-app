@@ -51,7 +51,7 @@
 				<text class="text">支付密碼</text>
 			</view>
 			<view class="inputBox">
-				<input type="text" placeholder="請設置支付密碼" class="inputBoxC" v-model="data.paymentPassword"
+				<input type="text" placeholder="以字母開頭的6-20個字母、數字、下劃線" class="inputBoxC" v-model="data.paymentPassword"
 					@focus="focus(7)" @blur="blur(7)" :class="whatFocus===7?'focus':''" />
 			</view>
 			<view class="labelTetx">

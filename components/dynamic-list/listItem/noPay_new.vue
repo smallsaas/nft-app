@@ -40,7 +40,7 @@
 						</view>
 					</view>
 					<view class="viewR">
-						<view class="ro"><text class="time">45:30:20</text></view>
+						<view class="ro"><text class="time">{{item.remainingTime}}分钟</text></view>
 						<view class="rt"><text class="t">剩餘付款時間</text></view>
 					</view>
 				</view>

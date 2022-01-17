@@ -1,10 +1,10 @@
 <template>
 	<view class="checkTeamList">
-		<view class="check">
+		<!-- <view class="check">
 			<input type="number" placeholder="請輸入手機号碼查詢" class="phone" v-model="searchPhone"/>
 			<image src="../../static/service/search.png" mode="widthFix" class="search" v-if="!isSearching" @click="searchIng"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="search" v-if="isSearching" @click="giveUpsearchIng"></image>
-		</view>
+		</view> -->
 		<view class="box">
 			<view class="item" v-for="(item,index) in list" :key="index">
 				<view class="img">

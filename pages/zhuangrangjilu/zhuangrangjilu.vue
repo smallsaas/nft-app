@@ -1,9 +1,11 @@
 <template>
 	<view class="history">
 		<view class="item" v-for="(item,index) in list" :key="index">
-			<view class="o"><image src="" mode="widthFix" class="avator"></image></view>
+			<view class="o"><image :src="item.avatar" mode="widthFix" class="avator"></image></view>
 			<view class="t">
-				<text class="i io">轉讓GuGu令-{{item.name}}</text>
+				<text class="i io" v-if="item.orderType=='PLAYER_TRANSFER_ACCOUNTS'">转让GUGU令给予-{{item.targetName}}</text>
+				<text class="i io" v-if="item.orderType=='SYSTEM_GIVEN'">店小二给予-{{item.targetName}}</text>
+				<text class="i io" v-if="item.orderType=='MANAGER_GIVEN'">管理员给予-{{item.targetName}}</text>
 				<text class="i it">{{formatTime(item.createTime)}}</text>
 			</view>
 			<view class="h">
@@ -30,7 +32,7 @@
 				if(res.code == 200){
 					
 					this.list = res.data.filter(item=>{
-						return item.orderType == 'PLAYER_TRANSFER_ACCOUNTS'
+						return item.orderType == 'PLAYER_TRANSFER_ACCOUNTS' || item.orderType == 'SYSTEM_GIVEN' || item.orderType == 'MANAGER_GIVEN'
 					})
 					uni.showToast({
 						title:'獲取數據成功',
