@@ -314,6 +314,11 @@
 						}
 					},
 					showModal(){
+						console.log('00000000000000------------------')
+						console.log(this.canUse)
+						if(this.canUse == true){
+							this.isModal = true
+						}
 						// if(this.$frozen()){
 						// 	return ;
 						// }
@@ -324,16 +329,15 @@
 						// 	})
 						// 	return ;
 						// }
-						console.log('00000000000000------------------')
-						const status = this.$cache.get('status')
-						if(status === 'FROZEN'){
-								// uni.showToast({
-								// 	title:"请解冻后再试",
-								// 	icon:"error"
-								// })
-								// return
-								this.isModal = true
-						}
+						// const status = this.$cache.get('status')
+						// if(status === 'FROZEN'){
+						// 		// uni.showToast({
+						// 		// 	title:"请解冻后再试",
+						// 		// 	icon:"error"
+						// 		// })
+						// 		// return
+						// 		this.isModal = true
+						// }
 						// this.isModal = true
 					},
 					hideModal(){
