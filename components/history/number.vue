@@ -33,7 +33,7 @@
 		
 		<view class="spirit_mask" v-if="isShowToast || isShowIncomeTypeForTransfer"></view>
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
-		<transferCoin v-if="isShowIncomeTypeForTransfer" @closeCoin="closeType" :type="forChildType"></transferCoin>
+		<transferCoin v-if="isShowIncomeTypeForTransfer" @closeCoin="closeType" :type="forChildType" :num="judge"></transferCoin>
 	</view>
 </template>
 
@@ -61,7 +61,9 @@
 				rPoint:0,
 				tPoint:0,
 				tsPonit:0,
-				mPoint:0
+				mPoint:0,
+				
+				judge:0
 			}
 		},
 		mounted() {
@@ -74,7 +76,26 @@
 			
 		},
 		methods:{
+			toastMsg(){
+				uni.showToast({
+					title:'收益100起转化',
+					icon:'error',
+					duration:1000
+				})
+			},
 			typeForGUGU(type){
+				if(this.rPoint < 100 ){
+					this.toastMsg()
+					return
+				}
+				if(this.tPoint < 100 ){
+					this.toastMsg()
+					return
+				}
+				if(this.tsPonit < 100 ){
+					this.toastMsg()
+					return
+				}
 				this.forChildType = type
 				this.isShowIncomeTypeForTransfer = true
 			},
@@ -93,11 +114,6 @@
 					}
 				}else{
 					this.isShowIncomeTypeForTransfer = false
-					uni.showToast({
-						title:'转化失败',
-						icon:'error',
-						duration:1000
-					})
 				}
 			},
 			typeForRecomment(){
@@ -207,26 +223,26 @@
 					})
 					return
 				}
-				// let data = {
-				// 	 incomeType:"signINProfit",
-				// 	 number:this.data.signInCoinCredit
-				// }
-				// const res = await this.$api.tiquqiandaoshouyi(data)
-				// console.log('-------------',res)
-				// if(res.code == 200){
-				// 	uni.showToast({
-				// 		title:'提取成功',
-				// 		icon:'success',
-				// 		duration:1000
-				// 	})
-				// }else{
-				// 	uni.showToast({
-				// 		title:res.message,
-				// 		icon:'error',
-				// 		duration:1000
-				// 	})
-				// 	return
-				// }
+				let data = {
+					 incomeType:"signINProfit",
+					 number:this.data.signInCoinCredit
+				}
+				const res = await this.$api.tiquqiandaoshouyi(data)
+				console.log('-------------',res)
+				if(res.code == 200){
+					uni.showToast({
+						title:'提取成功',
+						icon:'success',
+						duration:1000
+					})
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 			},
 			forParent(){
 				// this.$emit('forParentClose')
