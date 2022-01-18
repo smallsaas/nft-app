@@ -69,12 +69,15 @@
 						this.$emit('close')
 						this.$emit('tellFather',true)
 					} else {
-						uni.showToast({
-							title: res.message,
-							icon: "error",
-							duration: 1000
-						})
-						this.$emit('close')
+						let data = {
+							message:res.message
+						}
+						// uni.showToast({
+						// 	title: res.message,
+						// 	icon: "error",
+						// 	duration: 1000
+						// })
+						this.$emit('close',data)
 					}
 				}
 			}

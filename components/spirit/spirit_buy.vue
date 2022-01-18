@@ -172,19 +172,23 @@
 <style lang="less">
 	.newBUYItem {
 		width: 100%;
-		height: 654rpx;
+		// height: 654rpx;
+		height: 354rpx !important;
 		// border: 1px solid red;
 		border-radius: 16px 16px 0px 0px;
 		position: fixed;
-		bottom: -10rpx;
+		// bottom: 300rpx;
 		z-index: 9999999 !important;
 
 		.boxItem {
+			margin-left: 2.5%;
 			background: rgb(28, 41, 76);
-			width: 100%;
-			height: 100% !important;
+			// width: 100%;
+			width: 95%;
+			// height: 100% !important;
+			height: 654rpx !important;
 			background: #1C294C;
-			border-radius: 16px 16px 0px 0px;
+			border-radius: 16px 16px 16px 16px;
 			opacity: 1;
 			z-index: 9999999 !important;
 			position: fixed;
@@ -382,7 +386,7 @@
 					justify-content: center;
 					position: absolute;
 					top: 24px;
-					left: 135px;
+					left: 115px;
 					;
 				}
 			}
@@ -609,7 +613,7 @@
 					justify-content: center;
 					position: absolute;
 					top: 24px;
-					left: 135px;
+					left: 115px;
 					;
 				}
 			}

@@ -26,7 +26,7 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.coinsPrice)+item.amountAddedValue}}</text>
+				<text class="info">能力值：{{item.amountPrice}}/{{item.additionalIncomeDay}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
