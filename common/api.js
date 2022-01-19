@@ -74,6 +74,11 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/sign?month=${data.month}&year=${data.year}`
 		return request('GET',url,params)
 	},
+	//新版玩家獲取申述記錄
+	loadNewUserComplainHistory(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
+		return request('GET',url,params)
+	},
 	//獲取申述記錄
 	loadUserComplainHistory(params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains`

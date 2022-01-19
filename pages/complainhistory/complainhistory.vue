@@ -30,7 +30,7 @@
 		},
 		methods:{
 			async loadHistory(){
-				const res = await this.$api.loadUserComplainHistory()
+				const res = await this.$api.loadNewUserComplainHistory()
 				console.log(res)
 				if(res.code == 200){
 					this.list = res.data.records
