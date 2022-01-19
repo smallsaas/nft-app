@@ -17,11 +17,10 @@ export const request = (method, url, params = {}, header = {}) => {
   if (Object.keys(header).length === 0) {
     header = {}
   }
-
-  if (!header.token) {
-    const token = uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
-    header.token = token
-		header.Authorization = `Bearer ${token}`
+  
+  if (!header.Authorization || header.Authorization === 'Bearer ') {
+     const token = uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
+     header.Authorization = `Bearer ${token}` 
   }
 
   return _request({
@@ -41,7 +40,10 @@ export const upLoad = (url, filePath, params, name) => {
     filePath: filePath,
     formData: params,
     name: name,
-	header:{token:token}
+	header:{
+        // token:token,
+        Authorization: `Bearer ${token}`
+    }
   })
 }
 
