@@ -44,6 +44,25 @@
 					"newPassword":this.newPassword
 				}
 				let res = await this.$api.findPassword(params)
+				if(res.code == 200){
+					uni.showToast({
+						title:"找回密码成功",
+						icon:"success",
+						duration:1000
+					})
+					setTimeout(()=>{
+						uni.navigateTo({
+							url:'/pages/login_new/login_new'
+						})
+					},1000)
+					return ;
+				}else{
+					uni.showToast({
+						title:"找回密码失败",
+						icon:"success"
+					})
+					return ;
+				}
 			},
 			async getYZM(){
 				clearInterval(time)
@@ -56,7 +75,7 @@
 				}
 				let params = {
 					phone:this.phone,
-					operation: "changePassword"
+					operation: "changeAccount"
 				}
 				let res = await this.$api.message(params)
 				console.log(res)

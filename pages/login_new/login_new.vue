@@ -37,7 +37,7 @@
 				openIndex:0,
 				data:{
 					account:'18664521094',
-					password:'A123456789',
+					password:'A123456',
 					//13814736900
 					//a123456
 					verifyCode:'',

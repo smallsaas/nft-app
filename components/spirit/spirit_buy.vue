@@ -179,6 +179,10 @@
 		position: fixed;
 		// bottom: 300rpx;
 		z-index: 9999999 !important;
+		top:30%;
+		left: 0;
+		right: 0;
+		bottom: 0;
 
 		.boxItem {
 			margin-left: 2.5%;
