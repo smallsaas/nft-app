@@ -63,8 +63,37 @@
 				coin:0
 			}
 		},
-		  created() {
-			 console.log('log',this.$route.query.success)
+		  async created() {
+			let pages = getCurrentPages()
+			let nowPage = pages[pages.length-1];
+			let params = nowPage.options
+			console.log(params,'aaaaaaaaaaaaaaaaaaaaaaaaaa')
+			 // if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
+				//  const res = await this.$api.getUserWallet()
+				//  console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')
+				//  this.coin = res.data.coinsAmount
+				//  this.forChild.signInCoinCredit = this.item.signInCoinCredit
+				//  this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
+				//  this.forChild.teamCoinCredit = this.item.teamCoinCredit
+				//  this.forChild.transferCoinCredit = this.item.transferCoinCredit
+				//  this.forChild.marketPoints = this.item.marketPoints
+				//  this.forJudgeTwo.depositPoints = this.item.depositPoints
+				//  return
+			 // }
+			this.coin = this.item.coinsAmount
+			
+			this.forChild.signInCoinCredit = this.item.signInCoinCredit
+			this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
+			this.forChild.teamCoinCredit = this.item.teamCoinCredit
+			this.forChild.transferCoinCredit = this.item.transferCoinCredit
+			this.forChild.marketPoints = this.item.marketPoints
+			this.forJudgeTwo.depositPoints = this.item.depositPoints
+		},
+		async mounted() {
+			// let pages = getCurrentPages()
+			// let nowPage = pages[pages.length-1];
+			// let params = nowPage.options
+			// console.log(params,'aaaaaaaaaaaaaaaaaaaaaaaaaa')
 			//  if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
 			// 	 const res = await this.$api.getUserWallet()
 			// 	 console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')
@@ -77,33 +106,7 @@
 			// 	 this.forJudgeTwo.depositPoints = this.item.depositPoints
 			// 	 return
 			//  }
-			// console.log('res',this.item)
-			// this.forChild.inviting = parseInt(this.item.invitingOneBallance) + parseInt(this.item.invitingTwoBallance)
-			// this.forChild.signBallance = this.item.signBallance
-			// this.forChild.teamBallance = this.item.teamBallance
-			// this.forChild.depositPoints = this.item.depositPoints
-			
-			this.forChild.signInCoinCredit = this.item.signInCoinCredit
-			this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
-			this.forChild.teamCoinCredit = this.item.teamCoinCredit
-			this.forChild.transferCoinCredit = this.item.transferCoinCredit
-			this.forChild.marketPoints = this.item.marketPoints
-			this.forJudgeTwo.depositPoints = this.item.depositPoints
-		},
-		async mounted() {
-			 if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
-				 const res = await this.$api.getUserWallet()
-				 console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')
-				 this.coin = res.data.coinsAmount
-				 this.forChild.signInCoinCredit = this.item.signInCoinCredit
-				 this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
-				 this.forChild.teamCoinCredit = this.item.teamCoinCredit
-				 this.forChild.transferCoinCredit = this.item.transferCoinCredit
-				 this.forChild.marketPoints = this.item.marketPoints
-				 this.forJudgeTwo.depositPoints = this.item.depositPoints
-				 return
-			 }
-			this.coin = this.item.coinsAmount
+			// this.coin = this.item.coinsAmount
 		},
 		methods:{
 			getValueForUpdateCoin(value){

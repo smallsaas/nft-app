@@ -9,7 +9,7 @@
 			<text class="title">推薦收益:</text>
 			<text class="num">{{rPoint||0}}</text>
 			<text class="o" @click="typeForGUGU(1)">轉化GuGu令</text> 
-			<!-- //zhaunhua -->
+			<!-- //zhaunhua --> 
 			<text class="ot" @click="transferSpiritForMarket('recommendCoinCredit')">轉化精靈</text>
 			<text class="ott" @click="goToTuiJian">查看明細</text>
 		</view>
@@ -287,12 +287,6 @@
 				uni.navigateTo({
 					url:'/pages/defaultPage/page?id='+ 11447722 + '&type=' + type 
 				})
-				// this.$router.push({
-				// 	path:'/pages/defaultPage/page?id='+ 11447722,
-				// 	query:{
-				// 		type:type
-				// 	}
-				// })
 			},
 			// transferSpiritForDeposi(){
 			// 	uni.navigateTo({

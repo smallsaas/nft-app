@@ -16,7 +16,8 @@
 		methods: {
 		},
 		onLoad(e){
-			if(JSON.stringify(e) !== '{}'){
+			console.log()
+			if(JSON.stringify(e) !== '{}'){  
 				let param = e.query?JSON.parse(decodeURIComponent(e.query)):e
 				this.api = this.$config.formHost + "?id=" + param.id
 				this.$forceUpdate()

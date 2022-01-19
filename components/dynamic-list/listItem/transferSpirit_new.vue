@@ -84,10 +84,6 @@
 			item: Object,
 			ext: Object
 		},
-		// created() {
-		// 	console.log('00000000000000',this.$cache.get('status'))
-		// 	this.status = this.$cache.get('status')
-		// },
 		created() {
 			console.log('00000000000000',this.$cache.get('status'))
 			this.status = this.$cache.get('status')
@@ -122,29 +118,33 @@
 					})
 				}
 			},
-			async changeSpirit(id){
-				if(this.$route.query.type == "recommendCoinCredit"){
+			async changeSpirit(id){	
+				let pages = getCurrentPages()
+				let nowPage = pages[pages.length-1];
+				let params = nowPage.options
+				console.log(params,"PAGES")//页面详细信息
+				if(params.type == "recommendCoinCredit"){
 					console.log('1')
 					const data = {
-						incomeType:this.$route.query.type,
+						incomeType:params.type,
 						wispId:id
 					}
 					const res = await this.$api.tuijianforspirit(data)
 					console.log('res',res)
 					this.msg(res.code,res.message)
-				}else if(this.$route.query.type == "teamCoinCredit"){
+				}else if(params.type == "teamCoinCredit"){
 					console.log('2')
 					const data = {
-						incomeType:this.$route.query.type,
+						incomeType:params.type,
 						wispId:id
 					}
 					const res = await this.$api.tuijianforspirit(data)
 					console.log('res',res)
 					this.msg(res.code,res.message)
-				}else if(this.$route.query.type == "transferCoinCredit"){
+				}else if(params.type == "transferCoinCredit"){
 					console.log('3')
 					const data = {
-						incomeType:this.$route.query.type,
+						incomeType:params.type,
 						wispId:id
 					}
 					const res = await this.$api.tuijianforspirit(data)

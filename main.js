@@ -171,7 +171,13 @@ Vue.component("card",card)
 Vue.component("gMask",mask)
 Vue.component("pretty-button",prettyButton)
 
+
 App.mpType = 'app'
+
+
+const type = new Vue()
+
+Vue.prototype.$type = type
 
 const app = new Vue({
     ...App
