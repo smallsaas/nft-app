@@ -451,8 +451,7 @@
                   method: _.get(this.config,'method','GET'),
                   data: this.listSearch,
                   header: {
-                      Authorization: `Bearer ${uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''}`,
-                      token: uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''
+                      Authorization: `Bearer ${uni.getStorageSync(`${globalConfig.tokenStorageKey}`) || ''}`
                   },
                   complete: (res) => {
                      // uni.hideLoading()
