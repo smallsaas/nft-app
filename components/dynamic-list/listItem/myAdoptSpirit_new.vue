@@ -35,7 +35,7 @@
 				<text class="info">培養天數：{{item.wisp.growthDays}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info sss">領養：{{item.updateTime}}</text>
+				<text class="info sss">領養：{{item.createTime}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
