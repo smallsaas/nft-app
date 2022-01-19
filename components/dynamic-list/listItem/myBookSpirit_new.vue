@@ -61,8 +61,8 @@
 					<text class="rthR">{{time}}</text>
 				</view>
 				<view class="rth rtht" v-if="item.bookStatus=='MATCH_FAIL'">
-					<text class="rthL">退</text>
-					<text class="rthR rr">GUGUX{{item.wisp?item.wisp.costWispCoin:0}} 能量晶石X{{item.wisp?item.wisp.costAccompanyWisp:0}} 土地X{{item.wisp?item.wisp.growthDays:0}}</text>
+					<text class="rthL green">退</text>
+					<text class="rthR rr green">GUGUX{{item.wisp?item.wisp.costWispCoin:0}} 能量晶石X{{item.wisp?item.wisp.costAccompanyWisp:0}} 土地X{{item.wisp?item.wisp.growthDays:0}}</text>
 				</view>
  				<view class="btnBox">
 					<button class="btn"  v-if="item.bookStatus == 'WAITING_MATCH'">預約成功</button>
@@ -388,6 +388,10 @@
  						font-weight: 400;
  						color: #c8ccd3;
  					}
+					
+					.green{
+						color: rgb(36,140,133) !important;
+					}
  
  					.rthR {
  						font-size: 12px;
