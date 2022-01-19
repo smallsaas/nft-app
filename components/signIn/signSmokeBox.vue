@@ -28,6 +28,8 @@
 </template>
 
 <script>
+    import _ from 'lodash'
+    import moment from 'moment'
 	import signItem from './signItem.vue'
 	export default {
 		name:"signSmokeBox",
@@ -101,9 +103,10 @@
 			// this.listGroup = this.signData.list
 			// this.sign = this.signData.isSign
 			// this.signDay = this.signData.day||0
-			this.signDay = signMes.data.records.length
+            this.signDay = _.get(signMes, 'data.records', []).length
+            
 			if(signMes.data.records){
-				let records = signMes.data.records
+				let records = _.cloneDeep(signMes.data.records).sort((x, y) => moment(y.signDate).unix() - moment(x.signDate).unix())
 				let today = this.getToday()
 				console.log(records,"RECORDS",today)
 				let find = records.find(item=>item.signDate <= today)
@@ -127,6 +130,9 @@
 			this.getListGroup()
 			this.getNowGroup()
 			this.dayGroup = this.nowGroup
+            
+            console.log('嘎嘎嘎过', this.dayGroup)
+            
 			uni.hideLoading()
 		},
 		methods:{
@@ -157,7 +163,7 @@
 					}
 					that.listGroup.push(template)
 				}
-				console.log(this.listGroup)
+				console.log('????==', this.listGroup)
 			},
 			// 獲取當前月份的天數
 			getMonthDay(year,month){
@@ -215,15 +221,26 @@
 					console.log(item.status)
 					if(item.status === "today"){
 						that.nowGroup = []
-						if(item.day/9<=1){
-							that.nowGroup = that.listGroup.slice(0,9)
-						}else if(item.day/12<=2&&item.day/9>1){
-							that.nowGroup = that.listGroup.slice(9,18)
-						}else if(item.day/12<=3&&item.day/9>2){
-							that.nowGroup = that.listGroup.slice(18,27)
-						}else if(item.day/12<=4&&item.day/9>3){
-							that.nowGroup = that.listGroup.slice(27,31)
-						}
+						// if(item.day/9<=1){
+						// 	that.nowGroup = that.listGroup.slice(0,9)
+						// }else if(item.day/12<=2&&item.day/9>1){
+						// 	that.nowGroup = that.listGroup.slice(9,18)
+						// }else if(item.day/12<=3&&item.day/9>2){
+						// 	that.nowGroup = that.listGroup.slice(18,27)
+						// }else if(item.day/12<=4&&item.day/9>3){
+						// 	that.nowGroup = that.listGroup.slice(27,31)
+						// }
+                        const maxDay = Number(moment().endOf('month').format('DD'))
+                        let endNum = item.day === maxDay ? maxDay : item.day
+                        if (endNum < 9) {
+                            endNum = 9
+                        }
+                        let startNum = 0
+                        if (endNum > 9) {
+                            startNum = endNum - 9 > 0 ? endNum - 9 : endNum
+                        }
+                        that.nowGroup = that.listGroup.slice(startNum, endNum)
+
 						console.log(that.nowGroup,"NOWGROUP____")
 					}
 				})
