@@ -66,7 +66,7 @@
 		async created() {
 			let res = await this.$api.getIcon()
 			this.iconList = res.data
-			// console.log(this.params.value,"VALUE")
+			console.log(this.params.value,"VALUE---------------------------")
 			if(this.params.value){
 				if(this.params.value.indexOf("[")!==-1){
 					this.imageList = JSON.parse(this.params.value)

@@ -23,7 +23,7 @@
 			</view>
 		</view>
 		<view class="spirit_mask" v-if="isShowTransfer||isShowTransferCoin||isShowTransferCoinTwo"></view>
-		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild"></number>
+		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild" @forParentToChangeCoin="getValueForUpdateCoin"></number>
 		<transfer v-if="isShowTransfer" @close="getClose" @tellFather="getChildren"></transfer>
 		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
 		<transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
@@ -65,18 +65,26 @@
 		},
 		created() {
 			console.log('res',this.item)
-			this.forChild.inviting = parseInt(this.item.invitingOneBallance) + parseInt(this.item.invitingTwoBallance)
-			this.forChild.signBallance = this.item.signBallance
-			this.forChild.teamBallance = this.item.teamBallance
-			this.forChild.depositPoints = this.item.depositPoints
+			// this.forChild.inviting = parseInt(this.item.invitingOneBallance) + parseInt(this.item.invitingTwoBallance)
+			// this.forChild.signBallance = this.item.signBallance
+			// this.forChild.teamBallance = this.item.teamBallance
+			// this.forChild.depositPoints = this.item.depositPoints
 			
-			this.forJudge.marketPoints = this.item.marketPoints
+			this.forChild.signInCoinCredit = this.item.signInCoinCredit
+			this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
+			this.forChild.teamCoinCredit = this.item.teamCoinCredit
+			this.forChild.transferCoinCredit = this.item.transferCoinCredit
+			this.forChild.marketPoints = this.item.marketPoints
 			this.forJudgeTwo.depositPoints = this.item.depositPoints
 		},
 		mounted() {
 			this.coin = this.item.coinsAmount
 		},
 		methods:{
+			getValueForUpdateCoin(value){
+				this.coin = value
+			},
+			
 			transfer(){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
@@ -88,8 +96,9 @@
 				}
 				this.isShowTransfer = true
 			},
-			getClose(){
+			getClose(data){
 				this.isShowTransfer = false
+				this.toast(data.message)
 			},
 			getCloseCoin(){
 				this.isShowTransferCoin = false

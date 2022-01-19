@@ -38,7 +38,12 @@ Content-Type: application/json
                 "invitingOneBallance":"invitingOneBallance",
                 "invitingTwoBallance":"invitingTwoBallance",
                 "signBallance":"signBallance",
-                "teamBallance":"teamBallance"
+                "teamBallance":"teamBallance",
+                "signInCoinCredit":"signInCoinCredit",
+                "recommendCoinCredit":"recommendCoinCredit",
+                "teamCoinCredit":"teamCoinCredit",
+                "transferCoinCredit":"transferCoinCredit",
+                "marketPoints":"marketPoints"
             }
         }
     ],

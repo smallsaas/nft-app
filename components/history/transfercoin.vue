@@ -6,7 +6,7 @@
 		<text class="tt">
 			轉化數量
 		</text>
-		<input class="ttt" type="number" placeholder="最多可轉化500" v-model="transferWispCoind" />
+		<input class="ttt" type="number" placeholder="最多可轉化100" v-model="transferWispCoind" />
 		<view class="line"></view>
 		<view class="btnBox">
 			<button class="btn ccc" @click="cancel">取消</button>
@@ -25,7 +25,7 @@
 				type: Object
 			},
 			type:{
-				type:String
+				type:Number
 			}
 		},
 		created() {
@@ -41,13 +41,75 @@
 			cancel() {
 				this.$emit('closeCoin')
 			},
-			sureTransfer() {
-				if(this.type == 'levelShare'){
+			async sureTransfer() {
+				console.log(this.type)
+				if(this.type == 1){
 					console.log('do1')
-				}else if(this.type == 'teamBenefits'){
+					const data = {
+						incomeType:'recommendCoinCredit',
+						number:this.transferWispCoind
+					}
+					const res = await this.$api.tuijianforgugu(data)
+					console.log('res',res,'-----------------------')
+					if(res.code == 200){
+						uni.showToast({
+							icon:'success',
+							duration:1000,
+							title:'转化成功'
+						})
+						this.$emit('closeCoin','update')
+					}else{
+						uni.showToast({
+							icon:'error',
+							duration:1000,
+							title:res.message
+						})
+					}
+					// if()
+				}else if(this.type == 2){
 					console.log('do2')
+					const data = {
+						incomeType:'teamCoinCredit',
+						number:this.transferWispCoind
+					}
+					const res = await this.$api.banhuiforgugu(data)
+					console.log('res',res,'-----------------------')
+					if(res.code == 200){
+						uni.showToast({
+							icon:'success',
+							duration:1000,
+							title:'转化成功'
+						})
+						this.$emit('closeCoin','update')
+					}else{
+						uni.showToast({
+							icon:'error',
+							duration:1000,
+							title:res.message
+						})
+					}
 				}else{
 					console.log('do3')
+					const data = {
+						incomeType:'transferCoinCredit',
+						number:this.transferWispCoind
+					}
+					const res = await this.$api.zhuancunforgugu(data)
+					console.log('res',res,'-----------------------')
+					if(res.code == 200){
+						uni.showToast({
+							icon:'success',
+							duration:1000,
+							title:'转化成功'
+						})
+						this.$emit('closeCoin','update')
+					}else{
+						uni.showToast({
+							icon:'error',
+							duration:1000,
+							title:res.message
+						})
+					}
 				}
 			}
 		}

@@ -279,15 +279,6 @@
             
         }
         ,{
-            "path" : "pages/rDetail/rDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "幫會推薦收益明細",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
             "path" : "pages/complainhistory/complainhistory",
             "style" :                                                                                    
             {

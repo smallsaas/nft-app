@@ -4,7 +4,7 @@
 			<view class="o"><image :src="item.avatar" mode="widthFix" class="avator"></image></view>
 			<view class="t">
 				<text class="i io" v-if="item.orderType=='PLAYER_TRANSFER_ACCOUNTS'">轉讓GUGU令給予-{{item.targetName}}</text>
-				<text class="i io" v-if="item.orderType=='SYSTEM_GIVEN'">店小二給予-{{item.targetName}}</text>
+				<!-- <text class="i io" v-if="item.orderType=='SYSTEM_GIVEN'">店小二給予-{{item.targetName}}</text> -->
 				<text class="i io" v-if="item.orderType=='MANAGER_GIVEN'">管理員給予-{{item.targetName}}</text>
 				<text class="i it">{{formatTime(item.createTime)}}</text>
 			</view>
@@ -32,7 +32,7 @@
 				if(res.code == 200){
 					
 					this.list = res.data.filter(item=>{
-						return item.orderType == 'PLAYER_TRANSFER_ACCOUNTS' || item.orderType == 'SYSTEM_GIVEN' || item.orderType == 'MANAGER_GIVEN'
+						return item.orderType == 'PLAYER_TRANSFER_ACCOUNTS' || item.orderType == 'MANAGER_GIVEN'
 					})
 					uni.showToast({
 						title:'獲取數據成功',

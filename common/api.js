@@ -4,10 +4,25 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
+	//根据转存收益转化GUGU令
+	zhuancunforgugu(params){
+		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
+		return request('POST',url,params)
+	},
+	//根据帮会收益转化GUGU令
+	banhuiforgugu(params){
+		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
+		return request('POST',url,params)
+	},
+	//根据推荐收益转化GUGU令
+	tuijianforgugu(params){
+		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
+		return request('POST',url,params)
+	},
 	//提取簽到收益
 	tiquqiandaoshouyi(params){
-		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement/signINProfit`
-		return request('GET',url,params)
+		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
+		return request('POST',url,params)
 	},
 	//轉化轉存收益
 	zhuanhuaTypeThree(params){

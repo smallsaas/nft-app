@@ -161,17 +161,20 @@
 <style lang="less">
 	.spiritBuy {
 		width: 100%;
-		height: 65% !important;
+		// height: 65% !important;
+		height: 814rpx;
 		position: fixed;
-		bottom: -10rpx;
+		// bottom: -10rpx;
 		z-index: 99999999;
 		border-radius: 16px 16px 0px 0px;
 
 		.box {
-			width: 100%;
-			height: 100% !important;
+			margin-left: 2.5%;
+			width: 95%;
+			// height: 100% !important;
+			height: 814rpx;
 			background: #1C294C;
-			border-radius: 16px 16px 0px 0px;
+			border-radius: 16px 16px 16px 16px;
 			opacity: 1;
 			z-index: 9999999 !important;
 			position: fixed;
@@ -464,7 +467,7 @@
 				color: #FFFFFF;
 				position: absolute;
 				top: 25px;
-				left: 135px;
+				left: 115px;
 			}
 
 			.top {
