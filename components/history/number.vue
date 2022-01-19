@@ -17,7 +17,7 @@
 			<text class="title">幫會收益:</text>
 			<text class="num">{{tPoint||0}}</text>
 			<text class="o" @click="typeForGUGU(2)">轉化GuGu令</text>
-			<text class="ot" @click="transferSpiritForMarket('teamBenefits')">轉化精靈</text>
+			<text class="ot" @click="transferSpiritForMarket('teamCoinCredit')">轉化精靈</text>
 			<text class="ott" @click="goToBangHui">查看明細</text>
 		</view>
 		<view class="item">
@@ -76,24 +76,40 @@
 			
 		},
 		methods:{
-			toastMsg(){
-				uni.showToast({
-					title:'收益100起转化',
-					icon:'error',
-					duration:1000
-				})
-			},
+			// toastMsg(){
+			// 	uni.showToast({
+			// 		title:'收益100起转化',
+			// 		icon:'error',
+			// 		duration:1000
+			// 	})
+			// },
 			typeForGUGU(type){
-				if(this.rPoint < 100 ){
-					this.toastMsg()
+				console.log('type',type)
+				if(this.rPoint < 100 && type == 1){
+					// this.toastMsg()
+					uni.showToast({
+						title:'收益100起转化',
+						icon:'error',
+						duration:1000
+					})
 					return
 				}
-				if(this.tPoint < 100 ){
-					this.toastMsg()
+				if(this.tPoint < 100 && type == 2){
+					// this.toastMsg()
+					uni.showToast({
+						title:'收益100起转化',
+						icon:'error',
+						duration:1000
+					})
 					return
 				}
-				if(this.tsPonit < 100 ){
-					this.toastMsg()
+				if(this.tsPonit < 100 && type == 3){
+					// this.toastMsg()
+					uni.showToast({
+						title:'收益100起转化',
+						icon:'error',
+						duration:1000
+					})
 					return
 				}
 				this.forChildType = type
@@ -271,6 +287,12 @@
 				uni.navigateTo({
 					url:'/pages/defaultPage/page?id='+ 11447722 + '&type=' + type 
 				})
+				// this.$router.push({
+				// 	path:'/pages/defaultPage/page?id='+ 11447722,
+				// 	query:{
+				// 		type:type
+				// 	}
+				// })
 			},
 			// transferSpiritForDeposi(){
 			// 	uni.navigateTo({

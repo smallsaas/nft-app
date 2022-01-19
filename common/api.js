@@ -4,6 +4,11 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
+	//根据推荐收益转化为精灵
+	tuijianforspirit(params){
+		const url = `${globalConfig.endpoint}/api/u/player/changProfitToWisp`
+		return request('POST',url,params)
+	},
 	//根据转存收益转化GUGU令
 	zhuancunforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`

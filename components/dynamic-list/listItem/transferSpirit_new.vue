@@ -56,7 +56,7 @@
 					<text class="rthR">{{item.growthDays}}</text>
 				</view>
 				<view class="btnBox">
-					<pretty-button class="btn"  text="轉化" ></pretty-button>
+					<pretty-button class="btn"  text="轉化" @click="changeSpirit(item.id)"></pretty-button>
 					<!-- <pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE' || item.stage=='GROWING'" text="馬上預約" ></pretty-button>
 					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH' || item.stage=='WAITING_FOR_PAYMENT' || item.stage=='DISALLOW_BOOK'"  type="hollow"  text="已預約"></pretty-button>
 					<pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="預約結束"></pretty-button> -->
@@ -84,9 +84,14 @@
 			item: Object,
 			ext: Object
 		},
+		// created() {
+		// 	console.log('00000000000000',this.$cache.get('status'))
+		// 	this.status = this.$cache.get('status')
+		// },
 		created() {
 			console.log('00000000000000',this.$cache.get('status'))
 			this.status = this.$cache.get('status')
+			console.log('rrrrrrrrrrrrrr',this.$route.query.type,'eeeeeeeeeeeeeeeeeee')
 		},
 		data() {
 			return {
@@ -95,6 +100,58 @@
 			}
 		},
 		methods: {
+			msg(code,message){
+				if(code == 200){
+					uni.showToast({
+						title:'转化成功',
+						icon:'success',
+						duration:1000
+						
+					})
+					setTimeout(()=>{
+						uni.navigateTo({
+							url:"/pages/defaultPage/page?id=" + 999666 + '&success=' + 1
+						})
+					},1000)
+				}else{
+					uni.showToast({
+						title:message,
+						icon:'error',
+						duration:1000
+						
+					})
+				}
+			},
+			async changeSpirit(id){
+				if(this.$route.query.type == "recommendCoinCredit"){
+					console.log('1')
+					const data = {
+						incomeType:this.$route.query.type,
+						wispId:id
+					}
+					const res = await this.$api.tuijianforspirit(data)
+					console.log('res',res)
+					this.msg(res.code,res.message)
+				}else if(this.$route.query.type == "teamCoinCredit"){
+					console.log('2')
+					const data = {
+						incomeType:this.$route.query.type,
+						wispId:id
+					}
+					const res = await this.$api.tuijianforspirit(data)
+					console.log('res',res)
+					this.msg(res.code,res.message)
+				}else if(this.$route.query.type == "transferCoinCredit"){
+					console.log('3')
+					const data = {
+						incomeType:this.$route.query.type,
+						wispId:id
+					}
+					const res = await this.$api.tuijianforspirit(data)
+					console.log('res',res)
+					this.msg(res.code,res.message)
+				}
+			},
 			getImage(url) {
 				console.log(this.$config)
 				let that = this
