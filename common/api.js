@@ -41,7 +41,7 @@ export const api = {
 	},
 	// 找回密碼
 	findPassword(params){
-		const url = `${globalConfig.endpoint}/api/pub/user/findPassword`
+		const url = `${globalConfig.endpoint}/api/app/oauth/account/findPassword`
 		return request("POST",url,params)
 	},
 	//短信
@@ -121,7 +121,7 @@ export const api = {
 	},
 	// 修改密碼
 	changePassword(params){
-		let param={...params,"verifyCode":"123456"}
+		let param={...params}
 		const url = `${globalConfig.endpoint}/api/u/player/paymentPassword/change`
 		return request('POST',url,param)
 	},
@@ -152,9 +152,16 @@ export const api = {
 	// 	return request('PUT',url,params)
 	// },
 	
+	// // 新版用戶個人信息編輯(修改手機号)
+	// editUserData(params){
+	// 	let param={...params,"verifyCode":"123456"}
+	// 	const url = `${globalConfig.endpoint}/api/u/player/backupMobilePhone/change`
+	// 	return request('POST',url,param)
+	// },
+	
 	// 新版用戶個人信息編輯(修改手機号)
 	editUserData(params){
-		let param={...params,"verifyCode":"123456"}
+		let param={...params}
 		const url = `${globalConfig.endpoint}/api/u/player/backupMobilePhone/change`
 		return request('POST',url,param)
 	},

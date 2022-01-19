@@ -428,7 +428,7 @@ Content-Type: application/json
                     "readonly": false,
                     "hidden": false,
                     "disabled": false,
-                    "__vModel__": ""
+                    "__vModel__": "verifyCode"
                 }
                 ]
                 },

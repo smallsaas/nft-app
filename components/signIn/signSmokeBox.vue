@@ -43,6 +43,7 @@
 				}
 			},
 			isSign(){
+				console.log(this.sign,'------------------------------')
 				if(this.sign){
 					this.signText="已簽到"
 					this.signImage="/static/signSmoke/signedIn.png"
@@ -113,7 +114,7 @@
 					console.log(today,"TODAY")
 					for(var i in records){
 						let item = records[i]
-						console.log(that.fetchDay(item.signDate),today)
+						console.log(that.fetchDay(item.signDate),today,'测试打印--------------------')
 						if(that.fetchDay(item.signDate)<today){
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
 						}else if(that.fetchDay(item.signDate)==today){
