@@ -49,7 +49,7 @@
 						Authorization:`Bearer ${token}`
 					},
 					success(res) {
-						// console.log(res)
+						console.log(res,'aaaaaafjksahfjksahfjksahf-----')
 						that.data = res.data.data
 					}
 				})

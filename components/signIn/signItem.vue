@@ -176,8 +176,8 @@
 	.sign-isSign-unSigned{
 		padding: 15rpx 22rpx;
 		border-radius: 8rpx;
-		color: #DDD8D8;
+		color: #DDD8D8 !important;
 		font-size: 38rpx;
-		background: linear-gradient(left,#8F34F5,#1287E8);
+		background: linear-gradient(left,#8F34F5,#1287E8) !important;
 	}
 </style>

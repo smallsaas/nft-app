@@ -204,7 +204,8 @@
 						success: async () => {
 								that.listGroup[day-1].isSign = true
 								await that.getNowGroup()
-								that.dayGroup = that.nowGroup
+								// that.dayGroup = that.nowGroup
+								this.dayGroup = this.listGroup
 								console.log(that.dayGroup,'可能需要等待')
 								that.$forceUpdate()
 						}
@@ -263,6 +264,7 @@
 					this.packIcon = "/static/signSmoke/more.png"
 				}else{
 					this.packText = "收起"
+					// this.packText = "查看全部奖励"
 					this.dayGroup = this.listGroup
 					this.packIcon = "/static/signSmoke/pushup.png"
 				}
@@ -285,6 +287,45 @@
 						title:"簽到成功",
 						icon:'success'
 					})
+					
+					this.getYear()
+					this.getMonth()
+					// let that = this
+					let signMes = await this.$api.getSignMes({month:that.month,year:that.year})
+					console.log('--------------rrrr',signMes,'我是再次跟新----------------------------------')
+					this.signDay = _.get(signMes, 'data.records', []).length
+					
+					if(signMes.data.records){
+						let records = _.cloneDeep(signMes.data.records).sort((x, y) => moment(y.signDate).unix() - moment(x.signDate).unix())
+						let today = this.getToday()
+						console.log(records,"RECORDS",today)
+						let find = records.find(item=>item.signDate <= today)
+						console.log(find,"FIND")
+						if(![[],'',undefined,null].includes(find)){
+							let today = this.fetchDay(find.signDate)
+							console.log(today,"TODAY")
+							for(var i in records){
+								let item = records[i]
+								console.log(that.fetchDay(item.signDate),today,'测试打印--------------------')
+								if(that.fetchDay(item.signDate)<today){
+									that.isSignGroup[that.fetchDay(item.signDate)] = true
+									console.log(that.isSignGroup,'a--------------------')
+								}else if(that.fetchDay(item.signDate)==today){
+									that.sign = true
+									that.isSignGroup[that.fetchDay(item.signDate)] = true
+									console.log(that.isSignGroup,'b--------------------')
+								}
+							}
+						}
+						console.log(that.isSignGroup,"ISSIGNGROUP")
+					}
+					that.$forceUpdate()
+					// this.signDay = _.get(signMes, 'data.records', []).length
+					// await that.getNowGroup()
+					// // that.dayGroup = that.nowGroup
+					// this.dayGroup = this.listGroup
+					// console.log(that.dayGroup,'可能需要等待')
+					// that.$forceUpdate()
 				}else{
 					uni.showToast({
 						title:"簽到失敗",
