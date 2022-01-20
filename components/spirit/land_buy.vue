@@ -20,7 +20,7 @@
 				</view>
 			</view>
 			<text class="titleInfo dd">租用天數：</text>
-			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
+			<!-- <image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image> -->
 			<input type="number" class="btnNum" v-model="number" disabled="true"/>
 			<!-- <image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image> -->
 			<view class="btnBox">
@@ -296,8 +296,9 @@
 				width: 20px;
 				height: 20px !important;
 				top: 108px;
-				left: 220px;
+				left: 225px;
 				margin-right: 3px;
+				// border: 1px solid red;
 			}
 
 			.numbers {
@@ -395,7 +396,7 @@
 			.btnNum {
 				position: absolute;
 				top: 236px;
-				left: 139px;
+				left: 99px;
 				width: 80px;
 				height: 30px;
 				border-radius: 4px 4px 4px 4px;
@@ -410,6 +411,7 @@
 				color: #FFFFFF;
 				background: #1C294C;
 				text-align: center;
+				// border: 1px solid red;
 			}
 
 			.ads {

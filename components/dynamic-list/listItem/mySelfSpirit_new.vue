@@ -62,6 +62,9 @@
 				time:''
 			}
 		},
+		created() {
+			console
+		},
 		mounted() {
 			const split = this.item.stageChangeTime.split('T')
 			console.log('000000000000000',split)
