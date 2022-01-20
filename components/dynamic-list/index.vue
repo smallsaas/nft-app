@@ -212,8 +212,8 @@
             </load-refresh>
         </view>
 		
-		<!-- //空白组件 -->
-		<view class="none"><text class="text">没有更多了</text></view>
+		<!-- //空白組件 -->
+		<view class="none"><text class="text">已經沒有更多了~</text></view>
 	</view>
 </template>
 

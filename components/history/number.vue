@@ -29,8 +29,8 @@
 		<view class="item">
 			<text class="title">市場收益:</text>
 			<text class="num">{{mPoint}}</text>
-			<text class="o">领养记录</text>
-			<text class="ot">出售记录</text>
+			<text class="o">領養記錄</text>
+			<text class="ot">出售記錄</text>
 		</view>
 		
 		<view class="spirit_mask" v-if="isShowToast || isShowIncomeTypeForTransfer"></view>
@@ -80,7 +80,7 @@
 		methods:{
 			// toastMsg(){
 			// 	uni.showToast({
-			// 		title:'收益100起转化',
+			// 		title:'收益100起轉化',
 			// 		icon:'error',
 			// 		duration:1000
 			// 	})
@@ -90,7 +90,7 @@
 				if(this.rPoint < 100 && type == 1){
 					// this.toastMsg()
 					uni.showToast({
-						title:'收益100起转化',
+						title:'收益100起轉化',
 						icon:'error',
 						duration:1000
 					})
@@ -99,7 +99,7 @@
 				if(this.tPoint < 100 && type == 2){
 					// this.toastMsg()
 					uni.showToast({
-						title:'收益100起转化',
+						title:'收益100起轉化',
 						icon:'error',
 						duration:1000
 					})
@@ -108,7 +108,7 @@
 				if(this.tsPonit < 100 && type == 3){
 					// this.toastMsg()
 					uni.showToast({
-						title:'收益100起转化',
+						title:'收益100起轉化',
 						icon:'error',
 						duration:1000
 					})
@@ -235,7 +235,7 @@
 				}
 				if(this.pSingPoint < 100){
 					uni.showToast({
-						title:'收益100起转化',
+						title:'收益100起轉化',
 						icon:'error',
 						duration:1000
 					})

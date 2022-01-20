@@ -55,7 +55,7 @@
 						uni.showToast({
 							icon:'success',
 							duration:1000,
-							title:'转化成功'
+							title:'轉化成功'
 						})
 						this.$emit('closeCoin','update')
 					}else{
@@ -78,7 +78,7 @@
 						uni.showToast({
 							icon:'success',
 							duration:1000,
-							title:'转化成功'
+							title:'轉化成功'
 						})
 						this.$emit('closeCoin','update')
 					}else{
@@ -100,7 +100,7 @@
 						uni.showToast({
 							icon:'success',
 							duration:1000,
-							title:'转化成功'
+							title:'轉化成功'
 						})
 						this.$emit('closeCoin','update')
 					}else{

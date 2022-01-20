@@ -46,7 +46,7 @@
 				let res = await this.$api.findPassword(params)
 				if(res.code == 200){
 					uni.showToast({
-						title:"找回密码成功",
+						title:"找回密碼成功",
 						icon:"success",
 						duration:1000
 					})
@@ -58,7 +58,7 @@
 					return ;
 				}else{
 					uni.showToast({
-						title:"找回密码失败",
+						title:"找回密碼失敗",
 						icon:"success"
 					})
 					return ;

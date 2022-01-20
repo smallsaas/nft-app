@@ -105,7 +105,7 @@
 			},
 			async book(){
 				this.isClickBtn = true
-				console.log('测试---------------123132132132132132132')
+				console.log('測試---------------123132132132132132132')
 				console.log(this.itemInfo)
 				const data = {
 					wispId:parseInt(this.itemInfo.id),

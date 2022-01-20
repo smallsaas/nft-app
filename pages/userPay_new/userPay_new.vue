@@ -186,7 +186,7 @@
 					} else {
 						this.sellerInfo.alipayQrCodePhotoUrl = this.getImages(res.data.seller.alipayQrCodePhotoUrl)
 					}
-					console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付宝哈哈哈哈哈哈')
+					console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付寶哈哈哈哈哈哈')
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					uni.showToast({

@@ -115,7 +115,7 @@
 					console.log(today,"TODAY")
 					for(var i in records){
 						let item = records[i]
-						console.log(that.fetchDay(item.signDate),today,'测试打印--------------------')
+						console.log(that.fetchDay(item.signDate),today,'測試打印--------------------')
 						if(that.fetchDay(item.signDate)<today){
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
 							console.log(that.isSignGroup,'a--------------------')
@@ -132,7 +132,7 @@
 			this.getNowGroup()
 			this.dayGroup = this.nowGroup
             
-            console.log('嘎嘎嘎过', this.dayGroup)
+            console.log('嘎嘎嘎過', this.dayGroup)
             
 			uni.hideLoading()
 		},
@@ -272,7 +272,7 @@
 					this.packIcon = "/static/signSmoke/more.png"
 				}else{
 					this.packText = "收起"
-					// this.packText = "查看全部奖励"
+					// this.packText = "查看全部獎勵"
 					this.dayGroup = this.listGroup
 					this.packIcon = "/static/signSmoke/pushup.png"
 				}
@@ -295,7 +295,7 @@
 						title:"簽到成功",
 						icon:'success',
 						success: async () => {
-								console.log(that.dayGroup,'可能需要等待签到哈哈哈哈')
+								console.log(that.dayGroup,'可能需要等待簽到哈哈哈哈')
 								const dayGet = new Date()
 								const getDay  = dayGet.getDate()
 								for(let i=0; i<that.dayGroup.length;i++){
@@ -303,7 +303,7 @@
 										that.dayGroup[i].isSign = true
 									}
 								}
-								console.log(that.dayGroup,'可能需要等待签到哈哈哈哈1111111111111')
+								console.log(that.dayGroup,'可能需要等待簽到哈哈哈哈1111111111111')
 								this.getYear()
 								this.getMonth()
 								// let that = this
