@@ -29,6 +29,8 @@
 		<view class="item">
 			<text class="title">市場收益:</text>
 			<text class="num">{{mPoint}}</text>
+			<text class="o">领养记录</text>
+			<text class="ot">出售记录</text>
 		</view>
 		
 		<view class="spirit_mask" v-if="isShowToast || isShowIncomeTypeForTransfer"></view>
