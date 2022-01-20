@@ -597,15 +597,29 @@
 															})
                             }, 500)
                         }else{
-													uni.showToast({
-														title:'当前时间不可修改,请在每天0点后到第一场匹配开始前修改',
-														icon:'error'
+													// uni.showToast({
+													// 	title:'当前时间不可修改,请在每天0点后到第一场匹配开始前修改',
+													// 	icon:'error'
+													// })
+													uni.showModal({
+														title:'修改账户',
+														content:'当前时间不可修改,请在每天0点后到第一场匹配开始前修改',
+														success: (res) => {
+															if(res.confirm){
+																setTimeout(()=>{
+																	uni.navigateBack({
+																		delta:1
+																	})
+																},1000)
+															}else{
+																setTimeout(()=>{
+																	uni.navigateBack({
+																		delta:1
+																	})
+																},1000)
+															}
+														}
 													})
-												setTimeout(()=>{
-													uni.navigateBack({
-														delta:1
-													})
-												},1000)
 												}
                     }
                 })

@@ -21,8 +21,8 @@
 			</view>
 			<text class="titleInfo dd">租用天數：</text>
 			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
-			<input type="number" class="btnNum" v-model="number" />
-			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
+			<input type="number" class="btnNum" v-model="number" disabled="true"/>
+			<!-- <image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image> -->
 			<view class="btnBox">
 				<text class="tt">共消耗GuGu令</text>
 				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="coinImgs"></image>

@@ -92,7 +92,7 @@
 			return {
 				fistType: false,
 				secondType: false,
-				thirdType:false,
+				thirdType: false,
 
 				list: [],
 				showBigImg: false,
@@ -115,6 +115,31 @@
 				} else {
 					return this.$config.endpoint + item
 				}
+			},
+			getImages(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if (![undefined, null, ''].includes(that.$config.endpoint)) {
+								imagePath = that.$config.endpoint + imageUrl;
+							} else {
+								imagePath = that.$config.imageEndpoint + imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
 			},
 			// 上傳圖片
 			uploadImage() {
@@ -147,23 +172,21 @@
 					}
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
 					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-					if (res.data.seller.wechatQrCodePhotoUrl.indexOf('[') === 0 || res.data.seller
-						.wechatQrCodePhotoUrl !== null) {
-						let url = JSON.parse(res.data.seller.wechatQrCodePhotoUrl)[0]
-						this.sellerInfo.wechatQrCodePhotoUrl = url
+					if (res.data.seller.wechatQrCodePhotoUrl == null) {
+						this.sellerInfo.wechatQrCodePhotoUrl = ''
 					} else {
-						this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
+						this.sellerInfo.wechatQrCodePhotoUrl = this.getImages(res.data.seller.wechatQrCodePhotoUrl)
 					}
-						// this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
+					console.log(res.data.seller.wechatQrCodePhotoUrl, '------微信哈哈哈哈哈哈')
+					// this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
 					this.sellerInfo.alipayAccount = res.data.seller.alipayAccount
-					if (res.data.seller.alipayQrCodePhotoUrl.indexOf('[') === 0 || res.data.seller
-						.alipayQrCodePhotoUrl !== null) {
-						let url = JSON.parse(res.data.seller.alipayQrCodePhotoUrl)[0]
-						this.sellerInfo.alipayQrCodePhotoUrl = url
+					// this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
+					if (res.data.seller.alipayQrCodePhotoUrl == null) {
+						this.sellerInfo.alipayQrCodePhotoUrl = ''
 					} else {
-						this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
+						this.sellerInfo.alipayQrCodePhotoUrl = this.getImages(res.data.seller.alipayQrCodePhotoUrl)
 					}
-						// this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
+					console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付宝哈哈哈哈哈哈')
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					uni.showToast({
@@ -192,29 +215,29 @@
 					// ALIPAY_PAYMENT,
 					// WECHAT_PAYMENT
 				}
-				console.log(this.fistType,this.secondType,this.thirdType)
-				if(this.fistType==false && this.secondType==false && this.thirdType==false){
+				console.log(this.fistType, this.secondType, this.thirdType)
+				if (this.fistType == false && this.secondType == false && this.thirdType == false) {
 					uni.showToast({
-						title:'請勾選付款方式',
-						icon:'error',
-						duration:1000
+						title: '請勾選付款方式',
+						icon: 'error',
+						duration: 1000
 					})
 					return
 				}
-				if(this.fistType==true && this.secondType==false && this.thirdType==false){
+				if (this.fistType == true && this.secondType == false && this.thirdType == false) {
 					data.paymentMethod = 'WECHAT_PAYMENT'
 				}
-				if(this.fistType==false && this.secondType==true && this.thirdType==false){
+				if (this.fistType == false && this.secondType == true && this.thirdType == false) {
 					data.paymentMethod = 'ALIPAY_PAYMENT'
 				}
-				if(this.fistType==false && this.secondType==false && this.thirdType==true){
+				if (this.fistType == false && this.secondType == false && this.thirdType == true) {
 					data.paymentMethod = 'BANK_CARD_PAYMENT'
 				}
-				if(this.list.length == 0){
+				if (this.list.length == 0) {
 					uni.showToast({
-						title:'請上傳付款憑證',
-						icon:'error',
-						duration:1000
+						title: '請上傳付款憑證',
+						icon: 'error',
+						duration: 1000
 					})
 					return
 				}
@@ -473,6 +496,7 @@
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
 			margin: -12px auto 24px auto;
+
 			.top {
 				width: 100%;
 				height: 56px;
