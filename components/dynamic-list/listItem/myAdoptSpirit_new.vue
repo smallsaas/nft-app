@@ -26,7 +26,7 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：{{item.amountPrice}}/{{item.additionalIncomeDay}}</text>
+				<text class="info">能力值：{{item.amountPrice}}/{{item.coinsAddedValue}}+{{item.additionalIncomeDay}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
@@ -35,7 +35,7 @@
 				<text class="info">培養天數：{{item.wisp.growthDays}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info sss">領養：{{item.updateTime}}</text>
+				<text class="info sss">領養：{{item.createTime}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">

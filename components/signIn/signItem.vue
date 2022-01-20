@@ -2,7 +2,7 @@
 	<view :class="'sign-item '+isEnded">
 		<view class="sign-content">
 			<view class="sign-image-content">
-				<view class="sign-image-ended" v-if="item.status === 'ended'">
+				<view class="sign-image-ended" v-if="item.status === 'ended'  || (item.status==='today' && item.isSign == true) ">
 					<view class="sign-isSign-signed" v-if="item.isSign">已簽到</view>
 					<button class="sign-isSign-unSigned" v-if="!item.isSign" @click="handleFill">補簽</button>
 				</view>
@@ -46,6 +46,9 @@
 					}
 				}
 			}
+		},
+		created() {
+			console.log(this.item,'-----------------item')
 		},
 		computed:{
 			isEnded(){

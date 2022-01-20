@@ -28,6 +28,8 @@
 </template>
 
 <script>
+    import _ from 'lodash'
+    import moment from 'moment'
 	import signItem from './signItem.vue'
 	export default {
 		name:"signSmokeBox",
@@ -43,6 +45,7 @@
 				}
 			},
 			isSign(){
+				console.log(this.sign,'------------------------------')
 				if(this.sign){
 					this.signText="已簽到"
 					this.signImage="/static/signSmoke/signedIn.png"
@@ -97,13 +100,11 @@
 			this.getMonth()
 			let that = this
 			let signMes = await this.$api.getSignMes({month:that.month,year:that.year})
-			// console.log(this.signData,"signData")
-			// this.listGroup = this.signData.list
-			// this.sign = this.signData.isSign
-			// this.signDay = this.signData.day||0
-			this.signDay = signMes.data.records.length
+			console.log('--------------rrrr',signMes)
+            this.signDay = _.get(signMes, 'data.records', []).length
+            
 			if(signMes.data.records){
-				let records = signMes.data.records
+				let records = _.cloneDeep(signMes.data.records).sort((x, y) => moment(y.signDate).unix() - moment(x.signDate).unix())
 				let today = this.getToday()
 				console.log(records,"RECORDS",today)
 				let find = records.find(item=>item.signDate <= today)
@@ -113,12 +114,14 @@
 					console.log(today,"TODAY")
 					for(var i in records){
 						let item = records[i]
-						console.log(that.fetchDay(item.signDate),today)
+						console.log(that.fetchDay(item.signDate),today,'测试打印--------------------')
 						if(that.fetchDay(item.signDate)<today){
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
+							console.log(that.isSignGroup,'a--------------------')
 						}else if(that.fetchDay(item.signDate)==today){
 							that.sign = true
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
+							console.log(that.isSignGroup,'b--------------------')
 						}
 					}
 				}
@@ -127,6 +130,9 @@
 			this.getListGroup()
 			this.getNowGroup()
 			this.dayGroup = this.nowGroup
+            
+            console.log('嘎嘎嘎过', this.dayGroup)
+            
 			uni.hideLoading()
 		},
 		methods:{
@@ -157,7 +163,7 @@
 					}
 					that.listGroup.push(template)
 				}
-				console.log(this.listGroup)
+				console.log('????==', this.listGroup)
 			},
 			// 獲取當前月份的天數
 			getMonthDay(year,month){
@@ -195,12 +201,20 @@
 					uni.showToast({
 						title:"補簽成功!",
 						icon:"success",
-						success() {
-							that.listGroup[day-1].isSign = true
-							that.getNowGroup()
-							that.dayGroup = that.nowGroup
-							that.$forceUpdate()
+						success: async () => {
+								that.listGroup[day-1].isSign = true
+								await that.getNowGroup()
+								that.dayGroup = that.nowGroup
+								console.log(that.dayGroup,'可能需要等待')
+								that.$forceUpdate()
 						}
+						// success() {
+						// 	that.listGroup[day-1].isSign = true
+						// 	that.getNowGroup()
+						// 	that.dayGroup = that.nowGroup
+						// 	console.log(that.dayGroup,'可能需要等待')
+						// 	that.$forceUpdate()
+						// }
 					})
 				}else{
 					uni.showToast({
@@ -215,15 +229,26 @@
 					console.log(item.status)
 					if(item.status === "today"){
 						that.nowGroup = []
-						if(item.day/9<=1){
-							that.nowGroup = that.listGroup.slice(0,9)
-						}else if(item.day/12<=2&&item.day/9>1){
-							that.nowGroup = that.listGroup.slice(9,18)
-						}else if(item.day/12<=3&&item.day/9>2){
-							that.nowGroup = that.listGroup.slice(18,27)
-						}else if(item.day/12<=4&&item.day/9>3){
-							that.nowGroup = that.listGroup.slice(27,31)
-						}
+						// if(item.day/9<=1){
+						// 	that.nowGroup = that.listGroup.slice(0,9)
+						// }else if(item.day/12<=2&&item.day/9>1){
+						// 	that.nowGroup = that.listGroup.slice(9,18)
+						// }else if(item.day/12<=3&&item.day/9>2){
+						// 	that.nowGroup = that.listGroup.slice(18,27)
+						// }else if(item.day/12<=4&&item.day/9>3){
+						// 	that.nowGroup = that.listGroup.slice(27,31)
+						// }
+                        const maxDay = Number(moment().endOf('month').format('DD'))
+                        let endNum = item.day === maxDay ? maxDay : item.day
+                        if (endNum < 9) {
+                            endNum = 9
+                        }
+                        let startNum = 0
+                        if (endNum > 9) {
+                            startNum = endNum - 9 > 0 ? endNum - 9 : endNum
+                        }
+                        that.nowGroup = that.listGroup.slice(startNum, endNum)
+
 						console.log(that.nowGroup,"NOWGROUP____")
 					}
 				})

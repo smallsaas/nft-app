@@ -85,7 +85,7 @@
 				justify-content: center;
 				.avator{
 					width: 120rpx;
-					height: 120rpx;
+					height: 120rpx !important;
 					border-radius: 50%;
 				}
 			}

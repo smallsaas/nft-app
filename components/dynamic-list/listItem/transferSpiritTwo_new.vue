@@ -126,6 +126,11 @@
 			item: Object,
 			ext: Object
 		},
+		onLoad(e) {
+			console.log('00000000000000',this.$cache.get('status'))
+			this.status = this.$cache.get('status')
+			console.log('rrrrrrrrrrrrrr',e,'eeeeeeeeeeeeeeeeeee')
+		},
 		data() {
 			return {
 			}

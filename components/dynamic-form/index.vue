@@ -338,7 +338,7 @@
 								url:this.$config.endpoint + api,
 								data:{
 									"phone":this.form.backupMobilePhone,
-									"operation":"changePassword"
+									"operation":"changeAccount"
 								},
 								header:{
 									Authorization:`Bearer ${token}`
@@ -598,9 +598,14 @@
                             }, 500)
                         }else{
 													uni.showToast({
-														title:'提交失敗',
+														title:'当前时间不可修改,请在每天0点后到第一场匹配开始前修改',
 														icon:'error'
 													})
+												setTimeout(()=>{
+													uni.navigateBack({
+														delta:1
+													})
+												},1000)
 												}
                     }
                 })

@@ -240,9 +240,12 @@
 						// let userCache = this.$cache.get("userCache")
 						// console.log("讀取用戶緩存",userCache)
 						console.log("submit")
+						console.log(this.formData,'rrrrrrrrrrrrrrr')
+						// this.formData.verifyCode = parseInt(this.formData.verifyCode)
 						let param ={
 							...this.formData
 						}
+						console.log(param,'rrrrrrrrrrrrrrr')
 						let that =this
 						let res = await this.$api.editUserData(param)
 						if(res.code === 200){

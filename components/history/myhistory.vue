@@ -28,7 +28,7 @@
 		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
 		<transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
 		<!-- 提示組件 -->
-		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>
+		<toast v-if="isShowToast" :data="toastMsgs" @cancelToast="closeToast"></toast>
 	</view>
 </template>
 
@@ -56,19 +56,31 @@
 				forJudgeTwo:{},
 				
 				isShowToast: false,
-				toastMsg: '',
+				toastMsgs: '',
 				
 				
 				
 				coin:0
 			}
 		},
-		created() {
-			console.log('res',this.item)
-			// this.forChild.inviting = parseInt(this.item.invitingOneBallance) + parseInt(this.item.invitingTwoBallance)
-			// this.forChild.signBallance = this.item.signBallance
-			// this.forChild.teamBallance = this.item.teamBallance
-			// this.forChild.depositPoints = this.item.depositPoints
+		  async created() {
+			let pages = getCurrentPages()
+			let nowPage = pages[pages.length-1];
+			let params = nowPage.options
+			console.log(params,'aaaaaaaaaaaaaaaaaaaaaaaaaa')
+			 // if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
+				//  const res = await this.$api.getUserWallet()
+				//  console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')
+				//  this.coin = res.data.coinsAmount
+				//  this.forChild.signInCoinCredit = this.item.signInCoinCredit
+				//  this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
+				//  this.forChild.teamCoinCredit = this.item.teamCoinCredit
+				//  this.forChild.transferCoinCredit = this.item.transferCoinCredit
+				//  this.forChild.marketPoints = this.item.marketPoints
+				//  this.forJudgeTwo.depositPoints = this.item.depositPoints
+				//  return
+			 // }
+			this.coin = this.item.coinsAmount
 			
 			this.forChild.signInCoinCredit = this.item.signInCoinCredit
 			this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
@@ -77,8 +89,24 @@
 			this.forChild.marketPoints = this.item.marketPoints
 			this.forJudgeTwo.depositPoints = this.item.depositPoints
 		},
-		mounted() {
-			this.coin = this.item.coinsAmount
+		async mounted() {
+			// let pages = getCurrentPages()
+			// let nowPage = pages[pages.length-1];
+			// let params = nowPage.options
+			// console.log(params,'aaaaaaaaaaaaaaaaaaaaaaaaaa')
+			//  if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
+			// 	 const res = await this.$api.getUserWallet()
+			// 	 console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')
+			// 	 this.coin = res.data.coinsAmount
+			// 	 this.forChild.signInCoinCredit = this.item.signInCoinCredit
+			// 	 this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
+			// 	 this.forChild.teamCoinCredit = this.item.teamCoinCredit
+			// 	 this.forChild.transferCoinCredit = this.item.transferCoinCredit
+			// 	 this.forChild.marketPoints = this.item.marketPoints
+			// 	 this.forJudgeTwo.depositPoints = this.item.depositPoints
+			// 	 return
+			//  }
+			// this.coin = this.item.coinsAmount
 		},
 		methods:{
 			getValueForUpdateCoin(value){
@@ -139,7 +167,7 @@
 			
 			//打開提示
 			toast(msg) {
-				this.toastMsg = msg
+				this.toastMsgs = msg
 				this.isShowToast = true
 			},
 			
