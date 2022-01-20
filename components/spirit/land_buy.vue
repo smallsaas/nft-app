@@ -167,7 +167,7 @@
 		// bottom: -10rpx;
 		z-index: 99999999;
 		border-radius: 16px 16px 0px 0px;
-		top:15%;
+		top:30%;
 		left: 0;
 		right: 0;
 		bottom: 0;
