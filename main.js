@@ -10,7 +10,7 @@ import {api} from './common/api.js'
 import {timeCache,cache,reload,upload,frozen} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
 import prettyButton from './components/prettyButton.vue'
-import './other.less'
+// import './other.less'
 let transformTools= require('./utils/CNTWtransformTools.js')
 Vue.config.productionTip = false
 // #ifdef H5
