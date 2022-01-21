@@ -49,9 +49,8 @@
 		}
 	}
 </script>
-
-<style>
-	@import "./other.less";
+<style lang="less">
+    @import "./other.less";
 	/*每個頁面公共css */
 	@font-face {
 		font-family:"繁體";

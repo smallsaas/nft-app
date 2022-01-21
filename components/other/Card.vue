@@ -40,7 +40,10 @@ export default {
 				uni.navigateTo({
 					url:'/pages'+this.url
 				})
-			}
+			},
+            con () {
+                
+            }
     },
 	data(){
 	  return {
