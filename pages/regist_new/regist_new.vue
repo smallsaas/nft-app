@@ -52,8 +52,8 @@
 			</view>
 			<view class="inputBox">
 				<input type="text" placeholder="以字母開頭的6-20個字母、數字、下劃線" class="inputBoxC" v-model="data.paymentPassword"
-					@focus="focus(7)" @blur="blur(7)" :class="whatFocus===7?'focus':''" />
-					<text class="infos" v-if="isShowError">请不要与登陆密码一样</text>
+					@focus="focus(7)" @blur="blur(7)" :class="whatFocus===7?'focus':''"  password="true"/>
+					<text class="infos" v-if="isShowError">請不要與登陸密碼一樣</text>
 			</view>
 			<view class="labelTetx">
 				<text class="text">郵箱(選填)</text>

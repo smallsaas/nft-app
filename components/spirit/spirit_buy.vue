@@ -22,9 +22,9 @@
 			<text class="buyBox">
 				購買數量：
 			</text>
-			<image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image>
-			<input type="number" class="num" v-model="number" @focus="focusIng"/>
-			<image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image>
+			<!-- <image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image> -->
+			<input type="number" class="num" v-model="number" @focus="focusIng" disabled="true"/>
+			<!-- <image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image> -->
 			<view class="bottomBox">
 				<text class="ce">共消耗GuGu令</text>
 				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
@@ -321,7 +321,7 @@
 				border: 1px solid rgba(255, 255, 255, 0.5);
 				position: absolute;
 				top: 312rpx;
-				left: 280rpx;
+				left: 200rpx;
 				display: flex;
 				align-items: center;
 				justify-content: center;

@@ -2,28 +2,28 @@
 	<view class="box">
 		<view class="item">
 			<view class="imgBox">
-				<image :src="item.wispOrder.pictureUrl" mode="widthFix" class="img"></image>
+				<image :src="getImage(item.wisp.previewPhotoUrl)" mode="widthFix" class="img"></image>
 			</view>
 			<view class="nameBox">
-				<text class="name">{{item.wispOrder.name}}</text>
+				<text class="name">{{item.wisp.name}}</text>
 			</view>
 			<view class="levelBox">
 				<image class="levelImg" src="../../../static/level/one.png" mode="widthFix"
-					v-if="item.wispOrder.level==1"></image>
+					v-if="item.wisp.level==1"></image>
 				<image class="levelImg" src="../../../static/level/two.png" mode="widthFix"
-					v-if="item.wispOrder.level==2"></image>
+					v-if="item.wisp.level==2"></image>
 				<image class="levelImg" src="../../../static/level/three.png" mode="widthFix"
-					v-if="item.wispOrder.level==3"></image>
+					v-if="item.wisp.level==3"></image>
 				<image class="levelImg" src="../../../static/level/four.png" mode="widthFix"
-					v-if="item.wispOrder.level==4"></image>
+					v-if="item.wisp.level==4"></image>
 				<image class="levelImg" src="../../../static/level/five.png" mode="widthFix"
-					v-if="item.wispOrder.level==5"></image>
+					v-if="item.wisp.level==5"></image>
 				<image class="levelImg" src="../../../static/level/six.png" mode="widthFix"
-					v-if="item.wispOrder.level==6"></image>
+					v-if="item.wisp.level==6"></image>
 				<image class="levelImg" src="../../../static/level/seven.png" mode="widthFix"
-					v-if="item.wispOrder.level==7"></image>
+					v-if="item.wisp.level==7"></image>
 				<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
-					v-if="item.wispOrder.level==8"></image>
+					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
 				<text class="info">能力值：{{item.coinsPrice}}</text>
@@ -62,6 +62,9 @@
 				time:''
 			}
 		},
+		created() {
+			console
+		},
 		mounted() {
 			const split = this.item.stageChangeTime.split('T')
 			console.log('000000000000000',split)
@@ -70,6 +73,31 @@
 			this.status = this.$cache.get('status')
 		},
 		methods: {
+			getImage(url) {
+				console.log(this.$config)
+				let that = this
+				let imagePath;
+				if (url.indexOf("http" || "https") === 0) {
+					imagePath = url
+				} else {
+					console.log(url.indexOf("["))
+					if (url.indexOf("[") === 0) {
+						let urlJSON = JSON.parse(url)
+						let imageUrl = urlJSON[0].url
+						if (imageUrl.indexOf("http" || "https") === 0) {
+							imagePath = imageUrl
+						} else {
+							if(![undefined,null,''].includes(that.$config.endpoint)){
+								imagePath = that.$config.endpoint+imageUrl;								
+							}else{
+								imagePath = that.$config.imageEndpoint +imageUrl
+							}
+							// return this.$config.endpoint + "/" + imageUrl
+						}
+					}
+				}
+				return imagePath
+			},
 			goToResive(id,phone,pictrue){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({

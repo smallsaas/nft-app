@@ -19,7 +19,7 @@
 		<!-- 模态組件 -->
 		<view class="motai-mask" v-if="showBigImg==true || isShowToast==true"></view>
 		<view class="motai" v-if="showBigImg">
-			<image src="../../static/spirit/newBALL.png" mode="widthFix" class="upload"></image>
+			<image :src="pictureUrl" mode="widthFix" class="upload"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
 		</view>
 

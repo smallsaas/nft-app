@@ -20,9 +20,9 @@
 				</view>
 			</view>
 			<text class="titleInfo dd">租用天數：</text>
-			<image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image>
-			<input type="number" class="btnNum" v-model="number" />
-			<image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image>
+			<!-- <image src="../../static/spirit/bd.png" mode="widthFix" class="bds" @click="dec"></image> -->
+			<input type="number" class="btnNum" v-model="number" disabled="true"/>
+			<!-- <image src="../../static/spirit/ad.png" mode="widthFix" class="bds ads" @click="add"></image> -->
 			<view class="btnBox">
 				<text class="tt">共消耗GuGu令</text>
 				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="coinImgs"></image>
@@ -167,7 +167,7 @@
 		// bottom: -10rpx;
 		z-index: 99999999;
 		border-radius: 16px 16px 0px 0px;
-		top:15%;
+		top:30%;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -296,8 +296,9 @@
 				width: 20px;
 				height: 20px !important;
 				top: 108px;
-				left: 220px;
+				left: 225px;
 				margin-right: 3px;
+				// border: 1px solid red;
 			}
 
 			.numbers {
@@ -395,7 +396,7 @@
 			.btnNum {
 				position: absolute;
 				top: 236px;
-				left: 139px;
+				left: 99px;
 				width: 80px;
 				height: 30px;
 				border-radius: 4px 4px 4px 4px;
@@ -410,6 +411,7 @@
 				color: #FFFFFF;
 				background: #1C294C;
 				text-align: center;
+				// border: 1px solid red;
 			}
 
 			.ads {

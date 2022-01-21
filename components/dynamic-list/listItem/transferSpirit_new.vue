@@ -99,7 +99,7 @@
 			msg(code,message){
 				if(code == 200){
 					uni.showToast({
-						title:'转化成功',
+						title:'轉化成功',
 						icon:'success',
 						duration:1000
 						
@@ -122,7 +122,7 @@
 				let pages = getCurrentPages()
 				let nowPage = pages[pages.length-1];
 				let params = nowPage.options
-				console.log(params,"PAGES")//页面详细信息
+				console.log(params,"PAGES")//頁面詳細信息
 				if(params.type == "recommendCoinCredit"){
 					console.log('1')
 					const data = {

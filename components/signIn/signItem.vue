@@ -2,7 +2,7 @@
 	<view :class="'sign-item '+isEnded">
 		<view class="sign-content">
 			<view class="sign-image-content">
-				<view class="sign-image-ended" v-if="item.status === 'ended'">
+				<view class="sign-image-ended" v-if="item.status === 'ended'  || (item.status==='today' && item.isSign == true) ">
 					<view class="sign-isSign-signed" v-if="item.isSign">已簽到</view>
 					<button class="sign-isSign-unSigned" v-if="!item.isSign" @click="handleFill">補簽</button>
 				</view>
@@ -75,6 +75,7 @@
 		async created() {
 			let res = await this.$api.getIcon()
 			this.icon = res.data
+			console.log(this.item,'-----------------item')
 		},
 		methods:{
 			// 補簽事件
@@ -171,10 +172,14 @@
 		font-size: 40rpx;
 	}
 	.sign-isSign-unSigned{
+		background: none !important;
 		padding: 15rpx 22rpx;
 		border-radius: 8rpx;
-		color: #DDD8D8;
+		// color: #DDD8D8 !important;
+		color: white !important;
 		font-size: 38rpx;
-		background: linear-gradient(left,#8F34F5,#1287E8);
+		// background: linear-gradient(left,#8F34F5,#1287E8) !important;
+		background: rgb(127,53,277) !important;
+		
 	}
 </style>

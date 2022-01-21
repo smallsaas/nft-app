@@ -211,6 +211,9 @@
               </view>
             </load-refresh>
         </view>
+		
+		<!-- //空白組件 -->
+		<view class="none"><text class="text">已經沒有更多了~</text></view>
 	</view>
 </template>
 
@@ -575,6 +578,17 @@
 		width: 100%;
 		display: block;
 		background-color: #050E17;
+		.none{
+			margin-left: 5%;
+			width: 90%;
+			height: 100px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.text{
+				color: grey;
+			}
+		}
 		.tab_list {
 			border-bottom: 1px solid #f2f2f2;
 			position: relative;

@@ -93,6 +93,7 @@
 			}
 		},
 		async created() {
+			
 			uni.showLoading({
 				title:"獲取簽到數據中"
 			})
@@ -100,10 +101,7 @@
 			this.getMonth()
 			let that = this
 			let signMes = await this.$api.getSignMes({month:that.month,year:that.year})
-			// console.log(this.signData,"signData")
-			// this.listGroup = this.signData.list
-			// this.sign = this.signData.isSign
-			// this.signDay = this.signData.day||0
+			console.log('--------------rrrr',signMes)
             this.signDay = _.get(signMes, 'data.records', []).length
             
 			if(signMes.data.records){
@@ -117,12 +115,14 @@
 					console.log(today,"TODAY")
 					for(var i in records){
 						let item = records[i]
-						console.log(that.fetchDay(item.signDate),today,'测试打印--------------------')
+						console.log(that.fetchDay(item.signDate),today,'測試打印--------------------')
 						if(that.fetchDay(item.signDate)<today){
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
+							console.log(that.isSignGroup,'a--------------------')
 						}else if(that.fetchDay(item.signDate)==today){
 							that.sign = true
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
+							console.log(that.isSignGroup,'b--------------------')
 						}
 					}
 				}
@@ -132,7 +132,7 @@
 			this.getNowGroup()
 			this.dayGroup = this.nowGroup
             
-            console.log('嘎嘎嘎过', this.dayGroup)
+            console.log('嘎嘎嘎過', this.dayGroup)
             
 			uni.hideLoading()
 		},
@@ -202,12 +202,28 @@
 					uni.showToast({
 						title:"補簽成功!",
 						icon:"success",
-						success() {
-							that.listGroup[day-1].isSign = true
-							that.getNowGroup()
-							that.dayGroup = that.nowGroup
-							that.$forceUpdate()
+						success: async () => {
+								that.listGroup[day-1].isSign = true
+								await that.getNowGroup()
+								// that.dayGroup = that.nowGroup
+								this.dayGroup = this.listGroup
+								console.log(that.dayGroup,'可能需要等待')
+								this.getYear()
+								this.getMonth()
+								// let that = this
+								let signMes = await this.$api.getSignMes({month:that.month,year:that.year})
+								console.log('--------------rrrr',signMes,'我是再次跟新----------------------------------')
+								this.signDay = _.get(signMes, 'data.records', []).length
+								// that.$forceUpdate()
+								that.$forceUpdate()
 						}
+						// success() {
+						// 	that.listGroup[day-1].isSign = true
+						// 	that.getNowGroup()
+						// 	that.dayGroup = that.nowGroup
+						// 	console.log(that.dayGroup,'可能需要等待')
+						// 	that.$forceUpdate()
+						// }
 					})
 				}else{
 					uni.showToast({
@@ -256,6 +272,7 @@
 					this.packIcon = "/static/signSmoke/more.png"
 				}else{
 					this.packText = "收起"
+					// this.packText = "查看全部獎勵"
 					this.dayGroup = this.listGroup
 					this.packIcon = "/static/signSmoke/pushup.png"
 				}
@@ -276,7 +293,25 @@
 				if(res.code === 200){
 					uni.showToast({
 						title:"簽到成功",
-						icon:'success'
+						icon:'success',
+						success: async () => {
+								console.log(that.dayGroup,'可能需要等待簽到哈哈哈哈')
+								const dayGet = new Date()
+								const getDay  = dayGet.getDate()
+								for(let i=0; i<that.dayGroup.length;i++){
+									if(getDay == that.dayGroup[i].day){
+										that.dayGroup[i].isSign = true
+									}
+								}
+								console.log(that.dayGroup,'可能需要等待簽到哈哈哈哈1111111111111')
+								this.getYear()
+								this.getMonth()
+								// let that = this
+								let signMes = await this.$api.getSignMes({month:that.month,year:that.year})
+								console.log('--------------rrrr',signMes,'我是再次跟新----------------------------------')
+								this.signDay = _.get(signMes, 'data.records', []).length
+								that.$forceUpdate()
+						}
 					})
 				}else{
 					uni.showToast({

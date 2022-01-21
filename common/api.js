@@ -4,22 +4,22 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
-	//根据推荐收益转化为精灵
+	//根據推薦收益轉化爲精靈
 	tuijianforspirit(params){
 		const url = `${globalConfig.endpoint}/api/u/player/changProfitToWisp`
 		return request('POST',url,params)
 	},
-	//根据转存收益转化GUGU令
+	//根據轉存收益轉化GUGU令
 	zhuancunforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
 		return request('POST',url,params)
 	},
-	//根据帮会收益转化GUGU令
+	//根據幫會收益轉化GUGU令
 	banhuiforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
 		return request('POST',url,params)
 	},
-	//根据推荐收益转化GUGU令
+	//根據推薦收益轉化GUGU令
 	tuijianforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
 		return request('POST',url,params)
