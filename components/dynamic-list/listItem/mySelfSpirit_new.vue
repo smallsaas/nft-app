@@ -83,7 +83,7 @@
 					console.log(url.indexOf("["))
 					if (url.indexOf("[") === 0) {
 						let urlJSON = JSON.parse(url)
-						let imageUrl = urlJSON[0].url
+						let imageUrl = urlJSON[1].url
 						if (imageUrl.indexOf("http" || "https") === 0) {
 							imagePath = imageUrl
 						} else {

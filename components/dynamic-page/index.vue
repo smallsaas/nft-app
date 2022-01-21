@@ -232,6 +232,8 @@
 	import CheckTeamList from '../team/checkTeamList.vue'
 	// 數據展示
 	import dataShow from '../dataShow/index.vue'
+	//领养精灵头部数据
+	import adoptHeader from '../adoptHeader/index.vue'
 	export default {
 		components: { 
 			dynamicList, 
@@ -252,7 +254,8 @@
 			Service,
 			MyHistory,
 			CheckTeamList,
-			dataShow
+			dataShow,
+			adoptHeader
 		},
 		props: {
 			API: String,  // 頁面數據請求接口

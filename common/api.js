@@ -4,6 +4,16 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
+	//玩家投诉
+	userTouShu(params){
+		const url = `${globalConfig.endpoint}/api/u/player/feedback`
+		return request('POST',url,params)
+	},
+	//玩家获取投诉记录
+	getTouShuHistory(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
+		return request('GET',url,params)
+	},
 	//根據推薦收益轉化爲精靈
 	tuijianforspirit(params){
 		const url = `${globalConfig.endpoint}/api/u/player/changProfitToWisp`
@@ -76,7 +86,7 @@ export const api = {
 	},
 	//新版玩家獲取申述記錄
 	loadNewUserComplainHistory(params){
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=ORDER_DISPUTES `
 		return request('GET',url,params)
 	},
 	//獲取申述記錄

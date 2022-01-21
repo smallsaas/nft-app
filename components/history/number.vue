@@ -87,33 +87,33 @@
 			// },
 			typeForGUGU(type){
 				console.log('type',type)
-				if(this.rPoint < 100 && type == 1){
-					// this.toastMsg()
-					uni.showToast({
-						title:'收益100起轉化',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-				if(this.tPoint < 100 && type == 2){
-					// this.toastMsg()
-					uni.showToast({
-						title:'收益100起轉化',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-				if(this.tsPonit < 100 && type == 3){
-					// this.toastMsg()
-					uni.showToast({
-						title:'收益100起轉化',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
+				// if(this.rPoint < 100 && type == 1){
+				// 	// this.toastMsg()
+				// 	uni.showToast({
+				// 		title:'收益100起轉化',
+				// 		icon:'error',
+				// 		duration:1000
+				// 	})
+				// 	return
+				// }
+				// if(this.tPoint < 100 && type == 2){
+				// 	// this.toastMsg()
+				// 	uni.showToast({
+				// 		title:'收益100起轉化',
+				// 		icon:'error',
+				// 		duration:1000
+				// 	})
+				// 	return
+				// }
+				// if(this.tsPonit < 100 && type == 3){
+				// 	// this.toastMsg()
+				// 	uni.showToast({
+				// 		title:'收益100起轉化',
+				// 		icon:'error',
+				// 		duration:1000
+				// 	})
+				// 	return
+				// }
 				this.forChildType = type
 				this.isShowIncomeTypeForTransfer = true
 			},
@@ -144,85 +144,6 @@
 			closeToast(){
 				this.isShowToast = false
 			},
-			async zhaunhua(){
-				if(this.$cache.get('status') !== 'NORMAL'){
-					uni.showToast({
-						title:'當前狀态不可用',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-				// this.$emit('forParentCloseTwo')
-				const res = await this.$api.zhuanhuaType()
-				console.log('rrrrr',res)
-				if(res.code == 200){
-					uni.showToast({
-						title:'轉化成功',
-						icon:'success',
-						duration:1000
-					})
-				}else{
-					uni.showToast({
-						title:res.message,
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-			},
-			async zhuancunTwo(){
-				if(this.$cache.get('status') !== 'NORMAL'){
-					uni.showToast({
-						title:'當前狀态不可用',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-				const res = await this.$api.zhuanhuaTypeTwo()
-				console.log('rrrrr',res)
-				if(res.code == 200){
-					uni.showToast({
-						title:'轉化成功',
-						icon:'success',
-						duration:1000
-					})
-				}else{
-					uni.showToast({
-						title:res.message,
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-			},
-			async zhuancunThree(){
-				if(this.$cache.get('status') !== 'NORMAL'){
-					uni.showToast({
-						title:'當前狀态不可用',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-				const res = await this.$api.zhuanhuaTypeThree()
-				console.log('rrrrr',res)
-				if(res.code == 200){
-					uni.showToast({
-						title:'轉化成功',
-						icon:'success',
-						duration:1000
-					})
-				}else{
-					uni.showToast({
-						title:res.message,
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
-			},
 			async tiqu(){
 				console.log('00000000000000000000000000000')
 				if(this.$cache.get('status') !== 'NORMAL'){
@@ -233,14 +154,14 @@
 					})
 					return
 				}
-				if(this.pSingPoint < 100){
-					uni.showToast({
-						title:'收益100起轉化',
-						icon:'error',
-						duration:1000
-					})
-					return
-				}
+				// if(this.pSingPoint < 100){
+				// 	uni.showToast({
+				// 		title:'收益100起轉化',
+				// 		icon:'error',
+				// 		duration:1000
+				// 	})
+				// 	return
+				// }
 				let data = {
 					 incomeType:"signINProfit",
 					 number:this.data.signInCoinCredit

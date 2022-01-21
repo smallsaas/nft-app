@@ -47,7 +47,7 @@
 			 async successTransfer() {
 				console.log(this.showError)
 				
-				if(this.data.number < 200){
+				if(this.data.number < 100){
 					this.showErrorTwo = true
 					return
 				}

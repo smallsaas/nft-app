@@ -71,9 +71,11 @@
 		width: 50%;
 		text-align: center;
 		/* padding:20px; */
+		font-size: 30rpx;
 	}
 	.dataShow-itemBox{
-		padding: 40rpx;
+		/* padding: 40rpx; */
+		padding: 30rpx;
 		margin: 20rpx;
 		background:#11181E;
 		border-radius: 10rpx;

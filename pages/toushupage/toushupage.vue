@@ -65,37 +65,37 @@
 					url:'/pages/complainhistory/complainhistory'
 				})
 			},
-		// 	async shenshu(){
-		// 		let data = {
-		// 			//71
-		// 			relationOrderId:this.orderIdS,
-		// 			title:this.value,
-		// 			content:this.moreValue,
-		// 			credentialLink: "憑證鏈接"
-		// 		}
-		// 		const res = await this.$api.orderCpmplain(data)
-		// 		console.log('RES',res)
-		// 		if(res.code == 200){
-		// 			uni.showToast({
-		// 				icon:'success',
-		// 				duration:1000,
-		// 				title:'提交申述成功'
-		// 			})
-		// 			uni.navigateTo({
-		// 				url:'/pages/defaultPage/page?id=' + 111222333
-		// 			})
-		// 		}else{
-		// 			uni.showToast({
-		// 				icon:'error',
-		// 				duration:1000,
-		// 				title:res.message
-		// 			})
-		// 		}
+			async shenshu(){
+				let data = {
+					title:this.value,
+					content:this.moreValue,
+					credentialLink: "憑證鏈接"
+				}
+				const res = await this.$api.userTouShu(data)
+				console.log('RES',res)
+				if(res.code == 200){
+					uni.showToast({
+						icon:'success',
+						duration:1000,
+						title:'提交投诉成功'
+					})
+					setTimeout(()=>{
+						uni.navigateTo({
+							url:'/pages/toushu/toushu'
+						})
+					},1000)
+				}else{
+					uni.showToast({
+						icon:'error',
+						duration:1000,
+						title:res.message
+					})
+				}
 				
 				
-		// 	// const res = await this.$api.checkOrderCpmplain()
-		// 	// console.log('RES',res)
-		// }
+			// const res = await this.$api.checkOrderCpmplain()
+			// console.log('RES',res)
+		}
 	},
 }
 </script>

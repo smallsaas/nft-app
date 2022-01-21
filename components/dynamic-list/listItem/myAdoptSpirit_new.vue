@@ -26,7 +26,7 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">能力值：{{item.amountPrice}}/{{item.coinsAddedValue}}+{{item.additionalIncomeDay}}</text>
+				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
@@ -35,11 +35,11 @@
 				<text class="info">培養天數：{{item.wisp.growthDays}}</text>
 			</view>
 			<view class="infoBox infoBoxThree">
-				<text class="info sss">領養：{{item.createTime}}</text>
+				<text class="info sss">領養：{{timeString}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
-				<button class="btn one" v-if="true" @click="noMessage">鑄造(待開放</button>
+				<button class="btn one" v-if="true" @click="noMessage">鑄造(待開放)</button>
 				<view class="boxs" v-if="true">
 					<button class="two">(培養中)自動挂售</button>
 				</view>
@@ -59,10 +59,16 @@
 			item: Object,
 			ext: Object
 		},
+		created() {
+			const t = this.item.stageChangeTime.split('T')
+			console.log(t,'--------------')
+			this.timeString = t[0] + ' ' + t[1]
+		},
 		data() {
 			return {
 				isShowToast:false,
-				toastMsg:''
+				toastMsg:'',
+				timeString:'',
 			}
 		},
 		methods:{
@@ -76,7 +82,7 @@
 					console.log(url.indexOf("["))
 					if (url.indexOf("[") === 0) {
 						let urlJSON = JSON.parse(url)
-						let imageUrl = urlJSON[0].url
+						let imageUrl = urlJSON[1].url
 						if (imageUrl.indexOf("http" || "https") === 0) {
 							imagePath = imageUrl
 						} else {

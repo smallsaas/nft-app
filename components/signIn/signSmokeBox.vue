@@ -45,7 +45,7 @@
 				}
 			},
 			isSign(){
-				console.log(this.sign,'------------------------------')
+				console.log(this.sign,'-----测试sogjsdgnsldjkgsdkl------------------------')
 				if(this.sign){
 					this.signText="已簽到"
 					this.signImage="/static/signSmoke/signedIn.png"
@@ -83,7 +83,10 @@
 					
 				],
 				nowGroup:[],
-				isSignGroup:{}
+				isSignGroup:{},
+				
+				//是否已经补签
+				isBuQian:false
 			};
 		},
 		props:{
@@ -119,8 +122,10 @@
 						if(that.fetchDay(item.signDate)<today){
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
 							console.log(that.isSignGroup,'a--------------------')
-						}else if(that.fetchDay(item.signDate)==today){
 							that.sign = true
+						}else if(that.fetchDay(item.signDate)==today){
+							that.sign = false
+							this.isBuQian = true
 							that.isSignGroup[that.fetchDay(item.signDate)] = true
 							console.log(that.isSignGroup,'b--------------------')
 						}
@@ -194,6 +199,16 @@
 				if(this.$frozen()){
 					return ;
 				}
+				if(this.isBuQian == true){
+					let time = new Date(new Date(new Date().toLocaleDateString()).getTime())
+					console.log('time',time)
+					uni.showToast({
+						title:'一天只能补签一次',
+						icon:'error',
+						duration:1000
+					})
+					return
+				}
 				let date = `${this.year}-${this.month<10?`0${this.month}`:this.month}-${day<10?`0${day}`:day}`
 				console.log("補簽！",date)
 				let res = await this.$api.repleinishSign({replenishSignDate:date})
@@ -203,6 +218,7 @@
 						title:"補簽成功!",
 						icon:"success",
 						success: async () => {
+							    this.isBuQian = true
 								that.listGroup[day-1].isSign = true
 								await that.getNowGroup()
 								// that.dayGroup = that.nowGroup
@@ -215,15 +231,8 @@
 								console.log('--------------rrrr',signMes,'我是再次跟新----------------------------------')
 								this.signDay = _.get(signMes, 'data.records', []).length
 								// that.$forceUpdate()
-								that.$forceUpdate()
+								that.$forceUpdate()		
 						}
-						// success() {
-						// 	that.listGroup[day-1].isSign = true
-						// 	that.getNowGroup()
-						// 	that.dayGroup = that.nowGroup
-						// 	console.log(that.dayGroup,'可能需要等待')
-						// 	that.$forceUpdate()
-						// }
 					})
 				}else{
 					uni.showToast({
