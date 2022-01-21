@@ -63,5 +63,7 @@
 		background-color: #050E17;
 		color: #9A9D9F;
 	}
-
+	uni-toast,.uni-toast{
+		width: 10em!important;
+	}
 </style>
