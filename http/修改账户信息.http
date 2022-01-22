@@ -41,7 +41,7 @@ Content-Type: application/json
                 "componentName": "微信支付",
                 "children": [{
                     "__config__": {
-                    "label": "微信账号",
+                    "label": "户名",
                     "labelWidth": null,
                     "showLabel": true,
                     "changeTag": true,
@@ -59,7 +59,7 @@ Content-Type: application/json
                     "prepend": "",
                     "append": ""
                     },
-                    "placeholder": "请输入微信账号",
+                    "placeholder": "请输入户名",
                     "style": {
                     "width": "100%"
                     },
@@ -103,7 +103,7 @@ Content-Type: application/json
                 "componentName": "支付宝支付",
                 "children": [{
                     "__config__": {
-                    "label": "支付宝账号",
+                    "label": "户名",
                     "labelWidth": null,
                     "showLabel": true,
                     "changeTag": true,
@@ -121,7 +121,7 @@ Content-Type: application/json
                     "prepend": "",
                     "append": ""
                     },
-                    "placeholder": "请输入支付宝账号",
+                    "placeholder": "请输入户名",
                     "style": {
                     "width": "100%"
                     },
