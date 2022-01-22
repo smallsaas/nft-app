@@ -22,7 +22,11 @@
 			tabs:{
 				type:Array,
 				default:[],
-			}
+			},
+            defaultClicked: {
+                type: Number,
+                default: 0
+            }
 		},
 		data(){
 			return {
@@ -30,7 +34,17 @@
 				contentStyle:{}
 			}
 		},
+        watch: {
+          defaultClicked: {
+            handler(val, oldVal) {
+              if (val !== oldVal) {
+                this.clicked = this.defaultClicked
+              }
+            }
+          }
+        },
 		created() {
+            this.clicked = this.defaultClicked
 			// #ifdef H5
 			this.contentStyle = {
 				"height": "calc(100vh - 138rpx);"
