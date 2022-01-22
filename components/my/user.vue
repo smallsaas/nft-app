@@ -10,7 +10,11 @@
 			<text class="name">{{data.name}}</text>
 		</view>
 		<text class="status">
-			<text>賬号狀态：</text><text class="wid" :class="{forzen: status!=='NORMAL'}">{{status=='NORMAL'?'正常':'凍結'}}</text>
+			<text>賬号狀态：</text>
+			<text class="wid"  v-if="status=='NORMAL'">正常</text>
+			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='FROZEN'">冻结</text>
+			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='UNREVIEWED'">未审核</text>
+			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='PENDING'">待审核</text>
 		</text>
 		<text class="shezhi">設置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>

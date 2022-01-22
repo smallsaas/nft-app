@@ -49,9 +49,8 @@
 		}
 	}
 </script>
-
-<style>
-	@import "./other.less";
+<style lang="less">
+    @import "./other.less";
 	/*每個頁面公共css */
 	@font-face {
 		font-family:"繁體";
@@ -64,5 +63,7 @@
 		background-color: #050E17;
 		color: #9A9D9F;
 	}
-
+	uni-toast,.uni-toast{
+		width: 10em!important;
+	}
 </style>

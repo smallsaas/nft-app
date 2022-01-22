@@ -3,7 +3,7 @@
 		<view class="all"><text class="info" @click="checkMore">查看申述記錄(結果)</text></view>
 		<view class="title ttt"><text class="info">申述原因</text></view>
 		<view class="select">
-			<input  v-model="value" type="text" disabled="true" placeholder="選擇申述原因" class="read" />
+			<input v-model="value" type="text" disabled="true" placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
 		<view class="title"><text class="info">備注</text></view>
@@ -18,7 +18,8 @@
 				<text class="info" @click="sure">确定</text>
 			</view>
 			<view class="b">
-				<view class="item" :class="{active:inx == index}"  v-for="(i,index) in columns" :key="index" @click="choose(index)">
+				<view class="item" :class="{active:inx == index}" v-for="(i,index) in columns" :key="index"
+					@click="choose(index)">
 					{{i}}
 				</view>
 			</view>
@@ -29,21 +30,20 @@
 
 <script>
 	export default {
-		props:{
-		},
+		props: {},
 		onLoad(e) {
-			console.log('RES',parseInt(e.orderId))
+			console.log('RES', parseInt(e.orderId))
 			this.orderIdS = parseInt(e.orderId)
-			console.log('慘過了參數',this.orderIdS)
+			console.log('慘過了參數', this.orderIdS)
 		},
 		data() {
 			return {
 				isShow: false,
-				columns: ['對方沒付款','情況不符合','其他'],
-				inx:-1,
-				value:'',
-				moreValue:'',
-				orderIdS:0
+				columns: ['對方沒付款', '情況不符合', '其他'],
+				inx: -1,
+				value: '',
+				moreValue: '',
+				orderIdS: 0
 			}
 		},
 		methods: {
@@ -51,60 +51,68 @@
 				this.inx = -1
 				this.isShow = true
 			},
-			choose(index){
+			choose(index) {
 				this.inx = index
 			},
-			cancel(){
+			cancel() {
 				this.isShow = false
 			},
-			sure(){
+			sure() {
 				this.value = this.columns[this.inx]
 				this.isShow = false
 			},
-			checkMore(){
+			checkMore() {
 				uni.navigateTo({
-					url:'/pages/complainhistory/complainhistory'
+					url: '/pages/complainhistory/complainhistory'
 				})
 			},
-			async shenshu(){
+			async shenshu() {
 				let data = {
 					//71
-					relationOrderId:this.orderIdS,
-					title:this.value,
-					content:this.moreValue,
+					//this.orderIdS
+					relationOrderId: this.orderIdS,
+					title: this.value,
+					content: this.moreValue,
 					credentialLink: "憑證鏈接"
 				}
 				const res = await this.$api.orderCpmplain(data)
-				console.log('RES',res)
-				if(res.code == 200){
+				console.log('RES', res)
+				if (res.code == 200) {
 					uni.showToast({
-						icon:'success',
-						duration:1000,
-						title:'提交申述成功'
+						icon: 'success',
+						duration: 1000,
+						title: '提交申述成功'
 					})
-					uni.navigateTo({
-						url:'/pages/defaultPage/page?id=' + 111222333
-					})
-				}else{
+					setTimeout(() => {
+						uni.navigateTo({
+							url: '/pages/complainhistory/complainhistory'
+						})
+					}, 1000)
+
+					// uni.navigateTo({
+					// 	url:'/pages/defaultPage/page?id=' + 111222333
+					// })
+				} else {
 					uni.showToast({
-						icon:'error',
-						duration:1000,
-						title:res.message
+						icon: 'error',
+						duration: 1000,
+						title: res.message
 					})
 				}
-				
-				
-			// const res = await this.$api.checkOrderCpmplain()
-			// console.log('RES',res)
-		}
-	},
-}
+
+
+				// const res = await this.$api.checkOrderCpmplain()
+				// console.log('RES',res)
+			}
+		},
+	}
 </script>
 
 <style lang="less">
-	.active{
+	.active {
 		color: #FFFFFF !important;
 	}
+
 	.spirit_mask {
 		position: fixed;
 		top: 0;
@@ -115,24 +123,29 @@
 		background-color: #000;
 		opacity: .8;
 	}
+
 	.re_new {
 		width: 100%;
 		height: 100%;
-		.all{
+
+		.all {
 			width: 100%;
 			height: 100rpx;
 			display: flex;
 			align-items: center;
 			justify-content: flex-end;
-			.info{
-				color: rgb(26,137,253);
+
+			.info {
+				color: rgb(26, 137, 253);
 				font-size: 30rpx;
 				margin-right: 20rpx;
 			}
 		}
-		.ttt{
+
+		.ttt {
 			margin-top: 100rpx;
 		}
+
 		.title {
 			width: 100%;
 			height: 50rpx;
@@ -146,6 +159,7 @@
 			width: 100%;
 			height: 120rpx;
 			position: relative;
+
 			.read {
 				width: 90%;
 				height: 80rpx;
@@ -164,12 +178,13 @@
 				width: 40rpx;
 				height: 40rpx;
 			}
-			
+
 		}
-		
-		.selectT{
+
+		.selectT {
 			height: 300rpx;
-			.text{
+
+			.text {
 				width: 90%;
 				height: 280rpx;
 				margin-left: 5%;
@@ -180,25 +195,26 @@
 				border: 1px solid rgb(54, 63, 76);
 			}
 		}
-		
-		.btnBox{
+
+		.btnBox {
 			width: 100%;
 			height: 150rpx;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			.btn{
+
+			.btn {
 				width: 90%;
 				height: 85rpx;
 				color: #FFFFFF;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				background: linear-gradient(to right, rgb(135,57,245) 0%,rgb(70,104,253), rgb(25,137,253));
+				background: linear-gradient(to right, rgb(135, 57, 245) 0%, rgb(70, 104, 253), rgb(25, 137, 253));
 			}
 		}
-	
-	.fix {
+
+		.fix {
 			position: fixed;
 			bottom: 0;
 			width: 100%;
@@ -206,21 +222,25 @@
 			background: #1C294C;
 			z-index: 9999;
 			border-radius: 16px 16px 0px 0px;
-			.t{
+
+			.t {
 				width: 100%;
 				height: 10%;
 				display: flex;
 				align-items: center;
 				justify-content: space-around;
-				.infos{
+
+				.infos {
 					color: #FFFFFF;
 				}
 			}
-			.b{
+
+			.b {
 				width: 100%;
 				height: 85%;
 				overflow: scroll;
-				.item{
+
+				.item {
 					margin-top: 20rpx;
 					width: 100%;
 					height: 60rpx;

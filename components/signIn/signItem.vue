@@ -47,9 +47,6 @@
 				}
 			}
 		},
-		created() {
-			console.log(this.item,'-----------------item')
-		},
 		computed:{
 			isEnded(){
 				if(this.item){
@@ -78,6 +75,7 @@
 		async created() {
 			let res = await this.$api.getIcon()
 			this.icon = res.data
+			console.log(this.item,'-----------------item')
 		},
 		methods:{
 			// 補簽事件
@@ -174,10 +172,14 @@
 		font-size: 40rpx;
 	}
 	.sign-isSign-unSigned{
+		background: none !important;
 		padding: 15rpx 22rpx;
 		border-radius: 8rpx;
-		color: #DDD8D8 !important;
+		// color: #DDD8D8 !important;
+		color: white !important;
 		font-size: 38rpx;
-		background: linear-gradient(left,#8F34F5,#1287E8) !important;
+		// background: linear-gradient(left,#8F34F5,#1287E8) !important;
+		background: rgb(127,53,277) !important;
+		
 	}
 </style>

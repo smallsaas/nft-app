@@ -35,7 +35,7 @@
 				<view class="nameBox nTwo"><text class="name nametwo">預約剩餘時間 {{itemInfo.remainingBookMinutes}}分鍾 确定預約嗎？</text></view>
 				<view class="btnBox">
 					<button class="btn cancel" @click="cancel">取消</button>
-					<button class="btn"  @click="book" :disabled="status=='FROZEN'">馬上預約</button>
+					<button class="btn"  @click="book" :disabled="status=='FROZEN' || isClickBtn==true">馬上預約</button>
 				</view>
 			</view>
 		</view>
@@ -58,7 +58,9 @@
 			return{
 				status:'',
 				show:true,
-				isClick:true
+				isClick:true,
+				
+				isClickBtn:false
 			}
 		},
 		methods:{
@@ -102,12 +104,15 @@
 				this.$emit('cancelChild',false)
 			},
 			async book(){
-				// console.log(this.itemInfo)
+				this.isClickBtn = true
+				console.log('測試---------------123132132132132132132')
+				console.log(this.itemInfo)
 				const data = {
 					wispId:parseInt(this.itemInfo.id),
 					paymentPassword:'123456'
 				}
 			    const res = await this.$api.bookSpirit(data)
+				this.isClickBtn = false
 				console.log(res)
 				if(res.code !==200){
 					// if(res.code == 4000){

@@ -25,8 +25,13 @@
 				list:[]
 			}
 		},
+		created() {
+			this.loadHistory()
+			console.log('-----------------粗放')
+		},
 		mounted() {
 			this.loadHistory()
+			console.log('-----------------粗放')
 		},
 		methods:{
 			goTo(){
@@ -43,10 +48,15 @@
 				})
 			},
 			async loadHistory(){
-				const res = await this.$api.loadUserComplainHistory()
+				const res = await this.$api.getTouShuHistory()
 				console.log(res)
 				if(res.code == 200){
 					this.list = res.data.records
+					uni.showToast({
+						title:'獲取成功',
+						icon:'error',
+						duration:1000
+					})
 				}else{
 					uni.showToast({
 						title:'獲取錯誤',

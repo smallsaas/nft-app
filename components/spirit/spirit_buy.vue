@@ -17,18 +17,18 @@
 			<view class="type cc">
 				<text class="one">消耗GuGu令：</text>
 				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="bg"></image>
-				<text class="two">x{{itemInfo.wispCoin||itemInfo.costWispCoin}}</text>
+				<text class="two">x{{itemInfo.wispCoin}}</text>
 			</view>
 			<text class="buyBox">
 				購買數量：
 			</text>
 			<!-- <image src="../../static/spirit/bd.png" mode="widthFix" class="bd" @click="dec"></image> -->
-			<input type="number" class="num" v-model="number" @focus="focusIng" disabled="true"/>
+			<input type="number" class="num" v-model="itemInfo.costAccompanyWisp" @focus="focusIng" disabled="true"/>
 			<!-- <image src="../../static/spirit/ad.png" mode="widthFix" class="bd ad" @click="add"></image> -->
 			<view class="bottomBox">
 				<text class="ce">共消耗GuGu令</text>
 				<image src="../../static/spirit/newCoin.png" mode="widthFix" class="icon"></image>
-				<text class="ce cetwo">x{{number * (itemInfo.wispCoin)}}</text>
+				<text class="ce cetwo">x{{itemInfo.wispCoin * itemInfo.costAccompanyWisp}}</text>
 				<button class="btn" @click="buyComponeySpirit" :disabled="status=='FROZEN'">立即購買</button>
 			</view>
 		</view>
@@ -83,7 +83,7 @@
 			}
 		},
 		created() {
-			console.log(this.itemInfo)
+			console.log(this.itemInfo,'接上腹肌------------------------')
 			console.log(123)
 		    this.status = this.$cache.get('status')
 		},
@@ -101,7 +101,7 @@
 			}
 		},
 		mounted() {
-			this.number = this.itemInfo.costAccompanyWisp
+			// this.number = this.itemInfo.costAccompanyWisp
 		},
 		methods: {
 			toast(msg) {

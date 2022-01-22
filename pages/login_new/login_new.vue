@@ -36,8 +36,11 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					account:'13800000006',
+					account:'18689911298',
 					password:'a123456',
+					//18689911298
+					//13800000002 生産賬戶13800000002 密碼a123456
+					//13313331001
 					//13600136003
 					//13422212814
 					//18664521094

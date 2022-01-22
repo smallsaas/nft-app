@@ -4,22 +4,32 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
-	//根据推荐收益转化为精灵
+	//玩家投诉
+	userTouShu(params){
+		const url = `${globalConfig.endpoint}/api/u/player/feedback`
+		return request('POST',url,params)
+	},
+	//玩家获取投诉记录
+	getTouShuHistory(params){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
+		return request('GET',url,params)
+	},
+	//根據推薦收益轉化爲精靈
 	tuijianforspirit(params){
 		const url = `${globalConfig.endpoint}/api/u/player/changProfitToWisp`
 		return request('POST',url,params)
 	},
-	//根据转存收益转化GUGU令
+	//根據轉存收益轉化GUGU令
 	zhuancunforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
 		return request('POST',url,params)
 	},
-	//根据帮会收益转化GUGU令
+	//根據幫會收益轉化GUGU令
 	banhuiforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
 		return request('POST',url,params)
 	},
-	//根据推荐收益转化GUGU令
+	//根據推薦收益轉化GUGU令
 	tuijianforgugu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/signInSettlement`
 		return request('POST',url,params)
@@ -76,7 +86,7 @@ export const api = {
 	},
 	//新版玩家獲取申述記錄
 	loadNewUserComplainHistory(params){
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=ORDER_DISPUTES `
 		return request('GET',url,params)
 	},
 	//獲取申述記錄

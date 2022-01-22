@@ -185,7 +185,9 @@
 					})
 					return
 				}
-				console.log(item)
+				console.log(item,'给孩子--------------------------')
+				// this.itemInfoForComponentChild.description = item.description
+				// this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
 				this.itemInfoForComponentChild = item.companionWisp
 				this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
 				this.isShowBuyComponeny = true

@@ -598,12 +598,12 @@
                             }, 500)
                         }else{
 													// uni.showToast({
-													// 	title:'当前时间不可修改,请在每天0点后到第一场匹配开始前修改',
+													// 	title:'當前時間不可修改,請在每天0點後到第一場匹配開始前修改',
 													// 	icon:'error'
 													// })
 													uni.showModal({
-														title:'修改账户',
-														content:'当前时间不可修改,请在每天0点后到第一场匹配开始前修改',
+														title:'修改賬戶',
+														content:'當前時間不可修改,請在每天0點後到第一場匹配開始前修改',
 														success: (res) => {
 															if(res.confirm){
 																setTimeout(()=>{

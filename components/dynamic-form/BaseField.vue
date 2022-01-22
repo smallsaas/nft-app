@@ -11,6 +11,8 @@
           :error-message="param['error-message'] || ''"
           :style="param.style"
           label-class="van_field_label"
+          :titleWidth="'8em'"
+          custom-style="color: red"
         >
 			<template slot="input" style="width: 100%;">
 				<view
@@ -18,15 +20,15 @@
 					
 				>
 					<text
-					:style="{color:getStatus(param.value).color||'#B4B6B8','margin-right':'25rpx'}"
+					:style="{color: _get(getStatus(param.value), 'color')||'#B4B6B8','margin-right':'25rpx'}"
 					>
-						{{getStatus(param.value).label||param.value}}
+						{{ _get(getStatus(param.value), 'label') || param.value}}
 					</text>
-					<text v-if="getStatus(param.value).display" 
+					<text v-if=" _get(getStatus(param.value), 'display')" 
 					class="canUse" 
 					@click="showModal()"
 					>
-					{{getStatus(param.value).displayLabel}}
+					{{ _get(getStatus(param.value), 'displayLabel') }}
 					</text>
 				</view>
 				<textarea 
@@ -186,6 +188,9 @@
 			}
 		},
         methods: {
+            _get(data, field, defaulevalue = '') {
+                return _.get(data, field, defaulevalue)
+            },
 					handleShowPassword(){
 						this.isModal = false
 						this.isTypeStatus = false
@@ -426,7 +431,7 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     @import "./common.less";
     .base_field_container {}
 		.baseInput{

@@ -62,6 +62,9 @@
 				time:''
 			}
 		},
+		created() {
+			console
+		},
 		mounted() {
 			const split = this.item.stageChangeTime.split('T')
 			console.log('000000000000000',split)
@@ -80,7 +83,7 @@
 					console.log(url.indexOf("["))
 					if (url.indexOf("[") === 0) {
 						let urlJSON = JSON.parse(url)
-						let imageUrl = urlJSON[0].url
+						let imageUrl = urlJSON[1].url
 						if (imageUrl.indexOf("http" || "https") === 0) {
 							imagePath = imageUrl
 						} else {
