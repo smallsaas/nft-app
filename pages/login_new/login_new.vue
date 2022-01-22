@@ -209,7 +209,7 @@
 					}else{
 						uni.showToast({
 							title:res.message,
-							icon:"error"
+							icon:"none"
 						})
 					}
 				}

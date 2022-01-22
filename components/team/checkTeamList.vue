@@ -48,7 +48,7 @@
 				if(this.searchPhone.length == 0){
 					uni.showToast({
 						title:'查詢手機号碼不能爲空',
-						icon:'error',
+						icon:'none',
 						duration:1000
 					})
 					return

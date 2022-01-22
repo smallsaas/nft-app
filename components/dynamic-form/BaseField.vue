@@ -225,7 +225,7 @@
 						}else{
 							uni.showToast({
 								title:res.message,
-								icon:"error",
+								icon:"none",
 								success() {
 									that.$cache.set("FormChange",true)
 									setTimeout(()=>{
@@ -267,7 +267,7 @@
 							console.log("fail")
 							uni.showToast({
 								title:res.message||"提交失敗",
-								icon:"error"
+								icon:"none"
 							})
 						}
 						// console.log(res)
@@ -308,14 +308,14 @@
 								}else{
 									uni.showToast({
 										title:res.data.message||res.data.msg,
-										icon:"error"
+										icon:"none"
 									})
 								}
 							},
 							fail(err) {
 								uni.showToast({
 									title:err.data.message||err.data.msg,
-									icon:"error"
+									icon:"none"
 								})
 							}
 						})
@@ -377,12 +377,12 @@
 								if(res.data.code === 200){
 									uni.showToast({
 										title:param.successText||"成功",
-										icon:'success'
+										icon:'none'
 									})
 								}else{
 									uni.showToast({
 										title:param.errorText||"失敗",
-										icon:'error'
+										icon:'none'
 									})
 								}
 							}

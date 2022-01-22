@@ -60,7 +60,7 @@
 						this.$emit('closeCoin','update')
 					}else{
 						uni.showToast({
-							icon:'error',
+							icon:'none',
 							duration:1000,
 							title:res.message
 						})
@@ -83,7 +83,7 @@
 						this.$emit('closeCoin','update')
 					}else{
 						uni.showToast({
-							icon:'error',
+							icon:'none',
 							duration:1000,
 							title:res.message
 						})
@@ -105,7 +105,7 @@
 						this.$emit('closeCoin','update')
 					}else{
 						uni.showToast({
-							icon:'error',
+							icon:'none',
 							duration:1000,
 							title:res.message
 						})

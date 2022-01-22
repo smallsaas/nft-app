@@ -198,8 +198,8 @@
 					console.log('time',time)
 					uni.showToast({
 						title:'一天只能补签一次',
-						icon:'error',
-						duration:1000
+						icon:'none',
+						duration: 1000
 					})
 					return
 				}
@@ -231,7 +231,7 @@
 				}else{
 					uni.showToast({
 						title:res.message,
-						icon:"error"
+						icon:"none"
 					})
 				}
 			},

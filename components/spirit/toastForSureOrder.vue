@@ -47,7 +47,7 @@
 				}else{
 					uni.showToast({
 						title:res.message,
-						icon:"success",
+						icon:"none",
 						duration:1000
 					})
 					setTimeout(()=>{
