@@ -50,7 +50,7 @@
 		},
 		methods:{
 			showModal(){
-				this.isModal = true
+				// this.isModal = true
 			},
 			hideModal(){
 				this.isModal = false
