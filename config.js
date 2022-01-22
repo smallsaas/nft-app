@@ -11,10 +11,10 @@ const isDev = false
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
-	formHost: "http://api.dev.smallsaas.cn:8087/form",
-  dataHost: "http://api.dev.smallsaas.cn:8087/data",
-  endpoint: "http://api.dev.smallsaas.cn:8087",
-  imageEndpoint: "http://api.dev.smallsaas.cn:8087",
+	formHost: "http://api.dev.smallsaas.cn:8086/form",
+  dataHost: "http://api.dev.smallsaas.cn:8086/data",
+  endpoint: "http://api.dev.smallsaas.cn:8086",
+  imageEndpoint: "http://api.dev.smallsaas.cn:8086",
   tokenStorageKey:"token",
 	iconList:iconList
 }:{
@@ -34,8 +34,8 @@ export const globalConfig = isDev?{
 	clearPageCache: true,//重啓時是否清除頁面緩存
 	formHost: "/form",
   dataHost: "/data",
-  endpoint: "http://api.dev.smallsaas.cn:8087",
-  imageEndpoint: "http://api.dev.smallsaas.cn:8087",
+  endpoint: "http://api.dev.smallsaas.cn:8086",
+  imageEndpoint: "http://api.dev.smallsaas.cn:8086",
   tokenStorageKey:"token",
 	iconList:iconList
 }:{

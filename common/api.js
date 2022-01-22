@@ -318,7 +318,7 @@ export const api = {
 	
 	//获取系统公告
 	getSysNotice(params){
-	const url = `${globalConfig.endpoint}/api/pub/cms/term/config?type=SYSTEM_NOTICE`
+	const url = `${globalConfig.endpoint}/api/u/cms/term/config?type=SYSTEM_NOTICE`
 	return request('GET',url,params)
 	},
 }
