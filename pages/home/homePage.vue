@@ -3,15 +3,15 @@
 		<nav-bar :navs="navs" :defaultClick="defaultClick" v-if="defaultClick" @change="handleChange">
 			<template slot="content-container">
 				<view class="page-content">
-					<tab-bar-page :tabId="isTab(apis[0])" v-if="clicked == 0"></tab-bar-page>
+					<tab-bar-page :tabId="isTab(apis[0])" :currentClick="clicked" v-if="clicked == 0"></tab-bar-page>
 					<!-- <dynamic-page :API="apis[0]" v-if="clicked == 0"></dynamic-page> -->
 				</view>
 				<view class="page-content">
-					<tab-bar-page :tabId="isTab(apis[1])" v-if="clicked == 1"></tab-bar-page>
+					<tab-bar-page :tabId="isTab(apis[1])" :currentClick="clicked" v-if="clicked == 1"></tab-bar-page>
 					<!-- <dynamic-page :API="apis[1]" v-if="clicked == 1"></dynamic-page> -->
 				</view>
 				<view class="page-content">
-					<dynamic-page :API="apis[2]" v-if="clicked == 2"></dynamic-page>
+					<dynamic-page :API="apis[2]" :currentClick="clicked" v-if="clicked == 2"></dynamic-page>
 				</view>
 			</template>
 		</nav-bar>

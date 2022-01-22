@@ -4,7 +4,7 @@
 		<page-tabbar
 			:tabs="tabs"
 			@change="handleChange"
-            :defaultClicked="1"
+            :defaultClicked="currentClick === 1 ? 1 : 0"
 		>
 			<template slot="content">
 				<dynamic-page v-for="(item,i) in tabs" :API="format(item.id)" v-if="click === i" :key="i"></dynamic-page>
@@ -40,6 +40,10 @@
 			tabId:{
 				type:String,
 				default:""
+			},
+			currentClick: {
+				type:String,
+				default: 0
 			}
 		},
 		methods: {
