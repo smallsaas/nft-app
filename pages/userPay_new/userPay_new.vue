@@ -1,7 +1,7 @@
 <template>
 	<view class="payBox">
 		<view class="boxA">
-			<text class="A">付款給：{{sellerInfo.mobilePhone}}</text>
+			<text class="A">付款給：{{sellerInfo.name}}</text>
 		</view>
 		<view class="boxB">
 			<text class="B">￥{{sellerInfo.transactionAmount}}</text>

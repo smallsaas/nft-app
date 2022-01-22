@@ -101,7 +101,7 @@
 			}
 		},
 		mounted() {
-			// this.number = this.itemInfo.costAccompanyWisp
+			this.number = this.itemInfo.costAccompanyWisp
 		},
 		methods: {
 			toast(msg) {
@@ -148,7 +148,6 @@
 				this.info.companionWispId = this.itemInfo.id
 				this.info.number = this.number
 				this.info.paymentPassword = '123456'
-				console.log(this.itemInfo.id,1)
 				// const data = {
 				// 	companionWispId:this.itemInfo.id,
 				// 	number:this.number,

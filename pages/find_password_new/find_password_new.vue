@@ -57,6 +57,8 @@
 					},1000)
 					return ;
 				}else{
+					console.log('res.code = ', res.code)
+					console.log('res.message = ', res.message)
 					uni.showToast({
 						title:"找回密碼失敗",
 						icon:"success"

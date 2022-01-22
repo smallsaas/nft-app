@@ -222,6 +222,18 @@ Content-Type: application/json
                                     "value":"NORMAL",
                                     "color":"",
                                     "display":false
+                                },
+                                {
+                                    "label":"未审核",
+                                    "value":"UNREVIEWED",
+                                    "color":"",
+                                    "display":false
+                                },
+                                {
+                                    "label":"待审核",
+                                    "value":"PENDING",
+                                    "color":"",
+                                    "display":false
                                 }
                             ]
                         },
