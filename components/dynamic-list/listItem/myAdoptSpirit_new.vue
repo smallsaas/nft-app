@@ -25,7 +25,10 @@
 				<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
 					v-if="item.wisp.level==8"></image>
 			</view>
-			<view class="infoBox">
+            <view class="infoBox wispNumber">
+            	<text class="info">精灵编号：{{item.wispNumber}}</text>
+            </view>
+			<view class="infoBox infoBoxFirst">
 				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
@@ -34,7 +37,7 @@
 			<view class="infoBox infoBoxThree">
 				<text class="info">培養天數：{{item.wisp.growthDays}}</text>
 			</view>
-			<view class="infoBox infoBoxThree">
+			<view class="infoBox infoBoxFour">
 				<text class="info sss">領養：{{timeString}}</text>
 			</view>
 			<view class="line"></view>
@@ -121,7 +124,7 @@
 		.item{
 			margin: 0rpx auto;
 			width: 686rpx;
-			height: 490rpx;
+			height: 530rpx;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -166,10 +169,11 @@
 				}
 			}
 				
-			.infoBox,.infoBoxTwo,.infoBoxThree{
+			.infoBox,.infoBoxFirst,.infoBoxTwo,.infoBoxThree, .wispNumber, .infoBoxFour{
 				width: 350rpx !important;
-				height: 34rpx;
+				// height: 34rpx;
 				position: absolute;
+                line-height: 1;
 				top: 148rpx;
 				left: 328rpx;
 				.info{
@@ -182,18 +186,27 @@
 					top: 168rpx !important;
 				}
 			}
+            .wispNumber {
+                top: 148rpx;
+            }
+            
+            .infoBoxFirst {
+                top: 192rpx;
+            }
 			.infoBoxTwo{
-				position: absolute;
-				top: 202rpx !important;
+				top: 236rpx;
 			}
 			.infoBoxThree{
-				position: absolute;
-				top: 256rpx !important;
+				top: 280rpx;
 				.sss{
 					position: relative;
 					top: 40rpx !important;
 				}
 			}
+            .infoBoxFour {
+                top: 324rpx;
+            }
+
 			.line{
 				width: 684rpx;
 				height: 2rpx;
@@ -201,7 +214,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 344rpx;
+				top: 374rpx;
 			}
 			.btnBox{
 				width: 100%;

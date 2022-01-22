@@ -4,6 +4,7 @@
 		<page-tabbar
 			:tabs="tabs"
 			@change="handleChange"
+            :defaultClicked="1"
 		>
 			<template slot="content">
 				<dynamic-page v-for="(item,i) in tabs" :API="format(item.id)" v-if="click === i" :key="i"></dynamic-page>
@@ -27,7 +28,7 @@
 		data() {
 			return {
 					tabs:null,
-					click:0
+					click: 1
 			}
 		},
 		created(){
@@ -48,7 +49,6 @@
 			},
 			// 改變時
 			handleChange(e){
-				console.log(e)
 				this.click = e
 				this.$forceUpdate()
 			},

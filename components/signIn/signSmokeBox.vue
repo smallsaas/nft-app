@@ -108,36 +108,30 @@
             this.signDay = _.get(signMes, 'data.records', []).length
             
 			if(signMes.data.records){
+                const currentDate = moment().format('YYYY-MM-DD')
+                const currentDay = moment().format('DD')
 				let records = _.cloneDeep(signMes.data.records).sort((x, y) => moment(y.signDate).unix() - moment(x.signDate).unix())
-				let today = this.getToday()
-				console.log(records,"RECORDS",today)
-				let find = records.find(item=>item.signDate <= today)
-				console.log(find,"FIND")
-				if(![[],'',undefined,null].includes(find)){
-					let today = this.fetchDay(find.signDate)
-					console.log(today,"TODAY")
-					for(var i in records){
-						let item = records[i]
-						console.log(that.fetchDay(item.signDate),today,'測試打印--------------------')
-						if(that.fetchDay(item.signDate)<today){
-							that.isSignGroup[that.fetchDay(item.signDate)] = true
-							console.log(that.isSignGroup,'a--------------------')
-							that.sign = true
-						}else if(that.fetchDay(item.signDate)==today){
-							that.sign = false
-							this.isBuQian = true
-							that.isSignGroup[that.fetchDay(item.signDate)] = true
-							console.log(that.isSignGroup,'b--------------------')
-						}
-					}
-				}
-				console.log(that.isSignGroup,"ISSIGNGROUP")
+                const signedData = {}
+                records.map(x => {
+                    if (x.signDate) {
+                        const dayField = moment(x.signDate).format('DD')
+                        signedData[dayField] = true
+                        if (Number(dayField) === Number(currentDay)) {
+                            this.sign = true
+                        }
+                    }
+                    if (x.status === 'REPLENISH_SIGN' && x.signTime) {
+                        if (Number(moment(x.signTime).format('DD')) === Number(currentDay)) {
+                            this.isBuQian = true
+                        }
+                    }
+                    
+                })
+                this.isSignGroup = {...signedData}
 			}
 			this.getListGroup()
 			this.getNowGroup()
 			this.dayGroup = this.nowGroup
-            
-            console.log('嘎嘎嘎過', this.dayGroup)
             
 			uni.hideLoading()
 		},
@@ -204,8 +198,8 @@
 					console.log('time',time)
 					uni.showToast({
 						title:'一天只能补签一次',
-						icon:'error',
-						duration:1000
+						icon:'none',
+						duration: 1000
 					})
 					return
 				}
@@ -237,7 +231,7 @@
 				}else{
 					uni.showToast({
 						title:res.message,
-						icon:"error"
+						icon:"none"
 					})
 				}
 			},

@@ -261,7 +261,7 @@
 							this.$frozen()
 							if(this.form.backupMobilePhone == null || this.form.backupMobilePhone==''){
 								uni.showToast({
-									icon:'error',
+									icon:'none',
 									duration:1000,
 									title:'請先完善副手機号!'
 								})
@@ -282,7 +282,7 @@
 							if([undefined,null,''].includes(this.form.backupMobilePhone)){
 								uni.showToast({
 									title:"請先填寫副手機号！",
-									icon:"error"
+									icon:"none"
 								})
 								return ;
 							}
@@ -363,14 +363,14 @@
 									}else{
 										uni.showToast({
 											title:res.data.message||res.data.msg,
-											icon:"error"
+											icon:"none"
 										})
 									}
 								},
 								fail(err) {
 									uni.showToast({
 										title:err.data.message||err.data.msg,
-										icon:"error"
+										icon:"none"
 									})
 								}
 							})

@@ -372,7 +372,7 @@
 					}
 				} else {
 					uni.showToast({
-						icon: 'error',
+						icon: 'none',
 						title: res.message,
 						duration: 1000
 					})

@@ -44,6 +44,10 @@
   					<image class="levelImg" src="../../../static/level/eight.png" mode="widthFix"
   						v-if="item.wisp.level==8"></image>
   				</view>
+				<view class="rth">
+  					<text class="rthL">精灵编号</text>
+  					<text class="rthR">{{item.wispNumber}}</text>
+  				</view>
   				<view class="rth">
   					<text class="rthL">增長能力</text>
   					<text class="rthR">{{item.wisp.growthPercent}}%</text>
@@ -60,6 +64,10 @@
 					<text class="rthL">當前能力值</text>
 					<text class="rthR">{{item.transactionAmount}}</text>
 				</view>
+				<view class="rth rtht">
+					<text class="rthL">匹配时间</text>
+					<text class="rthR">{{formatTime(item.createTime)}}</text>
+				</view>
   				<view class="btnBox">
   				<button class="btn" v-if="item.status=='WAITING_PAYMENT'" @click="goToPay(item)">待付款(剩{{item.remainingMinutes}}分鍾)</button>
                 <!-- <button class="btn" v-if="item.status=='WAITING_PAYMENT' && item.currentPlayerIsBuyer==false">等待買家付款</button> -->
@@ -75,6 +83,7 @@
   </template>
   
   <script>
+      import moment from 'moment'
   	import {
   		globalConfig
   	} from '@/config.js'
@@ -93,6 +102,12 @@
   			}
   		},
   		methods: {
+            formatTime (str, format='YYYY-MM-DD HH:mm:ss') {
+                if (!str) {
+                    return ''
+                }
+                return moment(str).format(format)
+            },
 			goToPay(item){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
@@ -159,7 +174,8 @@
   
   		.item {
   			width: 95%;
-  			height: 480rpx;
+  			// height: 480rpx;
+            padding: 20rpx 0;
   			border-top: 2rpx solid rgb(50, 71, 137);
   			border-left: 2rpx solid rgb(50, 71, 137);
   			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);

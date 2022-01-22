@@ -34,7 +34,7 @@
 					})
 				}else{
 					uni.showToast({
-						icon:"error",
+						icon:"none",
 						title:res.message||res.msg
 					})
 				}

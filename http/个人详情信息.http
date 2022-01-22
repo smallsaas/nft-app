@@ -272,7 +272,7 @@ Content-Type: application/json
                     "children": [
                     {
                         "__config__": {
-                        "label": "微信账号:",
+                        "label": "户名:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -334,7 +334,7 @@ Content-Type: application/json
                     "children": [
                     {
                         "__config__": {
-                        "label": "支付宝账号:",
+                        "label": "户名:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",

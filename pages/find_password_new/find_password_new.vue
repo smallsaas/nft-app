@@ -71,7 +71,7 @@
 				if([undefined,null,''].includes(this.phone)){
 					uni.showToast({
 						title:"電話号碼不能爲空",
-						icon:"error"
+						icon:"none"
 					})
 					return ;
 				}
