@@ -77,7 +77,7 @@
 				}
 				let params = {
 					phone:this.phone,
-					operation: "changeAccount"
+					operation: "findPassword"
 				}
 				let res = await this.$api.message(params)
 				console.log(res)

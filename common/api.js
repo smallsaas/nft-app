@@ -316,9 +316,9 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
-	//获取系统公告  MEMBER_RULE SYSTEM_NOTICE
+	//获取系统公告
 	getSysNotice(params){
-	const url = `${globalConfig.endpoint}/api/pub/cms/term/config?type=MEMBER_RULE`
+	const url = `${globalConfig.endpoint}/api/pub/cms/term/config?type=SYSTEM_NOTICE`
 	return request('GET',url,params)
 	},
 }
