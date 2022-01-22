@@ -26,6 +26,7 @@
 </template>
 
 <script>
+    import moment from 'moment'
 	export default {
 		data() {
 			return {
@@ -170,6 +171,10 @@
 					let res=await that.$api.login(that.data)
 					console.log(res)
 					if(res.code == 200){
+                        
+                        // 记录此刻登录的时间
+                        // uni.setStorageSync('prevLoginTime', moment().format('YYYY-MM-DD HH:mm:ss'))
+                        
 						that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
 						let user = await that.$api.getInformationNew()
 						if(user.code == 200){

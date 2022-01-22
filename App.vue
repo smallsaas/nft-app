@@ -1,5 +1,16 @@
 <script>
 	export default {
+        // watch: {
+        //     $route: {
+        //         handler(val, oldVal) {
+        //             console.log('路由变化==', val, oldVal)
+        //           if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
+                    
+        //           }
+        //         },
+        //         deep: true
+        //      }
+        // },
 		onLaunch: async function() {
 			console.log("中國")
 			// 重啓時清除動态頁面緩存
