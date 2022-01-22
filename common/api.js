@@ -315,4 +315,10 @@ export const api = {
 	const url = `${globalConfig.endpoint}/api/u/player/Avatar/change`
 	return request('POST',url,params)
 	},
+	
+	//获取系统公告  MEMBER_RULE SYSTEM_NOTICE
+	getSysNotice(params){
+	const url = `${globalConfig.endpoint}/api/pub/cms/term/config?type=MEMBER_RULE`
+	return request('GET',url,params)
+	},
 }

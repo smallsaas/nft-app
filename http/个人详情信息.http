@@ -224,7 +224,7 @@ Content-Type: application/json
                                     "display":false
                                 },
                                 {
-                                    "label":"未审核",
+                                    "label":"审核不通过",
                                     "value":"UNREVIEWED",
                                     "color":"",
                                     "display":false

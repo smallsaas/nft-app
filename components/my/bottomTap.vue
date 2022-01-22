@@ -14,6 +14,27 @@
 		<view class="line lineT"></view>
 		<!-- 邀請組件 -->
 		<invite v-if="isShowInvite" :data="forChild" @close="getValueFromChild"></invite>
+		<!-- 系統公告 -->
+		<view class="service-mask" v-if="isShowSysNotice"></view>
+		<view v-if="isShowSysNotice" class="service-modal">
+			<view class="service-modal-container">
+				<view class="service-modal-title">
+					<text class="service-modal-title-text">系統公告</text>
+				</view>
+				<view class="service-modal-content">
+					<!-- <view class="span">交流群1:123135411</view>
+					<view class="span">交流群2:123545634</view>
+					<view class="span">福利群1:123135419</view>
+					<view class="span">福利群2:123545631</view>
+					<view class="span">福利領取方式:145135415</view> -->
+					<view v-html="sysNoticeContent" />
+				</view>
+				<view class="service-modal-buttonGroup">
+					<pretty-button class="service-modal-button" text="關閉" @click="getValueFromChild()"></pretty-button>
+				</view>
+			</view>
+		
+		</view>
 	</view>
 </template>
 
@@ -34,14 +55,15 @@
 					title:'申述服務'
 				},{
 					icon:'../../static/service/com.png',
-					title:'聯系我們'
+					title:'系統公告'
 				}],
 				isShowInvite:false,
-				forChild:{}
+				isShowSysNotice: false,
+				forChild:{},
+				sysNoticeContent:''
 			}
 		},
 		created() {
-			console.log(this.data)
 			this.forChild.invitationCode = this.data.invitationCode
 		},
 		methods:{
@@ -88,9 +110,23 @@
 						url:'/pages/toushu/toushu'
 					})
 				}
+				if(index==2){
+					this.isShowSysNotice = true;
+					this.getSysNotice()
+				}
 			},
 			getValueFromChild(){
 				this.isShowInvite = false
+				this.isShowSysNotice = false
+			},
+			
+			async getSysNotice(){
+				const respData = await this.$api.getSysNotice();
+				if(respData.code == 200){
+					this.sysNoticeContent = respData.content;
+				}else{
+					console.error("获取系统公告失败 = ", respData)
+				}
 			}
 		}
 	}
@@ -207,5 +243,55 @@
 			border-radius: 20rpx;
 			margin-top: 40rpx;
 		}
+	}
+	
+	.service-mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #000;
+		opacity: .8;
+		z-index: 600;
+	}
+	.service-modal{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 601;
+	}
+	.service-modal-container{
+		width: 80%;
+		padding: 40rpx;
+		background-color: #182641;
+	}
+	.service-modal-title{
+		font-size: 36rpx;
+		color: #fff;
+		text-align: center;
+	}
+	.service-modal-title-text{
+		border-bottom: 5rpx solid #fff;
+	}
+	.service-modal-content{
+		display: flex;
+		// justify-content: center;
+		margin-top: 50rpx;
+		// align-items: center;
+		// justify-content: column;
+		flex-direction: column;
+	}
+	.service-modal-button{
+		margin-top: 50rpx;
+		height: 80rpx;
+	}
+	.span{
+		margin-bottom: 20rpx;
 	}
 </style>
