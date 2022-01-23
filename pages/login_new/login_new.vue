@@ -173,7 +173,7 @@
 					if(res.code == 200){
                         
                         // 记录此刻登录的时间
-                        // uni.setStorageSync('prevLoginTime', moment().format('YYYY-MM-DD HH:mm:ss'))
+                        uni.setStorageSync('prevLoginTime', moment().format('YYYY-MM-DD HH:mm:ss'))
                         
 						that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)
 						let user = await that.$api.getInformationNew()

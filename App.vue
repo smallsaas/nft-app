@@ -1,17 +1,64 @@
 <script>
+	import moment from 'moment'
 	export default {
-        // watch: {
-        //     $route: {
-        //         handler(val, oldVal) {
-        //             console.log('路由变化==', val, oldVal)
-        //           if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
-                    
-        //           }
-        //         },
-        //         deep: true
-        //      }
-        // },
+        watch: {
+            $route: {
+                handler(val, oldVal) {
+					if (val.path.includes('/pages/login_new/login_new')) {
+						return
+					}
+					this.handleCheckLoginTime()
+                },
+                deep: true
+             }
+        },
+		methods: {
+			handleClearCache() {
+				this.$cache.remove('token')
+				const pageCacheList = this.$cache.get('pageCacheList')
+				const pageFormCacheList = this.$cache.get("pageFormCacheList")
+				if(this.$config.clearPageCache){
+					if(pageCacheList){
+						pageCacheList.map(item => {
+							this.$cache.remove(item)
+						})
+					}
+					if(pageFormCacheList){
+						pageFormCacheList.map(item => {
+							this.$cache.remove(item)
+						})
+					}
+					this.$cache.remove('pageCacheList')
+					this.$cache.remove('pageFormCacheList')
+				}
+				this.$cache.remove('userCache')
+			},
+			handleCheckLoginTime () {
+				if (this.$route.path.includes('/pages/login_new/login_new')) {
+					return
+				}
+				const prevLoginTime = uni.getStorageSync('prevLoginTime')
+				if (!prevLoginTime) {
+					return
+				}
+				try {
+					if (moment().unix() > moment(prevLoginTime).add(12, 'hour').unix()) {
+						this.handleClearCache()
+						uni.showToast({ title: '登录状态失效', icon: 'none' })
+						setTimeout(() => {
+							uni.reLaunch({
+								url:'/pages/login_new/login_new',
+								success: () => {
+									uni.removeStorageSync('prevLoginTime')
+								}
+							})
+						}, 1000)
+					}
+				} catch {}
+			}
+		},
 		onLaunch: async function() {
+			this.handleCheckLoginTime()
 			console.log("中國")
 			// 重啓時清除動态頁面緩存
 			let pageCacheList = this.$cache.get('pageCacheList')
@@ -46,7 +93,6 @@
 			
 			setInterval(async ()=>{
 				const changeUserStatus = await this.$api.getInformationNew()
-				console.log('00000000000000',changeUserStatus,'--------------')
 				if(changeUserStatus.code == 200){
 				this.$cache.set("status",changeUserStatus.data.status)
 				}
