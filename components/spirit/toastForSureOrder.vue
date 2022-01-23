@@ -1,10 +1,12 @@
 <template>
 	<view class="toast">
 		<view class="title">
-			<text class="info">溫馨提示</text>
+			<text class="info">填写支付密码</text>
 		</view>
 		<view class="content">
-			<text class="infoT">{{this.data}}</text>
+			<!-- <text class="infoT">{{this.data}}</text> -->
+			<input placeholder="请填写支付密码" v-model="paymentPassword" :password="isPassword" style="padding-right: 50rpx;" />
+			<image @click="changeLook" class="image" :src="isOpenLook[isPassword ? 0 : 1]" mode="widthFix"></image>
 		</view>
 		<view class="btnBox">
 			<button class="btn cancel" @click="cencel">取消</button>
@@ -23,15 +25,29 @@
 				type:Number
 			}
 		},
+		data() {
+			return {
+				paymentPassword: '',
+				isPassword: true,
+				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png']
+			}
+		},
 		methods:{
+			changeLook () {
+				this.isPassword = !this.isPassword
+			},
 			cencel(){
 				this.$emit('cancelToast',false)
 			},
 			async sure(){
+				if (!this.paymentPassword) {
+					uni.showToast({ title: '请填写支付密码', icon:'none' })
+					return
+				}
 				let data = {
 					wispOrderId:this.orderId
 				}
-				const res = await this.$api.successGetMoneyForSeller(data)
+				const res = await this.$api.successGetMoneyForSeller(data, {paymentPassword: this.paymentPassword })
 				if(res.code == 200){
 					uni.showToast({
 						title:'确認收款成功',
@@ -98,16 +114,21 @@
 		}
 		
 		.content{
-			width: 272px;
+			width: 270px;
 			height: auto;
-			padding: 10px;
+			padding: 16rpx 0 16rpx 16rpx;
 			position: absolute;
-			top: 61px;
-			left: 24px;
-			overflow: scroll;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			top: 70px;
+			left: 20px;
+			border: 1px solid;
+			border-radius: 3px;
+			.image {
+				width: 60rpx;
+				height: 60rpx;
+				position: absolute;
+				right: 16rpx;
+				top: 8rpx;
+			}
 			.infoT{
 				font-size: 14px;
 				font-family: PingFang SC-Regular, PingFang SC;
