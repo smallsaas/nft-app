@@ -170,6 +170,11 @@
 					} else {
 						this.sellerInfo.mobilePhone = res.data.seller.mobilePhone
 					}
+					if (res.data.seller.name == null) {
+						this.sellerInfo.name = ''
+					} else {
+						this.sellerInfo.name = res.data.seller.name
+					}
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
 					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
 					if (res.data.seller.wechatQrCodePhotoUrl == null) {

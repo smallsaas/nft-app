@@ -123,7 +123,9 @@
 			async getSysNotice(){
 				const respData = await this.$api.getSysNotice();
 				if(respData.code == 200){
-					this.sysNoticeContent = respData.content;
+					if(respData.data){
+						this.sysNoticeContent = respData.data.content;
+					}
 				}else{
 					console.error("获取系统公告失败 = ", respData)
 				}
@@ -286,10 +288,18 @@
 		// align-items: center;
 		// justify-content: column;
 		flex-direction: column;
+		color: #fff;
 	}
+	
+	.service-modal-buttonGroup{
+		display: flex;
+		justify-content: center;
+	}
+	
 	.service-modal-button{
 		margin-top: 50rpx;
-		height: 80rpx;
+		width: 200rpx;
+		height: 65rpx;
 	}
 	.span{
 		margin-bottom: 20rpx;
