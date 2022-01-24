@@ -162,7 +162,7 @@ Content-Type: application/json
                             "color":"#164882"
                         },
                         "readonly": true,
-                        "__vModel__": "grade"
+                        "__vModel__": "level"
                     },
                      {
                         "__config__": {
