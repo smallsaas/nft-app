@@ -26,6 +26,9 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
+				<text class="info">精灵编号：{{item.wispNumber}}</text>
+			</view>
+			<view class="infoBox infoBoxOne">
 				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
@@ -233,6 +236,7 @@
 			}
 
 			.infoBox,
+			.infoBoxOne,
 			.infoBoxTwo,
 			.infoBoxThree {
 				width: 350rpx !important;
@@ -249,14 +253,18 @@
 				}
 			}
 
+			.infoBoxOne {
+				top: 188rpx;
+			}
+
 			.infoBoxTwo {
 				position: absolute;
-				top: 202rpx !important;
+				top: 226rpx !important;
 			}
 
 			.infoBoxThree {
 				position: absolute;
-				top: 256rpx !important;
+				top: 264rpx !important;
 			}
 
 			.line {
@@ -266,7 +274,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 324rpx;
+				top: 344rpx;
 			}
 
 			.btnBox {

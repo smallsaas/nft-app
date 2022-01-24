@@ -72,7 +72,7 @@ Content-Type: application/json
               "ModalTitle":"修改支付密码",
               "components":[
                 {
-                    "label": "副手机号验证码",
+                    "label": "紧急联系号码验证码",
                     "type": "code",
                     "field": "verifyCode",
                     "placeholder": "输入验证码",
@@ -158,7 +158,7 @@ Content-Type: application/json
                     },
                     {
                         "__config__": {
-                        "label": "副手机号码:",
+                        "label": "紧急联系号码:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -172,7 +172,7 @@ Content-Type: application/json
                         "canChange":true,
                         "saveAPI":"",
                         "method":"GET",
-                        "modalTitle":"修改副手机号",
+                        "modalTitle":"修改紧急联系号码",
                         "components":[
                             {
                                 "label":"主手机号验证码",
@@ -182,8 +182,8 @@ Content-Type: application/json
                                 "requestUrl":"/api/sms/v1/captcha"
                             },
                             {
-                                "label":"副手机号码",
-                                "placeholder":"输入新的副手机号码",
+                                "label":"紧急联系号码",
+                                "placeholder":"输入新的紧急联系号码",
                                 "field":"newBackupMobilePhone"
                             }
                         ],

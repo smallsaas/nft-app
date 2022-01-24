@@ -16,6 +16,9 @@
 			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='UNREVIEWED'">审核不通过</text>
 			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='PENDING'">待审核</text>
 		</text>
+		<!-- <view class="vip_status">
+			會員狀態：{{ vipStatus }}
+		</view> -->
 		<text class="shezhi">設置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
@@ -32,6 +35,7 @@
 </template>
 
 <script>
+	import _ from 'lodash'
 	export default{
 		props: {
 			data: Object,
@@ -47,8 +51,20 @@
 				status:''
 			}
 		},
+		computed: {
+			vipStatus () {
+				const obj = {
+					'-1': '新注册会员',
+					'0': '激活',
+					'10': '有效会员',
+					'20': '普通会员'
+				}
+				console.log('哈哈哈====', this.data)
+				return _.get(this.data, 'grade') ? obj[this.data.grade] : ''
+			}
+		},
 		created() {
-			console.log(this.data,"DATA")
+			console.log(this.data, "DATA")
 			this.avatar = this.data.avatar
 			//data.status
 			setInterval(()=>{
@@ -146,6 +162,15 @@
 			top: 110rpx;
 			left: 202rpx;
 		}
+
+		.vip_status {
+			font-size: 14px;
+			color: #FFFFFF;
+			position: absolute;
+			top: 156rpx;
+			left: 202rpx;
+		}
+
 		.shezhi{
 			font-size: 14px;
 			font-family: PingFang SC-Regular, PingFang SC;
