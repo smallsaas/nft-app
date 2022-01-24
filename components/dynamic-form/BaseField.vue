@@ -53,6 +53,7 @@
 						:value="param.value"
 						@input="handleInput"
 						:class="isRead?'readonly':'baseInput'"
+						:style="param.inputStyle || ''"
 					/>
 					<text class="yzm" @click="handleGetCode('/api/sms/v1/captcha')">{{canPush?"獲取驗證碼":codeTime+'秒後重試'}}</text>
 				</view>
@@ -68,6 +69,7 @@
 					:value="param.value"
 					@input="handleInput"
 					:class="isRead?'readonly':'baseInput'"
+          :style="param.inputStyle || ''"
 				/>
 				<text v-if="param.tips" style="font-size:24rpx;color: #3D4348;">{{param.tips}}</text>
 				<!-- <text v-if="param.canChange" :class="canUse?'canUse':'unUse'" @click="handleChange()">{{saveText}}</text></template> -->
@@ -78,23 +80,23 @@
 						<view class="Modal-window">
 							<view class="Modal-title">{{param.modalTitle||"修改"}}</view>
 							<view class="Modal-ContentBox">
-								<view v-for="(item,i) in components">
+								<view v-for="(item,i) in components" :key="i">
 									<view class="Modal-ContentBox-Label" v-if="item.type!=='status'">
 										{{item.label}}
 									</view>
 									<view v-if="item.type === 'code'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
-										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
+										<input :placeholder="item.placeholder" :style="item.inputStyle || ''" :placeholder-style="item['placeholder-style'] || 'color:#fff;opacity:.3'" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
 										<text :class="canPush?'Modal-ContentBox-code':'Modal-ContentBox-code unPush'" @click="handleGetCode(item.requestUrl)">{{canPush?'獲取驗證碼':codeTime+'秒後重試'}}</text>
 									</view>
 									<view v-else-if="item.type === 'password'" :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
-										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
+										<input :placeholder="item.placeholder" :style="item.inputStyle || ''" :placeholder-style="item['placeholder-style'] || 'color:#fff;opacity:.3'" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
 									</view>
 									<view v-else-if="item.type === 'status'" class="Modal-Status">
 										<view class="Modal-Status-SubTitle">申請解凍需要{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}個精靈令，是否馬上申請？</view>
 										<view class="Modal-Status-Bbox"><image src="../../static/spirit/coin.png" class="Modal-Status-icon"></image>x{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}</view>
 									</view>
 									<view v-else :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
-										<input :placeholder="item.placeholder" placeholder-style="color:#fff;opacity:.3" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
+										<input :placeholder="item.placeholder" :style="item.inputStyle || ''" :placeholder-style="item['placeholder-style'] || 'color:#fff;opacity:.3'" class="Modal-ContentBox-Input" @focus="handleFocus(i)" @blur="handleBlur()" @input="(e)=>handleFieldChange(item.field,e)"/>
 									</view>
 								</view>
 							</view>
@@ -167,7 +169,6 @@
 			}
 		},
 		created() {
-			// console.log(this.param,"PARAM")
 			this.components = this.param.components
 			if(this.param.type === 'status'){
 				this.isTypeStatus = true

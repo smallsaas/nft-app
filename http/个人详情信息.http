@@ -179,12 +179,16 @@ Content-Type: application/json
                                 "type":"code",
                                 "field":"verifyCode",
                                 "placeholder":"输入验证码",
-                                "requestUrl":"/api/sms/v1/captcha"
+                                "requestUrl":"/api/sms/v1/captcha",
+                                "placeholder-style": "color: #fff;opcity: 1",
+                                "inputStyle": "color: #fff"
                             },
                             {
                                 "label":"紧急联系号码",
                                 "placeholder":"输入新的紧急联系号码",
-                                "field":"newBackupMobilePhone"
+                                "field":"newBackupMobilePhone",
+                                "placeholder-style": "color: #fff;opcity: 1",
+                                "inputStyle": "color: #fff"
                             }
                         ],
                         "doNotUseValue":"FROZEN",

@@ -192,6 +192,8 @@
 							    ..._.has(item, 'prefix-icon') ? { 'left-icon': item['prefix-icon'] } : {},
 							    ..._.has(item, 'suffix-icon') ? { 'right-icon': item['suffix-icon'] } : {},
 							    ..._.has(item, 'show-word-limit') ? { 'show-word-limit': item['show-word-limit'] } : {},
+                                ..._.has(item, 'inputStyle') ? { inputStyle: item.inputStyle } : {},
+                                ..._.has(item, 'placeholder-style') ? { 'placeholder-style': item['placeholder-style'] } : {}
 							 }
 						 }else{
 							 return {
@@ -210,13 +212,15 @@
 							    ..._.has(item, 'prefix-icon') ? { 'left-icon': item['prefix-icon'] } : {},
 							    ..._.has(item, 'suffix-icon') ? { 'right-icon': item['suffix-icon'] } : {},
 							    ..._.has(item, 'show-word-limit') ? { 'show-word-limit': item['show-word-limit'] } : {},
-									..._.has(item, 'canChange') ? { 'canChange': item['canChange'] } : {},
-									..._.has(item, 'saveAPI') ? { 'saveAPI': item['saveAPI'] } : {},
-									..._.has(item, 'doNotUseValue') ? { 'doNotUseValue': item['doNotUseValue'] } : {},
-									..._.has(item, 'tips') ? { 'tips': item['tips'] } : {},
-									..._.has(item,'method')?{'method':item['method']}:{},
-									..._.has(item,'modalTitle')?{'modalTitle':item['modalTitle']}:{},
-									..._.has(item,'components')?{'components':item['components']}:{}
+								..._.has(item, 'canChange') ? { 'canChange': item['canChange'] } : {},
+								..._.has(item, 'saveAPI') ? { 'saveAPI': item['saveAPI'] } : {},
+								..._.has(item, 'doNotUseValue') ? { 'doNotUseValue': item['doNotUseValue'] } : {},
+								..._.has(item, 'tips') ? { 'tips': item['tips'] } : {},
+								..._.has(item,'method')?{'method':item['method']}:{},
+								..._.has(item,'modalTitle')?{'modalTitle':item['modalTitle']}:{},
+								..._.has(item,'components')?{'components':item['components']}:{},
+                                ..._.has(item, 'inputStyle') ? { inputStyle: item.inputStyle } : {},
+                                ..._.has(item, 'placeholder-style') ? { 'placeholder-style': item['placeholder-style'] } : {}
 							 }
 						 }
 
