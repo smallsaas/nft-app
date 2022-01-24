@@ -12,8 +12,8 @@
 				</view>
 				<view class="info">
 					<text class="infoN">{{item.name}}</text>
-					<text class="infoP">手機号: {{item.mobilePhone==null?'暫無':item.backupMobilePhone}}</text>
-					<text class="infoPT">備用手機号: {{item.backupMobilePhone==null?'暫無':item.backupMobilePhone}}</text>
+					<text class="infoP">手機号: {{item.mobilePhone || '暫無'}}</text>
+					<text class="infoPT">備用手機号: {{item.backupMobilePhone || '暫無'}}</text>
 				</view>
 			</view>
 		</view>

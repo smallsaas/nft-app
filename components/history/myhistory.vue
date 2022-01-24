@@ -22,6 +22,15 @@
 				</view>
 			</view>
 		</view>
+
+		<view class="static_block_content">
+			<view class="flex_item">
+				<view class="item">GuGu精靈總數: {{wispData.wispCount || 0}}</view>
+				<view class="item">GuGu能力總值: {{wispData.wispValueAmount || 0}}</view>
+				<view class="item">精灵总收益: {{forChild.marketPoints || 0}}</view>
+			</view>
+		</view>
+
 		<view class="spirit_mask" v-if="isShowTransfer||isShowTransferCoin||isShowTransferCoinTwo"></view>
 		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild" @forParentToChangeCoin="getValueForUpdateCoin"></number>
 		<transfer v-if="isShowTransfer" @close="getClose" @tellFather="getChildren"></transfer>
@@ -33,6 +42,7 @@
 </template>
 
 <script>
+	import _ from 'lodash'
 	import number from './number.vue'
 	import transfer from './transfer.vue'
 	import transfercoin from './transfercoin.vue'
@@ -60,7 +70,8 @@
 				
 				
 				
-				coin:0
+				coin:0,
+				wispData: {}
 			}
 		},
 		  async created() {
@@ -107,8 +118,17 @@
 			// 	 return
 			//  }
 			// this.coin = this.item.coinsAmount
+			this.fetchUserWisp()
 		},
 		methods:{
+
+			async fetchUserWisp () {
+				const res = await this.$api.getUserWisp()
+				if (res.code === 200) {
+					this.wispData = _.get(res, 'data', {})
+				}
+			},
+
 			getValueForUpdateCoin(value){
 				this.coin = value
 			},
@@ -303,6 +323,31 @@
 							font-size: 35rpx;
 						}
 					}
+				}
+			}
+		}
+
+		.static_block_content {
+			margin: 40rpx 30rpx 0 30rpx;
+			.flex_item {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				>.item {
+					padding: 30rpx 20rpx;
+					background: #11181E;
+					border-radius: 10rpx;
+					margin-right: 20rpx;
+					font-size: 30rpx;
+					// flex: 1;
+					min-width: calc(50% - 30px);
+					margin-bottom: 15px;
+				}
+				>.item:nth-child(2n) {
+					margin-right: 0;
+				}
+				>.item:last-child {
+					margin-bottom: 0;
 				}
 			}
 		}

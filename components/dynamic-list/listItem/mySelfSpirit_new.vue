@@ -26,6 +26,9 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
+				<text class="info">精灵编号：{{item.wispNumber}}</text>
+			</view>
+			<view class="infoBox infoBoxOne">
 				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo">
@@ -36,6 +39,10 @@
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder.status == 'RECEIVED'">已确认收款</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == ' COMPLAINING'}" v-if="item.wispOrder.status == ' COMPLAINING'">申诉中</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == ' SELLING'}" v-if="item.wispOrder.status == ' SELLING'">出售中</text>
+
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
@@ -233,6 +240,7 @@
 			}
 
 			.infoBox,
+			.infoBoxOne,
 			.infoBoxTwo,
 			.infoBoxThree {
 				width: 350rpx !important;
@@ -249,14 +257,18 @@
 				}
 			}
 
+			.infoBoxOne {
+				top: 188rpx;
+			}
+
 			.infoBoxTwo {
 				position: absolute;
-				top: 202rpx !important;
+				top: 226rpx !important;
 			}
 
 			.infoBoxThree {
 				position: absolute;
-				top: 256rpx !important;
+				top: 264rpx !important;
 			}
 
 			.line {
@@ -266,7 +278,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 324rpx;
+				top: 344rpx;
 			}
 
 			.btnBox {

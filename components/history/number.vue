@@ -26,12 +26,12 @@
 			<text class="o" @click="typeForGUGU(3)">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket('transferCoinCredit')">轉化精靈</text>
 		</view>
-		<view class="item">
+		<!-- <view class="item">
 			<text class="title">市場收益:</text>
 			<text class="num">{{mPoint}}</text>
 			<text class="o">領養記錄</text>
 			<text class="ot">出售記錄</text>
-		</view>
+		</view> -->
 		
 		<view class="spirit_mask" v-if="isShowToast || isShowIncomeTypeForTransfer"></view>
 		<toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast>

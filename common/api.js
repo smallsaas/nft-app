@@ -321,4 +321,10 @@ export const api = {
 	const url = `${globalConfig.endpoint}/api/u/cms/term/config?type=SYSTEM_NOTICE`
 	return request('GET',url,params)
 	},
+
+	// 获取个人精灵数量
+	getUserWisp (params) {
+		const url = `${globalConfig.endpoint}/api/u/player/statistics/wisp/growing`
+		return request('GET', url, params)
+	}
 }

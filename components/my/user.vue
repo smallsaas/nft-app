@@ -9,10 +9,13 @@
 		<view class="names">
 			<text class="name">{{data.name}}</text>
 		</view>
-		<text class="menber">
+		<view class="vip_status">
+			會員狀態：{{ vipStatus }}
+		</view>
+		<!-- <text class="menber">
 			<text>會員等級：</text>
-			<text class="menber-value">{{grade}}</text>
-		</text>
+			<text class="menber-value">{{ vipStatus }}</text>
+		</text> -->
 		<text class="status">
 			<text>賬号狀态：</text>
 			<text class="wid"  v-if="status=='NORMAL'">正常</text>
@@ -20,6 +23,7 @@
 			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='UNREVIEWED'">审核不通过</text>
 			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='PENDING'">待审核</text>
 		</text>
+		
 		<text class="shezhi">設置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
@@ -36,6 +40,7 @@
 </template>
 
 <script>
+	import _ from 'lodash'
 	export default{
 		props: {
 			data: Object,
@@ -52,8 +57,24 @@
 				grade: 'Lv 0'
 			}
 		},
+		computed: {
+			vipStatus () {
+				const obj = {
+					'-1': '新注册会员',
+					'0': '激活',
+					'10': '有效会员',
+					'20': '普通会员',
+					'1' : 'V1',
+					'2' : 'V2',
+					'3' : 'V3',
+					'4' : 'V4',
+				}
+				console.log('哈哈哈====', this.data)
+				return _.get(this.data, 'grade') ? obj[this.data.grade] : ''
+			}
+		},
 		created() {
-			console.log(this.data,"DATA111")
+			console.log(this.data, "DATA")
 			this.avatar = this.data.avatar
 			//data.status
 			setInterval(()=>{
@@ -86,39 +107,6 @@
 				uni.navigateTo({
 					url:'/pages/infomation/infomation?id=' + this.data.userId
 				})
-			},
-			handleGradleValue(value){
-				var gValue;
-				switch(this.val){
-					case "-1":
-						gValue = '新註冊會員';
-						break
-					case "0":
-						gValue = '激活';
-						break
-					case "10":
-						gValue = '有效會員';
-						break
-					case "20":
-						gValue = '有效會員';
-						break
-					case "1":
-						gValue = 'Lv1';
-						break
-					case "2":
-						gValue = 'Lv2';
-						break
-					case "3":
-						gValue = 'Lv3';
-						break
-					case "4":
-						gValue = 'Lv4';
-						break
-					default:
-						gValue = 'Lv0'
-						break
-				}
-				this.grade = gValue;
 			}
 		}
 	}
@@ -184,7 +172,8 @@
 			top: 150rpx;
 			left: 202rpx;
 		}
-		.menber{
+
+		.vip_status {
 			width: 228px;
 			height: 20px;
 			font-size: 14px;
@@ -195,6 +184,7 @@
 			top: 110rpx;
 			left: 202rpx;
 		}
+
 		.shezhi{
 			font-size: 14px;
 			font-family: PingFang SC-Regular, PingFang SC;

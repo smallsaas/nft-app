@@ -33,7 +33,8 @@ Content-Type: application/json
                 "status":"status",
                 "invitationCode":"invitationCode",
                 "avatar":"avatar",
-                "grade": "grade"
+                "grade": "grade",
+                "bankName2": "bankName2"
             }
         }
     ],
