@@ -25,11 +25,6 @@ Content-Type: application/json
     },
     "modules": [
       {
-        "type":"dataShow",
-        "name":"",
-        "key":"e59992z8-bb88-a788-9922-6541654815492"
-      },
-      {
         "type": "autolist",
         "name":"",
         "key":"e59992z8-bb88-a788-9922-1623488775885",
@@ -40,13 +35,6 @@ Content-Type: application/json
       }
     ],
     "moduleData": {
-         "e59992z8-bb88-a788-9922-6541654815492":{
-            "loadApi":"/api/u/player/getUserWisp",
-            "fieldGroup":{
-              "wispNumber":"GuGu精灵总数",
-              "wispPrice":"GuGu能力总值"
-            }
-          },
          "e59992z8-bb88-a788-9922-1623488775885": {
             "loadApi":"/api/u/player/queryPlayerWispInstance?stage=GROWING",
             "itemNavigation": "",
