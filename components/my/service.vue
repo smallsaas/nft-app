@@ -63,6 +63,7 @@
 			this.forChild.status = this.item.status
 			this.forChild.avatar = this.item.avatar
 			this.forChild.grade = this.item.grade
+			this.forChild.level = this.item.level
 			this.forBottomTapChild.invitationCode = this.item.invitationCode
 			console.log(this.forChild)
 			this.forTabChild.userId = this.item.userId

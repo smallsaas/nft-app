@@ -71,12 +71,12 @@ export const api = {
 	},
 	//查看推薦收益明細
 	checkT(params){
-		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/levelOneShare`
+		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/recommendCoinCredit`
 		return request('GET',url,params)
 	},
 	//查看幫會收益明細
 	checkB(params){
-		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/teamBenefits`
+		const url = `${globalConfig.endpoint}/api/u/player/profitDetailed/teamCoinCredit`
 		return request('GET',url,params)
 	},
 	//獲取用戶簽到記錄
