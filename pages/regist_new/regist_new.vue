@@ -38,6 +38,13 @@
 				</view>
 			</view>
 			<view class="labelTetx">
+				<text class="text">緊急聯繫手機号碼</text>
+			</view>
+			<view class="inputBox">
+				<input type="number" placeholder="請輸入緊急聯繫手機号碼" class="inputBoxC" v-model="data.backupMobilePhone" @focus="focus(8)"
+					@blur="blur(8)" :class="{focus:isAddArticleI}" />
+			</view>
+			<view class="labelTetx">
 				<text class="text">登錄密碼</text>
 			</view>
 			<view class="inputBox">
@@ -196,6 +203,7 @@
 				isAddArticleD: false,
 				isAddArticleE: false,
 				isAddArticleF: false,
+				isAddArticleI: false,
 
 				//注冊協議
 				content: ''
@@ -259,6 +267,9 @@
 				} else if (id == 6) {
 					this.isAddArticleF = true
 					return
+				} else if (id == 8) {
+					this.isAddArticleI = true
+					return
 				}else{
 					this.whatFocus = id
 				}
@@ -282,6 +293,9 @@
 					return
 				} else if (id == 6) {
 					this.isAddArticleF = false
+					return
+				} else if (id == 8) {
+					this.isAddArticleI = false
 					return
 				}else{
 					this.whatFocus = -1

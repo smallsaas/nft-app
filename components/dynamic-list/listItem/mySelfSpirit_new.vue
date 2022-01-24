@@ -47,6 +47,9 @@
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}分鍾</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'SELLING'}" v-if="item.wispOrder.status == 'SELLING'">出售中...</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder.status == 'RECEIVED'">已确认收款</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'COMPLAINING'}" v-if="item.wispOrder.status == 'COMPLAINING'">申诉中...</text>
 			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.wispOrder.id,item.wispOrder.buyerPhone,item.wispOrder.pictureUrl)">玩家已處理請确認</button>
 			</view>
 		</view>
@@ -75,6 +78,7 @@
 		mounted() {
 			const split = this.item.stageChangeTime.split('T')
 			console.log('000000000000000',split)
+			console.log('111111111111111',this.item)
 			const l = split[0] +  ' ' + split[1]
 			this.time = l
 			this.status = this.$cache.get('status')
