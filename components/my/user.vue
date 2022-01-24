@@ -16,9 +16,9 @@
 			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='UNREVIEWED'">审核不通过</text>
 			<text class="wid" :class="{forzen: status!=='NORMAL'}" v-if="status=='PENDING'">待审核</text>
 		</text>
-		<!-- <view class="vip_status">
+		<view class="vip_status">
 			會員狀態：{{ vipStatus }}
-		</view> -->
+		</view>
 		<text class="shezhi">設置</text>
 		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
 	<!-- 	<view class="left">
