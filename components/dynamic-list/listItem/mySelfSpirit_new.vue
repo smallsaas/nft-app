@@ -36,6 +36,10 @@
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder.status == 'RECEIVED'">已确认收款</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == ' COMPLAINING'}" v-if="item.wispOrder.status == ' COMPLAINING'">申诉中</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == ' SELLING'}" v-if="item.wispOrder.status == ' SELLING'">出售中</text>
+
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
