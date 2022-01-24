@@ -10,7 +10,7 @@
 			<text class="name">{{data.name}}</text>
 		</view>
 		<view class="vip_status">
-			會員狀態：{{ vipStatus }}
+			會員級別：{{ vipLevel }}
 		</view>
 		<!-- <text class="menber">
 			<text>會員等級：</text>
@@ -58,7 +58,7 @@
 			}
 		},
 		computed: {
-			vipStatus () {
+			vipLevel () {
 				const obj = {
 					'-1': '新注册会员',
 					'0': '激活',
@@ -69,7 +69,7 @@
 					'3' : 'V3',
 					'4' : 'V4',
 				}
-				console.log('哈哈哈====', this.data)
+				// console.log('哈哈哈====', this.data)
 				return _.get(this.data, 'grade') ? obj[this.data.grade] : ''
 			}
 		},
