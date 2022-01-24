@@ -22,11 +22,6 @@
 					<text class="service-modal-title-text">系統公告</text>
 				</view>
 				<view class="service-modal-content">
-					<!-- <view class="span">交流群1:123135411</view>
-					<view class="span">交流群2:123545634</view>
-					<view class="span">福利群1:123135419</view>
-					<view class="span">福利群2:123545631</view>
-					<view class="span">福利領取方式:145135415</view> -->
 					<view v-html="sysNoticeContent" />
 				</view>
 				<view class="service-modal-buttonGroup">

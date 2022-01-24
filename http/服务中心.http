@@ -32,7 +32,8 @@ Content-Type: application/json
                 "name":"name",
                 "status":"status",
                 "invitationCode":"invitationCode",
-                "avatar":"avatar"
+                "avatar":"avatar",
+                "grade": "grade"
             }
         }
     ],

@@ -1,6 +1,6 @@
 {
     "name" : "MetaGuGu",
-    "appid" : "__UNI__D05D711",
+    "appid" : "__UNI__69282AE",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -126,6 +126,9 @@
             }
         },
         "template" : "index.html",
-        "title" : "MetaGuGu"
+        "title" : "MetaGuGu",
+        "router" : {
+            "mode" : "history"
+        }
     }
 }
