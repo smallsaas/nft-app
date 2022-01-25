@@ -61,7 +61,6 @@
 			async getTabs(tabId){
 				let res = await this.$api.tabbar(tabId)
 				this.tabs = res.data.tabs
-                console.log('当前哈哈哈', this.tabs)
 			},
 			// 改變時
 			handleChange(e){
