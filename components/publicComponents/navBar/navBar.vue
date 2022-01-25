@@ -15,6 +15,7 @@
 					<view class="navBar-party-title">
 						{{nav.title}}
 					</view>
+                    <view class="red_dot" v-if="nav.showDot"></view>
 				</view>
 			</view>
 		</view>
@@ -101,6 +102,16 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
+        position: relative;
+        .red_dot {
+            width: 16rpx;
+            height: 16rpx;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 16rpx;
+            right: 8rpx;
+        }
 	}
 	.navBar-party-image{
 		width: 50rpx;

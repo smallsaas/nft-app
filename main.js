@@ -10,6 +10,8 @@ import {api} from './common/api.js'
 import {timeCache,cache,reload,upload,frozen} from '@/utils/tools.js'
 import mask from './components/mask/index.vue'
 import prettyButton from './components/prettyButton.vue'
+import store from './store/common.js'
+
 // import './other.less'
 let transformTools= require('./utils/CNTWtransformTools.js')
 Vue.config.productionTip = false
@@ -180,6 +182,7 @@ const type = new Vue()
 Vue.prototype.$type = type
 
 const app = new Vue({
-    ...App
+    ...App,
+    store
 })
 app.$mount()

@@ -326,5 +326,11 @@ export const api = {
 	getUserWisp (params) {
 		const url = `${globalConfig.endpoint}/api/u/player/statistics/wisp/growing`
 		return request('GET', url, params)
-	}
+	},
+    
+    // 获取我的精灵未处理的记录
+    getMySpiritUnpaidCount (params) {
+        const url = `${globalConfig.endpoint}/api/u/orderwisp/count/unpaid`
+        return request('GET', url, params)
+    }
 }
