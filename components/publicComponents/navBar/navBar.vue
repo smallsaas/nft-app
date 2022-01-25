@@ -42,6 +42,15 @@
 				contentStyle:{}
 			}
 		},
+        watch:{
+            defaultClick: {
+              handler(val, oldVal) {
+                if (val !== oldVal) {
+                  this.clicked = this.defaultClick
+                }
+              }
+            }
+        },
 		created() {
 			this.clicked = this.defaultClick
 			console.log("加載",this.defaultClick)

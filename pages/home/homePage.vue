@@ -56,7 +56,8 @@
 				apis:[],
 				endpoint:this.$config.formHost,
                 timer: null, // 定时器，用户定时获取我的精灵未处理的数据
-				isShowRecordTips: false
+				isShowRecordTips: false,
+                isFirstShowRecordTips: true
 			}
 		},
         computed:{
@@ -104,14 +105,13 @@
 		methods: {
             async fetchMySpiritUnpaidCount () {
                 const res = await this.$api.getMySpiritUnpaidCount()
-				console.log("res.data ==== ", res.data)
                 if (res.code === 200) {
                     commonStore.commit('updateState', {
                         redDotData: _.get(res, 'data', {})
                     })
-					if(_.get(res, 'data.hasUnpaidOrder')){
-						this.isShowRecordTips = true
-					}
+                    if (this.isFirstShowRecordTips && _.get(res, 'data.hasUnpaidOrder')) {
+                        this.isShowRecordTips = true
+                    }
                 }
             },
 			handleChange(e){
@@ -126,8 +126,10 @@
 			},
 			getValueFromChild(){
 				this.isShowRecordTips = false
+                this.isFirstShowRecordTips = false
 			},
 			goToPage(){
+                this.isFirstShowRecordTips = false
 				this.isShowRecordTips = false
 				this.clicked = 1
 				this.defaultClick = 1
