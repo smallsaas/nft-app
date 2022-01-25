@@ -15,7 +15,7 @@
 				<view class="topY" v-if="fistType"></view>
 			</view>
 			<view class="bottom">
-				<!-- <text class="z">戶名：{{sellerInfo.wechatAccount}}</text> -->
+				<text class="x">戶名：{{sellerInfo.wechatAccount}}</text>
 				<text class="z">微信賬号：{{sellerInfo.wechatAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
 				<image :src="sellerInfo.wechatQrCodePhotoUrl" mode="widthFix" class="img"></image>
@@ -31,6 +31,7 @@
 				<view class="topY" v-if="thirdType"></view>
 			</view>
 			<view class="bottom">
+				<text class="x">戶名：{{sellerInfo.wechatAccount}}</text>
 				<text class="z">支付寶賬号：{{sellerInfo.alipayAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
 				<image :src="sellerInfo.alipayQrCodePhotoUrl" mode="widthFix" class="img"></image>
@@ -46,10 +47,28 @@
 				<view class="topY" v-if="secondType"></view>
 			</view>
 			<view class="bottom">
-				<text class="z">銀行卡号：{{sellerInfo.bankAccountNumber}}</text>
+				<text class="z">開戶行：{{sellerInfo.bankName}}</text>
 				<text class="z zz">戶名：{{sellerInfo.bankAccountName}}</text>
+				<text class="z zzz">銀行卡号：{{sellerInfo.bankAccountNumber}}</text>
 			</view>
 		</view>
+		
+		<view class="boxD" style="margin-top: 25px;">
+			<view class="top">
+				<view class="topL">
+					<text class="L">銀行卡2支付</text>
+				</view>
+				<view class="topR" @click="selectTypeFifth" v-if="!fifthType"></view>
+				<view class="topY" v-if="fifthType"></view>
+			</view>
+			
+			<view class="bottom">
+				<text class="z">開戶行2：{{sellerInfo.bankName2}}</text>
+				<text class="z zz">戶名2：{{sellerInfo.bankAccountName2}}</text>
+				<text class="z zzz">銀行卡号2：{{sellerInfo.bankAccountNumber2}}</text>
+			</view>
+		</view>
+		
 		<view class="boxF">
 			<view class="top">
 				<text class="z">上傳付款憑證</text>
@@ -94,6 +113,7 @@
 				fistType: false,
 				secondType: false,
 				thirdType: false,
+				fifthType: false,
 
 				list: [],
 				showBigImg: false,
@@ -195,6 +215,11 @@
 					console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付寶哈哈哈哈哈哈')
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
+					this.sellerInfo.bankName = res.data.seller.bankName
+					
+					this.sellerInfo.bankAccountNumber2 = res.data.seller.bankAccountNumber2
+					this.sellerInfo.bankAccountName2 = res.data.seller.bankAccountName2
+					this.sellerInfo.bankName2 = res.data.seller.bankName2
 					uni.showToast({
 						title: '獲取信息成功',
 						icon: 'success',
@@ -221,8 +246,8 @@
 					// ALIPAY_PAYMENT,
 					// WECHAT_PAYMENT
 				}
-				console.log(this.fistType, this.secondType, this.thirdType)
-				if (this.fistType == false && this.secondType == false && this.thirdType == false) {
+				console.log(this.fistType, this.secondType, this.thirdType, this.fifthType)
+				if (this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == false) {
 					uni.showToast({
 						title: '請勾選付款方式',
 						icon: 'error',
@@ -230,13 +255,16 @@
 					})
 					return
 				}
-				if (this.fistType == true && this.secondType == false && this.thirdType == false) {
+				if (this.fistType == true && this.secondType == false && this.thirdType == false && this.fifthType == false) {
 					data.paymentMethod = 'WECHAT_PAYMENT'
 				}
-				if (this.fistType == false && this.secondType == true && this.thirdType == false) {
+				if (this.fistType == false && this.secondType == false && this.thirdType == true && this.fifthType == false) {
 					data.paymentMethod = 'ALIPAY_PAYMENT'
 				}
-				if (this.fistType == false && this.secondType == false && this.thirdType == true) {
+				if (this.fistType == false && this.secondType == true && this.thirdType == false && this.fifthType == false) {
+					data.paymentMethod = 'BANK_CARD_PAYMENT'
+				}
+				if (this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == true) {
 					data.paymentMethod = 'BANK_CARD_PAYMENT'
 				}
 				if (this.list.length == 0) {
@@ -247,6 +275,7 @@
 					})
 					return
 				}
+				// console.log("支付數據===", data)
 				const res = await this.$api.userPay(data)
 				console.log(res)
 				if (res.code == 200) {
@@ -272,16 +301,25 @@
 				this.fistType = !this.fistType
 				this.secondType = false
 				this.thirdType = false
+				this.fifthType = false
 			},
 			selectTypeTwp() {
 				this.secondType = !this.secondType
 				this.fistType = false
 				this.thirdType = false
+				this.fifthType = false
 			},
 			selectTypeThree() {
 				this.thirdType = !this.thirdType
 				this.fistType = false
 				this.secondType = false
+				this.fifthType = false
+			},
+			selectTypeFifth(){
+				this.fifthType = !this.fifthType
+				this.fistType = false
+				this.secondType = false
+				this.thirdType = false
 			},
 			check(url) {
 				this.bigImgSrc = url
@@ -432,7 +470,7 @@
 
 		.boxD {
 			width: 343px;
-			height: 139px;
+			height: 165px;
 			background: #11181E;
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -448,7 +486,7 @@
 				justify-content: space-between;
 
 				.topL {
-					width: 80px;
+					width: 95px;
 					height: 24px;
 					font-size: 16px;
 					font-family: PingFang SC-Medium, PingFang SC;
@@ -492,12 +530,16 @@
 				.zz {
 					top: 40px;
 				}
+				
+				.zzz{
+					top: 70px;
+				}
 			}
 		}
 
 		.boxDD {
 			width: 343px;
-			height: 239px;
+			height: 259px;
 			background: #11181E;
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -543,10 +585,30 @@
 				width: 100%;
 				height: 182px;
 				position: relative;
-
+				
+				.x {
+					position: absolute;
+					top: 8px;
+					left: 16px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #B9BBBD;
+				}
+				
 				.z {
 					position: absolute;
 					top: 8px;
+					left: 16px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #B9BBBD;
+				}
+				
+				.z {
+					position: absolute;
+					top: 28px;
 					left: 16px;
 					font-size: 14px;
 					font-family: PingFang SC-Regular, PingFang SC;
@@ -558,13 +620,13 @@
 					width: 100px;
 					height: 100px !important;
 					position: absolute;
-					top: 40px;
+					top: 60px;
 					left: 122px;
 				}
 
 				.zz {
 					position: absolute;
-					top: 142px;
+					top: 162px;
 					left: 142px;
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;
@@ -576,7 +638,7 @@
 
 		.boxC {
 			width: 343px;
-			height: 239px;
+			height: 259px;
 			background: #11181E;
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -623,9 +685,19 @@
 				height: 182px;
 				position: relative;
 
-				.z {
+				.x {
 					position: absolute;
 					top: 8px;
+					left: 16px;
+					font-size: 14px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #B9BBBD;
+				}
+				
+				.z {
+					position: absolute;
+					top: 28px;
 					left: 16px;
 					font-size: 14px;
 					font-family: PingFang SC-Regular, PingFang SC;
@@ -637,13 +709,13 @@
 					width: 100px;
 					height: 100px !important;
 					position: absolute;
-					top: 40px;
+					top: 60px;
 					left: 122px;
 				}
 
 				.zz {
 					position: absolute;
-					top: 142px;
+					top: 162px;
 					left: 142px;
 					font-size: 12px;
 					font-family: PingFang SC-Regular, PingFang SC;
