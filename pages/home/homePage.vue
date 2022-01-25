@@ -10,7 +10,7 @@
 					<tab-bar-page :tabId="isTab(apis[1])" :currentClick="clicked" v-if="clicked == 1"></tab-bar-page>
 					<!-- <dynamic-page :API="apis[1]" v-if="clicked == 1"></dynamic-page> -->
 				</view>
-				<view class="page-content">
+				<view class="page-content" v-if="isUpdatePageChange">
 					<dynamic-page :API="apis[2]" :currentClick="clicked" v-if="clicked == 2"></dynamic-page>
 				</view>
 			</template>
@@ -57,7 +57,8 @@
 				endpoint:this.$config.formHost,
                 timer: null, // 定时器，用户定时获取我的精灵未处理的数据
 				isShowRecordTips: false,
-                isFirstShowRecordTips: true
+                isFirstShowRecordTips: true,
+                isUpdatePageChange: false // 是否需要刷新页面
 			}
 		},
         computed:{
@@ -91,6 +92,12 @@
 				})
 			}
 		},
+        onShow() {
+           this.fetchPersonalInfo()
+        },
+        onHide() {
+            this.isUpdatePageChange = false
+        },
         onLoad() {
             this.fetchMySpiritUnpaidCount()
             this.timer = setInterval(() => {
@@ -114,9 +121,21 @@
                     }
                 }
             },
+            async fetchPersonalInfo () {
+                const res = await this.$api.getInformationNew()
+                if(res.code == 200){
+                    uni.setStorageSync('status', _.get(res, 'data.status'))
+                }
+                this.isUpdatePageChange = true
+            },
+            
 			handleChange(e){
-				console.log(e)
 				this.clicked = e
+                if (e === 2) {
+                    this.fetchPersonalInfo()
+                } else {
+                    this.isUpdatePageChange = false
+                }
 				console.log(this.apis)
 				this.$forceUpdate()
 			},
