@@ -603,7 +603,8 @@
 													// })
 													uni.showModal({
 														title:'修改賬戶',
-														content:'當前時間不可修改,請在每天0點後到第一場匹配開始前修改',
+														// content:'當前時間不可修改,請在每天0點後到第一場匹配開始前修改',
+														content: _.get(res, 'data.message'),
 														success: (res) => {
 															if(res.confirm){
 																setTimeout(()=>{
