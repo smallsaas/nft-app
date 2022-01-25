@@ -8,6 +8,11 @@
 			</view>
 		</view>
 		<view class="pageTabbar_Content" :style="[contentStyle]">
+            <!-- <view v-if="childTabList.length > 0">
+                <view class="pageTabbar_child">
+                    
+                </view>
+            </view> -->
 			<slot name="content">
 				
 			</slot>
@@ -16,6 +21,7 @@
 </template>
 
 <script>
+    import _ from 'lodash'
 	export default {
 		name:"pageTabbar",
 		props:{
@@ -35,6 +41,11 @@
 				contentStyle:{}
 			}
 		},
+        computed:{
+            childTabList () {
+                return _.get(this.tabs, `[${this.clicked}].children`, [])
+            }
+        },
         watch: {
           defaultClicked: {
             handler(val, oldVal) {
@@ -118,5 +129,8 @@
 		overflow: auto;
 		/* border: 1px solid red; */
 		margin-top: -25rpx;
+        .pageTabbar_child {
+            margin-top: 20rpx;
+        }
 	}
 </style>
