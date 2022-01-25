@@ -15,6 +15,7 @@
 				<view class="topY" v-if="fistType"></view>
 			</view>
 			<view class="bottom">
+				<!-- <text class="z">戶名：{{sellerInfo.wechatAccount}}</text> -->
 				<text class="z">微信賬号：{{sellerInfo.wechatAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
 				<image :src="sellerInfo.wechatQrCodePhotoUrl" mode="widthFix" class="img"></image>

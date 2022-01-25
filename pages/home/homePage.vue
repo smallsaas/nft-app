@@ -15,6 +15,25 @@
 				</view>
 			</template>
 		</nav-bar>
+		
+		<!-- 未處理記錄提示 -->
+		<view class="record-tips" v-if="isShowRecordTips"></view>
+		<view v-if="isShowRecordTips" class="record-modal">
+			<view class="record-modal-container">
+				<view class="record-modal-title">
+					<!-- <text class="record-modal-title-text">系統公告</text> -->
+				</view>
+				<view class="record-modal-content">
+					<!-- <view v-html="sysNoticeContent" /> -->
+					<image class="level" src="../../static/ppcg.png" mode="widthFix"></image>
+				</view>
+				<view class="record-modal-buttonGroup">
+					<pretty-button class="record-modal-button" text="關閉" @click="getValueFromChild()"></pretty-button>
+					<pretty-button class="record-modal-button-ok" text="確認" @click="goToPage()"></pretty-button>
+				</view>
+			</view>
+		
+		</view>
 	</view>
 </template>
 
@@ -36,7 +55,8 @@
 				defaultClick:null,
 				apis:[],
 				endpoint:this.$config.formHost,
-                timer: null // 定时器，用户定时获取我的精灵未处理的数据
+                timer: null, // 定时器，用户定时获取我的精灵未处理的数据
+				isShowRecordTips: false
 			}
 		},
         computed:{
@@ -84,10 +104,14 @@
 		methods: {
             async fetchMySpiritUnpaidCount () {
                 const res = await this.$api.getMySpiritUnpaidCount()
+				console.log("res.data ==== ", res.data)
                 if (res.code === 200) {
                     commonStore.commit('updateState', {
                         redDotData: _.get(res, 'data', {})
                     })
+					if(_.get(res, 'data.hasUnpaidOrder')){
+						this.isShowRecordTips = true
+					}
                 }
             },
 			handleChange(e){
@@ -99,10 +123,86 @@
 			isTab(api){
 				console.log(api.split("?id=")[1])
 				return api.split("?id=")[1]
+			},
+			getValueFromChild(){
+				this.isShowRecordTips = false
+			},
+			goToPage(){
+				this.isShowRecordTips = false
+				this.clicked = 1
+				this.defaultClick = 1
+				this.isTab(apis[1])
+				this.$forceUpdate()
 			}
 		}
 	}
 </script>
 
-<style>
+<style lang="less">
+	.record-tips{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #000;
+		opacity: .8;
+		z-index: 600;
+	}
+	.record-modal{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 601;
+	}
+	.record-modal-container{
+		width: 80%;
+		padding: 40rpx;
+		// background-color: #182641;
+		background-color: transparent;
+	}
+	.record-modal-title{
+		font-size: 36rpx;
+		color: #fff;
+		text-align: center;
+	}
+	.record-modal-title-text{
+		border-bottom: 5rpx solid #fff;
+	}
+	.record-modal-content{
+		display: flex;
+		// justify-content: center;
+		margin-top: 50rpx;
+		// align-items: center;
+		// justify-content: column;
+		flex-direction: column;
+		color: #fff;
+	}
+	
+	.record-modal-buttonGroup{
+		display: flex;
+		justify-content: center;
+	}
+	
+	.record-modal-button{
+		background-color: #ccc;
+		margin-top: 50rpx;
+		margin-right: 20rpx;
+		width: 200rpx;
+		height: 65rpx;
+	}
+	
+	.record-modal-button-ok{
+		margin-top: 50rpx;
+		width: 200rpx;
+		height: 65rpx;
+	}
+	.span{
+		margin-bottom: 20rpx;
+	}
 </style>

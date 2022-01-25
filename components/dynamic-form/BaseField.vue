@@ -196,7 +196,7 @@
 						this.isModal = false
 						this.isTypeStatus = false
 						this.components = [
-							{"type":"password","label":"請輸入支付密碼","field":"password"}
+							{"type":"password","label":"請輸入支付密碼","field":"paymentPassword"}
 						]
 						this.isModal = true
 						console.log(this.components)
