@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "navs":[
         {"title":"精灵广场","image":"/static/public/elvesSquare.png"},
-        {"title":"我的精灵","image":"/static/public/MySpirit.png"},
+        {"title":"我的精灵","image":"/static/public/MySpirit.png", "showDot": true },
         {"title":"服务中心","image":"/static/public/serviceCenter.png"}
     ],
     "defaultClick":0,

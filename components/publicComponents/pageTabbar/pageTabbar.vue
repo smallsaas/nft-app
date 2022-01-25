@@ -4,6 +4,7 @@
 		<view class="pageTabbar_TitleBox">
 			<view :class="'pageTabbar_Title'+isClick(t)" @click="handleClick(t)"  v-for="(tab,t) in tabs">
 				{{tab.title}}
+                <view class="red_dot" v-if="tab && tab.showDot"></view>
 			</view>
 		</view>
 		<view class="pageTabbar_Content" :style="[contentStyle]">
@@ -74,7 +75,7 @@
 	}
 </script>
 
-<style>
+<style lang="less">
 	.bar{
 		z-index: -10 !important;
 	}
@@ -86,7 +87,7 @@
 		/* margin-top: 50rpx; */
 		flex-wrap: wrap;
 		/* border: 1px solid red; */
-		z-index: 999999;
+		z-index: 999999;  
 	}
 	.pageTabbar_Title{
 		font-size: 32rpx;
@@ -94,6 +95,16 @@
 		text-align: center;
 		margin: 25rpx;
 		color: #A9ACB0;
+        position: relative;
+        .red_dot {
+            width: 12rpx;
+            height: 12rpx;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 12rpx;
+            right: -12rpx;
+        }
 	}
 	.pageTabbar_Click{
 		font-size: 36rpx;

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<nav-bar :navs="navs" :defaultClick="defaultClick" v-if="defaultClick" @change="handleChange">
+		<nav-bar :navs="newNavList" :defaultClick="defaultClick" v-if="defaultClick" @change="handleChange">
 			<template slot="content-container">
 				<view class="page-content">
 					<tab-bar-page :tabId="isTab(apis[0])" :currentClick="clicked" v-if="clicked == 0"></tab-bar-page>
@@ -19,6 +19,9 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+    import commonStore from '@/store/common.js'
+    import _ from 'lodash'
 	import NavBar from '../../components/publicComponents/navBar/navBar.vue'
 	import tabBarPage from '../defaultPage/tabbarPage.vue'
 	export default {
@@ -28,15 +31,23 @@
 		},
 		data() {
 			return {
-				navs:[
-				],
+				navs:[],
 				clicked:0,
 				defaultClick:null,
-				apis:[
-				],
-				endpoint:this.$config.formHost
+				apis:[],
+				endpoint:this.$config.formHost,
+                timer: null // 定时器，用户定时获取我的精灵未处理的数据
 			}
 		},
+        computed:{
+          ...mapState(['redDotData']),
+          newNavList () {
+              return _.cloneDeep(this.navs).map((x, i) => {
+                  x.showDot = _.get(this.redDotData, 'hasUnpaidOrder') === true && x.title === '我的精靈'
+                  return x
+              })
+          }
+        },
 		async created(){
 			let res = await this.$api.homePage()
 			if(res.code == 200){
@@ -59,7 +70,26 @@
 				})
 			}
 		},
+        onLoad() {
+            this.fetchMySpiritUnpaidCount()
+            this.timer = setInterval(() => {
+                this.fetchMySpiritUnpaidCount()
+            }, 10000)
+        },
+        onUnload() {
+           if (this.timer) {
+               clearInterval(this.timer)
+           }
+        },
 		methods: {
+            async fetchMySpiritUnpaidCount () {
+                const res = await this.$api.getMySpiritUnpaidCount()
+                if (res.code === 200) {
+                    commonStore.commit('updateState', {
+                        redDotData: _.get(res, 'data', {})
+                    })
+                }
+            },
 			handleChange(e){
 				console.log(e)
 				this.clicked = e
