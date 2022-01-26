@@ -53,7 +53,7 @@
 				default:""
 			},
 			currentClick: {
-				type:String,
+				type: Number,
 				default: 0
 			}
 		},
