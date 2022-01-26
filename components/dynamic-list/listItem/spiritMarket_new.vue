@@ -111,7 +111,6 @@
 			ext: Object
 		},
 		created() {
-			console.log('00000000000000',this.$cache.get('status'))
 			this.status = this.$cache.get('status')
 		},
 		data() {
@@ -131,7 +130,6 @@
 		},
 		methods: {
 			getImage(url) {
-				console.log(this.$config)
 				let that = this
 				let imagePath;
 				if (url.indexOf("http" || "https") === 0) {
@@ -185,7 +183,6 @@
 					})
 					return
 				}
-				console.log(item,'给孩子--------------------------')
 				// this.itemInfoForComponentChild.description = item.description
 				// this.itemInfoForComponentChild.costAccompanyWisp = item.costAccompanyWisp
 				this.itemInfoForComponentChild = item.companionWisp
@@ -293,7 +290,7 @@
 
 		.item {
 			width: 95%;
-			height: 460rpx;
+			height: 480rpx;
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
