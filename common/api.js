@@ -330,7 +330,7 @@ export const api = {
     
     // 获取我的精灵未处理的记录
     getMySpiritUnpaidCount (params) {
-        const url = `${globalConfig.endpoint}/api/u/orderwisp/count/unpaid`
+        const url = `${globalConfig.endpoint}/api/u/order/wisp/count/unpaid`
         return request('GET', url, params)
     }
 }

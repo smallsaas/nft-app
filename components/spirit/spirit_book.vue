@@ -105,11 +105,10 @@
 			},
 			async book(){
 				this.isClickBtn = true
-				console.log('測試---------------123132132132132132132')
-				console.log(this.itemInfo)
 				const data = {
 					wispId:parseInt(this.itemInfo.id),
-					paymentPassword:'123456'
+					paymentPassword:'123456',
+                    autoAppointmentNextTime: this.isClick ? 1 : 0
 				}
 			    const res = await this.$api.bookSpirit(data)
 				this.isClickBtn = false

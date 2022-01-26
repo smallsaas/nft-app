@@ -447,8 +447,8 @@
 						},
             // 獲取列表信息
             fetchList (searchData = {}) {
-							console.log(this.formatLoadApi(_.get(this.config,'loadApi')),"loadAPi")
-							let that = this
+			  console.log(this.formatLoadApi(_.get(this.config,'loadApi')),"loadAPi")
+			  let that = this
               uni.request({
                   url: this.$config.endpoint + this.formatLoadApi(_.get(this.config, 'loadApi')),
                   method: _.get(this.config,'method','GET'),
@@ -458,61 +458,49 @@
                   },
                   complete: (res) => {
                      // uni.hideLoading()
-                     if (['000000', 200].includes(_.get(res, 'data.code'))) {
+                     if (['000000', '00000', 200].includes(_.get(res, 'data.code'))) {
                         const data = _.get(res, 'data.data')
-                        const listField = _.get(this.config, 'response.list', '')
-                        const totolField = _.get(this.config, 'response.total', 0)
+                        const listField = _.get(this.config, 'response.list', 'list')
+                        const totolField = _.get(this.config, 'response.total', 'total')
                         // console.log(data,"data")
                         const prevList = _.get(searchData, 'refresh') ? [] : this.list
                         this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
 						console.log(this.list,"LIST")
-                        const total = _.get(data, totolField, 0)
-						// this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
-						// this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
-                        this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 1)
-                        this.listTotalPages = total < 10 ? 1 : Math.floor(total / 1)
+                        const total = Number(_.get(data, totolField, 0))
+
+                        this.listCurrentPage = this.list.length < 10 ? 1 :  Math.ceil(this.list.length / 10)
+                        this.listTotalPages = total < 10 ? 1 : Math.ceil(total / 10)
                         this.$refs.loadRefresh.completed()
                      }
-										if(res.data.code==='00000'||res.data.code===200){
-											const data = _.get(res, 'data.data')
-											const listField = _.get(this.config, 'response.list', '')
-											const totolField = _.get(this.config, 'response.total', 0)
-											// console.log(data,"data")
-											const prevList = _.get(searchData, 'refresh') ? [] : this.list
-											this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
-											const total = _.get(data, totolField, 0)
-											// this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 10)
-											// this.listTotalPages = total < 10 ? 1 : Math.floor(total / 10)
-											this.listCurrentPage = this.list.length < 10 ? 1 :  Math.floor(total / 1)
-											this.listTotalPages = total < 10 ? 1 : Math.floor(total / 1)
-											this.$refs.loadRefresh.completed()
-										}
-										that.$forceUpdate()
+					 that.$forceUpdate()
                   }
               })  
             },
             
             // 加載更多
             loadMore () {
-							if(!this.unloading){
-							// console.log("加載更多")
-				if (this.isPropsList) {
-					return
+				if(!this.unloading){
+					// console.log("加載更多")
+                    if (this.isPropsList) {
+                        return
+                    }
+                    this.isStop = true
+                    
+                    if (this.listCurrentPage === this.listTotalPages) {
+                        return
+                    }
+                    
+                    this.listSearch = {
+                        ...this.listSearch,
+                        [this.pageNoField]: parseInt(this.listSearch[this.pageNoField]) + 1
+                    }
+                    this.fetchList(this.listsearch)
 				}
-				this.isStop = true
-                this.listSearch = {
-                    ...this.listSearch,
-                    [this.pageNoField]: parseInt(this.listSearch[this.pageNoField]) + 1
-                }
-                this.fetchList(this.listsearch)
-								
-								}
             },
             
             // 上拉加載刷新
             refresh () {
-							if(!this.unloading){
-								// console.log("刷新")
+				if(!this.unloading){
 				if (this.isPropsList) {
 					return
 				}
@@ -521,7 +509,7 @@
             	    [this.pageNoField]: parseInt(1)
             	}
             	this.fetchList({ refresh: true })
-							}
+                }
             },
 			
 			// 列表項組件與列表數據綁定
