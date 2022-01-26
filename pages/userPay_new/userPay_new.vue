@@ -87,7 +87,7 @@
 			</view>
 		</view>
 		<view class="boxE">
-			<button class="btn" @click="pay">确認已付款</button>
+			<button class="btn" @click="pay">{{disabled ? '确認' : '确認已付款'}}</button>
 		</view>
 
 
@@ -101,6 +101,7 @@
 </template>
 
 <script>
+	import _ from 'lodash'
 	export default {
 		onLoad(e) {
 			console.log("ID", e)
@@ -120,7 +121,13 @@
 				bigImgSrc: '',
 
 				iid: 0,
-				sellerInfo: {}
+				sellerInfo: {},
+				orderData: {}
+			}
+		},
+		computed:{
+			disabled () {
+				return ['COMPLAINING', 'PAID'].includes(_.get(this.orderData, 'status'))
 			}
 		},
 		methods: {
@@ -186,6 +193,20 @@
 				const res = await this.$api.getOrderInfo(data)
 				console.log("RES", res)
 				if (res.code == 200) {
+					this.orderData = res.data || {}
+					if (_.get(res, 'data.paymentMethod') === 'WECHAT_PAYMENT') {
+						this.fistType = true
+					}
+					if (_.get(res, 'data.paymentMethod') === 'ALIPAY_PAYMENT') {
+						this.thirdType = true
+					}
+					
+					if (_.get(res, 'data.paymentMethod') === 'BANK_CARD_PAYMENT') {
+						this.secondType = true
+						this.fifthType = true
+					}
+					
+					
 					if (res.data.seller.mobilePhone == null) {
 						this.sellerInfo.mobilePhone = ''
 					} else {
@@ -247,10 +268,10 @@
 					// WECHAT_PAYMENT
 				}
 				console.log(this.fistType, this.secondType, this.thirdType, this.fifthType)
-				if (this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == false) {
+				if (!this.disabled && this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == false) {
 					uni.showToast({
 						title: '請勾選付款方式',
-						icon: 'error',
+						icon: 'none',
 						duration: 1000
 					})
 					return
@@ -270,7 +291,7 @@
 				if (this.list.length == 0) {
 					uni.showToast({
 						title: '請上傳付款憑證',
-						icon: 'error',
+						icon: 'none',
 						duration: 1000
 					})
 					return
@@ -298,24 +319,36 @@
 				}
 			},
 			selectTypeOne() {
+				if (this.disabled) {
+					return
+				}
 				this.fistType = !this.fistType
 				this.secondType = false
 				this.thirdType = false
 				this.fifthType = false
 			},
 			selectTypeTwp() {
+				if (this.disabled) {
+					return
+				}
 				this.secondType = !this.secondType
 				this.fistType = false
 				this.thirdType = false
 				this.fifthType = false
 			},
 			selectTypeThree() {
+				if (this.disabled) {
+					return
+				}
 				this.thirdType = !this.thirdType
 				this.fistType = false
 				this.secondType = false
 				this.fifthType = false
 			},
 			selectTypeFifth(){
+				if (this.disabled) {
+					return
+				}
 				this.fifthType = !this.fifthType
 				this.fistType = false
 				this.secondType = false
