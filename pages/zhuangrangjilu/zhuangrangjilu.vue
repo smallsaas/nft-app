@@ -6,8 +6,8 @@
 				<text class="i io" v-if="item.orderType=='PLAYER_TRANSFER_ACCOUNTS'">轉讓GUGU令給予-{{item.targetName}}</text>
 				<!-- <text class="i io" v-if="item.orderType=='SYSTEM_GIVEN'">店小二給予-{{item.targetName}}</text> -->
 				<text class="i io" v-if="item.orderType=='MANAGER_GIVEN'">管理員給予-{{item.targetName}}</text>
-				<text class="i io" v-if="item.orderType=='BOOK_REFUND'">匹配失败退回gugu令-{{item.targetName}}</text>
-				<text class="i io" v-if="item.orderType=='LAND_REFUND'">匹配失败退回土地-{{item.targetName}}</text>
+				<text class="i io" v-if="item.orderType=='BOOK_REFUND'">匹配失敗退回gugu令-{{item.targetName}}</text>
+				<text class="i io" v-if="item.orderType=='LAND_REFUND'">匹配失敗退回土地的GUGU令-{{item.targetName}}</text>
 				<text class="i it">{{formatTime(item.createTime)}}</text>
 			</view>
 			<view class="h">
