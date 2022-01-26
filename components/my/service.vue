@@ -5,7 +5,7 @@
 			<tab class="tab" :data="forTabChild"></tab>
 		</view>
 		<!-- <down class="down"></down> -->
-		<view class="bgs"><image @click="showModal()" src="../../static/beijing.png" mode="widthFix" class="chatu"></image></view>
+		<view class="bgs"><image @click="showModal()" src="../../static/xc3.png" mode="widthFix" class="chatu"></image></view>
 		<view class="service-mask" v-if="isModal"></view>
 		<view v-if="isModal" class="service-modal">
 			<view class="service-modal-container">
@@ -102,7 +102,7 @@
 			justify-content: center;
 			.chatu{
 				width: 343px;
-				height: 102px !important;
+				// height: 102px !important;
 			}
 		}
 		

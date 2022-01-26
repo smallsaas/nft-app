@@ -1,9 +1,9 @@
 <template>
 	<view class="view">
 		<view class="item" v-for="(item,index) in list" :key="index">
-			<text class="name">{{item.profitName}}</text>
+			<text class="name">{{item.revenueName}}</text>
 			<text class="namesss">+{{item.profitMoney}}</text>
-			<text class="namessss">{{item.settlementTime}}</text>
+			<text class="namessss">{{item.orderTime}}</text>
 		</view>
 	</view>
 </template>
