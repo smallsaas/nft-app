@@ -1,5 +1,5 @@
-@endpoint = http://api.dev.smallsaas.cn:8086
-# @endpoint = https://www.metagugu.net
+# @endpoint = http://api.dev.smallsaas.cn:8086
+@endpoint = https://www.metagugu.net
 
 GET {{endpoint}}/form?id=222333
 
@@ -125,7 +125,7 @@ Content-Type: application/json
                         "__slot__": {
                             "options": [
                                 {
-                                    "label": "註冊新會員",
+                                    "label": "註冊會員",
                                     "value": "-1"
                                 },
                                 {
@@ -141,19 +141,19 @@ Content-Type: application/json
                                     "value": "20"
                                 },
                                 {
-                                    "label": "V1",
+                                    "label": "青銅有效會員",
                                     "value": "1"
                                 },
                                 {
-                                    "label": "V2",
+                                    "label": "白銀有效會員",
                                     "value": "2"
                                 },
                                 {
-                                    "label": "V3",
+                                    "label": "黃金有效會員",
                                     "value": "3"
                                 },
                                 {
-                                    "label": "V4",
+                                    "label": "鑽石有效會員",
                                     "value": "4"
                                 }
                             ]

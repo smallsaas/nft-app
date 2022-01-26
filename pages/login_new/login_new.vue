@@ -37,8 +37,8 @@
 				isOpenLook:['../../static/login/eyeoff.png','../../static/login/eye.png'],
 				openIndex:0,
 				data:{
-					// account:'13425836900',
-					// password:'a123456',
+					account:'13400134117',
+					password:'a123456',
 					// account:'15322315902',
 					// password:'admin1234',
 					//18689911298
@@ -182,6 +182,7 @@
 						if(user.code == 200){
 							that.$cache.set("userId",user.data.id)
 							that.$cache.set("status",user.data.status)
+							that.$cache.set("frozenNumber",user.data.frozenNumber)
 							uni.showToast({
 								title:'登錄成功',
 								duration:1000,

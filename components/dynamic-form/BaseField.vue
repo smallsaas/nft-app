@@ -92,7 +92,8 @@
 										<input :placeholder="item.placeholder" :style="item.inputStyle || ''" :placeholder-style="item['placeholder-style'] || 'color:#fff;opacity:.3'" class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
 									</view>
 									<view v-else-if="item.type === 'status'" class="Modal-Status">
-										<view class="Modal-Status-SubTitle">申請解凍需要{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}個精靈令，是否馬上申請？</view>
+										<!-- <view class="Modal-Status-SubTitle">申請解凍需要{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}個精靈令，是否馬上申請？</view> -->
+										<view class="Modal-Status-SubTitle">申請解凍需要{{unlockAccountConsumeCoins || 0}}個精靈令，是否馬上申請？</view>
 										<view class="Modal-Status-Bbox"><image src="../../static/spirit/coin.png" class="Modal-Status-icon"></image>x{{fieldCache["UNLOCK_ACCOUNT_CONSUME_COINS"]||0}}</view>
 									</view>
 									<view v-else :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
@@ -165,7 +166,9 @@
 				formData:{},
 				fieldCache:{},
 				components:[],
-				isTypeStatus:false
+				isTypeStatus:false,
+				frozenNumber: '',
+				unlockAccountConsumeCoins: 0
 			}
 		},
 		created() {
@@ -178,6 +181,8 @@
 			if(fieldGroup){
 				this.fieldCache = fieldGroup
 			}
+			let frozenNumber = this.$cache.get("frozenNumber")
+			this.handleUnlockAccountConsumeCoins(this.fieldCache, this.frozenNumber)
 		},
 		computed:{
 			canUse(){
@@ -210,6 +215,8 @@
 						let that = this
 						this.isModal = false
 						this.components = this.param.components
+						console.log('提交的解冻信息 = ', param)
+						return
 						let res = await this.$api.unlock(param)
 						if(res.code === 200){
 							uni.showToast({
@@ -427,6 +434,24 @@
 									this.saveText = "保存"
 								}
 							}
+						},
+						handleUnlockAccountConsumeCoins(fieldCache, frozenNumber){
+							var coins = 0
+							if(frozenNumber){
+								if(frozenNumber == 0){
+									coins = this.fieldCache['UNLOCK_ACCOUNT_CONSUME_COINS']
+								}else if(frozenNumber == 1){
+									coins = this.fieldCache['UNLOCK_ACCOUNT_CONSUME_COINS_2']
+								}else if(frozenNumber >= 2){
+									coins = this.fieldCache['UNLOCK_ACCOUNT_CONSUME_COINS_3']
+								}
+							}else{
+								coins = '100'
+							}
+								console.log('fieldCache = ', fieldCache)
+								console.log('frozenNumber = ', frozenNumber)
+								console.log('coins = ', coins)
+							this.unlockAccountConsumeCoins = coins
 						}
         }
     }

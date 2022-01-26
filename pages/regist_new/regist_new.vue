@@ -346,6 +346,15 @@
 					this.isShowError = true
 					return;
 				}
+				
+				if([undefined,null,''].includes(this.data.backupMobilePhone)){
+					uni.showToast({
+						title:"請輸入緊急聯繫手機号碼",
+						icon:"error"
+					})
+					return ;
+				}
+				
 				if (this.isReadRegistInfo == false) {
 					uni.showToast({
 						icon: 'error',
