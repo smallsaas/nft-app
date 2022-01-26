@@ -16,6 +16,8 @@ h5-render 需要配合工具 HBuilder X 進行開發，請前往上面的地址�
 
 使用 HBuilder X 中的打包功能進行打包
 
+[操作步驟參考](https://docs.qq.com/doc/DVGh0anZLTmNTWUtj)
+
 ## 動态頁面緩存策略
 
 > 緩存策略隻對動态頁面數據進行緩存，不對其餘組件做操作
