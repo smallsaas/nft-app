@@ -332,5 +332,18 @@ export const api = {
     getMySpiritUnpaidCount (params) {
         const url = `${globalConfig.endpoint}/api/u/order/wisp/count/unpaid`
         return request('GET', url, params)
+    },
+    
+    // 匹配精灵-已付款重新上传凭证
+    postBuyerReUploadPaymentProof (params) {
+        const url = `${globalConfig.endpoint}/api/u/order/wisp/buyerReUploadPaymentProof`
+        return request('POST', url, params)
+    },
+    
+    // 匹配精灵-申诉中重新上传凭证
+    postReiterate (complainId, params) {
+        const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/reiterate`
+        return request('POST', url, params)
     }
+    
 }

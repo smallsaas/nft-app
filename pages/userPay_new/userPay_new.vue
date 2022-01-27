@@ -296,8 +296,20 @@
 					})
 					return
 				}
-				// console.log("支付數據===", data)
-				const res = await this.$api.userPay(data)
+                let res
+                if (_.get(this.orderData, 'status') === 'PAID') {
+                    res = await this.$api.postBuyerReUploadPaymentProof({
+                        wispOrderId: data.wispOrderId,
+                        pictureUrl: data.pictureUrl,
+                        paymentMethod: data.paymentMethod
+                    })
+                } else if (_.get(this.orderData, 'status') === 'COMPLAINING') {
+                    res = await this.$api.postReiterate(data.wispOrderId, {
+                        credentialLink: data.pictureUrl
+                    })
+                }  else {
+                    res = await this.$api.userPay(data)
+                }
 				console.log(res)
 				if (res.code == 200) {
 					uni.showToast({

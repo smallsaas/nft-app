@@ -4,6 +4,7 @@
         watch: {
             $route: {
                 handler(val, oldVal) {
+                    console.log('哈哈哈哈', val)
 					if (val.path.includes('/pages/login_new/login_new')) {
 						return
 					}
@@ -58,6 +59,11 @@
 			}
 		},
 		onLaunch: async function() {
+            if (_.get(this.$route, 'path') === '/pages/regist_new/regist_new' && _.get(this.$route, 'query.inviteCode')) {
+                uni.navigateTo({
+                    url: `/pages/regist_new/regist_new?inviteCode=${this.$route.query.inviteCode}`
+                })
+            }
 			this.handleCheckLoginTime()
 			console.log("中國")
 			// 重啓時清除動态頁面緩存
