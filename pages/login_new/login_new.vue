@@ -19,6 +19,17 @@
 									<image v-if="false" class="right" src="../../static/login/right.png" mode="widthFix"></image>
 				</view>
 			</view>
+			
+			
+			<view class="INFO">
+				<view class="INFOc" @click="savePassword">
+					<view class="circle" v-if="!isSavePassword"></view>
+					<image v-if="isSavePassword" class="rightImg" src="../../static/login/yes.png" mode="widthFix"
+						></image>
+					<text class="infoccc">记住密码</text>
+				</view>
+			</view>
+			
 			<view class="loginBox"><button class="loginBtn" @click="login">登錄</button></view>
 			<view class="opeation"><text class="forget" @click="goFindP">忘記密碼?</text><text class="regist" @click="goToRegist()">注冊賬号</text></view>
 		</view>
@@ -75,7 +86,8 @@
 				so:'',
 				st:'',
 				sth:'',
-				sf:''
+				sf:'',
+				isSavePassword: false
 			}
 		}, 
 		mounted() {
@@ -85,6 +97,13 @@
 			this.f = Math.floor( Math.random() * 9)
 			this.yanzhengma = this.list[this.o] + this.list[this.t] + this.list[this.th] + this.list[this.f]
 			this.getStyle()
+			
+			this.data.account = this.$cache.get("accountValue") ? this.$cache.get("accountValue") : ''
+			const isSavePassword = this.$cache.get("pwdValue") ? true : false
+			if(isSavePassword){
+				this.isSavePassword = isSavePassword
+				this.data.password = this.$cache.get("pwdValue")
+			}
 		},
 		methods: {
 			getStyle(){
@@ -184,7 +203,13 @@
 						if(user.code == 200){
 							that.$cache.set("userId",user.data.id)
 							that.$cache.set("status",user.data.status)
-							that.$cache.set("frozenNumber",user.data.frozenNumber)
+							that.$cache.set("frozenNumber", user.data.frozenNumber)
+							that.$cache.set("accountValue", that.data.account)
+							if(that.isSavePassword){
+								that.$cache.set("pwdValue",that.data.password)
+							}else{
+								that.$cache.remove("pwdValue")
+							}
 							uni.showToast({
 								title:'登錄成功',
 								duration:1000,
@@ -230,6 +255,10 @@
 				// uni.navigateTo({
 				// 	url:'/pages/home/homePage'
 				// })
+			},
+			savePassword(){
+				this.isSavePassword = !this.isSavePassword;
+				console.log(" isSavePassword = ", this.isSavePassword)
 			}
 		}
 	}
@@ -426,6 +455,42 @@
 				.regist{
 					color: rgb(23,75,116);
 				}
+			}
+		}
+		
+		.INFO {
+			width: 100%;
+			height: 80rpx;
+		
+			.INFOc {
+				width: 30%;
+				height: 80rpx;
+				display: flex;
+				align-items: center;
+				position: relative;
+		
+				.circle {
+					margin-left: 30rpx;
+					width: 20px;
+					height: 20px;
+					background: rgb(36, 42, 51);
+					margin-right: 10rpx;
+				}
+		
+				.rightImg {
+					margin-left: 30rpx;
+					width: 20px;
+					height: 20px !important;
+					margin-right: 10rpx;
+				}
+		
+				.infoccc {
+					font-size: 12px;
+					font-family: PingFang SC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #ffffff;
+				}
+		
 			}
 		}
 	}
