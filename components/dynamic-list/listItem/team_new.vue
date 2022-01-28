@@ -14,9 +14,9 @@
 				<view class="flex i"><text class="name">{{item.name}}</text></view>
 				<view class="flex"><text class="account">團隊總人數:{{item.teamSize}}</text></view>
 				<view class="flex ii">
-					<text class="num">領養數: {{item.adoptCount||0}}人</text>
+					<!-- <text class="num">領養數: {{item.adoptCount||0}}人</text> -->
 					<text class="num">直推數: {{item.recommendCount||0}}人</text>
-					<text class="num tt">預約數: {{item.appointmentCount||0}}人</text>
+					<!-- <text class="num tt">預約數: {{item.appointmentCount||0}}人</text> -->
 				</view>
 			</view>
 		</view>
