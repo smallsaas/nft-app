@@ -4,11 +4,12 @@
 		<page-tabbar
 			:tabs="newNavList"
 			@change="handleChange"
+            @childChange="handleChildChange"
             :defaultClicked="currentClick === 1 ? 1 : 0"
 		>
-			<template slot="content">
-				<dynamic-page v-for="(item,i) in tabs" :API="format(item.id)" v-if="click === i" :key="i"></dynamic-page>
-			</template>
+            <template slot="content">
+                <dynamic-page v-for="(item,i) in tabs" :API="format(item.id)" v-if="click === i" :key="item.id"></dynamic-page>
+            </template>
 		</page-tabbar>
 	</view>
 </template>
@@ -30,7 +31,8 @@
 		data() {
 			return {
 					tabs: [],
-					click: 1
+					click: 1,
+                    allTabs: []
 			}
 		},
         computed:{
@@ -61,14 +63,29 @@
 			async getTabs(tabId){
 				let res = await this.$api.tabbar(tabId)
 				this.tabs = res.data.tabs
+                this.allTabs = _.cloneDeep(res.data.tabs)
 			},
 			// 改變時
 			handleChange(e){
 				this.click = e
+                this.tabs = [...this.allTabs]
 				this.$forceUpdate()
 			},
+            handleChildChange (e, child) {
+                console.log()
+              this.click = e
+              
+              const list = _.cloneDeep(this.allTabs).map((x, i) => {
+                  if (Number(e) === i && child) {
+                      x.id = child.id
+                  }
+                  return x
+              })
+              this.tabs = [...list]
+              console.log('OOOOO', e, this.tabs)
+            },
 			format(id){
-				console.log(this.$config.formHost+"?id="+id)
+                console.log('KKKK', id)
 				return this.$config.formHost+"?id="+id
 			}
 		}

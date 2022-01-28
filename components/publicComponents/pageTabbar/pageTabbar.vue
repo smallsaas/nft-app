@@ -8,11 +8,18 @@
 			</view>
 		</view>
 		<view class="pageTabbar_Content" :style="[contentStyle]">
-            <!-- <view v-if="childTabList.length > 0">
+            <template v-if="childTabList.length > 0">
                 <view class="pageTabbar_child">
-                    
+                    <view 
+                        v-for="(k, i) in childTabList" 
+                        :key="i" 
+                        :class="[`tab_child_item ${childrenClicked === i  ? 'tab_child_item_select' : ''}`]"
+                        @click="handleChildClick(k, i)"
+                    >
+                    {{k.title}}
+                    </view>
                 </view>
-            </view> -->
+            </template>
 			<slot name="content">
 				
 			</slot>
@@ -37,7 +44,8 @@
 		},
 		data(){
 			return {
-				clicked:0,
+				clicked: 0,
+                childrenClicked: 0,
 				contentStyle:{}
 			}
 		},
@@ -72,9 +80,20 @@
 		methods:{
 			// tab被點擊時
 			handleClick(click){
+                if (this.clicked === click) {
+                    return
+                }
+                if (this.clicked !== click) {
+                    this.childrenClicked = 0
+                }
 				this.clicked = click
 				this.$emit("change",click)
 			},
+            // 点击子tab时
+            handleChildClick (k, i) {
+                this.childrenClicked = i
+                this.$emit("childChange", this.clicked, k)
+            },
 			isClick(i){
 				if(this.clicked === i){
 					return " pageTabbar_Click"
@@ -130,7 +149,21 @@
 		/* border: 1px solid red; */
 		margin-top: -25rpx;
         .pageTabbar_child {
-            margin-top: 20rpx;
+            margin-top: 30rpx;
+            display: flex;
+            align-items: center;
+            padding: 0 24rpx;
+            .tab_child_item {
+                border: 1px solid #1C284D;
+                border-radius: 4px;
+                margin-right: 40rpx;
+                padding: 4rpx 10px;
+                text-align: center;
+                font-size: 28rpx;
+            }
+            .tab_child_item_select {
+                color: #2a82e4;
+            }
         }
 	}
 </style>

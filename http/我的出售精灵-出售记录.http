@@ -1,0 +1,56 @@
+# @endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://api.dev.smallsaas.cn:8086
+
+
+### 获取列表页面信息
+GET {{endpoint}}/form?id=777444111999
+
+### 提交列表页面信息
+POST {{endpoint}}/form/777444111999
+Content-Type: application/json
+
+{  
+    "version": "1",
+    "name": "MyMarket",
+    "title": "我的精灵",
+    "pageStyle": {
+        "margin-top":"20px"
+    },
+    "loadApi": "",
+    "response": {
+      "data":"data"
+    },
+    "request": {
+    },
+    "moduleContainer":{
+    },
+    "modules": [
+      {
+        "type": "autolist",
+        "name":"",
+        "key":"e59992z8-bb88-a788-9922-1623488775885",
+        "container":{
+            "height":"",
+            "background":"#050E17"
+        }
+      }
+    ],
+    "moduleData": {
+         "e59992z8-bb88-a788-9922-1623488775885": {
+            "loadApi":"/api/u/wisp/selling?onlyCurrentDay=0",
+            "itemNavigation": "",
+            "response":{
+                "list":"records"
+            },
+            "request":{
+                "default":{
+                },
+                "ps":"pageSize=100",
+                "pn":"pageNum"
+            },
+            "itemModule":{
+                "name":"spirit-record"
+            }
+        }
+    }
+}

@@ -205,7 +205,15 @@
 												...item,
 												...getComponentBindData(item)
 											}"
-					/>	
+					/>
+                    <spirit-record 
+                        v-if="getListItemKey() === 'spirit-record'"
+                        :item="{
+                        	...item,
+                        	...getComponentBindData(item)
+                        }"
+                    >
+                    </spirit-record>
 					
                   </view>
               </view>
@@ -252,6 +260,7 @@
 	import mySelfSpiritNew from './listItem/mySelfSpirit_new.vue'
 	import transferSpiritNew from './listItem/transferSpirit_new.vue'
 	import transferSpiritTwoNew from './listItem/transferSpiritTwo_new.vue'
+    import spiritRecord from './listItem/spirit_record.vue'
     
 	export default {
 		components: {
@@ -281,7 +290,8 @@
 			myAdoptSpiritNew,
 			mySelfSpiritNew,
 			transferSpiritNew,
-			transferSpiritTwoNew
+			transferSpiritTwoNew,
+            spiritRecord
 		},
 		props: {
 			config: {
