@@ -117,7 +117,7 @@
 					})
 					return
 				}
-				console.log(item)
+				console.log("item ==== ", item)
 				uni.navigateTo({
 					url:'/pages/userPay_new/userPay_new?data=' + item.id
 				})
