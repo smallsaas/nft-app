@@ -55,6 +55,7 @@
 
 # @endpoint = https://api.mock.smallsaas.cn
 @endpoint = http://api.dev.smallsaas.cn:8086
+# @endpoint = https://www.metagugu.net
 
 
 ### 获取列表页面信息
@@ -99,14 +100,10 @@ Content-Type: application/json
           "e59992z8-bb88-a788-9922-6541654815492":{
             "loadApi":"/api/u/player/getUserTeam",
             "fieldGroup":{
-              "adoptCount":"预约人数",
-              "grade":"领养数",
               "recommendCount":"直推数",
               "teamSize":"团队总人数"
             },
             "unitGroup":{
-              "0":"人",
-              "1":"人",
               "2":"人",
               "3":"人"
             }

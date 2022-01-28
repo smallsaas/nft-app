@@ -58,7 +58,7 @@
 			return{
 				status:'',
 				show:true,
-				isClick:true,
+				isClick:false,
 				
 				isClickBtn:false
 			}
