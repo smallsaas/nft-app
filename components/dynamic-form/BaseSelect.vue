@@ -14,7 +14,23 @@
           :error-message="param['error-message'] || ''"
           label-class="van_field_label"
           @click-input="handleClick"
-        />
+        >
+        
+        <!-- #ifdef APP-PLUS -->
+            <template slot="input" style="width: 100%;">
+                <view @click="handleClick">
+                    <input
+                        disabled
+                        :placeholder="param.placeholder"
+                        :placeholder-style="param['placeholder-style'] || 'color: #7D8187'"
+                        :value="handleParseValue(param.value)"
+                        :style="param.inputStyle || ''"
+                    />
+                </view>
+            </template>
+        <!-- #endif -->
+
+        </van-field>
         <van-popup v-model="showPick" v-if="!param.readonly&&!param.disabled" position="bottom" @click-overlay="handlePickerCancel" custom-style="background-color: #fff;z-index: 999">
           <van-picker
             show-toolbar
