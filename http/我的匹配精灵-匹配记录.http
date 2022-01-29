@@ -2,6 +2,7 @@
 # @endpoint = https://api.mock.smallsaas.cn
 
 @endpoint = http://repo.dev.smallsaas.cn:8086
+# @endpoint = https://www.metagugu.net
 
 
 ### 获取列表页面信息
@@ -39,7 +40,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775858": {
-            "loadApi":"/api/u/order/wisp/buy?onlyCurrentDay=0",
+            "loadApi":"/api/u/order/wisp/buy",
             "itemNavigation": "",
             "response":{
                 "list":"records"
