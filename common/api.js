@@ -345,7 +345,7 @@ export const api = {
         // const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/reiterate`
 		// return request('POST', url, params)
 
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/{complainId}/complain/credentialLink`
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/complain/credentialLink`
 		return request('PUT', url, params)
     }
     
