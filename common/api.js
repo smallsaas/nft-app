@@ -342,8 +342,11 @@ export const api = {
     
     // 匹配精灵-申诉中重新上传凭证
     postReiterate (complainId, params) {
-        const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/reiterate`
-        return request('POST', url, params)
+        // const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/reiterate`
+		// return request('POST', url, params)
+
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/{complainId}/complain/credentialLink`
+		return request('PUT', url, params)
     }
     
 }
