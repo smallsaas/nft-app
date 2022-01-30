@@ -38,16 +38,24 @@
 				<text class="info">買家：{{item.wispOrder.buyerName}}</text>
 			</view>
 			<view class="line"></view>
+			<!-- 
+				WAITING_PAYMENT 等待支付
+				PAID 已支付
+				PAYMENT_TIMEOUT 支付超时
+				RECEIVED 确认收款
+				CANCEL 订单取消
+				COMPLAINING 申诉中
+			 -->
 			<view class="btnBox">
+				<text class="timeOne" :class="{sOne:item.wispOrder == undefined}" v-if="item.wispOrder == undefined">待售中</text>
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder.status == 'RECEIVED'">已确认收款</text>
-				<text class="timeOne" :class="{sOne:item.wispOrder.status == ' SELLING'}" v-if="item.wispOrder.status == ' SELLING'">出售中</text>
-
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'SELLING'}" v-if="item.wispOrder.status == ' SELLING'">出售中</text>
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder.status == 'WAITING_PAYMENT' || item.wispOrder.status == 'PAYMENT_TIMEOUT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}}分鍾</text>
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'SELLING'}" v-if="item.wispOrder.status == 'SELLING'">出售中...</text>
-				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder.status == 'RECEIVED'">已确认收款</text>
+				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'CANCEL'}" v-if="item.wispOrder.status == 'CANCEL'">订单取消.</text>
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'COMPLAINING'}" v-if="item.wispOrder.status == 'COMPLAINING'">申诉中...</text>
 			    <button class="btn" v-if="item.wispOrder.status== 'PAID'"  @click="goToResive(item.wispOrder.id,item.wispOrder.buyerPhone,item.wispOrder.pictureUrl)">玩家已處理請确認</button>
 			</view>

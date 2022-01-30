@@ -7,6 +7,10 @@
     "transformPx" : false,
     /* 5+App特有相關 */
     "app-plus" : {
+        /* ignore android build version issue */
+        "compatible" : {
+            "ignoreVersion" : true
+        },
         "usingComponents" : true,
         "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
