@@ -50,7 +50,7 @@ Content-Type: application/json
                 "pn":"pageNum"
             },
             "itemModule":{
-                "name":"spirit-record"
+                "name":"my-book-spirit-new"
             }
         }
     }
