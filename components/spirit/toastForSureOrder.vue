@@ -1,11 +1,11 @@
 <template>
 	<view class="toast">
 		<view class="title">
-			<text class="info">填写支付密码</text>
+			<text class="info">填寫支付密碼</text>
 		</view>
 		<view class="content">
 			<!-- <text class="infoT">{{this.data}}</text> -->
-			<input placeholder="请填写支付密码" v-model="paymentPassword" :password="isPassword" style="padding-right: 50rpx;" />
+			<input placeholder="請填寫支付密碼" v-model="paymentPassword" :password="isPassword" style="padding-right: 50rpx;" />
 			<image @click="changeLook" class="image" :src="isOpenLook[isPassword ? 0 : 1]" mode="widthFix"></image>
 		</view>
 		<view class="btnBox">
@@ -41,7 +41,7 @@
 			},
 			async sure(){
 				if (!this.paymentPassword) {
-					uni.showToast({ title: '请填写支付密码', icon:'none' })
+					uni.showToast({ title: '請填寫支付密碼', icon:'none' })
 					return
 				}
 				let data = {

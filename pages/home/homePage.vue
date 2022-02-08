@@ -55,10 +55,10 @@
 				defaultClick:null,
 				apis:[],
 				endpoint:this.$config.formHost,
-                timer: null, // 定时器，用户定时获取我的精灵未处理的数据
+                timer: null, // 定時器，用戶定時獲取我的精靈未處理的數據
 				isShowRecordTips: false,
                 isFirstShowRecordTips: true,
-                isUpdatePageChange: false // 是否需要刷新页面
+                isUpdatePageChange: false // 是否需要刷新頁面
 			}
 		},
         computed:{

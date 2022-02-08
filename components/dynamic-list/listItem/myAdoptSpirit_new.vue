@@ -26,7 +26,7 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
             <view class="infoBox wispNumber">
-            	<text class="info">精灵编号：{{item.wispNumber}}</text>
+            	<text class="info">精靈編号：{{item.wispNumber}}</text>
             </view>
 			<view class="infoBox infoBoxFirst">
 				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>

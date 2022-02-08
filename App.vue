@@ -45,7 +45,7 @@
 				try {
 					if (moment().unix() > moment(prevLoginTime).add(12, 'hour').unix()) {
 						this.handleClearCache()
-						uni.showToast({ title: '登录状态失效', icon: 'none' })
+						uni.showToast({ title: '登錄狀态失效', icon: 'none' })
 						setTimeout(() => {
 							uni.reLaunch({
 								url:'/pages/login_new/login_new',

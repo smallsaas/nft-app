@@ -45,7 +45,7 @@
   						v-if="item.wisp.level==8"></image>
   				</view>
 				<view class="rth">
-  					<text class="rthL">精灵编号</text>
+  					<text class="rthL">精靈編号</text>
   					<text class="rthR">{{item.wispNumber}}</text>
   				</view>
   				<view class="rth">
@@ -65,7 +65,7 @@
 					<text class="rthR">{{item.transactionAmount}}</text>
 				</view>
 				<view class="rth rtht">
-					<text class="rthL">匹配时间</text>
+					<text class="rthL">匹配時間</text>
 					<text class="rthR">{{formatTime(item.createTime)}}</text>
 				</view>
   				<view class="btnBox" v-if="['WAITING_PAYMENT', 'PAID', 'PAYMENT_TIMEOUT', 'RECEIVED', 'CANCEL', 'COMPLAINING'].includes(item.status)">

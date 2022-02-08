@@ -1,15 +1,15 @@
--- 玩家 【 18933934127 a123456 好了吗 id=38 】
+-- 玩家 【 18933934127 a123456 好了嗎 id=38 】
 -- 玩家 【 18689911298 c123456 得瑟了 id=20 】
 
 select * from nft_prod.nft_player where mobile_phone = '18689911298'
 
--- 玩家有多少条预约记录
+-- 玩家有多少條預約記錄
 select nft_wisp_booking_record.* from nft_wisp_booking_record
 LEFT JOIN nft_player ON nft_player.id = nft_wisp_booking_record.player_id
 where nft_player.mobile_phone = '18689911298' order by create_time desc
 
 
--- 玩家当前匹配 (当天)
+-- 玩家當前匹配 (當天)
 SELECT t1.*,t2.end_time                                AS endTime,
     t3.name                                            AS buyerName,
     t3.mobile_phone                                    AS buyerPhone,

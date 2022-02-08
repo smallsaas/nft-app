@@ -77,7 +77,7 @@
 					uni.showToast({
 						icon:'success',
 						duration:1000,
-						title:'提交投诉成功'
+						title:'提交投訴成功'
 					})
 					setTimeout(()=>{
 						uni.navigateTo({

@@ -89,7 +89,7 @@
 				this.clicked = click
 				this.$emit("change",click)
 			},
-            // 点击子tab时
+            // 點擊子tab時
             handleChildClick (k, i) {
                 this.childrenClicked = i
                 this.$emit("childChange", this.clicked, k)

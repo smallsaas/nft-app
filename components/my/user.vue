@@ -67,12 +67,12 @@
 			},
             statusText () {
                 const status = uni.getStorageSync('status')
-                console.log('个人状态', status, uni.getStorageSync('status'))
+                console.log('個人狀态', status, uni.getStorageSync('status'))
                 const obj = {
                     "NORMAL": "正常",
-                    "FROZEN": "冻结",
-                    "UNREVIEWED": "审核不通过",
-                    "PENDING": "待审核"
+                    "FROZEN": "凍結",
+                    "UNREVIEWED": "審核不通過",
+                    "PENDING": "待審核"
                 }
                 return status ? obj[status] : ''
             }

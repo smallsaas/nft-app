@@ -232,7 +232,7 @@
 	import CheckTeamList from '../team/checkTeamList.vue'
 	// 數據展示
 	import dataShow from '../dataShow/index.vue'
-	//领养精灵头部数据
+	//領養精靈頭部數據
 	import adoptHeader from '../adoptHeader/index.vue'
 	export default {
 		components: { 

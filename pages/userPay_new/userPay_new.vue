@@ -241,6 +241,17 @@
 					this.sellerInfo.bankAccountNumber2 = res.data.seller.bankAccountNumber2
 					this.sellerInfo.bankAccountName2 = res.data.seller.bankAccountName2
 					this.sellerInfo.bankName2 = res.data.seller.bankName2
+					
+					const pictureUrl = res.data.pictureUrl
+					if(pictureUrl){
+						this.list = [pictureUrl]
+					}
+					
+					//申訴狀态
+					if(res.data.status === 'COMPLAINING'){
+						
+					}
+					
 					uni.showToast({
 						title: '獲取信息成功',
 						icon: 'success',
@@ -304,8 +315,10 @@
                         paymentMethod: data.paymentMethod
                     })
                 } else if (_.get(this.orderData, 'status') === 'COMPLAINING') {
-                    res = await this.$api.postReiterate(data.wispOrderId, {
-                        credentialLink: data.pictureUrl
+                    res = await this.$api.postReiterate({
+                        wispOrderId: data.wispOrderId,
+                        credentialLink: data.pictureUrl,
+                        paymentMethod: data.paymentMethod
                     })
                 }  else {
                     res = await this.$api.userPay(data)
