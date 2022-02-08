@@ -34,7 +34,7 @@
 		data() {
 			return {
 				api:`${globalConfig.formHost}?id=456789`,
-				navList:['預約精靈','匹配精靈','領養精靈','出售精靈'],
+				navList:['預約記錄','匹配記錄','領養記錄','出售記錄'],
 				navIndex:0
 			}
 		},
