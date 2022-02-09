@@ -34,9 +34,9 @@
 			<view class="infoBox infoBoxOne" v-if="item.coinsPrice">
 				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
-			<view class="infoBox infoBoxTwo" v-if="item.createTime">
+			<!-- <view class="infoBox infoBoxTwo" v-if="item.createTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
-			</view>
+			</view> -->
 			<view class="infoBox infoBoxTwo" v-if="item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.stageChangeTime)}}</text>
 			</view>

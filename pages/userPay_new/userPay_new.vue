@@ -309,21 +309,26 @@
 				}
                 let res
                 if (_.get(this.orderData, 'status') === 'PAID') {
-                    res = await this.$api.postBuyerReUploadPaymentProof({
-                        wispOrderId: data.wispOrderId,
-                        pictureUrl: data.pictureUrl,
-                        paymentMethod: data.paymentMethod
-                    })
+                    // res = await this.$api.postBuyerReUploadPaymentProof({
+                    //     wispOrderId: data.wispOrderId,
+                    //     pictureUrl: data.pictureUrl,
+                    //     paymentMethod: data.paymentMethod
+                    // })
+					res = await this.$api.postReiterate({
+					    wispOrderId: data.wispOrderId,
+					    pictureUrl: data.pictureUrl,
+					    paymentMethod: data.paymentMethod
+					})
                 } else if (_.get(this.orderData, 'status') === 'COMPLAINING') {
                     res = await this.$api.postReiterate({
                         wispOrderId: data.wispOrderId,
-                        credentialLink: data.pictureUrl,
+                        pictureUrl: data.pictureUrl,
                         paymentMethod: data.paymentMethod
                     })
                 }  else {
                     res = await this.$api.userPay(data)
                 }
-				console.log(res)
+				// console.log(res)
 				if (res.code == 200) {
 					uni.showToast({
 						title: '付款成功',

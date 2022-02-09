@@ -349,7 +349,7 @@ export const api = {
 		// return request('PUT', url, params)
 		
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/confirmPayment`
-		return request('PUT', url, params)
+		return request('POST', url, params)
     }
     
 }
