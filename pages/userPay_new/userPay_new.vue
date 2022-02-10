@@ -201,8 +201,11 @@
 						this.thirdType = true
 					}
 					
-					if (_.get(res, 'data.paymentMethod') === 'BANK_CARD_PAYMENT') {
+					if (_.get(res, 'data.paymentMethod') === 'BANK_CARD_PAYMENT_1') {
 						this.secondType = true
+					}
+					
+					if (_.get(res, 'data.paymentMethod') === 'BANK_CARD_PAYMENT_2') {
 						this.fifthType = true
 					}
 					
@@ -278,7 +281,7 @@
 					// ALIPAY_PAYMENT,
 					// WECHAT_PAYMENT
 				}
-				console.log(this.fistType, this.secondType, this.thirdType, this.fifthType)
+				console.log("", this.fistType, this.secondType, this.thirdType, this.fifthType)
 				if (!this.disabled && this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == false) {
 					uni.showToast({
 						title: '請勾選付款方式',
@@ -294,10 +297,10 @@
 					data.paymentMethod = 'ALIPAY_PAYMENT'
 				}
 				if (this.fistType == false && this.secondType == true && this.thirdType == false && this.fifthType == false) {
-					data.paymentMethod = 'BANK_CARD_PAYMENT'
+					data.paymentMethod = 'BANK_CARD_PAYMENT_1'
 				}
 				if (this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == true) {
-					data.paymentMethod = 'BANK_CARD_PAYMENT'
+					data.paymentMethod = 'BANK_CARD_PAYMENT_2'
 				}
 				if (this.list.length == 0) {
 					uni.showToast({
@@ -307,7 +310,9 @@
 					})
 					return
 				}
+				
                 let res
+				let tipsMessage = '付款成功'
                 if (_.get(this.orderData, 'status') === 'PAID') {
                     // res = await this.$api.postBuyerReUploadPaymentProof({
                     //     wispOrderId: data.wispOrderId,
@@ -319,19 +324,21 @@
 					    pictureUrl: data.pictureUrl,
 					    paymentMethod: data.paymentMethod
 					})
+					tipsMessage = '提交成功'
                 } else if (_.get(this.orderData, 'status') === 'COMPLAINING') {
                     res = await this.$api.postReiterate({
                         wispOrderId: data.wispOrderId,
                         pictureUrl: data.pictureUrl,
                         paymentMethod: data.paymentMethod
                     })
+					tipsMessage = '提交成功'
                 }  else {
                     res = await this.$api.userPay(data)
                 }
 				// console.log(res)
 				if (res.code == 200) {
 					uni.showToast({
-						title: '付款成功',
+						title: tipsMessage,
 						icon: 'success',
 						duration: 1000
 					})
