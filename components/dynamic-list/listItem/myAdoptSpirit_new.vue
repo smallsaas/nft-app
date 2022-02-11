@@ -29,7 +29,8 @@
             	<text class="info">精靈編号：{{item.wispNumber}}</text>
             </view>
 			<view class="infoBox infoBoxFirst">
-				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>
+				<text class="info">能力值：{{item.coinsPrice}}/{{item.realtimePrice}}</text>
+				<!-- <text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text> -->
 			</view>
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>

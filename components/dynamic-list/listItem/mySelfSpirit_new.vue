@@ -34,9 +34,9 @@
 			<view class="infoBox infoBoxOne" v-if="item.coinsPrice">
 				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
-			<!-- <view class="infoBox infoBoxTwo" v-if="item.createTime">
+			<view class="infoBox infoBoxTwo" v-if="item.createTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
-			</view> -->
+			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.stageChangeTime)}}</text>
 			</view>
@@ -78,7 +78,7 @@
 
 				<!-- 當前出售 -->
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder && item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
-				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder && item.wispOrder.status == 'WAITING_PAYMENT'">剩餘付款時間 {{item.remainingMinutes}}分鍾</text>
+				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder && item.wispOrder.status == 'WAITING_PAYMENT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}} 分鍾</text>
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder && item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder && item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder && item.wispOrder.status == 'RECEIVED'">已確認收款</text>
@@ -192,6 +192,9 @@
 					}
 				}
 				return imagePath
+			},
+			handleRemainingMinutes(){
+				
 			}
 			// toast(msg) {
 			// 	this.toastMsg = msg
@@ -203,6 +206,7 @@
 			// closeToast(){
 			// 	this.isShowToast = false
 			// }
+			
 		}
 	}
 </script>
