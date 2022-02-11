@@ -72,7 +72,7 @@
 			goToShowNextTeam(){
 				console.log('去看下级 = ', this.item.id)
 				// uni.navigateTo({
-				// 	url:'/pages/next_team/nextTime?id=' + this.item.id
+				// 	url:'/pages/next_team/nextTeam?id=' + this.item.id
 				// })
 			}
 		}

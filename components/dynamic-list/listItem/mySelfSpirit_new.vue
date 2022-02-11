@@ -34,7 +34,7 @@
 			<view class="infoBox infoBoxOne" v-if="item.coinsPrice">
 				<text class="info">能力值：{{item.coinsPrice}}</text>
 			</view>
-			<view class="infoBox infoBoxTwo" v-if="item.createTime">
+			<view class="infoBox infoBoxTwo" v-if="item.createTime && !item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.stageChangeTime">
@@ -192,9 +192,6 @@
 					}
 				}
 				return imagePath
-			},
-			handleRemainingMinutes(){
-				
 			}
 			// toast(msg) {
 			// 	this.toastMsg = msg
