@@ -350,6 +350,12 @@ export const api = {
 		
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/confirmPayment`
 		return request('POST', url, params)
-    }
+    },
+	
+	//根据ID获取用户团队
+	getUserTeamById(params, id){
+		const url = `${globalConfig.endpoint}/api/u/player/getChildrenById/${id}`
+		return request("GET",url,params)
+	},
     
 }

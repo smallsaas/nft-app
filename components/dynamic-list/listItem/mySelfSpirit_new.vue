@@ -31,8 +31,8 @@
 			<view class="infoBox infoBoxOne" v-if="item.transactionCoins">
 				<text class="info">能力值：{{item.transactionCoins}}</text>
 			</view>
-			<view class="infoBox infoBoxOne" v-if="item.coinsPrice">
-				<text class="info">能力值：{{item.coinsPrice}}</text>
+			<view class="infoBox infoBoxOne" v-if="item.realtimePrice">
+				<text class="info">能力值：{{item.realtimePrice}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.createTime && !item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
@@ -114,11 +114,14 @@
 			console
 		},
 		mounted() {
-			const split = this.item.stageChangeTime.split('T')
-			// console.log('000000000000000',split)
-			// console.log('111111111111111',this.item)
-			const l = split[0] +  ' ' + split[1]
-			this.time = l
+			
+			// console.log('000000000000000 === ', this.item)
+			if(this.item.stageChangeTime){
+				const split = this.item.stageChangeTime.split('T')
+				// console.log('111111111111111',this.item)
+				const l = split[0] +  ' ' + split[1]
+				this.time = l
+			}
 			this.status = this.$cache.get('status')
 		},
 		methods: {
