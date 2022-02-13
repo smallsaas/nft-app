@@ -45,7 +45,7 @@
   						v-if="item.wisp.level==8"></image>
   				</view>
 				<view class="rth">
-  					<text class="rthL">精灵编号</text>
+  					<text class="rthL">編號</text>
   					<text class="rthR">{{item.wispNumber}}</text>
   				</view>
   				<view class="rth">
