@@ -72,7 +72,7 @@
                     "NORMAL": "正常",
                     "FROZEN": "冻结",
                     "UNREVIEWED": "审核不通过",
-                    "PENDING": "待审核"
+                    "PENDING": "待審核（請盡快完善賬戶資料提交審核）"
                 }
                 return status ? obj[status] : ''
             }
