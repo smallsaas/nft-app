@@ -26,7 +26,7 @@
 					v-if="item.wisp.level==8"></image>
 			</view>
 			<view class="infoBox">
-				<text class="info">精靈編号：{{item.wispNumber}}</text>
+				<text class="info">編號：{{item.wispNumber}}</text>
 			</view>
 			<view class="infoBox infoBoxOne" v-if="item.transactionCoins">
 				<text class="info">能力值：{{item.transactionCoins}}</text>

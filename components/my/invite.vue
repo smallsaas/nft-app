@@ -38,7 +38,11 @@
 		mounted() {
 			console.log('this',this.$config)
 			console.log('asfafasfsafmounted')
-			this.shengcheng()
+			if (uni.getStorageSync('status') == 'NORMAL'){
+				this.shengcheng()
+			} else{
+				this.$emit('close', false)
+			}
 		},
 		methods: {
 			shengcheng(){
