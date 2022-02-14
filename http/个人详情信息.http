@@ -253,7 +253,7 @@ Content-Type: application/json
                                 },
                                 {
                                     "label":"审核不通过",
-                                    "value":"UNREVIEWED",
+                                    "value":"REFUSED",
                                     "color":"",
                                     "display":false
                                 },

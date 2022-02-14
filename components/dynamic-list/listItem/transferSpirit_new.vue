@@ -56,7 +56,7 @@
 					<text class="rthR">{{item.growthDays}}</text>
 				</view>
 				<view class="btnBox">
-					<pretty-button class="btn"  text="轉化" @click="changeSpirit(item.id)"></pretty-button>
+					<pretty-button class="btn"  text="轉化" @click="comfirmModal(item.id)"></pretty-button>
 					<!-- <pretty-button class="btn" @click="operation(item)" v-if="item.stage=='BOOKABLE' || item.stage=='GROWING'" text="馬上預約" ></pretty-button>
 					<pretty-button class="btn" v-if="item.stage=='WAITING_MATCH' || item.stage=='WAITING_FOR_PAYMENT' || item.stage=='DISALLOW_BOOK'"  type="hollow"  text="已預約"></pretty-button>
 					<pretty-button class="btn" v-if="item.stage=='END_OF_MATCH'"  type="hollow"  text="預約結束"></pretty-button> -->
@@ -117,6 +117,20 @@
 						
 					})
 				}
+			},
+			comfirmModal(id){
+				var that = this
+				uni.showModal({
+				    title: '提示',
+				    content: '确定转化该精灵吗',
+				    success: function (res) {
+				        if (res.confirm) {
+				            that.changeSpirit(id)
+				        } else if (res.cancel) {
+				            console.log('取消转化');
+				        }
+				    }
+				});
 			},
 			async changeSpirit(id){	
 				let pages = getCurrentPages()

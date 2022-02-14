@@ -41,6 +41,11 @@
 			if (uni.getStorageSync('status') == 'NORMAL'){
 				this.shengcheng()
 			} else{
+				uni.showToast({
+					icon: 'none',
+					title: '账号处于非正常使用状态，不能邀请好友',
+					duration: 2000
+				})
 				this.$emit('close', false)
 			}
 		},
