@@ -26,7 +26,7 @@
 					<view class="circle" v-if="!isSavePassword"></view>
 					<image v-if="isSavePassword" class="rightImg" src="../../static/login/yes.png" mode="widthFix"
 						></image>
-					<text class="infoccc">记住密码</text>
+					<text class="infoccc">記住密碼</text>
 				</view>
 			</view>
 			
@@ -195,7 +195,7 @@
 					console.log(res)
 					if(res.code == 200){
                         
-                        // 记录此刻登录的时间
+                        // 記錄此刻登錄的時間
                         uni.setStorageSync('prevLoginTime', moment().format('YYYY-MM-DD HH:mm:ss'))
                         
 						that.$cache.set(that.$config.tokenStorageKey,res.data.accessToken)

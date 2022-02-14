@@ -122,7 +122,7 @@
 						this.sysNoticeContent = respData.data.content;
 					}
 				}else{
-					console.error("获取系统公告失败 = ", respData)
+					console.error("獲取系統公告失敗 = ", respData)
 				}
 			}
 		}

@@ -45,7 +45,7 @@
 				}
 			},
 			isSign(){
-				console.log(this.sign,'-----测试sogjsdgnsldjkgsdkl------------------------')
+				console.log(this.sign,'-----測試sogjsdgnsldjkgsdkl------------------------')
 				if(this.sign){
 					this.signText="已簽到"
 					this.signImage="/static/signSmoke/signedIn.png"
@@ -85,7 +85,7 @@
 				nowGroup:[],
 				isSignGroup:{},
 				
-				//是否已经补签
+				//是否已經補簽
 				isBuQian:false
 			};
 		},
@@ -197,7 +197,7 @@
 					let time = new Date(new Date(new Date().toLocaleDateString()).getTime())
 					console.log('time',time)
 					uni.showToast({
-						title:'一天只能补签一次',
+						title:'一天隻能補簽一次',
 						icon:'none',
 						duration: 1000
 					})

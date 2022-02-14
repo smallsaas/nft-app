@@ -31,10 +31,10 @@
 			<view class="infoBox infoBoxOne" v-if="item.transactionCoins">
 				<text class="info">能力值：{{item.transactionCoins}}</text>
 			</view>
-			<view class="infoBox infoBoxOne" v-if="item.coinsPrice">
-				<text class="info">能力值：{{item.coinsPrice}}</text>
+			<view class="infoBox infoBoxOne" v-if="item.realtimePrice">
+				<text class="info">能力值：{{item.realtimePrice}}</text>
 			</view>
-			<view class="infoBox infoBoxTwo" v-if="item.createTime">
+			<view class="infoBox infoBoxTwo" v-if="item.createTime && !item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
 			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.stageChangeTime">
@@ -47,23 +47,23 @@
 				<text class="info">買家：{{item.wispOrder.buyerName}}</text>
 			</view>
 			<view class="line"></view>
-			<!-- 精灵副本状态 
+			<!-- 精靈副本狀态 
 				MATCHING 匹配中
-				GROWING 成长中
+				GROWING 成長中
 				SELLING 出售中
-				EXPIRED 已过期
-				TRADE_FAILED 交易失败
+				EXPIRED 已過期
+				TRADE_FAILED 交易失敗
 				TRADING 交易中
-				DESTROYED 已销毁
+				DESTROYED 已銷毀
 				SPLIT 已拆分
 			 -->
-			<!-- 精灵订单交易状态 
+			<!-- 精靈訂單交易狀态 
 				WAITING_PAYMENT 等待支付
 				PAID 已支付
-				PAYMENT_TIMEOUT 支付超时
-				RECEIVED 确认收款
-				CANCEL 订单取消
-				COMPLAINING 申诉中
+				PAYMENT_TIMEOUT 支付超時
+				RECEIVED 确認收款
+				CANCEL 訂單取消
+				COMPLAINING 申訴中
 			 -->
 			<view class="btnBox">
 				<text class="timeOne" :class="{sOne:item.stage == 'MATCHING'}" v-if="item.stage == 'MATCHING'">匹配中...</text>
@@ -73,12 +73,12 @@
 				<!-- <text class="timeOne" :class="{sOne:item.stage == 'TRADE_FAILED'}" v-if="item.stage == 'TRADE_FAILED' ">交易失敗</text> -->
 				<!-- <text class="timeOne" :class="{sOne:item.stage == 'TRADING'}" v-if="item.stage == 'TRADING'">對方付款中...</text> -->
 				<!-- <text class="timeTwo" :class="{grey:item.stage == 'TRADING'}" v-if="item.stage == 'TRADING'">剩餘付款時間 {{item.remainingMinutes}}分鍾</text> -->
-				<text class="timeOne" :class="{sOne:item.stage == 'DESTROYED'}" v-if="item.stage == 'DESTROYED' ">已销毁</text>
+				<text class="timeOne" :class="{sOne:item.stage == 'DESTROYED'}" v-if="item.stage == 'DESTROYED' ">已銷毀</text>
 				<text class="timeOne" :class="{sOne:item.stage == 'SPLIT'}" v-if="item.stage == 'SPLIT'">已拆分</text>
 
-				<!-- 当前出售 -->
+				<!-- 當前出售 -->
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder && item.wispOrder.status == 'WAITING_PAYMENT'">對方付款中...</text>
-				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder && item.wispOrder.status == 'WAITING_PAYMENT'">剩餘付款時間 {{item.remainingMinutes}}分鍾</text>
+				<text class="timeTwo" :class="{grey:item.wispOrder.status == 'WAITING_PAYMENT'}" v-if="item.wispOrder && item.wispOrder.status == 'WAITING_PAYMENT'">剩餘付款時間 {{item.wispOrder.remainingMinutes}} 分鍾</text>
 				<text class="timeOne" :class="{sTwo:item.wispOrder.status == 'PAID'}" v-if="item.wispOrder && item.wispOrder.status == 'PAID'">對方已付款</text>
 				<text class="timeOne" :class="{sThree:item.wispOrder.status == 'PAYMENT_TIMEOUT'}" v-if="item.wispOrder && item.wispOrder.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.wispOrder.status == 'RECEIVED'}" v-if="item.wispOrder && item.wispOrder.status == 'RECEIVED'">已確認收款</text>
@@ -114,11 +114,14 @@
 			console
 		},
 		mounted() {
-			const split = this.item.stageChangeTime.split('T')
-			// console.log('000000000000000',split)
-			// console.log('111111111111111',this.item)
-			const l = split[0] +  ' ' + split[1]
-			this.time = l
+			
+			// console.log('000000000000000 === ', this.item)
+			if(this.item.stageChangeTime){
+				const split = this.item.stageChangeTime.split('T')
+				// console.log('111111111111111',this.item)
+				const l = split[0] +  ' ' + split[1]
+				this.time = l
+			}
 			this.status = this.$cache.get('status')
 		},
 		methods: {
@@ -203,6 +206,7 @@
 			// closeToast(){
 			// 	this.isShowToast = false
 			// }
+			
 		}
 	}
 </script>

@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const commonStore = new Vuex.Store({
 	state: {
-		redDotData: {}, // 存储我的精灵tab是否展示红点
+		redDotData: {}, // 存儲我的精靈tab是否展示紅點
 	},
 	getters: {},
 	mutations: {

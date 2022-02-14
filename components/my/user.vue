@@ -67,7 +67,7 @@
 			},
             statusText () {
                 const status = uni.getStorageSync('status')
-                console.log('个人状态', status, uni.getStorageSync('status'))
+                console.log('個人狀态', status, uni.getStorageSync('status'))
                 const obj = {
                     "NORMAL": "正常",
                     "FROZEN": "冻结",

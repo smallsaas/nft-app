@@ -10,7 +10,7 @@
  			<view class="bodyBox">
  				<image src="../../static/H5home/nH.png" class="bodyImg"></image>
  				<button class="btn" :class="{addClass:isShowAddClass}" @click="addClass" @touchstart="a">開始遊戲</button>
- 				<button class="btn btns" @click="handleDownload" :loading="downloading">{{ downloading ? '下载中...' : '下載安卓APP' }}</button>
+ 				<button class="btn btns" @click="handleDownload" :loading="downloading">{{ downloading ? '下載中...' : '下載安卓APP' }}</button>
  			</view>
  		</view>
  	</view>
@@ -41,7 +41,7 @@
                     url: 'https://www.metagugu.net/download/metagugu.apk',
                     complete: (res) => {
                         this.downloading = false
-                        uni.showToast({ title: res.statusCode === 200 ? '下载成功' : '下载失败', icon: 'none' })
+                        uni.showToast({ title: res.statusCode === 200 ? '下載成功' : '下載失敗', icon: 'none' })
                     }
                 })
 			}

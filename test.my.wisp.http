@@ -1,12 +1,12 @@
 
-# 当前预约：[GET] /api/u/player/record/book?onlyCurrentDay=1
-# 预约记录：[GET] /api/u/player/record/book?onlyCurrentDay=0
-# 当前匹配：[GET] /api/u/order/wisp/buy?onlyCurrentHandling=1
-# 匹配记录：[GET] /api/u/order/wisp/buy?onlyCurrentHandling=0
-# 当前领养：[GET] /api/u/player/queryPlayerWispInstance?stage=GROWING
-# 领养记录：无法实现
-# 当前出售：[GET] /api/u/wisp/selling
-# 出售记录：[GET] /api/u/order/wisp/record/sell
+# 當前預約：[GET] /api/u/player/record/book?onlyCurrentDay=1
+# 預約記錄：[GET] /api/u/player/record/book?onlyCurrentDay=0
+# 當前匹配：[GET] /api/u/order/wisp/buy?onlyCurrentHandling=1
+# 匹配記錄：[GET] /api/u/order/wisp/buy?onlyCurrentHandling=0
+# 當前領養：[GET] /api/u/player/queryPlayerWispInstance?stage=GROWING
+# 領養記錄：無法實現
+# 當前出售：[GET] /api/u/wisp/selling
+# 出售記錄：[GET] /api/u/order/wisp/record/sell
 
 @endpoint=http://www.metagugu.net
 @endpoint=http://api.dev.smallsaas.cn:8084
@@ -16,31 +16,31 @@
 @player1=Bearer eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFM1MTIifQ.eyJvcmdJZCI6IiIsInVzZXJJZCI6MzksImFjY291bnQiOiJhY2M2MzQ1MTg5MCIsImRvbWFpblVzZXJJZCI6MzgsImlhdCI6MTY0MzU1MDE3OCwianRpIjoiMzkiLCJzdWIiOiJhY2M2MzQ1MTg5MCIsImV4cCI6MTY0MzgwOTM3OH0.6zygETHzx7BMFkUNerkzJLYN8dlYDHgjXZ6fHF26lGwEqoKxzQnXi-dG05jLjNSFwepTyo_0RQozsLWFNXmYTA
 
 
-## 预约
+## 預約
 
-### 当前预约
+### 當前預約
 GET {{endpoint}}/api/u/player/record/book?onlyCurrentDay=1
 Authorization: {{player1}}
 
-### 预约记录
+### 預約記錄
 GET {{endpoint}}/api/u/player/record/book?onlyCurrentDay=0
 Authorization: {{player1}}
 
 
 ## 匹配
 
-### 当前匹配
+### 當前匹配
 GET {{endpoint}}/api/u/order/wisp/buy?onlyCurrentHandling=1
 Authorization: {{player1}}
 
-### 匹配记录
+### 匹配記錄
 GET {{endpoint}}/api/u/order/wisp/buy?onlyCurrentHandling=0
 Authorization: {{player1}}
 
 
-## 领养
+## 領養
 
-## 当前领养
+## 當前領養
 GET {{endpoint}}/api/u/player/queryPlayerWispInstance?stage=GROWING
 Authorization: {{player1}}
 
@@ -48,10 +48,10 @@ Authorization: {{player1}}
 
 ## 出售
 
-### 当前出售
+### 當前出售
 GET {{endpoint}}/api/u/wisp/selling
 Authorization: {{player1}}
 
-### 出售记录
+### 出售記錄
 GET {{endpoint}}/api/u/order/wisp/record/sell
 Authorization: {{player1}}

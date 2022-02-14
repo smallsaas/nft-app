@@ -1,4 +1,4 @@
-<!-- 精灵记录页面 -->
+<!-- 精靈記錄頁面 -->
 <template>
     <view class="spirit_record_container">
         <view class="spirit_record_content">
@@ -34,7 +34,7 @@
                 <view>{{ _get(item, 'wisp.growthDays', 0)}}</view>
             </view>
             <view class="but_content">
-                <!-- 预约 -->
+                <!-- 預約 -->
                 <pretty-button class="but" v-if="item.bookStatus == 'WAITING_MATCH'" type="hollow" text="預約成功"></pretty-button>
                 <pretty-button class="but" v-if="item.bookStatus=='MATCH_SUCCESS'"  type="hollow"  text="匹配成功"></pretty-button>
                 <pretty-button class="but" v-if="item.bookStatus=='MATCH_FAIL'"  type="hollow"  text="匹配失敗"></pretty-button>
@@ -48,15 +48,15 @@
                 <pretty-button class="but" v-if="item.status=='CANCEL'" text="已取消"></pretty-button>
                 
                 <!-- 出售中 -->
-                <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'RECEIVED'" text="已确认收款"></pretty-button>
+                <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'RECEIVED'" text="已确認收款"></pretty-button>
                 <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'SELLING'" text="出售中"></pretty-button>
                 <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'WAITING_PAYMENT'" text="對方付款中..."></pretty-button>
                 <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'PAID'" text="對方已付款"></pretty-button>
                 <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'PAYMENT_TIMEOUT'" text="對方未付款"></pretty-button>
                 <!-- <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'WAITING_PAYMENT' || _get(item, 'wispOrder.status') === 'PAYMENT_TIMEOUT'" :text="`剩餘付款時間${_get(item, 'wispOrder.remainingMinutes', 0)}分鍾`"></pretty-button> -->
                 <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'SELLING'" text="出售中..."></pretty-button>
-                <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'RECEIVED'" text="已确认收款"></pretty-button>
-                <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'COMPLAINING'" text="申诉中.."></pretty-button>
+                <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'RECEIVED'" text="已确認收款"></pretty-button>
+                <pretty-button class="but" v-if="_get(item, 'wispOrder.status') === 'COMPLAINING'" text="申訴中.."></pretty-button>
                 
             </view>
         </view>

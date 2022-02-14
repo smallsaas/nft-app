@@ -6,6 +6,13 @@
 				<view class="status"><text class="title">備注信息:</text><text class="info">{{item.content}}</text></view>
 				<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'處理中':'已處理'}}</text></view>
 				<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
+				<view class="replyRecordList" v-if="item.replyRecordList.length > 0" v-for="(rItem,rIndex) in item.replyRecordList" :key="rIndex">
+					<view class="replyStatus">
+						<text v-if="rIndex == 0" class="replyTitle">{{rItem.replierName}} 回复:</text>
+						<text v-else class="replyTitle">{{rItem.replierName}} 追加回复:</text>
+						<text class="replyInfo">{{rItem.content}}</text>
+					</view>
+				</view>
 			</view>
 		</view>
 		<view class="fixBtn">
@@ -127,6 +134,37 @@
 					height: auto;
 					font-size: 30rpx;
 					color: #FFFFFF;
+				}
+			}
+		}
+		.replyRecordList{
+			width: 100%;
+			margin-top: 20rpx;
+			background: rgb(17,24,30);
+			border-radius: 20rpx;
+			display: flex;
+			flex-direction: column;
+			.replyStatus{
+				flex: 1;
+				display: flex;
+				text-align: left;
+				align-items: left;
+				justify-content: space-around;
+				padding-left: 14rpx;
+				flex-direction: column;
+				.replyTitle{
+					width: 400rpx;
+					font-size: 30rpx;
+				}
+				.replyInfos{
+					color: #31E4B9 !important;
+				}
+				.replyInfo{
+					width: 100%;
+					height: auto;
+					font-size: 30rpx;
+					color: #FFFFFF;
+					padding-left: 16rpx;
 				}
 			}
 		}

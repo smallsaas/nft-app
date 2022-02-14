@@ -4,12 +4,12 @@ import { globalConfig } from '@/config.js'
 
 // 獲取全局配置
 export const api = {
-	//玩家投诉
+	//玩家投訴
 	userTouShu(params){
 		const url = `${globalConfig.endpoint}/api/u/player/feedback`
 		return request('POST',url,params)
 	},
-	//玩家获取投诉记录
+	//玩家獲取投訴記錄
 	getTouShuHistory(params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
 		return request('GET',url,params)
@@ -316,37 +316,46 @@ export const api = {
 	return request('POST',url,params)
 	},
 	
-	//获取系统公告
+	//獲取系統公告
 	getSysNotice(params){
 	const url = `${globalConfig.endpoint}/api/u/cms/term/config?type=SYSTEM_NOTICE`
 	return request('GET',url,params)
 	},
 
-	// 获取个人精灵数量
+	// 獲取個人精靈數量
 	getUserWisp (params) {
 		const url = `${globalConfig.endpoint}/api/u/player/statistics/wisp/growing`
 		return request('GET', url, params)
 	},
     
-    // 获取我的精灵未处理的记录
+    // 獲取我的精靈未處理的記錄
     getMySpiritUnpaidCount (params) {
         const url = `${globalConfig.endpoint}/api/u/order/wisp/count/unpaid`
         return request('GET', url, params)
     },
     
-    // 匹配精灵-已付款重新上传凭证
+    // 匹配精靈-已付款重新上傳憑證
     postBuyerReUploadPaymentProof (params) {
         const url = `${globalConfig.endpoint}/api/u/order/wisp/buyerReUploadPaymentProof`
         return request('POST', url, params)
     },
     
-    // 匹配精灵-申诉中重新上传凭证
-    postReiterate (complainId, params) {
+    // 匹配精靈-申訴中重新上傳憑證
+    postReiterate (params) {
         // const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/reiterate`
 		// return request('POST', url, params)
 
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/complain/credentialLink`
-		return request('PUT', url, params)
-    }
+		// const url = `${globalConfig.endpoint}/api/u/order/wisp/${complainId}/complain/credentialLink`
+		// return request('PUT', url, params)
+		
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/confirmPayment`
+		return request('POST', url, params)
+    },
+	
+	//根据ID获取用户团队
+	getUserTeamById(params, id){
+		const url = `${globalConfig.endpoint}/api/u/player/getChildrenById/${id}`
+		return request("GET",url,params)
+	},
     
 }

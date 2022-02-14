@@ -27,7 +27,7 @@
 			<view class="flex_item">
 				<view class="item">GuGu精靈總數: {{wispData.wispCount || 0}}</view>
 				<view class="item">GuGu能力總值: {{wispData.wispValueAmount || 0}}</view>
-				<view class="item">精灵总收益: {{forChild.marketPoints || 0}}</view>
+				<view class="item">精靈總收益: {{forChild.marketPoints || 0}}</view>
 			</view>
 		</view>
 
