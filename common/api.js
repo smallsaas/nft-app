@@ -352,7 +352,7 @@ export const api = {
 		return request('POST', url, params)
     },
 	
-	//根据ID获取用户团队
+	//根據ID獲取用戶團隊
 	getUserTeamById(params, id){
 		const url = `${globalConfig.endpoint}/api/u/player/getChildrenById/${id}`
 		return request("GET",url,params)

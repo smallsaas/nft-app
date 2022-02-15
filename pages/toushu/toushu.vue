@@ -8,8 +8,8 @@
 				<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
 				<view class="replyRecordList" v-if="item.replyRecordList.length > 0" v-for="(rItem,rIndex) in item.replyRecordList" :key="rIndex">
 					<view class="replyStatus">
-						<text v-if="rIndex == 0" class="replyTitle">{{rItem.replierName}} 回复:</text>
-						<text v-else class="replyTitle">{{rItem.replierName}} 追加回复:</text>
+						<text v-if="rIndex == 0" class="replyTitle">{{rItem.replierName}} 回複:</text>
+						<text v-else class="replyTitle">{{rItem.replierName}} 追加回複:</text>
 						<text class="replyInfo">{{rItem.content}}</text>
 					</view>
 				</view>

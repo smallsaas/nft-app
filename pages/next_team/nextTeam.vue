@@ -1,7 +1,7 @@
 <!-- 對接PageTabbar組件的标準頁面 -->
 <template>
 	<view class="main-container">
-		<view style="padding: 0 15rpx;">团队层级导航</view>
+		<view style="padding: 0 15rpx;">團隊層級導航</view>
 		<view class="nav" style="ba">
 			<view v-for="(item, index) in navs">
 				<view @click="showCurrentTeam(item)" style="padding: 5rpx 10rpx;">{{item.name}}{{item.arrow}}</view>
@@ -50,7 +50,7 @@
 		},
 		mounted: function() {
 			this.setScrollBar();
-			// 浏览器缩放，更新ScrollBar位置
+			// 浏覽器縮放，更新ScrollBar位置
 			window.addEventListener('resize', this.setScrollBar);
 		},
 		methods: {
@@ -97,7 +97,7 @@
 				if (res.code === 200) {
 					this.teamList = res.data
 				} else {
-					console.log('获取团队信息失败')
+					console.log('獲取團隊信息失敗')
 				}
 			},
 			showNextTeam(currentItem) {
@@ -145,28 +145,28 @@
 			flex-direction: row;
 			background: rgb(17, 24, 30);
 			&::-webkit-scrollbar {
-				// 滚动条整体
+				// 滾動條整體
 				background: none;
 			}
 
 			&::-webkit-scrollbar-thumb {
-				//滑块
+				//滑塊
 				background: rgba(71, 145, 242, .5);
 				border-radius: 5px;
 			}
 
 			&::-webkit-scrollbar-track {
-				//轨道
+				//軌道
 
 			}
 
 			&::-webkit-scrollbar-button {
-				//两端按钮
+				//兩端按鈕
 
 			}
 
 			&::-webkit-scrollbar-track-piece {
-				//滚动条中间部分
+				//滾動條中間部分
 			}
 		}
 

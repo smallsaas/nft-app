@@ -67,7 +67,7 @@
 			 -->
 			<view class="btnBox">
 				<text class="timeOne" :class="{sOne:item.stage == 'MATCHING'}" v-if="item.stage == 'MATCHING'">匹配中...</text>
-				<text class="timeOne" :class="{sOne:item.stage == 'SELLING'}" v-if="item.stage == 'SELLING'">出售中...</text>
+				<text class="timeOne" :class="{sOne:item.stage == 'SELLING'}" v-if="item.stage == 'SELLING'">待出售...</text>
 				<text class="timeOne" :class="{sOne:item.stage == 'GROWING'}" v-if="item.stage == 'GROWING'">成長中...</text>
 				<text class="timeOne" :class="{sOne:item.stage == 'EXPIRED'}" v-if="item.stage == 'EXPIRED'">已過期</text>
 				<!-- <text class="timeOne" :class="{sOne:item.stage == 'TRADE_FAILED'}" v-if="item.stage == 'TRADE_FAILED' ">交易失敗</text> -->
