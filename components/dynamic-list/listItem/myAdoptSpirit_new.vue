@@ -28,10 +28,19 @@
             <view class="infoBox wispNumber">
             	<text class="info">編號：{{item.wispNumber}}</text>
             </view>
-			<view class="infoBox infoBoxFirst">
+			<!-- <view class="infoBox infoBoxFirst">
 				<text class="info">能力值：{{item.coinsPrice}}/{{item.realtimePrice}}</text>
-				<!-- <text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text> -->
+				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>
+			</view> -->
+			<view class="infoBox infoBoxFirst">
+				<text class="info">领养能力值：{{item.coinsPrice}}</text>
 			</view>
+			<view class="infoBox infoBoxSix">
+				<text class="info">当前能力值：{{item.realtimePrice}}</text>
+			</view>
+			<view class="infoBox infoBoxSeven" style="display: flex; flex-direction: row; align-items: center;">
+				<text class="info">产生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimePrice-item.coinsPrice}}</view>
+			</view> 
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>
 			</view>
@@ -125,7 +134,7 @@
 		.item{
 			margin: 0rpx auto;
 			width: 686rpx;
-			height: 530rpx;
+			height: 598rpx;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -170,7 +179,7 @@
 				}
 			}
 				
-			.infoBox,.infoBoxFirst,.infoBoxTwo,.infoBoxThree, .wispNumber, .infoBoxFour{
+			.infoBox,.infoBoxFirst,.infoBoxTwo,.infoBoxThree, .wispNumber, .infoBoxFour, .infoBoxSix, .infoBoxSeven{
 				width: 350rpx !important;
 				// height: 34rpx;
 				position: absolute;
@@ -194,18 +203,27 @@
             .infoBoxFirst {
                 top: 192rpx;
             }
+			
+			.infoBoxSix{
+                top: 236rpx;
+			}
+			
+			.infoBoxSeven{
+				top: 286rpx;
+			}
+			
 			.infoBoxTwo{
-				top: 236rpx;
+				top: 324rpx;
 			}
 			.infoBoxThree{
-				top: 280rpx;
+                top: 368rpx;
 				.sss{
 					position: relative;
 					top: 40rpx !important;
 				}
 			}
             .infoBoxFour {
-                top: 324rpx;
+                top: 412rpx;
             }
 
 			.line{
@@ -215,7 +233,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 374rpx;
+				top: 462rpx;
 			}
 			.btnBox{
 				width: 100%;

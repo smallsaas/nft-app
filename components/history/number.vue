@@ -120,7 +120,7 @@
 			async closeType(value){
 				if(value=='update'){
 					const res = await this.$api.getUserWallet()
-					console.log(res,'---------------------------------')
+					console.log(res,'---------------------------------11111111')
 					if(res.code == 200){
 						this.pSingPoint = res.data.signInCoinCredit
 						this.rPoint = res.data.recommendCoinCredit
@@ -174,13 +174,13 @@
 						icon:'success',
 						duration:1000
 					})
+					this.closeType('update')
 				}else{
 					uni.showToast({
 						title:res.message,
 						icon:'none',
 						duration:1000
 					})
-					return
 				}
 			},
 			forParent(){

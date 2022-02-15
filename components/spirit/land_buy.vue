@@ -213,7 +213,7 @@
 			}
 
 			.name {
-				width: 72px;
+				width: 160rpx;
 				height: 25px;
 				font-size: 18px;
 				font-family: PingFang SC-Bold, PingFang SC;

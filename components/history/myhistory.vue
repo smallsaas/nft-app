@@ -32,7 +32,7 @@
 		</view>
 
 		<view class="spirit_mask" v-if="isShowTransfer||isShowTransferCoin||isShowTransferCoinTwo"></view>
-		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild" @forParentToChangeCoin="getValueForUpdateCoin"></number>
+		<number @forParentClose="getValue"  @forParentCloseTwo="getValueTwo" :data="forChild" @forParentToChangeCoin="getValueForUpdateCoin" ></number>
 		<transfer v-if="isShowTransfer" @close="getClose" @tellFather="getChildren"></transfer>
 		<transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
 		<transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
