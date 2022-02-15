@@ -70,7 +70,7 @@
 				}
 			},
 			goToShowNextTeam(){
-				// console.log('去看下级 = ', this.item.id)
+				// console.log('去看下級 = ', this.item.id)
 				if(this.item.teamSize >= 2){
 					uni.navigateTo({
 						url:'/pages/next_team/nextTeam?id=' + this.item.id + '&name=' + this.item.name
