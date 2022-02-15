@@ -42,6 +42,7 @@
                     complete: (res) => {
                         this.downloading = false
                         uni.showToast({ title: res.statusCode === 200 ? '下載成功' : '下載失敗', icon: 'none' })
+						
                     }
                 })
 			}
