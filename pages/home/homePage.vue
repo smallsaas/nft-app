@@ -34,12 +34,29 @@
 			</view>
 		
 		</view>
+		<!-- 系统公告 -->
+		<view class="service-mask" v-if="isShowSysNotice"></view>
+		<view v-if="isShowSysNotice" class="service-modal">
+			<view class="service-modal-container">
+				<view class="service-modal-title">
+					<text class="service-modal-title-text">系統公告</text>
+				</view>
+				<view class="service-modal-content">
+					<view v-html="sysNoticeContent" />
+				</view>
+				<view class="service-modal-buttonGroup">
+					<pretty-button class="service-modal-button" text="關閉" @click="closeSysNoticeModal()"></pretty-button>
+				</view>
+			</view>
+		
+		</view>
 	</view>
 </template>
 
 <script>
     import { mapState } from 'vuex'
     import commonStore from '@/store/common.js'
+	import moment from 'moment'
     import _ from 'lodash'
 	import NavBar from '../../components/publicComponents/navBar/navBar.vue'
 	import tabBarPage from '../defaultPage/tabbarPage.vue'
@@ -58,7 +75,11 @@
                 timer: null, // 定時器，用戶定時獲取我的精靈未處理的數據
 				isShowRecordTips: false,
                 isFirstShowRecordTips: true,
-                isUpdatePageChange: false // 是否需要刷新頁面
+                isUpdatePageChange: false, // 是否需要刷新頁面
+				isShowSysNotice: false, //显示通告
+				isFirstShowSysNote: true,
+				sysNoticeContent:'',
+				isUpdate: false
 			}
 		},
         computed:{
@@ -99,10 +120,11 @@
             this.isUpdatePageChange = false
         },
         onLoad() {
-            this.fetchMySpiritUnpaidCount()
-            this.timer = setInterval(() => {
-                this.fetchMySpiritUnpaidCount()
-            }, 10000)
+			// this.fetchMySpiritUnpaidCount()
+			this.fetchGetSysNotice()
+			this.timer = setInterval(() => {
+				this.fetchMySpiritUnpaidCount()
+			}, 10000)
         },
         onUnload() {
            if (this.timer) {
@@ -128,6 +150,27 @@
                 }
                 this.isUpdatePageChange = true
             },
+			async fetchGetSysNotice () {
+			    const respData = await this.$api.getSysNotice();
+			    if(respData.code == 200){
+			    	if(respData.data){
+						//判断首次进入APP显示公告
+						if(this.isFirstShowSysNote){
+							let sysNoticeTime = respData.data.lastModifiedTime.split(" ")[0]
+							//判断公告时间是否是今天
+							if(sysNoticeTime == this.getToday()){
+								this.isShowSysNotice = true
+								this.sysNoticeContent = respData.data.content;
+							}else{
+								//获取匹配精灵信息
+								this.fetchMySpiritUnpaidCount()
+							}
+						}
+			    	}
+			    }else{
+			    	console.error("獲取系統公告失敗 = ", respData)
+			    }
+			},
             
 			handleChange(e){
 				this.clicked = e
@@ -147,6 +190,11 @@
 				this.isShowRecordTips = false
                 this.isFirstShowRecordTips = false
 			},
+			closeSysNoticeModal(){
+				this.isFirstShowSysNote = false
+				this.isShowSysNotice = false
+				this.fetchMySpiritUnpaidCount()
+			},
 			goToPage(){
                 this.isFirstShowRecordTips = false
 				this.isShowRecordTips = false
@@ -154,6 +202,15 @@
 				this.defaultClick = 1
 				this.isTab(apis[1])
 				this.$forceUpdate()
+			},
+			getToday () {
+			  let nowDate = new Date()
+			  let date = {
+			    year: nowDate.getFullYear(),
+			    month: nowDate.getMonth() + 1,
+			    date: nowDate.getDate()
+			  }
+			  return date.year + '-' + date.month + '-' + date.date
 			}
 		}
 	}
@@ -219,6 +276,64 @@
 	}
 	
 	.record-modal-button-ok{
+		margin-top: 50rpx;
+		width: 200rpx;
+		height: 65rpx;
+	}
+	.span{
+		margin-bottom: 20rpx;
+	}
+	
+	.service-mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #000;
+		opacity: .8;
+		z-index: 600;
+	}
+	.service-modal{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 601;
+	}
+	.service-modal-container{
+		width: 80%;
+		padding: 40rpx;
+		background-color: #182641;
+	}
+	.service-modal-title{
+		font-size: 36rpx;
+		color: #fff;
+		text-align: center;
+	}
+	.service-modal-title-text{
+		border-bottom: 5rpx solid #fff;
+	}
+	.service-modal-content{
+		display: flex;
+		// justify-content: center;
+		margin-top: 50rpx;
+		// align-items: center;
+		// justify-content: column;
+		flex-direction: column;
+		color: #fff;
+	}
+	
+	.service-modal-buttonGroup{
+		display: flex;
+		justify-content: center;
+	}
+	
+	.service-modal-button{
 		margin-top: 50rpx;
 		width: 200rpx;
 		height: 65rpx;

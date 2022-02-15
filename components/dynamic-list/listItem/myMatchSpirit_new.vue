@@ -68,6 +68,10 @@
 					<text class="rthL">匹配時間</text>
 					<text class="rthR">{{formatTime(item.createTime)}}</text>
 				</view>
+				<view class="rth rtht" v-if="item.status == 'PAID' && item.remainingTime && item.remainingTime != 0">
+					<text class="rthL">交易倒计时</text>
+					<text class="rthR">{{formatTime(item.remainingTime)}}</text>
+				</view>
   				<view class="btnBox" v-if="['WAITING_PAYMENT', 'PAID', 'PAYMENT_TIMEOUT', 'RECEIVED', 'CANCEL', 'COMPLAINING'].includes(item.status)">
                     <button class="btn" v-if="item.status=='WAITING_PAYMENT'" @click="goToPay(item)">待付款(剩{{item.remainingMinutes}}分鍾)</button>
 
