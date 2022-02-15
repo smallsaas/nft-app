@@ -37,14 +37,22 @@
  			},
 			handleDownload () {
                 this.downloading = true
-				uni.downloadFile({
-                    url: 'https://www.metagugu.net/download/metagugu.apk',
-                    complete: (res) => {
-                        this.downloading = false
-                        uni.showToast({ title: res.statusCode === 200 ? '下載成功' : '下載失敗', icon: 'none' })
-						
-                    }
-                })
+				// uni.downloadFile({
+    //                 url: 'https://www.metagugu.net/download/metagugu.apk',
+    //                 complete: (res) => {
+    //                     this.downloading = false
+    //                     uni.showToast({ title: res.statusCode === 200 ? '下載成功' : '下載失敗', icon: 'none' })
+    //                     console.log('YYYY', res.tempFilePath)
+    //                 }
+    //             })
+                
+                const dload = document.createElement("a")
+                dload.download = 'MetaGuGu.apk'
+                dload.href = 'https://www.metagugu.net/download/metagugu.apk'
+                document.body.appendChild(dload)
+                dload.click()
+                dload.remove()
+                this.downloading = false
 			}
  		}
  	}
