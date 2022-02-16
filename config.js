@@ -6,8 +6,8 @@ const globalConfigStorage = cache.get('globalConfigStorage')
 const iconList = cache.get("iconList")
 
 // 是否爲開發環境 雙配置 兼容生産及開發環境
-// const isDev = false
-const isDev = true
+const isDev = false
+// const isDev = true
 // #ifdef APP-PLUS
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存

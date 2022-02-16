@@ -36,7 +36,7 @@
 				})
  			},
 			handleDownload () {
-                this.downloading = true
+                // this.downloading = true
 				// uni.downloadFile({
     //                 url: 'https://www.metagugu.net/download/metagugu.apk',
     //                 complete: (res) => {
@@ -45,14 +45,16 @@
     //                     console.log('YYYY', res.tempFilePath)
     //                 }
     //             })
-                
-                const dload = document.createElement("a")
-                dload.download = 'MetaGuGu.apk'
-                dload.href = 'https://www.metagugu.net/download/metagugu.apk'
-                document.body.appendChild(dload)
-                dload.click()
-                dload.remove()
-                this.downloading = false
+                // 方法一
+                // const dload = document.createElement("a")
+                // dload.download = 'MetaGuGu.apk'
+                // dload.href = 'https://www.metagugu.net/download/metagugu.apk'
+                // document.body.appendChild(dload)
+                // dload.click()
+                // dload.remove()
+				// 方法二
+				window.location.href = 'https://www.metagugu.net/download/metagugu.apk'
+                // this.downloading = false
 			}
  		}
  	}
