@@ -5,6 +5,25 @@
 			<input  v-model="value" type="text"  placeholder="選擇申述原因" class="read" />
 			<image src="../../static/login/download.png" mode="widthFix" class="beaut" @click="show"></image>
 		</view>
+		
+		<view class="boxF">
+			<view class="top">
+				<text class="z">上傳图片</text>
+			</view>
+			<view class="bottom">
+				<view class="imgBox">
+					<view class="success" v-for="(item,index) in list" :key="index">
+						<image :src="item" mode="widthFix" class="upload" @click="check(item)"></image>
+						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg"
+							@click="deleteImage(index)" v-if="!showBigImg"></image>
+					</view>
+					<view class="ifsuccess" @click="uploadImage">
+						<image src="../../static/spirit/addImg.png" mode="widthFix" class="upload"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+		
 		<view class="title"><text class="info">備注</text></view>
 		<view class="select selectT">
 			<textarea placeholder="添加其他投訴原因" class="text" v-model="moreValue"></textarea>
@@ -42,7 +61,9 @@
 				inx:-1,
 				value:'',
 				moreValue:'',
-				orderIdS:0
+				orderIdS:0,
+				showBigImg: false,
+				list: []
 			}
 		},
 		methods: {
@@ -69,7 +90,7 @@
 				let data = {
 					title:this.value,
 					content:this.moreValue,
-					credentialLink: "憑證鏈接"
+					credentialLink: this.list
 				}
 				const res = await this.$api.userTouShu(data)
 				console.log('RES',res)
@@ -95,7 +116,29 @@
 				
 			// const res = await this.$api.checkOrderCpmplain()
 			// console.log('RES',res)
-		}
+		},
+		// 删除圖片
+		deleteImage(i) {
+			this.list.splice(i, 1)
+			this.$forceUpdate()
+		},
+		// 上傳圖片
+		uploadImage() {
+			let that = this
+			uni.chooseImage({
+				count: 9,
+				success: async function(path) {
+					let files = path.tempFiles
+					for (var i = 0; i < files.length; i++) {
+						let file = files[i]
+						let webPath = await that.$upload("/api/u/fs/uploadfile", file.path)
+						let fileList = that.list
+						fileList.push(that.$config.endpoint + webPath)
+						// console.log(fileList)
+					}
+				}
+			})
+		},
 	},
 }
 </script>
@@ -226,6 +269,77 @@
 					display: flex;
 					align-items: center;
 					justify-content: center;
+				}
+			}
+		}
+	}
+	
+	.boxF {
+		width: 343px;
+		height: 191px;
+		background: #11181E;
+		border-radius: 8px 8px 8px 8px;
+		opacity: 1;
+		margin: 24px auto;
+	
+		.top {
+			width: 100%;
+			height: 56px;
+			border-bottom: 1px solid #1B2228;
+			position: relative;
+	
+			.z {
+				position: absolute;
+				top: 16px;
+				left: 16px;
+				font-size: 16px;
+				font-family: PingFang SC-Medium, PingFang SC;
+				font-weight: 500;
+				color: #B9BBBD;
+			}
+		}
+	
+		.bottom {
+			width: 100%;
+			height: 134px;
+	
+			.imgBox {
+				margin-top: 10px;
+				display: flex;
+				flex-direction: row;
+	
+				.success {
+					height: auto;
+					padding: 2px;
+					padding-left: 10px;
+					position: relative;
+	
+					.upload {
+						width: 100px;
+						height: 100px !important;
+						border-radius: 16rpx 16rpx 16rpx 16rpx;
+					}
+	
+					.deleteImg {
+						position: absolute;
+						right: 8rpx;
+						top: 8rpx;
+						width: 40rpx;
+						height: 40rpx;
+						z-index: 50000;
+					}
+				}
+	
+				.ifsuccess {
+					width: 100px;
+					height: 100px !important;
+					padding: 2px;
+					padding-left: 10px;
+	
+					.upload {
+						width: 100px;
+						height: 100px !important;
+					}
 				}
 			}
 		}
