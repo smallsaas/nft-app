@@ -33,13 +33,13 @@
 				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>
 			</view> -->
 			<view class="infoBox infoBoxFirst">
-				<text class="info">领养能力值：{{item.coinsPrice}}</text>
+				<text class="info">領養能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxSix">
-				<text class="info">当前能力值：{{item.realtimePrice}}</text>
+				<text class="info">當前能力值：{{item.realtimePrice}}</text>
 			</view>
 			<view class="infoBox infoBoxSeven" style="display: flex; flex-direction: row; align-items: center;">
-				<text class="info">产生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimePrice-item.coinsPrice}}</view>
+				<text class="info">産生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimePrice-item.coinsPrice}}</view>
 			</view> 
 			<view class="infoBox infoBoxTwo">
 				<text class="info">增長能力：{{item.wisp.growthPercent}}%</text>

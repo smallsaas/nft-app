@@ -8,7 +8,7 @@
 		
 		<view class="boxF">
 			<view class="top">
-				<text class="z">上傳图片</text>
+				<text class="z">上傳圖片</text>
 			</view>
 			<view class="bottom">
 				<view class="imgBox">

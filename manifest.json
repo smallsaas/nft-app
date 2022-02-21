@@ -128,7 +128,7 @@
                     "changeOrigin" : true
                 },
                 "/download" : {
-                    "target" : "http://api.dev.smallsaas.cn:8086", // 目标接口域名,启动不同环境切换不同域名
+                    "target" : "http://api.dev.smallsaas.cn:8086", // 目标接口域名,啓動不同環境切換不同域名
                     "changeOrigin" : true, // 是否跨域
                     "ws" : true // websocket支持
                 }

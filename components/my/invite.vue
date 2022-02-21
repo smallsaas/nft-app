@@ -43,7 +43,7 @@
 			} else{
 				uni.showToast({
 					icon: 'none',
-					title: '账号处于非正常使用状态，不能邀请好友',
+					title: '賬号處于非正常使用狀态，不能邀請好友',
 					duration: 2000
 				})
 				this.$emit('close', false)

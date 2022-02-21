@@ -122,12 +122,12 @@
 				var that = this
 				uni.showModal({
 				    title: '提示',
-				    content: '确定转化该精灵吗',
+				    content: '确定轉化該精靈嗎',
 				    success: function (res) {
 				        if (res.confirm) {
 				            that.changeSpirit(id)
 				        } else if (res.cancel) {
-				            console.log('取消转化');
+				            console.log('取消轉化');
 				        }
 				    }
 				});

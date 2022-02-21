@@ -58,7 +58,7 @@
  				</view>
 				<view class="rth rtht">
 					<text class="rthL">預約時間</text>
-					<text class="rthR">{{time}}</text>
+					<text class="rthR">{{item.appointmentTime}}</text>
 				</view>
 				<view class="rth rtht" v-if="item.bookStatus=='MATCH_FAIL'">
 					<text class="rthL green">退</text>
@@ -139,10 +139,10 @@
  			}
  		},
 		mounted() {
-			console.log('0000000')
-			const s = this.item.appointmentTime.split('T')
-			this.time = s[0] + ' ' + s[1]
-			console.log(s)
+			// console.log('0000000 ============ ', this.item.appointmentTime)
+			// const s = this.item.appointmentTime.split('T')
+			// this.time = s[0] + ' ' + s[1]
+			// console.log(s)
 		},
  		methods: {
  			getImage(url) {

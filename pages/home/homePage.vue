@@ -34,7 +34,7 @@
 			</view>
 		
 		</view>
-		<!-- 系统公告 -->
+		<!-- 系統公告 -->
 		<view class="service-mask" v-if="isShowSysNotice"></view>
 		<view v-if="isShowSysNotice" class="service-modal">
 			<view class="service-modal-container">
@@ -76,7 +76,7 @@
 				isShowRecordTips: false,
                 isFirstShowRecordTips: true,
                 isUpdatePageChange: false, // 是否需要刷新頁面
-				isShowSysNotice: false, //显示通告
+				isShowSysNotice: false, //顯示通告
 				isFirstShowSysNote: true,
 				sysNoticeContent:'',
 				isUpdate: false
@@ -154,15 +154,15 @@
 			    const respData = await this.$api.getSysNotice();
 			    if(respData.code == 200){
 			    	if(respData.data){
-						//判断首次进入APP显示公告
+						//判斷首次進入APP顯示公告
 						if(this.isFirstShowSysNote){
 							let sysNoticeTime = respData.data.lastModifiedTime.split(" ")[0]
-							//判断公告时间是否是今天
+							//判斷公告時間是否是今天
 							if(sysNoticeTime == this.getToday()){
 								this.isShowSysNotice = true
 								this.sysNoticeContent = respData.data.content;
 							}else{
-								//获取匹配精灵信息
+								//獲取匹配精靈信息
 								this.fetchMySpiritUnpaidCount()
 							}
 						}
