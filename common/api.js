@@ -358,4 +358,9 @@ export const api = {
 		return request("GET",url,params)
 	},
     
+    //查看转存明细
+    getTransferRecord(params){
+    	const url = `${globalConfig.endpoint}/api/u/player/transferRecord`
+    	return request('GET',url,params)
+    },
 }

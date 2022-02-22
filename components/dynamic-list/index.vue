@@ -418,26 +418,36 @@
                         searchData[requestData[key]] = ''
                     }
                 }
+				
                 if (_.has(searchData, 'pageNum')) {
                     searchData.pageNum = 1
                 }
                 if (_.has(searchData, 'pageSize')) {
                     searchData.pageSize = 10
                 }
-								
+				
                 this.pageNoField = _.get(searchData, 'pn', 'pageNum')
                 this.pageSizeField = _.get(searchData, 'ps', 'pageSize')
+				
+				//处理pageSize自定义值
+				for(var item in searchData){ 
+					if(item && item.indexOf('pageSize=') != -1){
+						const itemArr = item.split('=')
+						searchData[itemArr[0]] = parseInt(itemArr[1])
+						delete searchData[item]
+					}
+				}
+				
                 this.listSearch = { ...searchData, ..._.get(this.config, 'request.default', {}),...this.otherSearch||{} }
                 if (_.get(this.config, 'loadApi')) {
                     this.fetchList({ refresh: true })
                }
             },
             formatLoadApi(api){
-				console.log('formatLoadApi = ', api)
+				// console.log('formatLoadApi = ', api)
 							let that = this
 							let apistring
 							if(api.indexOf("{{")!==-1){
-								console.log(111111111111111111111111111111111)
 								let string = api.split("{{")[1]
 								let string1 = string.split("}}")[0]
 								if(string1.indexOf('.')!==-1){
@@ -451,11 +461,9 @@
 									apistring = api.replace("{{"+string1+"}}",cache)
 								}
 							}else{
-								console.log(2222222222222222222222222222222)
 								apistring = api
 								console.log("noCache",apistring)
 							}
-							console.log('33333333333333333333333333 = ', apistring)
 							return apistring
 						},
             // 獲取列表信息

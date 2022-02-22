@@ -145,17 +145,17 @@
 				}
 			},
 			getImages(url) {
-				console.log(this.$config)
+				// console.log(this.$config)
 				let that = this
 				let imagePath;
-				if (url.indexOf("http" || "https") === 0) {
+				if (url && url.indexOf("http" || "https") === 0) {
 					imagePath = url
 				} else {
-					console.log(url.indexOf("["))
+					// console.log(url.indexOf("["))
 					if (url.indexOf("[") === 0) {
 						let urlJSON = JSON.parse(url)
 						let imageUrl = urlJSON[0].url
-						if (imageUrl.indexOf("http" || "https") === 0) {
+						if (imageUrl && imageUrl.indexOf("http" || "https") === 0) {
 							imagePath = imageUrl
 						} else {
 							if (![undefined, null, ''].includes(that.$config.endpoint)) {
@@ -249,7 +249,7 @@
 					if(pictureUrl){
 						this.list = [pictureUrl]
 					}
-					
+					console.log("pictureUrl ========== ", pictureUrl)
 					//申訴狀态
 					if(res.data.status === 'COMPLAINING'){
 						

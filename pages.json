@@ -359,6 +359,15 @@
             }
             
         }
+		,{
+		    "path" : "pages/transferRecord/transferRecord",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "转存收益明细",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
 		
     ],
 	"globalStyle": {

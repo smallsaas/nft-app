@@ -25,6 +25,7 @@
 			<text class="num">{{tsPonit||0}}</text>
 			<text class="o" @click="typeForGUGU(3)">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket('transferCoinCredit')">轉化精靈</text>
+			<text class="ott" @click="goToTransferRecord">查看明細</text>
 		</view>
 		<!-- <view class="item">
 			<text class="title">市場收益:</text>
@@ -200,6 +201,11 @@
 			goToTuiJian(){
 				uni.navigateTo({
 					url:'/pages/tuijianshouyimingxi/tuijianshouyimingxi'
+				})
+			},
+			goToTransferRecord(){
+				uni.navigateTo({
+					url:'/pages/transferRecord/transferRecord'
 				})
 			},
 			// forParentTwo(){

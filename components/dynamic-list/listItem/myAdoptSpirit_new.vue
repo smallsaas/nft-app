@@ -48,7 +48,7 @@
 				<text class="info">培養天數：{{item.wisp.growthDays}}</text>
 			</view>
 			<view class="infoBox infoBoxFour">
-				<text class="info sss">領養：{{timeString}}</text>
+				<text class="info sss">領養：{{item.stageChangeTime}}</text>
 			</view>
 			<view class="line"></view>
 			<view class="btnBox">
@@ -73,9 +73,9 @@
 			ext: Object
 		},
 		created() {
-			const t = this.item.stageChangeTime.split('T')
-			console.log(t,'--------------')
-			this.timeString = t[0] + ' ' + t[1]
+			// const t = this.item.stageChangeTime.split('T')
+			// console.log(t,'--------------')
+			// this.timeString = t[0] + ' ' + t[1]
 		},
 		data() {
 			return {
