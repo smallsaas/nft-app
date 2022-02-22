@@ -2,7 +2,7 @@
 	<view class="success">
 		<view class="box">
 			<view class="top">
-				<text class="o">買家聯系電話：{{buyphone}}</text>
+				<text class="o">買家：{{buyerName}}</text>
 			</view>
 			<view class="body">
 				<text class="o">買家付款憑證</text>
@@ -36,6 +36,7 @@
 			this.iid = e.data
 			this.buyphone = e.phone
 			this.pictureUrl = e.picture
+			this.buyerName = e.buyerName
 			// console.log('res',this.iid)
 		},
 		mounted() {
@@ -51,7 +52,8 @@
 				isShowToast: false,
 				toastMsg: '',
 				buyphone:'',
-				pictureUrl:''
+				pictureUrl:'',
+				buyerName: ''
 			}
 		},
 		methods: {

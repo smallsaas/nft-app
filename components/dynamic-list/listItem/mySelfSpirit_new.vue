@@ -87,7 +87,8 @@
 				<text class="timeOne" :class="{sOne:item.status == 'RECEIVED'}" v-if="item.status == 'RECEIVED'">已確認收款</text>
 				<text class="timeOne" :class="{sThree:item.status == 'PAYMENT_TIMEOUT'}" v-if="item.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.status == 'CANCEL'}" v-if="item.status == 'CANCEL'">訂單取消</text>
-			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'"  @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl)">玩家已處理請确認</button>
+			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'"  @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
+			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'"  @click="goToComplainhistory()" style="top:183px">查看</button>
 			</view>
 		</view>
 		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
@@ -156,7 +157,7 @@
 				}
 				return imagePath
 			},
-			goToResive(id,phone,pictrue){
+			goToResive(id,phone,pictrue, buyerName){
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
 						title:'當前狀态不可用',
@@ -166,11 +167,14 @@
 					return
 				}
 				uni.navigateTo({
-					url:'/pages/successGetMoney_new/successGetMoney_new?data=' + id + '&phone=' + phone + '&picture=' + pictrue
+					url:'/pages/successGetMoney_new/successGetMoney_new?data=' + id + '&phone=' + phone + '&picture=' + pictrue + '&buyerName='+buyerName
 				})
 			},
-			
-			
+			goToComplainhistory(){
+				uni.navigateTo({
+					url: '/pages/complainhistory/complainhistory'
+				})
+			},
 			getImage(url) {
 				console.log(this.$config)
 				let that = this

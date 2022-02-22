@@ -78,7 +78,7 @@
 			let pages = getCurrentPages()
 			let nowPage = pages[pages.length-1];
 			let params = nowPage.options
-			console.log(params,'aaaaaaaaaaaaaaaaaaaaaaaaaa')
+			console.log(this.item,'aaaaaaaaaaaaaaaaaaaaaaaaaa  ==== ')
 			 // if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
 				//  const res = await this.$api.getUserWallet()
 				//  console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')

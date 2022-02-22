@@ -354,7 +354,7 @@
             "path" : "pages/next_team/nextTeam",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "查看团队",
                 "enablePullDownRefresh": false
             }
             
@@ -371,8 +371,8 @@
 		
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
+		"navigationBarTextStyle": "grey",
 		"navigationBarBackgroundColor": "#050E17",
 		"backgroundColor": "#050E17"
 	}
