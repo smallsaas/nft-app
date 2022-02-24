@@ -1,9 +1,9 @@
 <template>
 	<view class="view">
 		<view class="item" v-for="(item,index) in list" :key="index">
-			<text class="name">{{item.revenueName}}</text>
-			<text class="namesss">+{{item.profitMoney}}</text>
-			<text class="namessss">{{item.orderTime}}</text>
+			<text class="name">精靈編號: {{item.wispNumber}}</text>
+			<text class="namesss">+{{item.transferProdit}}</text>
+			<text class="namessss">{{item.createTime}}</text>
 		</view>
 	</view>
 </template>

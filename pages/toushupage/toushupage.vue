@@ -13,7 +13,7 @@
 			<view class="bottom">
 				<view class="imgBox">
 					<view class="success" v-for="(item,index) in list" :key="index">
-						<image :src="item" mode="widthFix" class="upload" @click="check(item)"></image>
+						<image :src="item" mode="widthFix" class="upload" @click="bigImgClick(item)"></image>
 						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg"
 							@click="deleteImage(index)" v-if="!showBigImg"></image>
 					</view>
@@ -42,6 +42,12 @@
 			</view>
 		</view>
 		<view class="spirit_mask" v-if="isShow"></view>
+		<!-- //模态組件 -->
+		<view class="motai-mask" v-if="showBigImg"></view>
+		<view class="motai" v-if="showBigImg">
+			<image :src="bigImgSrc" mode="widthFix" class="upload"></image>
+			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
+		</view>
 	</view>
 </template>
 
@@ -90,7 +96,7 @@
 				let data = {
 					title:this.value,
 					content:this.moreValue,
-					credentialLink: this.list
+					credentialLink: this.list.toString()
 				}
 				const res = await this.$api.userTouShu(data)
 				console.log('RES',res)
@@ -139,6 +145,13 @@
 				}
 			})
 		},
+		bigImgClick(url) {
+			this.bigImgSrc = url
+			this.showBigImg = true
+		},
+		closeBigImg() {
+			this.showBigImg = false
+		}
 	},
 }
 </script>
@@ -270,6 +283,44 @@
 					align-items: center;
 					justify-content: center;
 				}
+			}
+		}
+		
+		.motai-mask {
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: #000;
+			opacity: .8;
+			z-index: 5000;
+		}
+		.motai {
+			// width: 340px;
+			// height: 570px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			z-index: 5001;
+		
+			.upload {
+				// width: 340px;
+				// height: 570px !important;
+				width: 80%;
+			}
+		
+			.deleteImg {
+				position: fixed;
+				bottom: 50rpx;
+				width: 50px;
+				height: 50px;
 			}
 		}
 	}

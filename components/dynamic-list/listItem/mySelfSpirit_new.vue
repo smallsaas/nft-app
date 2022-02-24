@@ -88,31 +88,38 @@
 				<text class="timeOne" :class="{sThree:item.status == 'PAYMENT_TIMEOUT'}" v-if="item.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.status == 'CANCEL'}" v-if="item.status == 'CANCEL'">訂單取消</text>
 			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'"  @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
-			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'"  @click="goToComplainhistory()" style="top:183px">查看</button>
+			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申诉结果</button>
+			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnToast()">撤诉并确认收款</button>
 			</view>
 		</view>
-		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelToast="closeToast"></toast> -->
+		<!-- 提示組件 -->
+		<toast v-if="isShowToast" :data="toastMsg" @cancelBtn="toastCloseBtn" @okBtn="toastOkBtn"></toast>
+		
 	</view>
 </template>
 
 <script>
     import moment from 'moment'
+	//溫馨提示
+	import toast from '@/components/toast.vue'
 	// import toast from '../../spirit/toast.vue'
 	export default {
 		props: {
 			item: Object,
 			ext: Object
 		},
-		// components:{toast},
+		components:{
+			toast
+		},
 		data() {
 			return {
-				// isShowToast:false,
-				// toastMsg:''
+				isShowToast:false,
+				toastMsg:'',
 				time:''
 			}
 		},
 		created() {
-			console
+			
 		},
 		mounted() {
 			
@@ -199,11 +206,37 @@
 					}
 				}
 				return imagePath
-			}
-			// toast(msg) {
-			// 	this.toastMsg = msg
-			// 	this.isShowToast = true
-			// },
+			},
+			async complainConfirmPayBtn(){
+				const complainId = this.item.id
+				const data={}
+				const res = await this.$api.complainConfirmPay(data, complainId)
+				if(res.code == 200){
+					uni.showToast({
+						title:'提取成功',
+						icon:'success',
+						duration:1500
+					})
+					this.isShowToast = false
+					this.$emit('updateRecords', '')
+				}else{
+					uni.showToast({
+						title:res.message,
+						icon:'none',
+						duration:1500
+					})
+				}
+			},
+			complainConfirmPayBtnToast() {
+				this.toastMsg = '确定要撤诉并确认收款吗？'
+				this.isShowToast = true
+			},
+			toastCloseBtn() {
+				this.isShowToast = false
+			},
+			toastOkBtn() {
+				this.complainConfirmPayBtn()
+			},
 			// noMessage(){
 			// 	this.toast('功能暫未開放，敬請期待!')
 			// },
@@ -353,6 +386,42 @@
 					align-items: center;
 					justify-content: center;
 					font-size: 32rpx;
+					font-family: PingFang SC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #ffffff;
+				}
+				
+				.complainhistoryBtn{
+					width: 88px !important;
+					height: 40px !important;
+					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
+					border-radius: 8px 8px 8px 8px !important;
+					opacity: 1;
+					position: absolute;
+					top: 366rpx !important;
+					left: 200rpx !important;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 28rpx;
+					font-family: PingFang SC-Medium, PingFang SC;
+					font-weight: 500;
+					color: #ffffff;
+				}
+				
+				.complainConfirmPayBtn{
+					width: 130px !important;
+					height: 40px !important;
+					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
+					border-radius: 8px 8px 8px 8px !important;
+					opacity: 1;
+					position: absolute;
+					top: 366rpx !important;
+					left: 400rpx !important;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 28rpx;
 					font-family: PingFang SC-Medium, PingFang SC;
 					font-weight: 500;
 					color: #ffffff;

@@ -184,6 +184,7 @@
 												...item,
 												...getComponentBindData(item)
 											}"
+						@updateRecords="upDateMySelfSpiritRecords"
 					/>	
 					
 					<transfer-spirit-new	v-if="getListItemKey() === 'transfer-spirit-new'"
@@ -577,6 +578,10 @@
 				// 	// success:res =>{// console.log("跳轉成功")},
 				// 	// fail:err =>(// console.log("跳轉失敗",err))
 				// })
+			},
+			upDateMySelfSpiritRecords(data){
+				//属性数据
+            	this.fetchList({ refresh: true })
 			}
 		}
 	}

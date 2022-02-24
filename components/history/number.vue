@@ -13,14 +13,14 @@
 			<text class="ot" @click="transferSpiritForMarket('recommendCoinCredit')">轉化精靈</text>
 			<text class="ott" @click="goToTuiJian">查看明細</text>
 		</view>
-		<view class="item">
+		<view class="item" v-if="tPoint">
 			<text class="title">幫會收益:</text>
 			<text class="num">{{tPoint||0}}</text>
 			<text class="o" @click="typeForGUGU(2)">轉化GuGu令</text>
 			<text class="ot" @click="transferSpiritForMarket('teamCoinCredit')">轉化精靈</text>
 			<text class="ott" @click="goToBangHui">查看明細</text>
 		</view>
-		<view class="item">
+		<view class="item" v-if="tsPonit">
 			<text class="title">轉存收益:</text>
 			<text class="num">{{tsPonit||0}}</text>
 			<text class="o" @click="typeForGUGU(3)">轉化GuGu令</text>
