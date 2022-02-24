@@ -9,9 +9,9 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/player/feedback`
 		return request('POST',url,params)
 	},
-	//玩家獲取投訴記錄
+	//玩家獲取投訴記錄(?requestType=FEEDBACK)
 	getTouShuHistory(params){
-		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains?requestType=FEEDBACK`
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/complains`
 		return request('GET',url,params)
 	},
 	//根據推薦收益轉化爲精靈
