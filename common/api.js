@@ -114,7 +114,7 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/sign/replenish`
 		return request('POST',url,params)
 	},
-	//当前出售
+	//當前出售
 	getUserOrderInfo(params){
 		const url = `${globalConfig.endpoint}/api/u/wisp/selling`
 		return request('GET',url,params)
@@ -358,13 +358,13 @@ export const api = {
 		return request("GET",url,params)
 	},
     
-    //查看转存明细
+    //查看轉存明細
     getTransferRecord(params){
     	const url = `${globalConfig.endpoint}/api/u/player/transferRecord`
     	return request('GET',url,params)
     },
 	
-	//撤诉并确认收款
+	//撤訴并确認收款
 	complainConfirmPay(params, complainId){
 		const url = `${globalConfig.endpoint}/api/u/order/playerNolleProsequi/${complainId}`
 		return request('POST',url,params)

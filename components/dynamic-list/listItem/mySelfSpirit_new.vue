@@ -32,7 +32,13 @@
 				<text class="info">能力值：{{item.transactionCoins}}</text>
 			</view>
 			<view class="infoBox infoBoxOne" v-if="item.realtimePrice">
-				<text class="info">能力值：{{item.realtimePrice}}</text>
+				<text class="info">領養能力值：{{item.coinsPrice}}</text>
+			</view>
+			<view class="infoBox infoBoxFour">
+				<text class="info">當前能力值：{{item.realtimePrice}}</text>
+			</view>
+			<view class="infoBox infoBoxFive" style="display: flex; flex-direction: row; align-items: center;">
+				<text class="info">産生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimePrice-item.coinsPrice}}</view>
 			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.createTime && !item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
@@ -87,9 +93,9 @@
 				<text class="timeOne" :class="{sOne:item.status == 'RECEIVED'}" v-if="item.status == 'RECEIVED'">已確認收款</text>
 				<text class="timeOne" :class="{sThree:item.status == 'PAYMENT_TIMEOUT'}" v-if="item.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.status == 'CANCEL'}" v-if="item.status == 'CANCEL'">訂單取消</text>
-			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'"  @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
-			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申诉结果</button>
-			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnToast()">撤诉并确认收款</button>
+			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'" @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
+			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申訴結果</button>
+			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnToast()">撤訴并确認收款</button>
 			</view>
 		</view>
 		<!-- 提示組件 -->
@@ -228,7 +234,7 @@
 				}
 			},
 			complainConfirmPayBtnToast() {
-				this.toastMsg = '确定要撤诉并确认收款吗？'
+				this.toastMsg = '确定要撤訴并确認收款嗎？'
 				this.isShowToast = true
 			},
 			toastCloseBtn() {
@@ -272,7 +278,7 @@
 		.item {
 			margin: 0rpx auto;
 			width: 686rpx;
-			height: 470rpx;
+			height: 506rpx;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -327,7 +333,9 @@
 			.infoBox,
 			.infoBoxOne,
 			.infoBoxTwo,
-			.infoBoxThree {
+			.infoBoxThree,
+			.infoBoxFour,
+			.infoBoxFive {
 				width: 350rpx !important;
 				height: 34rpx;
 				position: absolute;
@@ -346,14 +354,24 @@
 				top: 188rpx;
 			}
 
-			.infoBoxTwo {
+			.infoBoxFour {
 				position: absolute;
 				top: 226rpx !important;
 			}
 
+			.infoBoxFive {
+				position: absolute;
+				top: 278rpx !important;
+			}
+			
+			.infoBoxTwo {
+				position: absolute;
+				top: 308rpx !important;
+			}
+
 			.infoBoxThree {
 				position: absolute;
-				top: 264rpx !important;
+				top: 344rpx !important;
 			}
 
 			.line {
@@ -363,7 +381,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 344rpx;
+				top: 382rpx;
 			}
 
 			.btnBox {
@@ -380,7 +398,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 358rpx !important;
+					top: 400rpx !important;
 					left: 320rpx !important;
 					display: flex;
 					align-items: center;
@@ -398,7 +416,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 366rpx !important;
+					top: 400rpx !important;
 					left: 200rpx !important;
 					display: flex;
 					align-items: center;
@@ -416,7 +434,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 366rpx !important;
+					top: 400rpx !important;
 					left: 400rpx !important;
 					display: flex;
 					align-items: center;
@@ -435,7 +453,7 @@
 					font-weight: 400;
 					color: #FFAD33;
 					position: absolute;
-					top: 388rpx;
+					top: 424rpx;
 					left: 32rpx;
 				}
 
@@ -447,7 +465,7 @@
 					font-weight: 400;
 					color: #FFFFFF;
 					position: absolute;
-					top: 388rpx;
+					top: 424rpx;
 					left: 360rpx;
 				}
 			}

@@ -354,7 +354,7 @@
             "path" : "pages/next_team/nextTeam",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "查看团队",
+                "navigationBarTitleText": "查看團隊",
                 "enablePullDownRefresh": false
             }
             
@@ -363,7 +363,7 @@
 		    "path" : "pages/transferRecord/transferRecord",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "转存收益明细",
+		        "navigationBarTitleText": "轉存收益明細",
 		        "enablePullDownRefresh": false
 		    }
 		    

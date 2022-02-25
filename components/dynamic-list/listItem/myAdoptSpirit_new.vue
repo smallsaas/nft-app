@@ -28,11 +28,11 @@
             <view class="infoBox wispNumber">
             	<text class="info">編號：{{item.wispNumber}}</text>
             </view>
-			<!-- <view class="infoBox infoBoxFirst">
+			<!-- <view class="infoBox infoBoxFive">
 				<text class="info">能力值：{{item.coinsPrice}}/{{item.realtimePrice}}</text>
 				<text class="info">能力值：{{item.amountPrice}}/{{parseInt(item.amountPrice) + item.coinsAddedValue}}</text>
 			</view> -->
-			<view class="infoBox infoBoxFirst">
+			<view class="infoBox infoBoxFive">
 				<text class="info">領養能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxSix">
@@ -179,7 +179,7 @@
 				}
 			}
 				
-			.infoBox,.infoBoxFirst,.infoBoxTwo,.infoBoxThree, .wispNumber, .infoBoxFour, .infoBoxSix, .infoBoxSeven{
+			.infoBox,.infoBoxFive,.infoBoxTwo,.infoBoxThree, .wispNumber, .infoBoxFour, .infoBoxSix, .infoBoxSeven{
 				width: 350rpx !important;
 				// height: 34rpx;
 				position: absolute;
@@ -200,7 +200,7 @@
                 top: 148rpx;
             }
             
-            .infoBoxFirst {
+            .infoBoxFive {
                 top: 192rpx;
             }
 			

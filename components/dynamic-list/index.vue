@@ -430,7 +430,7 @@
                 this.pageNoField = _.get(searchData, 'pn', 'pageNum')
                 this.pageSizeField = _.get(searchData, 'ps', 'pageSize')
 				
-				//处理pageSize自定义值
+				//處理pageSize自定義值
 				for(var item in searchData){ 
 					if(item && item.indexOf('pageSize=') != -1){
 						const itemArr = item.split('=')
@@ -580,7 +580,7 @@
 				// })
 			},
 			upDateMySelfSpiritRecords(data){
-				//属性数据
+				//屬性數據
             	this.fetchList({ refresh: true })
 			}
 		}
