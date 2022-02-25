@@ -45,6 +45,7 @@ Content-Type: application/json
             "response":{
                 "list":"records"
             },
+            "columns": 2,
             "request":{
                 "default":{
                 },
@@ -52,7 +53,7 @@ Content-Type: application/json
                 "pn":"pageNum"
             },
             "itemModule":{
-                "name":"my-match-spirit-new"
+                "name":"my-match-spirit-history-new"
             }
         }
     }

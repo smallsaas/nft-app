@@ -1,9 +1,6 @@
 <template>
 	<view class="box">
 		<view class="item">
-			<view class="imgBox">
-				<image :src="getImage(item.wisp.previewPhotoUrl)" mode="widthFix" class="img"></image>
-			</view>
 			<view class="nameBox">
 				<text class="name">{{item.wisp.name}}</text>
 			</view>
@@ -28,16 +25,13 @@
 			<view class="infoBox">
 				<text class="info">編號：{{item.wispNumber}}</text>
 			</view>
-			<view class="infoBox infoBoxOne" v-if="item.transactionCoins">
-				<text class="info">能力值：{{item.transactionCoins}}</text>
-			</view>
-			<view class="infoBox infoBoxOne" v-if="item.coinsPrice">
+			<view class="infoBox infoBoxOne" v-if="item.realtimePrice">
 				<text class="info">領養能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxFour">
 				<text class="info">當前能力值：{{item.realtimePrice}}</text>
 			</view>
-			<view class="infoBox infoBoxFive" style="display: flex; flex-direction: row; align-items: center;">
+			<view class="infoBox infoBoxFive" style="display: flex; flex-direction: row; align-items: center; margin-top: 5px;">
 				<text class="info">産生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimePrice-item.coinsPrice}}</view>
 			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.createTime && !item.stageChangeTime">
@@ -277,38 +271,20 @@
 
 		.item {
 			margin: 0rpx auto;
-			width: 686rpx;
-			height: 506rpx;
+			width: 95%;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
 			border-top: 2rpx solid rgb(50, 71, 137);
 			border-left: 2rpx solid rgb(50, 71, 137);
-			position: relative;
-
-			// margin-bottom: 20rpx;
-			.imgBox {
-				width: 280rpx;
-				height: 280rpx;
-				border-radius: 0px 0px 0px 0px;
-				opacity: 1;
-				position: absolute;
-				top: 24rpx;
-				left: 24rpx;
-
-				.img {
-					width: 280rpx;
-					height: 280rpx !important;
-				}
-			}
-
+			display: flex;
+			flex-direction: column;
+			padding-bottom: 6px;
+			
 			.nameBox {
-				width: 350rpx !important;
+				width: 100%;
 				height: 44rpx;
-				position: absolute;
-				top: 32rpx;
-				left: 328rpx;
-
+				margin: 4px 4px;
 				.name {
 					font-size: 16px;
 					font-family: PingFang SC-Bold, PingFang SC;
@@ -320,9 +296,7 @@
 			.levelBox {
 				width: 134rpx;
 				height: 36rpx !important;
-				position: absolute;
-				top: 92rpx;
-				left: 328rpx;
+				margin: 3px 4px;
 
 				.levelImg {
 					width: 134rpx;
@@ -336,11 +310,8 @@
 			.infoBoxThree,
 			.infoBoxFour,
 			.infoBoxFive {
-				width: 350rpx !important;
-				height: 34rpx;
-				position: absolute;
-				top: 148rpx;
-				left: 328rpx;
+				width: 100%;
+				margin: 0 4px;
 
 				.info {
 					font-size: 12px;
@@ -350,46 +321,17 @@
 				}
 			}
 
-			.infoBoxOne {
-				top: 188rpx;
-			}
-
-			.infoBoxFour {
-				position: absolute;
-				top: 226rpx !important;
-			}
-
-			.infoBoxFive {
-				position: absolute;
-				top: 278rpx !important;
-			}
-			
-			.infoBoxTwo {
-				position: absolute;
-				top: 308rpx !important;
-			}
-
-			.infoBoxThree {
-				position: absolute;
-				top: 344rpx !important;
-			}
-
 			.line {
-				width: 684rpx;
+				width: 100%;
 				height: 2rpx;
 				background: linear-gradient(270deg, #182641 0%, #3F547D 49%, #182641 100%);
-				border-radius: 0px 0px 0px 0px;
-				opacity: 1;
-				position: absolute;
-				top: 396rpx;
+				margin-top: 3px;
 			}
 
 			.btnBox {
 				width: 100%;
-				height: 142rpx;
-				position: absolute;
-				bottom: 0rpx;
-				position: relative;
+				height: 60rpx;
+				padding-top: 5px;
 				
 				.btn{
 					width: 160px !important;
@@ -397,9 +339,6 @@
 					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
-					position: absolute;
-					top: 400rpx !important;
-					left: 320rpx !important;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -414,10 +353,6 @@
 					height: 40px !important;
 					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
 					border-radius: 8px 8px 8px 8px !important;
-					opacity: 1;
-					position: absolute;
-					top: 400rpx !important;
-					left: 200rpx !important;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -433,9 +368,6 @@
 					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
-					position: absolute;
-					top: 400rpx !important;
-					left: 400rpx !important;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -452,9 +384,7 @@
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
 					color: #FFAD33;
-					position: absolute;
-					top: 424rpx;
-					left: 32rpx;
+					margin: 4px;
 				}
 
 				.timeTwo {
@@ -464,9 +394,7 @@
 					font-family: PingFang SC-Regular, PingFang SC;
 					font-weight: 400;
 					color: #FFFFFF;
-					position: absolute;
-					top: 424rpx;
-					left: 360rpx;
+					margin: 4px;
 				}
 			}
 		}

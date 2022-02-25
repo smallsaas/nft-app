@@ -1,6 +1,6 @@
 # @endpoint = https://api.mock.smallsaas.cn
-@endpoint = http://api.dev.smallsaas.cn:8086
-# @endpoint = https://www.metagugu.net
+# @endpoint = http://api.dev.smallsaas.cn:8086
+@endpoint = https://www.metagugu.net
 
 
 ### 获取列表页面信息
@@ -43,6 +43,7 @@ Content-Type: application/json
             "response":{
                 "list":"records"
             },
+            "columns": 2,
             "request":{
                 "default":{
                 },
@@ -50,7 +51,7 @@ Content-Type: application/json
                 "pn":"pageNum"
             },
             "itemModule":{
-                "name":"my-book-spirit-new"
+                "name":"my-book-spirit-history-new"
             }
         }
     }

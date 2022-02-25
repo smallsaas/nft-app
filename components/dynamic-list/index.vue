@@ -26,7 +26,7 @@
                 @loadMore="loadMore" 
                 @refresh="refresh"
              >
-              <view slot="content-list" class="list_content">
+              <view slot="content-list" class="list_content" :class="[`list_content ${columns === 2 ? 'columns' : ''}`]">
                   <view 
 					v-for="(item, index) in list" 
 					:key="index"
@@ -165,7 +165,25 @@
 											}"
 					/>	
 					
+					<my-book-spirit-history-new v-if="getListItemKey() === 'my-book-spirit-history-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+											:wisp="{
+												...item.wisp,
+												...getComponentBindData(item).wisp
+											}"
+					/>	
+					
 					<my-match-spirit-new 	v-if="getListItemKey() === 'my-match-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+					/>	
+					
+					<my-match-spirit-history-new 	v-if="getListItemKey() === 'my-match-spirit-history-new'"
 						:item="{
 												...item,
 												...getComponentBindData(item)
@@ -180,6 +198,14 @@
 					/>	
 					
 					<my-self-spirit-new 	v-if="getListItemKey() === 'my-self-spirit-new'"
+						:item="{
+												...item,
+												...getComponentBindData(item)
+											}"
+						@updateRecords="upDateMySelfSpiritRecords"
+					/>	
+					
+					<my-self-spirit-history-new 	v-if="getListItemKey() === 'my-self-spirit-history-new'"
 						:item="{
 												...item,
 												...getComponentBindData(item)
@@ -256,9 +282,12 @@
 	import teamNew from './listItem/team_new.vue'
 	import noPayNew from './listItem/noPay_new.vue'
 	import myBookSpiritNew from './listItem/myBookSpirit_new.vue'
+	import myBookSpiritHistoryNew from './listItem/myBookSpiritHistory_new.vue'
 	import myMatchSpiritNew from './listItem/myMatchSpirit_new.vue'
+	import myMatchSpiritHistoryNew from './listItem/myMatchSpiritHistory_new.vue'
 	import myAdoptSpiritNew from './listItem/myAdoptSpirit_new.vue'
 	import mySelfSpiritNew from './listItem/mySelfSpirit_new.vue'
+	import mySelfSpiritHistoryNew from './listItem/mySelfSpiritHistory_new.vue'
 	import transferSpiritNew from './listItem/transferSpirit_new.vue'
 	import transferSpiritTwoNew from './listItem/transferSpiritTwo_new.vue'
     import spiritRecord from './listItem/spirit_record.vue'
@@ -287,9 +316,12 @@
 			teamNew,
 			noPayNew,
 			myBookSpiritNew,
+			myBookSpiritHistoryNew,
 			myMatchSpiritNew,
+			myMatchSpiritHistoryNew,
 			myAdoptSpiritNew,
 			mySelfSpiritNew,
+			mySelfSpiritHistoryNew,
 			transferSpiritNew,
 			transferSpiritTwoNew,
             spiritRecord
@@ -328,7 +360,8 @@
                 pageSizeField: '', // size配置的字段名
 								isStop:false ,//是否停止自動刷新
 								Time:null,
-								isDelete:false
+								isDelete:false,
+				columns: 1, //列表展示列数
 								
 			}
 		},
@@ -358,7 +391,7 @@
           }
         },
 		mounted() {
-			console.log(this.config)
+			// console.log(this.config, ' === this.config')
 		 // 外部傳入數據源
 		 if (_.get(this.config, 'loadApi')) {
 		    this.updateData()
@@ -373,6 +406,12 @@
 				this.list = _.cloneDeep(this.config.list)
 			 }
 		 }
+		 
+		 //列表展示列数
+		 if(_.get(this.config, 'columns')){
+			 this.columns = _.get(this.config, 'columns')
+		 }
+		 
 		},
 		beforeDestroy(){
 			clearInterval(this.Time)
@@ -610,5 +649,11 @@
 		}
 
 		.list_content {}
+			
+		.columns{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+		
 	}
 </style>
