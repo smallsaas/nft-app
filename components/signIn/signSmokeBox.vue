@@ -141,10 +141,32 @@
 				let nowYear = this.year
 				let nowMonth = this.month
 				let monthDay = this.getMonthDay(nowYear,nowMonth)
-				console.log(monthDay,"monthDay")
+				console.log(nowYear," === nowYear")
+				console.log(nowMonth," === nowMonth")
+				console.log(monthDay," === monthDay")
 				for(var i=0;i<monthDay;i++){
 					let template
-					if((i+1)%4===0){
+					//旧逻辑
+					// if((i+1)%4===0){
+					// 	template = {
+					// 		"isSign":that.isSignGroup[i+1]||false,
+					// 		"status":i+1>that.fetchDay(that.getToday())?"normal":i+1==that.fetchDay(that.getToday())?"today":"ended",
+					// 		"day":i+1,
+					// 		"image":"/static/spirit/newBALL.png",
+					// 		"text":"能量晶石x1"
+					// 	}
+					// }else{
+					// 	template = {
+					// 		"isSign":that.isSignGroup[i+1]||false,
+					// 		"status":i+1>that.fetchDay(that.getToday())?"normal":i+1==that.fetchDay(that.getToday())?"today":"ended",
+					// 		"day":i+1,
+					// 		"image":"/static/spirit/newGUGU.png",
+					// 		"text":"GUGU币x1"
+					// 	}
+					// }
+					
+					//新逻辑 修改于 2022-02-26
+					if((i+1) === monthDay){
 						template = {
 							"isSign":that.isSignGroup[i+1]||false,
 							"status":i+1>that.fetchDay(that.getToday())?"normal":i+1==that.fetchDay(that.getToday())?"today":"ended",
@@ -171,6 +193,7 @@
 				return date.getDate()
 			},
 			fetchDay(date){
+				console.log("date.split('-')[2] = ", date.split('-')[2])
 				return date.split('-')[2]
 			},
 			getMonth(){

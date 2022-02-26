@@ -156,9 +156,14 @@
 			    	if(respData.data){
 						//判斷首次進入APP顯示公告
 						if(this.isFirstShowSysNote){
-							let sysNoticeTime = respData.data.lastModifiedTime.split(" ")[0]
+							let sysNoticeTime
+							if( typeof respData.data.lastModifiedTime == 'string'){
+								sysNoticeTime = respData.data.lastModifiedTime.split(" ")[0]
+							}else{
+								sysNoticeTime = this.getTime(respData.data.lastModifiedTime)
+							}
 							//判斷公告時間是否是今天
-							if(sysNoticeTime == this.getToday()){
+							if(sysNoticeTime == this.getTime('')){
 								this.isShowSysNotice = true
 								this.sysNoticeContent = respData.data.content;
 							}else{
@@ -203,8 +208,22 @@
 				this.isTab(apis[1])
 				this.$forceUpdate()
 			},
-			getToday () {
-			  let nowDate = new Date()
+			getTime (value) {
+			  let nowDate
+			  if(value){
+				  nowDate = new Date(value)
+			  }else{
+				  nowDate = new Date()
+			  }
+			  let date = {
+			    year: nowDate.getFullYear(),
+			    month: (nowDate.getMonth() + 1) < 10 ? `0${nowDate.getMonth() + 1}`: nowDate.getMonth() + 1,
+			    date: nowDate.getDate() < 10 ? `0${nowDate.getDate()}`: nowDate.getDate()
+			  }
+			  return date.year + '-' + date.month + '-' + date.date
+			},
+			formatTime (value) {
+			  let nowDate = new Date(value)
 			  let date = {
 			    year: nowDate.getFullYear(),
 			    month: (nowDate.getMonth() + 1) < 10 ? `0${nowDate.getMonth() + 1}`: nowDate.getMonth() + 1,

@@ -653,6 +653,7 @@
 		.columns{
 			display: grid;
 			grid-template-columns: 1fr 1fr;
+			background: #050E17;
 		}
 		
 	}

@@ -54,8 +54,8 @@
 # }
 
 # @endpoint = https://api.mock.smallsaas.cn
-@endpoint = http://api.dev.smallsaas.cn:8086
-# @endpoint = https://www.metagugu.net
+# @endpoint = http://api.dev.smallsaas.cn:8086
+@endpoint = https://www.metagugu.net
 
 
 ### 获取列表页面信息
@@ -101,11 +101,11 @@ Content-Type: application/json
             "loadApi":"/api/u/player/getUserTeam",
             "fieldGroup":{
               "recommendCount":"直推数",
-              "teamSize":"团队总人数"
+              "teamSize":"团队总人数",
+              "effectiveRecommendCount":"有效直推人数",
+              "effectiveTeamCount":"有效团队人数"
             },
             "unitGroup":{
-              "2":"人",
-              "3":"人"
             }
           },
          "e59992z8-bb88-a788-9922-1623488775885": {

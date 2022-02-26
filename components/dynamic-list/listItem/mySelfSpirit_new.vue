@@ -95,11 +95,36 @@
 				<text class="timeOne" :class="{sOne:item.status == 'CANCEL'}" v-if="item.status == 'CANCEL'">訂單取消</text>
 			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'" @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
 			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申訴結果</button>
-			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnToast()">撤訴并确認收款</button>
+			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnModal()">撤訴并确認收款</button>
 			</view>
 		</view>
+		
 		<!-- 提示組件 -->
-		<toast v-if="isShowToast" :data="toastMsg" @cancelBtn="toastCloseBtn" @okBtn="toastOkBtn"></toast>
+		<!-- <toast v-if="isShowToast" :data="toastMsg" @cancelBtn="toastCloseBtn" @okBtn="toastOkBtn"></toast> -->
+		
+		<!-- 提示密碼輸入框 -->
+		<view v-if="isModal">
+			<view class="Modal-mask"></view>
+			<view class="Modal-Content">
+				<view class="Modal-window">
+					<view class="Modal-title">支付密码</view>
+					<view class="Modal-ContentBox">
+						<view v-for="(item,i) in components" :key="i">
+							<view :class="isFocus===i?'focus Modal-ContentBox-InputBox':'Modal-ContentBox-InputBox'">
+								<input placeholder="请输入"  class="Modal-ContentBox-Input" type="password" @input="(e)=>handleFieldChange(item.field,e)" @focus="handleFocus(i)" @blur="handleBlur()"/>
+							</view>
+						</view>
+					</view>
+					<view class="password-Box">
+						
+					</view>
+					<view class="Modal-ButtonGroup">
+						<pretty-button class="Modal-btn" borderRadius="8rpx" type="gray" borderType="gray" :text="'取消'" @click="hideModal()"></pretty-button>
+						<pretty-button class="Modal-btn" borderRadius="8rpx" :text="'确定'" @click="modalOkBtn()"></pretty-button>
+					</view>
+				</view>
+			</view>
+		</view>
 		
 	</view>
 </template>
@@ -107,7 +132,7 @@
 <script>
     import moment from 'moment'
 	//溫馨提示
-	import toast from '@/components/toast.vue'
+	// import toast from '@/components/toast.vue'
 	// import toast from '../../spirit/toast.vue'
 	export default {
 		props: {
@@ -115,13 +140,18 @@
 			ext: Object
 		},
 		components:{
-			toast
+			// toast
 		},
 		data() {
 			return {
 				isShowToast:false,
-				toastMsg:'',
-				time:''
+				time:'',
+				isModal:false,
+				components:[
+					{"type":"password","label":"請輸入支付密碼","field":"paymentPassword"}
+				],
+				isFocus:-1,
+				formData:{},
 			}
 		},
 		created() {
@@ -214,8 +244,9 @@
 				return imagePath
 			},
 			async complainConfirmPayBtn(){
-				const complainId = this.item.id
-				const data={}
+				
+				const complainId = this.item.wispOrder.id
+				const data= this.formData
 				const res = await this.$api.complainConfirmPay(data, complainId)
 				if(res.code == 200){
 					uni.showToast({
@@ -233,15 +264,24 @@
 					})
 				}
 			},
-			complainConfirmPayBtnToast() {
-				this.toastMsg = '确定要撤訴并确認收款嗎？'
-				this.isShowToast = true
+			complainConfirmPayBtnModal() {
+				this.isModal = true
 			},
-			toastCloseBtn() {
-				this.isShowToast = false
+			hideModal() {
+				this.isModal = false
 			},
-			toastOkBtn() {
+			modalOkBtn() {
 				this.complainConfirmPayBtn()
+			},
+			// 字段改變時
+			handleFieldChange(field,value){
+				this.formData[field] = value.target.value
+			},
+			handleFocus(i){
+				this.isFocus = i
+			},
+			handleBlur(){
+				this.isFocus = -1
 			},
 			// noMessage(){
 			// 	this.toast('功能暫未開放，敬請期待!')
@@ -392,13 +432,13 @@
 				position: relative;
 				
 				.btn{
-					width: 160px !important;
+					width: 165px !important;
 					height: 40px !important;
 					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 400rpx !important;
+					top: 408rpx !important;
 					left: 320rpx !important;
 					display: flex;
 					align-items: center;
@@ -416,7 +456,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 400rpx !important;
+					top: 408rpx !important;
 					left: 200rpx !important;
 					display: flex;
 					align-items: center;
@@ -428,13 +468,13 @@
 				}
 				
 				.complainConfirmPayBtn{
-					width: 130px !important;
+					width: 135px !important;
 					height: 40px !important;
 					background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%) !important;
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 400rpx !important;
+					top: 408rpx !important;
 					left: 400rpx !important;
 					display: flex;
 					align-items: center;
@@ -471,4 +511,105 @@
 			}
 		}
 	}
+	
+	.Modal-mask{
+		background: #000;
+		opacity: .8;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1000;
+	}
+	
+	.Modal-Content{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		z-index: 1001;
+	}
+	.Modal-title{
+		font-size: 36rpx;
+		color: #FFFFFF;
+		margin-bottom: 24rpx;
+	}
+
+	.Modal-window{
+		background-color: #192746;
+		width: 70%;
+		display: flex;
+		flex-direction: column;
+		// height: 500px;
+		padding: 48rpx;
+		border-radius: 16rpx;
+		box-shadow: inset 2rpx 2rpx 0rpx 2rpx #23335E;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.Modal-ContentBox{
+		width: 100%;
+	}
+	
+	.Modal-ContentBox-InputBox{
+		background-color: #363F4C;
+		padding: 2rpx;
+		border-radius: 8rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 16rpx;
+		position: relative;
+	}
+	.focus{
+		background: linear-gradient(90deg, #9331F5 0%, #0A95FF 100%);
+	}
+	.Modal-ContentBox-Input{
+		width: 100%;
+		background-color: #131D33;
+		padding: 18rpx 24rpx;
+		border-radius: 8rpx;
+	}
+	.Modal-ContentBox-code{
+		color: #33A7FF;
+		position: absolute;
+		right: 20rpx;
+		z-index: 5000;
+		font-size: 28rpx;
+		cursor: pointer;
+	}
+	.unPush{
+		color: #7F8798;
+	}
+	.Modal-ButtonGroup{
+		width: 100%;
+		// height: 176rpx;
+		margin-top: 16rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		border-top: 2rpx solid;
+		// padding-top: 48rpx;
+		border-image: linear-gradient(270deg, #182641 0%, #3F547D 49%, #182641 100%) 20;
+		box-shadow: 0px -2px 10px 0px #172240;
+		padding: 48rpx 48rpx 0 48rpx;
+	}
+	.Modal-btn{
+		// width: 90%;
+		margin: 0 24rpx 0 0;
+		flex: 1;
+		height: 80rpx;
+	}
+	.Modal-btn:last-child{
+		margin: 0;
+	}
+	
+	
 </style>
