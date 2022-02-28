@@ -21,6 +21,11 @@
   						<text class="numberText">x{{item.wisp.growthDays}}</text>
   					</view>
   				</view>
+				
+				<view class="th">
+				<button class="complainBtn" v-if="item.status=='COMPLAINING'" @click="goToComplainhistoryDetail(item.wispOrder.id)">申訴結果</button>
+				</view>
+				
   			</view>
   			<view class="right">
   				<view class="ro">
@@ -153,6 +158,11 @@
   				}
   				return imagePath
   			},
+			goToComplainhistoryDetail(id){
+				uni.navigateTo({
+					url: '/pages/complainhistorydetail/complainhistorydetail?complainId=' + id
+				})
+			},
   	},
 }
   </script>
@@ -242,6 +252,21 @@
   							color: #fdfdfd;
   						}
   					}
+					
+					.complainBtn {
+						width: 240rpx;
+						height: 80rpx;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 32rpx;
+						font-family: PingFang SC-Medium, PingFang SC;
+						font-weight: 500;
+						color: #ffffff;
+						background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
+						border-radius: 16rpx 16rpx 16rpx 16rpx;
+						margin-top: 8rpx;
+					}
   				}
   			}
   

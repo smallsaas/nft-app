@@ -256,7 +256,7 @@ export const api = {
 	//獲取付款信息
 	getOrderInfo(data,params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/queryByBuyer`
-		return request("GET",url,params)
+		return request("GET",url,params, {}, false)
 	},
 	
 	// //收款信息
@@ -368,5 +368,10 @@ export const api = {
 	complainConfirmPay(params, complainId){
 		const url = `${globalConfig.endpoint}/api/u/order/playerNolleProsequi/${complainId}`
 		return request('POST',url,params)
+	},
+	//獲取申述详情
+	loadComplainHistoryByComplainId(params, complainId){
+		const url = `${globalConfig.endpoint}/api/u/order/wisp/queryComplainById/${complainId}`
+		return request('GET',url,params)
 	},
 }

@@ -191,7 +191,7 @@
 					wispOrderId: id
 				}
 				const res = await this.$api.getOrderInfo(data)
-				console.log("RES", res)
+				// console.log("RES", res)
 				if (res.code == 200) {
 					this.orderData = res.data || {}
 					if (_.get(res, 'data.paymentMethod') === 'WECHAT_PAYMENT') {
@@ -260,7 +260,6 @@
 						icon: 'success',
 						duration: 1000
 					})
-					console.log(this.sellerInfo, 123)
 				} else {
 					uni.showToast({
 						title: '獲取信息失敗',

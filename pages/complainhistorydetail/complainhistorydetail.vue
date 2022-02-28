@@ -7,10 +7,10 @@
 					<view class="title">
 						<text class="z" style="padding: 0 16rpx;">申述圖片:</text>
 					</view>
-					<view class="bottom" v-if="item.credentialLink && item.credentialLink.length > 0">
+					<view class="bottom" v-if="item.credentialLink">
 						<view class="imgBox">
-							<view class="success" v-for="(item,index) in item.credentialLink" :key="index">
-								<image :src="item" mode="widthFix" class="upload"  @click="bigImgClick(item)"></image>
+							<view class="success">
+								<image :src="item.credentialLink" mode="widthFix" class="upload"  @click="bigImgClick(item.credentialLink)"></image>
 							</view>
 						</view>
 					</view>
@@ -44,6 +44,10 @@
 
 <script>
 	export default {
+		onLoad(e) {
+			this.complainId = e.complainId
+			console.log('complainId ======== ',this.complainId)
+		},
 		props: {
 			item: Object,
 			ext: Object
@@ -52,27 +56,21 @@
 			return{
 				list:[],
 				bigImgSrc: '',
-				showBigImg: false
+				showBigImg: false,
+				complainId: ''
 			}
 		},
 		mounted() {
+			console.log(this.item, ' =========== item')
 			this.loadHistory()
 		},
 		methods:{
 			async loadHistory(){
-				const res = await this.$api.loadNewUserComplainHistory()
+				const res = await this.$api.loadComplainHistoryByComplainId({}, this.complainId)
 				console.log(res)
 				if(res.code == 200){
-					const records = res.data.records;
-					if(records && records.length > 0){
-						records.map((item, index) => {
-							if(item.credentialLink){
-								item.credentialLink = item.credentialLink.split(',')
-							}
-							return item
-						})
-					}
-					this.list = records
+					const data = res.data;
+					this.list = [data]
 				}else{
 					uni.showToast({
 						title:'獲取錯誤',

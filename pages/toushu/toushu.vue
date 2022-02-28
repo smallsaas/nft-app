@@ -6,6 +6,8 @@
 				<view class="status"><text class="title">備注信息:</text><text class="info">{{item.content}}</text></view>
 				<view class="status"><text class="title">申述狀态:</text><text class="info" :class="{infos:item.status=='PENDING_REPLY'}">{{item.status=='PENDING_REPLY'?'處理中':'已處理'}}</text></view>
 				<view class="status"><text class="title">申述反饋:</text><text class="info">已溝通</text></view>
+				<view class="status" v-if="item.buyerBackupMobilePhone"><text class="title">买家备用手机:</text><text class="info">{{item.buyerBackupMobilePhone}}</text></view>
+				<view class="status" v-if="item.buyerBackupMobilePhone"><text class="title">卖家备用手机:</text><text class="info">{{item.sellerBackupMobilePhone}}</text></view>
 				<view class="replyRecordList" v-if="item.replyRecordList.length > 0" v-for="(rItem,rIndex) in item.replyRecordList" :key="rIndex">
 					<view class="replyStatus">
 						<text v-if="rIndex == 0" class="replyTitle">{{rItem.replierName}} 回複:</text>

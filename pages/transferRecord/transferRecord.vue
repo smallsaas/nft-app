@@ -3,12 +3,13 @@
 		<view class="item" v-for="(item,index) in list" :key="index">
 			<text class="name">精靈編號: {{item.wispNumber}}</text>
 			<text class="namesss">+{{item.transferProdit}}</text>
-			<text class="namessss">{{item.createTime}}</text>
+			<text class="namessss">{{handleFormateDate(item.createTime)}}</text>
 		</view>
 	</view>
 </template>
 
 <script>
+	import formatDate from '../../utils/formatDate.js'
 	export default {
 		data() {
 			return {
@@ -23,6 +24,11 @@
 				const res = await this.$api.getTransferRecord()
 				if(res.code == 200){
 					this.list = res.data
+				}
+			},
+			handleFormateDate(value){
+				if(value){
+					return formatDate(value)
 				}
 			}
 		}

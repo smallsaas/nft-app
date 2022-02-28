@@ -287,6 +287,15 @@
             }
             
         }
+		,{
+		    "path" : "pages/complainhistorydetail/complainhistorydetail",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "申诉结果",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/sign/sign",
             "style" :                                                                                    

@@ -3,16 +3,17 @@
 		<view class="item" v-for="(item,index) in list" :key="index">
 			<text class="name">{{item.revenueName}}</text>
 			<text class="namesss">+{{item.profitMoney}}</text>
-			<text class="namessss">{{item.orderTime}}</text>
+			<text class="namessss">{{handleFormateDate(item.orderTime)}}</text>
 		</view>
 	</view>
 </template>
 
 <script>
+	import formatDate from '../../utils/formatDate.js'
 	export default {
 		data() {
 			return {
-				list:[]
+				list:[],
 			}
 		},
 		mounted() {
@@ -25,6 +26,11 @@
 				console.log(res)
 				if(res.code == 200){
 					this.list = res.data
+				}
+			},
+			handleFormateDate(value){
+				if(value){
+					return formatDate(value)
 				}
 			}
 		}
@@ -76,7 +82,7 @@
 			position: absolute;
 			font-size: 14px;
 			top:45px;
-			left: 200px;
+			right: 15px;
 		}
 	}
 }

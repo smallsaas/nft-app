@@ -52,6 +52,9 @@
 			<view class="infoBox infoBoxThree" v-if="item.wispOrder">
 				<text class="info">買家：{{item.wispOrder.buyerName}}</text>
 			</view>
+			<view class="infoBox infoBoxSix" v-if="item.wispOrder && item.wispOrder.status == 'PAID'">
+				<text class="info">剩餘時間：{{item.wispOrder.remainingConfirmReceivedMinutes}} 分鐘</text>
+			</view>
 			<view class="line"></view>
 			<!-- 精靈副本狀态 
 				MATCHING 匹配中
@@ -94,7 +97,7 @@
 				<text class="timeOne" :class="{sThree:item.status == 'PAYMENT_TIMEOUT'}" v-if="item.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.status == 'CANCEL'}" v-if="item.status == 'CANCEL'">訂單取消</text>
 			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'" @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
-			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申訴結果</button>
+			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistoryDetail(item.wispOrder.id)">申訴結果</button>
 			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnModal()">撤訴并确認收款</button>
 			</view>
 		</view>
@@ -213,9 +216,9 @@
 					url:'/pages/successGetMoney_new/successGetMoney_new?data=' + id + '&phone=' + phone + '&picture=' + pictrue + '&buyerName='+buyerName
 				})
 			},
-			goToComplainhistory(){
+			goToComplainhistoryDetail(id){
 				uni.navigateTo({
-					url: '/pages/complainhistory/complainhistory'
+					url: '/pages/complainhistorydetail/complainhistorydetail?complainId=' + id
 				})
 			},
 			getImage(url) {
@@ -254,7 +257,7 @@
 						icon:'success',
 						duration:1500
 					})
-					this.isShowToast = false
+					this.isModal = false
 					this.$emit('updateRecords', '')
 				}else{
 					uni.showToast({
@@ -318,7 +321,7 @@
 		.item {
 			margin: 0rpx auto;
 			width: 686rpx;
-			height: 506rpx;
+			height: 548rpx;
 			background: linear-gradient(135deg, #1D294F 0%, #17253F 100%);
 			border-radius: 8px 8px 8px 8px;
 			opacity: 1;
@@ -375,7 +378,8 @@
 			.infoBoxTwo,
 			.infoBoxThree,
 			.infoBoxFour,
-			.infoBoxFive {
+			.infoBoxFive,
+			.infoBoxSix {
 				width: 350rpx !important;
 				height: 34rpx;
 				position: absolute;
@@ -413,6 +417,11 @@
 				position: absolute;
 				top: 344rpx !important;
 			}
+			
+			.infoBoxSix{
+				position: absolute;
+				top: 386rpx !important;
+			}
 
 			.line {
 				width: 684rpx;
@@ -421,7 +430,7 @@
 				border-radius: 0px 0px 0px 0px;
 				opacity: 1;
 				position: absolute;
-				top: 396rpx;
+				top: 438rpx;
 			}
 
 			.btnBox {
@@ -438,7 +447,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 408rpx !important;
+					top: 450rpx !important;
 					left: 320rpx !important;
 					display: flex;
 					align-items: center;
@@ -456,7 +465,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 408rpx !important;
+					top: 450rpx !important;
 					left: 200rpx !important;
 					display: flex;
 					align-items: center;
@@ -474,7 +483,7 @@
 					border-radius: 8px 8px 8px 8px !important;
 					opacity: 1;
 					position: absolute;
-					top: 408rpx !important;
+					top: 450rpx !important;
 					left: 400rpx !important;
 					display: flex;
 					align-items: center;
@@ -493,7 +502,7 @@
 					font-weight: 400;
 					color: #FFAD33;
 					position: absolute;
-					top: 424rpx;
+					top: 466rpx;
 					left: 32rpx;
 				}
 

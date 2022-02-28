@@ -97,7 +97,7 @@
 					credentialLink: this.list.toString()
 				}
 				const res = await this.$api.orderCpmplain(data)
-				console.log('RES', res)
+				// console.log('RES', res)
 				if (res.code == 200) {
 					uni.showToast({
 						icon: 'success',
@@ -106,7 +106,7 @@
 					})
 					setTimeout(() => {
 						uni.navigateTo({
-							url: '/pages/complainhistory/complainhistory'
+							url: '/pages/complainhistorydetail/complainhistorydetail?complainId=' + res.data.relationOrderId
 						})
 					}, 1000)
 
