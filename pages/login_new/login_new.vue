@@ -177,7 +177,7 @@
 			},
 		async login(){
 				let that = this;
-				console.log(this.checkyzm , this.yanzhengma)
+				// console.log(this.checkyzm , this.yanzhengma)
 				if(this.checkyzm == ''){
 					uni.showToast({
 						title:'請輸入驗證碼',
@@ -192,7 +192,7 @@
 					})
 				}else{
 					let res=await that.$api.login(that.data)
-					console.log(res)
+					// console.log(res)
 					if(res.code == 200){
                         
                         // 記錄此刻登錄的時間
@@ -224,7 +224,7 @@
 												console.log(item,"ITEM")
 												fieldGroup[item.field] = item.value
 											})
-											console.log(fieldGroup,"fieldGroup")
+											// console.log(fieldGroup,"fieldGroup")
 											that.$cache.set("fieldGroup",fieldGroup)
 										}else{
 											uni.showToast({

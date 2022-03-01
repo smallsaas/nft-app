@@ -5,10 +5,16 @@ export const toPromise = (fn) => {
 		return new Promise((resolve, reject) => {
 			obj.success = (res) => {
 				res = res.data ? res.data : res
+				//旧代码
+				// if (typeof res === "object") {
+				// 	resolve(JSON.parse(tools.transformToTW(JSON.stringify(res))))
+				// } else {
+				// 	resolve(tools.transformToTW(res))
+				// }
 				if (typeof res === "object") {
-					resolve(JSON.parse(tools.transformToTW(JSON.stringify(res))))
+					resolve(JSON.parse(JSON.stringify(res)))
 				} else {
-					resolve(tools.transformToTW(res))
+					resolve(res)
 				}
 			}
 			obj.fail = (res) => {

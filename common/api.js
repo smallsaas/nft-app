@@ -256,7 +256,7 @@ export const api = {
 	//獲取付款信息
 	getOrderInfo(data,params){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/${data.wispOrderId}/queryByBuyer`
-		return request("GET",url,params, {}, false)
+		return request("GET", url, params, {})
 	},
 	
 	// //收款信息
