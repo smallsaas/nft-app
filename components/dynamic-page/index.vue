@@ -334,7 +334,7 @@
 					formData = that.srvFormData
 				}
 				if(data){
-					console.log("使用緩存page_"+id,data)
+					// console.log("使用緩存page_"+id,data)
 					// if(formData){
 					// 	console.log(`使用緩存page_${id}_form_Srv`,formData)
 					// 	that.formData = formData
@@ -372,7 +372,7 @@
 					// formData = that.srvFormData
 				// }
 				if(data){
-					console.log("使用緩存page_"+id,data)
+					// console.log("使用緩存page_"+id,data)
 					// if(formData){
 					// 	console.log(`使用緩存page_${id}_form_Srv`,formData)
 					// 	that.formData = formData

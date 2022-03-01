@@ -46,7 +46,7 @@
 	export default {
 		onLoad(e) {
 			this.complainId = e.complainId
-			console.log('complainId ======== ',this.complainId)
+			// console.log('complainId ======== ',this.complainId)
 		},
 		props: {
 			item: Object,
@@ -61,13 +61,11 @@
 			}
 		},
 		mounted() {
-			console.log(this.item, ' =========== item')
 			this.loadHistory()
 		},
 		methods:{
 			async loadHistory(){
 				const res = await this.$api.loadComplainHistoryByComplainId({}, this.complainId)
-				console.log(res)
 				if(res.code == 200){
 					const data = res.data;
 					this.list = [data]

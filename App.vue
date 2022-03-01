@@ -4,7 +4,7 @@
         watch: {
             $route: {
                 handler(val, oldVal) {
-                    console.log('哈哈哈哈', val)
+                    // console.log('哈哈哈哈', val)
 					if (val.path.includes('/pages/login_new/login_new')) {
 						return
 					}

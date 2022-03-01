@@ -135,7 +135,7 @@
 				if (url.indexOf("http" || "https") === 0) {
 					imagePath = url
 				} else {
-					console.log(url.indexOf("["))
+					// console.log(url.indexOf("["))
 					if (url.indexOf("[") === 0) {
 						let urlJSON = JSON.parse(url)
 						let imageUrl = urlJSON[0].url
@@ -158,7 +158,7 @@
 				this.isShowToast = true
 			},
 			operation(item) {
-				console.log('operation', item)
+				// console.log('operation', item)
 				if(this.$cache.get('status') !== 'NORMAL'){
 					uni.showToast({
 						title:'當前狀态不可用',
@@ -169,7 +169,7 @@
 				}
 				this.isShowBookChild = true
 				this.itemInfoForChild = item
-				console.log(this.itemInfoForChild)
+				// console.log(this.itemInfoForChild)
 			},
 			getChild() {
 				this.isShowBookChild = false

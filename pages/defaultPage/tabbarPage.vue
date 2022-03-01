@@ -72,7 +72,6 @@
 				this.$forceUpdate()
 			},
             handleChildChange (e, child) {
-                console.log()
               this.click = e
               
               const list = _.cloneDeep(this.allTabs).map((x, i) => {
@@ -82,10 +81,10 @@
                   return x
               })
               this.tabs = [...list]
-              console.log('OOOOO', e, this.tabs)
+              // console.log('OOOOO', e, this.tabs)
             },
 			format(id){
-                console.log('KKKK', id)
+                // console.log('KKKK', id)
 				return this.$config.formHost+"?id="+id
 			}
 		}

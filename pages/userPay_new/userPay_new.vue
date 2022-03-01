@@ -104,10 +104,9 @@
 	import _ from 'lodash'
 	export default {
 		onLoad(e) {
-			console.log("ID", e)
+			// console.log("ID", e)
 			this.iid = e.data
 			this.getOrder(this.iid)
-			console.log('-------------------------')
 		},
 		data() {
 			return {
@@ -137,7 +136,7 @@
 				this.$forceUpdate()
 			},
 			getImage(item) {
-				console.log("圖片路徑", item)
+				// console.log("圖片路徑", item)
 				if (item.indexOf('http' || 'https') === 0) {
 					return item
 				} else {
@@ -151,10 +150,10 @@
 				if (url && url.indexOf("http" || "https") === 0) {
 					imagePath = url
 				} else {
-					// console.log(url.indexOf("["))
+					// console.log(url.indexOf("["),  " === url.indexOf('[')")
 					if (url.indexOf("[") === 0) {
 						let urlJSON = JSON.parse(url)
-						let imageUrl = urlJSON[0].url
+						let imageUrl = urlJSON[0].url ? urlJSON[0].url : urlJSON[0]
 						if (imageUrl && imageUrl.indexOf("http" || "https") === 0) {
 							imagePath = imageUrl
 						} else {
@@ -227,7 +226,7 @@
 					} else {
 						this.sellerInfo.wechatQrCodePhotoUrl = this.getImages(res.data.seller.wechatQrCodePhotoUrl)
 					}
-					console.log(res.data.seller.wechatQrCodePhotoUrl, '------微信哈哈哈哈哈哈')
+					// console.log(res.data.seller.wechatQrCodePhotoUrl, '------微信哈哈哈哈哈哈')
 					// this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
 					this.sellerInfo.alipayAccount = res.data.seller.alipayAccount
 					// this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
@@ -236,7 +235,7 @@
 					} else {
 						this.sellerInfo.alipayQrCodePhotoUrl = this.getImages(res.data.seller.alipayQrCodePhotoUrl)
 					}
-					console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付寶哈哈哈哈哈哈')
+					// console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付寶哈哈哈哈哈哈')
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					this.sellerInfo.bankName = res.data.seller.bankName
@@ -249,7 +248,7 @@
 					if(pictureUrl){
 						this.list = [pictureUrl]
 					}
-					console.log("pictureUrl ========== ", pictureUrl)
+					// console.log("pictureUrl ========== ", pictureUrl)
 					//申訴狀态
 					if(res.data.status === 'COMPLAINING'){
 						

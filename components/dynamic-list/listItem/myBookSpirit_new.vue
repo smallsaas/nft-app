@@ -147,13 +147,13 @@
  		methods: {
  			getImage(url) {
 				if(![undefined,null,''].includes(url)){
-					console.log(this.$config)
+					// console.log(this.$config)
 					let that = this
 					let imagePath;
 					if (url.indexOf("http" || "https") === 0) {
 						imagePath = url
 					} else {
-						console.log(url.indexOf("["))
+						// console.log(url.indexOf("["))
 						if (url.indexOf("[") === 0) {
 							let urlJSON = JSON.parse(url)
 							let imageUrl = urlJSON[0].url

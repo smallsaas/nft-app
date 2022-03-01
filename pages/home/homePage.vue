@@ -95,7 +95,7 @@
 			let res = await this.$api.homePage()
 			if(res.code == 200){
 				let data = res.data
-				console.log("進來了",data)
+				// console.log("進來了",data)
 				this.navs = data.navs
 				this.apis = []
 				let that = this
@@ -104,7 +104,7 @@
 				})
 				this.clicked = data.defaultClick
 				this.defaultClick = data.defaultClick.toString()
-				console.log(this.defaultClick,"default")
+				// console.log(this.defaultClick,"default")
 				this.$forceUpdate()
 			}else{
 				uni.showToast({
@@ -184,11 +184,11 @@
                 } else {
                     this.isUpdatePageChange = false
                 }
-				console.log(this.apis)
+				// console.log(this.apis)
 				this.$forceUpdate()
 			},
 			isTab(api){
-				console.log(api.split("?id=")[1])
+				// console.log(api.split("?id=")[1])
 				return api.split("?id=")[1]
 			},
 			getValueFromChild(){

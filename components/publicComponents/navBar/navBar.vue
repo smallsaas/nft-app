@@ -53,7 +53,7 @@
         },
 		created() {
 			this.clicked = this.defaultClick
-			console.log("加載",this.defaultClick)
+			// console.log("加載",this.defaultClick)
 				this.contentStyle = {
 					"height": "calc(100vh - 250rpx)",
                     paddingBottom: '150rpx'

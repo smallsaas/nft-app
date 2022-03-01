@@ -502,13 +502,13 @@
 								}
 							}else{
 								apistring = api
-								console.log("noCache",apistring)
+								// console.log("noCache",apistring)
 							}
 							return apistring
 						},
             // 獲取列表信息
             fetchList (searchData = {}) {
-			  console.log(this.formatLoadApi(_.get(this.config,'loadApi')),"loadAPi")
+			  // console.log(this.formatLoadApi(_.get(this.config,'loadApi')),"loadAPi")
 			  let that = this
               uni.request({
                   url: this.$config.endpoint + this.formatLoadApi(_.get(this.config, 'loadApi')),
@@ -526,7 +526,7 @@
                         // console.log(data,"data")
                         const prevList = _.get(searchData, 'refresh') ? [] : this.list
                         this.list = prevList.concat(listField ? _.get(data, listField, []) : data)
-						console.log(this.list,"LIST")
+						// console.log(this.list,"LIST")
                         const total = Number(_.get(data, totolField, 0))
 
                         this.listCurrentPage = this.list.length < 10 ? 1 :  Math.ceil(this.list.length / 10)
