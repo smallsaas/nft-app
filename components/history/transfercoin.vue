@@ -29,12 +29,13 @@
 			}
 		},
 		created() {
-			console.log(this.data==undefined ,this.dataTwo,111)
-			console.log(this.type,'=--------------=0-safsakjfkfhasjkf')
+			// console.log(this.data==undefined ,this.dataTwo,111)
+			// console.log(this.type,'=--------------=0-safsakjfkfhasjkf')
 		},
 		data() {
 			return {
-				transferWispCoind: ''
+				transferWispCoind: '',
+				loading: false
 			}
 		},
 		methods: {
@@ -42,15 +43,20 @@
 				this.$emit('closeCoin')
 			},
 			async sureTransfer() {
-				console.log(this.type)
+				// console.log(this.type)
+				if(this.loading){
+					return
+				}
+				
 				if(this.type == 1){
-					console.log('do1')
+					// console.log('do1')
+					this.loading = true
 					const data = {
 						incomeType:'recommendCoinCredit',
 						number:this.transferWispCoind
 					}
 					const res = await this.$api.tuijianforgugu(data)
-					console.log('res',res,'-----------------------')
+					// console.log('res',res,'-----------------------')
 					if(res.code == 200){
 						uni.showToast({
 							icon:'success',
@@ -58,6 +64,7 @@
 							title:'轉化成功'
 						})
 						this.$emit('closeCoin','update')
+						
 					}else{
 						uni.showToast({
 							icon:'none',
@@ -65,15 +72,18 @@
 							title:res.message
 						})
 					}
+					this.loading = false
 					// if()
 				}else if(this.type == 2){
-					console.log('do2')
+					// console.log('do2')
+					
+					this.loading = true
 					const data = {
 						incomeType:'teamCoinCredit',
 						number:this.transferWispCoind
 					}
 					const res = await this.$api.banhuiforgugu(data)
-					console.log('res',res,'-----------------------')
+					// console.log('res',res,'-----------------------')
 					if(res.code == 200){
 						uni.showToast({
 							icon:'success',
@@ -88,14 +98,16 @@
 							title:res.message
 						})
 					}
+					this.loading = false
 				}else{
-					console.log('do3')
+					// console.log('do3')
+					this.loading = true
 					const data = {
 						incomeType:'transferCoinCredit',
 						number:this.transferWispCoind
 					}
 					const res = await this.$api.zhuancunforgugu(data)
-					console.log('res',res,'-----------------------')
+					// console.log('res',res,'-----------------------')
 					if(res.code == 200){
 						uni.showToast({
 							icon:'success',
@@ -110,6 +122,7 @@
 							title:res.message
 						})
 					}
+					this.loading = false
 				}
 			}
 		}

@@ -296,7 +296,7 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "微信支付",
+                    "componentName": "微信",
                     "children": [
                     {
                         "__config__": {
@@ -358,7 +358,7 @@ Content-Type: application/json
                     "layoutTree": true,
                     "formId": 112,
                     "renderKey": 1621415404383,
-                    "componentName": "支付宝支付",
+                    "componentName": "支付宝",
                     "children": [
                     {
                         "__config__": {
