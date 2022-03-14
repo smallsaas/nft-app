@@ -57,15 +57,16 @@
 			}
 		},
 		created() {
-			console.log(this.item,11111111)
+			// console.log(this.item,11111111)
 			this.forChild.userId = this.item.userId
 			this.forChild.name = this.item.name
 			this.forChild.status = this.item.status
 			this.forChild.avatar = this.item.avatar
 			this.forChild.grade = this.item.grade
+			this.forChild.note = this.item.note
 			this.forChild.level = this.item.level
 			this.forBottomTapChild.invitationCode = this.item.invitationCode
-			console.log(this.forChild)
+			// console.log(this.forChild)
 			this.forTabChild.userId = this.item.userId
 		}
 	}

@@ -25,7 +25,7 @@
 			data: Object,
 		},
 		created() {
-			console.log(this.data,'我是data')
+			// console.log(this.data,'我是data')
 		},
 		methods:{
 			async getTeam(){

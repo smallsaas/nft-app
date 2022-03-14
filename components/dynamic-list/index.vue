@@ -361,7 +361,7 @@
 								isStop:false ,//是否停止自動刷新
 								Time:null,
 								isDelete:false,
-				columns: 1, //列表展示列数
+				columns: 1, //列表展示列數
 								
 			}
 		},
@@ -407,7 +407,7 @@
 			 }
 		 }
 		 
-		 //列表展示列数
+		 //列表展示列數
 		 if(_.get(this.config, 'columns')){
 			 this.columns = _.get(this.config, 'columns')
 		 }

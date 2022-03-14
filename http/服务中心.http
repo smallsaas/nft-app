@@ -35,6 +35,7 @@ Content-Type: application/json
                 "invitationCode":"invitationCode",
                 "avatar":"avatar",
                 "level": "level",
+                "note": "note",
                 "bankName2": "bankName2"
             }
         }

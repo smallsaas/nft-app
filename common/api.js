@@ -369,7 +369,7 @@ export const api = {
 		const url = `${globalConfig.endpoint}/api/u/order/playerNolleProsequi/${complainId}`
 		return request('POST',url,params)
 	},
-	//獲取申述详情
+	//獲取申述詳情
 	loadComplainHistoryByComplainId(params, complainId){
 		const url = `${globalConfig.endpoint}/api/u/order/wisp/queryComplainById/${complainId}`
 		return request('GET',url,params)

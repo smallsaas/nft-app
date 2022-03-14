@@ -18,7 +18,8 @@
 				<text class="x">戶名：{{sellerInfo.wechatAccount}}</text>
 				<text class="z">微信賬号：{{sellerInfo.wechatAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
-				<image :src="sellerInfo.wechatQrCodePhotoUrl" mode="widthFix" class="img"></image>
+				<image :src="sellerInfo.wechatQrCodePhotoUrl" mode="widthFix" class="img"
+					@click="check(sellerInfo.wechatQrCodePhotoUrl)"></image>
 				<text class="zz">微信二維碼</text>
 			</view>
 		</view>
@@ -34,7 +35,8 @@
 				<text class="x">戶名：{{sellerInfo.wechatAccount}}</text>
 				<text class="z">支付寶賬号：{{sellerInfo.alipayAccount}}</text>
 				<!-- <image src="https://s2.loli.net/2021/12/28/wIHVvBTtcxyNEJb.jpg" mode="widthFix" class="img"></image> -->
-				<image :src="sellerInfo.alipayQrCodePhotoUrl" mode="widthFix" class="img"></image>
+				<image :src="sellerInfo.alipayQrCodePhotoUrl" mode="widthFix" class="img"
+					@click="check(sellerInfo.alipayQrCodePhotoUrl)"></image>
 				<text class="zz">支付寶二維碼</text>
 			</view>
 		</view>
@@ -48,11 +50,15 @@
 			</view>
 			<view class="bottom">
 				<text class="z">開戶行：{{sellerInfo.bankName}}</text>
-				<text class="z zz">戶名：{{sellerInfo.bankAccountName}}</text>
-				<text class="z zzz">銀行卡号：{{sellerInfo.bankAccountNumber}}</text>
+				<text class="z zz">戶名：{{sellerInfo.bankAccountName}} 
+					<text class="copyBtn" v-if="sellerInfo.bankAccountName" @click="copy(sellerInfo.bankAccountName)">複製</text>
+				</text>
+				<text class="z zzz">銀行卡号：{{sellerInfo.bankAccountNumber}}
+					<text class="copyBtn" v-if="sellerInfo.bankAccountNumber" @click="copy(sellerInfo.bankAccountNumber)">複製</text>
+				</text>
 			</view>
 		</view>
-		
+
 		<view class="boxD" style="margin-top: 25px;">
 			<view class="top">
 				<view class="topL">
@@ -61,14 +67,18 @@
 				<view class="topR" @click="selectTypeFifth" v-if="!fifthType"></view>
 				<view class="topY" v-if="fifthType"></view>
 			</view>
-			
+
 			<view class="bottom">
 				<text class="z">開戶行2：{{sellerInfo.bankName2}}</text>
-				<text class="z zz">戶名2：{{sellerInfo.bankAccountName2}}</text>
-				<text class="z zzz">銀行卡号2：{{sellerInfo.bankAccountNumber2}}</text>
+				<text class="z zz">戶名2：{{sellerInfo.bankAccountName2}}
+					<text class="copyBtn" v-if="sellerInfo.bankAccountName2" @click="copy(sellerInfo.bankAccountName2)">複製</text>
+				</text>
+				<text class="z zzz">銀行卡号2：{{sellerInfo.bankAccountNumber2}}
+					<text class="copyBtn" v-if="sellerInfo.bankAccountNumber2" @click="copy(sellerInfo.bankAccountNumber2)">複製</text>
+				</text>
 			</view>
 		</view>
-		
+
 		<view class="boxF">
 			<view class="top">
 				<text class="z">上傳付款憑證</text>
@@ -94,7 +104,8 @@
 		<!-- //模态組件 -->
 		<view class="motai-mask" v-if="showBigImg"></view>
 		<view class="motai" v-if="showBigImg">
-			<image :src="bigImgSrc" mode="widthFix" class="upload"></image>
+			<image :src="bigImgSrc" mode="widthFix" class="upload" @longtap="downloadQrImgBase64(bigImgSrc)" ></image>
+			<text class="downloadTips" >{{downloadTips}}</text>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
 		</view>
 	</view>
@@ -102,6 +113,7 @@
 
 <script>
 	import _ from 'lodash'
+	import { getPlatform } from '../../utils/getPlatform.js'
 	export default {
 		onLoad(e) {
 			// console.log("ID", e)
@@ -121,13 +133,15 @@
 
 				iid: 0,
 				sellerInfo: {},
-				orderData: {}
+				orderData: {},
+				downloadTips: '長按圖片下載'
 			}
 		},
-		computed:{
-			disabled () {
+		computed: {
+			disabled() {
 				return ['COMPLAINING', 'PAID'].includes(_.get(this.orderData, 'status'))
 			}
+			
 		},
 		methods: {
 			// 删除圖片
@@ -199,16 +213,16 @@
 					if (_.get(res, 'data.paymentMethod') === 'ALIPAY_PAYMENT') {
 						this.thirdType = true
 					}
-					
+
 					if (_.get(res, 'data.paymentMethod') === 'BANK_CARD_PAYMENT_1') {
 						this.secondType = true
 					}
-					
+
 					if (_.get(res, 'data.paymentMethod') === 'BANK_CARD_PAYMENT_2') {
 						this.fifthType = true
 					}
-					
-					
+
+
 					if (res.data.seller.mobilePhone == null) {
 						this.sellerInfo.mobilePhone = ''
 					} else {
@@ -239,21 +253,21 @@
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
 					this.sellerInfo.bankAccountName = res.data.seller.bankAccountName
 					this.sellerInfo.bankName = res.data.seller.bankName
-					
+
 					this.sellerInfo.bankAccountNumber2 = res.data.seller.bankAccountNumber2
 					this.sellerInfo.bankAccountName2 = res.data.seller.bankAccountName2
 					this.sellerInfo.bankName2 = res.data.seller.bankName2
-					
+
 					const pictureUrl = res.data.pictureUrl
-					if(pictureUrl){
+					if (pictureUrl) {
 						this.list = [pictureUrl]
 					}
 					// console.log("pictureUrl ========== ", pictureUrl)
 					//申訴狀态
-					if(res.data.status === 'COMPLAINING'){
-						
+					if (res.data.status === 'COMPLAINING') {
+
 					}
-					
+
 					uni.showToast({
 						title: '獲取信息成功',
 						icon: 'success',
@@ -280,7 +294,8 @@
 					// WECHAT_PAYMENT
 				}
 				console.log("", this.fistType, this.secondType, this.thirdType, this.fifthType)
-				if (!this.disabled && this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == false) {
+				if (!this.disabled && this.fistType == false && this.secondType == false && this.thirdType == false &&
+					this.fifthType == false) {
 					uni.showToast({
 						title: '請勾選付款方式',
 						icon: 'none',
@@ -288,16 +303,20 @@
 					})
 					return
 				}
-				if (this.fistType == true && this.secondType == false && this.thirdType == false && this.fifthType == false) {
+				if (this.fistType == true && this.secondType == false && this.thirdType == false && this.fifthType ==
+					false) {
 					data.paymentMethod = 'WECHAT_PAYMENT'
 				}
-				if (this.fistType == false && this.secondType == false && this.thirdType == true && this.fifthType == false) {
+				if (this.fistType == false && this.secondType == false && this.thirdType == true && this.fifthType ==
+					false) {
 					data.paymentMethod = 'ALIPAY_PAYMENT'
 				}
-				if (this.fistType == false && this.secondType == true && this.thirdType == false && this.fifthType == false) {
+				if (this.fistType == false && this.secondType == true && this.thirdType == false && this.fifthType ==
+					false) {
 					data.paymentMethod = 'BANK_CARD_PAYMENT_1'
 				}
-				if (this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType == true) {
+				if (this.fistType == false && this.secondType == false && this.thirdType == false && this.fifthType ==
+					true) {
 					data.paymentMethod = 'BANK_CARD_PAYMENT_2'
 				}
 				if (this.list.length == 0) {
@@ -308,31 +327,31 @@
 					})
 					return
 				}
-				
-                let res
+
+				let res
 				let tipsMessage = '付款成功'
-                if (_.get(this.orderData, 'status') === 'PAID') {
-                    // res = await this.$api.postBuyerReUploadPaymentProof({
-                    //     wispOrderId: data.wispOrderId,
-                    //     pictureUrl: data.pictureUrl,
-                    //     paymentMethod: data.paymentMethod
-                    // })
+				if (_.get(this.orderData, 'status') === 'PAID') {
+					// res = await this.$api.postBuyerReUploadPaymentProof({
+					//     wispOrderId: data.wispOrderId,
+					//     pictureUrl: data.pictureUrl,
+					//     paymentMethod: data.paymentMethod
+					// })
 					res = await this.$api.postReiterate({
-					    wispOrderId: data.wispOrderId,
-					    pictureUrl: data.pictureUrl,
-					    paymentMethod: data.paymentMethod
+						wispOrderId: data.wispOrderId,
+						pictureUrl: data.pictureUrl,
+						paymentMethod: data.paymentMethod
 					})
 					tipsMessage = '提交成功'
-                } else if (_.get(this.orderData, 'status') === 'COMPLAINING') {
-                    res = await this.$api.postReiterate({
-                        wispOrderId: data.wispOrderId,
-                        pictureUrl: data.pictureUrl,
-                        paymentMethod: data.paymentMethod
-                    })
+				} else if (_.get(this.orderData, 'status') === 'COMPLAINING') {
+					res = await this.$api.postReiterate({
+						wispOrderId: data.wispOrderId,
+						pictureUrl: data.pictureUrl,
+						paymentMethod: data.paymentMethod
+					})
 					tipsMessage = '提交成功'
-                }  else {
-                    res = await this.$api.userPay(data)
-                }
+				} else {
+					res = await this.$api.userPay(data)
+				}
 				// console.log(res)
 				if (res.code == 200) {
 					uni.showToast({
@@ -380,7 +399,7 @@
 				this.secondType = false
 				this.fifthType = false
 			},
-			selectTypeFifth(){
+			selectTypeFifth() {
 				if (this.disabled) {
 					return
 				}
@@ -395,6 +414,94 @@
 			},
 			closeBigImg() {
 				this.showBigImg = false
+			},
+			//複制銀行卡信息
+			copy(value) {
+				if(!value){
+					return
+				}
+				//提示模闆
+				uni.showModal({
+					content: value, //模闆中提示的内容
+					confirmText: '複制内容',
+					success: (res) => { //點擊複制内容的後調函數
+						//uni.setClipboardData方法将内容複制到粘貼闆
+						if(res.confirm){
+							uni.setClipboardData({
+								data: value, //要被複制的内容
+								success: () => { //複制成功的回調函數
+									uni.showToast({ //提示
+										title: '複制成功'
+									})
+								}
+							});
+						}
+					}
+				});
+			},
+			//下載圖片
+			downloadQrImgBase64(url) {
+				if (getPlatform() === 'app') {
+					this.androidDownloadImg(url)
+				} else if(getPlatform() === 'h5') {
+					this.h5DownloadImg(url)
+				}
+			},
+			androidDownloadImg(url){
+				uni.showLoading({
+					title: '下載中...',
+					mask: true
+				})
+				var tempFilePath = url; // 這裏拿到後端返回的圖片路徑
+				uni.saveImageToPhotosAlbum({  // 然後調用這個方法
+					filePath: tempFilePath,
+					success : (res) => {
+						uni.hideLoading();
+						uni.showToast({title : '圖片已保存'})
+					},
+					fail: function() {
+						uni.hideLoading();
+						uni.showToast({title : '保存失敗，請稍後重試'})
+					}
+				})
+				// uni.downloadFile({
+				// 	url:  url, 
+				// 	// header:{
+				// 	// 	'X-Authorization': uni.getStorageSync('session.login')['token']
+				// 	// },
+				// 	methods: 'GET',
+				// 	success: (res) => {
+				// 		// console.log(res,'res')
+				// 		var tempFilePath = res.tempFilePath; // 這裏拿到後端返回的圖片路徑
+				// 		uni.saveImageToPhotosAlbum({  // 然後調用這個方法
+				// 			filePath: tempFilePath,
+				// 			success : (res) => {
+				// 				uni.hideLoading();
+				// 				uni.showToast({title : '圖片已保存'})
+				// 			},
+				// 			fail: function() {
+				// 				uni.hideLoading();
+				// 				uni.showToast({title : '保存失敗，請稍後重試'})
+				// 			}
+				// 		})
+				// 	},
+				// 	fail: () => {
+				// 		uni.hideLoading();
+				// 	}
+				// });
+			},
+			h5DownloadImg(url){
+				if(!url){
+					return
+				}
+				const imgs = url.split('//')
+				const dload = document.createElement("a")
+				dload.download = imgs[imgs.length - 1] || '二維碼'
+				dload.href = url
+				document.body.appendChild(dload)
+				dload.click()
+				dload.remove()
+				// window.location.href = url;
 			}
 		}
 	}
@@ -441,6 +548,16 @@
 				bottom: 50rpx;
 				width: 50px;
 				height: 50px;
+			}
+			
+			.downloadTips {
+				position: absolute;
+				top: 20px;
+				width: 155px;
+				height: 40px;
+				color: #fff;
+				background-color: #000;
+				text-align: center;
 			}
 		}
 
@@ -554,7 +671,7 @@
 				justify-content: space-between;
 
 				.topL {
-					width: 95px;
+					width: 205px;
 					height: 24px;
 					font-size: 16px;
 					font-family: PingFang SC-Medium, PingFang SC;
@@ -598,9 +715,16 @@
 				.zz {
 					top: 40px;
 				}
-				
-				.zzz{
+
+				.zzz {
 					top: 70px;
+				}
+				
+				.copyBtn{
+					cursor: pointer;
+					color: #148DFE;
+					margin-left: 5px;
+					padding: 2px 3px;
 				}
 			}
 		}
@@ -653,7 +777,7 @@
 				width: 100%;
 				height: 182px;
 				position: relative;
-				
+
 				.x {
 					position: absolute;
 					top: 8px;
@@ -663,7 +787,7 @@
 					font-weight: 400;
 					color: #B9BBBD;
 				}
-				
+
 				.z {
 					position: absolute;
 					top: 8px;
@@ -673,7 +797,7 @@
 					font-weight: 400;
 					color: #B9BBBD;
 				}
-				
+
 				.z {
 					position: absolute;
 					top: 28px;
@@ -762,7 +886,7 @@
 					font-weight: 400;
 					color: #B9BBBD;
 				}
-				
+
 				.z {
 					position: absolute;
 					top: 28px;

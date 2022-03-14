@@ -136,7 +136,7 @@
 				this.getStyle()
 			},
 			focus(id){
-				console.log(id)
+				// console.log(id)
 				if(id==1){
 					this.isShowFocusA = true;
 					return
@@ -149,7 +149,7 @@
 				}
 			},
 			blur(id){
-				console.log(id)
+				// console.log(id)
 				if(id==1){
 					this.isShowFocusA = false;
 					return
@@ -258,7 +258,6 @@
 			},
 			savePassword(){
 				this.isSavePassword = !this.isSavePassword;
-				console.log(" isSavePassword = ", this.isSavePassword)
 			}
 		}
 	}

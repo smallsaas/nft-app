@@ -401,12 +401,12 @@
             // 查找表單字段
 						searchConfig(config){
 							let that = this
-							console.log(config,"CONFIG")
+							// console.log(config,"CONFIG")
 							config.map((item,i)=>{
-								console.log(item,"ITEM")
+								// console.log(item,"ITEM")
 								if(item.__vModel__){
 									that.fieldGroup.push(item.__vModel__)
-									console.log(that.fieldGroup,"FIELDGROUP")
+									// console.log(that.fieldGroup,"FIELDGROUP")
 								}else{
 									if(item.__config__){
 										if(item.__config__.children){

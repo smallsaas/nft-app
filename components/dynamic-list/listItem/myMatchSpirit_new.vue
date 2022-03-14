@@ -23,7 +23,7 @@
   				</view>
 				
 				<view class="th">
-				<button class="complainBtn" v-if="item.status=='COMPLAINING'" @click="goToComplainhistoryDetail(item.wispOrder.id)">申訴結果</button>
+					<button class="complainBtn" v-if="item.status=='COMPLAINING'" @click="goToComplainhistoryDetail(item.id)">申訴情況</button>
 				</view>
 				
   			</view>
@@ -127,7 +127,7 @@
 					})
 					return
 				}
-				console.log("item ==== ", item)
+				// console.log("item ==== ", item)
 				uni.navigateTo({
 					url:'/pages/userPay_new/userPay_new?data=' + item.id
 				})
@@ -201,7 +201,7 @@
   
   			.left {
   				margin-top: 24rpx;
-  				margin-left: 30rpx;
+  				margin-left: 10rpx;
   				display: flex;
   				flex-direction: column;
   
@@ -265,7 +265,7 @@
 						color: #ffffff;
 						background: linear-gradient(270deg, #9331F5 0%, #0B95FF 100%);
 						border-radius: 16rpx 16rpx 16rpx 16rpx;
-						margin-top: 8rpx;
+						margin-top: 42rpx;
 					}
   				}
   			}

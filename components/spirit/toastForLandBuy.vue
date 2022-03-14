@@ -42,8 +42,8 @@
 			}
 		},
 		created() {
-			console.log(this.data, 123132123132)
-			console.log(this.buyMsg, 123132123132)
+			// console.log(this.data, 123132123132)
+			// console.log(this.buyMsg, 123132123132)
 		}
 	}
 </script>

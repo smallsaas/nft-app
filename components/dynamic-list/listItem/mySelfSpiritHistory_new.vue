@@ -40,12 +40,12 @@
 			<view class="infoBox infoBoxTwo" v-if="item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.stageChangeTime)}}</text>
 			</view>
-			<view class="infoBox infoBoxThree" v-if="item.buyerName">
+			<!-- <view class="infoBox infoBoxThree" v-if="item.buyerName">
 				<text class="info">買家：{{item.buyerName}}</text>
 			</view>
 			<view class="infoBox infoBoxThree" v-if="item.wispOrder">
 				<text class="info">買家：{{item.wispOrder.buyerName}}</text>
-			</view>
+			</view> -->
 			<view class="line"></view>
 			<!-- 精靈副本狀态 
 				MATCHING 匹配中
@@ -88,7 +88,7 @@
 				<text class="timeOne" :class="{sThree:item.status == 'PAYMENT_TIMEOUT'}" v-if="item.status == 'PAYMENT_TIMEOUT'">對方未付款</text>
 				<text class="timeOne" :class="{sOne:item.status == 'CANCEL'}" v-if="item.status == 'CANCEL'">訂單取消</text>
 			    <button class="btn" v-if="item.wispOrder && item.wispOrder.status == 'PAID'" @click="goToResive(item.wispOrder.id, item.wispOrder.buyerPhone, item.wispOrder.pictureUrl, item.wispOrder.buyerName)">玩家已處理請确認</button>
-			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申訴結果</button>
+			    <button class="complainhistoryBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="goToComplainhistory()">申訴情況</button>
 			    <button class="complainConfirmPayBtn" v-if="item.wispOrder && item.wispOrder.status == 'COMPLAINING'" @click="complainConfirmPayBtnToast()">撤訴并确認收款</button>
 			</view>
 		</view>

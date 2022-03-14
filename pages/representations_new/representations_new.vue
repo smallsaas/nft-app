@@ -51,9 +51,9 @@
 	export default {
 		props: {},
 		onLoad(e) {
-			console.log('RES', parseInt(e.orderId))
+			// console.log('RES', parseInt(e.orderId))
 			this.orderIdS = parseInt(e.orderId)
-			console.log('慘過了參數', this.orderIdS)
+			// console.log('慘過了參數', this.orderIdS)
 		},
 		data() {
 			return {
@@ -64,7 +64,8 @@
 				moreValue: '',
 				orderIdS: 0,
 				showBigImg: false,
-				list: []
+				list: [],
+				loading: false
 			}
 		},
 		methods: {
@@ -87,7 +88,19 @@
 					url: '/pages/complainhistory/complainhistory'
 				})
 			},
+			checkLoadingStatus(){
+				if(this.loading){
+					uni.showToast({
+						icon: 'none',
+						duration: 1000,
+						title: '不能重複提交'
+					})
+				}else{
+					this.shenshu()
+				}
+			},
 			async shenshu() {
+				this.loading = true
 				let data = {
 					//71
 					//this.orderIdS
@@ -104,11 +117,9 @@
 						duration: 1000,
 						title: '提交申述成功'
 					})
-					setTimeout(() => {
-						uni.navigateTo({
-							url: '/pages/complainhistorydetail/complainhistorydetail?complainId=' + res.data.relationOrderId
-						})
-					}, 1000)
+					uni.navigateTo({
+						url: '/pages/complainhistorydetail/complainhistorydetail?complainId=' + data.relationOrderId
+					})
 
 					// uni.navigateTo({
 					// 	url:'/pages/defaultPage/page?id=' + 111222333
@@ -120,6 +131,8 @@
 						title: res.message
 					})
 				}
+				
+				this.loading = false
 
 
 				// const res = await this.$api.checkOrderCpmplain()

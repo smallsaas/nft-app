@@ -146,7 +146,7 @@
 				console.log(monthDay," === monthDay")
 				for(var i=0;i<monthDay;i++){
 					let template
-					//旧逻辑
+					//舊邏輯
 					// if((i+1)%4===0){
 					// 	template = {
 					// 		"isSign":that.isSignGroup[i+1]||false,
@@ -165,7 +165,7 @@
 					// 	}
 					// }
 					
-					//新逻辑 修改于 2022-02-26
+					//新邏輯 修改于 2022-02-26
 					if((i+1) === monthDay){
 						template = {
 							"isSign":that.isSignGroup[i+1]||false,

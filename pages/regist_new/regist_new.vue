@@ -90,6 +90,9 @@
 			</view>
 			<view class="LAST">
 				<view class="LASTc">
+					<text class="TEXT TEXTB" style="margin-left: 15px;" v-if="false" @click="handleDownload">下载app</text>
+				</view>
+				<view class="LASTc">
 					<text class="TEXT">已有賬号？</text>
 					<text class="TEXT TEXTB" @click="goLogin">去登錄</text>
 				</view>
@@ -165,12 +168,12 @@
 		onLoad(e) {
 			if (e.inviteCode == undefined) {
 				this.data.invitationCode = ''
-				console.log(this.data)
+				// console.log(this.data)
 			} else {
 				this.data.invitationCode = e.inviteCode
 			}
-			console.log('RESSSSS', e)
-			console.log('RESSSSSaaaaaaaaaaaaaaaaaaaaaaa', e.inviteCode)
+			// console.log('RESSSSS', e)
+			// console.log('RESSSSSaaaaaaaaaaaaaaaaaaaaaaa', e.inviteCode)
 		},
 		data() {
 			return {
@@ -206,7 +209,8 @@
 				isAddArticleI: false,
 
 				//注冊協議
-				content: ''
+				content: '',
+				isH5: false
 			}
 		},
 		methods: {
@@ -218,7 +222,7 @@
 					})
 					return ;
 				}
-				console.log(this.data)
+				// console.log(this.data)
 				clearInterval(time)
 				const data = {
 					"phone": this.data.phone,
@@ -321,13 +325,12 @@
 				})
 			},
 			async lookRegist() {
-				console.log('AAAA')
 				this.isShowRegistInfo = true
 				const res = await this.$api.getUserRegistInfo()
 				if (res.code == 200) {
 					this.content = res.data.content
 				}
-				console.log('Re', res)
+				// console.log('Re', res)
 			},
 			no() {
 				this.isShowRegistInfo = false
@@ -341,7 +344,6 @@
 				this.isFocus = name
 			},
 			async registAndLogin() {
-				console.log(this.data)
 				if(this.data.loginPassword == this.data.paymentPassword){
 					this.isShowError = true
 					return;
@@ -350,14 +352,22 @@
 				if([undefined,null,''].includes(this.data.backupMobilePhone)){
 					uni.showToast({
 						title:"請輸入緊急聯繫手機号碼",
-						icon:"error"
+						icon:"none"
 					})
 					return ;
 				}
 				
+				if(this.data.name.length > 10){
+					uni.showToast({
+						title:"昵稱長度不能超過10個字",
+						icon:"none"
+					})
+					return
+				}
+				
 				if (this.isReadRegistInfo == false) {
 					uni.showToast({
-						icon: 'error',
+						icon: 'none',
 						title: '請勾選用戶注冊協議',
 						duration: 1000
 					})
@@ -365,7 +375,7 @@
 				}
 				// if(this.data.loginPassword)
 				const res = await this.$api.regist(this.data)
-				console.log(res)
+				// console.log(res)
 				if (res.code == 200) {
 					const loginUser = {
 						account: this.data.phone ? this.data.phone : this.data.email,
@@ -400,6 +410,9 @@
 						duration: 1000
 					})
 				}
+			},
+			handleDownload () {
+				window.location.href = 'https://www.metagugu.net/download/metagugu.apk'
 			}
 		}
 	}
@@ -506,13 +519,14 @@
 		.LAST {
 			width: 100%;
 			height: 50rpx;
-
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
 			.LASTc {
-				width: 100%;
+				width: 230rpx;
 				height: 50rpx;
 				display: flex;
-				align-items: center;
-				justify-content: flex-end;
+				align-content: center;
 
 				.TEXT {
 					font-size: 12px;

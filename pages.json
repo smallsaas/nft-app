@@ -291,7 +291,7 @@
 		    "path" : "pages/complainhistorydetail/complainhistorydetail",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "申诉结果",
+		        "navigationBarTitleText": "申訴情況",
 		        "enablePullDownRefresh": false
 		    }
 		    

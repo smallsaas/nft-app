@@ -18,33 +18,32 @@
 		},
 		onLoad(e) {
 			// console.log('---------------------')
-			console.log(e)
-			console.log(e.id)
+			// console.log(e)
+			// console.log(e.id)
 			let id = e.id
-			console.log(id)
 			this.getFormData()
 			// console.log('---------------------')
 		},
 		onShow(option) {
 			let change = this.$cache.get("FormChange")
 			if(change){
-				console.log("顯示了")
+				// console.log("顯示了")
 				this.$reload()
 			}
 		},
 		methods: {
 			async getFormData(){
-				console.log('---------------------')
-				console.log('開始了-------------')
+				// console.log('---------------------')
+				// console.log('開始了-------------')
 				let res = await this.$api.getInformationNew()
-				console.log('快樂的測試RES',res)
+				// console.log('快樂的測試RES',res)
 				this.srvFormData = res.data
 				this.$cache.set('userCache',res.data)
-				console.log('---------------------')
+				// console.log('---------------------')
 			},
 			async changeInfo(){
-				console.log('asfafs')
-				console.log(this.srvFormData)
+				// console.log('asfafs')
+				// console.log(this.srvFormData)
 				uni.navigateTo({
 					url:'/pages/updateinfomation/updateinfomation?id=' + this.srvFormData.userId
 				})
