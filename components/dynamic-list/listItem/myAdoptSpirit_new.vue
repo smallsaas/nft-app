@@ -31,7 +31,7 @@
         <text class="info">當前能力值：{{ item.roundHalfUpRealtimePrice }}</text>
       </view>
       <view class="infoBox infoBoxSeven" style="display: flex; flex-direction: row; align-items: center">
-        <text class="info">産生收益：</text><view style="color: #ff0000; font-size: 13px">{{ item.realtimeProfit }}</view>
+        <text class="info">産生收益：</text><view style="color: #ff0000; font-size: 13px">{{ item.roundHalfUpRealtimePrice.toFixed(2) }}</view>
       </view>
       <view class="infoBox infoBoxTwo">
         <text class="info">增長能力：{{ item.wisp.growthPercent }}%</text>

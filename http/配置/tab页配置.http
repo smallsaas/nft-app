@@ -1,4 +1,4 @@
-@endpoint = https://api.mock.smallsaas.cn
+@endpoint = http://www.metagugu.net
 # 开发环境使用
 @devEndpoint = http://localhost:8080
 ###
