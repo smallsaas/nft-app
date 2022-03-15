@@ -8,7 +8,7 @@
         <text class="i io" v-if="item.orderType == 'MANAGER_GIVEN'">管理員給予-{{ item.targetName }}</text>
         <text class="i io" v-if="item.orderType == 'BOOK_REFUND'">匹配失敗退回gugu令-{{ item.targetName }}</text>
         <text class="i io" v-if="item.orderType == 'LAND_REFUND'">匹配失敗退回土地的GUGU令-{{ item.targetName }}</text>
-        <!-- <text class="i it">{{formatTime(item.createTime)}}</text> -->
+        <!-- <text class="i it">{{ formatTime(item.createTime) }}</text> -->
         <text class="i it">{{ item.createTime }}</text>
       </view>
       <view class="h">
@@ -52,16 +52,16 @@ export default {
       }
       console.log('------', res)
     },
-    formatTime (time) {
-      let date = new Date(time)
-      let year = date.getFullYear()
-      let month = date.getMonth() + 1
-      let day = date.getDate()
-      let Hour = date.getHours()
-      let Min = date.getMinutes()
-      let Second = date.getSeconds()
-      return `${year}年${month}月${day}日 ${Hour}時${Min}分${Second}秒`
-    }
+    // formatTime (time) {
+    //   let date = new Date(time)
+    //   let year = date.getFullYear()
+    //   let month = date.getMonth() + 1
+    //   let day = date.getDate()
+    //   let Hour = date.getHours()
+    //   let Min = date.getMinutes()
+    //   let Second = date.getSeconds()
+    //   return `${year}年${month}月${day}日 ${Hour}時${Min}分${Second}秒`
+    // }
   }
 }
 </script>

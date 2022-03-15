@@ -25,14 +25,14 @@
 			<view class="infoBox">
 				<text class="info">編號：{{item.wispNumber}}</text>
 			</view>
-			<view class="infoBox infoBoxOne" v-if="item.realtimePrice">
+			<view class="infoBox infoBoxOne" v-if="item.roundHalfUpRealtimePrice">
 				<text class="info">領養能力值：{{item.coinsPrice}}</text>
 			</view>
 			<view class="infoBox infoBoxFour">
-				<text class="info">當前能力值：{{item.realtimePrice}}</text>
+				<text class="info">當前能力值：{{item.roundHalfUpRealtimePrice}}</text>
 			</view>
 			<view class="infoBox infoBoxFive" style="display: flex; flex-direction: row; align-items: center; margin-top: 5px;">
-				<text class="info">産生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimePrice-item.coinsPrice}}</view>
+				<text class="info">産生收益：</text><view style="color: #FF0000;font-size: 13px;">{{item.realtimeProfit}}</view>
 			</view>
 			<view class="infoBox infoBoxTwo" v-if="item.createTime && !item.stageChangeTime">
 				<text class="info">出售：{{formatTime(item.createTime)}}</text>
