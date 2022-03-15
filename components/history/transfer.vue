@@ -20,7 +20,7 @@
 		<view class="line"></view>
 		<view class="btnBox">
 			<button class="btn ccc" @click="cancel">取消</button>
-			<button class="btn" @click="successTransfer">确定</button>
+			<button class="btn" @click="subAction">确定</button>
 		</view>
 	</view>
 </template>
@@ -37,15 +37,25 @@
 					paymentPassword: '',
 				},
 				showError:false,
-				showErrorTwo:false
+				showErrorTwo:false,
+				loading: false
 			}
 		},
 		methods: {
 			cancel() {
 				this.$emit('close')
 			},
+			subAction(){
+				this.loading = true
+				this.successTransfer()
+			},
 			 async successTransfer() {
-				console.log(this.showError)
+				 
+				 if(this.loading){
+					 return
+				 }
+				 
+				// console.log(this.showError)
 				
 				if(this.data.number < 100){
 					this.showErrorTwo = true
@@ -53,13 +63,14 @@
 				}
 					
 				if(this.data.targetPlayerMobilePhone.length<6 || this.data.targetPlayerMobilePhone.length>11){
+					this.loading = false
 					this.showError = true
 					return
 				}else{
 					this.data.number = parseInt(this.data.number)
-					console.log(this.data)
+					// console.log(this.data)
 					const res = await this.$api.transferCoin(this.data)
-					console.log(res)
+					// console.log(res)
 					if (res.code == 200) {
 						uni.showToast({
 							title: '轉讓成功',
@@ -79,6 +90,7 @@
 						// })
 						this.$emit('close',data)
 					}
+					this.loading = false
 				}
 			}
 		}
