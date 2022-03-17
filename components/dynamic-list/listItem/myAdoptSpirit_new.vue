@@ -28,7 +28,7 @@
         <text class="info">領養能力值：{{ item.coinsPrice }}</text>
       </view>
       <view class="infoBox infoBoxSix">
-        <text class="info">當前能力值：{{ item.roundHalfUpRealtimePrice && item.roundHalfUpRealtimePrice.toFixed(2) }}</text>
+        <text class="info">當前能力值：{{ item.realtimePrice && item.realtimePrice.toFixed(2) }}</text>
       </view>
       <view class="infoBox infoBoxSeven" style="display: flex; flex-direction: row; align-items: center">
         <text class="info">産生收益：</text><view style="color: #ff0000; font-size: 13px">{{ item.realtimeProfit && item.realtimeProfit.toFixed(2) }}</view>
