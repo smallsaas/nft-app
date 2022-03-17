@@ -128,7 +128,7 @@ export default {
   },
 }
   </script>
-<!--   
+  
   <style lang="less">
   	.spiritMarketHistoryNew {
   	}
@@ -299,4 +299,3 @@ export default {
   		}
   	}
   </style>
-   -->
