@@ -264,6 +264,7 @@
 			.list{
 				width: 100%;
 				height: auto;
+				background-color: #050E17;
 				.load-more{
 					text-align: center;
 					color: #9A9D9F;

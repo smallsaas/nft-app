@@ -46,7 +46,6 @@
 				this.$emit('close')
 			},
 			subAction(){
-				this.loading = true
 				this.successTransfer()
 			},
 			 async successTransfer() {
@@ -55,6 +54,7 @@
 					 return
 				 }
 				 
+				this.loading = true
 				// console.log(this.showError)
 				
 				if(this.data.number < 100){
@@ -77,9 +77,11 @@
 							icon: "success",
 							duration: 1000
 						})
+						this.loading = false
 						this.$emit('close')
 						this.$emit('tellFather',true)
 					} else {
+						this.loading = false
 						let data = {
 							message:res.message
 						}
@@ -90,7 +92,6 @@
 						// })
 						this.$emit('close',data)
 					}
-					this.loading = false
 				}
 			}
 		}
