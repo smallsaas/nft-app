@@ -6,16 +6,16 @@ const globalConfigStorage = cache.get('globalConfigStorage')
 const iconList = cache.get("iconList")
 
 // 是否爲開發環境 雙配置 兼容生産及開發環境
-const isDev = false
+const isDev = true
 const serverName = 'me' //生产环境: net、me
 // #ifdef APP-PLUS 
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
-	formHost: "http://api.dev.smallsaas.cn:8082/form",
-  dataHost: "http://api.dev.smallsaas.cn:8082/data",
-  endpoint: "http://api.dev.smallsaas.cn:8082",
-  imageEndpoint: "http://api.dev.smallsaas.cn:8082",
+	formHost: "http://49.119.119.7:8083/form",
+  dataHost: "http://49.119.119.7:8083/data",
+  endpoint: "http://49.119.119.7:8083",
+  imageEndpoint: "http://49.119.119.7:8083",
   tokenStorageKey:"token",
 	iconList:iconList
 }: serverName === 'net' ? {
@@ -42,10 +42,10 @@ export const globalConfig = isDev?{
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
-	formHost: "/form",
-  dataHost: "/data",
-  endpoint: "http://api.dev.smallsaas.cn:8082",
-  imageEndpoint: "http://api.dev.smallsaas.cn:8082",
+	formHost: "http://49.119.119.7:8083/form",
+  dataHost: "http://49.119.119.7:8083/data",
+  endpoint: "http://49.119.119.7:8083",
+  imageEndpoint: "http://49.119.119.7:8083",
   tokenStorageKey:"token",
 	iconList:iconList
 }: serverName === 'net' ? {
