@@ -72,7 +72,7 @@ Content-Type: application/json
               "ModalTitle":"修改支付密码",
               "components":[
                 {
-                    "label": "紧急联系号码验证码",
+                    "label": "常用聯係電話验证码",
                     "type": "code",
                     "field": "verifyCode",
                     "placeholder": "输入验证码",
@@ -182,7 +182,7 @@ Content-Type: application/json
                     },
                     {
                         "__config__": {
-                        "label": "紧急联系号码:",
+                        "label": "常用聯係電話:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -196,7 +196,7 @@ Content-Type: application/json
                         "canChange":true,
                         "saveAPI":"",
                         "method":"GET",
-                        "modalTitle":"修改紧急联系号码",
+                        "modalTitle":"修改常用聯係電話",
                         "components":[
                             {
                                 "label":"主手机号验证码",
@@ -208,8 +208,8 @@ Content-Type: application/json
                                 "inputStyle": "color: #fff"
                             },
                             {
-                                "label":"紧急联系号码",
-                                "placeholder":"输入新的紧急联系号码",
+                                "label":"常用聯係電話",
+                                "placeholder":"输入新的常用聯係電話",
                                 "field":"newBackupMobilePhone",
                                 "placeholder-style": "color: #fff;opcity: 1",
                                 "inputStyle": "color: #fff"
@@ -424,7 +424,7 @@ Content-Type: application/json
                     "children": [
                     {
                         "__config__": {
-                        "label": "开户行:",
+                        "label": "銀行名稱:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",
@@ -502,7 +502,7 @@ Content-Type: application/json
                     "children": [
                     {
                         "__config__": {
-                        "label": "开户行:",
+                        "label": "銀行名稱:",
                         "labelWidth": null,
                         "showLabel": true,
                         "tag": "el-input",

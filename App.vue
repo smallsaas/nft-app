@@ -12,7 +12,7 @@
                 },
                 deep: true
              }
-        },
+        }, 
 		methods: {
 			handleClearCache() {
 				this.$cache.remove('token')
