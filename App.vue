@@ -2,24 +2,24 @@
 	import moment from 'moment'
 	export default {
         watch: {
-            $route: {
+            $route: { 
                 handler(val, oldVal) {
                     // console.log('哈哈哈哈', val)
 					if (val.path.includes('/pages/login_new/login_new')) {
 						return
-					}
+					} 
 					this.handleCheckLoginTime()
                 },
                 deep: true
-             }
-        }, 
+             } 
+        },    
 		methods: {
-			handleClearCache() {
+			handleClearCache() { 
 				this.$cache.remove('token')
 				const pageCacheList = this.$cache.get('pageCacheList')
 				const pageFormCacheList = this.$cache.get("pageFormCacheList")
 				if(this.$config.clearPageCache){
-					if(pageCacheList){
+					if(pageCacheList){ 
 						pageCacheList.map(item => {
 							this.$cache.remove(item)
 						})
