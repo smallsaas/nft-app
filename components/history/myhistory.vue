@@ -218,7 +218,7 @@ export default {
     async getChildren (value) {
       console.log(value, 12123132)
       if (value == true) {
-        const res = await this.$api.changeGUGU()
+        const res = await this.$api.getUserWallet()
         console.log(res)
         this.coin = res.data.coinsAmount
       }
