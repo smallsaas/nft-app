@@ -2,7 +2,7 @@
   <view class="transfers">
     <text class="t"> 轉化GuGu令 </text>
     <text class="tt tttt"> 轉化數量 </text>
-    <input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低10起" type="number" />
+    <input v-model="data.number" class="ttt ttttt" placeholder="輸入數量" type="number" />
     <view class="line"></view>
     <view class="btnBox">
       <button class="btn ccc" @click="cancel">取消</button>
@@ -25,6 +25,9 @@ export default {
       loading: false
     }
   },
+  props:{
+  	  companionWispAmount: 0
+  },
   methods: {
     cancel () {
       this.$emit('close')
@@ -39,12 +42,27 @@ export default {
       }
 
       this.loading = true
-      // console.log(this.showError)
 
       if (this.data.number < 1) {
-        this.showErrorTwo = true
+        uni.showToast({
+          title: '請輸入轉化數量',
+          icon: "",
+          duration: 1500
+        })
+		this.loading = false
         return
       }
+	  
+	  if (this.data.number > this.companionWispAmount) {
+	    uni.showToast({
+	      title: '轉化數量不能高於擁有數量',
+	      icon: "",
+	      duration: 1500
+	    })
+		this.loading = false
+	    return
+	  }
+	  
       this.data.number = parseInt(this.data.number)
       // console.log(this.data)
       const res = await this.$api.changeGUGU(this.data)

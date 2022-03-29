@@ -17,7 +17,7 @@
         <view class="item">
           <view class="Info">我的能力晶石</view>
           <view class="TTT"
-            ><image src="../../static/spirit/newC.png" mode="widthFix" class="img"></image><text class="infoT">x {{ item.companionWispAmount || 0 }}</text>
+            ><image src="../../static/spirit/newC.png" mode="widthFix" class="img"></image><text class="infoT">x {{ companionWispAmount || 0 }}</text>
           </view>
           <view class="B">
             <view class="btnbtn"><button class="btn" @click="changGuGu">轉化</button></view></view
@@ -43,8 +43,8 @@
     <view class="spirit_mask" v-if="isShowTransfer || isShowTransferCoin || isShowTransferCoinTwo"></view>
     <number @forParentClose="getValue" @forParentCloseTwo="getValueTwo" :data="forChild" @forParentToChangeCoin="getValueForUpdateCoin"></number>
 
-    <changGuGu v-if="isShowTransfer" @close="getClose" @tellFather="getChildren"></changGuGu>
-    <!-- <transfer v-if="isShowTransfer" @close="getClose"></transfer> -->
+    <changGuGu v-if="isShowChangGuGu" :companionWispAmount="companionWispAmount" @close="getClose" @tellFather="getWalletInfo"></changGuGu>
+    <transfer v-if="isShowTransfer" :coin="coin" @close="getClose" @tellFather="getWalletInfo"></transfer>
     <transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
     <transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
     <!-- 提示組件 -->
@@ -80,17 +80,17 @@ export default {
       isShowToast: false,
       toastMsgs: '',
 
-
-
       coin: 0,
-      wispData: {}
+      wispData: {},
+	  
+	  isShowChangGuGu: false
     }
   },
   async created () {
     let pages = getCurrentPages()
     let nowPage = pages[pages.length - 1];
     let params = nowPage.options
-    console.log(this.item, 'aaaaaaaaaaaaaaaaaaaaaaaaaa  ==== ')
+    // console.log(this.item, 'aaaaaaaaaaaaaaaaaaaaaaaaaa  ==== ')
     // if(this.$route.query.success !== '' || this.$route.query.success!==null || this.$route.query.success == 1){
     //  const res = await this.$api.getUserWallet()
     //  console.log('rrrrrrraaaaaaaaaaaaaaaa',res,'ajklshjklfhsajkfhafjkhsaf')
@@ -104,6 +104,7 @@ export default {
     //  return
     // }
     this.coin = this.item.coinsAmount
+	this.companionWispAmount = this.item.companionWispAmount
 
     this.forChild.signInCoinCredit = this.item.signInCoinCredit
     this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
@@ -165,12 +166,15 @@ export default {
         })
         return
       }
-      this.isShowTransfer = true
+      this.isShowChangGuGu = true
     }
     ,
     getClose (data) {
       this.isShowTransfer = false
-      this.toast(data.message)
+	  this.isShowChangGuGu = false
+	  if(data.message){
+		this.toast(data.message)
+	  }
     },
     getCloseCoin () {
       this.isShowTransferCoin = false
@@ -192,14 +196,14 @@ export default {
 
 
     getMessageForChild (data) {
-      console.log(data)
+      // console.log(data)
       this.isShowTransferCoin = false
       data.message = data.message + '當前收益市場積分爲:' + this.item.marketPoints
       this.toast(data.message)
     },
 
     getMessageForChildTwo (data) {
-      console.log(data)
+      // console.log(data)
       this.isShowTransferCoinTwo = false
       data.message = data.message + '當前轉存積分爲:' + this.item.depositPoints
       this.toast(data.message)
@@ -215,13 +219,14 @@ export default {
       this.isShowToast = true
     },
 
-    async getChildren (value) {
-      console.log(value, 12123132)
-      if (value == true) {
-        const res = await this.$api.changeGUGU()
-        console.log(res)
-        this.coin = res.data.coinsAmount
-      }
+    async getWalletInfo (value) {
+        const res = await this.$api.getUserWallet()
+		if(res.code === 200){
+			this.coin = res.data.coinsAmount
+			this.companionWispAmount = res.data.companionWispAmount
+		}else{
+			console.error("获取钱包信息失败 == ", res)
+		}
     },
 
 
@@ -320,14 +325,14 @@ export default {
       height: 100%;
       .item {
         width: 90%;
-        height: 45%;
+        height: 47%;
         border: 1px solid rgb(43, 64, 119);
         border-radius: 20rpx;
         background: rgb(25, 38, 69);
         margin-left: 5%;
         display: flex;
         flex-direction: column;
-        margin-bottom: 10%;
+        margin-bottom: 5%;
         .Info {
           font-size: 28rpx;
           margin-top: 15rpx;
@@ -353,7 +358,7 @@ export default {
       }
       .B {
         width: 100%;
-        height: 50%;
+        height: 75%;
         border-top: 1px solid rgb(56, 76, 114);
         display: flex;
         align-items: center;
