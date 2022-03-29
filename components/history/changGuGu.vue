@@ -1,14 +1,8 @@
 <template>
   <view class="transfers">
-    <text class="t"> 轉讓GuGu令 </text>
-    <text class="tt"> 對方手機号碼 </text>
-    <input v-model="data.targetPlayerMobilePhone" class="ttt" placeholder="輸入手機号" type="number" />
-    <text class="error" v-if="showError">手機号碼格式(長度)錯誤</text>
-    <text class="tt tttt"> 轉讓數量 </text>
-    <text class="errors" v-if="showErrorTwo">轉讓最低數量最低爲100</text>
-    <input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低100起" type="number" />
-    <text class="tt tttttt"> 支付密碼 </text>
-    <input v-model="data.paymentPassword" class="ttt ttttttt" placeholder="輸入支付密碼" type="number" :password="true" />
+    <text class="t"> 轉化GuGu令 </text>
+    <text class="tt tttt"> 轉化數量 </text>
+    <input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低10起" type="number" />
     <view class="line"></view>
     <view class="btnBox">
       <button class="btn ccc" @click="cancel">取消</button>
@@ -24,9 +18,7 @@ export default {
       data: {
         // 13692842253
         // 123456
-        targetPlayerMobilePhone: '',
         number: "",
-        paymentPassword: '',
       },
       showError: false,
       showErrorTwo: false,
@@ -40,7 +32,7 @@ export default {
     subAction () {
       this.successTransfer()
     },
-    async successTransfer () { 
+    async successTransfer () {
 
       if (this.loading) {
         return
@@ -49,51 +41,46 @@ export default {
       this.loading = true
       // console.log(this.showError)
 
-      if (this.data.number < 100) {
+      if (this.data.number < 1) {
         this.showErrorTwo = true
         return
       }
-
-      if (this.data.targetPlayerMobilePhone.length < 6 || this.data.targetPlayerMobilePhone.length > 11) {
+      this.data.number = parseInt(this.data.number)
+      // console.log(this.data)
+      const res = await this.$api.changeGUGU(this.data)
+      // console.log(res)
+      if (res.code == 200) {
+        uni.showToast({
+          title: '轉化成功',
+          icon: "success",
+          duration: 1000
+        })
+        this.subAction()
         this.loading = false
-        this.showError = true
-        return
+        this.$emit('close')
+        this.$emit('tellFather', true)
       } else {
-        this.data.number = parseInt(this.data.number)
-        // console.log(this.data)
-        const res = await this.$api.transferCoin(this.data)
-        // console.log(res)
-        if (res.code == 200) {
-          uni.showToast({
-            title: '轉讓成功',
-            icon: "success",
-            duration: 1000
-          })
-          this.loading = false
-          this.$emit('close')
-          this.$emit('tellFather', true)
-        } else {
-          this.loading = false
-          let data = {
-            message: res.message
-          }
-          // uni.showToast({
-          // 	title: res.message,
-          // 	icon: "error",
-          // 	duration: 1000
-          // })
-          this.$emit('close', data)
+        this.loading = false
+        let data = {
+          message: res.message
         }
+        // uni.showToast({
+        // 	title: res.message,
+        // 	icon: "error",
+        // 	duration: 1000
+        // })
+        this.$emit('close', data)
       }
     }
   }
 }
+
 </script>
 
 <style lang="less">
 .transfers {
   width: 320px;
-  height: 400px;
+  height: 280px;
   background: linear-gradient(135deg, #1d294f 0%, #17253f 100%);
   border-radius: 8px 8px 8px 8px;
   opacity: 1;
@@ -134,42 +121,26 @@ export default {
     background: #131d33;
     border-radius: 8px 8px 8px 8px;
     opacity: 1;
-    border: 1px solid #363f4d;
     position: absolute;
     top: 172rpx;
     left: 38rpx;
     padding-left: 10rpx;
   }
 
-  .errors {
-    color: red;
-    position: absolute;
-    top: 420rpx;
-    left: 40rpx;
-    font-size: 12px;
-  }
-  .error {
-    color: red;
-    position: absolute;
-    top: 255rpx;
-    left: 40rpx;
-    font-size: 12px;
-  }
-
   .tttt {
-    top: 284rpx;
+    top: 190rpx;
   }
 
   .ttttt {
-    top: 334rpx;
+    top: 230rpx;
   }
 
   .tttttt {
-    top: 446rpx;
+    top: 260rpx;
   }
 
   .ttttttt {
-    top: 496rpx;
+    top: 300rpx;
   }
 
   .line {

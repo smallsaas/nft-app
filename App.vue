@@ -19,7 +19,7 @@
 				const pageCacheList = this.$cache.get('pageCacheList')
 				const pageFormCacheList = this.$cache.get("pageFormCacheList")
 				if(this.$config.clearPageCache){
-					if(pageCacheList){ 
+					if(pageCacheList){ 	
 						pageCacheList.map(item => {
 							this.$cache.remove(item)
 						})
@@ -28,7 +28,7 @@
 						pageFormCacheList.map(item => {
 							this.$cache.remove(item)
 						})
-					}
+					} 
 					this.$cache.remove('pageCacheList')
 					this.$cache.remove('pageFormCacheList')
 				}
