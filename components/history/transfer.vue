@@ -33,6 +33,9 @@ export default {
       loading: false
     }
   },
+  props:{
+	  coin: 0
+  },
   methods: {
     cancel () {
       this.$emit('close')
@@ -51,8 +54,19 @@ export default {
 
       if (this.data.number < 100) {
         this.showErrorTwo = true
+		this.loading = false
         return
       }
+	  
+	  if (this.data.number > this.coin) {
+	    uni.showToast({
+	      title: '轉讓數量不能高於擁有數量',
+	      icon: "",
+	      duration: 1500
+	    })
+		this.loading = false
+	    return
+	  }
 
       if (this.data.targetPlayerMobilePhone.length < 6 || this.data.targetPlayerMobilePhone.length > 11) {
         this.loading = false
