@@ -1,7 +1,7 @@
 <template>
   <view class="transfers">
     <text class="t"> 轉化GuGu令 </text>
-    <text class="tt tttt"> 轉化數量 </text>
+    <text class="tt tttt"> 轉化數量1:2 </text>
     <input v-model="data.number" class="ttt ttttt" placeholder="輸入數量,最低10起" type="number" />
     <view class="line"></view>
     <view class="btnBox">
@@ -55,7 +55,6 @@ export default {
           icon: "success",
           duration: 1000
         })
-        this.subAction()
         this.loading = false
         this.$emit('close')
         this.$emit('tellFather', true)
