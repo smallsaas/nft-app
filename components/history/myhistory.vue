@@ -218,7 +218,6 @@ export default {
       this.toastMsgs = msg
       this.isShowToast = true
     },
-
     async getWalletInfo (value) {
         const res = await this.$api.getUserWallet()
 		if(res.code === 200){
@@ -228,7 +227,6 @@ export default {
 			console.error("获取钱包信息失败 == ", res)
 		}
     },
-
 
   }
 }
