@@ -223,6 +223,7 @@ export default {
         this.coin = res.data.coinsAmount
       }
     },
+    
 
 
   }
