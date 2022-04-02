@@ -138,6 +138,11 @@
         "title" : "MetaGuGu",
         "router" : {
             "mode" : "hash"
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
         }
     }
 }

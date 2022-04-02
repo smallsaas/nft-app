@@ -113,6 +113,7 @@
                 ...item,
                 ...getComponentBindData(item),
               }"
+			  @refreshListData="refreshList"
             />
 
             <my-history-new
@@ -550,6 +551,11 @@ export default {
         }
       })
     },
+	
+	refreshList(){
+		console.log('refresh page')
+		this.fetchList()
+	},
 
     // 加載更多
     loadMore () {

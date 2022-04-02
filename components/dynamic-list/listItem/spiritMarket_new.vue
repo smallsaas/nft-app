@@ -173,6 +173,7 @@
 			},
 			getChild() {
 				this.isShowBookChild = false
+				this.$emit('refreshListData',false)
 			},
 			showBuyChild(item) {
 				if(this.$cache.get('status') !== 'NORMAL'){
