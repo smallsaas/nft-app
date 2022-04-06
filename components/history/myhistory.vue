@@ -43,7 +43,7 @@
     <view class="spirit_mask" v-if="isShowTransfer || isShowTransferCoin || isShowTransferCoinTwo"></view>
     <number @forParentClose="getValue" @forParentCloseTwo="getValueTwo" :data="forChild" @forParentToChangeCoin="getValueForUpdateCoin"></number>
 
-    <changGuGu v-if="isShowChangGuGu" :companionWispAmount="companionWispAmount" @close="getClose" @tellFather="getWalletInfo"></changGuGu>
+    <changGuGu v-if="isShowChangGuGu" :companionWispAmount="companionWispAmount" :companionWispCoin="companionWispCoin" @close="getClose" @tellFather="getWalletInfo"></changGuGu>
     <transfer v-if="isShowTransfer" :coin="coin" @close="getClose" @tellFather="getWalletInfo"></transfer>
     <transfercoin :data="forJudge" v-if="isShowTransferCoin" @closeCoin="getCloseCoin" @forParentMessage="getMessageForChild"></transfercoin>
     <transfercoin :dataTwo="forJudgeTwo" v-if="isShowTransferCoinTwo" @closeCoin="getCloseCoinTwo" @forParentMessageTwo="getMessageForChildTwo"></transfercoin>
@@ -83,7 +83,9 @@ export default {
       coin: 0,
       wispData: {},
 	  
-	  isShowChangGuGu: false
+	  isShowChangGuGu: false,
+	  companionWispAmount: 0,
+	  companionWispCoin: 0
     }
   },
   async created () {
@@ -103,8 +105,10 @@ export default {
     //  this.forJudgeTwo.depositPoints = this.item.depositPoints
     //  return
     // }
+	
     this.coin = this.item.coinsAmount
 	this.companionWispAmount = this.item.companionWispAmount
+	this.companionWispCoin = this.item.companionWispCoin
 
     this.forChild.signInCoinCredit = this.item.signInCoinCredit
     this.forChild.recommendCoinCredit = this.item.recommendCoinCredit
