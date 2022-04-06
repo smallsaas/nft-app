@@ -138,6 +138,7 @@ export default {
       display: flex;
       flex-direction: row;
       margin-bottom: 20rpx;
+	  padding-left: 10px;
       .img {
         width: 25%;
         height: 100%;

@@ -113,6 +113,7 @@
                 ...item,
                 ...getComponentBindData(item),
               }"
+			  @refreshListData="refreshList"
             />
 
             <my-history-new
@@ -244,6 +245,14 @@
               }"
             >
             </spirit-record>
+			
+			<check-team-list
+				v-if="getListItemKey() === 'check-team-list'"
+				:item="{
+				  ...item,
+				  ...getComponentBindData(item),
+				}"
+			></check-team-list>
           </view>
         </view>
       </load-refresh>
@@ -293,6 +302,8 @@ import mySelfSpiritHistoryNew from './listItem/mySelfSpiritHistory_new.vue'
 import transferSpiritNew from './listItem/transferSpirit_new.vue'
 import transferSpiritTwoNew from './listItem/transferSpiritTwo_new.vue'
 import spiritRecord from './listItem/spirit_record.vue'
+	//直推查詢列表
+import checkTeamList from '../team/checkTeamList.vue'
 
 export default {
   components: {
@@ -326,7 +337,8 @@ export default {
     mySelfSpiritHistoryNew,
     transferSpiritNew,
     transferSpiritTwoNew,
-    spiritRecord
+    spiritRecord,
+	checkTeamList
   },
   props: {
     config: {
@@ -539,6 +551,11 @@ export default {
         }
       })
     },
+	
+	refreshList(){
+		console.log('refresh page')
+		this.fetchList()
+	},
 
     // 加載更多
     loadMore () {

@@ -107,14 +107,14 @@ export default {
   }
 
   .item {
-    width: 90%;
+    width: 92%;
     height: 180rpx;
-    margin-left: 5%;
+    margin-left: 10px;
     background: rgb(17, 24, 30);
     border-radius: 20rpx;
     display: flex;
     flex-direction: row;
-
+	padding-left: 10px;
     .left {
       width: 20%;
       height: 100%;

@@ -1,0 +1,539 @@
+# @endpoint = http://api.dev.smallsaas.cn:8086
+@endpoint = https://www.metagugu.net
+
+GET {{endpoint}}/form?id=222333
+
+####
+POST {{endpoint}}/form/222333
+Content-Type: application/json
+
+{
+    "version": "1", 
+    "name": "userDetail", 
+    "title": "个人资料", 
+    "pageStyle": { }, 
+    "request": { }, 
+    "response": {
+        "data": "data"
+    }, 
+    "container": {
+
+    }, 
+    "modules": [
+        {
+          "type": "autoform", 
+          "key": "96afd71a-c8d5-11eb-aca5-0800271e55b7", 
+          "name": "基本信息", 
+          "container": {
+          }
+        },
+         {
+          "type": "autoform", 
+          "key": "96afd71a-c8d5-11eb-aca5-0800271e55b6", 
+          "name": "账户信息", 
+          "navigator":{
+              "url":"/defaultPage/page?id=71541",
+              "title":"修改账户信息"
+          },
+          "container": {
+          }
+        },
+        {
+          "type": "autoform", 
+          "key": "96afd71a-c8d5-11eb-aca5-0800271e55b4", 
+          "name": "支付密码", 
+          "modal":{
+              "title":"修改密码",
+              "ModalTitle":"修改支付密码",
+              "components":[
+                {
+                    "label": "常用聯係電話验证码",
+                    "type": "code",
+                    "field": "verifyCode",
+                    "placeholder": "输入验证码",
+                    "requestUrl": "/api/sms/v1/captcha"
+                },
+                {
+                    "label": "新的支付密码",
+                    "placeholder": "设置新的支付密码",
+                    "field": "newPaymentPassword",
+                    "type":"password"
+                }
+              ]
+          },
+          "container": {
+          }
+        }
+    ],
+    "moduleData": {
+        "96afd71a-c8d5-11eb-aca5-0800271e55b7":{
+            "fields": [
+                {
+                    "__config__": {
+                    "label": "姓名:",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 113,
+                    "renderKey": 1621415432107
+                    },
+                    "readonly": true,
+                    "__vModel__": "name"
+                },
+                {
+                    "__config__": {
+                    "label": "会员等级:",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-select",
+                    "tagIcon": "select",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 113,
+                    "renderKey": 1621415432107
+                    },
+                    "__slot__": {
+                        "options": [
+                            {
+                                "label": "註冊會員",
+                                "value": "-1"
+                            },
+                            {
+                                "label": "激活",
+                                "value": "0"
+                            },
+                            {
+                                "label": "有效會員",
+                                "value": "10"
+                            },
+                            {
+                                "label": "普通會員",
+                                "value": "20"
+                            },
+                            {
+                                "label": "青銅有效會員",
+                                "value": "1"
+                            },
+                            {
+                                "label": "白銀有效會員",
+                                "value": "2"
+                            },
+                            {
+                                "label": "黃金有效會員",
+                                "value": "3"
+                            },
+                            {
+                                "label": "鑽石有效會員",
+                                "value": "4"
+                            }
+                        ]
+                    },
+                    "style":{
+                        "color":"#164882"
+                    },
+                    "readonly": true,
+                    "__vModel__": "level"
+                },
+                    {
+                    "__config__": {
+                    "label": "主手机号码:",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 113,
+                    "renderKey": 1621415432107
+                    },
+                    "readonly": true,
+                    "__vModel__": "mobilePhone"
+                },
+                {
+                    "__config__": {
+                    "label": "常用聯係電話:",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "input",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 113,
+                    "renderKey": 1621415432107
+                    },
+                    "canChange":true,
+                    "saveAPI":"",
+                    "method":"GET",
+                    "modalTitle":"修改常用聯係電話",
+                    "components":[
+                        {
+                            "label":"主手机号验证码",
+                            "type":"code",
+                            "field":"verifyCode",
+                            "placeholder":"输入验证码",
+                            "requestUrl":"/api/sms/v1/captcha",
+                            "placeholder-style": "color: #fff;opcity: 1",
+                            "inputStyle": "color: #fff"
+                        },
+                        {
+                            "label":"常用聯係電話",
+                            "placeholder":"输入新的常用聯係電話",
+                            "field":"newBackupMobilePhone",
+                            "placeholder-style": "color: #fff;opcity: 1",
+                            "inputStyle": "color: #fff"
+                        }
+                    ],
+                    "doNotUseValue":"FROZEN",
+                    "statusField":"status",
+                    "readonly": true,
+                    "__vModel__": "backupMobilePhone"
+                },
+                {
+                    "__config__": {
+                    "label": "账号状态:",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "status",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "regList": [],
+                    "formId": 113,
+                    "renderKey": 1621415432107
+                    },
+                    "__slot__":{
+                        "options":[
+                            {
+                                "label":"已冻结",
+                                "value":"FROZEN",
+                                "color":"#B04849",
+                                "display":true,
+                                "displayLabel":"申请解冻",
+                                "api":"",
+                                "successText":"解冻成功",
+                                "errorText":"解冻失败"
+                            },
+                            {
+                                "label":"正常",
+                                "value":"NORMAL",
+                                "color":"",
+                                "display":false
+                            },
+                            {
+                                "label":"审核不通过",
+                                "value":"REFUSED",
+                                "color":"",
+                                "display":false
+                            },
+                            {
+                                "label":"待审核",
+                                "value":"PENDING",
+                                "color":"",
+                                "display":false
+                            }
+                        ]
+                    },
+                    "modalTitle":"申请解冻",
+                    "components":[
+                        {
+                            "type":"status"
+                        }
+                    ],
+                    "readonly": true,
+                    "__vModel__": "status"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi":"/api/u/player"
+        },
+        "96afd71a-c8d5-11eb-aca5-0800271e55b6":{
+            "fields": [
+                {
+                    "__config__": {
+                        "layout": "rowFormItem",
+                        "tagIcon": "row",
+                        "layoutTree": true,
+                        "formId": 112,
+                        "renderKey": 1621415404383,
+                        "componentName": "微信",
+                        "children": [
+                            {
+                                "__config__": {
+                                "label": "户名:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "wechatAccount"
+                            },
+                            {
+                                "__config__": {
+                                "label": "支付二维码:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-image",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "wechatQrCodePhotoUrl"
+                            }
+                        ]
+                    },
+                    "type": "default",
+                    "justify": "start",
+                    "align": "top"
+                },
+                {
+                    "__config__": {
+                        "layout": "rowFormItem",
+                        "tagIcon": "row",
+                        "layoutTree": true,
+                        "formId": 112,
+                        "renderKey": 1621415404383,
+                        "componentName": "支付宝",
+                        "children": [
+                            {
+                                "__config__": {
+                                "label": "户名:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "alipayAccount"
+                            },
+                            {
+                                "__config__": {
+                                "label": "支付二维码:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-image",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "alipayQrCodePhotoUrl"
+                            }
+                        ]
+                    },
+                    "type": "default",
+                    "justify": "start",
+                    "align": "top"
+                },
+                {
+                    "__config__": {
+                        "layout": "rowFormItem",
+                        "tagIcon": "row",
+                        "layoutTree": true,
+                        "formId": 112,
+                        "renderKey": 1621415404383,
+                        "componentName": "银行卡信息1",
+                        "children": [
+                            {
+                                "__config__": {
+                                "label": "銀行名稱:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "bankName"
+                            },
+                            {
+                                "__config__": {
+                                "label": "户名:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "bankAccountName"
+                            },
+                            {
+                                "__config__": {
+                                "label": "银行卡号:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "bankAccountNumber"
+                            }
+                        ]
+                    },
+                    "type": "default",
+                    "justify": "start",
+                    "align": "top"
+                },
+                
+                {
+                    "__config__": {
+                        "layout": "rowFormItem",
+                        "tagIcon": "row",
+                        "layoutTree": true,
+                        "formId": 112,
+                        "renderKey": 1621415404383,
+                        "componentName": "银行卡信息2",
+                        "children": [
+                            {
+                                "__config__": {
+                                "label": "銀行名稱:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "bankName2"
+                            },
+                            {
+                                "__config__": {
+                                "label": "户名:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "bankAccountName2"
+                            },
+                            {
+                                "__config__": {
+                                "label": "银行卡号:",
+                                "labelWidth": null,
+                                "showLabel": true,
+                                "tag": "el-input",
+                                "tagIcon": "input",
+                                "required": false,
+                                "layout": "colFormItem",
+                                "regList": [],
+                                "formId": 113,
+                                "renderKey": 1621415432107
+                                },
+                                "readonly": true,
+                                "__vModel__": "bankAccountNumber2"
+                            }
+                        ]
+                    },
+                    "type": "default",
+                    "justify": "start",
+                    "align": "top"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi":"/api/u/player"
+        },
+        "96afd71a-c8d5-11eb-aca5-0800271e55b4":{
+            "fields": [
+                {
+                    "__config__": {
+                    "label": "支付密码:",
+                    "labelWidth": null,
+                    "showLabel": true,
+                    "tag": "el-input",
+                    "tagIcon": "password",
+                    "defaultValue":"******",
+                    "required": false,
+                    "layout": "colFormItem",
+                    "regList": [],
+                        "__slot__": {
+                    "prepend": "",
+                    "append": ""
+                    },
+                    "formId": 113,
+                    "renderKey": 1621415432107
+                    },
+                    "tips":"(用于GuGu令)",
+                    "readonly": true,
+                    "__vModel__": "paymentPassword"
+                }
+            ],
+            "formRef": "elForm",
+            "formModel": "formData",
+            "size": "medium",
+            "labelPosition": "left",
+            "labelWidth": 100,
+            "formRules": "rules",
+            "gutter": 0,
+            "disabled": false,
+            "formBtns": false,
+            "unFocusedComponentBorder": false,
+            "loadApi":"/api/u/player"
+        }
+    }
+}

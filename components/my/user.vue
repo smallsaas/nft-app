@@ -24,8 +24,10 @@
             <text :class="[`wid ${statusText !== '正常' ? 'forzen' : ''}`] " v-else>{{statusText}}</text>
 		</text>
 		
-		<text class="shezhi">設置</text>
-		<image @click="getDetail" class="more" src="../../static/service/more.png" mode="widthFix"></image>
+		<view @click="getDetail">
+			<text class="shezhi">設置</text>
+			<image class="more" src="../../static/service/more.png" mode="widthFix"></image>
+		</view>
 	<!-- 	<view class="left">
 			<view class="LImg"><image class="img" src="../../static/spirit/coin.png" mode="widthFix"></image></view>
 			<view class="Linfo">
