@@ -1,7 +1,7 @@
 <template>
   <view class="transfers">
     <text class="t"> 轉化GuGu令 </text>
-    <text class="tt tttt"> 轉化數量1:2 </text>
+    <text class="tt tttt">当前市场价格转化比 1 : {{companionWispCoin}}</text>
     <input v-model="data.number" class="ttt ttttt" placeholder="輸入數量" type="number" />
     <view class="line"></view>
     <view class="btnBox">
@@ -26,7 +26,8 @@ export default {
     }
   },
   props:{
-  	  companionWispAmount: 0
+  	  companionWispAmount: 0,
+	  companionWispCoin: 0
   },
   methods: {
     cancel () {
@@ -89,6 +90,8 @@ export default {
         this.$emit('close', data)
       }
     }
+  },
+  mounted(){
   }
 }
 
@@ -121,7 +124,7 @@ export default {
   }
 
   .tt {
-    width: 72px;
+    width: 160px;
     height: 17px;
     font-size: 12px;
     font-family: PingFang SC-Regular, PingFang SC;
@@ -149,7 +152,7 @@ export default {
   }
 
   .ttttt {
-    top: 230rpx;
+    top: 240rpx;
   }
 
   .tttttt {

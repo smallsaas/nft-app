@@ -12,10 +12,10 @@ const serverName = 'me' //生产环境: net、me
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
-	formHost: "http://49.119.119.7:8083/form",
-  dataHost: "http://49.119.119.7:8083/data",
-  endpoint: "http://49.119.119.7:8083",
-  imageEndpoint: "http://49.119.119.7:8083",
+	formHost: "http://49.119.119.7:8082/form",
+  dataHost: "http://49.119.119.7:8082/data",
+  endpoint: "http://49.119.119.7:8082",
+  imageEndpoint: "http://49.119.119.7:8082",
   tokenStorageKey:"token",
 	iconList:iconList
 }: serverName === 'net' ? {
@@ -42,10 +42,10 @@ export const globalConfig = isDev?{
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存
 	clearPageCache: true,//重啓時是否清除頁面緩存
-	formHost: "http://49.119.119.7:8083/form",
-  dataHost: "http://49.119.119.7:8083/data",
-  endpoint: "http://49.119.119.7:8083",
-  imageEndpoint: "http://49.119.119.7:8083",
+	formHost: "http://49.119.119.7:8082/form",
+  dataHost: "http://49.119.119.7:8082/data",
+  endpoint: "http://49.119.119.7:8082",
+  imageEndpoint: "http://49.119.119.7:8082",
   tokenStorageKey:"token",
 	iconList:iconList
 }: serverName === 'net' ? {
