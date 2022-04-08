@@ -86,7 +86,7 @@
 			<view class="bottom">
 				<view class="imgBox">
 					<view class="success" v-for="(item,index) in list" :key="index">
-						<image :src="item" mode="widthFix" class="upload" @click="check(item)"></image>
+						<image :src="getEndpoint + item" mode="widthFix" class="upload" @click="check(item)"></image>
 						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg"
 							@click="deleteImage(index)" v-if="!showBigImg"></image>
 					</view>
@@ -134,7 +134,8 @@
 				iid: 0,
 				sellerInfo: {},
 				orderData: {},
-				downloadTips: '長按圖片下載'
+				downloadTips: '長按圖片下載',
+				getEndpoint: this.$config.endpoint
 			}
 		},
 		computed: {
@@ -193,8 +194,7 @@
 							let file = files[i]
 							let webPath = await that.$upload("/api/u/fs/uploadfile", file.path)
 							let fileList = that.list
-							fileList.push(that.$config.endpoint + webPath)
-							// console.log(fileList)
+							fileList.push(webPath)
 						}
 					}
 				})
@@ -327,7 +327,7 @@
 					})
 					return
 				}
-
+				
 				let res
 				let tipsMessage = '付款成功'
 				if (_.get(this.orderData, 'status') === 'PAID') {
