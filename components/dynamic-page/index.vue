@@ -255,39 +255,41 @@
 
 		},
 		created() {
-			let that = this
-			let id = this.formatId(this.API)
-			console.log("重新創建")
-			if (id) {
-				this.pageId = id
-				let data = this.$timeCache(`page_${id}`)
-				let change = this.$cache.get("FormChange")
-				// let formData
-				if (!change) {
-					// formData = this.$timeCache(`page_${id}_form_Srv`)
-					// formData = {
-					// 	...formData,
-					// 	...that.srvFormData
-					// }
-				} else {
-					this.$cache.remove('FormChange')
-					formData = that.srvFormData
-				}
-				if (data) {
-					// console.log("使用緩存page_"+id,data)
-					// if(formData){
-					// 	console.log(`使用緩存page_${id}_form_Srv`,formData)
-					// 	that.formData = formData
-					// }
-					// console.log(this.formData,"this")
-					this.loadPage(data)
-					this.$forceUpdate()
-				} else {
-					this.fetchConfigData()
-				}
-			} else {
-				this.fetchConfigData()
-			}
+			// let that = this
+			// let id = this.formatId(this.API)
+			// console.log("重新創建")
+			// this.skeletonLoading = true
+			// if (id) {
+			// 	this.pageId = id
+			// 	let data = this.$timeCache(`page_${id}`)
+			// 	let change = this.$cache.get("FormChange")
+			// 	// let formData
+			// 	if (!change) {
+			// 		// formData = this.$timeCache(`page_${id}_form_Srv`)
+			// 		// formData = {
+			// 		// 	...formData,
+			// 		// 	...that.srvFormData
+			// 		// }
+			// 	} else {
+			// 		this.$cache.remove('FormChange')
+			// 		formData = that.srvFormData
+			// 	}
+			// 	if (data) {
+			// 		// console.log("使用緩存page_"+id,data)
+			// 		// if(formData){
+			// 		// 	console.log(`使用緩存page_${id}_form_Srv`,formData)
+			// 		// 	that.formData = formData
+			// 		// }
+			// 		// console.log(this.formData,"this")
+			// 		this.loadPage(data)
+			// 		this.$forceUpdate()
+			// 	} else {
+			// 		this.fetchConfigData()
+			// 	}
+			// } else {
+			// 	this.fetchConfigData()
+			// }
+			// this.skeletonLoading = false
 		},
 		mounted() {
 			console.log("重新挂載")

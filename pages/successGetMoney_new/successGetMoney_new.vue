@@ -7,7 +7,7 @@
 			<view class="body">
 				<text class="o">買家付款憑證</text>
 				<view class="b">
-					<image :src="pictureUrl" mode="widthFix" class="img" @click="showBImg"></image>
+					<image :src="getEndpoint + pictureUrl" mode="widthFix" class="img" @click="showBImg"></image>
 				</view>
 			</view>
 			<view class="bottom">
@@ -19,7 +19,7 @@
 		<!-- 模态組件 -->
 		<view class="motai-mask" v-if="showBigImg==true || isShowToast==true"></view>
 		<view class="motai" v-if="showBigImg">
-			<image :src="pictureUrl" mode="widthFix" class="upload"></image>
+			<image :src="getEndpoint + pictureUrl" mode="widthFix" class="upload"></image>
 			<image src="../../static/service/close.png" mode="widthFix" class="deleteImg" @click="closeBigImg"></image>
 		</view>
 
@@ -53,7 +53,8 @@
 				toastMsg: '',
 				buyphone:'',
 				pictureUrl:'',
-				buyerName: ''
+				buyerName: '',
+				getEndpoint: this.$config.endpoint
 			}
 		},
 		methods: {

@@ -226,7 +226,7 @@
 			},
 		},
 		mounted() {
-			console.log("srv", this.srvFormData)
+			// console.log("srv", this.srvFormData)
 			// 有具體配置信息時
 			if (Object.keys(this.config).length > 0) {
 				this.formConfig = _.cloneDeep(this.config)
@@ -237,7 +237,7 @@
 				// 從默認配置中獲取表單
 				this.fetchDefaultFormConfig()
 			}
-			console.log("SRVFORMDATA", this.srvFormData)
+			// console.log("SRVFORMDATA", this.srvFormData)
 			// 外部傳入的數據源
 			if (Object.keys(this.srvFormData).length > 0) {
 				this.form = {
