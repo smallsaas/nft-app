@@ -6,16 +6,16 @@
 			<image src="../../static/service/close.png" mode="widthFix" class="search" v-if="isSearching" @click="giveUpsearchIng"></image>
 		</view> -->
     <view class="box">
-      <view class="item" v-for="(item, index) in list" :key="index">
-        <!-- <view class="img">
-					<image :src="item.avatar" mode="widthFix" class="avator"></image>
-				</view> -->
-        <view class="info">
-          <text class="infoN">{{ item.name }}</text>
-          <text class="infoP">手機号: {{ item.mobilePhone || '暫無' }}</text>
-          <text class="infoPT">備用手機号: {{ item.backupMobilePhone || '暫無' }}</text>
-        </view>
-      </view>
+	  <view class="item">
+	    <!-- <view class="img">
+	  					<image :src="item.avatar" mode="widthFix" class="avator"></image>
+	  				</view> -->
+	    <view class="info">
+	      <text class="infoN">{{ item.name }}</text>
+	      <text class="infoP">手機号: {{ item.mobilePhone || '暫無' }}</text>
+	      <text class="infoPT">備用手機号: {{ item.backupMobilePhone || '暫無' }}</text>
+	    </view>
+	  </view>
     </view>
   </view>
 </template>
@@ -25,6 +25,10 @@ import { globalConfig } from '@/config.js'
 import { api } from '@/common/api.js'
 export default {
   name: 'spiritMarket',
+  props: {
+  	item: Object,
+  	ext: Object
+  },
   data () {
     return {
       isSearching: false,
@@ -34,7 +38,6 @@ export default {
     }
   },
   mounted () {
-    this.getStrightTeam()
   },
   watch: {
     searchPhone (value) {
@@ -88,13 +91,13 @@ export default {
       }
       return imagePath
     },
-    async getStrightTeam () {
-      const res = await this.$api.getStrightTeam()
-      console.log(res)
-      if (res.code == 200) {
-        this.list = res.data.records
-      }
-    }
+    // async getStrightTeam () {
+    //   const res = await this.$api.getStrightTeam()
+    //   console.log(res)
+    //   if (res.code == 200) {
+    //     this.list = res.data.records
+    //   }
+    // }
   }
 }
 </script>

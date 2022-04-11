@@ -112,7 +112,7 @@
 						<my-history v-if="_get(item,'type') === 'my-history'" :item="getComponentsData(item)">
 						</my-history>
 						<!-- <check-team-list v-if="_get(item,'type') === 'check-team-list'" :item="getComponentsData(item)"> -->
-						</check-team-list>
+						<!-- </check-team-list> -->
 						<!-- 統計團隊組件 也可統計其他 fieldGroup 字段組 loadApi 獲取數據api unitGroup 單位組-->
 						<data-show v-if="_get(item,'type') === 'dataShow'"
 							:fieldGroup="_get(_get(config.moduleData,item.key,{}),'fieldGroup',{})"
