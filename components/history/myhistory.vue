@@ -231,6 +231,7 @@ export default {
 			console.error("获取钱包信息失败 == ", res)
 		}
     },
+    
 
   }
 }
