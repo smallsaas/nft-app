@@ -1,8 +1,5 @@
-# @endpoint = https://api.mock.smallsaas.cn
-# @endpoint = https://api.mock.smallsaas.cn
-
-# @endpoint = http://repo.dev.smallsaas.cn:8086
-@endpoint = https://www.metagugu.net
+@endpoint = http://49.119.119.7:8082
+# @endpoint = https://www.metagugu.net
 
 
 ### 获取列表页面信息

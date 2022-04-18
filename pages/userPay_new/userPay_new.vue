@@ -204,7 +204,7 @@
 					wispOrderId: id
 				}
 				const res = await this.$api.getOrderInfo(data)
-				// console.log("RES", res)
+				// console.log("RES ============= ", res)
 				if (res.code == 200) {
 					this.orderData = res.data || {}
 					if (_.get(res, 'data.paymentMethod') === 'WECHAT_PAYMENT') {
@@ -235,7 +235,7 @@
 					}
 					this.sellerInfo.transactionAmount = res.data.transactionAmount
 					this.sellerInfo.wechatAccount = res.data.seller.wechatAccount
-					if (res.data.seller.wechatQrCodePhotoUrl == null) {
+					if (res.data.seller.wechatQrCodePhotoUrl == null || res.data.seller.wechatQrCodePhotoUrl == '[]') {
 						this.sellerInfo.wechatQrCodePhotoUrl = ''
 					} else {
 						this.sellerInfo.wechatQrCodePhotoUrl = this.getImages(res.data.seller.wechatQrCodePhotoUrl)
@@ -244,7 +244,7 @@
 					// this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
 					this.sellerInfo.alipayAccount = res.data.seller.alipayAccount
 					// this.sellerInfo.alipayQrCodePhotoUrl = res.data.seller.alipayQrCodePhotoUrl
-					if (res.data.seller.alipayQrCodePhotoUrl == null) {
+					if (res.data.seller.alipayQrCodePhotoUrl == null || res.data.seller.alipayQrCodePhotoUrl == '[]') {
 						this.sellerInfo.alipayQrCodePhotoUrl = ''
 					} else {
 						this.sellerInfo.alipayQrCodePhotoUrl = this.getImages(res.data.seller.alipayQrCodePhotoUrl)
@@ -264,9 +264,9 @@
 					}
 					// console.log("pictureUrl ========== ", pictureUrl)
 					//申訴狀态
-					if (res.data.status === 'COMPLAINING') {
+					// if (res.data.status === 'COMPLAINING') {
 
-					}
+					// }
 
 					uni.showToast({
 						title: '獲取信息成功',
