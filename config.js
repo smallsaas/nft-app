@@ -6,7 +6,7 @@ const globalConfigStorage = cache.get('globalConfigStorage')
 const iconList = cache.get("iconList")
 
 // 是否爲開發環境 雙配置 兼容生産及開發環境
-const isDev = false
+const isDev = true
 const serverName = 'net' //生产环境: net、me
 // #ifdef APP-PLUS 
 export const globalConfig = isDev?{

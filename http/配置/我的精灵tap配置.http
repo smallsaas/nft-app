@@ -1,32 +1,30 @@
-@endpoint = https://www.metagugu.net
+# @endpoint = https://www.metagugu.net
 # 开发环境使用
-@devEndpoint = http://localhost:8080
-
-@prodEndpoint = https://www.metagugu.net
+@endpoint = http://49.119.119.7:8082
 
 ###
-GET {{endpoint}}/data?id=41357
-###
-POST {{endpoint}}/data/41357
-Content-Type: application/json
+# GET {{endpoint}}/data?id=41357
+# ###
+# POST {{endpoint}}/data/41357
+# Content-Type: application/json
 
-{
-    "tabs":[
-        {"title":"预约精灵","id":"6666699"},
-        {"title":"匹配精灵","id":"225599"},
-        {"title":"领养精灵","id":"444555999"},
-        {"title":"出售精灵","id":"777444111"}
-    ]
-}
+# {
+#     "tabs":[
+#         {"title":"预约精灵","id":"6666699"},
+#         {"title":"匹配精灵","id":"225599"},
+#         {"title":"领养精灵","id":"444555999"},
+#         {"title":"出售精灵","id":"777444111"}
+#     ]
+# }
 
 ### 
 GET {{endpoint}}/data?id=41357
 
 ### 修改相应字眼为：預約記錄、匹配記錄，領養記錄，出售記錄
-GET {{prodEndpoint}}/data?id=41357
+GET {{endpoint}}/data?id=41357
 
 ### 先在mock测试对比与原来在生产库的结果，确认修改正确后，再写到生产库
-POST {{prodEndpoint}}/data/41357
+POST {{endpoint}}/data/41357
 Content-Type: application/json
 
 {
