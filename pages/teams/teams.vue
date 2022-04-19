@@ -41,7 +41,7 @@ export default {
     ext: Object
   },
   created () {
-    console.log(this.item, '我是item')
+    // console.log(this.item, '我是item')
   },
   methods: {
     getImage (url) {
