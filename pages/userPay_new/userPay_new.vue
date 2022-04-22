@@ -238,7 +238,7 @@
 					if (res.data.seller.wechatQrCodePhotoUrl == null || res.data.seller.wechatQrCodePhotoUrl == '[]') {
 						this.sellerInfo.wechatQrCodePhotoUrl = ''
 					} else {
-						this.sellerInfo.wechatQrCodePhotoUrl = this.getImages(res.data.seller.wechatQrCodePhotoUrl)
+						this.sellerInfo.wechatQrCodePhotoUrl = this.getImages(res.data.seller.wechatQrCodePhotoUrl) + '?t=' + new Date().getTime()
 					}
 					// console.log(res.data.seller.wechatQrCodePhotoUrl, '------微信哈哈哈哈哈哈')
 					// this.sellerInfo.wechatQrCodePhotoUrl = res.data.seller.wechatQrCodePhotoUrl
@@ -247,7 +247,7 @@
 					if (res.data.seller.alipayQrCodePhotoUrl == null || res.data.seller.alipayQrCodePhotoUrl == '[]') {
 						this.sellerInfo.alipayQrCodePhotoUrl = ''
 					} else {
-						this.sellerInfo.alipayQrCodePhotoUrl = this.getImages(res.data.seller.alipayQrCodePhotoUrl)
+						this.sellerInfo.alipayQrCodePhotoUrl = this.getImages(res.data.seller.alipayQrCodePhotoUrl) + '?t=' + new Date().getTime()
 					}
 					// console.log(this.sellerInfo.alipayQrCodePhotoUrl, '------支付寶哈哈哈哈哈哈')
 					this.sellerInfo.bankAccountNumber = res.data.seller.bankAccountNumber
@@ -258,7 +258,7 @@
 					this.sellerInfo.bankAccountName2 = res.data.seller.bankAccountName2
 					this.sellerInfo.bankName2 = res.data.seller.bankName2
 
-					const pictureUrl = res.data.pictureUrl
+					const pictureUrl = res.data.pictureUrl + '?t=' + new Date().getTime()
 					if (pictureUrl) {
 						this.list = [pictureUrl]
 					}
