@@ -33,10 +33,10 @@
 			this.getData()
 		},
 		mounted() {
-			console.log("FIELDGROUP",this.fieldGroup)
+			// console.log("FIELDGROUP",this.fieldGroup)
 			this.fieldList = Object.keys(this.fieldGroup)
 			this.labelList = Object.values(this.fieldGroup)
-			console.log(this.fieldList,this.labelList,"FIELDLABEL")
+			// console.log(this.fieldList,this.labelList,"FIELDLABEL")
 			this.getData()
 		},
 		methods:{
@@ -49,7 +49,7 @@
 						Authorization:`Bearer ${token}`
 					},
 					success(res) {
-						console.log(res,'aaaaaafjksahfjksahfjksahf-----')
+						// console.log(res,'aaaaaafjksahfjksahfjksahf-----')
 						that.data = res.data.data
 					}
 				})

@@ -7,7 +7,12 @@ const iconList = cache.get("iconList")
 
 // 是否爲開發環境 雙配置 兼容生産及開發環境
 const isDev = false
+<<<<<<< HEAD
 const serverName = 'de' //生产环境: net、me
+=======
+const serverName = 'me' //生产环境: net、me
+
+>>>>>>> 9a61f1d0be208e0625a95109b023da8f8a3e1e35
 // #ifdef APP-PLUS 
 export const globalConfig = isDev?{
 	cachePolicy: 1, //頁面緩存的時間 默認緩存一天 以天爲單位 爲0不緩存

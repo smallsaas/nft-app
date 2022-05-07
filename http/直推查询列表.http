@@ -77,7 +77,7 @@ Content-Type: application/json
     ],
     "moduleData": {
          "e59992z8-bb88-a788-9922-1623488775885": {
-            "loadApi":"/api/u/player/getChildrenById",
+            "loadApi":"/api/u/player/getPlayerTeam",
             "itemNavigation": "",
             "response":{
                 "list":"records"

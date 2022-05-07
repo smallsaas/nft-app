@@ -35,7 +35,7 @@
 			console.log("ID", e)
 			this.iid = e.data
 			this.buyphone = e.phone
-			this.pictureUrl = e.picture
+			this.pictureUrl = e.picture + '?t=' + new Date().getTime()
 			this.buyerName = e.buyerName
 			// console.log('res',this.iid)
 		},
