@@ -86,7 +86,7 @@
 			<view class="bottom">
 				<view class="imgBox">
 					<view class="success" v-for="(item,index) in list" :key="index">
-						<image :src="getEndpoint + item" mode="widthFix" class="upload" @click="check(item)"></image>
+						<image :src="getEndpoint + item" mode="widthFix" class="upload" @click="check(getEndpoint + item)"></image>
 						<image src="../../static/BaseImage/close.png" mode="widthFix" class="deleteImg"
 							@click="deleteImage(index)" v-if="!showBigImg"></image>
 					</view>
